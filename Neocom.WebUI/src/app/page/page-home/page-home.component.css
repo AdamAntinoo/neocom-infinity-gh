@@ -1,0 +1,25 @@
+.btn-neocom-box {
+  border-radius: 8px;
+  border-width: 2px;
+  /*display: block;*/
+  font-family: Roboto;
+  font-size: 40px;
+  font-weight: bold;
+  height: 100px;
+  line-height: 100px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  vertical-align: middle;
+  width: 30%;
+  margin-left: 30px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn-neocom-box:hover {
+  background-color: MediumSlateBlue;
+  background-image: none;
+  text-shadow: 0 0px;
+  color: white;
+  -webkit-font-smoothing: antialiased;
+}
