@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { PageSplashComponent }  from './page/page-splash/page-splash.component';
 import { PageLoginComponent }   from './page/page-login/page-login.component';
 import { PageHomeComponent }    from './page/page-home/page-home.component';
+import { PagePilotsComponent }  from './page/page-pilots/page-pilots.component';
 
 const routes: Routes = [
   {
@@ -12,7 +13,8 @@ const routes: Routes = [
     redirectTo: '/home',
     pathMatch: 'full'
   },
-  { path: 'home', component: PageHomeComponent }
+  { path: 'home', component: PageHomeComponent },
+  { path: 'pilots', component: PagePilotsComponent },
 ];
 
 @NgModule({
