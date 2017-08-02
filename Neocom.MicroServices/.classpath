@@ -21,10 +21,15 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/Neocom.Database"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Neocom.Models"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Neocom.DataSources"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/AndroidMVC"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.dimensinfin.core"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Neocom.Database"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Neocom.MarketService"/>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -1,0 +1,5 @@
+*.diff
+*.db
+*.log
+.recommenders/
+.metadata/
