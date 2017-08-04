@@ -9,6 +9,7 @@ package org.dimensinfin.eveonline.neocom.microservices;
 import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.connector.AppConnector;
+import org.dimensinfin.eveonline.neocom.connector.NeocomPreferences;
 import org.dimensinfin.eveonline.neocom.microservices.adapter.MicroServiceAbstractConnector;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -50,6 +51,12 @@ public class NeocomMicroServiceApplication extends MicroServiceAbstractConnector
 		}
 		AppConnector.setConnector(singleton);
 		logger.info("<<[NeocomMicroServiceApplication.<constructor>]");
+	}
+
+	@Override
+	public NeocomPreferences getDefaultSharedPreferences() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
