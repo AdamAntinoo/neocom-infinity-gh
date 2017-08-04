@@ -1,3 +1,18 @@
 <p>
   page-pilots works!
 </p>
+<div>
+  <table width="100%">
+    <tr>
+      <td class="list list-title pr-list-title">Available Pilot List</td>
+    </tr>
+    <tr *ngFor="let pilot of pilotList">
+      <td class="badge badge-blue">{{pilot.urlforAvatar}}</td>
+      <img src="{{pilot.urlforAvatar}}">
+      <td width="90%">
+        <span class="pr-list">{{pilot.name}}</span>
+      </td>
+      <td class="badge">{{pilot.lastKnownLocation}}</td>
+    </tr>
+  </table>
+</div>
