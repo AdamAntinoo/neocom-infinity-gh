@@ -6,13 +6,8 @@
     <tr>
       <td class="list list-title pr-list-title">Available Pilot List</td>
     </tr>
-    <tr *ngFor="let pilot of pilotList">
-      <td class="badge badge-blue">{{pilot.urlforAvatar}}</td>
-      <img src="{{pilot.urlforAvatar}}">
-      <td width="90%">
-        <span class="pr-list">{{pilot.name}}</span>
-      </td>
-      <td class="badge">{{pilot.lastKnownLocation}}</td>
-    </tr>
   </table>
+  <div *ngFor="let pilot of pilotList">
+    <neocom-pilot-roaster-block [pilot]=pilot></neocom-pilot-roaster-block>
+  </div>
 </div>

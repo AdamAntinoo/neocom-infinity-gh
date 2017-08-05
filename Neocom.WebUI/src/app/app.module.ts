@@ -15,11 +15,14 @@ import { PilotRoasterService }  from './services/pilot-roaster.service';
 import { PageSplashComponent }  from './page/page-splash/page-splash.component';
 import { PageLoginComponent }   from './page/page-login/page-login.component';
 import { PageHomeComponent }    from './page/page-home/page-home.component';
+import { PagePilotsComponent }        from './page/page-pilots/page-pilots.component';
 //--- COMPONENTS
-import { AppComponent }             from './app.component';
-import { HeaderComponent }          from './component/header/header.component';
-import { NavigationMenuComponent }  from './component/navigation-menu/navigation-menu.component';
-import { PagePilotsComponent }      from './page/page-pilots/page-pilots.component';
+import { AppComponent }               from './app.component';
+import { HeaderComponent }            from './component/header/header.component';
+import { NavigationMenuComponent }    from './component/navigation-menu/navigation-menu.component';
+import { PilotRoasterBlockComponent } from './component/pilot-roaster-block/pilot-roaster-block.component';
+//--- PIPES
+import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,8 @@ import { PagePilotsComponent }      from './page/page-pilots/page-pilots.compone
     PageLoginComponent,
     PageHomeComponent,
     PagePilotsComponent,
+    PilotRoasterBlockComponent,
+    ISKNoDecimalsPipe,
   ],
   imports: [
     BrowserModule,
