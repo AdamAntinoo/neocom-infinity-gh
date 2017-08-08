@@ -37,7 +37,7 @@ public class PilotRoasterController {
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/pilot", method = RequestMethod.GET, produces = "application/json")
 	public Pilot pilotDetail(@PathVariable final String identifier) {
-		String login = "Default";
+		String login = "Beth";
 		logger.info(">> [PilotRoasterController.pilotDetail]");
 		Vector<Pilot> pilotList = new Vector<Pilot>();
 		// Get the cookie and the login identifier inside it.
@@ -67,7 +67,7 @@ public class PilotRoasterController {
 	@RequestMapping(value = "/api/v1/pilotroaster", method = RequestMethod.GET, produces = "application/json")
 	//public List<Pilot> pilotRoaster(@CookieValue("login") String login) {
 	public List<Pilot> pilotRoaster(/* @CookieValue("login") String login */) {
-		String login = "Default";
+		String login = "Beth";
 		logger.info(">> [PilotRoasterController.pilotRoaster]");
 		Vector<Pilot> pilotList = new Vector<Pilot>();
 		// Get the cookie and the login identifier inside it.
