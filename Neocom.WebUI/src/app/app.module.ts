@@ -23,6 +23,8 @@ import { NavigationMenuComponent }    from './component/navigation-menu/navigati
 import { PilotRoasterBlockComponent } from './component/pilot-roaster-block/pilot-roaster-block.component';
 //--- PIPES
 import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
+import { CapitalizeLetterPipe } from './pipes/capitalize-letter.pipe';
+import { PagePilotDetailComponent } from './page/page-pilot-detail/page-pilot-detail.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
     PagePilotsComponent,
     PilotRoasterBlockComponent,
     ISKNoDecimalsPipe,
+    CapitalizeLetterPipe,
+    PagePilotDetailComponent,
   ],
   imports: [
     BrowserModule,

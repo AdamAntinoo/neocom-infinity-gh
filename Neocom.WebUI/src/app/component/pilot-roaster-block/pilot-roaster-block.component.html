@@ -4,23 +4,25 @@
       <span><img class="pilot-avatar-small" src="{{pilot.urlforAvatar}}"></span>
     </td>
     <td class="pilot-info-container">
-      <div>
-        <span class="pilot-name">{{pilot.name}}</span><br>
-        <span>{{pilot.characterSheet.gender}}</span>-
-        <span>{{pilot.characterSheet.race}}</span>-
-        <span>{{pilot.characterSheet.ancestry}}</span>-
-        <span>{{pilot.characterSheet.bloodLine}}</span><br>
-        <span class="label-small">Balance:</span>
-        <span class="pilot-balance">{{pilot.accountBalance | number:'1.2-2'}} ISK</span><br>
-        <span class="label-small">Corporation:</span>
-        <span class="pilot-content">{{pilot.characterSheet.corporationName}}</span><br>
-        <!-- <span class="label-small">Alliance:</span>
+      <a [routerLink]="['/pilot',pilot.getId()]">
+        <div>
+          <span class="pilot-name">{{pilot.name}}</span><br>
+          <span>{{pilot.characterSheet.gender}}</span> -
+          <span>{{pilot.characterSheet.race | lowercase | capitalizeLetter}}</span> -
+          <span>{{pilot.characterSheet.bloodLine | lowercase | capitalizeLetter}}</span> -
+          <span>{{pilot.characterSheet.ancestry | lowercase | capitalizeLetter}}</span><br>
+          <span class="label-small">Balance:</span>
+          <span class="pilot-balance">{{pilot.accountBalance | number:'1.2-2'}} ISK</span><br>
+          <span class="label-small">Corporation:</span>
+          <span class="pilot-content">{{pilot.characterSheet.corporationName}}</span><br>
+          <!-- <span class="label-small">Alliance:</span>
         <span>Alliance!!</span><br> -->
-        <span class="label-small">Active Ship:</span>
-        <span>Active Ship!!</span><br>
-        <span class="label-small">Located in:</span>
-        <span class="pilot-content">{{pilot.lastKnownLocation}}</span>
-      </div>
+          <span class="label-small">Active Ship:</span>
+          <span>Active Ship!!</span><br>
+          <span class="label-small">Located in:</span>
+          <span class="pilot-content">{{pilot.lastKnownLocation}}</span>
+        </div>
+      </a>
     </td>
   </tr>
 </table>

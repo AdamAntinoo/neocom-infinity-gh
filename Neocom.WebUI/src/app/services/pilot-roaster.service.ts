@@ -17,6 +17,7 @@ export class PilotRoasterService {
   static APPLICATION_SERVICE_PORT = "9000";
   static RESOURCE_SERVICE_URL: string = "http://localhost:" + PilotRoasterService.APPLICATION_SERVICE_PORT + "/api/v1";
   private pilotRoaster: Pilot[] = [];
+  private currentPilot: Pilot;
 
   constructor(private http: Http) { }
   //--------------------------------------------------------------------------------
@@ -41,4 +42,16 @@ export class PilotRoasterService {
       });
   }
   //--------------------------------------------------------------------------------
+  public getPilotDetails(pilotId) {
+    console.log("><[PilotRoasterService.getPilotDetails]");
+    return this.http.get(PilotRoasterService.RESOURCE_SERVICE_URL + "/pilot/" + pilotId)
+      .map(res => res.json())
+      .map(result => {
+        for (let pilot of result) {
+          let newpilot = new Pilot(pilot);
+          this.currentPilot = pilot;
+        }
+        return this.currentPilot;
+      });
+  }
 }

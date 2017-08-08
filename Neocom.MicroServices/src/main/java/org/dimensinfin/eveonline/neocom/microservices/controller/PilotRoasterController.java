@@ -18,6 +18,7 @@ import org.dimensinfin.eveonline.neocom.datamodel.IModelAdapter;
 import org.dimensinfin.eveonline.neocom.datamodel.PilotRoasterModelAdapter;
 import org.dimensinfin.eveonline.neocom.model.Pilot;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,6 +34,26 @@ public class PilotRoasterController {
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 
 	// - M E T H O D - S E C T I O N ..........................................................................
+	@CrossOrigin()
+	@RequestMapping(value = "/api/v1/pilot", method = RequestMethod.GET, produces = "application/json")
+	public Pilot pilotDetail(@PathVariable final String identifier) {
+		String login = "Default";
+		logger.info(">> [PilotRoasterController.pilotDetail]");
+		Vector<Pilot> pilotList = new Vector<Pilot>();
+		// Get the cookie and the login identifier inside it.
+		if (null != login) {
+			// Get a new model interface for the Pilot roaster using as unique identifier the login.
+			IModelAdapter adapter = ModelAdapterManager
+					.registerAdapter(new PilotRoasterModelAdapter(new DataSourceLocator().addIdentifier(login), login));
+			RootNode pilotNode = adapter.collaborate2Model();
+			for (IGEFNode pilot : pilotNode.getChildren()) {
+				pilotList.add((Pilot) pilot);
+			}
+		}
+		logger.info("<< [PilotRoasterController.pilotDetail]");
+		return pilotList.get(0);
+	}
+
 	/**
 	 * This requests will extract the login identifier from the session cookie and then with that identifier
 	 * search for the api keys on the database. Those keys will be the input to the datasource to get the list
@@ -62,6 +83,7 @@ public class PilotRoasterController {
 		logger.info("<< [PilotRoasterController.pilotRoaster]");
 		return pilotList;
 	}
+
 }
 
 // - UNUSED CODE ............................................................................................

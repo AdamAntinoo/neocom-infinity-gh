@@ -11,6 +11,7 @@
   font-size: 18px;
   font-weight: bold;
   padding-bottom: 3px;
+  display: block;
 }
 
 .pilot-content {
