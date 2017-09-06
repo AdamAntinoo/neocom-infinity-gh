@@ -1,0 +1,10 @@
+<p>
+  pilot-roaster-page works!
+</p>
+<div class="panel-group">
+  view-adapter.component running...
+  <div *ngFor="let render of collaborate2View()">
+    <app-region *ngIf="render.class == 'Region'" [model]="render"></app-region>
+    <app-location *ngIf="render.class == 'Location'" [model]="render"></app-location>
+  </div>
+</div>
