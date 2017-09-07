@@ -59,7 +59,8 @@ export class PilotListDataSourceService implements IDataSource {
   public collaborate2View(): Render[] {
     let r = new Region({ name: "Region 1" });
     this._viewModelRoot.push(r);
-    return this._viewModelRoot;
+    return this._dataModelRoot;
+    //    return this._viewModelRoot;
   }
 
   private getAllPilots() {

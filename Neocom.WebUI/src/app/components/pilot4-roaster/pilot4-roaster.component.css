@@ -1,0 +1,44 @@
+.panel-region {
+  cursor: pointer;
+  line-height: 1.0;
+  margin-bottom: 5px;
+  width: 50%;
+}
+
+.panel-box {
+  padding-right: 5px;
+}
+
+.region-name {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.arrow-box {
+  vertical-align: middle;
+}
+
+.left-box {
+  /*padding-right: 10px;*/
+}
+
+.stack-counter {
+  font-size: 24px;
+  font-weight: 600;
+  padding-bottom: 3px;
+  padding-top: 3px;
+}
+
+.big-label {
+  font-size: 12px;
+}
+
+.topup-label {
+  border-top-color: black;
+  border-top-style: solid;
+  border-top-width: 1px;
+  font-size: 10px;
+}

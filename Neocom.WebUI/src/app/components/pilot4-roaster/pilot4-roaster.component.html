@@ -1,0 +1,22 @@
+<p>
+  pilot4-roaster works!
+</p>
+<div class="panel panel-default panel-region" id="panel1">
+  <div class="panel-heading panel-box" (click)="onClick()" [ngClass]="{expanded: model.expanded}">
+    <table cellspacing=" 0 " cellpadding="0 ">
+      <tr>
+        <td><img src="{{model.urlforAvatar}}" height="48px " width="48px "></td>
+        <td width="80% "><span class="region-name ">{{model.name}}</span></td>
+        <td class="left-box " align="right ">
+          <div class="big-label ">{{getCharacterClass()}}</div>
+          <div class="stack-counter ">5</div>
+          <div class="topup-label "><span>STATIONS</span></div>
+        </td>
+        <td class="arrow-box ">
+          <img class="em " *ngIf="!model.expanded " src="/assets/icons/arrowleft.png ">
+          <img class="em " *ngIf="model.expanded " src="/assets/icons/arrowright.png ">
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

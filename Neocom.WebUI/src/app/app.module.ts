@@ -29,6 +29,8 @@ import { PageLoginComponent } from './page/page-login/page-login.component';
 import { PageHomeComponent } from './page/page-home/page-home.component';
 import { PagePilotsComponent } from './page/page-pilots/page-pilots.component';
 import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roaster-page.component';
+import { Pilot4RoasterComponent } from './components/pilot4-roaster/pilot4-roaster.component';
+import { Pilot4DetailComponent } from './components/pilot4-detail/pilot4-detail.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roas
     PagePilotDetailComponent,
     PilotRoasterPageComponent,
     RegionComponent,
+    Pilot4RoasterComponent,
+    Pilot4DetailComponent,
   ],
   imports: [
     BrowserModule,

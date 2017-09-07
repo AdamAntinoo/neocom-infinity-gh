@@ -24,5 +24,6 @@
   view-adapter.component running...
   <div *ngFor="let render of adapterViewList">
     <app-region *ngIf="render.class == 'Region'" [model]="render"></app-region>
+    <neocom-pilot4-roaster *ngIf="render.class == 'Pilot'" [model]="render"></neocom-pilot4-roaster>
   </div>
 </div>
