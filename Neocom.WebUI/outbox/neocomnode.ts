@@ -4,13 +4,13 @@
 // ENVIRONMENT: Angular - CLASS
 // DESCRIPTION: Defines the atributes for a common and core data hierarchy node.
 
-export class NeocomNode {
+export class NeoomNode {
   public expanded: boolean = false;
   public downloaded: boolean = true;
   public renderWhenEmpty: boolean = true;
   public visible: boolean = true;
 
   constructor(values: Object = {}) {
-    Object.assign(this, values);
+    //  Object.assign(this, values);
   }
 }

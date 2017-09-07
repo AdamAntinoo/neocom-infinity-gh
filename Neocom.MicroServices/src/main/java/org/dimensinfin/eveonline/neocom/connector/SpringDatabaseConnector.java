@@ -22,11 +22,11 @@ import java.util.Vector;
 import org.dimensinfin.eveonline.neocom.constant.ModelWideConstants;
 import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
 import org.dimensinfin.eveonline.neocom.market.MarketDataSet;
-import org.dimensinfin.eveonline.neocom.marketservice.MarketDataService;
 import org.dimensinfin.eveonline.neocom.model.EveItem;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
 import org.dimensinfin.eveonline.neocom.model.Outpost;
 import org.dimensinfin.eveonline.neocom.model.Schematics;
+import org.dimensinfin.eveonline.neocom.services.MarketDataService;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 public abstract class SpringDatabaseConnector extends AbstractDatabaseConnector {

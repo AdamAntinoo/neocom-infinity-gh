@@ -5,7 +5,7 @@ import 'rxjs/add/operator/switchMap';
 //--- SERVICES
 import { PilotRoasterService } from '../../services/pilot-roaster.service';
 //--- MODELS
-import { Pilot } from '../../models/Pilot';
+import { Pilot } from '../../models/Pilot.model';
 
 @Component({
   selector: 'neocom-page-pilot-detail',
