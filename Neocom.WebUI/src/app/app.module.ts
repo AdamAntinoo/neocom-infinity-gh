@@ -12,12 +12,13 @@ import { AppRoutingModule } from './app-routing.module';
 //--- SERVICES
 import { AppModelStoreService } from './services/app-model-store.service';
 import { PilotRoasterService } from './services/pilot-roaster.service';
-import { PilotListDataSourceService } from 'src/app/services/pilot-list-data-source.service';
+import { PilotListDataSourceService } from './services/pilot-list-data-source.service';
 //--- COMPONENTS
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './component/header/header.component';
 import { NavigationMenuComponent } from './component/navigation-menu/navigation-menu.component';
 import { PilotRoasterBlockComponent } from './component/pilot-roaster-block/pilot-roaster-block.component';
+import { RegionComponent } from './region/region.component';
 //--- PIPES
 import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
 import { CapitalizeLetterPipe } from './pipes/capitalize-letter.pipe';
@@ -43,6 +44,7 @@ import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roas
     CapitalizeLetterPipe,
     PagePilotDetailComponent,
     PilotRoasterPageComponent,
+    RegionComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roas
     CookieModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [AppModelStoreService,
+  providers: [
+    AppModelStoreService,
     PilotRoasterService,
     PilotListDataSourceService,
   ],

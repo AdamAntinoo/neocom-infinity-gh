@@ -10,16 +10,17 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 //--- SERVICES
-import { AppModelStoreService } from 'src/app//services/app-model-store.service';
+import { AppModelStoreService } from './app-model-store.service';
 //--- INTERFACES
-import { IDataSource } from 'src/app/classes/IDataSource.interface';
+import { IDataSource } from '../classes/IDataSource.interface';
 //--- CLASSES
-import { DataSourceLocator } from 'src/app/classes/DataSourceLocator';
-import { EVariant } from 'src/app/classes/EVariant.enumerated';
+import { DataSourceLocator } from '../classes/DataSourceLocator';
+import { EVariant } from '../classes/EVariant.enumerated';
 //--- MODELS
-import { Render } from 'src/app/models/Render.model';
-import { NeoComNode } from 'src/app/models/NeoComNode.model';
-import { Pilot } from 'src/app/models/Pilot.model';
+import { Render } from '../models/Render.model';
+import { NeoComNode } from '../models/NeoComNode.model';
+import { Pilot } from '../models/Pilot.model';
+import { Region } from '../models/Region.model';
 
 @Injectable()
 export class PilotListDataSourceService implements IDataSource {
@@ -49,12 +50,15 @@ export class PilotListDataSourceService implements IDataSource {
     this._variant = variant;
   }
 
-  public collaborate2Model(): Promise<NeoComNode[]> {
+  public collaborate2Model(): Observable<NeoComNode[]> {
     this.cookieService.put("login-id", "default")
-    return this.getAllPilots()
-      .toPromise();
+    let pilots = this.getAllPilots();
+    //  let pro = pilots.toPromise();
+    return pilots;
   }
   public collaborate2View(): Render[] {
+    let r = new Region({ name: "Region 1" });
+    this._viewModelRoot.push(r);
     return this._viewModelRoot;
   }
 

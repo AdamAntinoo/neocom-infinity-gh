@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 //--- SERVICES
-import { AppModelStoreService } from 'src/app//services/app-model-store.service';
-import { PilotListDataSourceService } from 'src/app/services/pilot-list-data-source.service';
+import { AppModelStoreService } from '../../services/app-model-store.service';
+import { PilotListDataSourceService } from '../../services/pilot-list-data-source.service';
 //--- INTERFACES
 import { PageComponent } from '../../classes/PageComponent';
 import { EVariant } from '../../classes/EVariant.enumerated';
 //--- CLASSES
-import { PilotListDataSource } from '../../classes/PilotListDataSource';
-import { DataSourceLocator } from 'src/app/classes/DataSourceLocator';
+//import { PilotListDataSource } from '../../classes/PilotListDataSource';
+import { DataSourceLocator } from '../../classes/DataSourceLocator';
 //--- MODELS
-import { Render } from 'src/app/models/Render.model';
+import { Render } from '../../models/Render.model';
 import { NeoComNode } from '../../models/NeoComNode.model';
-import { Pilot } from '../../models/Pilot';
+import { Pilot } from '../../models/Pilot.model';
+import { Region } from '../../models/Region.model';
 
 @Component({
   selector: 'neocom-pilot-roaster-page',
@@ -36,52 +37,30 @@ export class PilotRoasterPageComponent extends PageComponent implements OnInit {
       .addIdentifier(this.getVariantName());
     this.pilotListService.setLocator(locator);
     this.pilotListService.setVariant(this.getVariant());
+    // Set the AppModel datasource to this datasource.
+    this.appModelStore.setActiveDataSource(this.pilotListService);
     // Show the spinner
     this.downloading = true;
     //    this.appModelStore.registerDataSource(ds);
     this.pilotListService.collaborate2Model()
       .subscribe(result => {
-        console.log("--[PagePilotsComponent.ngOnInit.subscribe]> pilot list: " + JSON.stringify(result));
+        console.log("--[PilotRoasterPageComponent.ngOnInit.collaborate2Model]> pilot list: " + JSON.stringify(result));
         // The the list of planatary resource lists to the data returned.
-        this.pilotList = result;
+        this.adapterViewList = this.pilotListService.collaborate2View();
+        console.log("--[PilotRoasterPageComponent.ngOnInit.collaborate2View]> Renders: " + JSON.stringify(this.adapterViewList));
+        this.downloading = false;
       });
-
-
-
-
-
-
-
-    this._cookieService.put("login-id", "default")
-    this.pilotRoasterService.getAllPilots()
-      .subscribe(result => {
-        console.log("--[PagePilotsComponent.ngOnInit.subscribe]> pilot list: " + JSON.stringify(result));
-        // The the list of planatary resource lists to the data returned.
-        this.pilotList = result;
-      });
-
-
-
-      .then(result => {
-      console.log("--[PilotRoasterPageComponent.ngOnInit.registerDataSource]");
-      // The the list of planatary resource lists to the data returned.
-      this.adapterViewList = this.appModelStore.locateDataSource(locator).collaborate2View();
-      this.downloading = false;
-    });
-
-    // Set the AppModel datasource to this datasource.
-    this.appModelStore.setActiveDataSource(this.appModelStore.locateDataSource(locator));
     console.log("<<[PilotRoasterPageComponent.ngOnInit]");
   }
-  /**
-  Calls the same method of the associated DataSource to get the list of nodes that currently are collaborating
-  to the view presentation.
-  */
-  public collaborate2View() {
-    let ds = this.appModelStore.accessDataSource();
-    if (ds != null) {
-      let viewList = ds.collaborate2View();
-      return viewList;
-    }
-  }
+  // /**
+  // Calls the same method of the associated DataSource to get the list of nodes that currently are collaborating
+  // to the view presentation.
+  // */
+  // public collaborate2View() {
+  //   let ds = this.appModelStore.accessDataSource();
+  //   if (ds != null) {
+  //     let viewList = ds.collaborate2View();
+  //     return viewList;
+  //   }
+  // }
 }

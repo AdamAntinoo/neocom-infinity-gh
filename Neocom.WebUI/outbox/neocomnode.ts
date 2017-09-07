@@ -11,6 +11,6 @@ export class NeoomNode {
   public visible: boolean = true;
 
   constructor(values: Object = {}) {
-    Object.assign(this, values);
+    //  Object.assign(this, values);
   }
 }

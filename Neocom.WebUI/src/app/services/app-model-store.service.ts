@@ -12,11 +12,11 @@ import 'rxjs/add/operator/catch';
 //--- INTERFACES
 import { IDataSource } from '../classes/IDataSource.interface';
 //--- CLASSES
-import { DataSourceLocator } from 'src/app/classes/DataSourceLocator';
+import { DataSourceLocator } from '../classes/DataSourceLocator';
 
 //--- MODELS
-import { Render } from 'src/app/models/Render.model';
-import { Pilot } from 'src/app/models/Pilot.model';
+import { Render } from '../models/Render.model';
+import { Pilot } from '../models/Pilot.model';
 
 //
 // This service handles the application storage of elements required to setup the data
@@ -26,13 +26,13 @@ import { Pilot } from 'src/app/models/Pilot.model';
 @Injectable()
 export class AppModelStoreService {
   private dataSourceCache: IDataSource[] = [];
-  private activeDataSource: IDataSource = null;
+  private _activeDataSource: IDataSource = null;
   private _viewList: Observable<Array<Render>>;
 
   constructor() { }
 
   public accessDataSource(): IDataSource {
-    return this.activeDataSource;
+    return this._activeDataSource;
   }
   public locateDataSource(locator: DataSourceLocator): IDataSource {
     let target = this.dataSourceCache[locator.getLocator()];
@@ -70,7 +70,7 @@ export class AppModelStoreService {
     }
   }
   public setActiveDataSource(ds: IDataSource): IDataSource {
-    this.activeDataSource = ds;
-    return this.activeDataSource;
+    this._activeDataSource = ds;
+    return this._activeDataSource;
   }
 }
