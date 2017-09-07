@@ -16,7 +16,7 @@ import { DataSourceLocator } from 'src/app/classes/DataSourceLocator';
 
 //--- MODELS
 import { Render } from 'src/app/models/Render.model';
-import { Pilot } from 'src/app/models/Pilot';
+import { Pilot } from 'src/app/models/Pilot.model';
 
 //
 // This service handles the application storage of elements required to setup the data

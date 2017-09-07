@@ -10,6 +10,7 @@ export interface IDataSource {
   getLocator(): DataSourceLocator;
   getVariant(): EVariant;
   getVariantName(): string;
+  setLocator(locator: DataSourceLocator): void;
   setVariant(variant: EVariant): void;
   collaborate2Model(): Promise<NeoComNode[]>;
   collaborate2View(): Render[];

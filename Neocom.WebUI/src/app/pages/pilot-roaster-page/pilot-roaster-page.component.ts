@@ -34,11 +34,23 @@ export class PilotRoasterPageComponent extends PageComponent implements OnInit {
     let locator = new DataSourceLocator()
       .addIdentifier("PilotListDataSource")
       .addIdentifier(this.getVariantName());
-    let ds = new PilotListDataSource(locator);
-    ds.setVariant(this.getVariant());
+    this.pilotListService.setLocator(locator);
+    this.pilotListService.setVariant(this.getVariant());
     // Show the spinner
     this.downloading = true;
-    this.appModelStore.registerDataSource(ds);
+    //    this.appModelStore.registerDataSource(ds);
+    this.pilotListService.collaborate2Model()
+      .subscribe(result => {
+        console.log("--[PagePilotsComponent.ngOnInit.subscribe]> pilot list: " + JSON.stringify(result));
+        // The the list of planatary resource lists to the data returned.
+        this.pilotList = result;
+      });
+
+
+
+
+
+
 
     this._cookieService.put("login-id", "default")
     this.pilotRoasterService.getAllPilots()

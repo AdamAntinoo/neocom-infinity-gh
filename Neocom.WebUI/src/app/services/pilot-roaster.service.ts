@@ -1,16 +1,16 @@
-import { Injectable }                         from '@angular/core';
-import { Inject }                             from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Inject } from '@angular/core';
 //--- SERVICES
 //import { AppCoreDataService }                 from '../services/app-core-data.service';
 //--- HTTP PACKAGE
-import { Http }                               from '@angular/http';
-import { Response, Headers, RequestOptions }  from '@angular/http';
-import { Observable }                         from 'rxjs/Rx';
+import { Http } from '@angular/http';
+import { Response, Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
 // Import RxJs required methods
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 //--- MODELS
-import { Pilot } from '../models/Pilot';
+import { Pilot } from '../models/Pilot.model';
 
 @Injectable()
 export class PilotRoasterService {
