@@ -3,8 +3,8 @@
 </p>
 <div class="panel-group">
   view-adapter.component running...
-  <div *ngFor="let render of collaborate2View()">
-    <app-region *ngIf="render.class == 'Region'" [model]="render"></app-region>
+  <div *ngFor="let render of adapterViewList">
+    <app-region *ngIf="render.class == 'Region'" [model]="render" [variant]="render.getVariant()"></app-region>
     <app-location *ngIf="render.class == 'Location'" [model]="render"></app-location>
   </div>
 </div>

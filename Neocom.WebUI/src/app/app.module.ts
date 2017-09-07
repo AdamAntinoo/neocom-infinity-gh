@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 //--- SERVICES
 import { AppModelStoreService } from './services/app-model-store.service';
 import { PilotRoasterService } from './services/pilot-roaster.service';
+import { PilotListDataSourceService } from 'src/app/services/pilot-list-data-source.service';
 //--- COMPONENTS
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './component/header/header.component';
@@ -51,7 +52,10 @@ import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roas
     CookieModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [AppModelStoreService, PilotRoasterService],
+  providers: [AppModelStoreService,
+    PilotRoasterService,
+    PilotListDataSourceService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
