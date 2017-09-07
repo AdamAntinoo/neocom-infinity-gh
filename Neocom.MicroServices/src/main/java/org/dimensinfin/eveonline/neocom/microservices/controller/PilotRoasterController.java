@@ -6,16 +6,18 @@
 //								the SpringBoot+MicroServices+Angular unified web application.
 package org.dimensinfin.eveonline.neocom.microservices.controller;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Vector;
 import java.util.logging.Logger;
 
 import org.dimensinfin.core.model.IGEFNode;
 import org.dimensinfin.core.model.RootNode;
-import org.dimensinfin.eveonline.neocom.datamodel.DataSourceLocator;
-import org.dimensinfin.eveonline.neocom.datamodel.IModelAdapter;
-import org.dimensinfin.eveonline.neocom.datamodel.PilotRoasterModelAdapter;
+import org.dimensinfin.eveonline.neocom.connector.DataSourceLocator;
+import org.dimensinfin.eveonline.neocom.connector.IModelGenerator;
+import org.dimensinfin.eveonline.neocom.constant.ENeoComVariants;
+import org.dimensinfin.eveonline.neocom.generator.PilotRoasterModelGenerator;
+import org.dimensinfin.eveonline.neocom.manager.ModelGeneratorManager;
+import org.dimensinfin.eveonline.neocom.microservices.adapter.AppModelStore;
+import org.dimensinfin.eveonline.neocom.model.NeoComCharacter;
 import org.dimensinfin.eveonline.neocom.model.Pilot;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,22 +38,18 @@ public class PilotRoasterController {
 	// - M E T H O D - S E C T I O N ..........................................................................
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/pilot", method = RequestMethod.GET, produces = "application/json")
-	public Pilot pilotDetail(@PathVariable final String identifier) {
+	public NeoComCharacter pilotDetail(@PathVariable final String identifier) {
 		String login = "Beth";
-		logger.info(">> [PilotRoasterController.pilotDetail]");
-		Vector<Pilot> pilotList = new Vector<Pilot>();
-		// Get the cookie and the login identifier inside it.
-		if (null != login) {
-			// Get a new model interface for the Pilot roaster using as unique identifier the login.
-			IModelAdapter adapter = ModelAdapterManager
-					.registerAdapter(new PilotRoasterModelAdapter(new DataSourceLocator().addIdentifier(login), login));
-			RootNode pilotNode = adapter.collaborate2Model();
-			for (IGEFNode pilot : pilotNode.getChildren()) {
-				pilotList.add((Pilot) pilot);
-			}
-		}
-		logger.info("<< [PilotRoasterController.pilotDetail]");
-		return pilotList.get(0);
+		//		logger.info(">> [PilotRoasterController.pilotDetail]");
+		// Convert the parameter to a long variable.
+		long selectedId = Long.valueOf(identifier);
+		return AppModelStore.getSingleton().searchCharacter(selectedId);
+		//		// Search for the selected pilot on the list.
+		//		for (NeoComCharacter currentPilot : pilots) {
+		//			if (currentPilot.getCharacterID() == selectedId) return currentPilot;
+		//		}
+		//		// If the pilot is not found the we reach this point. We should return and error.
+		//		return null;
 	}
 
 	/**
@@ -66,46 +64,47 @@ public class PilotRoasterController {
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/pilotroaster", method = RequestMethod.GET, produces = "application/json")
 	//public List<Pilot> pilotRoaster(@CookieValue("login") String login) {
-	public List<Pilot> pilotRoaster(/* @CookieValue("login") String login */) {
-		String login = "Beth";
+	public Vector<NeoComCharacter> pilotRoaster(/* @CookieValue("login") String login */) {
 		logger.info(">> [PilotRoasterController.pilotRoaster]");
-		Vector<Pilot> pilotList = new Vector<Pilot>();
 		// Get the cookie and the login identifier inside it.
+		String login = "Beth";
+		Vector<Pilot> pilotList = new Vector<Pilot>();
 		if (null != login) {
 			// Get a new model interface for the Pilot roaster using as unique identifier the login.
-			IModelAdapter adapter = ModelAdapterManager
-					.registerAdapter(new PilotRoasterModelAdapter(new DataSourceLocator().addIdentifier(login), login));
+			IModelGenerator adapter = ModelGeneratorManager.registerGenerator(new PilotRoasterModelGenerator(
+					new DataSourceLocator().addIdentifier(login), ENeoComVariants.CAPSULEER_LIST.name(), login));
 			RootNode pilotNode = adapter.collaborate2Model();
 			for (IGEFNode pilot : pilotNode.getChildren()) {
 				pilotList.add((Pilot) pilot);
 			}
 		}
 		logger.info("<< [PilotRoasterController.pilotRoaster]");
-		return pilotList;
+		//		return AppModelStore.getSingleton().getPilotRoaster();
+		return AppModelStore.getSingleton().getPilotRoaster();
 	}
 
 }
 
 // - UNUSED CODE ............................................................................................
-class ModelAdapterManager {
-	// - F I E L D - S E C T I O N ............................................................................
-	private static final HashMap<String, IModelAdapter> adapters = new HashMap<String, IModelAdapter>();
-
-	// - C O N S T R U C T O R - S E C T I O N ................................................................
-
-	// - M E T H O D - S E C T I O N ..........................................................................
-	public static IModelAdapter registerAdapter(final IModelAdapter newAdapter) {
-		DataSourceLocator locator = newAdapter.getDataSourceLocator();
-		// Search for locator on cache.
-		IModelAdapter found = adapters.get(locator.getIdentity());
-		// REFACTOR Do not return cached datasources.
-		found = null;
-		if (null == found) {
-			adapters.put(locator.getIdentity(), newAdapter);
-			//	logger					.info("-- [DataSourceManager.registerDataSource]> Registering new DataSource: " + locator.getIdentity());
-			//		newAdapter.connect(this);
-			return newAdapter;
-		} else
-			return found;
-	}
-}
+//class ModelAdapterManager {
+//	// - F I E L D - S E C T I O N ............................................................................
+//	private static final HashMap<String, IModelAdapter> adapters = new HashMap<String, IModelAdapter>();
+//
+//	// - C O N S T R U C T O R - S E C T I O N ................................................................
+//
+//	// - M E T H O D - S E C T I O N ..........................................................................
+//	public static IModelAdapter registerAdapter(final IModelAdapter newAdapter) {
+//		DataSourceLocator locator = newAdapter.getDataSourceLocator();
+//		// Search for locator on cache.
+//		IModelAdapter found = adapters.get(locator.getIdentity());
+//		// REFACTOR Do not return cached datasources.
+//		found = null;
+//		if (null == found) {
+//			adapters.put(locator.getIdentity(), newAdapter);
+//			//	logger					.info("-- [DataSourceManager.registerDataSource]> Registering new DataSource: " + locator.getIdentity());
+//			//		newAdapter.connect(this);
+//			return newAdapter;
+//		} else
+//			return found;
+//	}
+//}

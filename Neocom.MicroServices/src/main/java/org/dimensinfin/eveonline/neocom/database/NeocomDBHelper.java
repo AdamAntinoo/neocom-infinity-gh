@@ -13,6 +13,11 @@ import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.connector.DatabaseVersion;
 import org.dimensinfin.eveonline.neocom.model.ApiKey;
+import org.dimensinfin.eveonline.neocom.model.EveLocation;
+import org.dimensinfin.eveonline.neocom.model.Job;
+import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
+import org.dimensinfin.eveonline.neocom.model.NeoComBlueprint;
+import org.dimensinfin.eveonline.neocom.model.NeoComMarketOrder;
 import org.dimensinfin.eveonline.neocom.model.Property;
 import org.dimensinfin.eveonline.neocom.planetary.PlanetaryResource;
 import org.dimensinfin.eveonline.neocom.planetary.ResourceList;
@@ -24,7 +29,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
 // - CLASS IMPLEMENTATION ...................................................................................
-public class NeocomDBHelper /* implements ISQLiteOpenHelper */ {
+public class NeocomDBHelper {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger										logger									= Logger.getLogger("NeocomDBHelper");	//$NON-NLS-1$
 	//	private static final String								SELECT_VERSION_NUMBER		= "SELECT versionNumber from Version";
@@ -40,14 +45,17 @@ public class NeocomDBHelper /* implements ISQLiteOpenHelper */ {
 	private boolean													isOpen									= false;
 	private Connection											neocomDatabase					= null;
 	private JdbcConnectionSource						neocomDatasource				= null;
-	//	private DataSourceConnectionSource				neocomDatasource				= null;
-	//	private DatabaseConnection	neocomConnection=null;
 
 	private Dao<DatabaseVersion, String>		versionDao							= null;
 	private Dao<ApiKey, String>							apiKeysDao							= null;
 	private Dao<Property, String>						propertyDao							= null;
 	private Dao<ResourceList, String>				resourceList						= null;
 	private Dao<PlanetaryResource, String>	planetaryResourceDao		= null;
+	private Dao<NeoComAsset, String>				assetDao								= null;
+	private Dao<NeoComBlueprint, String>		blueprintDao						= null;
+	private Dao<Job, String>								jobDao									= null;
+	private Dao<NeoComMarketOrder, String>	marketOrderDao					= null;
+	private Dao<EveLocation, String>				locationDao							= null;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 	public NeocomDBHelper(String databaseName, int databaseVersion) {
@@ -88,49 +96,70 @@ public class NeocomDBHelper /* implements ISQLiteOpenHelper */ {
 
 	public Dao<ApiKey, String> getApiKeysDao() throws SQLException {
 		if (null == apiKeysDao) {
-			apiKeysDao = DaoManager.createDao(this.getNeocomSource(), ApiKey.class);
+			apiKeysDao = DaoManager.createDao(this.getConnectionSource(), ApiKey.class);
 		}
 		return apiKeysDao;
 	}
 
-	public Connection getNeocomDatabase() {
-		if (null == neocomDatabase) if (openNeocomDB())
-			return neocomDatabase;
-		else
-			new RuntimeException(
-					"RT [NeocomDBHelper.getNeocomDatabase]> Neocom database not found and unable to be openned.");
-		return neocomDatabase;
+	public Dao<NeoComAsset, String> getAssetDAO() throws SQLException {
+		if (null == assetDao) {
+			assetDao = DaoManager.createDao(this.getConnectionSource(), NeoComAsset.class);
+		}
+		return assetDao;
+	}
+
+	public Dao<NeoComBlueprint, String> getBlueprintDAO() throws SQLException {
+		if (null == blueprintDao) {
+			blueprintDao = DaoManager.createDao(this.getConnectionSource(), NeoComBlueprint.class);
+		}
+		return blueprintDao;
+	}
+
+	public Dao<Job, String> getJobDAO() throws SQLException {
+		if (null == jobDao) {
+			jobDao = DaoManager.createDao(this.getConnectionSource(), Job.class);
+		}
+		return jobDao;
+	}
+
+	public Dao<EveLocation, String> getLocationDAO() throws SQLException {
+		if (null == locationDao) {
+			locationDao = DaoManager.createDao(this.getConnectionSource(), EveLocation.class);
+		}
+		return locationDao;
+	}
+
+	public Dao<NeoComMarketOrder, String> getMarketOrderDAO() throws SQLException {
+		if (null == marketOrderDao) {
+			marketOrderDao = DaoManager.createDao(this.getConnectionSource(), NeoComMarketOrder.class);
+		}
+		return marketOrderDao;
 	}
 
 	public Dao<PlanetaryResource, String> getPlanetaryResourceDao() throws SQLException {
 		if (null == planetaryResourceDao) {
-			planetaryResourceDao = DaoManager.createDao(this.getNeocomSource(), PlanetaryResource.class);
+			planetaryResourceDao = DaoManager.createDao(this.getConnectionSource(), PlanetaryResource.class);
 		}
 		return planetaryResourceDao;
 	}
 
 	public Dao<Property, String> getPropertyDAO() throws SQLException {
 		if (null == propertyDao) {
-			propertyDao = DaoManager.createDao(this.getNeocomSource(), Property.class);
+			propertyDao = DaoManager.createDao(this.getConnectionSource(), Property.class);
 		}
 		return propertyDao;
 	}
 
-	//	public Dao<Property, String> getPropertyDAO() {
-	//		// TODO Auto-generated method stub
-	//		return null;
-	//	}
-
 	public Dao<ResourceList, String> getResourceListDao() throws SQLException {
 		if (null == resourceList) {
-			resourceList = DaoManager.createDao(this.getNeocomSource(), ResourceList.class);
+			resourceList = DaoManager.createDao(this.getConnectionSource(), ResourceList.class);
 		}
 		return resourceList;
 	}
 
 	public Dao<DatabaseVersion, String> getVersionDao() throws SQLException {
 		if (null == versionDao) {
-			versionDao = DaoManager.createDao(this.getNeocomSource(), DatabaseVersion.class);
+			versionDao = DaoManager.createDao(this.getConnectionSource(), DatabaseVersion.class);
 		}
 		return versionDao;
 	}
@@ -144,19 +173,16 @@ public class NeocomDBHelper /* implements ISQLiteOpenHelper */ {
 
 			TableUtils.createTableIfNotExists(databaseConnection, ResourceList.class);
 			TableUtils.createTableIfNotExists(databaseConnection, PlanetaryResource.class);
+
+			TableUtils.createTableIfNotExists(databaseConnection, NeoComAsset.class);
+			TableUtils.createTableIfNotExists(databaseConnection, NeoComBlueprint.class);
+			TableUtils.createTableIfNotExists(databaseConnection, Job.class);
+			TableUtils.createTableIfNotExists(databaseConnection, NeoComMarketOrder.class);
+			TableUtils.createTableIfNotExists(databaseConnection, EveLocation.class);
 		} catch (SQLException sqle) {
 			logger.severe("E> Error creating the initial table on the app database.");
 			sqle.printStackTrace();
 		}
-		//		try {
-		//			// Create the version table and insert the initial new version code.
-		//			DatabaseVersion version = new DatabaseVersion(1);
-		//			// Persist the version object to the database
-		//			getVersionDao().create(version);
-		//		} catch (SQLException sqle) {
-		//			logger.severe("E> Error dropping table on Database new version.");
-		//			sqle.printStackTrace();
-		//		}
 	}
 
 	public void onUpgrade(final ConnectionSource databaseConnection, final int oldVersion, final int newVersion) {
@@ -191,7 +217,7 @@ public class NeocomDBHelper /* implements ISQLiteOpenHelper */ {
 		onCreate(databaseConnection);
 	}
 
-	private ConnectionSource getNeocomSource() {
+	private ConnectionSource getConnectionSource() {
 		if (null == neocomDatasource) if (openNeocomDB()) return neocomDatasource;
 		new RuntimeException("RT [NeocomDBHelper.neocomDatasource]> Neocom database not found and unable to be openned.");
 		return neocomDatasource;

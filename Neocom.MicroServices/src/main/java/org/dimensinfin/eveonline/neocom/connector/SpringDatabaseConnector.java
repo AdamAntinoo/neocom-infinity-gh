@@ -20,7 +20,6 @@ import java.util.HashMap;
 import java.util.Vector;
 
 import org.dimensinfin.eveonline.neocom.constant.ModelWideConstants;
-import org.dimensinfin.eveonline.neocom.database.NeocomDBHelper;
 import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
 import org.dimensinfin.eveonline.neocom.market.MarketDataSet;
 import org.dimensinfin.eveonline.neocom.marketservice.MarketDataService;
@@ -98,7 +97,6 @@ public abstract class SpringDatabaseConnector extends AbstractDatabaseConnector 
 			+ " dgmTypeAttributes.typeID = invTypeReactions.typeID";
 
 	// - F I E L D - S E C T I O N ............................................................................
-	protected NeocomDBHelper											neocomDBHelper						= null;
 	private Connection														ccpDatabase								= null;
 
 	//	private Context														_context									= null;

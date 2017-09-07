@@ -17,9 +17,6 @@ import org.dimensinfin.eveonline.neocom.model.EveItem;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
 import org.dimensinfin.eveonline.neocom.model.Job;
 import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
-import org.dimensinfin.eveonline.neocom.model.NeoComBlueprint;
-import org.dimensinfin.eveonline.neocom.model.NeoComMarketOrder;
-import org.dimensinfin.eveonline.neocom.model.Property;
 
 import com.j256.ormlite.dao.Dao;
 
@@ -55,46 +52,9 @@ public abstract class AbstractDatabaseConnector implements IDatabaseConnector {
 				"Application connector not defined. Functionality 'checkExpiration' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
 	}
 
-	//	public Dao<Asset, String> getAssetDAO() throws java.sql.SQLException {
-	//		throw new RuntimeException("Application connector not defined. Functionality 'checkExpiration' disabled.");
-	//	}
-	//
-	//	public Dao<Blueprint, String> getBlueprintDAO() throws java.sql.SQLException {
-	//		throw new RuntimeException("Application connector not defined. Functionality 'checkExpiration' disabled.");
-	//	}
-
-	public Dao<NeoComAsset, String> getAssetDAO() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	//	public Dao<MarketOrder, String> getMarketOrderDAO() throws java.sql.SQLException {
-	//		throw new RuntimeException("Application connector not defined. Functionality 'checkExpiration' disabled.");
-	//	}
-
-	public Dao<NeoComBlueprint, String> getBlueprintDAO() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public Dao<Job, String> getJobDAO() throws SQLException {
 		throw new RuntimeException(
 				"Application connector not defined. Functionality 'checkExpiration' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	}
-
-	public Dao<EveLocation, String> getLocationDAO() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Dao<NeoComMarketOrder, String> getMarketOrderDAO() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Dao<Property, String> getPropertyDAO() throws SQLException {
-		throw new RuntimeException(
-				"Application connector not defined. Functionality 'getPropertyDAO' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
 	}
 
 	public boolean openAppDataBase() {
@@ -116,14 +76,6 @@ public abstract class AbstractDatabaseConnector implements IDatabaseConnector {
 		throw new RuntimeException(
 				"Application connector not defined. Functionality 'queryBlueprintDependencies' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
 	}
-
-	//	public ArrayList<Asset> searchAsset4Type(long characterID, int typeID) {
-	//		throw new RuntimeException("Application connector not defined. Functionality 'checkExpiration' disabled.");
-	//	}
-	//
-	//	public Asset searchAssetByID(long parentAssetID) {
-	//		throw new RuntimeException("Application connector not defined. Functionality 'checkExpiration' disabled.");
-	//	}
 
 	public ArrayList<Resource> refineOre(int itemID) {
 		throw new RuntimeException(
