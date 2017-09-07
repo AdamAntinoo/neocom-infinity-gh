@@ -12,6 +12,7 @@ import java.util.Vector;
 import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.connector.AppConnector;
+import org.dimensinfin.eveonline.neocom.core.INeoComModelStore;
 import org.dimensinfin.eveonline.neocom.core.NeocomRuntimeException;
 import org.dimensinfin.eveonline.neocom.model.ApiKey;
 import org.dimensinfin.eveonline.neocom.model.NeoComApiKey;
@@ -41,7 +42,7 @@ import com.beimin.eveapi.exception.ApiException;
  * 
  * @author Adam Antinoo
  */
-public class AppModelStore {
+public class AppModelStore implements INeoComModelStore {
 
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static final long			serialVersionUID	= 8777607802616543118L;
@@ -110,6 +111,7 @@ public class AppModelStore {
 		super();
 	}
 
+	// - M E T H O D - S E C T I O N ..........................................................................
 	/**
 	 * Searches for the pilot on the character list active after the API key processing and copies it to the
 	 * store slot.<br>
@@ -131,6 +133,33 @@ public class AppModelStore {
 	}
 
 	/**
+	 * Return the list of pilots that are currently active as selected by the user. The user may deactivate some
+	 * pilots to reduce the view of data or pilots that are no longer active.<br>
+	 * The start list is the list of characters associated to the llist of kays assocated to the current login.
+	 * 
+	 * @return
+	 */
+	public List<NeoComCharacter> getActiveCharacters() {
+		// Iterate the list of pilots and accumulate the active ones.
+		final ArrayList<NeoComCharacter> activePilots = new ArrayList<NeoComCharacter>();
+		if (null == _neocomCharacters) {
+			this.readApiKeys();
+		}
+		for (final NeoComCharacter pilot : _neocomCharacters)
+			if (pilot.isActive()) {
+				activePilots.add(pilot);
+			}
+		return activePilots;
+	}
+
+	public List<NeoComApiKey> getApiKeys() {
+		if (null == _neocomApiKeys) {
+			this.readApiKeys();
+		}
+		return _neocomApiKeys;
+	}
+
+	/**
 	 * Returns the current active pilot or corporation if exists. If the value is not defined then this means
 	 * that the model store has been initialized and that we should go back to the pilot roaster page to select
 	 * a new one.
@@ -142,7 +171,6 @@ public class AppModelStore {
 			return _pilot;
 	}
 
-	// - M E T H O D - S E C T I O N ..........................................................................
 	public String getLoginIdentifier() {
 		if (null == _loginIdentifier)
 			throw new NeocomRuntimeException("Login Identifier not defined. Setting to default if possible.");
@@ -162,6 +190,7 @@ public class AppModelStore {
 	 * 
 	 * @return
 	 */
+	@Deprecated
 	public List<NeoComCharacter> getPilotRoaster() {
 		logger.info(">> [AppModelStore.getPilotRoaster]");
 		//		// Check if the list is already available.
@@ -208,12 +237,28 @@ public class AppModelStore {
 	 * @param characterID
 	 * @return
 	 */
-	//	@Deprecated
 	public NeoComCharacter searchCharacter(final long characterID) {
 		for (NeoComCharacter character : _neocomCharacters) {
 			if (character.getCharacterID() == characterID) return character;
 		}
 		throw new NeocomRuntimeException("Character with id=" + characterID + " not found on list");
+	}
+
+	/**
+	 * Stored the keys on the store fields from the persistence store. This code should reconnect pointers to
+	 * fields not stored and marked as transient.
+	 * 
+	 * @param newkeys
+	 */
+	public void setApiKeys(final List<NeoComApiKey> newkeys) {
+		_neocomApiKeys = newkeys;
+		// we have to reparent the new data because this is not stored on the serialization.
+		// Also reinitialize transient fields that are not saved
+		//		final Iterator<ApiKey> eit = apiKeys.values().iterator();
+		//		while (eit.hasNext()) {
+		//			final ApiKey apiKey = eit.next();
+		//			//	apiKey.setParent(this);
+		//		}
 	}
 
 	public void setLoginIdentifier(final String login) {
@@ -235,8 +280,8 @@ public class AppModelStore {
 		// Access the database to get the list of keys. From that point on we can retrieve the characters easily.
 		List<ApiKey> apiKeys = AppConnector.getDBConnector().getApiList4Login(this.getLoginIdentifier());
 		// For each key get the list of characters and instantiate them to the resulting list.
-		_neocomApiKeys = new ArrayList<NeoComApiKey>();
-		_neocomCharacters = new ArrayList<NeoComCharacter>();
+		_neocomApiKeys = new Vector<NeoComApiKey>();
+		_neocomCharacters = new Vector<NeoComCharacter>();
 		for (ApiKey apiKey : apiKeys) {
 			try {
 				NeoComApiKey key = NeoComApiKey.build(apiKey.getKeynumber(), apiKey.getValidationcode());

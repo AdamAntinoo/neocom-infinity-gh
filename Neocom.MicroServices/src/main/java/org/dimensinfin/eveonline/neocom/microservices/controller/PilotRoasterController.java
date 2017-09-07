@@ -64,10 +64,11 @@ public class PilotRoasterController {
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/pilotroaster", method = RequestMethod.GET, produces = "application/json")
 	//public List<Pilot> pilotRoaster(@CookieValue("login") String login) {
-	public Vector<NeoComCharacter> pilotRoaster(/* @CookieValue("login") String login */) {
+	public Vector<Pilot> pilotRoaster(/* @CookieValue("login") String login */) {
 		logger.info(">> [PilotRoasterController.pilotRoaster]");
 		// Get the cookie and the login identifier inside it.
 		String login = "Beth";
+		AppModelStore.getSingleton().setLoginIdentifier(login);
 		Vector<Pilot> pilotList = new Vector<Pilot>();
 		if (null != login) {
 			// Get a new model interface for the Pilot roaster using as unique identifier the login.
@@ -79,8 +80,8 @@ public class PilotRoasterController {
 			}
 		}
 		logger.info("<< [PilotRoasterController.pilotRoaster]");
-		//		return AppModelStore.getSingleton().getPilotRoaster();
-		return AppModelStore.getSingleton().getPilotRoaster();
+		return pilotList;
+		//	return AppModelStore.getSingleton().getPilotRoaster();
 	}
 
 }
