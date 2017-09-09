@@ -37,10 +37,11 @@ public class PilotRoasterController {
 
 	// - M E T H O D - S E C T I O N ..........................................................................
 	@CrossOrigin()
-	@RequestMapping(value = "/api/v1/pilot", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/api/v1/pilot/{identifier}", method = RequestMethod.GET, produces = "application/json")
 	public NeoComCharacter pilotDetail(@PathVariable final String identifier) {
+		logger.info(">> [PilotRoasterController.pilotDetail]");
 		String login = "Beth";
-		//		logger.info(">> [PilotRoasterController.pilotDetail]");
+		AppModelStore.getSingleton().setLoginIdentifier(login);
 		// Convert the parameter to a long variable.
 		long selectedId = Long.valueOf(identifier);
 		return AppModelStore.getSingleton().searchCharacter(selectedId);

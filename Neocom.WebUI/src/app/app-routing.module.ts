@@ -9,6 +9,8 @@ import { PagePilotsComponent } from './page/page-pilots/page-pilots.component';
 import { PagePilotDetailComponent } from './page/page-pilot-detail/page-pilot-detail.component';
 import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roaster-page.component';
 
+import { PilotDetailPageComponent } from './pages/pilot-detail-page/pilot-detail-page.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -18,7 +20,7 @@ const routes: Routes = [
   { path: 'home', component: PageHomeComponent },
   { path: 'pilots', component: PagePilotsComponent },
   { path: 'pilotroaster', component: PilotRoasterPageComponent },
-  { path: 'pilot/:id', component: PagePilotDetailComponent },
+  { path: 'pilot/:id', component: PilotDetailPageComponent },
 ];
 
 @NgModule({

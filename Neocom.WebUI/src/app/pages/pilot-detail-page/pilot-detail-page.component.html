@@ -1,0 +1,11 @@
+<p>
+  pilot-detail-page works!
+</p>
+<neocom-pilot4-detail *ngIf="completed" [pilot]="pilot"></neocom-pilot4-detail>
+<span *ngIf="downloading" class="spinner spinner-large spinner-red spinner-fat spinner-slow spinner-location"></span>
+<div *ngIf="completed" class="panel-group">
+  view-adapter.component running...
+  <div *ngFor="let render of adapterViewList">
+    <app-region *ngIf="render.class == 'Manager'" [model]="render"></app-region>
+  </div>
+</div>

@@ -47,10 +47,10 @@ export class PilotRoasterService {
     return this.http.get(PilotRoasterService.RESOURCE_SERVICE_URL + "/pilot/" + pilotId)
       .map(res => res.json())
       .map(result => {
-        for (let pilot of result) {
-          let newpilot = new Pilot(pilot);
-          this.currentPilot = pilot;
-        }
+        //    for (let pilot of result) {
+        let newpilot = new Pilot(result);
+        this.currentPilot = newpilot;
+        //    }
         return this.currentPilot;
       });
   }

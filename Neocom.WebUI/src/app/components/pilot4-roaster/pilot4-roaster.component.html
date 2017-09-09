@@ -2,46 +2,48 @@
   pilot4-roaster works!
 </p>
 <div class="panel panel-default panel-pilot" id="panel1">
-  <div class="panel-box" (click)="onClick()" [ngClass]="{expanded: model.expanded}">
+  <div class="panel-box">
     <table class="panel-node" cellspacing="0" cellpadding="0">
-      <tr>
-        <td><img class="neocom-icon-90" src="{{model.urlforAvatar}}"></td>
-        <td width="60% ">
-          <div class="panel-content-2col">
-            <span class="neocom-selectable-name">{{model.name}}</span><br>
-            <span class="neocom-pilot-data neocom-data-size-14 neocom-marked-name">{{model.delegatedCharacter.corporationName}}</span><br>
-            <span class="neocom-pilot-data">{{model.characterSheet.gender}}</span> -
-            <span class="neocom-pilot-data">{{model.characterSheet.race | lowercase | capitalizeLetter}}</span>            -
-            <span class="neocom-pilot-data">{{model.characterSheet.bloodLine | lowercase | capitalizeLetter}}</span>            -
-            <span class="neocom-pilot-data">{{model.characterSheet.ancestry | lowercase | capitalizeLetter}}</span><br>
-            <span class="neocom-pilot-data neocom-data-size-12">Balance:</span>
-            <span class="pilot-balance">{{model.accountBalance | number:'1.2-2'}} ISK</span><br>
-            <span class="neocom-pilot-data neocom-data-size-12">Active Ship:</span>
-            <span class="neocom-marked-name">{{model.characterInfo.shipName}}</span>
-            <span class="neocom-pilot-data"> - [{{model.characterInfo.shipTypeName}}]</span><br>
-            <span class="neocom-pilot-data neocom-data-size-12">Located in:</span>
-            <span class="neocom-pilot-data neocom-data-size-14 neocom-marked-name">{{model.characterInfo.lastKnownLocation}}</span><br>
-            <span class="neocom-pilot-data neocom-data-size-12">Secutiry Status:</span>
-            <span class="neocom-pilot-data neocom-data-size-14">{{model.characterInfo.securityStatus | number:'1.2-2'}}</span>
-          </div>
-        </td>
-        <td class="left-box " align="right ">
-          <div class="neocom-account-class">{{getCharacterClass()}}</div>
-          <div>
-            <span class="neocom-pilot-data neocom-data-size-12">Total SP:</span>
-            <span class="neocom-pilot-data neocom-data-size-14 neocom-marked-name">{{model.characterInfo.skillPoints | number:'1.0-0'}}</span>
-          </div>
-          <div>
-            <span class="neocom-pilot-data neocom-data-size-12">Account status:</span><br>
-            <span class="neocom-pilot-data neocom-data-size-14">{{model.characterSheet.cloneName}}</span><br>
-            <span class="neocom-pilot-data neocom-data-size-12" style="color:red">Expired</span><br>
-          </div>
-        </td>
-        <td class="arrow-box" (click)="onClickArrow()" [ngClass]="{expanded: model.expanded}">
-          <img class="em " *ngIf="!expanded " src="/assets/icons/arrowleft.png ">
-          <img class="em " *ngIf="expanded " src="/assets/icons/arrowright.png ">
-        </td>
-      </tr>
+      <a [routerLink]="['/pilot',model.getId()]">
+        <tr>
+          <td><img class="neocom-icon-90" src="{{model.urlforAvatar}}"></td>
+          <td width="60% ">
+            <div class="panel-content-2col">
+              <span class="neocom-selectable-name">{{model.name}}</span><br>
+              <span class="neocom-pilot-data neocom-data-size-14 neocom-marked-name">{{model.delegatedCharacter.corporationName}}</span><br>
+              <span class="neocom-pilot-data">{{model.characterSheet.gender}}</span> -
+              <span class="neocom-pilot-data">{{model.characterSheet.race | lowercase | capitalizeLetter}}</span>              -
+              <span class="neocom-pilot-data">{{model.characterSheet.bloodLine | lowercase | capitalizeLetter}}</span>              -
+              <span class="neocom-pilot-data">{{model.characterSheet.ancestry | lowercase | capitalizeLetter}}</span><br>
+              <span class="neocom-pilot-data neocom-data-size-12">Balance:</span>
+              <span class="pilot-balance">{{model.accountBalance | number:'1.2-2'}} ISK</span><br>
+              <span class="neocom-pilot-data neocom-data-size-12">Active Ship:</span>
+              <span class="neocom-marked-name">{{model.characterInfo.shipName}}</span>
+              <span class="neocom-pilot-data"> - [{{model.characterInfo.shipTypeName}}]</span><br>
+              <span class="neocom-pilot-data neocom-data-size-12">Located in:</span>
+              <span class="neocom-pilot-data neocom-data-size-14 neocom-marked-name">{{model.characterInfo.lastKnownLocation}}</span><br>
+              <span class="neocom-pilot-data neocom-data-size-12">Secutiry Status:</span>
+              <span class="neocom-pilot-data neocom-data-size-14">{{model.characterInfo.securityStatus | number:'1.2-2'}}</span>
+            </div>
+          </td>
+          <td class="left-box " align="right ">
+            <div class="neocom-account-class">{{getCharacterClass()}}</div>
+            <div>
+              <span class="neocom-pilot-data neocom-data-size-12">Total SP:</span>
+              <span class="neocom-pilot-data neocom-data-size-14 neocom-marked-name">{{model.characterInfo.skillPoints | number:'1.0-0'}}</span>
+            </div>
+            <div>
+              <span class="neocom-pilot-data neocom-data-size-12">Account status:</span><br>
+              <span class="neocom-pilot-data neocom-data-size-14">{{model.characterSheet.cloneName}}</span><br>
+              <span class="neocom-pilot-data neocom-data-size-12" style="color:red">Expired</span><br>
+            </div>
+          </td>
+          <td class="arrow-box" (click)="onClickArrow()" [ngClass]="{expanded: model.expanded}">
+            <img class="neocom-arrow" *ngIf="!expanded " src="/assets/icons/arrowleft.png ">
+            <img class="neocom-arrow" *ngIf="expanded " src="/assets/icons/arrowright.png ">
+          </td>
+        </tr>
+      </a>
       <tr class="row-separator" *ngIf="expanded">
         <td colspan="4" style="padding-top: 5px;">
           <span>This content is shown when expanded</span>

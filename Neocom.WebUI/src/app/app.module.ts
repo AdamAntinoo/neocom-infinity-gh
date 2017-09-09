@@ -19,6 +19,8 @@ import { HeaderComponent } from './component/header/header.component';
 import { NavigationMenuComponent } from './component/navigation-menu/navigation-menu.component';
 import { PilotRoasterBlockComponent } from './component/pilot-roaster-block/pilot-roaster-block.component';
 import { RegionComponent } from './region/region.component';
+import { Pilot4RoasterComponent } from './components/pilot4-roaster/pilot4-roaster.component';
+import { Pilot4DetailComponent } from './components/pilot4-detail/pilot4-detail.component';
 //--- PIPES
 import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
 import { CapitalizeLetterPipe } from './pipes/capitalize-letter.pipe';
@@ -28,9 +30,9 @@ import { PageSplashComponent } from './page/page-splash/page-splash.component';
 import { PageLoginComponent } from './page/page-login/page-login.component';
 import { PageHomeComponent } from './page/page-home/page-home.component';
 import { PagePilotsComponent } from './page/page-pilots/page-pilots.component';
+
 import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roaster-page.component';
-import { Pilot4RoasterComponent } from './components/pilot4-roaster/pilot4-roaster.component';
-import { Pilot4DetailComponent } from './components/pilot4-detail/pilot4-detail.component';
+import { PilotDetailPageComponent } from './pages/pilot-detail-page/pilot-detail-page.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,7 @@ import { Pilot4DetailComponent } from './components/pilot4-detail/pilot4-detail.
     RegionComponent,
     Pilot4RoasterComponent,
     Pilot4DetailComponent,
+    PilotDetailPageComponent,
   ],
   imports: [
     BrowserModule,
