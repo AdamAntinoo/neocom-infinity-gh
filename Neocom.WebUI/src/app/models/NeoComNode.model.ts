@@ -22,6 +22,6 @@ export class NeoComNode extends Render {
   public collaborate2View(variant: EVariant): NeoComNode[] {
     let collab = [];
     collab.push(this);
-    return collab
+    return collab;
   }
 }

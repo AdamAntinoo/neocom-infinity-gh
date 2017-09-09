@@ -45,7 +45,7 @@ export class PilotRoasterPageComponent extends PageComponent implements OnInit {
       // Register the service as a new DataSource. Set the registration parameters to the service.
       this.pilotListService.setLocator(locator);
       this.pilotListService.setVariant(this.getVariant());
-      this.appModelStore.registerDataSource(ds);
+      this.appModelStore.registerDataSource(this.pilotListService);
     }
 
     // Set the AppModel datasource to this datasource.

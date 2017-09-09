@@ -67,24 +67,24 @@ export class PilotListDataSourceService implements IDataSource {
   */
   public collaborate2View(): Observable<Render[]> {
     // Check if model needs to be refreshed.
-    //    if (this._canBeCached) {
-    if (this._downloaded) {
-      // The model can be reused. Return a new generated view list.
-      return new Observable(observer => {
-        setTimeout(() => {
-          observer.next(this.processModel());
-        }, 100);
-        setTimeout(() => {
-          observer.complete();
-        }, 100);
-      });
+    if (this._canBeCached) {
+      if (this._downloaded) {
+        // The model can be reused. Return a new generated view list.
+        return new Observable(observer => {
+          setTimeout(() => {
+            observer.next(this.processModel());
+          }, 100);
+          setTimeout(() => {
+            observer.complete();
+          }, 100);
+        });
+      }
     }
-    //  }
 
     // Get again the model from the backend service.
-    //  return this.getAllPilots();
+    return this.getAllPilots();
   }
-  
+
   private getAllPilots(): Observable<Render[]> {
     console.log("><[PilotListDataSourceService.getAllPilots]");
     this.cookieService.put("login-id", "default")
@@ -103,10 +103,15 @@ export class PilotListDataSourceService implements IDataSource {
   /** Read all the model nodes and generate a new list of their collaborations to the view list.
   */
   private processModel(): Render[] {
-    this._viewModelRoot = [];
+    this._viewModelRoot = null;
     for (let node of this._dataModelRoot) {
       let collab = node.collaborate2View(this.getVariant());
-      this._viewModelRoot.concat(collab);
+      if (null === this._viewModelRoot) {
+        this._viewModelRoot = collab;
+      } else {
+        this._viewModelRoot.concat(collab);
+      }
+      console.log("><[PilotListDataSourceService.processModel]");
     }
     return this._viewModelRoot;
   }
