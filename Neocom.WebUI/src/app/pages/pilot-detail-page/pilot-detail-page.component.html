@@ -6,6 +6,6 @@
 <div *ngIf="completed" class="panel-group">
   view-adapter.component running...
   <div *ngFor="let render of adapterViewList">
-    <app-region *ngIf="render.class == 'Manager'" [model]="render"></app-region>
+    <neocom-pilot-manager *ngIf="render.class == 'Manager'" [manager]="render"></neocom-pilot-manager>
   </div>
 </div>

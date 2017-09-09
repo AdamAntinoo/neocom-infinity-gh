@@ -34,6 +34,7 @@ import { PagePilotsComponent } from './page/page-pilots/page-pilots.component';
 
 import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roaster-page.component';
 import { PilotDetailPageComponent } from './pages/pilot-detail-page/pilot-detail-page.component';
+import { PilotManagerComponent } from './components/pilot-manager/pilot-manager.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { PilotDetailPageComponent } from './pages/pilot-detail-page/pilot-detail
     Pilot4RoasterComponent,
     Pilot4DetailComponent,
     PilotDetailPageComponent,
+    PilotManagerComponent,
   ],
   imports: [
     BrowserModule,
