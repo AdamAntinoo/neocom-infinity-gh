@@ -10,6 +10,13 @@ body {
 /* C O M M O N    S T Y L E S */
 
 
+/* P A N E L S */
+
+.panel-box {
+  padding-right: 5px;
+}
+
+
 /* S P I N N E R    D E F I N I T I O N */
 
 .spinner {
@@ -71,5 +78,5 @@ body {
 }
 
 .spinner-location {
-  margin_left: 4%;
+  margin_left: 40%;
 }

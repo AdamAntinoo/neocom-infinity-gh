@@ -1,0 +1,22 @@
+// PROJECT:     NEOCOM.WEB (NEOC.W)
+// AUTHORS:     Adam Antinoo - adamantinoo.git@gmail.com
+// COPYRIGHT:   (c) 2017 by Dimensinfin Industries, all rights reserved.
+// ENVIRONMENT: Angular - CLASS
+// DESCRIPTION: Defines the structure of a EVE Pilot. May depend on other classes to complete the character information hierarchy.
+
+//--- MODELS
+import { NeoComNode } from './NeoComNode.model';
+import { PilotAction } from './pilotaction';
+import { Region } from './Region.model';
+
+export class Manager extends NeoComNode {
+  public jsonClassname: string = "Manager";
+  public regions: Region[] = [];
+  public locations: Location[] = [];
+
+  constructor(values: Object = {}) {
+    super();
+    Object.assign(this, values);
+    this.class = "Manager";
+  }
+}

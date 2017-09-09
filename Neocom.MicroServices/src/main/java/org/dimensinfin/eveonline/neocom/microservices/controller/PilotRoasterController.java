@@ -11,10 +11,13 @@ import java.util.logging.Logger;
 
 import org.dimensinfin.core.model.IGEFNode;
 import org.dimensinfin.core.model.RootNode;
+import org.dimensinfin.eveonline.neocom.connector.AppConnector;
 import org.dimensinfin.eveonline.neocom.connector.DataSourceLocator;
 import org.dimensinfin.eveonline.neocom.connector.IModelGenerator;
 import org.dimensinfin.eveonline.neocom.constant.ENeoComVariants;
+import org.dimensinfin.eveonline.neocom.generator.PilotDirectorsGenerator;
 import org.dimensinfin.eveonline.neocom.generator.PilotRoasterModelGenerator;
+import org.dimensinfin.eveonline.neocom.manager.AbstractManager;
 import org.dimensinfin.eveonline.neocom.manager.ModelGeneratorManager;
 import org.dimensinfin.eveonline.neocom.microservices.adapter.AppModelStore;
 import org.dimensinfin.eveonline.neocom.model.NeoComCharacter;
@@ -44,13 +47,34 @@ public class PilotRoasterController {
 		AppModelStore.getSingleton().setLoginIdentifier(login);
 		// Convert the parameter to a long variable.
 		long selectedId = Long.valueOf(identifier);
-		return AppModelStore.getSingleton().searchCharacter(selectedId);
-		//		// Search for the selected pilot on the list.
-		//		for (NeoComCharacter currentPilot : pilots) {
-		//			if (currentPilot.getCharacterID() == selectedId) return currentPilot;
-		//		}
-		//		// If the pilot is not found the we reach this point. We should return and error.
-		//		return null;
+		NeoComCharacter pilot = AppModelStore.getSingleton().searchCharacter(selectedId);
+		AppConnector.getModelStore().activatePilot(selectedId);
+		return pilot;
+	}
+
+	@CrossOrigin()
+	@RequestMapping(value = "/api/v1/pilotmanagers/{identifier}", method = RequestMethod.GET, produces = "application/json")
+	public Vector<AbstractManager> pilotManagers(
+			@PathVariable final String identifier/* @CookieValue("login") String login */) {
+		logger.info(">> [PilotRoasterController.pilotManagers]");
+		// Get the cookie and the login identifier inside it.
+		String login = "Beth";
+		AppModelStore.getSingleton().setLoginIdentifier(login);
+		// Convert the parameter to a long variable.
+		long selectedId = Long.valueOf(identifier);
+		AppConnector.getModelStore().activatePilot(selectedId);
+		Vector<AbstractManager> managerList = new Vector<AbstractManager>();
+		if (null != login) {
+			// Get a new model interface for the Pilot roaster using as unique identifier the login.
+			IModelGenerator adapter = ModelGeneratorManager.registerGenerator(new PilotDirectorsGenerator(
+					new DataSourceLocator().addIdentifier(login), ENeoComVariants.PILOT_DETAILS.name(), login));
+			RootNode pilotNode = adapter.collaborate2Model();
+			for (IGEFNode manager : pilotNode.getChildren()) {
+				managerList.add((AbstractManager) manager);
+			}
+		}
+		logger.info("<< [PilotRoasterController.pilotManagers]");
+		return managerList;
 	}
 
 	/**

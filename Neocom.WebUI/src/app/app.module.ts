@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppModelStoreService } from './services/app-model-store.service';
 import { PilotRoasterService } from './services/pilot-roaster.service';
 import { PilotListDataSourceService } from './services/pilot-list-data-source.service';
+import { PilotManagersDataSourceService } from './services/pilot-managers-data-source.service';
 //--- COMPONENTS
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './component/header/header.component';
@@ -65,6 +66,7 @@ import { PilotDetailPageComponent } from './pages/pilot-detail-page/pilot-detail
     AppModelStoreService,
     PilotRoasterService,
     PilotListDataSourceService,
+    PilotManagersDataSourceService,
   ],
   bootstrap: [AppComponent]
 })

@@ -24,5 +24,9 @@ export class Pilot4DetailComponent implements OnInit {
   public onClickArrow(): void {
     this.expanded = !this.expanded;
   }
+  public getCharacterClass(): string {
+    if (this.pilot.corporation == true) return "CORPORATION";
+    else return "PILOT";
+  }
 
 }
