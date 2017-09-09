@@ -15,6 +15,7 @@ import { Pilot } from '../../models/Pilot.model';
 })
 export class Pilot4RoasterComponent implements OnInit {
   @Input() model: Pilot;
+  public expanded: boolean = false;
 
   constructor() { }
 
@@ -26,5 +27,8 @@ export class Pilot4RoasterComponent implements OnInit {
   public getCharacterClass(): string {
     if (this.model.corporation == true) return "CORPORATION";
     else return "PILOT";
+  }
+  public onClickArrow(): void {
+    this.expanded = !this.expanded;
   }
 }

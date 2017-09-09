@@ -1,7 +1,8 @@
 <p>
   pilot-roaster-page works!
 </p>
-<div class="col-md-2 mediaContainer">
+<span *ngIf="downloading" class="spinner spinner-large spinner-red spinner-fat spinner-slow spinner-location"></span>
+<!-- <div class="col-md-2 mediaContainer">
   Media:
   <li *ngIf="downloading">
     <div class="sk-fading-circle">
@@ -19,7 +20,7 @@
       <div class="sk-circle12 sk-circle"></div>
     </div>
   </li>
-</div>
+</div> -->
 <div class="panel-group">
   view-adapter.component running...
   <div *ngFor="let render of adapterViewList">
