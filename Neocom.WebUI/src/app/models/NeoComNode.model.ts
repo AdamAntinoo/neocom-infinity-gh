@@ -3,6 +3,8 @@
 // COPYRIGHT:   (c) 2017 by Dimensinfin Industries, all rights reserved.
 // ENVIRONMENT: Angular - CLASS
 // DESCRIPTION: Defines the atributes for a common and core data hierarchy node.
+//--- INTERFACES
+import { EVariant } from '../classes/EVariant.enumerated';
 //--- MODELS
 import { Render } from '../models/Render.model';
 
@@ -16,5 +18,10 @@ export class NeoComNode extends Render {
     super(values);
     Object.assign(this, values);
     this.class = "Location";
+  }
+  public collaborate2View(variant: EVariant): NeoComNode[] {
+    let collab = [];
+    collab.push(this);
+    return collab
   }
 }

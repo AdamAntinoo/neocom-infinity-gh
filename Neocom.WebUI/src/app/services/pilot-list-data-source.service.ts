@@ -24,9 +24,12 @@ import { Region } from '../models/Region.model';
 
 @Injectable()
 export class PilotListDataSourceService implements IDataSource {
+  static SERVICE_NAME = "PilotListDataSource";
   static APPLICATION_SERVICE_PORT = "9000";
   static RESOURCE_SERVICE_URL: string = "http://localhost:" + PilotListDataSourceService.APPLICATION_SERVICE_PORT + "/api/v1";
 
+  private _canBeCached: boolean = true;
+  private _downloaded: boolean = false;
   private _locator: DataSourceLocator = null;
   private _variant: EVariant = EVariant.DEFAULT;
   private _dataModelRoot: NeoComNode[] = [];
@@ -49,22 +52,42 @@ export class PilotListDataSourceService implements IDataSource {
   public setVariant(variant: EVariant): void {
     this._variant = variant;
   }
-
-  public collaborate2Model(): Observable<NeoComNode[]> {
-    this.cookieService.put("login-id", "default")
-    let pilots = this.getAllPilots();
-    //  let pro = pilots.toPromise();
-    return pilots;
-  }
-  public collaborate2View(): Render[] {
-    let r = new Region({ name: "Region 1" });
-    this._viewModelRoot.push(r);
-    return this._dataModelRoot;
-    //    return this._viewModelRoot;
+  public getServiceName(): string {
+    return PilotListDataSourceService.SERVICE_NAME;
   }
 
-  private getAllPilots() {
+  // public collaborate2Model(): Observable<NeoComNode[]> {
+  //   this.cookieService.put("login-id", "default")
+  //   let pilots = this.getAllPilots();
+  //   //  let pro = pilots.toPromise();
+  //   return pilots;
+  // }
+  /**
+  This method is called whenever the page need to render. t has two phases, the first one will check if we require a refresh of the model, depending on some properties. The second one will create the view contents list from the current model elements by recursively calling their 'collaborate2View()' method.
+  */
+  public collaborate2View(): Observable<Render[]> {
+    // Check if model needs to be refreshed.
+    //    if (this._canBeCached) {
+    if (this._downloaded) {
+      // The model can be reused. Return a new generated view list.
+      return new Observable(observer => {
+        setTimeout(() => {
+          observer.next(this.processModel());
+        }, 100);
+        setTimeout(() => {
+          observer.complete();
+        }, 100);
+      });
+    }
+    //  }
+
+    // Get again the model from the backend service.
+    //  return this.getAllPilots();
+  }
+  
+  private getAllPilots(): Observable<Render[]> {
     console.log("><[PilotListDataSourceService.getAllPilots]");
+    this.cookieService.put("login-id", "default")
     return this.http.get(PilotListDataSourceService.RESOURCE_SERVICE_URL + "/pilotroaster")
       .map(res => res.json())
       .map(result => {
@@ -72,8 +95,19 @@ export class PilotListDataSourceService implements IDataSource {
           let newpilot = new Pilot(pilot);
           this._dataModelRoot.push(newpilot);
         }
-        return this._dataModelRoot;
+        this._downloaded = true;
+        return this.processModel();
       });
   }
 
+  /** Read all the model nodes and generate a new list of their collaborations to the view list.
+  */
+  private processModel(): Render[] {
+    this._viewModelRoot = [];
+    for (let node of this._dataModelRoot) {
+      let collab = node.collaborate2View(this.getVariant());
+      this._viewModelRoot.concat(collab);
+    }
+    return this._viewModelRoot;
+  }
 }
