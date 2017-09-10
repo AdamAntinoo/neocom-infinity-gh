@@ -22,6 +22,7 @@ import { Render } from '../models/Render.model';
 import { NeoComNode } from '../models/NeoComNode.model';
 import { Pilot } from '../models/Pilot.model';
 import { Region } from '../models/Region.model';
+import { Manager } from '../models/Manager.model';
 
 @Injectable()
 export class PilotManagersDataSourceService extends AbstractDataSource implements IDataSource {
@@ -60,9 +61,9 @@ export class PilotManagersDataSourceService extends AbstractDataSource implement
     return this.http.get(AbstractDataSource.RESOURCE_SERVICE_URL + "/pilotmanagers/" + "92223647")
       .map(res => res.json())
       .map(result => {
-        for (let pilot of result) {
-          let newpilot = new Pilot(pilot);
-          this._dataModelRoot.push(newpilot);
+        for (let manager of result) {
+          let newmanager = new Manager(manager);
+          this._dataModelRoot.push(newmanager);
         }
         this._downloaded = true;
         return this.processModel();

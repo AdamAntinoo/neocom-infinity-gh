@@ -42,14 +42,10 @@ export class AbstractDataSource {
   /** Read all the model nodes and generate a new list of their collaborations to the view list.
   */
   protected processModel(): Render[] {
-    this._viewModelRoot = null;
+    this._viewModelRoot = [];
     for (let node of this._dataModelRoot) {
       let collab = node.collaborate2View(this.getVariant());
-      if (null === this._viewModelRoot) {
-        this._viewModelRoot = collab;
-      } else {
-        this._viewModelRoot.concat(collab);
-      }
+      this._viewModelRoot = this._viewModelRoot.concat(collab);
       console.log("><[PilotListDataSourceService.processModel]");
     }
     return this._viewModelRoot;
