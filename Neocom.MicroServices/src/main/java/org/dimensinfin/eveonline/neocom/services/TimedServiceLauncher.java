@@ -70,7 +70,7 @@ public class TimedServiceLauncher {
 		};
 	}
 
-	@Scheduled(fixedRate = 5000)
+	@Scheduled(fixedRate = 10000)
 	public void onTime() {
 		logger.info(">> [TimedServiceLauncher.onReceive]");
 		//		// Run only if the network is active.
