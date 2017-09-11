@@ -18,6 +18,9 @@ import org.dimensinfin.eveonline.neocom.enums.EDataBlock;
 import org.dimensinfin.eveonline.neocom.enums.ERequestClass;
 import org.dimensinfin.eveonline.neocom.enums.ERequestState;
 import org.dimensinfin.eveonline.neocom.model.NeoComCharacter;
+import org.dimensinfin.eveonline.neocom.services.CharacterUpdaterService;
+import org.dimensinfin.eveonline.neocom.services.MarketDataService;
+import org.dimensinfin.eveonline.neocom.services.PendingRequestEntry;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
@@ -41,7 +44,6 @@ public class TimedServiceLauncher {
 	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
-	@Bean
 	public CommandLineRunner launchCharacterDataUpdate(final PendingRequestEntry entry) {
 		logger.info(
 				"-- [TimeTickReceiver.launchCharacterDataUpdate]> Character Update Request Class [" + entry.reqClass + "]");
@@ -55,7 +57,6 @@ public class TimedServiceLauncher {
 		};
 	}
 
-	@Bean
 	public CommandLineRunner launchMarketUpdate(final PendingRequestEntry entry) {
 		logger.info("-- [TimeTickReceiver.launchService Market]> Update Request Class [" + entry.reqClass + "]");
 		Number content = entry.getContent();
@@ -70,7 +71,7 @@ public class TimedServiceLauncher {
 		};
 	}
 
-	@Scheduled(fixedRate = 10000)
+	@Scheduled(fixedRate = 60000)
 	public void onTime() {
 		logger.info(">> [TimedServiceLauncher.onReceive]");
 		//		// Run only if the network is active.
