@@ -115,6 +115,12 @@ public class NeocomDBHelper {
 		return blueprintDao;
 	}
 
+	public ConnectionSource getConnectionSource() {
+		if (null == neocomDatasource) if (openNeocomDB()) return neocomDatasource;
+		new RuntimeException("RT [NeocomDBHelper.neocomDatasource]> Neocom database not found and unable to be openned.");
+		return neocomDatasource;
+	}
+
 	public Dao<Job, String> getJobDAO() throws SQLException {
 		if (null == jobDao) {
 			jobDao = DaoManager.createDao(this.getConnectionSource(), Job.class);
@@ -215,12 +221,6 @@ public class NeocomDBHelper {
 			ex.printStackTrace();
 		}
 		onCreate(databaseConnection);
-	}
-
-	private ConnectionSource getConnectionSource() {
-		if (null == neocomDatasource) if (openNeocomDB()) return neocomDatasource;
-		new RuntimeException("RT [NeocomDBHelper.neocomDatasource]> Neocom database not found and unable to be openned.");
-		return neocomDatasource;
 	}
 
 	/**

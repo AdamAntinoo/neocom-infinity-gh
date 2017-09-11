@@ -42,11 +42,6 @@ public abstract class AbstractDatabaseConnector implements IDatabaseConnector {
 				"Application connector not defined. Functionality 'checkExpiration' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
 	}
 
-	public void clearInvalidRecords() {
-		throw new RuntimeException(
-				"Application connector not defined. Functionality 'checkExpiration' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	}
-
 	public void closeDatabases() {
 		throw new RuntimeException(
 				"Application connector not defined. Functionality 'checkExpiration' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
@@ -80,16 +75,6 @@ public abstract class AbstractDatabaseConnector implements IDatabaseConnector {
 	public ArrayList<Resource> refineOre(int itemID) {
 		throw new RuntimeException(
 				"Application connector not defined. Functionality 'refineOre' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	}
-
-	public void replaceAssets(long characterID) {
-		throw new RuntimeException(
-				"Application connector not defined. Functionality 'replaceAssets' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	}
-
-	public void replaceBlueprints(long characterID) {
-		throw new RuntimeException(
-				"Application connector not defined. Functionality 'replaceBlueprints' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
 	}
 
 	public void replaceJobs(long characterID) {

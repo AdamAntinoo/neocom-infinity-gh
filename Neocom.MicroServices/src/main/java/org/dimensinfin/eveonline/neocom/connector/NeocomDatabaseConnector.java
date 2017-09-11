@@ -26,6 +26,8 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.Where;
+import com.j256.ormlite.support.ConnectionSource;
+import com.j256.ormlite.support.DatabaseConnection;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 public class NeocomDatabaseConnector extends SpringDatabaseConnector {
@@ -40,6 +42,29 @@ public class NeocomDatabaseConnector extends SpringDatabaseConnector {
 				+ R.getResourceString("R.string.appdatabasefilename");
 		DATABASE_VERSION = new Integer(R.getResourceString("R.string.databaseversion")).intValue();
 		neocomDBHelper = new NeocomDBHelper(DATABASE_NAME, DATABASE_VERSION);
+	}
+
+	/**
+	 * removes from the application database any asset and blueprint that contains the special -1 code as the
+	 * owner identifier. Those records are from older downloads and have to be removed to avoid merging with the
+	 * new download.
+	 */
+	public synchronized void clearInvalidRecords() {
+		//		DatabaseConnection database = null;
+		try {
+			ConnectionSource conn = neocomDBHelper.getConnectionSource();
+			DatabaseConnection database = conn.getReadWriteConnection();
+			synchronized (database) {
+				int rowCount = database.delete("DELETE FROM Assets WHERE ownerID=-1", null, null);
+				logger
+						.info("-- [NeocomDatabaseConnector.clearInvalidAssets]> rows deleted ASSETS [OWNERID = -1] - " + rowCount);
+				rowCount = database.delete("DELETE FROM Blueprints WHERE ownerID=-1", null, null);
+				logger.info(
+						"-- [NeocomDatabaseConnector.clearInvalidAssets]> rows deleted BLUEPRINTS [OWNERID = -1] - " + rowCount);
+			}
+		} catch (final SQLException ex) {
+			logger.warning("W> Problem clearing invalid assets. " + ex.getMessage());
+		}
 	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
@@ -100,6 +125,47 @@ public class NeocomDatabaseConnector extends SpringDatabaseConnector {
 
 	public Dao<DatabaseVersion, String> getVersionDao() throws SQLException {
 		return this.getNeocomDBHelper().getVersionDao();
+	}
+
+	/**
+	 * Changes the owner id for all records from a new download with the id of the current character. This
+	 * completes the download and the assignment of the resources to the character without interrupting the
+	 * processing of data by the application.
+	 */
+	public synchronized void replaceAssets(final long characterID) {
+		try {
+			ConnectionSource conn = neocomDBHelper.getConnectionSource();
+			DatabaseConnection database = conn.getReadWriteConnection();
+			synchronized (database) {
+				int rowCount = database.delete("DELETE FROM Assets WHERE ownerID=" + characterID, null, null);
+				logger.info("-- [NeocomDatabaseConnector.replaceAssets]> rows deleted ASSETS [OWNERID = " + characterID + "] - "
+						+ rowCount);
+				rowCount = database.update("UPDATE FROM Assets WHERE ownerID=" + characterID + " SET ownerID=" + characterID,
+						null, null);
+				logger.info("-- [NeocomDatabaseConnector.replaceAssets]> rows replaces ASSETS [OWNERID = " + characterID
+						+ "] - " + rowCount);
+			}
+		} catch (final SQLException ex) {
+			logger.warning("W> Problem clearing invalid assets. " + ex.getMessage());
+		}
+	}
+
+	public synchronized void replaceBlueprints(final long characterID) {
+		try {
+			ConnectionSource conn = neocomDBHelper.getConnectionSource();
+			DatabaseConnection database = conn.getReadWriteConnection();
+			synchronized (database) {
+				int rowCount = database.delete("DELETE FROM Blueprints WHERE ownerID=" + characterID, null, null);
+				logger.info("-- [NeocomDatabaseConnector.replaceAssets]> rows deleted BLUEPRINTS [OWNERID = " + characterID
+						+ "] - " + rowCount);
+				rowCount = database
+						.update("UPDATE FROM Blueprints WHERE ownerID=" + characterID + " SET ownerID=" + characterID, null, null);
+				logger.info("-- [NeocomDatabaseConnector.replaceAssets]> rows replaces BLUEPRINTS [OWNERID = " + characterID
+						+ "] - " + rowCount);
+			}
+		} catch (final SQLException ex) {
+			logger.warning("W> Problem clearing invalid assets. " + ex.getMessage());
+		}
 	}
 
 	/**

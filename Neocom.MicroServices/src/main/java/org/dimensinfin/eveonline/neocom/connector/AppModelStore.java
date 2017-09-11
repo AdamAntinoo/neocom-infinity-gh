@@ -4,14 +4,13 @@
 //	ENVIRONMENT:	SpringBoot-MS-Java 1.8.
 //	DESCRIPTION:	This is the integration project for all the web server pieces. This is the launcher for
 //								the SpringBoot+MicroServices+Angular unified web application.
-package org.dimensinfin.eveonline.neocom.microservices.adapter;
+package org.dimensinfin.eveonline.neocom.connector;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import java.util.logging.Logger;
 
-import org.dimensinfin.eveonline.neocom.connector.AppConnector;
 import org.dimensinfin.eveonline.neocom.core.NeocomRuntimeException;
 import org.dimensinfin.eveonline.neocom.interfaces.INeoComModelStore;
 import org.dimensinfin.eveonline.neocom.model.ApiKey;
@@ -79,7 +78,7 @@ public class AppModelStore implements INeoComModelStore {
 	/**
 	 * This is the string identifier assigned to this session and that relates to an specific set of api keys.
 	 */
-	private String										_loginIdentifier	= "Default";
+	private String										_loginIdentifier	= "Beth";
 	/** The list of keys related to a login identifier */
 	private List<NeoComApiKey>				_neocomApiKeys		= null;
 	private List<NeoComCharacter>			_neocomCharacters	= null;
@@ -262,9 +261,14 @@ public class AppModelStore implements INeoComModelStore {
 	}
 
 	public void setLoginIdentifier(final String login) {
-		_loginIdentifier = login;
-		// Update the list of api keys and the characters related to the,.
-		this.readApiKeys();
+		// OPTIMIZATION If the login is already set to the same value do not update the keys.
+		if (_loginIdentifier.equalsIgnoreCase(login))
+			return;
+		else {
+			_loginIdentifier = login;
+			// Update the list of api keys and the characters related to the login.
+			this.readApiKeys();
+		}
 	}
 
 	/**
@@ -288,6 +292,8 @@ public class AppModelStore implements INeoComModelStore {
 				_neocomApiKeys.add(key);
 				// Scan for the characters declared into this key.
 				for (NeoComCharacter pilot : key.getApiCharacters()) {
+					// Post the request to update the Character.
+					AppConnector.getCacheConnector().addCharacterUpdateRequest(pilot.getCharacterID());
 					_neocomCharacters.add(pilot);
 					logger.info("-- [AppModelStore.readApiKeys]> Adding " + pilot.getName() + " to the _neocomCharacters");
 				}

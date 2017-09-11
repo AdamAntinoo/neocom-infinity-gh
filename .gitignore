@@ -3,3 +3,4 @@
 *.log
 .recommenders/
 .metadata/
+*.db-journal

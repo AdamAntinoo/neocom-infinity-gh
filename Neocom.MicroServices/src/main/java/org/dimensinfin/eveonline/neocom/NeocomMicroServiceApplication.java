@@ -9,6 +9,7 @@ package org.dimensinfin.eveonline.neocom;
 import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.connector.AppConnector;
+import org.dimensinfin.eveonline.neocom.connector.AppModelStore;
 import org.dimensinfin.eveonline.neocom.connector.ICCPDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.ICacheConnector;
 import org.dimensinfin.eveonline.neocom.connector.IConnector;
@@ -17,7 +18,6 @@ import org.dimensinfin.eveonline.neocom.connector.IStorageConnector;
 import org.dimensinfin.eveonline.neocom.connector.MicroServicesCacheConnector;
 import org.dimensinfin.eveonline.neocom.connector.NeocomDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.interfaces.INeoComModelStore;
-import org.dimensinfin.eveonline.neocom.microservices.adapter.AppModelStore;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -67,7 +67,7 @@ public class NeocomMicroServiceApplication implements IConnector {
 	// - M E T H O D - S E C T I O N ..........................................................................
 	@Override
 	public void addCharacterUpdateRequest(long characterID) {
-		//		this.getCacheConnector().addCharacterUpdateRequest(characterID);
+		this.getCacheConnector().addCharacterUpdateRequest(characterID);
 	}
 
 	@Override
@@ -88,13 +88,6 @@ public class NeocomMicroServiceApplication implements IConnector {
 		return dbNeocomConnector;
 	}
 
-	//	@Override
-	//	public String getResourceString(int reference) {
-	//		// TODO Auto-generated method stub
-	//		return null;
-	//	}
-
-	@Override
 	public INeoComModelStore getModelStore() {
 		return AppModelStore.getSingleton();
 	}

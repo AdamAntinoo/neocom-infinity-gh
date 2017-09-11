@@ -18,10 +18,6 @@ import org.dimensinfin.eveonline.neocom.enums.EDataBlock;
 import org.dimensinfin.eveonline.neocom.enums.ERequestClass;
 import org.dimensinfin.eveonline.neocom.enums.ERequestState;
 import org.dimensinfin.eveonline.neocom.model.NeoComCharacter;
-import org.dimensinfin.eveonline.neocom.services.CharacterUpdaterService;
-import org.dimensinfin.eveonline.neocom.services.MarketDataService;
-import org.dimensinfin.eveonline.neocom.services.PendingRequestEntry;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.core.task.TaskExecutor;
@@ -44,34 +40,36 @@ public class TimedServiceLauncher {
 	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
-	public CommandLineRunner launchCharacterDataUpdate(final PendingRequestEntry entry) {
+	public void launchCharacterDataUpdate(final PendingRequestEntry entry) {
 		logger.info(
 				"-- [TimeTickReceiver.launchCharacterDataUpdate]> Character Update Request Class [" + entry.reqClass + "]");
 		Number content = entry.getContent();
 		entry.state = ERequestState.ON_PROGRESS;
-		TaskExecutor executor = taskExecutor();
-		return new CommandLineRunner() {
-			public void run(String... args) throws Exception {
-				executor.execute(new CharacterUpdaterService(content.longValue()));
-			}
-		};
+		new CharacterUpdaterService(content.longValue()).run();
+		//		TaskExecutor executor = taskExecutor();
+		//		return new CommandLineRunner() {
+		//			public void run(String... args) throws Exception {
+		//				executor.execute(new CharacterUpdaterService(content.longValue()));
+		//			}
+		//		};
 	}
 
-	public CommandLineRunner launchMarketUpdate(final PendingRequestEntry entry) {
+	public void launchMarketUpdate(final PendingRequestEntry entry) {
 		logger.info("-- [TimeTickReceiver.launchService Market]> Update Request Class [" + entry.reqClass + "]");
 		Number content = entry.getContent();
 		entry.state = ERequestState.ON_PROGRESS;
 		AppConnector.getCacheConnector().incrementMarketCounter();
 		limit++;
-		TaskExecutor executor = taskExecutor();
-		return new CommandLineRunner() {
-			public void run(String... args) throws Exception {
-				executor.execute(new MarketDataService(content.intValue()));
-			}
-		};
+		//	new MarketDataService(content.intValue()).run();
+		//		TaskExecutor executor = taskExecutor();
+		//		return new CommandLineRunner() {
+		//			public void run(String... args) throws Exception {
+		//				executor.execute(new MarketDataService(content.intValue()));
+		//			}
+		//		};
 	}
 
-	@Scheduled(fixedRate = 60000)
+	@Scheduled(initialDelay = 10000, fixedRate = 10000)
 	public void onTime() {
 		logger.info(">> [TimedServiceLauncher.onReceive]");
 		//		// Run only if the network is active.
@@ -122,6 +120,7 @@ public class TimedServiceLauncher {
 				AppConnector.getCacheConnector().addCharacterUpdateRequest(eveChar.getCharacterID());
 			}
 		}
+		logger.info("<< [TimedServiceLauncher.onReceive]");
 		//		Activity activity = AppModelStore.getSingleton().getActivity();
 		//		if (null != activity) {
 		//			activity.runOnUiThread(new Runnable() {
