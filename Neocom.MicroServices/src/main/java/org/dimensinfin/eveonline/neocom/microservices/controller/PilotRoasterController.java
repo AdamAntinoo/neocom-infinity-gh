@@ -11,11 +11,11 @@ import java.util.logging.Logger;
 
 import org.dimensinfin.core.model.IGEFNode;
 import org.dimensinfin.core.model.RootNode;
-import org.dimensinfin.eveonline.neocom.connector.DataSourceLocator;
 import org.dimensinfin.eveonline.neocom.connector.IModelGenerator;
-import org.dimensinfin.eveonline.neocom.constant.ENeoComVariants;
+import org.dimensinfin.eveonline.neocom.core.DataSourceLocator;
+import org.dimensinfin.eveonline.neocom.enums.ENeoComVariants;
+import org.dimensinfin.eveonline.neocom.generator.ModelGeneratorStore;
 import org.dimensinfin.eveonline.neocom.generator.PilotRoasterModelGenerator;
-import org.dimensinfin.eveonline.neocom.manager.ModelGeneratorManager;
 import org.dimensinfin.eveonline.neocom.microservices.adapter.AppModelStore;
 import org.dimensinfin.eveonline.neocom.model.NeoComCharacter;
 import org.dimensinfin.eveonline.neocom.model.Pilot;
@@ -72,7 +72,7 @@ public class PilotRoasterController {
 		Vector<Pilot> pilotList = new Vector<Pilot>();
 		if (null != login) {
 			// Get a new model interface for the Pilot roaster using as unique identifier the login.
-			IModelGenerator adapter = ModelGeneratorManager.registerGenerator(new PilotRoasterModelGenerator(
+			IModelGenerator adapter = ModelGeneratorStore.registerGenerator(new PilotRoasterModelGenerator(
 					new DataSourceLocator().addIdentifier(login), ENeoComVariants.CAPSULEER_LIST.name(), login));
 			RootNode pilotNode = adapter.collaborate2Model();
 			for (IGEFNode pilot : pilotNode.getChildren()) {

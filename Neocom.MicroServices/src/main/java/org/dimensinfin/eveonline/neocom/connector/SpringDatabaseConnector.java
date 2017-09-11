@@ -25,7 +25,7 @@ import org.dimensinfin.eveonline.neocom.market.MarketDataSet;
 import org.dimensinfin.eveonline.neocom.model.EveItem;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
 import org.dimensinfin.eveonline.neocom.model.Outpost;
-import org.dimensinfin.eveonline.neocom.model.Schematics;
+import org.dimensinfin.eveonline.neocom.planetary.Schematics;
 import org.dimensinfin.eveonline.neocom.services.MarketDataService;
 
 // - CLASS IMPLEMENTATION ...................................................................................

@@ -6,7 +6,6 @@
 //								the SpringBoot+MicroServices+Angular unified web application.
 package org.dimensinfin.eveonline.neocom.microservices;
 
-import java.util.GregorianCalendar;
 import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.connector.AppConnector;
@@ -15,7 +14,7 @@ import org.dimensinfin.eveonline.neocom.connector.IConnector;
 import org.dimensinfin.eveonline.neocom.connector.IDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.IStorageConnector;
 import org.dimensinfin.eveonline.neocom.connector.NeocomDatabaseConnector;
-import org.dimensinfin.eveonline.neocom.core.INeoComModelStore;
+import org.dimensinfin.eveonline.neocom.interfaces.INeoComModelStore;
 import org.dimensinfin.eveonline.neocom.microservices.adapter.AppModelStore;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -66,25 +65,6 @@ public class NeocomMicroServiceApplication implements IConnector {
 		//		this.getCacheConnector().addCharacterUpdateRequest(characterID);
 	}
 
-	/**
-	 * Checks that the current parameter timestamp is still on the frame of the window.
-	 * 
-	 * @param timestamp
-	 *          the current and last timestamp of the object.
-	 * @param window
-	 *          time span window in milliseconds.
-	 */
-	public boolean checkExpiration(final long timestamp, final long window) {
-		// logger.info("-- Checking expiration for " + timestamp + ". Window " + window);
-		if (0 == timestamp) return true;
-		final long now = GregorianCalendar.getInstance().getTimeInMillis();
-		final long endWindow = timestamp + window;
-		if (now < endWindow)
-			return false;
-		else
-			return true;
-	}
-
 	@Override
 	public ICCPDatabaseConnector getCCPDBConnector() {
 		// TODO Auto-generated method stub
@@ -102,11 +82,11 @@ public class NeocomMicroServiceApplication implements IConnector {
 		return AppModelStore.getSingleton();
 	}
 
-	@Override
-	public String getResourceString(int reference) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	//	@Override
+	//	public String getResourceString(int reference) {
+	//		// TODO Auto-generated method stub
+	//		return null;
+	//	}
 
 	@Override
 	public IConnector getSingleton() {
