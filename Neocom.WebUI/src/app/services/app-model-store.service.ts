@@ -34,25 +34,26 @@ export class AppModelStoreService {
   public accessDataSource(): IDataSource {
     return this._activeDataSource;
   }
-  public locateDataSource(locator: DataSourceLocator): IDataSource {
+  public searchDataSource(locator: DataSourceLocator): IDataSource {
     let target = this.dataSourceCache[locator.getLocator()];
     return target;
   }
-  // Checks if this datasource is already present at the cache. If found returns the
-  // already found datasource, otherwise adds this to the list of caches datasources.
-  // The return from this meythod is a Promise
-  public registerDataSource(ds: IDataSource) {
+  /**
+  Checks if this datasource is already present at the registration list. If found returns the already found datasource, otherwise adds this to the list of caches datasources.
+*/
+  public registerDataSource(ds: IDataSource):IDataSource {
     let locator = ds.getLocator();
     let target = this.dataSourceCache[locator.getLocator()];
     if (target == null) {
       this.dataSourceCache.push(ds);
+      return ds;
       // If this new datasource is added to the cache then ativate the initial model hierarchy.
       // Call the background service to get the model contents.
-      return ds.collaborate2Model();
-    } else {
-      return new Promise((resolve, reject) => {
-        resolve(target.collaborate2View());
-      });
+    //  return ds.collaborate2Model();
+    // } else {
+    //   return new Promise((resolve, reject) => {
+    //     resolve(target.collaborate2View());
+    //   });
       // this._viewList= new Observable(observer => {
       //           setTimeout(() => {
       //               observer.next(42);
@@ -68,6 +69,7 @@ export class AppModelStoreService {
       //       });
       //       }
     }
+    return target;
   }
   public setActiveDataSource(ds: IDataSource): IDataSource {
     this._activeDataSource = ds;

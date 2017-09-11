@@ -13,6 +13,6 @@ export interface IDataSource {
   getVariantName(): string;
   setLocator(locator: DataSourceLocator): void;
   setVariant(variant: EVariant): void;
-  collaborate2Model(): Observable<NeoComNode[]>;
-  collaborate2View(): Render[];
+  //  collaborate2Model(): Observable<NeoComNode[]>;
+  collaborate2View(): Observable<Render[]>;
 }

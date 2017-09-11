@@ -1,11 +1,11 @@
 export class DataSourceLocator {
-  private locator: string = "";
+  private _locator: string = "";
 
   public addIdentifier(identifier: string): DataSourceLocator {
-    this.locator += identifier;
+    this._locator += "."+identifier;
     return this;
   }
   public getLocator(): string {
-    return this.locator;
+    return this._locator;
   }
 }

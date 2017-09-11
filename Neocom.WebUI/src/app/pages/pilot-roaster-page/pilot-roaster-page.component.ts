@@ -29,38 +29,40 @@ export class PilotRoasterPageComponent extends PageComponent implements OnInit {
     this.setVariant(EVariant.PILOTROASTER)
   }
 
+  /**
+  Components from page initialization will start the process to check the existence of the registration of the DataSource before parametrizing end registering a new one. DataSources are services so they are not instantiated by my code but by Angular itself.
+  After the DS is registered we start the view generation process to feed the render looper.
+  */
   ngOnInit() {
     console.log(">>[PilotRoasterPageComponent.ngOnInit]");
-    // Create the DataSource and initialize it with the parameters.
+    // Create our unique DS locator.
     let locator = new DataSourceLocator()
-      .addIdentifier("PilotListDataSource")
+      .addIdentifier(this.pilotListService.getServiceName())
       .addIdentifier(this.getVariantName());
-    this.pilotListService.setLocator(locator);
-    this.pilotListService.setVariant(this.getVariant());
+    // Check if the DS has been already registered.
+    let ds = this.appModelStore.searchDataSource(locator);
+    if (null == ds) {
+      // Register the service as a new DataSource. Set the registration parameters to the service.
+      this.pilotListService.setLocator(locator);
+      this.pilotListService.setVariant(this.getVariant());
+      this.appModelStore.registerDataSource(this.pilotListService);
+    }
+
     // Set the AppModel datasource to this datasource.
     this.appModelStore.setActiveDataSource(this.pilotListService);
+
     // Show the spinner
     this.downloading = true;
     //    this.appModelStore.registerDataSource(ds);
-    this.pilotListService.collaborate2Model()
+    this.pilotListService.collaborate2View()
       .subscribe(result => {
-        console.log("--[PilotRoasterPageComponent.ngOnInit.collaborate2Model]> pilot list: " + JSON.stringify(result));
+        console.log("--[PilotRoasterPageComponent.ngOnInit.collaborate2View]> pilot list: " + JSON.stringify(result));
         // The the list of planatary resource lists to the data returned.
-        this.adapterViewList = this.pilotListService.collaborate2View();
-        console.log("--[PilotRoasterPageComponent.ngOnInit.collaborate2View]> Renders: " + JSON.stringify(this.adapterViewList));
+        //      this.adapterViewList = this.pilotListService.collaborate2View();
+        this.adapterViewList = result;
+        //    console.log("--[PilotRoasterPageComponent.ngOnInit.collaborate2View]> Renders: " + JSON.stringify(this.adapterViewList));
         this.downloading = false;
       });
     console.log("<<[PilotRoasterPageComponent.ngOnInit]");
   }
-  // /**
-  // Calls the same method of the associated DataSource to get the list of nodes that currently are collaborating
-  // to the view presentation.
-  // */
-  // public collaborate2View() {
-  //   let ds = this.appModelStore.accessDataSource();
-  //   if (ds != null) {
-  //     let viewList = ds.collaborate2View();
-  //     return viewList;
-  //   }
-  // }
 }

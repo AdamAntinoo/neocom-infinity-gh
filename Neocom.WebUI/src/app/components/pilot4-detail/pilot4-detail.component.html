@@ -1,3 +1,60 @@
 <p>
   pilot4-detail works!
 </p>
+<div class="panel panel-default panel-pilot" id="panel1">
+  <div class="panel-box">
+    <table class="panel-node" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><img class="neocom-icon-90" src="{{pilot.urlforAvatar}}"></td>
+        <td width="60% ">
+          <div class="panel-content-2col">
+            <span class="neocom-selectable-name">{{pilot.name}}</span><br>
+            <span class="neocom-pilot-data neocom-data-size-14 neocom-marked-name">{{pilot.delegatedCharacter.corporationName}}</span><br>
+            <span class="neocom-pilot-data">{{pilot.characterSheet.gender}}</span> -
+            <span class="neocom-pilot-data">{{pilot.characterSheet.race | lowercase | capitalizeLetter}}</span>            -
+            <span class="neocom-pilot-data">{{pilot.characterSheet.bloodLine | lowercase | capitalizeLetter}}</span>            -
+            <span class="neocom-pilot-data">{{pilot.characterSheet.ancestry | lowercase | capitalizeLetter}}</span><br>
+            <span class="neocom-pilot-data neocom-data-size-12">Balance:</span>
+            <span class="pilot-balance">{{pilot.accountBalance | number:'1.2-2'}} ISK</span><br>
+            <span class="neocom-pilot-data neocom-data-size-12">Active Ship:</span>
+            <span class="neocom-marked-name">{{pilot.characterInfo.shipName}}</span>
+            <span class="neocom-pilot-data"> - [{{pilot.characterInfo.shipTypeName}}]</span><br>
+            <span class="neocom-pilot-data neocom-data-size-12">Located in:</span>
+            <span class="neocom-pilot-data neocom-data-size-14 neocom-marked-name">{{pilot.characterInfo.lastKnownLocation}}</span><br>
+            <span class="neocom-pilot-data neocom-data-size-12">Secutiry Status:</span>
+            <span class="neocom-pilot-data neocom-data-size-14">{{pilot.characterInfo.securityStatus | number:'1.2-2'}}</span>
+          </div>
+        </td>
+        <td class="left-box " align="right ">
+          <div class="neocom-account-class">{{getCharacterClass()}}</div>
+          <div>
+            <span class="neocom-pilot-data neocom-data-size-12">Total SP:</span>
+            <span class="neocom-pilot-data neocom-data-size-14 neocom-marked-name">{{pilot.characterInfo.skillPoints | number:'1.0-0'}}</span>
+          </div>
+          <div>
+            <span class="neocom-pilot-data neocom-data-size-12">Account status:</span><br>
+            <span class="neocom-pilot-data neocom-data-size-14">{{pilot.characterSheet.cloneName}}</span><br>
+            <span class="neocom-pilot-data neocom-data-size-12" style="color:red">Expired</span><br>
+          </div>
+        </td>
+        <td class="arrow-box" (click)="onClickArrow()" [ngClass]="{expanded: expanded}">
+          <img class="neocom-arrow" *ngIf="!expanded " src="/assets/icons/arrowleft.png ">
+          <img class="neocom-arrow" *ngIf="expanded " src="/assets/icons/arrowright.png ">
+        </td>
+      </tr>
+      <tr class="row-separator" *ngIf="expanded">
+        <td colspan="4" style="padding-top: 5px;">
+          <span>This content is shown when expanded</span>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="panel panel-default panel-skills" id="panel1">
+  <div class="panel-box">
+    <table class="panel-node" cellspacing="0" cellpadding="0">
+      <tr>
+      </tr>
+    </table>
+  </div>
+</div>
