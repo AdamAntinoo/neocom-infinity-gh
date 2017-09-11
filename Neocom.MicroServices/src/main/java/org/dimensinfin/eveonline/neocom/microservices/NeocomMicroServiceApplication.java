@@ -10,14 +10,17 @@ import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.connector.AppConnector;
 import org.dimensinfin.eveonline.neocom.connector.ICCPDatabaseConnector;
+import org.dimensinfin.eveonline.neocom.connector.ICacheConnector;
 import org.dimensinfin.eveonline.neocom.connector.IConnector;
 import org.dimensinfin.eveonline.neocom.connector.IDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.IStorageConnector;
+import org.dimensinfin.eveonline.neocom.connector.MicroServicesCacheConnector;
 import org.dimensinfin.eveonline.neocom.connector.NeocomDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.interfaces.INeoComModelStore;
 import org.dimensinfin.eveonline.neocom.microservices.adapter.AppModelStore;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 /**
@@ -28,6 +31,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author Adam Antinoo
  */
 @SpringBootApplication
+@EnableScheduling
 public class NeocomMicroServiceApplication implements IConnector {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger													logger		= Logger.getLogger("NeocomMicroServiceApplication");
@@ -45,7 +49,8 @@ public class NeocomMicroServiceApplication implements IConnector {
 	}
 
 	// - F I E L D - S E C T I O N ............................................................................
-	private IDatabaseConnector dbNeocomConnector = null;
+	private IDatabaseConnector	dbNeocomConnector	= null;
+	private ICacheConnector			cacheConnector		= null;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 	public NeocomMicroServiceApplication() {
@@ -66,6 +71,12 @@ public class NeocomMicroServiceApplication implements IConnector {
 	}
 
 	@Override
+	public ICacheConnector getCacheConnector() {
+		if (null == cacheConnector) cacheConnector = new MicroServicesCacheConnector();
+		return cacheConnector;
+	}
+
+	@Override
 	public ICCPDatabaseConnector getCCPDBConnector() {
 		// TODO Auto-generated method stub
 		return null;
@@ -77,16 +88,16 @@ public class NeocomMicroServiceApplication implements IConnector {
 		return dbNeocomConnector;
 	}
 
-	@Override
-	public INeoComModelStore getModelStore() {
-		return AppModelStore.getSingleton();
-	}
-
 	//	@Override
 	//	public String getResourceString(int reference) {
 	//		// TODO Auto-generated method stub
 	//		return null;
 	//	}
+
+	@Override
+	public INeoComModelStore getModelStore() {
+		return AppModelStore.getSingleton();
+	}
 
 	@Override
 	public IConnector getSingleton() {
