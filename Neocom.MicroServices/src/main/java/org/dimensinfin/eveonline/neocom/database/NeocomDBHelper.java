@@ -11,14 +11,15 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Logger;
 
-import org.dimensinfin.eveonline.neocom.connector.DatabaseVersion;
 import org.dimensinfin.eveonline.neocom.industry.Job;
 import org.dimensinfin.eveonline.neocom.market.NeoComMarketOrder;
 import org.dimensinfin.eveonline.neocom.model.ApiKey;
+import org.dimensinfin.eveonline.neocom.model.DatabaseVersion;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
 import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
 import org.dimensinfin.eveonline.neocom.model.NeoComBlueprint;
 import org.dimensinfin.eveonline.neocom.model.Property;
+import org.dimensinfin.eveonline.neocom.model.TimeStamp;
 import org.dimensinfin.eveonline.neocom.planetary.PlanetaryResource;
 import org.dimensinfin.eveonline.neocom.planetary.ResourceList;
 
@@ -47,6 +48,7 @@ public class NeocomDBHelper {
 	private JdbcConnectionSource						neocomDatasource				= null;
 
 	private Dao<DatabaseVersion, String>		versionDao							= null;
+	private Dao<TimeStamp, String>					timeStampDao						= null;
 	private Dao<ApiKey, String>							apiKeysDao							= null;
 	private Dao<Property, String>						propertyDao							= null;
 	private Dao<ResourceList, String>				resourceList						= null;
@@ -163,6 +165,13 @@ public class NeocomDBHelper {
 		return resourceList;
 	}
 
+	public Dao<TimeStamp, String> getTimeStampDAO() throws SQLException {
+		if (null == timeStampDao) {
+			timeStampDao = DaoManager.createDao(this.getConnectionSource(), TimeStamp.class);
+		}
+		return timeStampDao;
+	}
+
 	public Dao<DatabaseVersion, String> getVersionDao() throws SQLException {
 		if (null == versionDao) {
 			versionDao = DaoManager.createDao(this.getConnectionSource(), DatabaseVersion.class);
@@ -174,12 +183,12 @@ public class NeocomDBHelper {
 		try {
 			// Now open the DAO connector and create tables if they not exist
 			TableUtils.createTableIfNotExists(databaseConnection, DatabaseVersion.class);
+			TableUtils.createTableIfNotExists(databaseConnection, TimeStamp.class);
+
 			TableUtils.createTableIfNotExists(databaseConnection, ApiKey.class);
 			TableUtils.createTableIfNotExists(databaseConnection, Property.class);
-
 			TableUtils.createTableIfNotExists(databaseConnection, ResourceList.class);
 			TableUtils.createTableIfNotExists(databaseConnection, PlanetaryResource.class);
-
 			TableUtils.createTableIfNotExists(databaseConnection, NeoComAsset.class);
 			TableUtils.createTableIfNotExists(databaseConnection, NeoComBlueprint.class);
 			TableUtils.createTableIfNotExists(databaseConnection, Job.class);

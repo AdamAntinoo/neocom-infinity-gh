@@ -26,7 +26,7 @@
 	</properties>
 
 	<dependencies>
-		<!-- L O C A L   L I B R A R I E S   D E P E N D E N C I E S -->
+		<!-- L O C A L L I B R A R I E S D E P E N D E N C I E S -->
 		<!-- <dependency> -->
 		<!-- <groupId>DimensinfinIndustries</groupId> -->
 		<!-- <artifactId>CoreBase.core</artifactId> -->
@@ -43,12 +43,16 @@
 		</dependency>
 
 		<!-- S P R I N G B O O T -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.springframework.boot</groupId> -->
+<!-- 			<artifactId>spring-boot-starter-cache</artifactId> -->
+<!-- 		</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!-- A D D I T I O N A L   L I B R A R I E S -->
+		<!-- A D D I T I O N A L L I B R A R I E S -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>
@@ -79,23 +83,17 @@
 			<artifactId>eveapi</artifactId>
 			<version>${eveapi.version}</version>
 		</dependency>
-		<!-- D E P E N D E N C I E S   F R O M   O T H E R   P A C K A G E S -->
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+		</dependency>
+
+		<!-- D E P E N D E N C I E S F R O M O T H E R P A C K A G E S -->
 		<dependency>
 			<groupId>org.htmlparser</groupId>
 			<artifactId>htmlparser</artifactId>
 			<version>2.1</version>
 		</dependency>
-		
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.google.code.gson</groupId> -->
-<!-- 			<artifactId>gson</artifactId> -->
-<!-- 			<version>2.3.1</version> -->
-<!-- 		</dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>javax.inject</groupId> -->
-		<!-- <artifactId>javax.inject</artifactId> -->
-		<!-- <version>1</version> -->
-		<!-- </dependency> -->
 	</dependencies>
 
 	<build>

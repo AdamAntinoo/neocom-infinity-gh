@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.ehcache.org/ehcache.xsd"
+	updateCheck="true" monitoring="autodetect" dynamicConfig="true">
+
+	<diskStore path="./marketdata.cache" />
+	<cache name="MarketData" maxElementsInMemory="1000" eternal="true"
+		overflowToDisk="true" timeToLiveSeconds="3600" timeToIdleSeconds="0"
+		memoryStoreEvictionPolicy="LFU" transactionalMode="off">
+		<persistence strategy=”localRestartable "
+			synchronousWrites=”false” />
+	</cache>
+</ehcache>

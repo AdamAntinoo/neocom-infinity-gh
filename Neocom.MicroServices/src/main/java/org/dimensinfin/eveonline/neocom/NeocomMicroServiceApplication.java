@@ -16,10 +16,14 @@ import org.dimensinfin.eveonline.neocom.connector.IConnector;
 import org.dimensinfin.eveonline.neocom.connector.IDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.IStorageConnector;
 import org.dimensinfin.eveonline.neocom.connector.MicroServicesCacheConnector;
-import org.dimensinfin.eveonline.neocom.connector.NeocomDatabaseConnector;
+import org.dimensinfin.eveonline.neocom.connector.SpringDatabaseConnector;
+import org.dimensinfin.eveonline.neocom.constant.R;
 import org.dimensinfin.eveonline.neocom.interfaces.INeoComModelStore;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 // - CLASS IMPLEMENTATION ...................................................................................
@@ -30,12 +34,13 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * 
  * @author Adam Antinoo
  */
+@EnableCaching
 @SpringBootApplication
 @EnableScheduling
-public class NeocomMicroServiceApplication implements IConnector {
+public class NeocomMicroServiceApplication implements IConnector/* ,CacheResolver */ {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger													logger		= Logger.getLogger("NeocomMicroServiceApplication");
-	private static NeocomMicroServiceApplication	singleton	= null;
+	private static Logger												logger		= Logger.getLogger("NeocomMicroServiceApplication");
+	public static NeocomMicroServiceApplication	singleton	= null;
 
 	// - M A I N   E N T R Y P O I N T ........................................................................
 	/**
@@ -51,17 +56,19 @@ public class NeocomMicroServiceApplication implements IConnector {
 	// - F I E L D - S E C T I O N ............................................................................
 	private IDatabaseConnector	dbNeocomConnector	= null;
 	private ICacheConnector			cacheConnector		= null;
+	@Autowired
+	public CacheManager					cacheManager;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 	public NeocomMicroServiceApplication() {
-		logger.info(">>[NeocomMicroServiceApplication.<constructor>]");
+		logger.info(">> [NeocomMicroServiceApplication.<constructor>]");
 		// Create and connect the adapters.
 		if (null == singleton) {
-			logger.info("--[NeocomMicroServiceApplication.<constructor>]> Instantiating the singleton.");
+			logger.info("-- [NeocomMicroServiceApplication.<constructor>]> Instantiating the singleton.");
 			singleton = this;
 		}
 		AppConnector.setConnector(singleton);
-		logger.info("<<[NeocomMicroServiceApplication.<constructor>]");
+		logger.info("<< [NeocomMicroServiceApplication.<constructor>]");
 	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
@@ -69,6 +76,16 @@ public class NeocomMicroServiceApplication implements IConnector {
 	public void addCharacterUpdateRequest(long characterID) {
 		this.getCacheConnector().addCharacterUpdateRequest(characterID);
 	}
+
+	//	@Bean
+	//	public CacheManagerCustomizer<ConcurrentMapCacheManager> cacheManagerCustomizer() {
+	//		return new CacheManagerCustomizer<ConcurrentMapCacheManager>() {
+	//			@Override
+	//			public void customize(ConcurrentMapCacheManager cacheManager) {
+	//				cacheManager.setAllowNullValues(false);
+	//			}
+	//		};
+	//	}
 
 	@Override
 	public ICacheConnector getCacheConnector() {
@@ -84,7 +101,12 @@ public class NeocomMicroServiceApplication implements IConnector {
 
 	@Override
 	public IDatabaseConnector getDBConnector() {
-		if (null == dbNeocomConnector) dbNeocomConnector = new NeocomDatabaseConnector();
+		if (null == dbNeocomConnector) {
+			String dblocation = R.getResourceString("R.string.appdatabasepath");
+			String dbname = R.getResourceString("R.string.appdatabasefilename");
+			String dbversion = R.getResourceString("R.string.databaseversion");
+			dbNeocomConnector = new SpringDatabaseConnector(dblocation, dbname, dbversion);
+		}
 		return dbNeocomConnector;
 	}
 

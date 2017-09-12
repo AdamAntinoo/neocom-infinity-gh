@@ -47,7 +47,14 @@ public class EveItemController {
 		item.getLowestSellerPrice();
 		logger.info("-- [NeoComApplication.eveItem]> [#" + item.getItemID() + "]" + item.getName());
 		logger.info("<< [NeoComApplication.eveItem]");
+		printCacheInfo();
 		return item;
+	}
+
+	@SuppressWarnings("unused")
+	private void printCacheInfo() {
+		//		Cache cache = NeocomMicroServiceApplication.singleton.cacheManager.getCache("MarketData");
+		int dummy = 1;
 	}
 }
 // - UNUSED CODE ............................................................................................
