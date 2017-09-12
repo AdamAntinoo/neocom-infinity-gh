@@ -23,6 +23,8 @@ import { NeoComNode } from '../models/NeoComNode.model';
 import { Pilot } from '../models/Pilot.model';
 import { Region } from '../models/Region.model';
 import { Manager } from '../models/Manager.model';
+import { AssetsManager } from '../models/AssetsManager.model';
+import { PlanetaryManager } from '../models/PlanetaryManager.model';
 
 @Injectable()
 export class PilotManagersDataSourceService extends AbstractDataSource implements IDataSource {
@@ -58,11 +60,24 @@ export class PilotManagersDataSourceService extends AbstractDataSource implement
   private getAllManagers(): Observable<Render[]> {
     console.log("><[PilotManagersDataSourceService.getAllManagers]");
     this.cookieService.put("login-id", "default")
-    return this.http.get(AbstractDataSource.RESOURCE_SERVICE_URL + "/pilotmanagers/" + "92223647")
+    return this.http.get(AbstractDataSource.RESOURCE_SERVICE_URL + "/pilotmanagers/" + "93813310")
       .map(res => res.json())
       .map(result => {
         for (let manager of result) {
+          // // Get the class of this object and then create the right Manager from it.
+          // let className = manager.jsonClassname;
+          // let newmanager = null;
+          // console.log("--[PilotManagersDataSourceService.getAllManagers]>class = " + className);
+          // switch (className) {
+          //   case "AssetsManager":
+          //     newmanager = new AssetsManager(manager);
+          //     break;
+          //   case "PlanetaryManager":
+          //     newmanager = new PlanetaryManager(manager);
+          //     break;
+          //   default:
           let newmanager = new Manager(manager);
+          //    }
           this._dataModelRoot.push(newmanager);
         }
         this._downloaded = true;

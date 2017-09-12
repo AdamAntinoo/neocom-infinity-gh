@@ -1,0 +1,56 @@
+.panel-manager {
+  background-color: #202020;
+  border-color: yellow;
+  cursor: pointer;
+  line-height: 1.0;
+  margin-bottom: 5px;
+  width: 50%;
+}
+
+.stack-counter {
+  font-size: 24px;
+  font-weight: 600;
+  padding-bottom: 3px;
+  padding-top: 3px;
+}
+
+.arrow-box {
+  vertical-align: middle;
+}
+
+.big-label {
+  font-size: 12px;
+}
+
+.topup-label {
+  border-top-color: black;
+  border-top-style: solid;
+  border-top-width: 1px;
+  font-size: 10px;
+}
+
+.small-label {
+  font-size: 9px;
+}
+
+.neocom-data {
+  font-size: 14px;
+}
+
+.neocom-data-size-10 {
+  font-size: 10px;
+  -webkit-font-smoothing: subpixel-antialiased;
+  font-weight: 600;
+}
+
+.neocom-data-size-18 {
+  font-size: 18px;
+  -webkit-font-smoothing: subpixel-antialiased;
+  font-weight: 600;
+}
+
+.neocom-data-20 {
+  font-size: 20px;
+  -webkit-font-smoothing: subpixel-antialiased;
+  font-weight: 600;
+}

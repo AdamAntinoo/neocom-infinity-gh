@@ -1,4 +1,7 @@
 <p>
+  planetary-manager works!
+</p>
+<p>
   pilot-manager works!
 </p>
 <div class="panel panel-default panel-manager" id="panel1">
@@ -12,9 +15,14 @@
           </div>
         </td>
         <td class="left-box " align="right ">
-          <div class="big-label ">{{manager.iconName}}</div>
-          <div class="stack-counter ">{{manager.assetTotalCount}}</div>
-          <div class="topup-label small-label"><span>ASSETS</span></div>
+          <div>
+            <span class="neocom-data neocom-data-size-10">Resources:</span><br>
+            <span class="neocom-data neocom-data-20">{{manager.assetTotalCount | number:'1.0-0'}}</span>
+          </div>
+          <div>
+            <span class="neocom-data neocom-data-size-10">Regions:</span><br>
+            <span class="neocom-data neocom-data-20">{{manager.regionCount | number:'1.0-0'}}</span>
+          </div>
         </td>
         <td class="arrow-box" (click)="onClickArrow()" [ngClass]="{expanded: expanded}">
           <img class="neocom-arrow" *ngIf="!expanded " src="/assets/icons/arrowleft.png ">

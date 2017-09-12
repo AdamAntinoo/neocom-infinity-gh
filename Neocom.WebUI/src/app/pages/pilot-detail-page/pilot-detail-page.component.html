@@ -7,5 +7,6 @@
   view-adapter.component running...
   <div *ngFor="let render of adapterViewList">
     <neocom-pilot-manager *ngIf="render.class == 'Manager'" [manager]="render"></neocom-pilot-manager>
+    <neocom-planetary-manager *ngIf="render.jsonClassname == 'PlanetaryManager'" [manager]="render"></neocom-planetary-manager>
   </div>
 </div>

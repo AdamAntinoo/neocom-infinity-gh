@@ -22,6 +22,9 @@ import { PilotRoasterBlockComponent } from './component/pilot-roaster-block/pilo
 import { RegionComponent } from './region/region.component';
 import { Pilot4RoasterComponent } from './components/pilot4-roaster/pilot4-roaster.component';
 import { Pilot4DetailComponent } from './components/pilot4-detail/pilot4-detail.component';
+import { PilotDetailPageComponent } from './pages/pilot-detail-page/pilot-detail-page.component';
+import { PilotManagerComponent } from './components/pilot-manager/pilot-manager.component';
+import { PlanetaryManagerComponent } from './components/planetary-manager/planetary-manager.component';
 //--- PIPES
 import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
 import { CapitalizeLetterPipe } from './pipes/capitalize-letter.pipe';
@@ -33,8 +36,6 @@ import { PageHomeComponent } from './page/page-home/page-home.component';
 import { PagePilotsComponent } from './page/page-pilots/page-pilots.component';
 
 import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roaster-page.component';
-import { PilotDetailPageComponent } from './pages/pilot-detail-page/pilot-detail-page.component';
-import { PilotManagerComponent } from './components/pilot-manager/pilot-manager.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { PilotManagerComponent } from './components/pilot-manager/pilot-manager.
     Pilot4DetailComponent,
     PilotDetailPageComponent,
     PilotManagerComponent,
+    PlanetaryManagerComponent,
   ],
   imports: [
     BrowserModule,

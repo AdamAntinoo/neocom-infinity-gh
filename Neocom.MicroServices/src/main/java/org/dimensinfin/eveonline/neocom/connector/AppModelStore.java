@@ -78,7 +78,7 @@ public class AppModelStore implements INeoComModelStore {
 	/**
 	 * This is the string identifier assigned to this session and that relates to an specific set of api keys.
 	 */
-	private String										_loginIdentifier	= "Beth";
+	private String										_loginIdentifier	= "Default";
 	/** The list of keys related to a login identifier */
 	private List<NeoComApiKey>				_neocomApiKeys		= null;
 	private List<NeoComCharacter>			_neocomCharacters	= null;

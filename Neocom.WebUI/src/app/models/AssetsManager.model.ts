@@ -10,19 +10,25 @@ import { EVariant } from '../classes/EVariant.enumerated';
 import { NeoComNode } from './NeoComNode.model';
 import { PilotAction } from './pilotaction';
 import { Region } from './Region.model';
+import { Manager } from './Manager.model';
 
-export class Manager extends NeoComNode {
+export class AssetsManager extends Manager {
   public jsonClassname: string = "Manager";
-  public regions: Region[] = [];
-  public locations: Location[] = [];
-  public regionCount: number = 0;
+  //  public regions: Region[] = [];
+  //  public locations: Location[] = [];
 
   constructor(values: Object = {}) {
     super();
     Object.assign(this, values);
-    this.class = "Manager";
-    // Fiil additional fields after the object is parsed.
-    this.regionCount = Object.keys(this.regions).length;
+    this.class = "AssetsManager";
+    // // Convert the internal structures to their own class instances.
+    // let construction = [];
+    // for (let key of this.regions) {
+    //   let region = this.regions[key];
+    //   let regClass = new Region(region);
+    //   construction.push(regClass);
+    // }
+    // this.regions = construction;
   }
   public collaborate2View(variant: EVariant): NeoComNode[] {
     let collab = [];
