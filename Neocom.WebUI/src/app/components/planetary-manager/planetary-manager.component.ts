@@ -16,10 +16,11 @@ import { Manager } from '../../models/Manager.model';
   templateUrl: './planetary-manager.component.html',
   styleUrls: ['./planetary-manager.component.css']
 })
-export class PlanetaryManagerComponent extends PilotManagerComponent implements OnInit {
+export class PlanetaryManagerComponent implements OnInit {
+  @Input() manager: Manager;
 
   constructor() {
-    super();
+    //  super();
   }
 
   ngOnInit() {
