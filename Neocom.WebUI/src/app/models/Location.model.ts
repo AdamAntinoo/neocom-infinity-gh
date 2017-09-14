@@ -8,7 +8,7 @@ export class Location extends Render {
   constructor(values: Object = {}) {
     super(values);
     Object.assign(this, values);
-    this.class = "Location";
+    this.jsonClass = "Location";
   }
 
 }

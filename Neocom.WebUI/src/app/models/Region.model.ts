@@ -9,7 +9,7 @@ export class Region extends Render {
   constructor(values: Object = {}) {
     super(values);
     Object.assign(this, values);
-    this.class = "Region";
+    this.jsonClass = "Region";
   }
   public addLocation(newlocation: Location) {
     this.locations.push(newlocation);

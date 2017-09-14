@@ -22,7 +22,7 @@ export class Pilot extends NeoComNode {
   constructor(values: Object = {}) {
     super();
     Object.assign(this, values);
-    this.class = "Pilot";
+    this.jsonClass = "Pilot";
   }
 
   public getId() {

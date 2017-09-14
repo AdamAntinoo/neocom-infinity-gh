@@ -111,7 +111,7 @@ export class PilotListDataSourceService implements IDataSource {
       if (null === this._viewModelRoot) {
         this._viewModelRoot = collab;
       } else {
-        this._viewModelRoot.concat(collab);
+        this._viewModelRoot = this._viewModelRoot.concat(collab);
       }
       console.log("><[PilotListDataSourceService.processModel]");
     }

@@ -6,6 +6,9 @@ body {
   color: white;
 }
 
+
+/* F O N T S */
+
 @font-face {
   font-family: "Conthrax";
   src: url("./assets/fonts/conthrax-sb.ttf");
@@ -76,6 +79,81 @@ body {
 
 
 /* C O M M O N    S T Y L E S */
+
+.neocom-selectable-name {
+  color: #50B71D;
+  font-size: 18px;
+  line-height: 1.3;
+  text-shadow: 0px 0px 2px #50B71D;
+  font-weight: 500;
+}
+
+.neocom-marked-name {
+  color: orange;
+}
+
+.neocom-marked-glow {
+  color: orange;
+  text-shadow: 0px 0px 2px orange;
+  font-weight: 600;
+}
+
+.glow-marked {
+  color: orange;
+  text-shadow: 0px 0px 2px orange;
+  font-weight: 600;
+}
+
+.glow-white {
+  color: white;
+  text-shadow: 0px 0px 2px white;
+  font-weight: 600;
+}
+
+.glow-red {
+  color: red;
+  text-shadow: 0px 0px 2px red;
+  font-weight: 600;
+}
+
+.neocom-label {
+  font-family: "Roboto";
+  font-weight: normal;
+  font-size: small;
+  color: white;
+  line-height: 1.0;
+  padding-top: 1px;
+}
+
+.label-small {
+  font-size: 10px;
+}
+
+.label-topupline {
+  border-top: white 1px solid;
+}
+
+.label-bottomline {
+  border-bottom: white 1px solid;
+}
+
+.no-underline {
+  font-style: normal;
+  font-variant: normal;
+  text-decoration: none !important;
+}
+
+.neocom-ts18 {
+  font-size: 18px;
+}
+
+.neocom-ts16 {
+  font-size: 16px;
+}
+
+.neocom-ts14 {
+  font-size: 14px;
+}
 
 
 /* P A N E L S */

@@ -1,6 +1,6 @@
 export class Render {
   public name: string;
-  public class: string = "Render";
+  public jsonClass: string = "Render";
   public expanded: boolean = false;
 
   constructor(values: Object = {}) {

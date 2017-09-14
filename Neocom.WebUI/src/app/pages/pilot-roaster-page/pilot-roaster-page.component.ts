@@ -46,13 +46,11 @@ export class PilotRoasterPageComponent extends PageComponent implements OnInit {
         this.appModelStore.setLogin(login);
       });
 
-
-
-
     // Create our unique DS locator.
     let locator = new DataSourceLocator()
       .addIdentifier(this.pilotListService.getServiceName())
-      .addIdentifier(this.getVariantName());
+      .addIdentifier(this.getVariantName())
+      .addIdentifier(this.appModelStore.accessLogin());
     // Check if the DS has been already registered.
     let ds = this.appModelStore.searchDataSource(locator);
     if (null == ds) {

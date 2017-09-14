@@ -20,7 +20,7 @@ export class Manager extends NeoComNode {
   constructor(values: Object = {}) {
     super();
     Object.assign(this, values);
-    this.class = "Manager";
+    this.jsonClass = "Manager";
     // Fiil additional fields after the object is parsed.
     this.regionCount = Object.keys(this.regions).length;
   }
