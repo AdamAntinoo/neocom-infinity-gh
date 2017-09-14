@@ -89,8 +89,8 @@ export class PilotListDataSourceService implements IDataSource {
 
   private getAllPilots(): Observable<Render[]> {
     console.log("><[PilotListDataSourceService.getAllPilots]");
-    this.cookieService.put("login-id", "default")
-    return this.http.get(PilotListDataSourceService.RESOURCE_SERVICE_URL + "/pilotroaster")
+    //  this.cookieService.put("login-id", "default")
+    return this.http.get(PilotListDataSourceService.RESOURCE_SERVICE_URL + "/login/" + this.appModelStore.accessLogin() + "/pilotroaster")
       .map(res => res.json())
       .map(result => {
         for (let pilot of result) {

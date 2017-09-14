@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import 'rxjs/add/operator/switchMap';
+import { Observable } from 'rxjs/Rx';
+
 //--- SERVICES
 import { AppModelStoreService } from '../../services/app-model-store.service';
 import { PilotListDataSourceService } from '../../services/pilot-list-data-source.service';
@@ -24,7 +28,7 @@ export class PilotRoasterPageComponent extends PageComponent implements OnInit {
   public adapterViewList: Render[] = [];
   public downloading: boolean = true;
 
-  constructor(private appModelStore: AppModelStoreService, private pilotListService: PilotListDataSourceService) {
+  constructor(private appModelStore: AppModelStoreService, private pilotListService: PilotListDataSourceService, private route: ActivatedRoute) {
     super();
     this.setVariant(EVariant.PILOTROASTER)
   }
@@ -35,6 +39,16 @@ export class PilotRoasterPageComponent extends PageComponent implements OnInit {
   */
   ngOnInit() {
     console.log(">>[PilotRoasterPageComponent.ngOnInit]");
+    // Extract the login identifier from the URL structure.
+    this.route.params.map(p => p.loginid)
+      .subscribe((login: string) => {
+        // Set the login at the Service to update the other data structures.
+        this.appModelStore.setLogin(login);
+      });
+
+
+
+
     // Create our unique DS locator.
     let locator = new DataSourceLocator()
       .addIdentifier(this.pilotListService.getServiceName())

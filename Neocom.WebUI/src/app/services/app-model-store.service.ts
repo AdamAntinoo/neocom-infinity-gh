@@ -27,12 +27,24 @@ import { Pilot } from '../models/Pilot.model';
 @Injectable()
 export class AppModelStoreService {
   private loginList: Login[] = null;
+  private currentLogin: string = "Default";
 
   private dataSourceCache: IDataSource[] = [];
   private _activeDataSource: IDataSource = null;
   private _viewList: Observable<Array<Render>>;
 
   constructor() { }
+  /**
+  Sets the new login that comes from the URL when the user selects one from the list of logins.
+  If the Login set is different from the current Login then we fire the download of
+  the list of Pilots associated with that Login's Keys.
+  */
+  public setLogin(newlogin: string): void {
+    this.currentLogin = newlogin;
+  }
+  public accessLogin(): string {
+    return this.currentLogin;
+  }
 
   /**
   Go to the backend Database to retrieve the list of declared Logins to let the

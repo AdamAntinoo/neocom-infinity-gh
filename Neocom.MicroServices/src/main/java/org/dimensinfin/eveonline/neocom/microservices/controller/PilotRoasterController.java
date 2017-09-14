@@ -54,12 +54,7 @@ public class PilotRoasterController {
 
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/pilotmanagers/{identifier}", method = RequestMethod.GET, produces = "application/json")
-	public Vector<AbstractManager> pilotManagers(
-			@PathVariable final String identifier/*
-																						 * ,
-																						 * 
-																						 * @CookieValue("login") String login
-																						 */) {
+	public Vector<AbstractManager> pilotManagers(@PathVariable final String identifier) {
 		logger.info(">> [PilotRoasterController.pilotManagers]");
 		Vector<AbstractManager> managerList = new Vector<AbstractManager>();
 		// Get the cookie and the login identifier inside it.
@@ -95,18 +90,17 @@ public class PilotRoasterController {
 	 *         different datasource item that can be cached.
 	 */
 	@CrossOrigin()
-	@RequestMapping(value = "/api/v1/pilotroaster", method = RequestMethod.GET, produces = "application/json")
-	//public List<Pilot> pilotRoaster(@CookieValue("login") String login) {
-	public Vector<Pilot> pilotRoaster(/* @CookieValue("login") String login */) {
-		logger.info(">> [PilotRoasterController.pilotRoaster]");
+	@RequestMapping(value = "/api/v1/login/{identifier}/pilotroaster", method = RequestMethod.GET, produces = "application/json")
+	public Vector<Pilot> pilotRoaster(@PathVariable final String identifier) {
+		logger.info(">> [PilotRoasterController.pilotRoaster]>identifier=" + identifier);
 		// Get the cookie and the login identifier inside it.
-		String login = "Beth";
-		AppModelStore.getSingleton().setLoginIdentifier(login);
+		//		String login = "Beth";
+		AppModelStore.getSingleton().setLoginIdentifier(identifier);
 		Vector<Pilot> pilotList = new Vector<Pilot>();
-		if (null != login) {
+		if (null != identifier) {
 			// Get a new model interface for the Pilot roaster using as unique identifier the login.
 			IModelGenerator adapter = ModelGeneratorStore.registerGenerator(new PilotRoasterGenerator(
-					new DataSourceLocator().addIdentifier(login), ENeoComVariants.CAPSULEER_LIST.name(), login));
+					new DataSourceLocator().addIdentifier(identifier), ENeoComVariants.CAPSULEER_LIST.name(), identifier));
 			RootNode pilotNode = adapter.collaborate2Model();
 			for (IGEFNode pilot : pilotNode.getChildren()) {
 				pilotList.add((Pilot) pilot);

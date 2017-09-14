@@ -6,10 +6,12 @@
 
 .big-header {
   font-size: 40px;
+  text-shadow: 0px 0px 6px white;
 }
 
 .version {
   font-size: 20px;
-  font-family: "Elemental Italic";
-  color: green;
+  font-family: "Elemental";
+  color: #50B71D;
+  text-shadow: 0px 0px 6px #50B71D;
 }
