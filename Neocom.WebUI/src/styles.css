@@ -6,6 +6,42 @@ body {
   color: white;
 }
 
+@font-face {
+  font-family: "Conthrax";
+  src: url("./assets/fonts/conthrax-sb.ttf");
+}
+
+.contrax-ff {
+  font-family: "Conthrax"
+}
+
+@font-face {
+  font-family: "Tesla";
+  src: url("./assets/fonts/TESLA.ttf");
+}
+
+.tesla-ff {
+  font-family: "Tesla"
+}
+
+@font-face {
+  font-family: "Elemental";
+  src: url("./assets/fonts/Elemental End.ttf");
+}
+
+.elemental-ff {
+  font-family: "Elemental"
+}
+
+@font-face {
+  font-family: "Elemental Italic";
+  src: url("./assets/fonts/Elemental End italic.ttf");
+}
+
+.elemental-ita-ff {
+  font-family: "Elemental Italic"
+}
+
 
 /* C O M M O N    S T Y L E S */
 

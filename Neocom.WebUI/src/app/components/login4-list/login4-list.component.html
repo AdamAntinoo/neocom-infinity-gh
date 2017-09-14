@@ -1,0 +1,27 @@
+<p>
+  login4-list works!
+</p>
+<div class="panel panel-default panel-login" id="panel1">
+  <div class="panel-box">
+    <table class="panel-node" cellspacing="0" cellpadding="0">
+      <a class="no-underline" [routerLink]="['/login',node.getLoginId(),'/pilotroaster']">
+        <tr>
+          <td><img class="neocom-icon neocom-icon48" src="/assets/icons/{{node.getPanelIcon()}}"></td>
+          <td width="80% ">
+            <div>
+              <span class="neocom-selectable-name">{{node.getLoginId()}}</span><br>
+            </div>
+          </td>
+          <td class="left-box " align="right ">
+            <div class="stack-counter ">{{node.getKeyCount()}}</div>
+            <div class="neocom-label label-small label-topupline "></div>
+          </td>
+          <td *ngIf="false" class="arrow-box" (click)="onClickArrow()" [ngClass]="{expanded: expanded}">
+            <img class="neocom-arrow" *ngIf="!expanded " src="/assets/icons/arrowleft.png ">
+            <img class="neocom-arrow" *ngIf="expanded " src="/assets/icons/arrowright.png ">
+          </td>
+        </tr>
+      </a>
+    </table>
+  </div>
+</div>

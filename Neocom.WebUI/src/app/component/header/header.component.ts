@@ -11,5 +11,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  public getVersion(): string {
+    return "v 0.1.0 stable";
+  }
 }

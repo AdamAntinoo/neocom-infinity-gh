@@ -1,0 +1,106 @@
+/* C O M P O N E N T    S T Y L E S */
+
+.panel-login {
+  background-color: #101010;
+  border-color: blue;
+  cursor: pointer;
+  line-height: 1.0;
+  margin-bottom: 5px;
+  width: 60%;
+  border-radius: 5px;
+  box-shadow: inset 0px 0px 4px 1px rgba(255, 255, 255, 0.73), 0px 0px 4px 1px rgba(255, 255, 255, 0.73);
+  border-color: #A0A0F0;
+}
+
+.stack-counter {
+  font-size: 18px;
+  color: #FAFAA0;
+  text-shadow: 0px 0px 2px white;
+  font-weight: 600;
+}
+
+
+/* C O M M O N    S T Y L E S */
+
+.panel-box :hover {
+  background-color: #404080;
+  opacity: 0.5;
+}
+
+.panel-node {
+  margin-left: 3px;
+  margin-top: 2px;
+  margin-right: 1px;
+  margin-bottom: 2px;
+}
+
+.no-underline {
+  font-style: normal;
+  font-variant: normal;
+  text-decoration: none !important;
+}
+
+.neocom-pilot-avatar {
+  height: 48px;
+  width: 48px;
+  border: white 1px solid;
+  box-shadow: inset 0px 0px 4px 1px rgba(255, 255, 255, 0.73), 0px 0px 4px 1px rgba(255, 255, 255, 0.73);
+  margin-right: 3px;
+}
+
+.neocom-icon {
+  height: 48px;
+  width: 48px;
+  border: white 1px solid;
+  box-shadow: inset 0px 0px 4px 1px rgba(255, 255, 255, 0.73), 0px 0px 4px 1px rgba(255, 255, 255, 0.73);
+  margin: 3px;
+}
+
+.neocom-icon48 {
+  width: 48px;
+  height: 48px;
+}
+
+.neocom-selectable-name {
+  color: #50B71D;
+  font-size: 18px;
+  line-height: 1.3;
+  text-shadow: 0px 0px 2px #50B71D;
+  font-weight: 500;
+}
+
+.neocom-marked-name {
+  color: orange;
+}
+
+.neocom-red-glow {
+  color: red;
+  text-shadow: 0px 0px 2px red;
+  font-weight: 600;
+}
+
+.neocom-marked-glow {
+  color: orange;
+  text-shadow: 0px 0px 2px orange;
+  font-weight: 600;
+}
+
+.neocom-ts18 {
+  font-size: 18px;
+}
+
+.neocom-label {
+  font-family: "Roboto";
+  font-weight: normal;
+  font-size: small;
+  color: white;
+  line-height: 1.0;
+}
+
+.label-small {
+  font-size: 10px;
+}
+
+.label-topupline {
+  border-top: white 1px solid;
+}
