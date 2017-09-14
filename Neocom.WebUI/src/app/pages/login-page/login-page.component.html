@@ -4,7 +4,7 @@
 <span *ngIf="downloading" class="spinner spinner-large spinner-red spinner-fat spinner-slow spinner-location"></span>
 <div class="panel-group">
   view-adapter.component running...
-  <div *ngFor="let render of adapterViewList">
+  <div *ngFor="let render of loginList">
     <app-region *ngIf="render.class == 'Region'" [model]="render"></app-region>
     <neocom-pilot4-roaster *ngIf="render.class == 'Pilot'" [model]="render"></neocom-pilot4-roaster>
     <neocom-login4-list *ngIf="render.jsonClass == 'Login'" [node]="render"></neocom-login4-list>

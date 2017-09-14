@@ -27,6 +27,8 @@ body {
 @font-face {
   font-family: "Elemental";
   src: url("./assets/fonts/Elemental End.ttf");
+  font-weight: normal;
+  font-style: normal;
 }
 
 .elemental-ff {
@@ -34,12 +36,42 @@ body {
 }
 
 @font-face {
-  font-family: "Elemental Italic";
-  src: url("./assets/fonts/Elemental End italic.ttf");
+  font-family: "Elemental";
+  src: url("./assets/fonts/Elemental End Italic.ttf");
+  font-weight: normal;
+  font-style: italic;
 }
 
-.elemental-ita-ff {
-  font-family: "Elemental Italic"
+@font-face {
+  font-family: 'Mons Olympia';
+  src: url("./assets/fonts/Mons Olympia Bold Italic.otf");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Mons Olympia';
+  src: url("./assets/fonts/Mons Olympia Bold.otf");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mons Olympia';
+  src: url("./assets/fonts/Mons Olympia Italic.otf");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Mons Olympia';
+  src: url("./assets/fonts/Mons Olympia.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.mons-olympia-ff {
+  font-family: "Mons Olympia"
 }
 
 

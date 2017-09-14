@@ -26,7 +26,7 @@ import { Pilot } from '../models/Pilot.model';
 //
 @Injectable()
 export class AppModelStoreService {
-  private loginList: Login[] = [];
+  private loginList: Login[] = null;
 
   private dataSourceCache: IDataSource[] = [];
   private _activeDataSource: IDataSource = null;
@@ -40,36 +40,23 @@ export class AppModelStoreService {
   downloaded then do not access again the Database and return the cached list.
   */
   public accessLoginList(): Observable<Login[]> {
+    console.log(">>[AppModelStoreService.accessLoginList]");
     if (null == this.loginList) {
       // Get the list form the backend Database.
       // On this preliminar version simulate it with a hand made list.
-      return new Observable(observer => {
-        setTimeout(() => {
-          this.loginList.push(new Login({ loginid: "Beth" }));
-          observer.next(this.loginList);
-        }, 100);
-        setTimeout(() => {
-          this.loginList.push(new Login({ loginid: "Perico" }));
-          observer.next(this.loginList);
-        }, 100);
-        setTimeout(() => {
-          this.loginList.push(new Login({ loginid: "CapitanHaddock09" }));
-          observer.next(this.loginList);
-        }, 100);
-        setTimeout(() => {
-          observer.complete();
-        }, 100);
-      });
-    } else {
-      return new Observable(observer => {
-        setTimeout(() => {
-          observer.next(this.loginList);
-        }, 100);
-        setTimeout(() => {
-          observer.complete();
-        }, 100);
-      });
+      this.loginList = [];
+      this.loginList.push(new Login({ loginid: "Beth" }));
+      this.loginList.push(new Login({ loginid: "Perico" }));
+      this.loginList.push(new Login({ loginid: "CapitanHaddock09" }));
     }
+    return new Observable(observer => {
+      setTimeout(() => {
+        observer.next(this.loginList);
+      }, 100);
+      setTimeout(() => {
+        observer.complete();
+      }, 100);
+    });
   }
 
   public accessDataSource(): IDataSource {
