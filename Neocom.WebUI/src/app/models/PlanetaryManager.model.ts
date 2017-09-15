@@ -13,14 +13,14 @@ import { Region } from './Region.model';
 import { Manager } from './Manager.model';
 
 export class PlanetaryManager extends Manager {
-  public jsonClassname: string = "Manager";
+  public jsonClass: string = "Manager";
   //  public regions: Region[] = [];
   //  public locations: Location[] = [];
 
   constructor(values: Object = {}) {
     super();
     Object.assign(this, values);
-    this.class = "PlanetaryManager";
+    this.jsonClass = "PlanetaryManager";
     // // Convert the internal structures to their own class instances.
     // let construction = [];
     // let test = this.regions;

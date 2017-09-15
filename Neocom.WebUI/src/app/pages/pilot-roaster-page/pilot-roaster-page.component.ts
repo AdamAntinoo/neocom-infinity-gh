@@ -42,15 +42,15 @@ export class PilotRoasterPageComponent extends PageComponent implements OnInit {
     // Extract the login identifier from the URL structure.
     this.route.params.map(p => p.loginid)
       .subscribe((login: string) => {
-        // Set the login at the Service to update the other data structures.
-        this.appModelStore.setLogin(login);
+        // Set the login at the Service to update the other data structures. Pass the login id
+        this.appModelStore.setLoginById(login);
       });
 
     // Create our unique DS locator.
     let locator = new DataSourceLocator()
       .addIdentifier(this.pilotListService.getServiceName())
       .addIdentifier(this.getVariantName())
-      .addIdentifier(this.appModelStore.accessLogin());
+      .addIdentifier(this.appModelStore.accessLogin().getLoginId());
     // Check if the DS has been already registered.
     let ds = this.appModelStore.searchDataSource(locator);
     if (null == ds) {
@@ -69,10 +69,8 @@ export class PilotRoasterPageComponent extends PageComponent implements OnInit {
     this.pilotListService.collaborate2View()
       .subscribe(result => {
         console.log("--[PilotRoasterPageComponent.ngOnInit.collaborate2View]> pilot list: " + JSON.stringify(result));
-        // The the list of planatary resource lists to the data returned.
-        //      this.adapterViewList = this.pilotListService.collaborate2View();
+        // The the list of planetary resource lists to the data returned.
         this.adapterViewList = result;
-        //    console.log("--[PilotRoasterPageComponent.ngOnInit.collaborate2View]> Renders: " + JSON.stringify(this.adapterViewList));
         this.downloading = false;
       });
     console.log("<<[PilotRoasterPageComponent.ngOnInit]");

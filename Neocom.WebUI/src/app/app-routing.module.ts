@@ -17,8 +17,9 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginPageComponent },
   { path: 'login/:loginid/pilotroaster', component: PilotRoasterPageComponent },
-  { path: 'pilotroaster', component: PilotRoasterPageComponent },
-  { path: 'pilot/:id', component: PilotDetailPageComponent },
+  { path: 'login/:loginid/pilot/:id', component: PilotDetailPageComponent },
+  // { path: 'pilotroaster', component: PilotRoasterPageComponent },
+  // { path: 'pilot/:id', component: PilotDetailPageComponent },
 ];
 
 @NgModule({

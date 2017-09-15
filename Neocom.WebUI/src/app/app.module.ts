@@ -25,7 +25,6 @@ import { PlanetaryManagerComponent } from './components/planetary-manager/planet
 //--- PIPES
 import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
 import { CapitalizeLetterPipe } from './pipes/capitalize-letter.pipe';
-import { PagePilotDetailComponent } from './page/page-pilot-detail/page-pilot-detail.component';
 //--- PAGES
 import { PageSplashComponent } from './page/page-splash/page-splash.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
@@ -52,7 +51,6 @@ import { Login4ListComponent } from './components/login4-list/login4-list.compon
     PilotRoasterBlockComponent,
     ISKNoDecimalsPipe,
     CapitalizeLetterPipe,
-    PagePilotDetailComponent,
     PilotRoasterPageComponent,
     RegionComponent,
     Pilot4RoasterComponent,

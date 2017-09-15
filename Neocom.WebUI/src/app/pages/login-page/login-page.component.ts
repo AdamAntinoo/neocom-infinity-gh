@@ -23,7 +23,7 @@ import { Login } from '../../models/Login.model';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
-  public loginList: Login[] = [];
+  public loginViewList: Login[] = [];
   public downloading: boolean = true;
 
   constructor(private appModelStore: AppModelStoreService) {
@@ -41,7 +41,7 @@ export class LoginPageComponent implements OnInit {
     this.appModelStore.accessLoginList()
       .subscribe(result => {
         console.log("--[LoginPageComponent.ngOnInit.accessLoginList]>Loginlist: " + JSON.stringify(result));
-        this.loginList = result;
+        this.loginViewList = result;
         this.downloading = false;
       });
     console.log("<<[LoginPageComponent.ngOnInit]");

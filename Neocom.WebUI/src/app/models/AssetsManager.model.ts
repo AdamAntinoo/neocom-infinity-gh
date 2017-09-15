@@ -13,14 +13,14 @@ import { Region } from './Region.model';
 import { Manager } from './Manager.model';
 
 export class AssetsManager extends Manager {
-  public jsonClassname: string = "Manager";
+  public jsonClass: string = "Manager";
   //  public regions: Region[] = [];
   //  public locations: Location[] = [];
 
   constructor(values: Object = {}) {
     super();
     Object.assign(this, values);
-    this.class = "AssetsManager";
+    this.jsonClass = "AssetsManager";
     // // Convert the internal structures to their own class instances.
     // let construction = [];
     // for (let key of this.regions) {

@@ -39,16 +39,16 @@ export class AbstractDataSource {
   public getServiceName(): string {
     return this._serviceName;
   }
-  /** Read all the model nodes and generate a new list of their collaborations to the view list.
+  /**
+  Read all the model nodes and generate a new list of their collaborations to the view list.
   */
   protected processModel(): Render[] {
+    console.log("><[AbstractDataSource.processModel]");
     this._viewModelRoot = [];
     for (let node of this._dataModelRoot) {
       let collab = node.collaborate2View(this.getVariant());
       this._viewModelRoot = this._viewModelRoot.concat(collab);
-      console.log("><[PilotListDataSourceService.processModel]");
     }
     return this._viewModelRoot;
   }
-
 }

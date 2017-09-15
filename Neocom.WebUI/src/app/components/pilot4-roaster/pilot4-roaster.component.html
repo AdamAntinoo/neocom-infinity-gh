@@ -1,7 +1,7 @@
 <div class="panel panel-default panel-pilot" id="panel1">
   <div class="panel-box">
     <table class="panel-node" cellspacing="0" cellpadding="0">
-      <a class="no-underline" [routerLink]="['/login',node.getLoginId(),'pilot',node.getId()]">
+      <a class="no-underline" [routerLink]="['/login',getLoginId(),'pilot',node.getId()]">
         <tr>
           <td><img class="neocom-pilot-avatar neocom-icon90" src="{{node.urlforAvatar}}"></td>
           <td width="90% ">

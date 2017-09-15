@@ -39,6 +39,22 @@ export class PilotDetailPageComponent extends PageComponent implements OnInit {
 
   ngOnInit() {
     console.log(">>[PilotDetailPageComponent.ngOnInit]");
+    // Extract the login identifier from the URL structure. Extract also the Pilot Identifier
+    this.route.params.map(p => p.loginid)
+      .subscribe((login: string) => {
+        // Set the login at the Service to update the other data structures.
+        this.appModelStore.setLoginById(login);
+      });
+    this.route.params.map(p => p.id)
+      .subscribe((characterid: number) => {
+        // Set the login at the Service to update the other data structures.
+        this.appModelStore.setPilotById(characterid);
+      });
+
+
+
+
+
     // The identifier of the pilot selected is something we can retrieve from the Route.
     this.route.paramMap
       .switchMap((params: ParamMap) =>
