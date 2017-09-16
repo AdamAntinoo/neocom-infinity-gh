@@ -121,7 +121,9 @@ public class AppModelStore implements INeoComModelStore {
 	 *          id of the character to activate and select for work with.
 	 */
 	public void activatePilot(final long characterid) {
-		logger.info(">> [AppModelStore.activatePilot] id=" + characterid);
+		logger.info(">> [AppModelStore.activatePilot]Id: " + characterid);
+		// if the current pilot is the one searched simplify the search.
+		if ((null != _pilot) && ((_pilot.getCharacterID()) == characterid)) return;
 		_pilot = this.searchCharacter(characterid);
 		if (null == _pilot)
 			throw new RuntimeException("RT AppModelStore.activatePilot - Pilot not located. Problem of initialization.");
@@ -129,6 +131,7 @@ public class AppModelStore implements INeoComModelStore {
 		//		_pilot.setParent(this);
 		_pilotIdentifier = _pilot.getCharacterID();
 		logger.info("<< [AppModelStore.activatePilot]");
+		//		return _pilot;
 	}
 
 	/**

@@ -340,6 +340,20 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 	}
 
 	/**
+	 * Get the list of all the Blueprints for a given Character. It can ge a Pilot or a Corporation and the
+	 * differences should be none.
+	 * 
+	 * @param characterID
+	 * @return
+	 */
+	public ArrayList<NeoComAsset> searchAllBlueprintAssets(final long characterID) {
+		// Select assets for each one of the Planetary categories.
+		ArrayList<NeoComAsset> assetList = new ArrayList<NeoComAsset>();
+		assetList.addAll(this.searchAsset4Category(characterID, "Blueprint"));
+		return assetList;
+	}
+
+	/**
 	 * Get the complete list of assets that are Planetary Materials.
 	 * 
 	 * @return
