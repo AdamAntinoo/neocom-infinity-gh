@@ -77,8 +77,31 @@ body {
   font-family: "Mons Olympia"
 }
 
+@font-face {
+  font-family: 'Imaki';
+  src: url("./assets/fonts/Imaki.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Imaki';
+  src: url("./assets/fonts/Imaki Bold.otf");
+  font-weight: bold;
+  font-style: normal;
+}
+
+.imaki-ff {
+  font-family: "Imaki"
+}
+
 
 /* C O M M O N    S T Y L E S */
+
+.neocom-arrow {
+  transform: rotate(90deg);
+  filter: blur(1px);
+}
 
 .neocom-selectable-name {
   color: #50B71D;
@@ -117,12 +140,13 @@ body {
 }
 
 .neocom-label {
-  font-family: "Roboto";
+  /*font-family: "Roboto";*/
+  font-family: "Imaki";
   font-weight: normal;
   font-size: small;
   color: white;
   line-height: 1.0;
-  padding-top: 1px;
+  padding-top: 3px;
 }
 
 .label-small {
@@ -158,14 +182,15 @@ body {
 
 /* P A N E L S */
 
-.panel-box {
+
+/*.panel-box {
   padding-right: 5px;
-}
+}*/
 
 
 /* S P I N N E R    D E F I N I T I O N */
 
-.spinner {
+.spinner2 {
   /* Spinner size and color */
   width: 1.5rem;
   height: 1.5rem;
@@ -186,7 +211,7 @@ body {
 
 /* Animation styles */
 
-@keyframes spinner {
+@keyframes spinner2 {
   0% {
     transform: rotate(0deg);
   }

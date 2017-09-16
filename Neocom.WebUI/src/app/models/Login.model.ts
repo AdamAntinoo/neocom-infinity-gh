@@ -11,6 +11,7 @@ import { AppModelStoreService } from '../services/app-model-store.service';
 
 export class Login extends Render {
   public loginid: string = "-ID-";
+  private downloadPending: boolean = false;
   //  public keyCount: number = -1;
   private _downloaded: boolean = false;
   private _pilotRoaster: NeoComCharacter[] = null;
@@ -19,16 +20,42 @@ export class Login extends Render {
     super(values);
     Object.assign(this, values);
     this.jsonClass = "Login";
+    this.downloadPending = false;
   }
+
   public getLoginId(): string {
     return this.loginid;
   }
   public getPanelIcon(): string {
     return "login.png";
   }
+  /**
+  Gets the number of Characters associated to this Login. This attribute has no value until the Login is selected and then the page changes. So to give it a little of functionality it should fire the download when the data is not present.
+  But the task is not easy since the class has no access to any of the Services. It should have a Service sent by parameter to be able to complete the operation.
+  */
   public getKeyCount(): number {
-    if (this._downloaded) return this._pilotRoaster.length;
+    if (this._downloaded)
+      return this._pilotRoaster.length;
     else return 0;
+  }
+  public getKeyCountObsrver(downloadService: AppModelStoreService): number {
+    if (this._downloaded) return this._pilotRoaster.length;
+    else {
+      if (this.downloadPending) return 0;
+      else {
+        this.downloadPending = true;
+        // Get the pilot roaster and then calculate the count.
+        downloadService.getBackendPilotRoaster(this.getLoginId())
+          .subscribe(result => {
+            console.log("--[Login.getKeyCount.getBackendPilotRoaster]>Roaster: " + JSON.stringify(result));
+            // The the list of planetary resource lists to the data returned.
+            this._pilotRoaster = result;
+            this._downloaded = true;
+            this.downloadPending = false;
+            return this._pilotRoaster.length;
+          });
+      }
+    }
   }
   public accessPilotRoaster(downloadService: AppModelStoreService): Observable<Render[]> {
     if (this._downloaded)

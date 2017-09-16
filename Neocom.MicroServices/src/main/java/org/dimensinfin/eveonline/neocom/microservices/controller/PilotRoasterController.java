@@ -92,6 +92,7 @@ public class PilotRoasterController {
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/login/{identifier}/pilotroaster", method = RequestMethod.GET, produces = "application/json")
 	public Vector<Pilot> pilotRoaster(@PathVariable final String identifier) {
+		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/login/{identifier}/pilotroaster");
 		logger.info(">> [PilotRoasterController.pilotRoaster]>identifier=" + identifier);
 		// Get the cookie and the login identifier inside it.
 		//		String login = "Beth";
@@ -108,7 +109,6 @@ public class PilotRoasterController {
 		}
 		logger.info("<< [PilotRoasterController.pilotRoaster]");
 		return pilotList;
-		//	return AppModelStore.getSingleton().getPilotRoaster();
 	}
 
 }

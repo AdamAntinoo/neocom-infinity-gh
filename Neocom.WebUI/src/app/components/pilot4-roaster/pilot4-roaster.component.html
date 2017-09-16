@@ -1,4 +1,4 @@
-<div class="panel panel-default panel-pilot" id="panel1">
+<div class="panel1 panel-default1 panel-pilot" id="content">
   <div class="panel-box">
     <table class="panel-node" cellspacing="0" cellpadding="0">
       <a class="no-underline" [routerLink]="['/login',getLoginId(),'pilot',node.getId()]">
@@ -14,16 +14,16 @@
               <span class="neocom-pilot-data">{{node.characterSheet.bloodLine | lowercase | capitalizeLetter}}</span>              -
               <span class="neocom-pilot-data">{{node.characterSheet.ancestry | lowercase | capitalizeLetter}}</span><br> -->
               <span class="pilot-balance glow-white label-bottomline">{{node.accountBalance | number:'1.2-2'}} ISK</span><br>
-              <span class="neocom-label">Balance</span><br>
+              <div class="neocom-label">Balance</div>
               <!-- <span class="neocom-pilot-data neocom-data-size-12">Active Ship:</span>
               <span class="neocom-marked-name">{{node.characterInfo.shipName}}</span> -->
               <!-- <span class="neocom-pilot-data"> - [{{node.characterInfo.shipTypeName}}]</span><br> -->
               <span class="neocom-marked-name neocom-marked-glow label-bottomline" style="font-weight: 400;">{{node.characterInfo.lastKnownLocation}}</span><br>
-              <span class="neocom-label">Located At</span><br>
+              <div class="neocom-label">Located At</div>
               <!-- <span class="neocom-pilot-data neocom-data-size-12">Securiry Status:</span>
               <span class="neocom-pilot-data neocom-data-size-14">{{node.characterInfo.securityStatus | number:'1.2-2'}}</span> -->
               <span class="neocom-marked-name neocom-marked-glow label-bottomline">{{node.characterInfo.skillPoints | number:'1.0-0'}} SP</span><br>
-              <span class="neocom-label">Total SP</span>
+              <div class="neocom-label">Total SP</div>
             </div>
           </td>
           <td width="30% " class="left-box " align="right ">

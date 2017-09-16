@@ -43,12 +43,43 @@ export class AppModelStoreService {
   constructor(private http: Http) { }
   //--- L O G I N    S E C T I O N
   /**
+  Go to the backend Database to retrieve the list of declared Logins to let the user to select the one he/she wants for working. If the list is already downloaded then do not access again the Database and return the cached list.
+  */
+  public accessLoginList(): Observable<Login[]> {
+    console.log(">>[AppModelStoreService.accessLoginList]");
+    if (null == this._loginList) {
+      // Get the list form the backend Database.
+      // On this preliminar version simulate it with a hand made list.
+      this._loginList = [];
+      this._loginList.push(new Login({ loginid: "Beth Ripley" }));
+      this._loginList.push(new Login({ loginid: "Perico" }));
+      this._loginList.push(new Login({ loginid: "CapitanHaddock09" }));
+    }
+    return new Observable(observer => {
+      setTimeout(() => {
+        observer.next(this._loginList);
+      }, 100);
+      setTimeout(() => {
+        observer.complete();
+      }, 100);
+    });
+  }
+  /**
   Sets the new login that comes from the URL when the user selects one from the list of logins.
   If the Login set is different from the current Login then we fire the download of
   the list of Pilots associated with that Login's Keys.
   */
   public setLoginById(newloginid: string): Login {
-    // search on the list og Logins the one with the same id.
+    if (null == this._loginList) {
+      this.accessLoginList()
+        .subscribe(result => {
+          console.log("--[AppModelStoreService.setLoginById.accessLoginList]>LoginList: " + JSON.stringify(result));
+          // The the list of planetary resource lists to the data returned.
+          this._loginList = result;
+          //      this.downloading = false;
+        });
+    }
+    // search on the list of Logins the one with the same id.
     for (let lg of this._loginList) {
       if (lg.getLoginId() == newloginid) {
         this._currentLogin = lg;
@@ -62,30 +93,6 @@ export class AppModelStoreService {
     return this._currentLogin;
   }
 
-  /**
-  Go to the backend Database to retrieve the list of declared Logins to let the
-  user to select the one he/she wants for working. If the list is already
-  downloaded then do not access again the Database and return the cached list.
-  */
-  public accessLoginList(): Observable<Login[]> {
-    console.log(">>[AppModelStoreService.accessLoginList]");
-    if (null == this._loginList) {
-      // Get the list form the backend Database.
-      // On this preliminar version simulate it with a hand made list.
-      this._loginList = [];
-      this._loginList.push(new Login({ loginid: "Beth" }));
-      this._loginList.push(new Login({ loginid: "Perico" }));
-      this._loginList.push(new Login({ loginid: "CapitanHaddock09" }));
-    }
-    return new Observable(observer => {
-      setTimeout(() => {
-        observer.next(this._loginList);
-      }, 100);
-      setTimeout(() => {
-        observer.complete();
-      }, 100);
-    });
-  }
   //--- P I L O T   S E C T I O N
   /**
   We asume that the current Login is setup and the we get the pilot list of the pilots associated to the keys assigned to that Login. If that data is not already downloaded then we should go to the backend services and get the list of Characters from the backend database.
@@ -138,27 +145,6 @@ export class AppModelStoreService {
     if (target == null) {
       this._dataSourceCache.push(ds);
       return ds;
-      // If this new datasource is added to the cache then ativate the initial model hierarchy.
-      // Call the background service to get the model contents.
-      //  return ds.collaborate2Model();
-      // } else {
-      //   return new Promise((resolve, reject) => {
-      //     resolve(target.collaborate2View());
-      //   });
-      // this._viewList= new Observable(observer => {
-      //           setTimeout(() => {
-      //               observer.next(42);
-      //           }, 1000);
-      //
-      //           setTimeout(() => {
-      //               observer.next(43);
-      //           }, 2000);
-      //
-      //           setTimeout(() => {
-      //               observer.complete();
-      //           }, 3000);
-      //       });
-      //       }
     }
     return target;
   }

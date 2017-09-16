@@ -10,7 +10,8 @@
             </div>
           </td>
           <td width="20%" class="left-box " align="right ">
-            <div class="stack-counter ">{{node.getKeyCount()}}</div>
+            <span *ngIf="node.downloadPending" class="spinner"></span>
+            <div *ngIf="!node.downloadPending" class="stack-counter ">{{node.getKeyCount()}}</div>
             <div class="neocom-label label-small label-topupline ">KEYS</div>
           </td>
           <td *ngIf="false" class="arrow-box" (click)="onClickArrow()" [ngClass]="{expanded: expanded}">

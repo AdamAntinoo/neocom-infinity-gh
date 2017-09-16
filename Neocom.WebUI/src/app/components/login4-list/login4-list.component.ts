@@ -3,6 +3,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Input } from '@angular/core';
 
+//--- SERVICES
+import { AppModelStoreService } from '../../services/app-model-store.service';
 //--- MODELS
 import { Login } from '../../models/Login.model';
 
@@ -14,9 +16,14 @@ import { Login } from '../../models/Login.model';
 export class Login4ListComponent implements OnInit {
   @Input() node: Login;
 
-  constructor() { }
+  constructor(private appModelStore: AppModelStoreService) { }
 
   ngOnInit() {
   }
-
+  /**
+  Broadcast to the node the request but adding a reference to the Service to be able to complete the operation if the data is not already downloaded.
+  */
+  public getKeyCount(): number {
+    return this.node.getKeyCountObsrver(this.appModelStore);
+  }
 }
