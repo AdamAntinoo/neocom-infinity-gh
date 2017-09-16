@@ -1,15 +1,7 @@
 /* C O M P O N E N T    S T Y L E S */
 
-.panel-pilot2 {
-  background-color: #101010;
-  border-color: blue;
-  cursor: pointer;
-  line-height: 1.0;
-  margin-bottom: 5px;
-  width: 60%;
-  border-radius: 5px;
-  box-shadow: inset 0px 0px 4px 1px rgba(255, 255, 255, 0.73), 0px 0px 4px 1px rgba(255, 255, 255, 0.73);
-  border-color: #A0A0F0;
+.panel-pilot {
+  font-family: "Mons Olympia";
 }
 
 .neocom-pilot-avatar {
@@ -59,7 +51,6 @@
 #content {
   background-color: #080808; // Light black
   /*border-color: blue;*/
-  font-family: "Mons Olympia";
   cursor: pointer;
   line-height: 1.0;
   margin-bottom: 5px;

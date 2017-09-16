@@ -57,7 +57,7 @@ export class Login extends Render {
       }
     }
   }
-  public accessPilotRoaster(downloadService: AppModelStoreService): Observable<Render[]> {
+  public accessPilotRoaster(downloadService: AppModelStoreService): Observable<NeoComCharacter[]> {
     if (this._downloaded)
       return new Observable(observer => {
         setTimeout(() => {
@@ -67,8 +67,10 @@ export class Login extends Render {
           observer.complete();
         }, 100);
       });
-    else
+    else {
+      this._downloaded = true;
       return downloadService.getBackendPilotRoaster(this.getLoginId());
+    }
   }
   /**
   Search the Character by its id and then select if as the current character for next operations.

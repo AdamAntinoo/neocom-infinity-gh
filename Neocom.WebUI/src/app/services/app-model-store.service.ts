@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Inject } from '@angular/core';
-//import { CookieService } from 'ngx-cookie';
+import { Router } from '@angular/router';
 
 //--- HTTP PACKAGE
 import { Http } from '@angular/http';
@@ -18,6 +18,7 @@ import { DataSourceLocator } from '../classes/DataSourceLocator';
 import { Login } from '../models/Login.model';
 import { Render } from '../models/Render.model';
 import { Pilot } from '../models/Pilot.model';
+import { Corporation } from '../models/Corporation.model';
 import { NeoComNode } from '../models/NeoComNode.model';
 import { NeoComCharacter } from '../models/NeoComCharacter.model';
 
@@ -40,7 +41,7 @@ export class AppModelStoreService {
   private _activeDataSource: IDataSource = null;
   private _viewList: Observable<Array<Render>>;
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private router: Router) { }
   //--- L O G I N    S E C T I O N
   /**
   Go to the backend Database to retrieve the list of declared Logins to let the user to select the one he/she wants for working. If the list is already downloaded then do not access again the Database and return the cached list.
@@ -102,16 +103,22 @@ export class AppModelStoreService {
   //     this.currentLogin.accessPilotRoaster();
   //   } else new TypeError("Current login is null. Cannot select that login");
   // }
-  public getBackendPilotRoaster(loginid: string) {
+  public getBackendPilotRoaster(loginid: string): Observable<NeoComCharacter[]> {
     console.log("><[AppModelStoreService.getPilotRoaster]>loginid = " + loginid);
     //  this.cookieService.put("login-id", "default")
     return this.http.get(AppModelStoreService.RESOURCE_SERVICE_URL + "/login/" + loginid + "/pilotroaster")
       .map(res => res.json())
       .map(result => {
-        let roaster = [];
-        for (let pilot of result) {
-          let newpilot = new Pilot(pilot);
-          roaster.push(newpilot);
+        let roaster: NeoComCharacter[] = [];
+        for (let character of result) {
+          // Check the differentiation between Pilot and Corporation.
+          let newchar = null;
+          if (character.corporation) {
+            newchar = new Corporation(character);
+          } else {
+            newchar = new Pilot(character);
+          }
+          roaster.push(newchar);
         }
         return roaster;
       });
@@ -124,7 +131,16 @@ export class AppModelStoreService {
       this._currentCharacter = this._currentLogin.accessCharacterById(id);
     }
   }
-
+  /**
+  Selects the current Pilot. If this value is not set then moves the page pointer to the current Login Pilot Roaster.
+  */
+  public accessCharacter(): NeoComCharacter {
+    if (null == this._currentCharacter) {
+      // Move to the Login Pilot Roarter page.
+      this.router.navigate(['/login', this.accessLogin().getLoginId(), '/pilotroaster'
+      ]);
+    } else return this._currentCharacter;
+  }
 
   public accessDataSource(): IDataSource {
     return this._activeDataSource;

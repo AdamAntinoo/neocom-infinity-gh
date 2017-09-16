@@ -26,49 +26,39 @@ import { Region } from '../../models/Region.model';
 })
 
 export class PilotDetailPageComponent extends PageComponent implements OnInit {
-  public downloading: boolean = true;
-  public completed: boolean = false;
   public adapterViewList: Render[] = [];
+  public downloading: boolean = true;
+
+  public completed: boolean = false;
   private selectedId;
 
   public pilot: Pilot;
-  constructor(private route: ActivatedRoute, private router: Router, private appModelStore: AppModelStoreService, private pilotManagerService: PilotManagersDataSourceService, private pilotRoasterService: PilotRoasterService) {
+  constructor(private appModelStore: AppModelStoreService, private pilotManagerService: PilotManagersDataSourceService, private route: ActivatedRoute) {
     super();
     this.setVariant(EVariant.PILOTMANAGERS)
   }
 
   ngOnInit() {
     console.log(">>[PilotDetailPageComponent.ngOnInit]");
-    // Extract the login identifier from the URL structure. Extract also the Pilot Identifier
+    // Extract the login identifier from the URL structure.
     this.route.params.map(p => p.loginid)
       .subscribe((login: string) => {
         // Set the login at the Service to update the other data structures.
         this.appModelStore.setLoginById(login);
       });
+    // Extract also the Pilot Identifier.
     this.route.params.map(p => p.id)
       .subscribe((characterid: number) => {
         // Set the login at the Service to update the other data structures.
         this.appModelStore.setPilotById(characterid);
       });
 
-
-
-
-
-    // The identifier of the pilot selected is something we can retrieve from the Route.
-    this.route.paramMap
-      .switchMap((params: ParamMap) =>
-        this.pilotRoasterService.getPilotDetails(params.get('id')))
-      .subscribe((pilot: Pilot) => {
-        this.pilot = pilot;
-        this.completed = true;
-        this.downloading = false;
-      });
-
     // Create our unique DS locator to get the list of Managers
     let locator = new DataSourceLocator()
       .addIdentifier(this.pilotManagerService.getServiceName())
-      .addIdentifier(this.getVariantName());
+      .addIdentifier(this.getVariantName())
+      .addIdentifier(this.appModelStore.accessLogin().getLoginId())
+      .addNumberIdentifier(this.appModelStore.accessCharacter().getId());
     // Check if the DS has been already registered.
     let ds = this.appModelStore.searchDataSource(locator);
     if (null == ds) {
@@ -86,7 +76,7 @@ export class PilotDetailPageComponent extends PageComponent implements OnInit {
     //    this.appModelStore.registerDataSource(ds);
     this.pilotManagerService.collaborate2View()
       .subscribe(result => {
-        console.log("--[PilotDetailPageComponent.ngOnInit.collaborate2View]> pilot list: " + JSON.stringify(result));
+        console.log("--[PilotDetailPageComponent.ngOnInit.collaborate2View]>ManagerList: " + JSON.stringify(result));
         // The the list of planatary resource lists to the data returned.
         //      this.adapterViewList = this.pilotListService.collaborate2View();
         this.adapterViewList = result;

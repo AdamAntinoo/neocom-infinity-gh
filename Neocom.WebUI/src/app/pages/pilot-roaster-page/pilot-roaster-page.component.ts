@@ -28,7 +28,7 @@ export class PilotRoasterPageComponent extends PageComponent implements OnInit {
   public adapterViewList: Render[] = [];
   public downloading: boolean = true;
 
-  constructor(private appModelStore: AppModelStoreService, private pilotListService: PilotListDataSourceService, private route: ActivatedRoute) {
+  constructor(private appModelStore: AppModelStoreService, private pilotListService: PilotListDataSourceService, private route: ActivatedRoute, private router: Router) {
     super();
     this.setVariant(EVariant.PILOTROASTER)
   }
@@ -38,6 +38,31 @@ export class PilotRoasterPageComponent extends PageComponent implements OnInit {
   After the DS is registered we start the view generation process to feed the render looper.
   */
   ngOnInit() {
+    console.log(">>[PilotRoasterPageComponent.ngOnInit]");
+    // Extract the login identifier from the URL structure.
+    this.route.params.map(p => p.loginid)
+      .subscribe((login: string) => {
+        // Set the login at the Service to update the other data structures. Pass the login id
+        this.appModelStore.setLoginById(login);
+        // Check that we have a Valid login selected.
+        let clog = this.appModelStore.accessLogin();
+        if (null == clog) {
+          // Move the page back to the Login List.
+          this.router.navigate(['/login']);
+        }
+      });
+
+    // Get the character Roaster for this Login.
+    this.appModelStore.accessLogin().accessPilotRoaster(this.appModelStore)
+      .subscribe(result => {
+        console.log("--[PilotRoasterPageComponent.ngOnInit.accessPilotRoaster]>PilotList: " + JSON.stringify(result));
+        // The the list of planetary resource lists to the data returned.
+        this.adapterViewList = result;
+        this.downloading = false;
+      });
+    console.log("<<[PilotRoasterPageComponent.ngOnInit]");
+  }
+  ngOnInit2() {
     console.log(">>[PilotRoasterPageComponent.ngOnInit]");
     // Extract the login identifier from the URL structure.
     this.route.params.map(p => p.loginid)
