@@ -20,6 +20,7 @@ import org.dimensinfin.eveonline.neocom.generator.PilotManagersGenerator;
 import org.dimensinfin.eveonline.neocom.generator.PilotRoasterGenerator;
 import org.dimensinfin.eveonline.neocom.interfaces.IModelGenerator;
 import org.dimensinfin.eveonline.neocom.manager.AbstractManager;
+import org.dimensinfin.eveonline.neocom.manager.PlanetaryManager;
 import org.dimensinfin.eveonline.neocom.model.Pilot;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -65,6 +66,23 @@ public class PilotDataController {
 		}
 		logger.info("<< [PilotRoasterController.pilotManagers]");
 		return managerList;
+	}
+
+	@CrossOrigin()
+	@RequestMapping(value = "/api/v1/pilot/{identifier}/planetarymanager", method = RequestMethod.GET, produces = "application/json")
+	public PlanetaryManager pilotPlanetaryManager(@PathVariable final String identifier) {
+		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/pilot/{identifier}/planetarymanager");
+		logger.info(">> [PilotRoasterController.pilotPlanetaryManager]");
+		try {
+			// Initialize the model data hierarchies.
+			//			AppModelStore.getSingleton().setLoginIdentifier(login);
+			AppConnector.getModelStore().activatePilot(Long.valueOf(identifier));
+			return new PlanetaryManager(AppConnector.getModelStore().getCurrentPilot()).initialize();
+		} catch (RuntimeException rtx) {
+			rtx.printStackTrace();
+		}
+		logger.info("<< [PilotRoasterController.pilotManagers]");
+		return null;
 	}
 
 	//	@CrossOrigin()

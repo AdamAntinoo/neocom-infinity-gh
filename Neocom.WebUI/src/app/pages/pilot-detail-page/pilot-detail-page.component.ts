@@ -29,11 +29,11 @@ import { Manager } from '../../models/Manager.model';
 export class PilotDetailPageComponent extends PageComponent implements OnInit {
   public adapterViewList: Manager[] = [];
   public downloading: boolean = true;
+  public pilot: NeoComCharacter;
 
-  public completed: boolean = false;
-  private selectedId;
+  //  public completed: boolean = false;
+  //  private selectedId;
 
-  public pilot: Pilot;
   constructor(private appModelStore: AppModelStoreService, private pilotManagerService: PilotManagersDataSourceService, private route: ActivatedRoute, private router: Router) {
     super();
     this.setVariant(EVariant.PILOTMANAGERS)
@@ -43,6 +43,7 @@ export class PilotDetailPageComponent extends PageComponent implements OnInit {
   */
   ngOnInit() {
     console.log(">>[PilotDetailPageComponent.ngOnInit]");
+    this.downloading = true;
     let _characterid = null;
     // Extract the login identifier from the URL structure.
     this.route.params.map(p => p.loginid)
@@ -68,6 +69,7 @@ export class PilotDetailPageComponent extends PageComponent implements OnInit {
               if (null == this.appModelStore.accessLogin().accessCharacterById(characterid)) {
                 this.router.navigate(['/login', this.appModelStore.accessLogin().getLoginId(), 'pilotroaster']);
               }
+              this.pilot = this.appModelStore.accessLogin().accessCharacterById(characterid);
               // Get the list of Managers that can be accessed for this Character.
               this.appModelStore.accessLogin()
                 .accessCharacterById(characterid)
@@ -79,58 +81,21 @@ export class PilotDetailPageComponent extends PageComponent implements OnInit {
                   this.downloading = false;
                 });
             });
-          //          if (null == this.appModelStore.setPilotById(characterid)) {
-          //        this.router.navigate(['/login', this.appModelStore.accessLogin().getLoginId(), 'pilotroaster']);
+        } else {
+          this.pilot = this.appModelStore.accessLogin().accessCharacterById(characterid);
+          // Get the list of Managers that can be accessed for this Character.
+          this.appModelStore.accessLogin()
+            .accessCharacterById(characterid)
+            .accessPilotManagers(this.appModelStore)
+            .subscribe(result => {
+              console.log("--[PilotDetailPageComponent.ngOnInit.accessPilotRoaster]>ManagerList: " + JSON.stringify(result));
+              // The the list of planetary resource lists to the data returned.
+              this.adapterViewList = result;
+              this.downloading = false;
+            });
         }
       });
 
-    console.log("<<[PilotDetailPageComponent.ngOnInit]");
-  }
-  ngOnInit2() {
-    console.log(">>[PilotDetailPageComponent.ngOnInit]");
-    // Extract the login identifier from the URL structure.
-    this.route.params.map(p => p.loginid)
-      .subscribe((login: string) => {
-        // Set the login at the Service to update the other data structures.
-        this.appModelStore.setLoginById(login);
-      });
-    // Extract also the Pilot Identifier.
-    this.route.params.map(p => p.id)
-      .subscribe((characterid: number) => {
-        // Set the login at the Service to update the other data structures.
-        this.appModelStore.setPilotById(characterid);
-      });
-
-    // Create our unique DS locator to get the list of Managers
-    let locator = new DataSourceLocator()
-      .addIdentifier(this.pilotManagerService.getServiceName())
-      .addIdentifier(this.getVariantName())
-      .addIdentifier(this.appModelStore.accessLogin().getLoginId())
-      .addNumberIdentifier(this.appModelStore.accessCharacter().getId());
-    // Check if the DS has been already registered.
-    let ds = this.appModelStore.searchDataSource(locator);
-    if (null == ds) {
-      // Register the service as a new DataSource. Set the registration parameters to the service.
-      this.pilotManagerService.setLocator(locator);
-      this.pilotManagerService.setVariant(this.getVariant());
-      this.appModelStore.registerDataSource(this.pilotManagerService);
-    }
-
-    // Set the AppModel datasource to this datasource.
-    this.appModelStore.setActiveDataSource(this.pilotManagerService);
-
-    // Show the spinner
-    this.downloading = true;
-    //    this.appModelStore.registerDataSource(ds);
-    this.pilotManagerService.collaborate2View()
-      .subscribe(result => {
-        console.log("--[PilotDetailPageComponent.ngOnInit.collaborate2View]>ManagerList: " + JSON.stringify(result));
-        // The the list of planatary resource lists to the data returned.
-        //      this.adapterViewList = this.pilotListService.collaborate2View();
-        //    this.adapterViewList = result;
-        //    console.log("--[PilotRoasterPageComponent.ngOnInit.collaborate2View]> Renders: " + JSON.stringify(this.adapterViewList));
-        this.downloading = false;
-      });
     console.log("<<[PilotDetailPageComponent.ngOnInit]");
   }
 }

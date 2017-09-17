@@ -8,8 +8,8 @@
 <div *ngIf="!downloading" class="panel-group">
   view-adapter.component running...
   <div *ngFor="let render of adapterViewList">
-    <neocom-pilot-manager *ngIf="render.jsonClass == 'AssetsManager'" [manager]="render"></neocom-pilot-manager>
-    <neocom-pilot-manager *ngIf="render.jsonClass == 'Manager'" [manager]="render"></neocom-pilot-manager>
-    <neocom-planetary-manager *ngIf="render.jsonClass == 'PlanetaryManager'" [manager]="render"></neocom-planetary-manager>
+    <neocom-pilot-manager *ngIf="render.jsonClass == 'AssetsManager'" [pilot]="pilot" [manager]="render"></neocom-pilot-manager>
+    <neocom-pilot-manager *ngIf="render.jsonClass == 'Manager'" [pilot]="pilot" [manager]="render"></neocom-pilot-manager>
+    <neocom-planetary-manager *ngIf="render.jsonClass == 'PlanetaryManager'" [pilot]="pilot" [manager]="render"></neocom-planetary-manager>
   </div>
 </div>

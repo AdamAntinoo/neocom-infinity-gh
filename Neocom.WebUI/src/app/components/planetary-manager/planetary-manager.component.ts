@@ -10,6 +10,7 @@ import { Location } from '../../models/Location.model';
 import { EVariant } from '../../classes/EVariant.enumerated';
 import { Pilot } from '../../models/Pilot.model';
 import { Manager } from '../../models/Manager.model';
+import { NeoComCharacter } from '../../models/NeoComCharacter.model';
 
 @Component({
   selector: 'neocom-planetary-manager',
@@ -17,6 +18,7 @@ import { Manager } from '../../models/Manager.model';
   styleUrls: ['./planetary-manager.component.css']
 })
 export class PlanetaryManagerComponent implements OnInit {
+  @Input() pilot: NeoComCharacter;
   @Input() manager: Manager;
 
   constructor() {

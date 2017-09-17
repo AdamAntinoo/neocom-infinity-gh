@@ -23,6 +23,7 @@ import { NeoComNode } from '../models/NeoComNode.model';
 import { NeoComCharacter } from '../models/NeoComCharacter.model';
 import { Manager } from '../models/Manager.model';
 import { AssetsManager } from '../models/AssetsManager.model';
+import { PlanetaryManager } from '../models/PlanetaryManager.model';
 
 //
 // This service handles the application storage of elements required to setup the data
@@ -158,10 +159,16 @@ export class AppModelStoreService {
         for (let manager of result) {
           // Check the differentiation between Pilot and Corporation.
           let newman = null;
-          if (manager.jsonClass == "AssetsManager") {
-            newman = new AssetsManager(manager);
-          } else {
-            newman = new Manager(manager);
+          switch (manager.jsonClass) {
+            case "AssetsManager":
+              newman = new AssetsManager(manager);
+              break;
+            case "PlanetaryManager":
+              newman = new PlanetaryManager(manager);
+              break;
+            default:
+              newman = new Manager(manager);
+              break;
           }
           roaster.push(newman);
         }
