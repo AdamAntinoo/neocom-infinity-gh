@@ -5,10 +5,10 @@
 // DESCRIPTION: Defines the structure of a EVE Pilot. May depend on other classes to complete the character information hierarchy.
 
 //--- MODELS
-import { NeoComNode } from './NeoComNode.model';
+import { NeoComCharacter } from './NeoComCharacter.model';
 import { PilotAction } from './pilotaction';
 
-export class Corporation extends NeoComNode {
+export class Corporation extends NeoComCharacter {
   public characterID: number = -1.0;
   public active: boolean = true;
   public accountBalance: number = -1.0;

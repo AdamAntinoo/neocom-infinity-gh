@@ -63,7 +63,7 @@ public class PilotDataController {
 		} catch (RuntimeException rtx) {
 			rtx.printStackTrace();
 		}
-		logger.info(">> [PilotRoasterController.pilotManagers]");
+		logger.info("<< [PilotRoasterController.pilotManagers]");
 		return managerList;
 	}
 

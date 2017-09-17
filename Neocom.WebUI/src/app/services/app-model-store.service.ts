@@ -21,6 +21,8 @@ import { Pilot } from '../models/Pilot.model';
 import { Corporation } from '../models/Corporation.model';
 import { NeoComNode } from '../models/NeoComNode.model';
 import { NeoComCharacter } from '../models/NeoComCharacter.model';
+import { Manager } from '../models/Manager.model';
+import { AssetsManager } from '../models/AssetsManager.model';
 
 //
 // This service handles the application storage of elements required to setup the data
@@ -96,6 +98,27 @@ export class AppModelStoreService {
 
   //--- P I L O T   S E C T I O N
   /**
+  Sets the current Pilot selected to the identifier received as a parameter. The selection requires the search for the character on the list of Pilots that should be related to the current Login. This starts to require the hierarchical model storage on the Service.
+  */
+  public setPilotById(id: number): NeoComCharacter {
+    if (null != this._currentLogin) {
+      this._currentCharacter = this._currentLogin.accessCharacterById(id);
+    }
+    if (null == this._currentCharacter) {
+      this.router.navigate(['/login', this.accessLogin().getLoginId(), 'pilotroaster']);
+    }
+    return this._currentCharacter;
+  }
+  /**
+  Selects the current Pilot. If this value is not set then moves the page pointer to the current Login Pilot Roaster.
+  */
+  public accessCharacter(): NeoComCharacter {
+    if (null == this._currentCharacter) {
+      // Move to the Login Pilot Roarter page.
+      this.router.navigate(['/login', this.accessLogin().getLoginId(), 'pilotroaster']);
+    } else return this._currentCharacter;
+  }
+  /**
   We asume that the current Login is setup and the we get the pilot list of the pilots associated to the keys assigned to that Login. If that data is not already downloaded then we should go to the backend services and get the list of Characters from the backend database.
   */
   // public accessPilotRoaster() {
@@ -104,7 +127,7 @@ export class AppModelStoreService {
   //   } else new TypeError("Current login is null. Cannot select that login");
   // }
   public getBackendPilotRoaster(loginid: string): Observable<NeoComCharacter[]> {
-    console.log("><[AppModelStoreService.getPilotRoaster]>loginid = " + loginid);
+    console.log("><[AppModelStoreService.getBackendPilotRoaster]>Loginid = " + loginid);
     //  this.cookieService.put("login-id", "default")
     return this.http.get(AppModelStoreService.RESOURCE_SERVICE_URL + "/login/" + loginid + "/pilotroaster")
       .map(res => res.json())
@@ -120,28 +143,31 @@ export class AppModelStoreService {
           }
           roaster.push(newchar);
         }
+        // Before returning the data set it to the Model hierarchy.
+        this._currentLogin.setPilotRoaster(roaster);
         return roaster;
       });
   }
-  /**
-  Sets the current Pilot selected to the identifier received as a parameter. The selection requires the search for the character on the list of Pilots that should be related to the current Login. This starts to require the hierarchical model storage on the Service.
-  */
-  public setPilotById(id: number): void {
-    if (null != this._currentLogin) {
-      this._currentCharacter = this._currentLogin.accessCharacterById(id);
-    }
+  public getBackendPilotManagerList(characterid: number): Observable<Manager[]> {
+    console.log("><[AppModelStoreService.getBackendPilotManagerList]>Characterid = " + characterid);
+    let loginid = this.accessLogin().getLoginId();
+    return this.http.get(AppModelStoreService.RESOURCE_SERVICE_URL + "/login/" + loginid + "/pilot/" + characterid + "/pilotmanagers")
+      .map(res => res.json())
+      .map(result => {
+        let roaster: Manager[] = [];
+        for (let manager of result) {
+          // Check the differentiation between Pilot and Corporation.
+          let newman = null;
+          if (manager.jsonClass == "AssetsManager") {
+            newman = new AssetsManager(manager);
+          } else {
+            newman = new Manager(manager);
+          }
+          roaster.push(newman);
+        }
+        return roaster;
+      });
   }
-  /**
-  Selects the current Pilot. If this value is not set then moves the page pointer to the current Login Pilot Roaster.
-  */
-  public accessCharacter(): NeoComCharacter {
-    if (null == this._currentCharacter) {
-      // Move to the Login Pilot Roarter page.
-      this.router.navigate(['/login', this.accessLogin().getLoginId(), '/pilotroaster'
-      ]);
-    } else return this._currentCharacter;
-  }
-
   public accessDataSource(): IDataSource {
     return this._activeDataSource;
   }

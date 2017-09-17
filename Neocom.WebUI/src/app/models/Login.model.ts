@@ -3,18 +3,19 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
+//--- SERVICES
+import { AppModelStoreService } from '../services/app-model-store.service';
 //--- MODELS
 import { Render } from '../models/Render.model';
 import { NeoComCharacter } from '../models/NeoComCharacter.model';
-//--- SERVICES
-import { AppModelStoreService } from '../services/app-model-store.service';
 
 export class Login extends Render {
-  public loginid: string = "-ID-";
-  private downloadPending: boolean = false;
-  //  public keyCount: number = -1;
   private _downloaded: boolean = false;
   private _pilotRoaster: NeoComCharacter[] = null;
+  private downloadPending: boolean = false;
+
+  public loginid: string = "-ID-";
+  //  public keyCount: number = -1;
 
   constructor(values: Object = {}) {
     super(values);
@@ -71,6 +72,9 @@ export class Login extends Render {
       this._downloaded = true;
       return downloadService.getBackendPilotRoaster(this.getLoginId());
     }
+  }
+  public setPilotRoaster(list: NeoComCharacter[]): void {
+    this._pilotRoaster = list;
   }
   /**
   Search the Character by its id and then select if as the current character for next operations.
