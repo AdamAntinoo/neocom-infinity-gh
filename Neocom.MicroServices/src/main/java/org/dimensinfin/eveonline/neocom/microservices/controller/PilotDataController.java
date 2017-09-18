@@ -69,15 +69,16 @@ public class PilotDataController {
 	}
 
 	@CrossOrigin()
-	@RequestMapping(value = "/api/v1/pilot/{identifier}/planetarymanager", method = RequestMethod.GET, produces = "application/json")
-	public PlanetaryManager pilotPlanetaryManager(@PathVariable final String identifier) {
+	@RequestMapping(value = "/api/v1/login/{login}/pilot/{identifier}/planetarymanager", method = RequestMethod.GET, produces = "application/json")
+	public PlanetaryManager pilotPlanetaryManager(@PathVariable final String login,
+			@PathVariable final String identifier) {
 		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/pilot/{identifier}/planetarymanager");
 		logger.info(">> [PilotRoasterController.pilotPlanetaryManager]");
 		try {
 			// Initialize the model data hierarchies.
-			//			AppModelStore.getSingleton().setLoginIdentifier(login);
+			AppModelStore.getSingleton().setLoginIdentifier(login);
 			AppConnector.getModelStore().activatePilot(Long.valueOf(identifier));
-			return new PlanetaryManager(AppConnector.getModelStore().getCurrentPilot()).initialize();
+			return AppConnector.getModelStore().getCurrentPilot().getPlanetaryManager().initialize();
 		} catch (RuntimeException rtx) {
 			rtx.printStackTrace();
 		}

@@ -24,6 +24,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 /**
@@ -35,7 +36,7 @@ import org.springframework.cache.annotation.EnableCaching;
  */
 @EnableCaching
 @SpringBootApplication
-//@EnableScheduling
+@EnableScheduling
 public class NeocomMicroServiceApplication implements IConnector/* ,CacheResolver */ {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger												logger		= Logger.getLogger("NeocomMicroServiceApplication");

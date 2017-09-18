@@ -16,7 +16,7 @@ import { PilotListDataSourceService } from './services/pilot-list-data-source.se
 import { PilotManagersDataSourceService } from './services/pilot-managers-data-source.service';
 //--- COMPONENTS
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './component/header/header.component';
+import { HeaderComponent } from './components/header/header.component';
 import { Pilot4RoasterComponent } from './components/pilot4-roaster/pilot4-roaster.component';
 import { Pilot4DetailComponent } from './components/pilot4-detail/pilot4-detail.component';
 import { PilotManagerComponent } from './components/pilot-manager/pilot-manager.component';
@@ -33,11 +33,10 @@ import { PilotDetailPageComponent } from './pages/pilot-detail-page/pilot-detail
 
 //--- REMOVABLES
 import { PageHomeComponent } from './page/page-home/page-home.component';
-import { PagePilotsComponent } from './page/page-pilots/page-pilots.component';
 import { NavigationMenuComponent } from './component/navigation-menu/navigation-menu.component';
-import { PilotRoasterBlockComponent } from './component/pilot-roaster-block/pilot-roaster-block.component';
 import { RegionComponent } from './region/region.component';
 import { Login4ListComponent } from './components/login4-list/login4-list.component';
+import { PlanetaryManagerPageComponent } from './pages/planetary-manager-page/planetary-manager-page.component';
 
 
 @NgModule({
@@ -47,8 +46,6 @@ import { Login4ListComponent } from './components/login4-list/login4-list.compon
     NavigationMenuComponent,
     PageSplashComponent,
     PageHomeComponent,
-    PagePilotsComponent,
-    PilotRoasterBlockComponent,
     ISKNoDecimalsPipe,
     CapitalizeLetterPipe,
     PilotRoasterPageComponent,
@@ -60,6 +57,7 @@ import { Login4ListComponent } from './components/login4-list/login4-list.compon
     PlanetaryManagerComponent,
     LoginPageComponent,
     Login4ListComponent,
+    PlanetaryManagerPageComponent,
   ],
   imports: [
     BrowserModule,
