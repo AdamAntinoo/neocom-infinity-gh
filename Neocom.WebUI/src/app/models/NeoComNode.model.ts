@@ -10,7 +10,7 @@ import { Render } from '../models/Render.model';
 
 export class NeoComNode extends Render {
   public expanded: boolean = false;
-  public downloaded: boolean = true;
+  public downloaded: boolean = false;
   public renderWhenEmpty: boolean = true;
   public visible: boolean = true;
 

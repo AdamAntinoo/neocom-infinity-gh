@@ -6,6 +6,7 @@ import { PageSplashComponent } from './page/page-splash/page-splash.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roaster-page.component';
 import { PilotDetailPageComponent } from './pages/pilot-detail-page/pilot-detail-page.component';
+import { PlanetaryManagerPageComponent } from './pages/planetary-manager-page/planetary-manager-page.component';
 
 //--- PAGES
 
@@ -18,8 +19,7 @@ const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'login/:loginid/pilotroaster', component: PilotRoasterPageComponent },
   { path: 'login/:loginid/pilot/:id', component: PilotDetailPageComponent },
-  // { path: 'pilotroaster', component: PilotRoasterPageComponent },
-  // { path: 'pilot/:id', component: PilotDetailPageComponent },
+  { path: 'login/:loginid/pilot/:id/PlanetaryManager', component: PlanetaryManagerPageComponent },
 ];
 
 @NgModule({

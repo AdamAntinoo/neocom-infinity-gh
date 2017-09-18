@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 
+//--- SERVICES
+import { AppModelStoreService } from '../../services/app-model-store.service';
 //--- COMPONENTS
 import { PilotManagerComponent } from '../pilot-manager/pilot-manager.component';
 //--- MODELS
@@ -21,11 +23,13 @@ export class PlanetaryManagerComponent implements OnInit {
   @Input() pilot: NeoComCharacter;
   @Input() manager: Manager;
 
-  constructor() {
+  constructor(private appModelStore: AppModelStoreService) {
     //  super();
   }
 
   ngOnInit() {
   }
-
+  public getLoginId(): string {
+    return this.appModelStore.accessLogin().getLoginId();
+  }
 }

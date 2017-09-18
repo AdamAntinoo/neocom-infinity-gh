@@ -5,6 +5,7 @@ export class Render {
 
   constructor(values: Object = {}) {
     Object.assign(this, values);
+    this.jsonClass = "Render";
   }
   public toggleExpanded() {
     this.expanded = !this.expanded;

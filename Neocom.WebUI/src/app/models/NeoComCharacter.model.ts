@@ -18,7 +18,7 @@ import { PilotAction } from './pilotaction';
 
 export class NeoComCharacter extends NeoComNode {
   private _downloaded: boolean = false;
-  private downloading: boolean = false;
+  //  private downloading: boolean = false;
   private _managerList: Manager[] = null;
 
   public characterID: number = -1.0;
@@ -27,7 +27,6 @@ export class NeoComCharacter extends NeoComNode {
   public urlforAvatar: string = "http://image.eveonline.com/character/92223647_256.jpg";
   public lastKnownLocation: string = "- HOME -";
   public name: string = "<name>";
-  public actions: PilotAction[] = [];
   public corporation: boolean = false;
 
   constructor(values: Object = {}) {
@@ -66,4 +65,25 @@ export class NeoComCharacter extends NeoComNode {
       return downloadService.getBackendPilotManagerList(this.getId());
     }
   }
+  public accessPlanetaryManager(downloadService: AppModelStoreService): Observable<Manager[]> {
+    if (this._downloaded)
+      return new Observable(observer => {
+        setTimeout(() => {
+          // Search for the PLanetary Manager
+          for (let manager of this._managerList) {
+            if (manager.jsonClass == "PlanetaryManager")
+              observer.next(manager);
+          }
+          observer.next(null);
+        }, 100);
+        setTimeout(() => {
+          observer.complete();
+        }, 100);
+      });
+    else {
+      this._downloaded = true;
+      return downloadService.getBackendPilotPlanetaryManager(this.getId());
+    }
+  }
+
 }

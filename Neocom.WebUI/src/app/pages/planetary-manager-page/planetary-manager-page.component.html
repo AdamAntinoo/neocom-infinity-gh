@@ -1,3 +1,17 @@
 <p>
   planetary-manager-page works!
 </p>
+<div>
+  <span>Planetary Manager</span>
+  <span>Resources By Location</span>
+</div>
+<div width="60%" height="30px">
+  <span class="spinner spinner-location"></span>
+</div>
+<div class="panel-group">
+  <div *ngFor="let render of adapterViewList">
+    <neocom-region *ngIf="render.jsonClass == 'Region'" [node]="render"></neocom-region>
+    <neocom-location *ngIf="render.jsonClass == 'Location'" [node]="render"></neocom-location>
+    <!-- <neocom-resource *ngIf="render.jsonClass == 'Resource'" [node]="render"></neocom-resource> -->
+  </div>
+</div>

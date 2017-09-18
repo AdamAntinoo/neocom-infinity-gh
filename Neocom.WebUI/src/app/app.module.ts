@@ -30,13 +30,13 @@ import { PageSplashComponent } from './page/page-splash/page-splash.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roaster-page.component';
 import { PilotDetailPageComponent } from './pages/pilot-detail-page/pilot-detail-page.component';
+import { PlanetaryManagerPageComponent } from './pages/planetary-manager-page/planetary-manager-page.component';
 
 //--- REMOVABLES
 import { PageHomeComponent } from './page/page-home/page-home.component';
 import { NavigationMenuComponent } from './component/navigation-menu/navigation-menu.component';
 import { RegionComponent } from './region/region.component';
 import { Login4ListComponent } from './components/login4-list/login4-list.component';
-import { PlanetaryManagerPageComponent } from './pages/planetary-manager-page/planetary-manager-page.component';
 
 
 @NgModule({

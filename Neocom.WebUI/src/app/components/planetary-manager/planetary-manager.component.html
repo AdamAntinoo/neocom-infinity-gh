@@ -1,7 +1,7 @@
 <div class="panel panel-default panel-manager" id="panel1">
   <div class="panel-box">
     <table class="panel-node" cellspacing="0" cellpadding="0">
-      <a class="no-underline" [routerLink]="['/pilot',pilot.getId(),manager.jsonClass]">
+      <a class="no-underline" [routerLink]="['/login',getLoginId(),'pilot',pilot.getId(),manager.jsonClass]">
         <tr>
           <td><img class="neocom-icon-90" src="/assets/icons/{{manager.iconName}}"></td>
           <td width="80% ">

@@ -175,6 +175,33 @@ export class AppModelStoreService {
         return roaster;
       });
   }
+  public getBackendPilotPlanetaryManager(characterid: number): Observable<Manager[]> {
+    console.log("><[AppModelStoreService.getBackendPilotManagerList]>Characterid = " + characterid);
+    let loginid = this.accessLogin().getLoginId();
+    return this.http.get(AppModelStoreService.RESOURCE_SERVICE_URL + "/login/" + loginid + "/pilot/" + characterid + "/planetarymanager")
+      .map(res => res.json())
+      .map(result => {
+        let roaster: Manager[] = [];
+        for (let manager of result) {
+          // Check the differentiation between Pilot and Corporation.
+          let newman = null;
+          switch (manager.jsonClass) {
+            case "AssetsManager":
+              newman = new AssetsManager(manager);
+              break;
+            case "PlanetaryManager":
+              newman = new PlanetaryManager(manager);
+              break;
+            default:
+              newman = new Manager(manager);
+              break;
+          }
+          roaster.push(newman);
+        }
+        return roaster;
+      });
+  }
+
   public accessDataSource(): IDataSource {
     return this._activeDataSource;
   }

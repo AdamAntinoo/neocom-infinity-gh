@@ -1,0 +1,26 @@
+<p>
+  region works!
+</p>
+<div class="neocom-panel" id="content">
+  <div class="panel-collapsed" (click)="toggleExpanded()" [ngClass]="{panel-expanded: node.expanded}">
+    <table class="neocom-panel-container" cellspacing="0" cellpadding="0">
+      <tr>
+        <td>
+          <img class="neocom-icon iconsize-48" src="/assets/icons/region.png " height="48px " width="48px ">
+        </td>
+        <td class="neocom-panel-column" width="80%">
+          <span class="neocom-selectable-name">{{node.name}}</span>
+        </td>
+        <td width="20%" class="neocom-panel-right-box" align="right ">
+          <div class="neocom-classname">REGION</div>
+          <div class="stack-counter lined-bottomline">5</div>
+          <div class="neocom-label">STATIONS</div>
+        </td>
+        <td width="10%" class="arrow-box ">
+          <img class="em " *ngIf="!node.expanded " src="/assets/icons/arrowleft.png ">
+          <img class="em " *ngIf="node.expanded " src="/assets/icons/arrowright.png ">
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
