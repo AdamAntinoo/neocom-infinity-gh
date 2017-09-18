@@ -5,8 +5,6 @@
 <div class="panel-group">
   view-adapter.component running...
   <div *ngFor="let render of loginViewList">
-    <app-region *ngIf="render.class == 'Region'" [node]="render"></app-region>
-    <neocom-pilot4-roaster *ngIf="render.class == 'Pilot'" [node]="render"></neocom-pilot4-roaster>
     <neocom-login4-list *ngIf="render.jsonClass == 'Login'" [node]="render"></neocom-login4-list>
   </div>
 </div>

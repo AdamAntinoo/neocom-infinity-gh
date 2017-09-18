@@ -21,6 +21,8 @@ import { Pilot4RoasterComponent } from './components/pilot4-roaster/pilot4-roast
 import { Pilot4DetailComponent } from './components/pilot4-detail/pilot4-detail.component';
 import { PilotManagerComponent } from './components/pilot-manager/pilot-manager.component';
 import { PlanetaryManagerComponent } from './components/planetary-manager/planetary-manager.component';
+import { RegionComponent } from './components/region/region.component';
+import { LocationComponent } from './components/location/location.component';
 
 //--- PIPES
 import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
@@ -35,21 +37,21 @@ import { PlanetaryManagerPageComponent } from './pages/planetary-manager-page/pl
 //--- REMOVABLES
 import { PageHomeComponent } from './page/page-home/page-home.component';
 import { NavigationMenuComponent } from './component/navigation-menu/navigation-menu.component';
-import { RegionComponent } from './region/region.component';
 import { Login4ListComponent } from './components/login4-list/login4-list.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    ISKNoDecimalsPipe,
+    CapitalizeLetterPipe,
     HeaderComponent,
     NavigationMenuComponent,
     PageSplashComponent,
     PageHomeComponent,
-    ISKNoDecimalsPipe,
-    CapitalizeLetterPipe,
     PilotRoasterPageComponent,
     RegionComponent,
+    LocationComponent,
     Pilot4RoasterComponent,
     Pilot4DetailComponent,
     PilotDetailPageComponent,
