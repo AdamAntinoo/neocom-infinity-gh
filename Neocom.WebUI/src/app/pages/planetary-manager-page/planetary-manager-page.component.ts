@@ -15,6 +15,7 @@ import { EVariant } from '../../classes/EVariant.enumerated';
 import { DataSourceLocator } from '../../classes/DataSourceLocator';
 //--- MODELS
 import { Render } from '../../models/Render.model';
+import { NeoComNode } from '../../models/NeoComNode.model';
 import { NeoComCharacter } from '../../models/NeoComCharacter.model';
 import { Pilot } from '../../models/Pilot.model';
 import { Region } from '../../models/Region.model';
@@ -27,7 +28,7 @@ import { Manager } from '../../models/Manager.model';
 })
 
 export class PlanetaryManagerPageComponent extends PageComponent implements OnInit {
-  public adapterViewList: Manager[] = [];
+  public adapterViewList: NeoComNode[] = [];
   public downloading: boolean = true;
   public pilot: NeoComCharacter;
 
@@ -71,26 +72,32 @@ export class PlanetaryManagerPageComponent extends PageComponent implements OnIn
               }
               this.pilot = this.appModelStore.accessLogin().accessCharacterById(characterid);
               // Get the list of Managers that can be accessed for this Character.
-              this.appModelStore.accessLogin()
-                .accessCharacterById(characterid)
-                .accessPlanetaryManager(this.appModelStore)
+              this.pilot.accessPilotManagers(this.appModelStore)
                 .subscribe(result => {
                   console.log("--[PilotDetailPageComponent.ngOnInit.accessPilotRoaster]>ManagerList: " + JSON.stringify(result));
-                  // The the list of planetary resource lists to the data returned.
-                  this.adapterViewList = result;
-                  this.downloading = false;
+                  // Search for the Planetary Manager from the list of Managers. There is no way to complete it differently.
+                  this.pilot.storePilotManagers(result);
+                  for (let manager of result) {
+                    if (manager.jsonClass == "PlanetaryManager") {
+                      let thelist = manager.collaborate2View(this.getVariant());
+                      this.adapterViewList = thelist;
+                      this.downloading = false;
+                    }
+                  }
                 });
             });
         } else {
           this.pilot = this.appModelStore.accessLogin().accessCharacterById(characterid);
           // Get the list of Managers that can be accessed for this Character.
-          this.appModelStore.accessLogin()
-            .accessCharacterById(characterid)
-            .accessPlanetaryManager(this.appModelStore)
+          this.pilot.accessPlanetaryManager(this.appModelStore)
             .subscribe(result => {
               console.log("--[PilotDetailPageComponent.ngOnInit.accessPilotRoaster]>ManagerList: " + JSON.stringify(result));
-              // The the list of planetary resource lists to the data returned.
-              this.adapterViewList = result;
+              // Store the result at the PIlot.
+              // let planetary = result[0];
+              // this.pilot.setPlanetaryManager(planetary);
+              // Call the collaboration methods to start the model view list.
+              let thelist = result.collaborate2View(this.getVariant());
+              this.adapterViewList = thelist;
               this.downloading = false;
             });
         }

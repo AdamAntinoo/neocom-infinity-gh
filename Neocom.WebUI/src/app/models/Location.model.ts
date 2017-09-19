@@ -1,7 +1,7 @@
 //--- MODELS
-import { Render } from '../models/Render.model';
+import { NeoComNode } from '../models/NeoComNode.model';
 
-export class Location extends Render {
+export class Location extends NeoComNode {
   public location: string = "LOCATION";
   public position: string;
 
@@ -10,5 +10,4 @@ export class Location extends Render {
     Object.assign(this, values);
     this.jsonClass = "Location";
   }
-
 }

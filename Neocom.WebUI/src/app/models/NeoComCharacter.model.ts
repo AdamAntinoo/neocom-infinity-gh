@@ -20,6 +20,8 @@ export class NeoComCharacter extends NeoComNode {
   private _downloaded: boolean = false;
   //  private downloading: boolean = false;
   private _managerList: Manager[] = null;
+  private _assetsManager: Manager = null;
+  private _planetaryManager: Manager = null;
 
   public characterID: number = -1.0;
   public active: boolean = true;
@@ -32,7 +34,9 @@ export class NeoComCharacter extends NeoComNode {
   constructor(values: Object = {}) {
     super();
     Object.assign(this, values);
-    this.jsonClass = "Pilot";
+    // Process the Managers if available to store thir respective instances at the right place.
+    //    this._managerList = this.processManagers();
+    this.jsonClass = "NeoComCharacter";
   }
 
   public getId() {
@@ -65,16 +69,29 @@ export class NeoComCharacter extends NeoComNode {
       return downloadService.getBackendPilotManagerList(this.getId());
     }
   }
-  public accessPlanetaryManager(downloadService: AppModelStoreService): Observable<Manager[]> {
+  public accessPlanetaryManager(downloadService: AppModelStoreService): Observable<Manager> {
     if (this._downloaded)
       return new Observable(observer => {
         setTimeout(() => {
           // Search for the PLanetary Manager
+          //    if (null == this._planetaryManager) {
+          //    this._managerList = this.processManagers();
           for (let manager of this._managerList) {
-            if (manager.jsonClass == "PlanetaryManager")
+            if (manager.jsonClass == "PlanetaryManager") {
+              // let managers = [];
+              // managers.push(manager);
               observer.next(manager);
+              //  return;
+            }
           }
-          observer.next(null);
+          //    observer.next(null);
+          // If we reach this point we have not found the manager.
+          //  throw new TypeError("Planetary Manager not found.");
+          // } else {
+          //   let managers = [];
+          //   managers.push(this._planetaryManager);
+          //   observer.next(managers);
+          // }
         }, 100);
         setTimeout(() => {
           observer.complete();
@@ -82,8 +99,34 @@ export class NeoComCharacter extends NeoComNode {
       });
     else {
       this._downloaded = true;
-      return downloadService.getBackendPilotPlanetaryManager(this.getId());
+      downloadService.getBackendPilotManagerList(this.getId());
+      // .subscribe(result => {
+      //   this._managerList = result;
+      //   return this.accessPlanetaryManager(downloadService);
+      // });
     }
   }
+  public storePilotManagers(managers: Manager[]): void {
+    this._managerList = managers;
+  }
+  public setPlanetaryManager(manager: Manager): Manager {
+    this._planetaryManager = manager;
+    return this._planetaryManager;
+  }
+  private processManagers(): Manager[] {
+    let managers = [];
+    for (let manager of this._managerList) {
+      managers.push(manager);
+      switch (manager.jsonClass) {
+        case "AssetsManager":
+          this._assetsManager = manager;
+          break
+        case "Planetary":
+          this._planetaryManager = manager;
+          break
+      }
 
+      return managers;
+    }
+  }
 }

@@ -1,8 +1,9 @@
 //--- MODELS
 import { Render } from '../models/Render.model';
+import { NeoComNode } from '../models/NeoComNode.model';
 import { Location } from '../models/Location.model';
 
-export class Region extends Render {
+export class Region extends NeoComNode {
   public region: string = "Region";
   public locations: Location[] = [];
 

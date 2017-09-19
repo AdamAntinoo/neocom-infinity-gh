@@ -11,11 +11,12 @@ import { NeoComNode } from './NeoComNode.model';
 import { PilotAction } from './pilotaction';
 import { Region } from './Region.model';
 import { Manager } from './Manager.model';
+import { Location } from './Location.model';
 
 export class PlanetaryManager extends Manager {
-  public jsonClass: string = "Manager";
-  //  public regions: Region[] = [];
-  //  public locations: Location[] = [];
+  //  public jsonClass: string = "Manager";
+  // public regions: Region[] = [];
+  // public locations: Location[] = [];
 
   constructor(values: Object = {}) {
     super();
@@ -31,16 +32,33 @@ export class PlanetaryManager extends Manager {
     // }
     // this.regions = construction;
   }
-  public collaborate2View(variant: EVariant): NeoComNode[] {
+  public collaborate2View(variant: EVariant): any[] {
     let collab = [];
     // Add myself to the list and then if expanded add all my data depending on the Variant.
-    collab.push(this);
+    //  collab.push(this);
 
-    if (this.expanded) {
-      if (variant == EVariant.PILOTMANAGERS) {
-        collab.push(this);
+    //  if (this.expanded) {
+    if (variant == EVariant.PLANETARYMANAGER) {
+      // Check the size of the Region list and is small then use the list of Locations.
+      if (this.regionCount < 4) {
+        this.locations = this.extractLocations();
+        return this.locations;
       }
+      return this.regions;
     }
+    //}
     return collab;
+  }
+  private extractLocations(): Location[] {
+    let locs = [];
+    for (let key of Object.keys(this.regions)) {
+      let region = this.regions[key];
+      let locationList = this.regions[key].children[0].children;
+      for (let loc of locationList) {
+        locs.push(new Location(loc));
+      }
+      this.locationCount = this.locations.length;
+    }
+    return locs;
   }
 }

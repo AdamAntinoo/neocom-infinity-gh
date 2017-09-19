@@ -76,6 +76,7 @@ export class PilotDetailPageComponent extends PageComponent implements OnInit {
                 .accessPilotManagers(this.appModelStore)
                 .subscribe(result => {
                   console.log("--[PilotDetailPageComponent.ngOnInit.accessPilotRoaster]>ManagerList: " + JSON.stringify(result));
+                  this.pilot.storePilotManagers(result);
                   // The the list of planetary resource lists to the data returned.
                   this.adapterViewList = result;
                   this.downloading = false;
@@ -89,6 +90,7 @@ export class PilotDetailPageComponent extends PageComponent implements OnInit {
             .accessPilotManagers(this.appModelStore)
             .subscribe(result => {
               console.log("--[PilotDetailPageComponent.ngOnInit.accessPilotRoaster]>ManagerList: " + JSON.stringify(result));
+              this.pilot.storePilotManagers(result);
               // The the list of planetary resource lists to the data returned.
               this.adapterViewList = result;
               this.downloading = false;

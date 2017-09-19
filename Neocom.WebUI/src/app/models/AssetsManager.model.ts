@@ -13,7 +13,7 @@ import { Region } from './Region.model';
 import { Manager } from './Manager.model';
 
 export class AssetsManager extends Manager {
-  public jsonClass: string = "Manager";
+  //  public jsonClass: string = "Manager";
   //  public regions: Region[] = [];
   //  public locations: Location[] = [];
 
