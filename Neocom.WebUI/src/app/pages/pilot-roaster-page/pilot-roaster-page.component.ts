@@ -39,6 +39,7 @@ export class PilotRoasterPageComponent extends PageComponent implements OnInit {
   */
   ngOnInit() {
     console.log(">>[PilotRoasterPageComponent.ngOnInit]");
+    this.downloading = true;
     // Extract the login identifier from the URL structure.
     this.route.params.map(p => p.loginid)
       .subscribe((login: string) => {
@@ -56,44 +57,7 @@ export class PilotRoasterPageComponent extends PageComponent implements OnInit {
     this.appModelStore.accessLogin().accessPilotRoaster(this.appModelStore)
       .subscribe(result => {
         console.log("--[PilotRoasterPageComponent.ngOnInit.accessPilotRoaster]>PilotList: " + JSON.stringify(result));
-        // The the list of planetary resource lists to the data returned.
-        this.adapterViewList = result;
-        this.downloading = false;
-      });
-    console.log("<<[PilotRoasterPageComponent.ngOnInit]");
-  }
-  ngOnInit2() {
-    console.log(">>[PilotRoasterPageComponent.ngOnInit]");
-    // Extract the login identifier from the URL structure.
-    this.route.params.map(p => p.loginid)
-      .subscribe((login: string) => {
-        // Set the login at the Service to update the other data structures. Pass the login id
-        this.appModelStore.setLoginById(login);
-      });
-
-    // Create our unique DS locator.
-    let locator = new DataSourceLocator()
-      .addIdentifier(this.pilotListService.getServiceName())
-      .addIdentifier(this.getVariantName())
-      .addIdentifier(this.appModelStore.accessLogin().getLoginId());
-    // Check if the DS has been already registered.
-    let ds = this.appModelStore.searchDataSource(locator);
-    if (null == ds) {
-      // Register the service as a new DataSource. Set the registration parameters to the service.
-      this.pilotListService.setLocator(locator);
-      this.pilotListService.setVariant(this.getVariant());
-      this.appModelStore.registerDataSource(this.pilotListService);
-    }
-
-    // Set the AppModel datasource to this datasource.
-    this.appModelStore.setActiveDataSource(this.pilotListService);
-
-    // Show the spinner
-    this.downloading = true;
-    //    this.appModelStore.registerDataSource(ds);
-    this.pilotListService.collaborate2View()
-      .subscribe(result => {
-        console.log("--[PilotRoasterPageComponent.ngOnInit.collaborate2View]> pilot list: " + JSON.stringify(result));
+        this.appModelStore.accessLogin().setPilotRoaster(result);
         // The the list of planetary resource lists to the data returned.
         this.adapterViewList = result;
         this.downloading = false;

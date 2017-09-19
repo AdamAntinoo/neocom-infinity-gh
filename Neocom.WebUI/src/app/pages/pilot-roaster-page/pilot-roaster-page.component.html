@@ -1,5 +1,6 @@
-<div width="60%" height="30px">
-  <span class="spinner spinner-location"></span>
+<div *ngIf="downloading" width="60%" height="30px">
+  <div class="spinner-in spinner-size60"></div>
+  <div class="spinner-out spinner-size70"></div>
 </div>
 <div class="panel-group">
   <div *ngFor="let render of adapterViewList">
