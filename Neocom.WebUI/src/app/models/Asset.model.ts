@@ -20,10 +20,17 @@ export class Asset extends NeoComNode {
   public tech: string = "Tech I";
   public blueprint: boolean = false;
   public ship: boolean = false;
+  public item = null;
 
   constructor(values: Object = {}) {
     super();
     Object.assign(this, values);
     this.jsonClass = "Asset";
+  }
+  /**
+  This method informs the view renderer that this node can be expanded. This should trigger the rendering for the expand/collapse arrow icon and its functionality.
+  */
+  public canBeExpanded(): boolean {
+    return false;
   }
 }

@@ -3,18 +3,28 @@
     <table class="neocom-panel-container" cellspacing="0" cellpadding="0">
       <tr>
         <td>
-          <img class="neocom-icon iconsize-48" src="http://image.eveonline.com/Type/{{node.typeID}}_64.png" height="48px "
-            width="48px ">
+          <img class="neocom-icon iconsize-48" src="http://image.eveonline.com/Type/{{node.typeID}}_64.png">
         </td>
         <td class="neocom-panel-column" width="80%">
-          <span class="neocom-selectable-name">{{node.name}}</span>
+          <div class="neocom-selectable-name">{{node.system}}</div>
+          <div class="neocom-data imaki-ff">[{{node.assetID}}]-{{node.category}}/{{node.groupName}}</div>
+          <div class="neocom-data imaki-ff">
+            <span class="neocom-data mons-olympia-ff neocom-ts16 left-data">{{node.item.baseprice | number:'1.2-2'}} ISK</span>
+            <span class="neocom-data mons-olympia-ff neocom-ts16 right-data">{{totalValueIsk() | number:'1.0-0'}} ISK</span>
+          </div>
+          <div class="lined-bottomline">&nbsp;</div>
+          <div class="neocom-label">
+            <span class="left-data">ITEM VALUE</span>
+            <span class="right-data">TOTAL VALUE</span>
+          </div>
         </td>
         <td width="20%" class="neocom-panel-right-box" align="right ">
-          <!-- <div class="neocom-classname">REGION</div>
-          <div class="stack-counter lined-bottomline">5</div>
-          <div class="neocom-label label-small">STATIONS</div> -->
+          <div class="stack-counter lined-bottomline">{{node.quantity}}</div>
+          <div class="neocom-label right-data">NO. ITEMS</div>
+          <div class="neocom-ts16 lined-bottomline right-data" style="padding-top: 0px;">{{totalVolume() | number:'1.0-0'}} M3</div>
+          <div class="neocom-label right-data">VOLUME</div>
         </td>
-        <td width="10%" class="neocom-arrow-box">
+        <td *ngIf="node.canBeExpanded()" width="10%" class="neocom-arrow-box">
           <img class="neocom-arrow" *ngIf="!node.expanded " src="/assets/icons/arrowleft.png ">
           <img class="neocom-arrow" *ngIf="node.expanded " src="/assets/icons/arrowright.png ">
         </td>

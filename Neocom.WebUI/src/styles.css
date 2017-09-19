@@ -106,7 +106,20 @@ body {
   font-weight: 500;
 }
 
-.neocom-account-class {
+.neocom-data {
+  color: white;
+  font-size: 12px;
+}
+
+.left-data {
+  float: left;
+}
+
+.right-data {
+  float: right;
+}
+
+.neocom-classname {
   color: #0000FF;
   font-size: 16px;
   text-shadow: 0px 0px 2px #0000FF;
@@ -144,14 +157,14 @@ body {
 .neocom-label {
   font-family: "Imaki";
   font-weight: normal;
-  font-size: small;
+  font-size: 9px;
   color: white;
   line-height: 1.0;
-  padding-top: 3px;
+  /*padding-top: 3px;*/
 }
 
-.label-small {
-  font-size: 10px;
+.label-madium {
+  font-size: 12px;
 }
 
 .label-large {
@@ -177,9 +190,9 @@ body {
 }
 
 .stack-counter {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 600;
-  padding-bottom: 3px;
+  /*padding-bottom: 3px;*/
   padding-top: 3px;
 }
 
@@ -188,6 +201,7 @@ body {
 }
 
 .lined-bottomline {
+  padding-top: 2px;
   border-bottom: white 1px solid;
 }
 
@@ -244,8 +258,8 @@ body {
 
 #content:before, #content:after, #content>:first-child:before, #content>:first-child:after {
   position: absolute;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   border: 2px orange solid;
   filter: blur(1px);
   /* or whatever colour */
@@ -319,7 +333,7 @@ body {
 
 @keyframes spinner-out {
   to {
-    transform: rotate(-360deg);
+    transform: rotate(360deg);
   }
 }
 
@@ -335,8 +349,8 @@ body {
   margin-left: -20px;
   border-radius: 50%;
   border: 4px solid transparent;
-  border-top-color: #07d;
-  border-bottom-color: #07d;
+  border-top-color: white;
+  border-bottom-color: white;
   animation: spinner-in .8s ease infinite;
 }
 
@@ -367,8 +381,10 @@ body {
 .spinner-size70 {
   width: 100px;
   height: 100px;
-  margin-top: -15px;
-  margin-left: -15px;
+  margin-top: -40px;
+  margin-left: -40px;
+  /*margin-top: -15px;
+  margin-left: -15px;*/
 }
 
 .spinner-blue {

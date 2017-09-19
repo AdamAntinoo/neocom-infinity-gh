@@ -3,19 +3,50 @@
     <table class="neocom-panel-container" cellspacing="0" cellpadding="0">
       <tr>
         <td>
-          <img class="neocom-icon iconsize-48" src="{{node.urlLocationIcon}}" height="48px " width="48px ">
+          <img class="neocom-icon iconsize-48" src="{{node.urlLocationIcon}}">
         </td>
         <td class="neocom-panel-column" width="80%">
-          <span class="neocom-selectable-name">{{node.name}}</span>
+          <span class="neocom-selectable-name">{{node.system}}</span>
+          <div class="lined-bottomline">
+            <span class="neocom-data imaki-ff neocom-ts14" style="color: red;">[{{node.securityValue | number:'1.1-1'}}]</span>
+            <span class="neocom-data imaki-ff neocom-ts14"> {{node.name}}</span>
+          </div>
+          <div class="neocom-label">
+            <span class="">STATION</span>
+          </div>
         </td>
         <td width="20%" class="neocom-panel-right-box" align="right ">
-          <div class="neocom-classname">REGION</div>
+          <div class="neocom-classname neocom-ts14">{{node.region}} ► {{node.constellation}}</div>
           <div class="stack-counter lined-bottomline">5</div>
-          <div class="neocom-label label-small">STATIONS</div>
+          <div class="neocom-label label-small">ITEMS</div>
         </td>
-        <td width="10%" class="neocom-arrow-box">
+        <td *ngIf="hasMenu()" width="5%" class="neocom-panel-menu">
+          <!-- <div class="left-side-menu">Menu
+            <ul ng2-menu="left" ng-reflect-position="left">
+              <li> Menu Item 1 </li>
+            </ul>
+          </div> -->
+        </td>
+        <td width="5%" class="neocom-arrow-box">
           <img class="neocom-arrow" *ngIf="!node.expanded " src="/assets/icons/arrowleft.png ">
           <img class="neocom-arrow" *ngIf="node.expanded " src="/assets/icons/arrowright.png ">
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div *ngIf="!node.downloaded" class="right-data">
+            <span class="location-totals-label">&nbsp;&nbsp;&nbsp;&nbsp;TOTAL VALUE</span>
+            <span class="right-data neocom-ts16">- ISK</span><br>
+            <span class="location-totals-label">&nbsp;TOTAL VOLUME</span>
+            <span class="right-data neocom-ts16">- M3</span>
+          </div>
+          <div *ngIf="node.downloaded" class="right-data">
+            <span class="location-totals-label">&nbsp;&nbsp;&nbsp;&nbsp;TOTAL VALUE</span>
+            <span class="right-data neocom-ts16">{{node.totalValueCalculated | number:'1.0-0'}} ISK</span>
+            <br>
+            <span class="location-totals-label">&nbsp;TOTAL VOLUME</span>
+            <span class="right-data neocom-ts16">{{node.totalVolumeCalculated | number:'1.0-0'}} M3</span>
+          </div>
         </td>
       </tr>
     </table>

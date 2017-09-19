@@ -12,6 +12,7 @@ import { RenderComponent } from '../render/render.component';
 import { PlanetaryManagerPageComponent } from '../../pages/planetary-manager-page/planetary-manager-page.component';
 //--- MODELS
 import { Render } from '../../models/Render.model';
+import { Asset } from '../../models/Asset.model';
 
 @Component({
   selector: 'neocom-asset',
@@ -20,7 +21,7 @@ import { Render } from '../../models/Render.model';
 })
 export class AssetComponent implements OnInit {
   @Input() viewer: PlanetaryManagerPageComponent;
-  @Input() node: Render;
+  @Input() node: Asset;
 
   constructor(private appModelStore: AppModelStoreService) {
     //  super();
@@ -28,5 +29,12 @@ export class AssetComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  public totalValueIsk(): number {
+    let value = this.node.item.baseprice * this.node.quantity;
+    return value;
+  }
+  public totalVolume(): number {
+    let value = this.node.item.volume * this.node.quantity;
+    return value;
+  }
 }
