@@ -3,15 +3,16 @@
     <table class="neocom-panel-container" cellspacing="0" cellpadding="0">
       <tr>
         <td>
-          <img class="neocom-icon iconsize-48" src="{{node.urlLocationIcon}}" height="48px " width="48px ">
+          <img class="neocom-icon iconsize-48" src="http://image.eveonline.com/Type/{{node.typeID}}_64.png" height="48px "
+            width="48px ">
         </td>
         <td class="neocom-panel-column" width="80%">
           <span class="neocom-selectable-name">{{node.name}}</span>
         </td>
         <td width="20%" class="neocom-panel-right-box" align="right ">
-          <div class="neocom-classname">REGION</div>
+          <!-- <div class="neocom-classname">REGION</div>
           <div class="stack-counter lined-bottomline">5</div>
-          <div class="neocom-label label-small">STATIONS</div>
+          <div class="neocom-label label-small">STATIONS</div> -->
         </td>
         <td width="10%" class="neocom-arrow-box">
           <img class="neocom-arrow" *ngIf="!node.expanded " src="/assets/icons/arrowleft.png ">

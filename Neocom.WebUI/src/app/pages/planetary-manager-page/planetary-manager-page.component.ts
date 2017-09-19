@@ -105,4 +105,26 @@ export class PlanetaryManagerPageComponent extends PageComponent implements OnIn
 
     console.log("<<[PilotDetailPageComponent.ngOnInit]");
   }
+  /**
+  Indicates the viewer container that the model states have changed and that a new Collaborate2View should be executed to generate the new view list.
+  */
+  public refreshViewPort(): void {
+    this.downloading = true;
+    // Get the list of Managers that can be accessed for this Character.
+    this.pilot.accessPlanetaryManager(this.appModelStore)
+      .subscribe(result => {
+        console.log("--[PilotDetailPageComponent.ngOnInit.accessPilotRoaster]>ManagerList: " + JSON.stringify(result));
+        // Store the result at the PIlot.
+        // let planetary = result[0];
+        // this.pilot.setPlanetaryManager(planetary);
+        // Call the collaboration methods to start the model view list.
+        let thelist = result.collaborate2View(this.getVariant());
+        this.adapterViewList = thelist;
+        this.downloading = false;
+      });
+
+  }
+  public getViewer(): PlanetaryManagerPageComponent {
+    return this;
+  }
 }

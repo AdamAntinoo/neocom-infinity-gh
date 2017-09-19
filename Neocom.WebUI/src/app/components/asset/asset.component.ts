@@ -14,23 +14,19 @@ import { PlanetaryManagerPageComponent } from '../../pages/planetary-manager-pag
 import { Render } from '../../models/Render.model';
 
 @Component({
-  selector: 'neocom-location',
-  templateUrl: './location.component.html',
-  styleUrls: ['./location.component.css']
+  selector: 'neocom-asset',
+  templateUrl: './asset.component.html',
+  styleUrls: ['./asset.component.css']
 })
-export class LocationComponent extends RenderComponent implements OnInit {
+export class AssetComponent implements OnInit {
   @Input() viewer: PlanetaryManagerPageComponent;
   @Input() node: Render;
 
   constructor(private appModelStore: AppModelStoreService) {
-    super();
+    //  super();
   }
 
   ngOnInit() {
-  }
-  public toggleExpanded() {
-    this.node.toggleExpanded();
-    this.viewer.refreshViewPort();
   }
 
 }

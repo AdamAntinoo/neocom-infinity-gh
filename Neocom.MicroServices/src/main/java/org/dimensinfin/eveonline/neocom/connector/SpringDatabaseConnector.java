@@ -52,6 +52,11 @@ import com.j256.ormlite.support.DatabaseConnection;
 public class SpringDatabaseConnector implements IDatabaseConnector {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger													logger										= Logger.getLogger("SpringDatabaseConnector");
+
+	// - F I E L D   I D E N T I F I E R S
+	private static int														STATIONTYPEID_COLINDEX		= 1;
+
+	// - S Q L   C O M M A N D S
 	private static final String										CCPDATABASE_URL						= "jdbc:sqlite:src/main/resources/eve.db";
 	//	protected static String												DATABASE_NAME							= "neocomdata.db";
 	//	protected static int													DATABASE_VERSION					= 010;
@@ -800,9 +805,40 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 		return scheList;
 	}
 
-	public int searchStationType(long systemID) {
-		throw new RuntimeException(
-				"Application connector not defined. Functionality 'searchStationType' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
+	/**
+	 * Returns the resource identifier of the station class to locate icons or other type related resources.
+	 * 
+	 * @param stationID
+	 * @return
+	 */
+	public int searchStationType(final long stationID) {
+		int stationTypeID = 1529;
+		AppConnector.startChrono();
+		PreparedStatement prepStmt = null;
+		ResultSet cursor = null;
+		try {
+			prepStmt = getCCPDatabase().prepareStatement(STATIONTYPE);
+			prepStmt.setString(1, Long.valueOf(stationID).toString());
+			cursor = prepStmt.executeQuery();
+			while (cursor.next()) {
+				stationTypeID = cursor.getInt(STATIONTYPEID_COLINDEX);
+			}
+		} catch (Exception ex) {
+			logger.warning("W- [SpingDatabaseConnector.searchStationType]> Database exception: " + ex.getMessage());
+		} finally {
+			try {
+				if (cursor != null) cursor.close();
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+			try {
+				if (prepStmt != null) prepStmt.close();
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+		}
+		logger.info("~~ Time lapse for [SELECT STATIONTYPEID " + stationID + "] " + AppConnector.timeLapse());
+		return stationTypeID;
 	}
 
 	public String searchTech4Blueprint(int blueprintID) {

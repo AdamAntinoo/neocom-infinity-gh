@@ -113,8 +113,7 @@ public class NeocomMicroServiceApplication implements IConnector/* ,CacheResolve
 		return AppModelStore.getSingleton();
 	}
 
-	@Override
-	public IConnector getSingleton() {
+	public NeocomMicroServiceApplication getSingletonApp() {
 		return NeocomMicroServiceApplication.singleton;
 	}
 
