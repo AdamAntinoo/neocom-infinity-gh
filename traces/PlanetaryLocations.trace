@@ -1,0 +1,15 @@
+{1006286526357=NeoComLocation [#1006286526357 (1) [<REGION>] system: <SYSTEM> station: <STATION> ],
+ 1024096004887=NeoComLocation [#1024096004887 (1) [<REGION>] system: <SYSTEM> station: <STATION> ],
+ 60014089=NeoComLocation [#60014089 (4) [Syndicate] system: PVH8-0 station: PVH8-0 VI - Moon 8 - Thukker Mix Factory ],
+ 1005260738640=NeoComLocation [#1005260738640 (1) [<REGION>] system: <SYSTEM> station: <STATION> ]}
+
+[NeoComAsset [#2463 - Nanites itemID:1024820332709 locationID:60014089 containerID:-1 ownerID:93813310 quantity:4765 ]
+, NeoComAsset [#3691 - Synthetic Oil itemID:1024820346874 locationID:60014089 containerID:-1 ownerID:93813310 quantity:4680 ]
+, NeoComAsset [#3775 - Viral Agent itemID:1024820354111 locationID:60014089 containerID:-1 ownerID:93813310 quantity:3120 ]
+, NeoComAsset [#9840 - Transmitter itemID:1024820340510 locationID:60014089 containerID:-1 ownerID:93813310 quantity:5365 ]
+]
+
+[Resource [[Planetary Commodities] Nanites x4765 stack: 1 total: 4765 #2463 ],
+ Resource [[Planetary Commodities] Synthetic Oil x4680 stack: 1 total: 4680 #3691 ],
+ Resource [[Planetary Commodities] Viral Agent x3120 stack: 1 total: 3120 #3775 ],
+ Resource [[Planetary Commodities] Transmitter x5365 stack: 1 total: 5365 #9840 ]]

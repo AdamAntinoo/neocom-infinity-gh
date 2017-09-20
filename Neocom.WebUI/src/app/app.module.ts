@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { JsonpModule } from '@angular/http';
 import { CookieModule } from 'ngx-cookie';
-import { Ng2MenuModule } from 'ng2-Menu';
+//import { Ng2MenuModule } from 'ng2-Menu';
 
 //--- ROUTING
 import { AppRoutingModule } from './app-routing.module';
@@ -75,7 +75,7 @@ import { RenderComponent } from './components/render/render.component';
     HttpModule,
     JsonpModule,
     CookieModule.forRoot(),
-    Ng2MenuModule,
+    //    Ng2MenuModule,
     AppRoutingModule,
   ],
   providers: [
