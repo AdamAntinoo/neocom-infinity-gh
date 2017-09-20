@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import 'rxjs/add/operator/switchMap';
+import { Observable } from 'rxjs/Rx';
+
 //--- SERVICES
 import { AppModelStoreService } from '../../services/app-model-store.service';
 import { PilotListDataSourceService } from '../../services/pilot-list-data-source.service';
@@ -24,7 +28,7 @@ export class PilotRoasterPageComponent extends PageComponent implements OnInit {
   public adapterViewList: Render[] = [];
   public downloading: boolean = true;
 
-  constructor(private appModelStore: AppModelStoreService, private pilotListService: PilotListDataSourceService) {
+  constructor(private appModelStore: AppModelStoreService, private pilotListService: PilotListDataSourceService, private route: ActivatedRoute, private router: Router) {
     super();
     this.setVariant(EVariant.PILOTROASTER)
   }
@@ -35,32 +39,27 @@ export class PilotRoasterPageComponent extends PageComponent implements OnInit {
   */
   ngOnInit() {
     console.log(">>[PilotRoasterPageComponent.ngOnInit]");
-    // Create our unique DS locator.
-    let locator = new DataSourceLocator()
-      .addIdentifier(this.pilotListService.getServiceName())
-      .addIdentifier(this.getVariantName());
-    // Check if the DS has been already registered.
-    let ds = this.appModelStore.searchDataSource(locator);
-    if (null == ds) {
-      // Register the service as a new DataSource. Set the registration parameters to the service.
-      this.pilotListService.setLocator(locator);
-      this.pilotListService.setVariant(this.getVariant());
-      this.appModelStore.registerDataSource(this.pilotListService);
-    }
-
-    // Set the AppModel datasource to this datasource.
-    this.appModelStore.setActiveDataSource(this.pilotListService);
-
-    // Show the spinner
     this.downloading = true;
-    //    this.appModelStore.registerDataSource(ds);
-    this.pilotListService.collaborate2View()
+    // Extract the login identifier from the URL structure.
+    this.route.params.map(p => p.loginid)
+      .subscribe((login: string) => {
+        // Set the login at the Service to update the other data structures. Pass the login id
+        this.appModelStore.setLoginById(login);
+        // Check that we have a Valid login selected.
+        let clog = this.appModelStore.accessLogin();
+        if (null == clog) {
+          // Move the page back to the Login List.
+          this.router.navigate(['/login']);
+        }
+      });
+
+    // Get the character Roaster for this Login.
+    this.appModelStore.accessLogin().accessPilotRoaster(this.appModelStore)
       .subscribe(result => {
-        console.log("--[PilotRoasterPageComponent.ngOnInit.collaborate2View]> pilot list: " + JSON.stringify(result));
-        // The the list of planatary resource lists to the data returned.
-        //      this.adapterViewList = this.pilotListService.collaborate2View();
+        console.log("--[PilotRoasterPageComponent.ngOnInit.accessPilotRoaster]>PilotList: " + JSON.stringify(result));
+        this.appModelStore.accessLogin().setPilotRoaster(result);
+        // The the list of planetary resource lists to the data returned.
         this.adapterViewList = result;
-        //    console.log("--[PilotRoasterPageComponent.ngOnInit.collaborate2View]> Renders: " + JSON.stringify(this.adapterViewList));
         this.downloading = false;
       });
     console.log("<<[PilotRoasterPageComponent.ngOnInit]");

@@ -2,11 +2,14 @@
   pilot-detail-page works!
 </p>
 <neocom-pilot4-detail *ngIf="completed" [pilot]="pilot"></neocom-pilot4-detail>
-<span *ngIf="downloading" class="spinner spinner-large spinner-red spinner-fat spinner-slow spinner-location"></span>
-<div *ngIf="completed" class="panel-group">
+<div width="60%" height="50px">
+  <span class="spinner"></span>
+</div>
+<div *ngIf="!downloading" class="panel-group">
   view-adapter.component running...
   <div *ngFor="let render of adapterViewList">
-    <neocom-pilot-manager *ngIf="render.jsonClassname == 'AssetsManager'" [manager]="render"></neocom-pilot-manager>
-    <neocom-planetary-manager *ngIf="render.jsonClassname == 'PlanetaryManager'" [manager]="render"></neocom-planetary-manager>
+    <neocom-pilot-manager *ngIf="render.jsonClass == 'AssetsManager'" [pilot]="pilot" [manager]="render"></neocom-pilot-manager>
+    <neocom-pilot-manager *ngIf="render.jsonClass == 'Manager'" [pilot]="pilot" [manager]="render"></neocom-pilot-manager>
+    <neocom-planetary-manager *ngIf="render.jsonClass == 'PlanetaryManager'" [pilot]="pilot" [manager]="render"></neocom-planetary-manager>
   </div>
 </div>

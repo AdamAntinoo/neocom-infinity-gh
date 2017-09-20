@@ -3,24 +3,23 @@ import { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
 //--- PAGES
 import { PageSplashComponent } from './page/page-splash/page-splash.component';
-import { PageLoginComponent } from './page/page-login/page-login.component';
-import { PageHomeComponent } from './page/page-home/page-home.component';
-import { PagePilotsComponent } from './page/page-pilots/page-pilots.component';
-import { PagePilotDetailComponent } from './page/page-pilot-detail/page-pilot-detail.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roaster-page.component';
-
 import { PilotDetailPageComponent } from './pages/pilot-detail-page/pilot-detail-page.component';
+import { PlanetaryManagerPageComponent } from './pages/planetary-manager-page/planetary-manager-page.component';
+
+//--- PAGES
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/pilotroaster',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
-  { path: 'home', component: PageHomeComponent },
-  { path: 'pilots', component: PagePilotsComponent },
-  { path: 'pilotroaster', component: PilotRoasterPageComponent },
-  { path: 'pilot/:id', component: PilotDetailPageComponent },
+  { path: 'login', component: LoginPageComponent },
+  { path: 'login/:loginid/pilotroaster', component: PilotRoasterPageComponent },
+  { path: 'login/:loginid/pilot/:id', component: PilotDetailPageComponent },
+  { path: 'login/:loginid/pilot/:id/PlanetaryManager', component: PlanetaryManagerPageComponent },
 ];
 
 @NgModule({

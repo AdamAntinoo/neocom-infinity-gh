@@ -1,0 +1,32 @@
+.neocom-panel {
+  font-family: "Mons Olympia";
+}
+
+.neocom-panel-container {
+  margin: 5px;
+}
+
+.panel-collapsed {}
+
+.panel-expanded {}
+
+.neocom-panel-column {
+  padding-left: 5px;
+}
+
+.neocom-panel-right-box {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.neocom-icon {
+  border: white 1px solid;
+  box-shadow: inset 0px 0px 4px 1px rgba(255, 255, 255, 0.73), 0px 0px 4px 1px rgba(255, 255, 255, 0.73);
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.iconsize-48 {
+  height: 48px;
+  width: 48px;
+}

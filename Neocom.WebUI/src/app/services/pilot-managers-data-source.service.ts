@@ -28,9 +28,8 @@ import { PlanetaryManager } from '../models/PlanetaryManager.model';
 
 @Injectable()
 export class PilotManagersDataSourceService extends AbstractDataSource implements IDataSource {
-  //  static SERVICE_NAME = "PilotManagersDataSource";
 
-  constructor(private http: Http, private cookieService: CookieService, private appModelStore: AppModelStoreService) {
+  constructor(private http: Http, private appModelStore: AppModelStoreService) {
     super();
     this._serviceName = "PilotManagersDataSource";
   }
@@ -59,7 +58,7 @@ export class PilotManagersDataSourceService extends AbstractDataSource implement
   }
   private getAllManagers(): Observable<Render[]> {
     console.log("><[PilotManagersDataSourceService.getAllManagers]");
-    this.cookieService.put("login-id", "default")
+    //  this.cookieService.put("login-id", "default")
     return this.http.get(AbstractDataSource.RESOURCE_SERVICE_URL + "/pilotmanagers/" + "93813310")
       .map(res => res.json())
       .map(result => {

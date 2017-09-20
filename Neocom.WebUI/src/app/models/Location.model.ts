@@ -1,14 +1,45 @@
+//--- INTERFACES
+import { EVariant } from '../classes/EVariant.enumerated';
 //--- MODELS
-import { Render } from '../models/Render.model';
+import { NeoComNode } from '../models/NeoComNode.model';
+import { Asset } from '../models/Asset.model';
 
-export class Location extends Render {
+export class Location extends NeoComNode {
+  private totalValueCalculated: number = -1;
+  private totalVolumeCalculated: number = -1;
+
   public location: string = "LOCATION";
   public position: string;
+  public children = [];
 
   constructor(values: Object = {}) {
     super(values);
     Object.assign(this, values);
-    this.class = "Location";
+    this.jsonClass = "Location";
+    // Calculate the toal value of this location contents.
+    this.totalValueCalculated = 0;
+    this.totalVolumeCalculated = 0;
+    for (let asset of this.children) {
+      this.totalValueCalculated += asset.item.baseprice * asset.quantity;
+      this.totalVolumeCalculated += asset.item.volume * asset.quantity;
+    }
   }
-
+  public collaborate2View(variant: EVariant): NeoComNode[] {
+    let collab = [];
+    collab.push(this);
+    // If the node is expanded then add its assets.
+    if (this.expanded) {
+      // Process each item at the rootlist for more collaborations.
+      for (let node of this.children) {
+        if (node.jsonClass == "NeoComAsset") {
+          let asset = new Asset(node)
+          let partialcollab = asset.collaborate2View(variant);
+          for (let partialnode of partialcollab) {
+            collab.push(partialnode);
+          }
+        }
+      }
+    }
+    return collab;
+  }
 }

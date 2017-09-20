@@ -1,0 +1,25 @@
+<div class="panel panel-default panel-login" id="panel1">
+  <div class="panel-box">
+    <table class="panel-node" cellspacing="0" cellpadding="0" width="100%">
+      <a class="no-underline" [routerLink]="['/login',node.getLoginId(),'pilotroaster']">
+        <tr>
+          <td><img class="neocom-icon neocom-icon48" src="/assets/icons/{{node.getPanelIcon()}}"></td>
+          <td width="80% " style="padding-left: 3px;">
+            <div>
+              <span class="neocom-selectable-name mons-olympia-ff">{{node.getLoginId()}}</span><br>
+            </div>
+          </td>
+          <td width="20%" class="left-box " align="right ">
+            <span *ngIf="node.downloadPending" class="spinner"></span>
+            <div *ngIf="!node.downloadPending" class="stack-counter ">{{node.getKeyCount()}}</div>
+            <div class="neocom-label label-small label-topupline ">KEYS</div>
+          </td>
+          <td *ngIf="false" class="arrow-box" (click)="onClickArrow()" [ngClass]="{expanded: expanded}">
+            <img class="neocom-arrow" *ngIf="!expanded " src="/assets/icons/arrowleft.png ">
+            <img class="neocom-arrow" *ngIf="expanded " src="/assets/icons/arrowright.png ">
+          </td>
+        </tr>
+      </a>
+    </table>
+  </div>
+</div>

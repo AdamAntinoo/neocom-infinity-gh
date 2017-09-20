@@ -1,0 +1,10 @@
+<p>
+  login-page works!
+</p>
+<span *ngIf="downloading" class="spinner spinner-large spinner-red spinner-fat spinner-slow spinner-location"></span>
+<div class="panel-group">
+  view-adapter.component running...
+  <div *ngFor="let render of loginViewList">
+    <neocom-login4-list *ngIf="render.jsonClass == 'Login'" [node]="render"></neocom-login4-list>
+  </div>
+</div>

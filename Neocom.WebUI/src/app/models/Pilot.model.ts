@@ -6,9 +6,10 @@
 
 //--- MODELS
 import { NeoComNode } from './NeoComNode.model';
+import { NeoComCharacter } from './NeoComCharacter.model';
 import { PilotAction } from './pilotaction';
 
-export class Pilot extends NeoComNode {
+export class Pilot extends NeoComCharacter {
   public characterID: number = -1.0;
   public active: boolean = true;
   public accountBalance: number = -1.0;
@@ -22,7 +23,7 @@ export class Pilot extends NeoComNode {
   constructor(values: Object = {}) {
     super();
     Object.assign(this, values);
-    this.class = "Pilot";
+    this.jsonClass = "Pilot";
   }
 
   public getId() {

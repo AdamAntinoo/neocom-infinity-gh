@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Inject } from '@angular/core';
-import { CookieService } from 'ngx-cookie';
+//import { CookieService } from 'ngx-cookie';
 //--- HTTP PACKAGE
 import { Http } from '@angular/http';
 import { Response, Headers, RequestOptions } from '@angular/http';
@@ -16,6 +16,7 @@ import { IDataSource } from '../classes/IDataSource.interface';
 //--- CLASSES
 import { DataSourceLocator } from '../classes/DataSourceLocator';
 import { EVariant } from '../classes/EVariant.enumerated';
+import { AbstractDataSource } from '../classes/AbstractDataSource';
 //--- MODELS
 import { Render } from '../models/Render.model';
 import { NeoComNode } from '../models/NeoComNode.model';
@@ -23,49 +24,18 @@ import { Pilot } from '../models/Pilot.model';
 import { Region } from '../models/Region.model';
 
 @Injectable()
-export class PilotListDataSourceService implements IDataSource {
-  static SERVICE_NAME = "PilotListDataSource";
-  static APPLICATION_SERVICE_PORT = "9000";
-  static RESOURCE_SERVICE_URL: string = "http://localhost:" + PilotListDataSourceService.APPLICATION_SERVICE_PORT + "/api/v1";
+export class PilotListDataSourceService extends AbstractDataSource implements IDataSource {
 
-  private _canBeCached: boolean = true;
-  private _downloaded: boolean = false;
-  private _locator: DataSourceLocator = null;
-  private _variant: EVariant = EVariant.DEFAULT;
-  private _dataModelRoot: NeoComNode[] = [];
-  private _viewModelRoot: Render[] = [];
-
-  constructor(private http: Http, private cookieService: CookieService, private appModelStore: AppModelStoreService) {
+  constructor(private appModelStore: AppModelStoreService) {
+    super();
+    this._serviceName = "PilotListDataSource";
     this._variant = EVariant.PILOTMANAGERS;
+    this._canBeCached = true;
+    this._downloaded = false;
   }
 
-  public getLocator(): DataSourceLocator {
-    return this._locator;
-  }
-  public getVariant(): EVariant {
-    return this._variant;
-  }
-  public getVariantName(): string {
-    return EVariant[this._variant];
-  }
-  public setLocator(locator: DataSourceLocator): void {
-    this._locator = locator;
-  }
-  public setVariant(variant: EVariant): void {
-    this._variant = variant;
-  }
-  public getServiceName(): string {
-    return PilotListDataSourceService.SERVICE_NAME;
-  }
-
-  // public collaborate2Model(): Observable<NeoComNode[]> {
-  //   this.cookieService.put("login-id", "default")
-  //   let pilots = this.getAllPilots();
-  //   //  let pro = pilots.toPromise();
-  //   return pilots;
-  // }
   /**
-  This method is called whenever the page needs to render. It has two phases, the first one will check if we require a refresh of the model, depending on some properties. The second one will create the view contents list from the current model elements by recursively calling their 'collaborate2View()' method.
+  This method is called whenever the page needs to get the list of nodes that are on the view and ready for rendering. New DataSource model will relay all data requests to the AppModel Service that is the general cache for all application data. Once we get the right data depending on the Variant we can process it to the view list based on the creation of the view contents list from the current model elements by recursively calling their 'collaborate2View()' method.
   */
   public collaborate2View(): Observable<Render[]> {
     // Check if model needs to be refreshed.
@@ -83,38 +53,24 @@ export class PilotListDataSourceService implements IDataSource {
       }
     }
 
-    // Get again the model from the backend service.
-    return this.getAllPilots();
+    // Get the model data from the AppModelStore Service.
+    let result = this.appModelStore.accessLogin().accessPilotRoaster(this.appModelStore);
+    this._downloaded = true;
+    return result;
   }
 
-  private getAllPilots(): Observable<Render[]> {
-    console.log("><[PilotListDataSourceService.getAllPilots]");
-    this.cookieService.put("login-id", "default")
-    return this.http.get(PilotListDataSourceService.RESOURCE_SERVICE_URL + "/pilotroaster")
-      .map(res => res.json())
-      .map(result => {
-        for (let pilot of result) {
-          let newpilot = new Pilot(pilot);
-          this._dataModelRoot.push(newpilot);
-        }
-        this._downloaded = true;
-        return this.processModel();
-      });
-  }
-
-  /** Read all the model nodes and generate a new list of their collaborations to the view list.
-  */
-  private processModel(): Render[] {
-    this._viewModelRoot = null;
-    for (let node of this._dataModelRoot) {
-      let collab = node.collaborate2View(this.getVariant());
-      if (null === this._viewModelRoot) {
-        this._viewModelRoot = collab;
-      } else {
-        this._viewModelRoot.concat(collab);
-      }
-      console.log("><[PilotListDataSourceService.processModel]");
-    }
-    return this._viewModelRoot;
-  }
+  // private getAllPilots(): Observable<Render[]> {
+  //   console.log("><[PilotListDataSourceService.getAllPilots]");
+  //   //  this.cookieService.put("login-id", "default")
+  //   return this.http.get(PilotListDataSourceService.RESOURCE_SERVICE_URL + "/login/" + this.appModelStore.accessLogin() + "/pilotroaster")
+  //     .map(res => res.json())
+  //     .map(result => {
+  //       for (let pilot of result) {
+  //         let newpilot = new Pilot(pilot);
+  //         this._dataModelRoot.push(newpilot);
+  //       }
+  //       this._downloaded = true;
+  //       return this.processModel();
+  //     });
+  // }
 }

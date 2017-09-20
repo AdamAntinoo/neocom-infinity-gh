@@ -8,19 +8,20 @@
 import { EVariant } from '../classes/EVariant.enumerated';
 //--- MODELS
 import { NeoComNode } from './NeoComNode.model';
-import { PilotAction } from './pilotaction';
+//import { PilotAction } from './pilotaction';
 import { Region } from './Region.model';
+import { Location } from './Location.model';
 
 export class Manager extends NeoComNode {
-  public jsonClassname: string = "Manager";
   public regions: Region[] = [];
   public locations: Location[] = [];
   public regionCount: number = 0;
+  public locationCount: number = 0;
 
   constructor(values: Object = {}) {
     super();
     Object.assign(this, values);
-    this.class = "Manager";
+    this.jsonClass = "Manager";
     // Fiil additional fields after the object is parsed.
     this.regionCount = Object.keys(this.regions).length;
   }
