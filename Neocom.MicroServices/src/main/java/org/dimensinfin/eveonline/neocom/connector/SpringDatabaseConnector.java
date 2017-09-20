@@ -289,6 +289,14 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 		return false;
 	}
 
+	@Override
+	public Vector<String> queryAllLogins() {
+		Vector result = new Vector(3);
+		result.add("Beth Riple");
+		result.add("Perico");
+		return result;
+	}
+
 	public int queryBlueprintDependencies(int bpitemID) {
 		throw new RuntimeException(
 				"Application connector not defined. Functionality 'queryBlueprintDependencies' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");

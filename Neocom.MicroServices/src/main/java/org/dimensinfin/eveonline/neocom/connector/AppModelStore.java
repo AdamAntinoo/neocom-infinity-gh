@@ -75,6 +75,8 @@ public class AppModelStore implements INeoComModelStore {
 	}
 
 	// - F I E L D - S E C T I O N ............................................................................
+	/** This is the unique list for all registered distinc Logins at the database. */
+	private Vector<String>						_loginList				= null;
 	/**
 	 * This is the string identifier assigned to this session and that relates to an specific set of api keys.
 	 */
@@ -112,6 +114,30 @@ public class AppModelStore implements INeoComModelStore {
 
 	// - M E T H O D - S E C T I O N ..........................................................................
 	/**
+	 * This is the main activation entry point for the Login. If there are no logins already on the ModelStore
+	 * we should get them from the backend database and then search for the indicated login. If finally that
+	 * login is not found we can fire an Exception.
+	 * 
+	 * @param login
+	 */
+	public String activateLoginIdentifier(final String loginTarget) {
+		logger.info(">< [AppModelStore.activateLoginIdentifier]loginTarget: " + loginTarget);
+		if (null == _loginList) _loginList = AppConnector.getDBConnector().queryAllLogins();
+		if (_loginIdentifier.equalsIgnoreCase(loginTarget)) return _loginIdentifier;
+		for (String login : _loginList) {
+			if (login.equalsIgnoreCase(loginTarget)) {
+				_loginIdentifier = loginTarget;
+				// Update the list of api keys and the characters related to the login.
+				this.readApiKeys();
+				return _loginIdentifier;
+			}
+		}
+		// We run through all the login list and did not found the login. Or a problem of an error. Fire exception.
+		throw new NeocomRuntimeException(
+				"RT[AppModelStore.activateLoginIdentifier]>Login " + loginTarget + " not found on current login list.");
+	}
+
+	/**
 	 * Searches for the pilot on the character list active after the API key processing and copies it to the
 	 * store slot.<br>
 	 * On the new implementation change the search to delegate the action to a new data model where the list of
@@ -120,18 +146,21 @@ public class AppModelStore implements INeoComModelStore {
 	 * @param characterid
 	 *          id of the character to activate and select for work with.
 	 */
-	public void activatePilot(final long characterid) {
-		logger.info(">> [AppModelStore.activatePilot]Id: " + characterid);
-		// if the current pilot is the one searched simplify the search.
-		if ((null != _pilot) && ((_pilot.getCharacterID()) == characterid)) return;
+	public NeoComCharacter activatePilot(final long characterid) {
+		logger.info(">< [AppModelStore.activatePilot]Id: " + characterid);
+		// If the current pilot is the one searched simplify the search.
+		if ((null != _pilot) && ((_pilot.getCharacterID()) == characterid)) return _pilot;
+
+		// If the list of pilots is empty then we have a problem when activating the Login. Try again.
+		if (null == _neocomCharacters) this.readApiKeys();
+		// Search for the Character
 		_pilot = this.searchCharacter(characterid);
-		if (null == _pilot)
-			throw new RuntimeException("RT AppModelStore.activatePilot - Pilot not located. Problem of initialization.");
-		// Link the pilot to the store for dirty processing.
-		//		_pilot.setParent(this);
-		_pilotIdentifier = _pilot.getCharacterID();
-		logger.info("<< [AppModelStore.activatePilot]");
-		//		return _pilot;
+		if (null != _pilot) {
+			_pilotIdentifier = _pilot.getCharacterID();
+			return _pilot;
+		}
+		throw new RuntimeException(
+				"RT [AppModelStore.activatePilot]>Pilot with id: " + characterid + " not located. Problem of initialization.");
 	}
 
 	/**
@@ -141,6 +170,7 @@ public class AppModelStore implements INeoComModelStore {
 	 * 
 	 * @return
 	 */
+	@Deprecated
 	public List<NeoComCharacter> getActiveCharacters() {
 		// Iterate the list of pilots and accumulate the active ones.
 		final ArrayList<NeoComCharacter> activePilots = new ArrayList<NeoComCharacter>();
@@ -154,6 +184,7 @@ public class AppModelStore implements INeoComModelStore {
 		return activePilots;
 	}
 
+	@Deprecated
 	public List<NeoComApiKey> getApiKeys() {
 		if (null == _neocomApiKeys) {
 			this.readApiKeys();
@@ -167,16 +198,15 @@ public class AppModelStore implements INeoComModelStore {
 	 * a new one.
 	 */
 	public NeoComCharacter getCurrentPilot() {
-		if (null == _pilot)
-			throw new NeocomRuntimeException("UNEX. Selected character is not selected. Go back to home to select one.");
-		else
-			return _pilot;
+		if (null != _pilot) return _pilot;
+		throw new NeocomRuntimeException(
+				"RT [AppModelStore.getCurrentPilot]>Selected character is not selected. Go back to home to select one.");
 	}
 
 	public String getLoginIdentifier() {
-		if (null == _loginIdentifier)
-			throw new NeocomRuntimeException("Login Identifier not defined. Setting to default if possible.");
-		return _loginIdentifier;
+		if (null != _loginIdentifier) return _loginIdentifier;
+		throw new NeocomRuntimeException(
+				"RT [AppModelStore.getLoginIdentifier]>Login Identifier not defined. Setting to default if possible.");
 	}
 
 	@Deprecated
@@ -234,24 +264,12 @@ public class AppModelStore implements INeoComModelStore {
 	}
 
 	/**
-	 * Search for the specified character id in the list of associated characters list.
-	 * 
-	 * @param characterID
-	 * @return
-	 */
-	public NeoComCharacter searchCharacter(final long characterID) {
-		for (NeoComCharacter character : _neocomCharacters) {
-			if (character.getCharacterID() == characterID) return character;
-		}
-		throw new NeocomRuntimeException("Character with id=" + characterID + " not found on list");
-	}
-
-	/**
 	 * Stored the keys on the store fields from the persistence store. This code should reconnect pointers to
 	 * fields not stored and marked as transient.
 	 * 
 	 * @param newkeys
 	 */
+	@Deprecated
 	public void setApiKeys(final List<NeoComApiKey> newkeys) {
 		_neocomApiKeys = newkeys;
 		// we have to reparent the new data because this is not stored on the serialization.
@@ -263,6 +281,7 @@ public class AppModelStore implements INeoComModelStore {
 		//		}
 	}
 
+	@Deprecated
 	public void setLoginIdentifier(final String login) {
 		// OPTIMIZATION If the login is already set to the same value do not update the keys.
 		if (_loginIdentifier.equalsIgnoreCase(login))
@@ -305,6 +324,19 @@ public class AppModelStore implements INeoComModelStore {
 			}
 		}
 		AppModelStore.logger.info("<< [AppModelStore.readApiKeys]");
+	}
+
+	/**
+	 * Search for the specified character id in the list of associated characters list.
+	 * 
+	 * @param characterID
+	 * @return
+	 */
+	private NeoComCharacter searchCharacter(final long characterID) {
+		for (NeoComCharacter character : _neocomCharacters) {
+			if (character.getCharacterID() == characterID) return character;
+		}
+		throw new NeocomRuntimeException("Character with id=" + characterID + " not found on list");
 	}
 }
 

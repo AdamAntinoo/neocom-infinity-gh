@@ -5,7 +5,7 @@
 //	DESCRIPTION:	Initial step to have an Eve application based on the Android code. This version exports
 //								a list of assets and also has access to the Eve Item CCP database to get some of the
 //								asset items properties..
-package org.dimensinfin.eveonline.neocom.microservices.controller;
+package org.dimensinfin.eveonline.neocom.controller;
 
 import java.util.logging.Logger;
 
