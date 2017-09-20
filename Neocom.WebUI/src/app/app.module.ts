@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { JsonpModule } from '@angular/http';
 import { CookieModule } from 'ngx-cookie';
+import { Ng2MenuModule } from 'ng2-Menu';
 
 //--- ROUTING
 import { AppRoutingModule } from './app-routing.module';
@@ -40,6 +41,7 @@ import { PageHomeComponent } from './page/page-home/page-home.component';
 import { NavigationMenuComponent } from './component/navigation-menu/navigation-menu.component';
 import { Login4ListComponent } from './components/login4-list/login4-list.component';
 import { SeparatorComponent } from './components/separator/separator.component';
+import { RenderComponent } from './components/render/render.component';
 
 
 @NgModule({
@@ -64,6 +66,8 @@ import { SeparatorComponent } from './components/separator/separator.component';
     PlanetaryManagerPageComponent,
     AssetComponent,
     SeparatorComponent,
+    RenderComponent,
+    AssetComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +75,8 @@ import { SeparatorComponent } from './components/separator/separator.component';
     HttpModule,
     JsonpModule,
     CookieModule.forRoot(),
-    AppRoutingModule
+    Ng2MenuModule,
+    AppRoutingModule,
   ],
   providers: [
     AppModelStoreService,
