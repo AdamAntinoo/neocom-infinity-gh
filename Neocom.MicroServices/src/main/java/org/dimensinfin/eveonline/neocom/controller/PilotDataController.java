@@ -4,7 +4,7 @@
 //	ENVIRONMENT:	SpringBoot-MS-Java 1.8.
 //	DESCRIPTION:	This is the integration project for all the web server pieces. This is the launcher for
 //								the SpringBoot+MicroServices+Angular unified web application.
-package org.dimensinfin.eveonline.neocom.microservices.controller;
+package org.dimensinfin.eveonline.neocom.controller;
 
 import java.util.Vector;
 import java.util.logging.Logger;

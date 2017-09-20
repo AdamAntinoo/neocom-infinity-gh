@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.connector.AppConnector;
 import org.dimensinfin.eveonline.neocom.connector.AppModelStore;
-import org.dimensinfin.eveonline.neocom.connector.ICCPDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.ICacheConnector;
 import org.dimensinfin.eveonline.neocom.connector.IConnector;
 import org.dimensinfin.eveonline.neocom.connector.IDatabaseConnector;
@@ -92,11 +91,11 @@ public class NeocomMicroServiceApplication implements IConnector/* ,CacheResolve
 		return cacheConnector;
 	}
 
-	@Override
-	public ICCPDatabaseConnector getCCPDBConnector() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	//	@Override
+	//	public ICCPDatabaseConnector getCCPDBConnector() {
+	//		// TODO Auto-generated method stub
+	//		return null;
+	//	}
 
 	@Override
 	public IDatabaseConnector getDBConnector() {
