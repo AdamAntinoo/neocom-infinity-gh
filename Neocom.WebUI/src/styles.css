@@ -213,7 +213,7 @@ body {
 }
 
 .neocom-arrow {
-  transform: rotate(90deg);
+  /*transform: rotate(90deg);*/
   filter: blur(1px);
 }
 

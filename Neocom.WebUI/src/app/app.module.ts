@@ -23,6 +23,7 @@ import { PilotManagerComponent } from './components/pilot-manager/pilot-manager.
 import { PlanetaryManagerComponent } from './components/planetary-manager/planetary-manager.component';
 import { RegionComponent } from './components/region/region.component';
 import { LocationComponent } from './components/location/location.component';
+import { AssetComponent } from './components/asset/asset.component';
 
 //--- PIPES
 import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
@@ -38,6 +39,7 @@ import { PlanetaryManagerPageComponent } from './pages/planetary-manager-page/pl
 import { PageHomeComponent } from './page/page-home/page-home.component';
 import { NavigationMenuComponent } from './component/navigation-menu/navigation-menu.component';
 import { Login4ListComponent } from './components/login4-list/login4-list.component';
+import { SeparatorComponent } from './components/separator/separator.component';
 
 
 @NgModule({
@@ -60,6 +62,8 @@ import { Login4ListComponent } from './components/login4-list/login4-list.compon
     LoginPageComponent,
     Login4ListComponent,
     PlanetaryManagerPageComponent,
+    AssetComponent,
+    SeparatorComponent,
   ],
   imports: [
     BrowserModule,

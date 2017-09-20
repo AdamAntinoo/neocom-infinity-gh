@@ -8,7 +8,7 @@ import { AppModelStoreService } from '../../services/app-model-store.service';
 //--- COMPONENTS
 import { PageComponent } from '../../classes/PageComponent';
 //--- COMPONENTS
-import { RenderComponent } from '../render/render.component';
+//import { RenderComponent } from '../render/render.component';
 import { PlanetaryManagerPageComponent } from '../../pages/planetary-manager-page/planetary-manager-page.component';
 //--- MODELS
 import { Render } from '../../models/Render.model';
@@ -19,12 +19,12 @@ import { Location } from '../../models/Location.model';
   templateUrl: './location.component.html',
   styleUrls: ['./location.component.css']
 })
-export class LocationComponent extends RenderComponent implements OnInit {
+export class LocationComponent implements OnInit {
   @Input() viewer: PlanetaryManagerPageComponent;
   @Input() node: Location;
 
   constructor(private appModelStore: AppModelStoreService) {
-    super();
+    //    super();
   }
 
   ngOnInit() {

@@ -12,29 +12,27 @@ import { PageComponent } from '../../classes/PageComponent';
 import { PlanetaryManagerPageComponent } from '../../pages/planetary-manager-page/planetary-manager-page.component';
 //--- MODELS
 import { Render } from '../../models/Render.model';
-import { Asset } from '../../models/Asset.model';
+import { Location } from '../../models/Location.model';
 
 @Component({
-  selector: 'neocom-asset',
-  templateUrl: './asset.component.html',
-  styleUrls: ['./asset.component.css']
+  selector: 'neocom-separator',
+  templateUrl: './separator.component.html',
+  styleUrls: ['./separator.component.css']
 })
-export class AssetComponent implements OnInit {
+export class SeparatorComponent implements OnInit {
   @Input() viewer: PlanetaryManagerPageComponent;
-  @Input() node: Asset;
+  @Input() node: any;
 
   constructor(private appModelStore: AppModelStoreService) {
-    //  super();
+    //    super();
   }
 
   ngOnInit() {
   }
-  public totalValueIsk(): number {
-    let value = this.node.item.baseprice * this.node.quantity;
-    return value;
+  public hasMenu(): boolean {
+    return false;
   }
-  public totalVolume(): number {
-    let value = this.node.item.volume * this.node.quantity;
-    return value;
+  public isExpandable(): boolean {
+    return false;
   }
 }

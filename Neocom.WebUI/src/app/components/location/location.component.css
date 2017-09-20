@@ -9,3 +9,11 @@
   line-height: 16px;
   /*width: 88px;*/
 }
+
+.neocom-arrow-expanded {
+  transform: rotate(90deg);
+}
+
+.panel-expanded {
+  background-color: #0F0F20;
+}

@@ -19,10 +19,8 @@ import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.constant.ModelWideConstants;
 import org.dimensinfin.eveonline.neocom.database.NeocomDBHelper;
-import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
 import org.dimensinfin.eveonline.neocom.industry.Job;
 import org.dimensinfin.eveonline.neocom.industry.Resource;
-import org.dimensinfin.eveonline.neocom.market.MarketDataSet;
 import org.dimensinfin.eveonline.neocom.market.NeoComMarketOrder;
 import org.dimensinfin.eveonline.neocom.model.ApiKey;
 import org.dimensinfin.eveonline.neocom.model.DatabaseVersion;
@@ -36,8 +34,6 @@ import org.dimensinfin.eveonline.neocom.model.TimeStamp;
 import org.dimensinfin.eveonline.neocom.planetary.PlanetaryResource;
 import org.dimensinfin.eveonline.neocom.planetary.ResourceList;
 import org.dimensinfin.eveonline.neocom.planetary.Schematics;
-import org.dimensinfin.eveonline.neocom.services.MarketDataService;
-import org.springframework.cache.annotation.Cacheable;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.stmt.PreparedQuery;
@@ -51,29 +47,29 @@ import com.j256.ormlite.support.DatabaseConnection;
 //@CacheConfig(cacheNames = "MarketData")
 public class SpringDatabaseConnector implements IDatabaseConnector {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger													logger										= Logger.getLogger("SpringDatabaseConnector");
+	private static Logger										logger										= Logger.getLogger("SpringDatabaseConnector");
 
 	// - F I E L D   I D E N T I F I E R S
-	private static int														STATIONTYPEID_COLINDEX		= 1;
+	private static int											STATIONTYPEID_COLINDEX		= 1;
 
 	// - S Q L   C O M M A N D S
-	private static final String										CCPDATABASE_URL						= "jdbc:sqlite:src/main/resources/eve.db";
+	private static final String							CCPDATABASE_URL						= "jdbc:sqlite:src/main/resources/eve.db";
 	//	protected static String												DATABASE_NAME							= "neocomdata.db";
 	//	protected static int													DATABASE_VERSION					= 010;
 	//
-	private static final String										SELECT_RAW_PRODUCTRESULT	= "SELECT pstmo.typeID, pstmo.quantity, pstmo.schematicID"
+	private static final String							SELECT_RAW_PRODUCTRESULT	= "SELECT pstmo.typeID, pstmo.quantity, pstmo.schematicID"
 			+ " FROM   planetSchematicsTypeMap pstmi, planetSchematicsTypeMap pstmo" + " WHERE  pstmi.typeID = ?"
 			+ " AND    pstmo.schematicID = pstmi.schematicID" + " AND    pstmo.isInput = 0";
-	private static final String										SELECT_TIER2_INPUTS				= "SELECT pstmt.TYPEid, pstmt.quantity"
+	private static final String							SELECT_TIER2_INPUTS				= "SELECT pstmt.TYPEid, pstmt.quantity"
 			+ " FROM  planetSchematicsTypeMap pstms, planetSchematicsTypeMap pstmt" + " WHERE pstms.typeID = ?"
 			+ " AND   pstms.isInput = 0" + " AND   pstmt.schematicID = pstms.schematicID" + " AND   pstmT.isInput = 1";
-	private static final String										SELECT_SCHEMATICS_INFO		= "SELECT pstms.typeID, pstms.quantity, pstms.isInput"
+	private static final String							SELECT_SCHEMATICS_INFO		= "SELECT pstms.typeID, pstms.quantity, pstms.isInput"
 			+ " FROM   planetSchematicsTypeMap pstmt, planetSchematicsTypeMap pstms" + " WHERE  pstmt.typeID = ?"
 			+ " AND    pstmt.isInput = 0" + " AND    pstms.schematicID = pstmt.schematicID";
 
 	//private static final String							DATABASE_URL							= "jdbc:sqlite:D:\\Development\\WorkStage\\ProjectsAngular\\NeoCom\\src\\main\\resources\\eve.db";
 	//private static final String							DATABASE_URL							= "jdbc:sqlite:D:\\Development\\ProjectsAngular\\NeoCom\\src\\main\\resources\\eve.db";
-	private static final String										SELECT_ITEM_BYID					= "SELECT it.typeID AS typeID, it.typeName AS typeName"
+	private static final String							SELECT_ITEM_BYID					= "SELECT it.typeID AS typeID, it.typeName AS typeName"
 			+ " , ig.groupName AS groupName" + " , ic.categoryName AS categoryName" + " , it.basePrice AS basePrice"
 			+ " , it.volume AS volume" + " , IFNULL(img.metaGroupName, " + '"' + "NOTECH" + '"' + ") AS Tech"
 			+ " FROM invTypes it" + " LEFT OUTER JOIN invGroups ig ON ig.groupID = it.groupID"
@@ -81,41 +77,41 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 			+ " LEFT OUTER JOIN invMetaTypes imt ON imt.typeID = it.typeID"
 			+ " LEFT OUTER JOIN invMetaGroups img ON img.metaGroupID = imt.metaGroupID" + " WHERE it.typeID = ?";
 
-	private static final String										SELECT_LOCATIONBYID				= "SELECT md.itemID AS locationID, md.typeID AS typeID, md.itemName AS locationName, md.security AS security"
+	private static final String							SELECT_LOCATIONBYID				= "SELECT md.itemID AS locationID, md.typeID AS typeID, md.itemName AS locationName, md.security AS security"
 			+ " , IFNULL(md.solarSystemID, -1) AS systemID, ms.solarSystemName AS system"
 			+ " , IFNULL(md.constellationID, -1) AS constellationID, mc.constellationName AS constellation"
 			+ " , IFNULL(md.regionID, -1) AS regionID, mr.regionName AS region" + " FROM mapDenormalize md"
 			+ " LEFT OUTER JOIN mapRegions mr ON mr.regionID = md.regionID"
 			+ " LEFT OUTER JOIN mapConstellations mc ON mc.constellationID = md.constellationID"
 			+ " LEFT OUTER JOIN mapSolarSystems ms ON ms.solarSystemID = md.solarSystemID" + " WHERE itemID = ?";
-	private static final String										SELECT_LOCATIONBYSYSTEM		= "SELECT solarSystemID from mapSolarSystems WHERE solarSystemName = ?";
+	private static final String							SELECT_LOCATIONBYSYSTEM		= "SELECT solarSystemID from mapSolarSystems WHERE solarSystemName = ?";
 
-	private static final String										LOM4BLUEPRINT							= "SELECT iam.typeID, itb.typeName, iam.materialTypeID, it.typeName, ig.groupName, ic.categoryName, iam.quantity, iam.consume"
+	private static final String							LOM4BLUEPRINT							= "SELECT iam.typeID, itb.typeName, iam.materialTypeID, it.typeName, ig.groupName, ic.categoryName, iam.quantity, iam.consume"
 			+ " FROM industryActivityMaterials iam, invTypes itb, invTypes it, invGroups ig, invCategories ic"
 			+ " WHERE iam.typeID = ?" + " AND iam.activityID = 1" + " AND itb.typeID = iam.typeID"
 			+ " AND it.typeID = iam.materialTypeID" + " AND ig.groupID = it.groupID" + " AND ic.categoryID = ig.categoryID";
 
-	private static final String										TECH4BLUEPRINT						= "SELECT iap.typeID, it.typeName, imt.metaGroupID, img.metaGroupName"
+	private static final String							TECH4BLUEPRINT						= "SELECT iap.typeID, it.typeName, imt.metaGroupID, img.metaGroupName"
 			+ " FROM industryActivityProducts iap, invTypes it, invMetaTypes imt, invMetaGroups img" + " WHERE it.typeID =?"
 			+ " AND iap.typeID = it.typeID" + " AND imt.typeID = productTypeID" + " AND img.metaGroupID = imt.metaGroupID"
 			+ " AND iap.activityID = 1";
 
-	private static final String										REFINING_ASTEROID					= "SELECT itm.materialTypeID AS materialTypeID, itm.quantity AS qty"
+	private static final String							REFINING_ASTEROID					= "SELECT itm.materialTypeID AS materialTypeID, itm.quantity AS qty"
 			+ " , it.typeName AS materialName" + " , ito.portionSize AS portionSize"
 			+ " FROM invTypeMaterials itm, invTypes it, invTypes ito" + " WHERE itm.typeID = ?"
 			+ " AND it.typeID = itm.materialTypeID" + " AND ito.typeID = itm.typeID" + " ORDER BY itm.materialTypeID";
 
-	private static final String										INDUSTRYACTIVITYMATERIALS	= "SELECT materialTypeID, quantity, consume FROM industryActivityMaterials WHERE typeID = ? AND activityID = 8";
-	private static final String										STATIONTYPE								= "SELECT stationTypeID FROM staStations WHERE stationID = ?";
-	private static final String										JOB_COMPLETION_TIME				= "SELECT typeID, time FROM industryActivity WHERE typeID = ? AND activityID = ?";
-	private static final String										CHECK_INVENTION						= "SELECT count(*) AS counter"
+	private static final String							INDUSTRYACTIVITYMATERIALS	= "SELECT materialTypeID, quantity, consume FROM industryActivityMaterials WHERE typeID = ? AND activityID = 8";
+	private static final String							STATIONTYPE								= "SELECT stationTypeID FROM staStations WHERE stationID = ?";
+	private static final String							JOB_COMPLETION_TIME				= "SELECT typeID, time FROM industryActivity WHERE typeID = ? AND activityID = ?";
+	private static final String							CHECK_INVENTION						= "SELECT count(*) AS counter"
 			+ " FROM industryActivityProducts iap" + " WHERE iap.typeID = ?" + " AND iap.activityID = 8";
-	private static final String										INVENTION_PRODUCT					= "SELECT productTypeID FROM industryActivityProducts WHERE typeID = ? AND activityID = 8";
-	private static final String										CHECK_MANUFACTURABLE			= "SELECT count(*) AS counter FROM industryActivityProducts iap WHERE iap.productTypeID = ? AND iap.activityID = 1";
-	private static final String										CHECK_REACTIONABLE				= "SELECT count(*) AS counter FROM industryActivityProducts iap WHERE iap.productTypeID = ? AND iap.activityID = 1";
-	private static final String										CHECK_PLANETARYPRODUCED		= "SELECT count(*) AS counter FROM industryActivityProducts iap WHERE iap.productTypeID = ? AND iap.activityID = 1";
-	private static final String										REACTION_COMPONENTS				= "SELECT"
-			+ "   invTypeReactions.reactionTypeID" + " , invTypes.typeID, invTypes.typeName" + " , invTypeReactions.input"
+	private static final String							INVENTION_PRODUCT					= "SELECT productTypeID FROM industryActivityProducts WHERE typeID = ? AND activityID = 8";
+	private static final String							CHECK_MANUFACTURABLE			= "SELECT count(*) AS counter FROM industryActivityProducts iap WHERE iap.productTypeID = ? AND iap.activityID = 1";
+	private static final String							CHECK_REACTIONABLE				= "SELECT count(*) AS counter FROM industryActivityProducts iap WHERE iap.productTypeID = ? AND iap.activityID = 1";
+	private static final String							CHECK_PLANETARYPRODUCED		= "SELECT count(*) AS counter FROM industryActivityProducts iap WHERE iap.productTypeID = ? AND iap.activityID = 1";
+	private static final String							REACTION_COMPONENTS				= "SELECT" + "   invTypeReactions.reactionTypeID"
+			+ " , invTypes.typeID, invTypes.typeName" + " , invTypeReactions.input"
 			+ " , COALESCE(dgmTypeAttributes.valueInt, dgmTypeAttributes.valueFloat) * invTypeReactions.quantity AS quantity"
 			+ " FROM invTypeReactions, dgmTypeAttributes, invTypes" + " WHERE"
 			+ " invTypes.typeId = invTypeReactions.typeID AND" + " invTypeReactions.reactionTypeID IN ("
@@ -123,18 +119,18 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 			+ " dgmTypeAttributes.typeID = invTypeReactions.typeID";
 
 	// - F I E L D - S E C T I O N ............................................................................
-	private String																databaseLink							= "jdbc:sqlite:src/main/resourcesneocomdata.db";
-	private int																		dbVersion									= 10;
-	private NeocomDBHelper												neocomDBHelper						= null;
-	private Connection														ccpDatabase								= null;
+	private String													databaseLink							= "jdbc:sqlite:src/main/resourcesneocomdata.db";
+	private int															dbVersion									= 10;
+	private NeocomDBHelper									neocomDBHelper						= null;
+	private Connection											ccpDatabase								= null;
 
 	//	private Context														_context									= null;
 	//	private SQLiteDatabase										staticDatabase						= null;
 	//	private EveDroidDBHelper									appDatabaseHelper					= null;
-	private final HashMap<Integer, EveItem>				itemCache									= new HashMap<Integer, EveItem>();
-	private final HashMap<Integer, MarketDataSet>	buyMarketDataCache				= new HashMap<Integer, MarketDataSet>();
-	private final HashMap<Integer, MarketDataSet>	sellMarketDataCache				= new HashMap<Integer, MarketDataSet>();
-	private final HashMap<Integer, Outpost>				outpostsCache							= new HashMap<Integer, Outpost>();
+	private final HashMap<Integer, EveItem>	itemCache									= new HashMap<Integer, EveItem>();
+	//	private final HashMap<Integer, MarketDataSet>	buyMarketDataCache				= new HashMap<Integer, MarketDataSet>();
+	//	private final HashMap<Integer, MarketDataSet>	sellMarketDataCache				= new HashMap<Integer, MarketDataSet>();
+	private final HashMap<Integer, Outpost>	outpostsCache							= new HashMap<Integer, Outpost>();
 	//	private final HashMap<Long, Asset>				containerCache						= new HashMap<Long, Asset>();;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
@@ -467,7 +463,7 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 	 * different treatment and also we check for the availability of the item at the current cache if
 	 * implemented.
 	 */
-	public EveItem searchItembyID(final int typeID) {
+	public synchronized EveItem searchItembyID(final int typeID) {
 		// Search the item on the cache.
 		EveItem hit = itemCache.get(typeID);
 		if (null == hit) {
@@ -649,94 +645,6 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 			logger.warning("Location <" + name + "> not found.");
 		}
 		return searchLocationbyID(hit.getSystemID());
-	}
-
-	/**
-	 * Search for this market data on the cache. <br>
-	 * The cache used for the search depends on the side parameter received on the call. All default prices are
-	 * references to the cost of the price to be spent to buy the item.<br>
-	 * If not found on the memory cache then try to load from the serialized version stored on disk. This is an
-	 * special implementation for SpringBoot applications that may run on a server so the cache disk location is
-	 * implemented in a different way that on Android, indeed, because we can access the market data online we
-	 * are not going to cache the data but get a fresh copy if not found on the cache.<br>
-	 * If the data is not located on the case call the market data downloader and processor to get a new copy
-	 * and store it on the cache.
-	 * 
-	 * @param itemID
-	 *          item id code of the item assigned to this market request.
-	 * @param side
-	 *          differentiates if we like to BUY or SELL the item.
-	 * @return the cached data or an empty locator ready to receive downloaded data.
-	 */
-	@Cacheable("MarketData")
-	public MarketDataSet searchMarketData(final int itemID, final EMarketSide side) {
-		logger.info(">> [SpringDatabaseConnector.searchMarketData]> itemid: " + itemID + " side: " + side.toString());
-		// for Market Data: " + itemID + " - " + side);
-		// Search on the cache. By default load the SELLER as If I am buying the
-		// item.
-
-		// Cache interception performed by EHCache. If we reach this point that means we have not cached the data.
-		//		HashMap<Integer, MarketDataSet> cache = sellMarketDataCache;
-		//		if (side == EMarketSide.BUYER) {
-		//			cache = buyMarketDataCache;
-		//		}
-		MarketDataSet entry = null;
-		if (null == entry) {
-			boolean doInmediately = true;
-			if (doInmediately) {
-				// Download and process the market data right now.
-				Vector<MarketDataSet> entries = MarketDataService.marketDataServiceEntryPoint(itemID);
-				for (MarketDataSet data : entries) {
-					if (data.getSide() == EMarketSide.BUYER) {
-						buyMarketDataCache.put(itemID, entry);
-						if (side == data.getSide()) entry = data;
-					}
-					if (data.getSide() == EMarketSide.SELLER) {
-						sellMarketDataCache.put(itemID, entry);
-						if (side == data.getSide()) entry = data;
-					}
-				}
-			} else {
-				// Post the download of the market data to the background service.
-				AppConnector.getCacheConnector().addMarketDataRequest(itemID);
-			}
-
-			//		cache.put(itemID, entry);
-
-			//			// Try to get the data from disk.
-			//			entry = AppConnector.getStorageConnector().readDiskMarketData(itemID, side);
-			//			if (null == entry) {
-			//				// Neither on disk. Make a request for download and return a
-			//				// dummy placeholder.
-			//				entry = new MarketDataSet(itemID, side);
-			//				if (true) {
-			//					NeoComApp.getTheCacheConnector().addMarketDataRequest(itemID);
-			//				}
-			//			}
-		}
-		//		else {
-		//			logger.info("-- [StringBatabaseConnector.searchMarketData]. Cache hit on memory.");
-		//			//			// Check again the location. If is the default then request a new
-		//			//			// update and remove it from the cache.
-		//			//			long lid = entry.getBestMarket().getLocation().getID();
-		//			//			if (lid < 0) {
-		//			//				NeoComApp.getTheCacheConnector().addMarketDataRequest(itemID);
-		//			//				cache.put(itemID, null);
-		//			//			}
-		//			//		}
-		//			// Check entry timestamp before return. Post an update if old.
-		//			// if (side.equalsIgnoreCase(ModelWideConstants.marketSide.CALCULATE))
-		//			// return entry;
-		//			// else {
-		//			if (AppConnector.checkExpiration(entry.getTS(), ModelWideConstants.HOURS2)) {
-		//				// Clear the cache for this item and call it again.
-		//				sellMarketDataCache.remove(itemID);
-		//				buyMarketDataCache.remove(itemID);
-		//				return searchMarketData(itemID, side);
-		//			}
-		//		}
-		logger.info("<< [SpringDatabaseConnector.searchMarketData]");
-		return entry;
 	}
 
 	public int searchModule4Blueprint(int bpitemID) {
