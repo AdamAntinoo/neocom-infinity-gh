@@ -20,10 +20,15 @@ import { Resource } from '../../models/Resource.model';
 export class ResourceComponent implements OnInit {
   //  @Input() viewer: PlanetaryManagerPageComponent;
   @Input() node: Resource;
-  public value: number = 1234567;
+
+  public quantity: number = 0;
+  public item = null;
 
   constructor(private appModelStore: AppModelStoreService) { }
 
   ngOnInit() {
+  }
+  public getMarketValue(): number {
+    return this.node.quantity * this.node.item.baseprice;
   }
 }

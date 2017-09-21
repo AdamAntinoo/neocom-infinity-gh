@@ -25,6 +25,7 @@ import { Manager } from '../models/Manager.model';
 import { AssetsManager } from '../models/AssetsManager.model';
 import { PlanetaryManager } from '../models/PlanetaryManager.model';
 import { ProcessingAction } from '../models/ProcessingAction.model';
+import { Separator } from '../models/Separator.model';
 
 //
 // This service handles the application storage of elements required to setup the data
@@ -60,7 +61,7 @@ export class AppModelStoreService {
     return this.http.get(request)
       .map(res => res.json())
       .map(result => {
-        let actionList: ProcessingAction[] = [];
+        let actionList: any[] = [];
         // Process the resulting hash array into a list of ProcessingActions.
         for (let key in result) {
           // Access the object into the spot.
@@ -69,6 +70,7 @@ export class AppModelStoreService {
           if (action.jsonClass == "ProcessingAction") {
             let convertedAction = new ProcessingAction(action);
             actionList.push(convertedAction);
+            actionList.push(new Separator());
           }
         }
         return actionList;
@@ -107,6 +109,8 @@ export class AppModelStoreService {
   the list of Pilots associated with that Login's Keys.
   */
   public accessLoginById(newloginid: string): Login {
+    // Check if the Login is not set.
+    if (null == this._currentLogin) this._currentLogin = this.setLoginById(newloginid);
     // Check if the required login is already the active Login.
     if (this._currentLogin.getLoginId() == newloginid) return this._currentLogin;
     else return this.setLoginById(newloginid);

@@ -36,4 +36,18 @@ export class ProcessingActionComponent implements OnInit {
     if (null != this.node) return this.node.outputs;
     else return [];
   }
+  public getInputValue() {
+    let value = 0;
+    for (let resource of this.node.inputs) {
+      value += resource.quantity * resource.item.baseprice;
+    }
+    return value;
+  }
+  public getOutputValue() {
+    let value = 0;
+    for (let resource of this.node.outputs) {
+      value += resource.quantity * resource.item.baseprice;
+    }
+    return value;
+  }
 }
