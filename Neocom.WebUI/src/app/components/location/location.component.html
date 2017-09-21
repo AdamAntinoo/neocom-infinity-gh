@@ -10,7 +10,7 @@
           <span class="neocom.label">[{{node.id}}]</span>
           <div class="lined-bottomline">
             <span class="neocom-data imaki-ff neocom-ts14" style="color: red;">[{{node.securityValue | number:'1.1-1'}}]</span>
-            <span class="neocom-data imaki-ff neocom-ts14"> {{node.name}}</span>
+            <span class="neocom-data imaki-ff neocom-ts14">{{node.name}}</span>
           </div>
           <div class="neocom-label">
             <span class="">STATION</span>
@@ -18,7 +18,7 @@
         </td>
         <td width="20%" class="neocom-panel-right-box" align="right ">
           <div class="neocom-classname neocom-ts14">{{node.region}} ► {{node.constellation}}</div>
-          <div class="stack-counter lined-bottomline">5</div>
+          <div class="stack-counter lined-bottomline">{{node.stackCount}}</div>
           <div class="neocom-label label-small">ITEMS</div>
         </td>
         <td *ngIf="hasMenu()" width="5%" class="neocom-panel-menu">

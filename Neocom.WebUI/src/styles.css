@@ -304,6 +304,11 @@ body {
   /*margin-left: 5px;*/
 }
 
+.iconsize-32 {
+  height: 32px;
+  width: 32px;
+}
+
 .iconsize-48 {
   height: 48px;
   width: 48px;

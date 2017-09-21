@@ -1,0 +1,28 @@
+<p>
+  processing-action works!
+</p>
+<div class="neocom-panel" id="content">
+  <table class="neocom-panel-container" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="45%" class="processing-inputs">
+        <div *ngFor="let node of getInputs()">
+          <neocom-resource *ngIf="node.jsonClass == 'Resource'" [node]="node"></neocom-resource>
+        </div>
+      </td>
+      <td width="10%">
+        <div class="processing-runs-box">
+          <span class="processing-runs">{{node.runs}}</span>
+        </div>
+      </td>
+      <td width="45%" class="processing-inputs">
+        <div *ngFor="let node of getOutputs()">
+          <neocom-resource *ngIf="node.jsonClass == 'Resource'" [node]="node"></neocom-resource>
+        </div>
+      </td>
+      <!-- <td width="5%" class="neocom-arrow-box">
+        <img class="neocom-arrow" *ngIf="!node.expanded " src="/assets/icons/arrowleft.png ">
+        <img class="neocom-arrow" *ngIf="node.expanded " src="/assets/icons/arrowright.png ">
+      </td> -->
+    </tr>
+  </table>
+</div>

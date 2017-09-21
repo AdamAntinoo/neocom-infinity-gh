@@ -12,9 +12,15 @@ import { AppRoutingModule } from './app-routing.module';
 //--- DIRECTIVES
 //--- SERVICES
 import { AppModelStoreService } from './services/app-model-store.service';
-import { PilotRoasterService } from './services/pilot-roaster.service';
-import { PilotListDataSourceService } from './services/pilot-list-data-source.service';
-import { PilotManagersDataSourceService } from './services/pilot-managers-data-source.service';
+//--- PIPES
+import { CapitalizeLetterPipe } from './pipes/capitalize-letter.pipe';
+//--- PAGES
+import { PageSplashComponent } from './page/page-splash/page-splash.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roaster-page.component';
+import { PilotDetailPageComponent } from './pages/pilot-detail-page/pilot-detail-page.component';
+import { PlanetaryManagerPageComponent } from './pages/planetary-manager-page/planetary-manager-page.component';
+import { PlanetaryOptimizationPageComponent } from './pages/planetary-optimization-page/planetary-optimization-page.component';
 //--- COMPONENTS
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -25,16 +31,8 @@ import { PlanetaryManagerComponent } from './components/planetary-manager/planet
 import { RegionComponent } from './components/region/region.component';
 import { LocationComponent } from './components/location/location.component';
 import { AssetComponent } from './components/asset/asset.component';
-
-//--- PIPES
-import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
-import { CapitalizeLetterPipe } from './pipes/capitalize-letter.pipe';
-//--- PAGES
-import { PageSplashComponent } from './page/page-splash/page-splash.component';
-import { LoginPageComponent } from './pages/login-page/login-page.component';
-import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roaster-page.component';
-import { PilotDetailPageComponent } from './pages/pilot-detail-page/pilot-detail-page.component';
-import { PlanetaryManagerPageComponent } from './pages/planetary-manager-page/planetary-manager-page.component';
+import { ResourceComponent } from './components/resource/resource.component';
+import { ProcessingActionComponent } from './components/processing-action/processing-action.component';
 
 //--- REMOVABLES
 import { PageHomeComponent } from './page/page-home/page-home.component';
@@ -42,6 +40,11 @@ import { NavigationMenuComponent } from './component/navigation-menu/navigation-
 import { Login4ListComponent } from './components/login4-list/login4-list.component';
 import { SeparatorComponent } from './components/separator/separator.component';
 import { RenderComponent } from './components/render/render.component';
+import { PilotRoasterService } from './services/pilot-roaster.service';
+import { PilotListDataSourceService } from './services/pilot-list-data-source.service';
+import { PilotManagersDataSourceService } from './services/pilot-managers-data-source.service';
+import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
+import { NodePanelComponent } from './components/node-panel/node-panel.component';
 
 
 @NgModule({
@@ -68,6 +71,10 @@ import { RenderComponent } from './components/render/render.component';
     SeparatorComponent,
     RenderComponent,
     AssetComponent,
+    PlanetaryOptimizationPageComponent,
+    ResourceComponent,
+    ProcessingActionComponent,
+    NodePanelComponent,
   ],
   imports: [
     BrowserModule,

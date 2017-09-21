@@ -1,0 +1,21 @@
+.processing-inputs {
+  border: white 1px solid;
+  box-shadow: inset 0px 0px 4px 1px rgba(255, 255, 255, 0.73), 0px 0px 4px 1px rgba(255, 255, 255, 0.73);
+  margin: 5px;
+}
+
+.processing-runs {
+  font-size: 20px;
+}
+
+.processing-runs-box {
+  border-radius: 50%;
+  margin-left: 20px;
+  margin-right: 20px;
+  line-height: 46px;
+  width: 60px;
+  height: 60px;
+  border: 5px #61210B dashed;
+  /* align-content: center; */
+  text-align: center;
+}
