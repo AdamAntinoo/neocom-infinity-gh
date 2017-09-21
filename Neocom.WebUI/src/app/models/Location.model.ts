@@ -9,8 +9,9 @@ export class Location extends NeoComNode {
   private totalValueCalculated: number = -1;
   private totalVolumeCalculated: number = -1;
 
-  public location: string = "LOCATION";
-  public position: string;
+  // public location: string = "LOCATION";
+  // public position: string;
+  public id;
   public children = [];
   public stackCount: number = 0;
 
@@ -46,5 +47,8 @@ export class Location extends NeoComNode {
       collab.push(new Separator());
     } else collab.push(this);
     return collab;
+  }
+  public getLocationId() {
+    return this.id;
   }
 }

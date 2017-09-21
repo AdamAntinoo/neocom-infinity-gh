@@ -1,5 +1,5 @@
 <div class="neocom-panel" id="content">
-  <div class="panel-collapsed" (click)="toggleExpanded()" [ngClass]="{expanded: node.expanded}">
+  <div class="panel-collapsed" [ngClass]="{'panel-expanded': node.expanded}">
     <table class="neocom-panel-container" cellspacing="0" cellpadding="0">
       <tr>
         <td>
@@ -17,21 +17,19 @@
           </div>
         </td>
         <td width="20%" class="neocom-panel-right-box" align="right ">
-          <div class="neocom-classname neocom-ts14">{{node.region}} ► {{node.constellation}}</div>
-          <div class="stack-counter lined-bottomline">{{node.stackCount}}</div>
+          <div class="neocom-marked neocom-marked-glow neocom-ts14">{{node.region}} ► {{node.constellation}}</div>
+          <div class="stack-counter lined-bottomline" style="padding-bottom: 1px;">{{node.stackCount}}</div>
           <div class="neocom-label label-small">ITEMS</div>
         </td>
-        <td *ngIf="hasMenu()" width="5%" class="neocom-panel-menu">
-          <!-- <div class="left-side-menu">Menu
-            <ul ng2-menu="left" ng-reflect-position="left">
-              <li> Menu Item 1 </li>
-            </ul>
-          </div> -->
-
+        <td *ngIf="hasMenu()" width="5%" class="">
+          <div class="">
+            <a class="no-underline" [routerLink]="['/login',getLoginId(),'pilot',getCharacterId(),'PlanetaryManager','location',getLocationId(),'PlanetaryOptimization']">
+              <img src="/assets/icons/menuicon.jpg" width="16px" height="16px" style="filter: invert(100%);">
+            </a>
+          </div>
         </td>
-        <td width="5%" class="neocom-arrow-box">
-          <img class="neocom-arrow" *ngIf="!node.expanded " src="/assets/icons/arrowleft.png ">
-          <img class="neocom-arrow" *ngIf="node.expanded " src="/assets/icons/arrowright.png ">
+        <td width="5%" class="neocom-arrow-box" (click)="toggleExpanded()">
+          <img class="neocom-arrow" [ngClass]="{'neocom-arrow-expanded': node.expanded}" src="/assets/icons/arrowright.png ">
         </td>
       </tr>
       <tr>

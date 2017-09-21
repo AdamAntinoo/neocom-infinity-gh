@@ -39,4 +39,13 @@ export class LocationComponent implements OnInit {
   public hasMenu(): boolean {
     return true;
   }
+  public getLoginId(): string {
+    return this.appModelStore.accessLogin().getLoginId();
+  }
+  public getCharacterId() {
+    return this.viewer.pilot.getId()
+  }
+  public getLocationId() {
+    return this.node.getLocationId();
+  }
 }

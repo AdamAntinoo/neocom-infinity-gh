@@ -3,7 +3,13 @@
 // COPYRIGHT:   (c) 2017 by Dimensinfin Industries, all rights reserved.
 // ENVIRONMENT: Angular - CLASS
 // DESCRIPTION: Defines the structure of a EVE Pilot. May depend on other classes to complete the character information hierarchy.
+import { Observable } from 'rxjs/Rx';
+// Import RxJs required methods
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
+//--- SERVICES
+import { AppModelStoreService } from '../services/app-model-store.service';
 //--- INTERFACES
 import { EVariant } from '../classes/EVariant.enumerated';
 //--- MODELS
@@ -13,6 +19,7 @@ import { Region } from './Region.model';
 import { Manager } from './Manager.model';
 import { Location } from './Location.model';
 import { Render } from './Render.model';
+import { ProcessingAction } from './ProcessingAction.model';
 
 export class PlanetaryManager extends Manager {
   //  public jsonClass: string = "Manager";
@@ -34,6 +41,12 @@ export class PlanetaryManager extends Manager {
     //   construction.push(regClass);
     // }
     // this.regions = construction;
+  }
+  /**
+  Call the backend to use that location as the input for the new Planetary Optimizer. The result should be the list of action to perform with this Location resources to optimize its Market value.
+  */
+  public getOptimizedScenario(locid: number, downloadService: AppModelStoreService): Observable<ProcessingAction[]> {
+    return downloadService.getBackendPlanetaryOptimizedScenario(locid);
   }
   public collaborate2View(variant: EVariant): NeoComNode[] {
     // Initialize the list to be output.

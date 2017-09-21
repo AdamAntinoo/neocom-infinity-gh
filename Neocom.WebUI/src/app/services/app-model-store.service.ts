@@ -24,6 +24,7 @@ import { NeoComCharacter } from '../models/NeoComCharacter.model';
 import { Manager } from '../models/Manager.model';
 import { AssetsManager } from '../models/AssetsManager.model';
 import { PlanetaryManager } from '../models/PlanetaryManager.model';
+import { ProcessingAction } from '../models/ProcessingAction.model';
 
 //
 // This service handles the application storage of elements required to setup the data
@@ -35,8 +36,8 @@ export class AppModelStoreService {
   static APPLICATION_SERVICE_PORT = "9000";
   static RESOURCE_SERVICE_URL: string = "http://localhost:" + AppModelStoreService.APPLICATION_SERVICE_PORT + "/api/v1";
 
-  private _loginList: Login[] = null;
-  private _currentLogin: Login = null;
+  private _loginList: Login[] = null; // List of Login names to be used to aggregate Keys
+  private _currentLogin: Login = null; // The current Login name active.
   //  private characterList: NeoComCharacter[] = null;
   private _currentCharacter: NeoComCharacter = null;
 
@@ -45,10 +46,42 @@ export class AppModelStoreService {
   private _viewList: Observable<Array<Render>>;
 
   constructor(private http: Http, private router: Router) { }
+
+  //--- B A C K E N D    C A L L S
+  public getBackendPlanetaryOptimizedScenario(locid: number): Observable<ProcessingAction[]> {
+    console.log("><[AppModelStoreService.getBackendPilotRoaster]>Loginid = " + locid);
+    // Get the current Login identifier and the current Character identifier to be used on the HTTP request.
+    let loginid = this._currentLogin.getLoginId();
+    let characterid = this._currentCharacter.getId();
+    //  this.cookieService.put("login-id", "default")
+    let request = AppModelStoreService.RESOURCE_SERVICE_URL + "/login/" + loginid;
+    request += "/pilot/" + characterid;
+    request += "/planetarymanager/location/" + locid + "/optimizeprocess";
+    return this.http.get(request)
+      .map(res => res.json())
+      .map(result => {
+        let actionList: ProcessingAction[] = [];
+        // Process the resulting hash array into a list of ProcessingActions.
+        for (let key in result) {
+          // Access the object into the spot.
+          let action = result[key];
+          // Check that we have an Action on the spot.
+          if (action.jsonClass == "ProcessingAction") {
+            let convertedAction = new ProcessingAction(action);
+            actionList.push(convertedAction);
+          }
+        }
+        return actionList;
+      });
+  }
+
   //--- L O G I N    S E C T I O N
   /**
   Go to the backend Database to retrieve the list of declared Logins to let the user to select the one he/she wants for working. If the list is already downloaded then do not access again the Database and return the cached list.
   */
+  public getBackendLoginList(): Observable<Login[]> {
+    return this.accessLoginList();
+  }
   public accessLoginList(): Observable<Login[]> {
     console.log(">>[AppModelStoreService.accessLoginList]");
     if (null == this._loginList) {
@@ -73,14 +106,19 @@ export class AppModelStoreService {
   If the Login set is different from the current Login then we fire the download of
   the list of Pilots associated with that Login's Keys.
   */
+  public accessLoginById(newloginid: string): Login {
+    // Check if the required login is already the active Login.
+    if (this._currentLogin.getLoginId() == newloginid) return this._currentLogin;
+    else return this.setLoginById(newloginid);
+  }
   public setLoginById(newloginid: string): Login {
+    // WARNING. This method can fail if the list is empty because of the asynch of the backend.
     if (null == this._loginList) {
-      this.accessLoginList()
+      this.getBackendLoginList()
         .subscribe(result => {
-          console.log("--[AppModelStoreService.setLoginById.accessLoginList]>LoginList: " + JSON.stringify(result));
+          console.log("--[AppModelStoreService.accessLoginById.getBackendLoginList]>LoginList: " + JSON.stringify(result));
           // The the list of planetary resource lists to the data returned.
           this._loginList = result;
-          //      this.downloading = false;
         });
     }
     // search on the list of Logins the one with the same id.

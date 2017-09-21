@@ -288,7 +288,7 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 	@Override
 	public Vector<String> queryAllLogins() {
 		Vector result = new Vector(3);
-		result.add("Beth Riple");
+		result.add("Beth Ripley");
 		result.add("Perico");
 		return result;
 	}

@@ -10,7 +10,7 @@ import { Render } from '../models/Render.model';
 import { NeoComCharacter } from '../models/NeoComCharacter.model';
 
 export class Login extends Render {
-  private _downloaded: boolean = false;
+  private downloaded: boolean = false;
   private _pilotRoaster: NeoComCharacter[] = null;
   private downloadPending: boolean = false;
 
@@ -24,6 +24,37 @@ export class Login extends Render {
     this.downloadPending = false;
   }
 
+  /**
+  Search the Character by its id and then select if as the current character for next operations.
+  */
+  public accessCharacterById(id: number): NeoComCharacter {
+    if (null != this._pilotRoaster) {
+      for (let c of this._pilotRoaster) {
+        if (c.getId() == id) return c;
+      }
+    }
+    return null;
+    //  throw new TypeError("Character identifier " + id + " not found. Cannot select that NeoComCharacter");
+  }
+  public accessPilotRoaster(downloadService: AppModelStoreService): Observable<NeoComCharacter[]> {
+    if (this.downloaded)
+      return new Observable(observer => {
+        setTimeout(() => {
+          observer.next(this._pilotRoaster);
+        }, 100);
+        setTimeout(() => {
+          observer.complete();
+        }, 100);
+      });
+    else {
+      this.downloaded = true;
+      return downloadService.getBackendPilotRoaster(this.getLoginId());
+    }
+  }
+  public setPilotRoaster(list: NeoComCharacter[]): void {
+    this._pilotRoaster = list;
+  }
+  //---  G E T T E R S   A N D   S E T T E R S
   public getLoginId(): string {
     return this.loginid;
   }
@@ -35,12 +66,12 @@ export class Login extends Render {
   But the task is not easy since the class has no access to any of the Services. It should have a Service sent by parameter to be able to complete the operation.
   */
   public getKeyCount(): number {
-    if (this._downloaded)
+    if (this.downloaded)
       return this._pilotRoaster.length;
     else return 0;
   }
   public getKeyCountObsrver(downloadService: AppModelStoreService): number {
-    if (this._downloaded) return this._pilotRoaster.length;
+    if (this.downloaded) return this._pilotRoaster.length;
     else {
       if (this.downloadPending) return 0;
       else {
@@ -51,40 +82,11 @@ export class Login extends Render {
             console.log("--[Login.getKeyCount.getBackendPilotRoaster]>Roaster: " + JSON.stringify(result));
             // The the list of planetary resource lists to the data returned.
             this._pilotRoaster = result;
-            this._downloaded = true;
+            this.downloaded = true;
             this.downloadPending = false;
             return this._pilotRoaster.length;
           });
       }
-    }
-  }
-  public accessPilotRoaster(downloadService: AppModelStoreService): Observable<NeoComCharacter[]> {
-    if (this._downloaded)
-      return new Observable(observer => {
-        setTimeout(() => {
-          observer.next(this._pilotRoaster);
-        }, 100);
-        setTimeout(() => {
-          observer.complete();
-        }, 100);
-      });
-    else {
-      this._downloaded = true;
-      return downloadService.getBackendPilotRoaster(this.getLoginId());
-    }
-  }
-  public setPilotRoaster(list: NeoComCharacter[]): void {
-    this._pilotRoaster = list;
-  }
-  /**
-  Search the Character by its id and then select if as the current character for next operations.
-  */
-  public accessCharacterById(id: number): NeoComCharacter {
-    if (null != this._pilotRoaster) {
-      for (let c of this._pilotRoaster) {
-        if (c.getId() == id) return c;
-      }
-      throw new TypeError("Character identifier " + id + " not found. Cannot select that NeoComCharacter");
     }
   }
 }
