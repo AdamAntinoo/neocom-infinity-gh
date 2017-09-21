@@ -1,2 +1,4 @@
 http://localhost:9000/api/v1/login/Beth%20Ripley/pilot/92223647/planetarymanager
 http://localhost:9000/api/v1/login/Perico/pilot/93813310/planetarymanager
+
+http://localhost:9000/api/v1/login/Beth%20Ripley/pilot/92223647/planetarymanager/location/60014089/optimizeprocess

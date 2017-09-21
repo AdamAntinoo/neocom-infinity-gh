@@ -189,6 +189,14 @@ body {
   font-size: 14px;
 }
 
+.neocom-ts12 {
+  font-size: 12px;
+}
+
+.neocom-ts10 {
+  font-size: 10px;
+}
+
 .stack-counter {
   font-size: 22px;
   font-weight: 600;
@@ -222,6 +230,14 @@ body {
 
 .neocom-panel {
   font-family: "Mons Olympia";
+  background-color: #080808; // Light black
+  cursor: pointer;
+  line-height: 1.0;
+  margin-bottom: 5px;
+  width: 60%;
+  position: relative;
+  height: auto;
+  opacity: 0.8;
 }
 
 .neocom-panel-container {
@@ -239,14 +255,10 @@ body {
 
 #content {
   background-color: #080808; // Light black
-  /*border-color: blue;*/
   cursor: pointer;
   line-height: 1.0;
   margin-bottom: 5px;
   width: 60%;
-  /*border-radius: 5px;*/
-  /*box-shadow: inset 0px 0px 4px 1px rgba(255, 255, 255, 0.73), 0px 0px 4px 1px rgba(255, 255, 255, 0.73);*/
-  /*border: 1px #A0A0F0 solid;*/
   position: relative;
   height: auto;
   opacity: 0.8;
@@ -262,9 +274,6 @@ body {
   height: 20px;
   border: 2px orange solid;
   filter: blur(1px);
-  /* or whatever colour */
-  /*border-style: solid;*/
-  /* or whatever style */
   content: ' ';
 }
 
@@ -272,14 +281,12 @@ body {
   top: 0;
   left: 0;
   border-width: 2px 0 0 2px;
-  /*box-shadow: inset 0px 0px 4px 1px rgba(255, 255, 255, 0.73), 0px 0px 4px 1px rgba(255, 255, 255, 0.73);*/
 }
 
 #content:after {
   top: 0;
   right: 0;
   border-width: 2px 2px 0 0;
-  /*box-shadow: inset 0px 0px 4px 1px rgba(255, 255, 255, 0.73), 0px 0px 4px 1px rgba(255, 255, 255, 0.73);*/
 }
 
 #content>:first-child:before {
