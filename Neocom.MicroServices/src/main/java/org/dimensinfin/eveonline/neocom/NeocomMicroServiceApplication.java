@@ -39,8 +39,9 @@ import org.springframework.context.annotation.ImportResource;
 //@EnableScheduling
 public class NeocomMicroServiceApplication implements IConnector/* ,CacheResolver */ {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger												logger		= Logger.getLogger("NeocomMicroServiceApplication");
-	public static NeocomMicroServiceApplication	singleton	= null;
+	private static Logger												logger						= Logger.getLogger("NeocomMicroServiceApplication");
+	public static final String									APPLICATION_NAME	= "NeocomMicroServiceApplication";
+	public static NeocomMicroServiceApplication	singleton					= null;
 
 	// - M A I N   E N T R Y P O I N T ........................................................................
 	/**
@@ -77,6 +78,9 @@ public class NeocomMicroServiceApplication implements IConnector/* ,CacheResolve
 		this.getCacheConnector().addCharacterUpdateRequest(characterID);
 	}
 
+	public String getAppName() {
+		return APPLICATION_NAME;
+	}
 	//	@Bean
 	//	public CacheManagerCustomizer<ConcurrentMapCacheManager> cacheManagerCustomizer() {
 	//		return new CacheManagerCustomizer<ConcurrentMapCacheManager>() {

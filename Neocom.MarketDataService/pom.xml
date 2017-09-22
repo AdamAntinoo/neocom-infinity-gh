@@ -18,13 +18,14 @@
 	</parent>
 
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>1.7</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<springframework.boot.version>1.3.5.RELEASE</springframework.boot.version>
-		<spring.boot.admin.version>1.3.3</spring.boot.admin.version>
+		<springframework.cloud.version>Brixton.RELEASE</springframework.cloud.version>
 		<metrics.version>3.1.2</metrics.version>
 		<dropwizard-metrics-influxdb.version>0.3.0</dropwizard-metrics-influxdb.version>
+		<springframework.boot.version>1.3.5.RELEASE</springframework.boot.version>
+		<spring.boot.admin.version>1.3.3</spring.boot.admin.version>
 		<eveapi.version>6.0.6</eveapi.version>
 		<ormlite.version>4.48</ormlite.version>
 	</properties>
@@ -34,7 +35,7 @@
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Angel.SR6</version>
+				<version>${springframework.cloud.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -67,32 +68,22 @@
 
 		<!-- S P R I N G B O O T -->
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-
-		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.netflix.hystrix</groupId>
-			<artifactId>hystrix-javanica</artifactId>
-			<version>1.4.10</version>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-hystrix</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>com.netflix.hystrix</groupId>
-			<artifactId>hystrix-metrics-event-stream</artifactId>
-			<version>1.4.10</version>
-		</dependency>
+
 		<dependency>
 			<groupId>com.netflix.hystrix</groupId>
 			<artifactId>hystrix-codahale-metrics-publisher</artifactId>
@@ -104,6 +95,16 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>io.dropwizard.metrics</groupId> -->
+		<!-- <artifactId>metrics-graphite</artifactId> -->
+		<!-- <version>${metrics.version}</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>com.netflix.servo</groupId> -->
+		<!-- <artifactId>servo-graphite</artifactId> -->
+		<!-- <version>0.4.34</version> -->
+		<!-- </dependency> -->
 
 		<!-- A D D I T I O N A L ... L I B R A R I E S -->
 		<dependency>
@@ -116,20 +117,11 @@
 			<artifactId>jackson-annotations</artifactId>
 			<version>2.8.0</version>
 		</dependency>
-		<!-- <dependency> -->
-		<!-- <groupId>org.xerial</groupId> -->
-		<!-- <artifactId>sqlite-jdbc</artifactId> -->
-		<!-- <version>3.16.1</version> -->
-		<!-- </dependency> -->
 		<dependency>
 			<groupId>com.beimin</groupId>
 			<artifactId>eveapi</artifactId>
 			<version>${eveapi.version}</version>
 		</dependency>
-		<!-- <dependency> -->
-		<!-- <groupId>net.sf.ehcache</groupId> -->
-		<!-- <artifactId>ehcache</artifactId> -->
-		<!-- </dependency> -->
 
 		<!-- D A T A B A S E S -->
 		<dependency>
@@ -137,12 +129,6 @@
 			<artifactId>ormlite-jdbc</artifactId>
 			<version>${ormlite.version}</version>
 		</dependency>
-		<!-- <dependency> -->
-		<!-- <groupId>org.hsqldb</groupId> -->
-		<!-- <artifactId>hsqldb</artifactId> -->
-		<!-- <version>2.4.0</version> -->
-		<!-- <scope>test</scope> -->
-		<!-- </dependency> -->
 
 		<!-- D E P E N D E N C I E S ... F R O M ... O T H E R ... P A C K A G 
 			E S -->
@@ -172,7 +158,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>com.orange.lab.main.BaseBookServiceApp</mainClass>
+							<mainClass>org.dimensinfin.eveonline.neocom.MarketDataServiceApplication</mainClass>
 						</manifest>
 					</archive>
 					<delimiters>

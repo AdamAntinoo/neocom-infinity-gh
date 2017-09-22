@@ -14,15 +14,18 @@ import org.dimensinfin.eveonline.neocom.core.CoreCacheConnector;
 import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
 import org.dimensinfin.eveonline.neocom.market.MarketDataSet;
 import org.dimensinfin.eveonline.neocom.services.MarketDataService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 public class MicroServicesCacheConnector extends CoreCacheConnector implements ICacheConnector {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger	logger				= Logger.getLogger("MicroServicesCacheConnector");
+	private static Logger			logger				= Logger.getLogger("MicroServicesCacheConnector");
 
 	// - F I E L D - S E C T I O N ............................................................................
-	private int						topCounter		= 0;
-	private int						marketCounter	= 0;
+	private int								topCounter		= 0;
+	private int								marketCounter	= 0;
+	@Autowired
+	private MarketDataService	marketDataService;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 	public MicroServicesCacheConnector() {
@@ -82,6 +85,11 @@ public class MicroServicesCacheConnector extends CoreCacheConnector implements I
 		MarketDataSet entry = cache.get(itemID);
 		if (null == entry) {
 			// We do not have the data on the local cache. Call the service provider to get a fresh copy of the data.
+			try {
+				marketDataService.getData(itemID);
+			} finally {
+				context.stop();
+			}
 
 			// Download and process the market data by posting a Market Update Request.
 			boolean doInmediately = false;

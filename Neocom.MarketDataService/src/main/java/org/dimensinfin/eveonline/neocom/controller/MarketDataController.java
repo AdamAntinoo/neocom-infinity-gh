@@ -7,10 +7,12 @@
 //								Item Market Data.
 package org.dimensinfin.eveonline.neocom.controller;
 
-import java.util.Vector;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
-import org.dimensinfin.eveonline.neocom.planetary.ProcessingAction;
+import org.dimensinfin.eveonline.neocom.commands.CommandDownloadMarketData;
+import org.dimensinfin.eveonline.neocom.services.MarketDataService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,9 +23,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MarketDataController {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger logger = Logger.getLogger("MarketDataController");
+	private static Logger			logger	= Logger.getLogger("MarketDataController");
 
 	// - F I E L D - S E C T I O N ............................................................................
+	@Autowired
+	private MarketDataService	bookStore;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 	public MarketDataController() {
@@ -32,7 +36,7 @@ public class MarketDataController {
 	// - M E T H O D - S E C T I O N ..........................................................................
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/marketdata/{itemid}", method = RequestMethod.GET, produces = "application/json")
-	public Vector<ProcessingAction> marketData(@PathVariable final String itemid) {
+	public ArrayList<String> marketData(@PathVariable final String itemid) {
 		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/marketdata/{itemid}");
 		logger.info(">> [PilotRoasterController.planetaryLocationOptimization]>itemid: " + itemid);
 		//		final Timer.Context context = getResponses(appName).time();
@@ -42,9 +46,16 @@ public class MarketDataController {
 		//		} finally {
 		//			context.stop();
 		//		}
-		logger.info("<< [PilotRoasterController.planetaryLocationOptimization]>");
-		return null;
+		try {
+			String s1 = new CommandDownloadMarketData("World").execute();
+			return bookStore.getBookStoreList();
+		} finally {
+			logger.info("callerAppName");
+			logger.info("<< [PilotRoasterController.planetaryLocationOptimization]>");
+		}
+		//	return null;
 	}
+
 }
 
 // - UNUSED CODE ............................................................................................

@@ -53,9 +53,6 @@ public class MarketDataServiceApplication /* extends DataSpringApplication */ {
 	}
 
 	// - F I E L D - S E C T I O N ............................................................................
-	//	private IDatabaseConnector	dbNeocomConnector	= null;
-	//	private ICacheConnector			cacheConnector		= null;
-
 	@Autowired
 	public CacheManager cacheManager;
 
