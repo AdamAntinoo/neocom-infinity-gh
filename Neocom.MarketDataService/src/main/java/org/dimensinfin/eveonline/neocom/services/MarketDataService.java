@@ -188,7 +188,7 @@ public class MarketDataService {
 		final String hubRegion = parts[0].trim();
 
 		// Search for the system on the list of locations.
-		return AppConnector.getDBConnector().searchLocationBySystem(hubSystem);
+		return AppConnector.getCCPDBConnector().searchLocationBySystem(hubSystem);
 	}
 
 	private Vector<String> getMarketHubs() {

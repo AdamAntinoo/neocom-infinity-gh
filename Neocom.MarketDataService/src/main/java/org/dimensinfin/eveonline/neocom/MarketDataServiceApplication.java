@@ -6,6 +6,13 @@
 //								the SpringBoot+MicroServices+Angular unified web application.
 package org.dimensinfin.eveonline.neocom;
 
+import org.dimensinfin.eveonline.neocom.connector.CCPDatabaseConnector;
+import org.dimensinfin.eveonline.neocom.connector.ICCPDatabaseConnector;
+import org.dimensinfin.eveonline.neocom.connector.ICacheConnector;
+import org.dimensinfin.eveonline.neocom.connector.IConnector;
+import org.dimensinfin.eveonline.neocom.connector.IDatabaseConnector;
+import org.dimensinfin.eveonline.neocom.connector.IStorageConnector;
+import org.dimensinfin.eveonline.neocom.interfaces.INeoComModelStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -34,7 +41,7 @@ import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServl
 @SpringBootApplication
 //@EnableScheduling
 //@ImportResource(value = "classpath*:hsql_configuration.xml")
-public class MarketDataServiceApplication /* extends DataSpringApplication */ {
+public class MarketDataServiceApplication implements IConnector {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	//	private static Logger												logger		= Logger.getLogger("MarketDataServiceApplication");
 	//	public static MarketDataServiceApplication singleton = null;
@@ -51,12 +58,46 @@ public class MarketDataServiceApplication /* extends DataSpringApplication */ {
 	}
 
 	// - F I E L D - S E C T I O N ............................................................................
+	private ICCPDatabaseConnector	dbCCPConnector	= null;
+
 	@Autowired
-	public CacheManager cacheManager;
+	public CacheManager						cacheManager;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 
 	// - M E T H O D - S E C T I O N ..........................................................................
+	@Override
+	public void addCharacterUpdateRequest(long characterID) {
+	}
+
+	@Override
+	public ICacheConnector getCacheConnector() {
+		throw new RuntimeException("Application connector not defined. Functionality 'getCacheConnector' disabled.");
+	}
+
+	@Override
+	public ICCPDatabaseConnector getCCPDBConnector() {
+		if (null == dbCCPConnector) {
+			dbCCPConnector = new CCPDatabaseConnector();
+		}
+		return dbCCPConnector;
+	}
+
+	@Override
+	public IDatabaseConnector getDBConnector() {
+		throw new RuntimeException("Application connector not defined. Functionality 'getDBConnector' disabled.");
+	}
+
+	@Override
+	public INeoComModelStore getModelStore() {
+		throw new RuntimeException("Application connector not defined. Functionality 'getModelStore' disabled.");
+	}
+
+	@Override
+	public IStorageConnector getStorageConnector() {
+		throw new RuntimeException("Application connector not defined. Functionality 'getStorageConnector' disabled.");
+	}
+
 	// - W E B   E N T R Y   P O I N T S
 	// Register the hystrix.stream to publish hystrix data to the dashboard
 	@Bean
