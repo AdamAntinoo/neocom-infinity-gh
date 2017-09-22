@@ -13,8 +13,6 @@ import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ImportResource;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
 
@@ -34,8 +32,8 @@ import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServl
  */
 @EnableCaching
 @SpringBootApplication
-@EnableScheduling
-@ImportResource(value = "classpath*:hsql_configuration.xml")
+//@EnableScheduling
+//@ImportResource(value = "classpath*:hsql_configuration.xml")
 public class MarketDataServiceApplication /* extends DataSpringApplication */ {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	//	private static Logger												logger		= Logger.getLogger("MarketDataServiceApplication");

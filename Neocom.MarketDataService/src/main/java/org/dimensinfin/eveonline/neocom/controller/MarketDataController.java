@@ -7,10 +7,10 @@
 //								Item Market Data.
 package org.dimensinfin.eveonline.neocom.controller;
 
-import java.util.ArrayList;
 import java.util.logging.Logger;
 
-import org.dimensinfin.eveonline.neocom.commands.CommandDownloadMarketData;
+import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
+import org.dimensinfin.eveonline.neocom.market.MarketDataSet;
 import org.dimensinfin.eveonline.neocom.services.MarketDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,7 +27,7 @@ public class MarketDataController {
 
 	// - F I E L D - S E C T I O N ............................................................................
 	@Autowired
-	private MarketDataService	bookStore;
+	private MarketDataService	marketDataService;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 	public MarketDataController() {
@@ -35,25 +35,22 @@ public class MarketDataController {
 
 	// - M E T H O D - S E C T I O N ..........................................................................
 	@CrossOrigin()
-	@RequestMapping(value = "/api/v1/marketdata/{itemid}", method = RequestMethod.GET, produces = "application/json")
-	public ArrayList<String> marketData(@PathVariable final String itemid) {
-		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/marketdata/{itemid}");
-		logger.info(">> [PilotRoasterController.planetaryLocationOptimization]>itemid: " + itemid);
-		//		final Timer.Context context = getResponses(appName).time();
+	@RequestMapping(value = "/api/v1/marketdata/{itemid}/{itemname}/{side}", method = RequestMethod.GET, produces = "application/json")
+	public MarketDataSet marketData(@PathVariable final String itemid, @PathVariable final String itemname,
+			@PathVariable String side) {
+		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/marketdata/{itemid}/{itemname}/{side}");
+		logger.info(">> [MarketDataController.marketData]>itemid: " + itemid);
+		logger.info(">> [MarketDataController.marketData]>itemname: " + itemname);
+		logger.info(">> [MarketDataController.marketData]>side: " + side);
 		//		try {
-		//			getRequests().mark();
-		//			return fixedBookList;
-		//		} finally {
-		//			context.stop();
-		//		}
-		try {
-			String s1 = new CommandDownloadMarketData("World").execute();
-			return bookStore.getBookStoreList();
-		} finally {
-			logger.info("callerAppName");
-			logger.info("<< [PilotRoasterController.planetaryLocationOptimization]>");
-		}
-		//	return null;
+		if (null == itemid) return new MarketDataSet(3645, EMarketSide.BUYER);
+		int itemidnumber = Integer.valueOf(itemid).intValue();
+		EMarketSide sideenumerated = EMarketSide.BUYER;
+		if (null != side) if (side.equalsIgnoreCase(EMarketSide.SELLER.name())) sideenumerated = EMarketSide.SELLER;
+		if (null == itemname) return new MarketDataSet(itemidnumber, sideenumerated);
+		MarketDataSet data = marketDataService.marketDataServiceEntryPoint(itemidnumber, itemname, sideenumerated);
+		logger.info("<< [MarketDataController.marketData]>");
+		return data;
 	}
 
 }

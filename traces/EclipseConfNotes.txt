@@ -1,0 +1,12 @@
+D:\Projects\Neocom Web Developments\AngularHS Web\Neocom.MicroServices\.settings\org.eclipse.jdt.ui.prefs
+-- COMMON ACTIVE SAVE ACTIONS
+Remove 'this' qualifier for non static field accesses
+Convert 'for' loops to enhanced 'for' loops
+Add final modifier to private fields
+Add final modifier to method parameters
+Put expressions in parentheses
+Add missing '@Override' annotations
+Add missing '@Deprecated' annotations
+Remove unnecessary casts
+Remove unnecessary '$NON-NLS$' tags
+Sort members excluding fields, enum constants, and initializers

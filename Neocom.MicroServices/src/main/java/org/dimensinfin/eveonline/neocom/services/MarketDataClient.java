@@ -8,13 +8,14 @@
 package org.dimensinfin.eveonline.neocom.services;
 
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Vector;
 import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.NeocomMicroServiceApplication;
+import org.dimensinfin.eveonline.neocom.connector.AppConnector;
 import org.dimensinfin.eveonline.neocom.controller.XUserAgentInterceptor;
+import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
 import org.dimensinfin.eveonline.neocom.market.MarketDataSet;
+import org.dimensinfin.eveonline.neocom.model.EveItem;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
@@ -26,45 +27,58 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 // - CLASS IMPLEMENTATION ...................................................................................
 @EnableCircuitBreaker
 @Service
-public class MarketDataService {
+public class MarketDataClient {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger										logger				= Logger.getLogger("MarketDataService");
-	private static final ArrayList<String>	fixedBookList	= new ArrayList<String>();
-
-	static {
-		fixedBookList.add("El señor de los anillos");
-		fixedBookList.add("Ender el Genocida");
-		fixedBookList.add("El quijote");
-	}
+	private static Logger				logger							= Logger.getLogger("MarketDataService");
+	private static final String	SERVICE_HOST				= "http://localhost:9002";
+	private static final String	API_VERSION					= "/api/v1";
+	private static final String	ENTRYPOINT_GETDATA	= "/marketdata/";
 
 	// - F I E L D - S E C T I O N ............................................................................
+	private int									itemidcopy					= -1;
+	private EMarketSide					sidecopy						= EMarketSide.BUYER;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
-	public MarketDataService() {
+	//	public MarketDataService() {
+	//	}
+
+	//- M E T H O D - S E C T I O N ..........................................................................
+	public MarketDataSet errorFallback(final int itemid, final EMarketSide side) {
+		return new MarketDataSet(itemid, side);
 	}
 
-	// - M E T H O D - S E C T I O N ..........................................................................
 	/**
 	 * The Service will call another external Micro Service to get the data requested. In case of error of if
 	 * the data is not available t will fail back to the <code>reliable()</code>method and the data will be
 	 * structurally valid even their contents will be stale.
-	 * 
-	 * @return
 	 */
 	@HystrixCommand(fallbackMethod = "reliable")
-	public Vector<MarketDataSet> getData(int itemid) {
+	public MarketDataSet getData(final int itemid, final EMarketSide side) {
+		logger.info(">< [MarketDataService.getData]> itemid: " + itemid + " side: " + side.name());
+		// Store parameters to be used on fallback methods.
+		EveItem item = AppConnector.getDBConnector().searchItembyID(itemid);
+		itemidcopy = itemid;
+		String itemnamecopy = "";
+		if (null != item) itemnamecopy = item.getName();
+		sidecopy = side;
 		// Prepare the call to the independent service. Identify the calling application even not being used
 		RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory());
 		restTemplate.getInterceptors().add(new XUserAgentInterceptor(NeocomMicroServiceApplication.singleton.getAppName()));
-		URI uri = URI.create("http://localhost:9002/api/v1/marketdata/" + itemid);
+		URI uri = URI
+				.create(SERVICE_HOST + API_VERSION + ENTRYPOINT_GETDATA + itemid + "/" + itemnamecopy + "/" + side.name());
 
-		return restTemplate.getForObject(uri, String.class);
+		MarketDataSet resultData = restTemplate.getForObject(uri, MarketDataSet.class);
+		// Check that the data returned is the valid data expected. Otherwise resort to the 'reliable' call.
+		// TODO I do not know how to detect bad from good results until testing.
+		if (resultData.valid)
+			return resultData;
+		else
+			return errorFallback(itemid, side);
 	}
 
-	public ArrayList<String> reliable() {
-		ArrayList<String> result = new ArrayList<String>();
-		result.add("Cloud Native Java (O'Reilly)");
-		return result;
+	public MarketDataSet reliable() {
+		logger.info(">< [MarketDataService.reliable]>Using the fail back Hystrix call");
+		return new MarketDataSet(itemidcopy, EMarketSide.BUYER);
 	}
 
 	private ClientHttpRequestFactory clientHttpRequestFactory() {

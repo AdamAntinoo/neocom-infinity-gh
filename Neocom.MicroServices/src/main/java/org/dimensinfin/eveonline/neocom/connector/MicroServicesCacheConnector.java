@@ -7,13 +7,12 @@
 package org.dimensinfin.eveonline.neocom.connector;
 
 import java.util.HashMap;
-import java.util.Vector;
 import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.core.CoreCacheConnector;
 import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
 import org.dimensinfin.eveonline.neocom.market.MarketDataSet;
-import org.dimensinfin.eveonline.neocom.services.MarketDataService;
+import org.dimensinfin.eveonline.neocom.services.MarketDataClient;
 import org.springframework.beans.factory.annotation.Autowired;
 
 // - CLASS IMPLEMENTATION ...................................................................................
@@ -25,7 +24,7 @@ public class MicroServicesCacheConnector extends CoreCacheConnector implements I
 	private int								topCounter		= 0;
 	private int								marketCounter	= 0;
 	@Autowired
-	private MarketDataService	marketDataService;
+	private MarketDataClient	marketDataService;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 	public MicroServicesCacheConnector() {
@@ -34,7 +33,7 @@ public class MicroServicesCacheConnector extends CoreCacheConnector implements I
 	// - M E T H O D - S E C T I O N ..........................................................................
 	@Override
 	public int decrementMarketCounter() {
-		this.marketCounter--;
+		marketCounter--;
 		if (marketCounter < 0) {
 			marketCounter = 0;
 		}
@@ -52,12 +51,12 @@ public class MicroServicesCacheConnector extends CoreCacheConnector implements I
 
 	@Override
 	public int incrementMarketCounter() {
-		return this.marketCounter++;
+		return marketCounter++;
 	}
 
 	@Override
 	public int incrementTopCounter() {
-		return this.topCounter++;
+		return topCounter++;
 	}
 
 	/**
@@ -85,37 +84,14 @@ public class MicroServicesCacheConnector extends CoreCacheConnector implements I
 		MarketDataSet entry = cache.get(itemID);
 		if (null == entry) {
 			// We do not have the data on the local cache. Call the service provider to get a fresh copy of the data.
-			try {
-				marketDataService.getData(itemID);
-			} finally {
-				context.stop();
-			}
-
-			// Download and process the market data by posting a Market Update Request.
-			boolean doInmediately = false;
-			if (doInmediately) {
-				// Download and process the market data right now.
-				Vector<MarketDataSet> entries = MarketDataService.marketDataServiceEntryPoint(itemID);
-				for (MarketDataSet data : entries) {
-					if (data.getSide() == EMarketSide.BUYER) {
-						buyMarketDataCache.put(itemID, entry);
-						if (side == data.getSide()) {
-							entry = data;
-						}
-					}
-					if (data.getSide() == EMarketSide.SELLER) {
-						sellMarketDataCache.put(itemID, entry);
-						if (side == data.getSide()) {
-							entry = data;
-						}
-					}
-				}
-			} else {
-				// Post the download of the market data to the background service.
-				this.addMarketDataRequest(itemID);
+			entry = marketDataService.getData(itemID, side);
+			// TODO I do not know how to differentiate a bad result from a good one to avoid bads getting cached.
+			if (entry.valid) {
+				// Add the item to the cache.
+				cache.put(itemID, entry);
 			}
 		}
-		CoreCacheConnector.logger.info("<< [SpringDatabaseConnector.searchMarketData]");
+		logger.info("<< [MicroServicesCacheConnector.searchMarketData]");
 		return entry;
 	}
 
