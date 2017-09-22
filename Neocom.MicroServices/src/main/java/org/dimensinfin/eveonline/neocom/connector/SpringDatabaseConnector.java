@@ -135,10 +135,8 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 	public SpringDatabaseConnector(String dblocation, String dbname, String dbversion) {
-		if (null != dblocation) {
-			if (null != dbname) {
-				databaseLink = dblocation + dbname;
-			}
+		if ((null != dblocation) && (null != dbname)) {
+			databaseLink = dblocation + dbname;
 		}
 		if (null != dbversion) dbVersion = Integer.valueOf(dbversion);
 		neocomDBHelper = new NeocomDBHelper(databaseLink, dbVersion);

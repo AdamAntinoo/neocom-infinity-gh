@@ -249,7 +249,7 @@ public class NeocomDBHelper {
 				//				DataSourceConnectionSource dcs = new DataSourceConnectionSource(slds, "jdbc:sqlite:src/main/resources/");
 				//				new JdbcConnectionSource()
 				//				neocomDatasource = dcs;
-				neocomDatasource = new JdbcConnectionSource("jdbc:sqlite:src/main/resources/neocomdata.db");
+				neocomDatasource = new JdbcConnectionSource(databaseName);
 				// Only keep the connections open for 5 minutes
 				//				neocomDatasource.setMaxConnectionAgeMillis(MAX_CONNECTION_AGE);
 				//				// Change the check-every milliseconds from 30 seconds to 60

@@ -4,26 +4,42 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.dimensinfin.eveonline.neocom</groupId>
-	<artifactId>Neocom.MicroServices</artifactId>
-	<version>0.3.0-SNAPSHOT</version>
-	<name>Neocom.MicroServices</name>
-	<description>This is the integration project for all the web server pieces. This is the launcher for the SpringBoot+MicroServices+Angular unified web application.</description>
+	<artifactId>Neocom.MarketDataService</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+	<name>Neocom.MarketDataService</name>
+	<description>This project contains a MicroService specially dedicated to get and store the Market Data information. I should be exposed on a new port and should be accesible to all the backend MS to consult Item Market Data</description>
 	<packaging>jar</packaging>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.6.RELEASE</version>
+		<version>1.3.5.RELEASE</version>
 		<relativePath />
 	</parent>
 
 	<properties>
+		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
+		<springframework.boot.version>1.3.5.RELEASE</springframework.boot.version>
+		<spring.boot.admin.version>1.3.3</spring.boot.admin.version>
+		<metrics.version>3.1.2</metrics.version>
+		<dropwizard-metrics-influxdb.version>0.3.0</dropwizard-metrics-influxdb.version>
 		<eveapi.version>6.0.6</eveapi.version>
 		<ormlite.version>4.48</ormlite.version>
 	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Angel.SR6</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<dependencies>
 		<!-- L O C A L ... L I B R A R I E S ... D E P E N D E N C I E S -->
@@ -44,19 +60,49 @@
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
-			<version>2.4.0</version>
+			<version>2.3.3</version>
 			<scope>system</scope>
 			<systemPath>${project.basedir}/privatelibs/hsqldb.jar</systemPath>
 		</dependency>
 
 		<!-- S P R I N G B O O T -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.springframework.boot</groupId> -->
-		<!-- <artifactId>spring-boot-starter-cache</artifactId> -->
-		<!-- </dependency> -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.netflix.hystrix</groupId>
+			<artifactId>hystrix-javanica</artifactId>
+			<version>1.4.10</version>
+		</dependency>
+		<dependency>
+			<groupId>com.netflix.hystrix</groupId>
+			<artifactId>hystrix-metrics-event-stream</artifactId>
+			<version>1.4.10</version>
+		</dependency>
+		<dependency>
+			<groupId>com.netflix.hystrix</groupId>
+			<artifactId>hystrix-codahale-metrics-publisher</artifactId>
+			<version>1.4.10</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.codahale.metrics</groupId>
+					<artifactId>metrics-core</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- A D D I T I O N A L ... L I B R A R I E S -->
@@ -91,14 +137,15 @@
 			<artifactId>ormlite-jdbc</artifactId>
 			<version>${ormlite.version}</version>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.hsqldb</groupId> -->
-<!-- 			<artifactId>hsqldb</artifactId> -->
-<!-- 			<version>2.4.0</version> -->
-<!-- 			<scope>test</scope> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.hsqldb</groupId> -->
+		<!-- <artifactId>hsqldb</artifactId> -->
+		<!-- <version>2.4.0</version> -->
+		<!-- <scope>test</scope> -->
+		<!-- </dependency> -->
 
-		<!-- D E P E N D E N C I E S ... F R O M ... O T H E R ... P A C K A G E S -->
+		<!-- D E P E N D E N C I E S ... F R O M ... O T H E R ... P A C K A G 
+			E S -->
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
@@ -112,10 +159,27 @@
 	</dependencies>
 
 	<build>
+		<sourceDirectory>src/main/java</sourceDirectory>
 		<plugins>
 			<plugin>
+				<!-- Build an executable JAR -->
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<mainClass>com.orange.lab.main.BaseBookServiceApp</mainClass>
+						</manifest>
+					</archive>
+					<delimiters>
+						<delimiter>@</delimiter>
+					</delimiters>
+					<useDefaultDelimiters>false</useDefaultDelimiters>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
