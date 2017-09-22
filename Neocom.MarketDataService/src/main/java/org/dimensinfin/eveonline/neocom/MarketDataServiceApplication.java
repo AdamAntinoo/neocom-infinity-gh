@@ -6,6 +6,9 @@
 //								the SpringBoot+MicroServices+Angular unified web application.
 package org.dimensinfin.eveonline.neocom;
 
+import java.util.logging.Logger;
+
+import org.dimensinfin.eveonline.neocom.connector.AppConnector;
 import org.dimensinfin.eveonline.neocom.connector.CCPDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.ICCPDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.ICacheConnector;
@@ -43,8 +46,8 @@ import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServl
 //@ImportResource(value = "classpath*:hsql_configuration.xml")
 public class MarketDataServiceApplication implements IConnector {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	//	private static Logger												logger		= Logger.getLogger("MarketDataServiceApplication");
-	//	public static MarketDataServiceApplication singleton = null;
+	private static Logger												logger		= Logger.getLogger("MarketDataServiceApplication");
+	public static MarketDataServiceApplication	singleton	= null;
 
 	// - M A I N   E N T R Y P O I N T ........................................................................
 	/**
@@ -64,6 +67,16 @@ public class MarketDataServiceApplication implements IConnector {
 	public CacheManager						cacheManager;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
+	public MarketDataServiceApplication() {
+		logger.info(">> [NeocomMicroServiceApplication.<constructor>]");
+		// Create and connect the adapters.
+		if (null == singleton) {
+			logger.info("-- [NeocomMicroServiceApplication.<constructor>]> Instantiating the singleton.");
+			singleton = this;
+		}
+		AppConnector.setConnector(singleton);
+		logger.info("<< [NeocomMicroServiceApplication.<constructor>]");
+	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
 	@Override

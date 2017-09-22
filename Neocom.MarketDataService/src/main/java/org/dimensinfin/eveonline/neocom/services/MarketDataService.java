@@ -234,7 +234,7 @@ public class MarketDataService {
 
 	private Vector<TrackEntry> parseMarketDataEMD(final String itemName, final EMarketSide opType)
 			throws SAXException, IOException {
-		MarketDataService.logger.info(">> AndroidStorageConnector.parseMarketData");
+		MarketDataService.logger.info(">> [MarketDataService.parseMarketData]");
 		Vector<TrackEntry> marketEntries = new Vector<TrackEntry>();
 		//		try {
 		org.xml.sax.XMLReader reader;
@@ -264,7 +264,7 @@ public class MarketDataService {
 		//			MarketDataService.logger.severe("E> Error parsing the market information. " + ioe.getMessage());
 		//		}
 		MarketDataService.logger
-				.info("<< AndroidStorageConnector.parseMarketData. marketEntries [" + marketEntries.size() + "]");
+				.info("<< [MarketDataService.parseMarketData]> marketEntries [" + marketEntries.size() + "]");
 		return marketEntries;
 	}
 }

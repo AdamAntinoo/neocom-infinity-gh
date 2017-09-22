@@ -58,13 +58,13 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}/privatelibs/EveDevelopments.evemarket.1.0.0.jar</systemPath>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.hsqldb</groupId> -->
-<!-- 			<artifactId>hsqldb</artifactId> -->
-<!-- 			<version>2.3.3</version> -->
-<!-- 			<scope>system</scope> -->
-<!-- 			<systemPath>${project.basedir}/privatelibs/hsqldb.jar</systemPath> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.hsqldb</groupId> -->
+		<!-- <artifactId>hsqldb</artifactId> -->
+		<!-- <version>2.3.3</version> -->
+		<!-- <scope>system</scope> -->
+		<!-- <systemPath>${project.basedir}/privatelibs/hsqldb.jar</systemPath> -->
+		<!-- </dependency> -->
 
 		<!-- S P R I N G B O O T -->
 		<dependency>
@@ -118,6 +118,11 @@
 			<groupId>com.j256.ormlite</groupId>
 			<artifactId>ormlite-jdbc</artifactId>
 			<version>${ormlite.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.xerial</groupId>
+			<artifactId>sqlite-jdbc</artifactId>
+			<version>3.16.1</version>
 		</dependency>
 
 		<!-- D E P E N D E N C I E S ... F R O M ... O T H E R ... P A C K A G 
