@@ -19,11 +19,12 @@ import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.connector.AppConnector;
 import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
+import org.dimensinfin.eveonline.neocom.market.EVEMarketDataParser;
 import org.dimensinfin.eveonline.neocom.market.MarketDataEntry;
 import org.dimensinfin.eveonline.neocom.market.MarketDataSet;
+import org.dimensinfin.eveonline.neocom.market.TrackEntry;
+import org.dimensinfin.eveonline.neocom.model.EveItem;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
-import org.dimensinfin.eveonline.neocom.model.TrackEntry;
-import org.dimensinfin.eveonline.neocom.parser.EVEMarketDataParser;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 
@@ -39,9 +40,11 @@ import org.xml.sax.SAXException;
 @Service
 public class MarketDataServer {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger logger = Logger.getLogger("MarketDataService");
+	private static Logger														logger							= Logger.getLogger("MarketDataService");
 
 	// - F I E L D - S E C T I O N ............................................................................
+	protected final HashMap<Integer, MarketDataSet>	buyMarketDataCache	= new HashMap<Integer, MarketDataSet>();
+	protected final HashMap<Integer, MarketDataSet>	sellMarketDataCache	= new HashMap<Integer, MarketDataSet>();
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 
@@ -55,63 +58,63 @@ public class MarketDataServer {
 	 * time.
 	 */
 	//@HystrixCommand(fallbackMethod = "reliable")
-	public MarketDataSet marketDataServiceEntryPoint(final int localizer, String itemName, EMarketSide side) {
-		MarketDataServer.logger.info(">> [MarketDataService.marketDataServiceEntryPoint]");
+	public MarketDataSet downloadMarketData(final int localizer, EMarketSide side) {
+		MarketDataServer.logger.info(">< [MarketDataService.accessMarketData]");
+		String itemName = "";
 		try {
 			// Locate the Eve Item name to be used on the market data search.
-			//	final EveItem item = AppConnector.getDBConnector().searchItembyID(localizer);
+			final EveItem item = AppConnector.getCCPDBConnector().searchItembyID(localizer);
+			itemName = item.getName();
 			Vector<TrackEntry> marketEntries = parseMarketDataEMD(itemName, side);
 			Vector<MarketDataEntry> hubData = extractMarketData(marketEntries);
 			MarketDataSet reference = new MarketDataSet(localizer, side);
 			reference.setData(hubData);
 			// Mark the result as a valid and cacheable entry.
 			reference.setValid(true);
+			// Add the data to the cache.
+			HashMap<Integer, MarketDataSet> cache = sellMarketDataCache;
+			if (side == EMarketSide.BUYER) {
+				cache = buyMarketDataCache;
+			}
+			cache.put(localizer, reference);
 			return reference;
 		} catch (SAXException saxe) {
-			logger.severe(
-					"E> Parsing exception while downloading market data for module [" + itemName + "]. " + saxe.getMessage());
+			logger
+					.severe("E [MarketDataService.accessMarketData]> Parsing exception while downloading market data for module ["
+							+ itemName + "]. " + saxe.getMessage());
 			return new MarketDataSet(localizer, side);
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
-			logger.severe("E> Error parsing the market information. " + ioe.getMessage());
+			logger
+					.severe("E [MarketDataService.accessMarketData]> Error parsing the market information. " + ioe.getMessage());
 			return new MarketDataSet(localizer, side);
 		}
+	}
 
-		//		// Create the result structure to be processed by the caller.
-		//		Vector<MarketDataSet> results = new Vector<MarketDataSet>(2);
-		//		//		final Integer localizer = (Integer) intent.getSerializableExtra(AppWideConstants.extras.EXTRA_MARKETDATA_LOCALIZER);
-		//		// Be sure we have access to the network. Otherwise intercept the exceptions.
-		//		//		if (NeoComApp.checkNetworkAccess()) {
-		//		final EveItem item = AppConnector.getDBConnector().searchItembyID(localizer);
-		//		//			if(market==EVEMARKETDATA)
-		//		Vector<TrackEntry> marketEntries = MarketDataService.parseMarketDataEMD(item.getName(), EMarketSide.SELLER);
-		//		//		if (marketEntries.size() < 1) {
-		//		//			marketEntries = AppConnector.getStorageConnector().parseMarketDataEC(item.getTypeID(), EMarketSide.SELLER);
-		//		//		}
-		//		Vector<MarketDataEntry> hubData = MarketDataService.extractMarketData(marketEntries);
-		//		// Update the structures related to the newly downloaded data.
-		//		MarketDataSet reference = new MarketDataSet(localizer, EMarketSide.SELLER);
-		//		reference.setData(hubData);
-		//		if (marketEntries.size() > 1) {
-		//			results.add(reference);
-		//		}
-		//
-		//		// Do the same for the other side.
-		//		marketEntries = MarketDataService.parseMarketDataEMD(item.getName(), EMarketSide.BUYER);
-		//		//		if (marketEntries.size() < 1) {
-		//		//			marketEntries = AppConnector.getStorageConnector().parseMarketDataEC(item.getTypeID(), EMarketSide.BUYER);
-		//		//		}
-		//		hubData = MarketDataService.extractMarketData(marketEntries);
-		//		reference = new MarketDataSet(localizer, EMarketSide.BUYER);
-		//		reference.setData(hubData);
-		//		if (marketEntries.size() > 1) {
-		//			results.add(reference);
-		//		}
-		//		// Create a new method to access the cache for requests and change the state
-		//		//			NeoComApp.getTheCacheConnector().clearPendingRequest(localizer.toString());
-		//		//		}
-		//		MarketDataService.logger.info("<< [MarketDataService.marketDataServiceEntryPoint]");
-		//		return results;
+	/**
+	 * Check if the requested data is on the cache. Once the Spring cache is active we should not receive calls
+	 * to this place. If the data is not at the cache, port and update event and return the fail data message.
+	 * 
+	 * @param localizer
+	 * @param itemName
+	 * @param side
+	 * @return
+	 */
+	public MarketDataSet marketDataServiceEntryPoint(final int localizer, String itemName, EMarketSide side) {
+		logger.info(
+				">> [MarketDataServer.marketDataServiceEntryPoint]> localizer: " + localizer + " side: " + side.toString());
+		// Cache interception performed by EHCache. If we reach this point that means we have not cached the data.
+		HashMap<Integer, MarketDataSet> cache = sellMarketDataCache;
+		if (side == EMarketSide.BUYER) {
+			cache = buyMarketDataCache;
+		}
+		MarketDataSet entry = cache.get(localizer);
+		if (null == entry) {
+			// Post request and return the data placeholder.
+			AppConnector.getCacheConnector().addMarketDataRequest(localizer);
+			return new MarketDataSet(localizer, side);
+		} else
+			return entry;
 	}
 
 	public MarketDataSet reliable(final int localizer, String itemName, EMarketSide side) {

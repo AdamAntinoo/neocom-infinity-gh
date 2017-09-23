@@ -1,14 +1,13 @@
 //	PROJECT:        EveMarket
 //	AUTHORS:        Adam Antinoo - adamantinoo.git@gmail.com
 //	COPYRIGHT:      (c) 2013-2014 by Dimensinfin Industries, all rights reserved.
-package org.dimensinfin.eveonline.neocom.parser;
+package org.dimensinfin.eveonline.neocom.market;
 
 //- IMPORT SECTION .........................................................................................
 import java.util.Vector;
 
 import org.dimensinfin.core.model.IModelStore;
 import org.dimensinfin.core.parser.AbstractXMLHandler;
-import org.dimensinfin.eveonline.neocom.model.TrackEntry;
 import org.xml.sax.Attributes;
 
 //- CLASS IMPLEMENTATION ...................................................................................

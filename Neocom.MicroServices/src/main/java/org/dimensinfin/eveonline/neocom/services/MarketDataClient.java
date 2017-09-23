@@ -56,7 +56,7 @@ public class MarketDataClient {
 	public MarketDataSet getData(final int itemid, final EMarketSide side) {
 		logger.info(">< [MarketDataService.getData]> itemid: " + itemid + " side: " + side.name());
 		// Store parameters to be used on fallback methods.
-		EveItem item = AppConnector.getDBConnector().searchItembyID(itemid);
+		EveItem item = AppConnector.getCCPDBConnector().searchItembyID(itemid);
 		itemidcopy = itemid;
 		String itemnamecopy = "";
 		if (null != item) itemnamecopy = item.getName();

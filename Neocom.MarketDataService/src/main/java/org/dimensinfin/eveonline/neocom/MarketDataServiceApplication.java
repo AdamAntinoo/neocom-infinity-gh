@@ -15,6 +15,7 @@ import org.dimensinfin.eveonline.neocom.connector.ICacheConnector;
 import org.dimensinfin.eveonline.neocom.connector.IConnector;
 import org.dimensinfin.eveonline.neocom.connector.IDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.IStorageConnector;
+import org.dimensinfin.eveonline.neocom.connector.MicroServicesCacheConnector;
 import org.dimensinfin.eveonline.neocom.interfaces.INeoComModelStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -23,6 +24,7 @@ import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
 
@@ -42,7 +44,7 @@ import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServl
  */
 @EnableCaching
 @SpringBootApplication
-//@EnableScheduling
+@EnableScheduling
 //@ImportResource(value = "classpath*:hsql_configuration.xml")
 public class MarketDataServiceApplication implements IConnector {
 	// - S T A T I C - S E C T I O N ..........................................................................
@@ -62,6 +64,7 @@ public class MarketDataServiceApplication implements IConnector {
 
 	// - F I E L D - S E C T I O N ............................................................................
 	private ICCPDatabaseConnector	dbCCPConnector	= null;
+	private ICacheConnector				cacheConnector	= null;
 
 	@Autowired
 	public CacheManager						cacheManager;
@@ -85,7 +88,8 @@ public class MarketDataServiceApplication implements IConnector {
 
 	@Override
 	public ICacheConnector getCacheConnector() {
-		throw new RuntimeException("Application connector not defined. Functionality 'getCacheConnector' disabled.");
+		if (null == cacheConnector) cacheConnector = new MicroServicesCacheConnector();
+		return cacheConnector;
 	}
 
 	@Override
