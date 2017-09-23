@@ -12,7 +12,6 @@ import java.util.logging.Logger;
 import org.dimensinfin.core.model.IGEFNode;
 import org.dimensinfin.core.model.RootNode;
 import org.dimensinfin.eveonline.neocom.connector.AppConnector;
-import org.dimensinfin.eveonline.neocom.connector.AppModelStore;
 import org.dimensinfin.eveonline.neocom.core.DataSourceLocator;
 import org.dimensinfin.eveonline.neocom.enums.ENeoComVariants;
 import org.dimensinfin.eveonline.neocom.generator.ModelGeneratorStore;
@@ -48,7 +47,7 @@ public class PilotDataController {
 		Vector<AbstractManager> managerList = new Vector<AbstractManager>();
 		try {
 			// Initialize the model data hierarchies.
-			AppModelStore.getSingleton().setLoginIdentifier(login);
+			AppConnector.getModelStore().activateLoginIdentifier(login);
 			AppConnector.getModelStore().activatePilot(Long.valueOf(identifier));
 			//			if (null != login) {
 			// Get a new model interface for the Pilot roaster using as unique identifier the login.
@@ -76,7 +75,7 @@ public class PilotDataController {
 		logger.info(">> [PilotRoasterController.pilotPlanetaryManager]");
 		try {
 			// Initialize the model data hierarchies.
-			AppModelStore.getSingleton().setLoginIdentifier(login);
+			AppConnector.getModelStore().activateLoginIdentifier(login);
 			AppConnector.getModelStore().activatePilot(Long.valueOf(identifier));
 			return AppConnector.getModelStore().getCurrentPilot().getPlanetaryManager().initialize();
 		} catch (RuntimeException rtx) {
@@ -130,7 +129,7 @@ public class PilotDataController {
 		logger.info(">> [PilotRoasterController.pilotRoaster]>identifier=" + identifier);
 		// Get the cookie and the login identifier inside it.
 		//		String login = "Beth";
-		AppModelStore.getSingleton().setLoginIdentifier(identifier);
+		AppConnector.getModelStore().activateLoginIdentifier(identifier);
 		Vector<Pilot> pilotList = new Vector<Pilot>();
 		if (null != identifier) {
 			// Get a new model interface for the Pilot roaster using as unique identifier the login.

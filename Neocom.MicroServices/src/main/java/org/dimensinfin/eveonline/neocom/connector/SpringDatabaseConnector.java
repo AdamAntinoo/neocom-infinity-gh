@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Vector;
 import java.util.logging.Logger;
@@ -26,6 +27,7 @@ import org.dimensinfin.eveonline.neocom.model.ApiKey;
 import org.dimensinfin.eveonline.neocom.model.DatabaseVersion;
 import org.dimensinfin.eveonline.neocom.model.EveItem;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
+import org.dimensinfin.eveonline.neocom.model.Login;
 import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
 import org.dimensinfin.eveonline.neocom.model.NeoComBlueprint;
 import org.dimensinfin.eveonline.neocom.model.Outpost;
@@ -134,7 +136,7 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 	//	private final HashMap<Long, Asset>				containerCache						= new HashMap<Long, Asset>();;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
-	public SpringDatabaseConnector(String dblocation, String dbname, String dbversion) {
+	public SpringDatabaseConnector(final String dblocation, final String dbname, final String dbversion) {
 		if ((null != dblocation) && (null != dbname)) {
 			databaseLink = dblocation + dbname;
 		}
@@ -142,6 +144,7 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 		neocomDBHelper = new NeocomDBHelper(databaseLink, dbVersion);
 	}
 
+	// - M E T H O D - S E C T I O N ..........................................................................
 	//[02]
 	//	private String readJsonData() {
 	//		//	String fileLocation = "C:\\Users\\ldediego\\UserData\\Workstage\\OrangeProjectsMars\\NeoCom\\src\\main\resources\\outposts.json";
@@ -159,17 +162,16 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 	//		}
 	//		return data.toString();
 	//	}
-	public boolean checkInvention(int typeID) {
+	public boolean checkInvention(final int typeID) {
 		throw new RuntimeException(
 				"Application connector not defined. Functionality 'checkExpiration' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
 	}
 
-	public boolean checkManufacturable(int typeid) {
+	public boolean checkManufacturable(final int typeid) {
 		throw new RuntimeException(
 				"Application connector not defined. Functionality 'checkExpiration' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
 	}
 
-	// - M E T H O D - S E C T I O N ..........................................................................
 	/**
 	 * removes from the application database any asset and blueprint that contains the special -1 code as the
 	 * owner identifier. Those records are from older downloads and have to be removed to avoid merging with the
@@ -201,6 +203,7 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 		return this.getNeocomDBHelper().getApiKeysDao();
 	}
 
+	@Deprecated
 	public List<ApiKey> getApiList4Login(final String login) {
 		logger.info(">> [AndroidDatabaseConnector.getApiList4Login] login=" + login);
 		// Access the database to get the list of keys. From that point on we can retrieve the characters easily.
@@ -259,6 +262,10 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 		return this.getNeocomDBHelper().getVersionDao();
 	}
 
+	public void loadSeedData() {
+		neocomDBHelper.loadSeedData();
+	}
+
 	public boolean openAppDataBase() {
 		throw new RuntimeException(
 				"Application connector not defined. Functionality 'openAppDataBase' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
@@ -283,20 +290,43 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 		return false;
 	}
 
+	/**
+	 * Reads all the keys stored at the database and classified them into a set of Login names.
+	 */
 	@Override
-	public Vector<String> queryAllLogins() {
-		Vector result = new Vector(3);
-		result.add("Beth Ripley");
-		result.add("Perico");
-		return result;
+	public Hashtable<String, Login> queryAllLogins() {
+		// Get access to all ApiKey registers
+		List<ApiKey> keyList = new Vector<ApiKey>();
+		try {
+			Dao<ApiKey, String> keysDao = this.getApiKeysDao();
+			QueryBuilder<ApiKey, String> queryBuilder = keysDao.queryBuilder();
+			PreparedQuery<ApiKey> preparedQuery = queryBuilder.prepare();
+			keyList = keysDao.query(preparedQuery);
+		} catch (java.sql.SQLException sqle) {
+			sqle.printStackTrace();
+			logger.warning("W [SpringDatabaseConnector.queryAllLogins]> Excpetion reading all Logins" + sqle.getMessage());
+		}
+		// Classify the keys on they matching Logins.
+		Hashtable<String, Login> loginList = new Hashtable<String, Login>();
+		for (ApiKey apiKey : keyList) {
+			String name = apiKey.getLogin();
+			// Search for this on the list before creating a new Login.
+			Login hit = loginList.get(name);
+			if (null == hit) {
+				Login login = new Login(name).addKey(apiKey);
+			} else {
+				hit.addKey(apiKey);
+			}
+		}
+		return loginList;
 	}
 
-	public int queryBlueprintDependencies(int bpitemID) {
+	public int queryBlueprintDependencies(final int bpitemID) {
 		throw new RuntimeException(
 				"Application connector not defined. Functionality 'queryBlueprintDependencies' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
 	}
 
-	public ArrayList<Resource> refineOre(int itemID) {
+	public ArrayList<Resource> refineOre(final int itemID) {
 		throw new RuntimeException(
 				"Application connector not defined. Functionality 'refineOre' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
 	}
@@ -341,7 +371,7 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 		}
 	}
 
-	public void replaceJobs(long characterID) {
+	public void replaceJobs(final long characterID) {
 		throw new RuntimeException(
 				"Application connector not defined. Functionality 'replaceJobs' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
 	}
@@ -398,17 +428,17 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 		return (ArrayList<NeoComAsset>) assetList;
 	}
 
-	public ArrayList<NeoComAsset> searchAsset4Type(long characterID, int typeID) {
+	public ArrayList<NeoComAsset> searchAsset4Type(final long characterID, final int typeID) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public NeoComAsset searchAssetByID(long parentAssetID) {
+	public NeoComAsset searchAssetByID(final long parentAssetID) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public ArrayList<NeoComAsset> searchAssetContainedAt(long pilotID, long assetID) {
+	public ArrayList<NeoComAsset> searchAssetContainedAt(final long pilotID, final long assetID) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -425,7 +455,7 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 	 * @param typeID
 	 * @return
 	 */
-	public Vector<Integer> searchInputResources(int typeID) {
+	public Vector<Integer> searchInputResources(final int typeID) {
 		Vector<Integer> result = new Vector<Integer>();
 		PreparedStatement prepStmt = null;
 		ResultSet cursor = null;
@@ -453,12 +483,12 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 		return result;
 	}
 
-	public ArrayList<Integer> searchInventionableBlueprints(String resourceIDs) {
+	public ArrayList<Integer> searchInventionableBlueprints(final String resourceIDs) {
 		throw new RuntimeException(
 				"Application connector not defined. Functionality 'searchInventionableBlueprints' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
 	}
 
-	public int searchInventionProduct(int typeID) {
+	public int searchInventionProduct(final int typeID) {
 		throw new RuntimeException(
 				"Application connector not defined. Functionality 'searchInventionProduct' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
 	}
@@ -534,7 +564,7 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 		return hit;
 	}
 
-	public ArrayList<Job> searchJob4Class(long characterID, String string) {
+	public ArrayList<Job> searchJob4Class(final long characterID, final String string) {
 		throw new RuntimeException(
 				"Application connector not defined. Functionality 'searchJob4Class' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
 	}
@@ -549,12 +579,12 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 				"Application connector not defined. Functionality 'searchListOfDatacores' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
 	}
 
-	public ArrayList<Resource> searchListOfMaterials(int itemID) {
+	public ArrayList<Resource> searchListOfMaterials(final int itemID) {
 		throw new RuntimeException(
 				"Application connector not defined. Functionality 'searchListOfMaterials' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
 	}
 
-	public ArrayList<Resource> searchListOfReaction(int itemID) {
+	public ArrayList<Resource> searchListOfReaction(final int itemID) {
 		throw new RuntimeException(
 				"Application connector not defined. Functionality 'searchListOfReaction' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
 	}
@@ -653,12 +683,12 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 		return searchLocationbyID(hit.getSystemID());
 	}
 
-	public int searchModule4Blueprint(int bpitemID) {
+	public int searchModule4Blueprint(final int bpitemID) {
 		throw new RuntimeException(
 				"Application connector not defined. Functionality 'searchModule4Blueprint' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
 	}
 
-	public int searchRawPlanetaryOutput(int typeID) {
+	public int searchRawPlanetaryOutput(final int typeID) {
 		int outputResourceId = typeID;
 		PreparedStatement prepStmt = null;
 		ResultSet cursor = null;
@@ -686,12 +716,12 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 		return outputResourceId;
 	}
 
-	public int searchReactionOutputMultiplier(int itemID) {
+	public int searchReactionOutputMultiplier(final int itemID) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	public Vector<Schematics> searchSchematics4Output(int targetId) {
+	public Vector<Schematics> searchSchematics4Output(final int targetId) {
 		Vector<Schematics> scheList = new Vector<Schematics>();
 		PreparedStatement prepStmt = null;
 		ResultSet cursor = null;
@@ -755,7 +785,7 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 		return stationTypeID;
 	}
 
-	public String searchTech4Blueprint(int blueprintID) {
+	public String searchTech4Blueprint(final int blueprintID) {
 		throw new RuntimeException(
 				"Application connector not defined. Functionality 'searchTech4Blueprint' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
 	}

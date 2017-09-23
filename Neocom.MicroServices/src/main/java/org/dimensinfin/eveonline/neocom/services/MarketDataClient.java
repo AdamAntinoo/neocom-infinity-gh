@@ -10,7 +10,6 @@ package org.dimensinfin.eveonline.neocom.services;
 import java.net.URI;
 import java.util.logging.Logger;
 
-import org.dimensinfin.eveonline.neocom.NeocomMicroServiceApplication;
 import org.dimensinfin.eveonline.neocom.connector.AppConnector;
 import org.dimensinfin.eveonline.neocom.controller.XUserAgentInterceptor;
 import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
@@ -63,7 +62,7 @@ public class MarketDataClient {
 		sidecopy = side;
 		// Prepare the call to the independent service. Identify the calling application even not being used
 		RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory());
-		restTemplate.getInterceptors().add(new XUserAgentInterceptor(NeocomMicroServiceApplication.singleton.getAppName()));
+		restTemplate.getInterceptors().add(new XUserAgentInterceptor());
 		URI uri = URI
 				.create(SERVICE_HOST + API_VERSION + ENTRYPOINT_GETDATA + itemid + "/" + itemnamecopy + "/" + side.name());
 

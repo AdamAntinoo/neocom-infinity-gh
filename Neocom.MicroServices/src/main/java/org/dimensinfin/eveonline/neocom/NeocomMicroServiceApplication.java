@@ -112,6 +112,7 @@ public class NeocomMicroServiceApplication implements IConnector/* ,CacheResolve
 			String dbname = R.getResourceString("R.string.appdatabasefilename");
 			String dbversion = R.getResourceString("R.string.databaseversion");
 			dbNeocomConnector = new SpringDatabaseConnector(dblocation, dbname, dbversion);
+			dbNeocomConnector.loadSeedData();
 		}
 		return dbNeocomConnector;
 	}

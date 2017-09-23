@@ -7,7 +7,6 @@
 package org.dimensinfin.eveonline.neocom.controller;
 
 import java.io.IOException;
-import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -21,21 +20,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class XUserAgentInterceptor implements ClientHttpRequestInterceptor {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger	logger	= Logger.getLogger("XUserAgentInterceptor.java");
+	//	private static Logger	logger	= Logger.getLogger("XUserAgentInterceptor");
 
 	// - F I E L D - S E C T I O N ............................................................................
-	private String				appName	= "FirstName";
+	private String appName = "NeoComMicroServiceApplication";
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 	@Autowired
-	public XUserAgentInterceptor(String setAppName) {
-		appName = setAppName;
+	public XUserAgentInterceptor() {
+		//	appName = setAppName;
 	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
 	@Override
-	public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution)
-			throws IOException {
+	public ClientHttpResponse intercept(final HttpRequest request, final byte[] body,
+			final ClientHttpRequestExecution execution) throws IOException {
 
 		HttpHeaders headers = request.getHeaders();
 		if (null == appName) appName = "InternalDefault";
