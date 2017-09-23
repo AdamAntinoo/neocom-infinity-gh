@@ -41,7 +41,7 @@ public class EveItemController {
 		logger.info(">> [NeoComApplication.eveItem]");
 		logger.info("-- [NeoComApplication.eveItem]> typeID: " + typeID);
 		// Connect to the eve database and generate an output for the query related to the eve item received as parameter.
-		EveItem item = AppConnector.getDBConnector().searchItembyID(Integer.parseInt(typeID));
+		EveItem item = AppConnector.getCCPDBConnector().searchItembyID(Integer.parseInt(typeID));
 		// Initialize the market data from start because this is a requirements on serialization.
 		item.getHighestBuyerPrice();
 		item.getLowestSellerPrice();

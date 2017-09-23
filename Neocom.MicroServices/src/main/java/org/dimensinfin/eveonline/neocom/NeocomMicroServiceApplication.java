@@ -10,6 +10,8 @@ import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.connector.AppConnector;
 import org.dimensinfin.eveonline.neocom.connector.AppModelStore;
+import org.dimensinfin.eveonline.neocom.connector.CCPDatabaseConnector;
+import org.dimensinfin.eveonline.neocom.connector.ICCPDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.ICacheConnector;
 import org.dimensinfin.eveonline.neocom.connector.IConnector;
 import org.dimensinfin.eveonline.neocom.connector.IDatabaseConnector;
@@ -18,11 +20,8 @@ import org.dimensinfin.eveonline.neocom.connector.MicroServicesCacheConnector;
 import org.dimensinfin.eveonline.neocom.connector.SpringDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.constant.R;
 import org.dimensinfin.eveonline.neocom.interfaces.INeoComModelStore;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ImportResource;
 
 // - CLASS IMPLEMENTATION ...................................................................................
@@ -33,7 +32,7 @@ import org.springframework.context.annotation.ImportResource;
  * 
  * @author Adam Antinoo
  */
-@EnableCaching
+//@EnableCaching
 @SpringBootApplication
 @ImportResource(value = "classpath*:hsql_configuration.xml")
 //@EnableScheduling
@@ -55,10 +54,11 @@ public class NeocomMicroServiceApplication implements IConnector/* ,CacheResolve
 	}
 
 	// - F I E L D - S E C T I O N ............................................................................
-	private IDatabaseConnector	dbNeocomConnector	= null;
-	private ICacheConnector			cacheConnector		= null;
-	@Autowired
-	public CacheManager					cacheManager;
+	private IDatabaseConnector		dbNeocomConnector	= null;
+	private ICCPDatabaseConnector	dbCCPConnector		= null;
+	private ICacheConnector				cacheConnector		= null;
+	//	@Autowired
+	//	public CacheManager					cacheManager;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 	public NeocomMicroServiceApplication() {
@@ -74,7 +74,7 @@ public class NeocomMicroServiceApplication implements IConnector/* ,CacheResolve
 
 	// - M E T H O D - S E C T I O N ..........................................................................
 	@Override
-	public void addCharacterUpdateRequest(long characterID) {
+	public void addCharacterUpdateRequest(final long characterID) {
 		this.getCacheConnector().addCharacterUpdateRequest(characterID);
 	}
 
@@ -97,11 +97,13 @@ public class NeocomMicroServiceApplication implements IConnector/* ,CacheResolve
 		return cacheConnector;
 	}
 
-	//	@Override
-	//	public ICCPDatabaseConnector getCCPDBConnector() {
-	//		// TODO Auto-generated method stub
-	//		return null;
-	//	}
+	@Override
+	public ICCPDatabaseConnector getCCPDBConnector() {
+		if (null == dbCCPConnector) {
+			dbCCPConnector = new CCPDatabaseConnector();
+		}
+		return dbCCPConnector;
+	}
 
 	@Override
 	public IDatabaseConnector getDBConnector() {
