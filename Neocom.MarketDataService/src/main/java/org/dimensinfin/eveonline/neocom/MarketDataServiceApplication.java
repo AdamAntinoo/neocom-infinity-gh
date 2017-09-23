@@ -17,12 +17,9 @@ import org.dimensinfin.eveonline.neocom.connector.IDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.IStorageConnector;
 import org.dimensinfin.eveonline.neocom.connector.MicroServicesCacheConnector;
 import org.dimensinfin.eveonline.neocom.interfaces.INeoComModelStore;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
-import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
@@ -42,9 +39,9 @@ import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServl
  * 
  * @author Adam Antinoo
  */
-@EnableCaching
-@SpringBootApplication
+//@EnableCaching
 @EnableScheduling
+@SpringBootApplication
 //@ImportResource(value = "classpath*:hsql_configuration.xml")
 public class MarketDataServiceApplication implements IConnector {
 	// - S T A T I C - S E C T I O N ..........................................................................
@@ -66,8 +63,8 @@ public class MarketDataServiceApplication implements IConnector {
 	private ICCPDatabaseConnector	dbCCPConnector	= null;
 	private ICacheConnector				cacheConnector	= null;
 
-	@Autowired
-	public CacheManager						cacheManager;
+	//	@Autowired
+	//	public CacheManager						cacheManager;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 	public MarketDataServiceApplication() {

@@ -33,6 +33,24 @@ public class MarketDataController {
 	public MarketDataController() {
 	}
 
+	@CrossOrigin()
+	@RequestMapping(value = "/api/v1/marketdata/{itemid}/{side}", method = RequestMethod.GET, produces = "application/json")
+	public MarketDataSet marketData(@PathVariable final String itemid, @PathVariable String side) {
+		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/marketdata/{itemid}/{itemname}/{side}");
+		logger.info(">> [MarketDataController.marketData]>itemid: " + itemid);
+		//	logger.info(">> [MarketDataController.marketData]>itemname: " + itemname);
+		logger.info(">> [MarketDataController.marketData]>side: " + side);
+		//		try {
+		if (null == itemid) return new MarketDataSet(3645, EMarketSide.BUYER);
+		int itemidnumber = Integer.valueOf(itemid).intValue();
+		EMarketSide sideenumerated = EMarketSide.BUYER;
+		if (null != side) if (side.equalsIgnoreCase(EMarketSide.SELLER.name())) sideenumerated = EMarketSide.SELLER;
+		//		if (null == itemname) return new MarketDataSet(itemidnumber, sideenumerated);
+		MarketDataSet data = marketDataService.marketDataServiceEntryPoint(itemidnumber, sideenumerated);
+		logger.info("<< [MarketDataController.marketData]>");
+		return data;
+	}
+
 	// - M E T H O D - S E C T I O N ..........................................................................
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/marketdata/{itemid}/{itemname}/{side}", method = RequestMethod.GET, produces = "application/json")

@@ -25,6 +25,9 @@ import org.dimensinfin.eveonline.neocom.market.MarketDataSet;
 import org.dimensinfin.eveonline.neocom.market.TrackEntry;
 import org.dimensinfin.eveonline.neocom.model.EveItem;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 
@@ -38,6 +41,7 @@ import org.xml.sax.SAXException;
  */
 //@EnableCircuitBreaker
 @Service
+@CacheConfig(cacheNames = "MarketData")
 public class MarketDataServer {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger														logger							= Logger.getLogger("MarketDataService");
@@ -47,6 +51,10 @@ public class MarketDataServer {
 	protected final HashMap<Integer, MarketDataSet>	sellMarketDataCache	= new HashMap<Integer, MarketDataSet>();
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
+
+	@CacheEvict(allEntries = true)
+	public void clearCache() {
+	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
 	/**
@@ -58,6 +66,7 @@ public class MarketDataServer {
 	 * time.
 	 */
 	//@HystrixCommand(fallbackMethod = "reliable")
+	@Cacheable()
 	public MarketDataSet downloadMarketData(final int localizer, EMarketSide side) {
 		MarketDataServer.logger.info(">< [MarketDataService.accessMarketData]");
 		String itemName = "";
@@ -89,6 +98,23 @@ public class MarketDataServer {
 					.severe("E [MarketDataService.accessMarketData]> Error parsing the market information. " + ioe.getMessage());
 			return new MarketDataSet(localizer, side);
 		}
+	}
+
+	public MarketDataSet marketDataServiceEntryPoint(final int localizer, EMarketSide side) {
+		logger.info(
+				">> [MarketDataServer.marketDataServiceEntryPoint]> localizer: " + localizer + " side: " + side.toString());
+		// Cache interception performed by EHCache. If we reach this point that means we have not cached the data.
+		HashMap<Integer, MarketDataSet> cache = sellMarketDataCache;
+		if (side == EMarketSide.BUYER) {
+			cache = buyMarketDataCache;
+		}
+		MarketDataSet entry = cache.get(localizer);
+		if (null == entry) {
+			// Post request and return the data placeholder.
+			AppConnector.getCacheConnector().addMarketDataRequest(localizer);
+			return new MarketDataSet(localizer, side);
+		} else
+			return entry;
 	}
 
 	/**
