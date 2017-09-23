@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
 import org.dimensinfin.eveonline.neocom.market.MarketDataSet;
-import org.dimensinfin.eveonline.neocom.services.MarketDataService;
+import org.dimensinfin.eveonline.neocom.services.MarketDataServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,7 +27,7 @@ public class MarketDataController {
 
 	// - F I E L D - S E C T I O N ............................................................................
 	@Autowired
-	private MarketDataService	marketDataService;
+	private MarketDataServer	marketDataService;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 	public MarketDataController() {

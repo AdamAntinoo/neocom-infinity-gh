@@ -5,19 +5,25 @@
 //	DESCRIPTION:		Projects for Proof Of Concept desings.
 package org.dimensinfin.eveonline.neocom.services;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Vector;
 import java.util.logging.Logger;
 
-import org.dimensinfin.evemarket.model.TrackEntry;
-import org.dimensinfin.evemarket.parser.EVEMarketDataParser;
 import org.dimensinfin.eveonline.neocom.connector.AppConnector;
 import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
 import org.dimensinfin.eveonline.neocom.market.MarketDataEntry;
 import org.dimensinfin.eveonline.neocom.market.MarketDataSet;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
+import org.dimensinfin.eveonline.neocom.model.TrackEntry;
+import org.dimensinfin.eveonline.neocom.parser.EVEMarketDataParser;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 
@@ -31,14 +37,11 @@ import org.xml.sax.SAXException;
  */
 //@EnableCircuitBreaker
 @Service
-public class MarketDataService {
+public class MarketDataServer {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger logger = Logger.getLogger("MarketDataService");
 
 	// - F I E L D - S E C T I O N ............................................................................
-	//	private int						itemidcopy		= -1;
-	//	private String				itemnamecopy	= "";
-	//	private EMarketSide		sidecopy			= EMarketSide.BUYER;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 
@@ -53,7 +56,7 @@ public class MarketDataService {
 	 */
 	//@HystrixCommand(fallbackMethod = "reliable")
 	public MarketDataSet marketDataServiceEntryPoint(final int localizer, String itemName, EMarketSide side) {
-		MarketDataService.logger.info(">> [MarketDataService.marketDataServiceEntryPoint]");
+		MarketDataServer.logger.info(">> [MarketDataService.marketDataServiceEntryPoint]");
 		try {
 			// Locate the Eve Item name to be used on the market data search.
 			//	final EveItem item = AppConnector.getDBConnector().searchItembyID(localizer);
@@ -232,9 +235,68 @@ public class MarketDataService {
 				+ name;
 	}
 
+	//	/**
+	//	 * New version that downloads the information from eve-central in json format.
+	//	 */
+	//	private Vector<TrackEntry> parseMarketDataEC(final int itemid, final EMarketSide opType) {
+	//		logger.info(">> AndroidStorageConnector.parseMarketData");
+	//		Vector<TrackEntry> marketEntries = new Vector<TrackEntry>();
+	//		// try {
+	//		// Making a request to url and getting response
+	//		String jsonStr = this.readJsonData(itemid);
+	//		try {
+	//			JsonElement jelement = new JsonParser().parse(jsonStr);
+	//			JsonArray jsonObj = jelement.getAsJsonArray();
+	//			JsonObject part1 = jsonObj.getAsJsonObject(0);
+	//			// Get the three blocks.
+	//			JsonObject buy = part1.getAsJsonObject("buy");
+	//			JsonObject all = part1.getAsJsonObject("all");
+	//			JsonObject sell = part1.getAsJsonObject("sell");
+	//			JsonObject target = null;
+	//			if (opType == EMarketSide.SELLER) {
+	//				target = sell;
+	//			} else {
+	//				target = buy;
+	//			}
+	//			double price = 0.0;
+	//			if (opType == EMarketSide.SELLER) {
+	//				price = target.getDouble("min");
+	//			} else {
+	//				price = target.getDouble("max");
+	//			}
+	//			long volume = target.getLong("volume");
+	//			TrackEntry entry = new TrackEntry();
+	//			entry.setPrice(Double.valueOf(price).toString());
+	//			entry.setQty(Long.valueOf(volume).toString());
+	//			entry.setStationName("0.9 The Forge - Jita");
+	//			marketEntries.add(entry);
+	//		} catch (JSONException e) {
+	//			e.printStackTrace();
+	//		}
+	//		// } catch (SAXException saxe) {
+	//		// logger.severe("E> Parsing exception while downloading market data for module [" + itemName + "]. "
+	//		// + saxe.getMessage());
+	//		// } catch (IOException ioe) {
+	//		// // TODO Auto-generated catch block
+	//		// ioe.printStackTrace();
+	//		// logger.severe("E> Error parsing the market information. " + ioe.getMessage());
+	//		// }
+	//		logger.info("<< AndroidStorageConnector.parseMarketData. marketEntries [" + marketEntries.size() + "]");
+	//		return marketEntries;
+	//	}
+
+	/**
+	 * Processing of market data from eve-marketdata.com.
+	 * 
+	 * @param itemName
+	 * @param opType
+	 * @return
+	 * @throws SAXException
+	 * @throws IOException
+	 */
 	private Vector<TrackEntry> parseMarketDataEMD(final String itemName, final EMarketSide opType)
 			throws SAXException, IOException {
-		MarketDataService.logger.info(">> [MarketDataService.parseMarketData]");
+		MarketDataServer.logger.info(">> [MarketDataService.parseMarketData]");
 		Vector<TrackEntry> marketEntries = new Vector<TrackEntry>();
 		//		try {
 		org.xml.sax.XMLReader reader;
@@ -263,10 +325,32 @@ public class MarketDataService {
 		//			ioe.printStackTrace();
 		//			MarketDataService.logger.severe("E> Error parsing the market information. " + ioe.getMessage());
 		//		}
-		MarketDataService.logger
+		MarketDataServer.logger
 				.info("<< [MarketDataService.parseMarketData]> marketEntries [" + marketEntries.size() + "]");
 		return marketEntries;
 	}
+
+	private String readJsonData(final int typeid) {
+		StringBuffer data = new StringBuffer();
+		try {
+			String str = "";
+			URL url = new URL("http://api.eve-central.com/api/marketstat/json?typeid=" + typeid + "&regionlimit=10000002");
+			URLConnection urlConnection = url.openConnection();
+			InputStream is = new BufferedInputStream(urlConnection.getInputStream());
+			// InputStream is = AppConnector.getStorageConnector().accessNetworkResource(
+			BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+			if (is != null) {
+				while ((str = reader.readLine()) != null) {
+					data.append(str);
+				}
+			}
+			is.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return data.toString();
+	}
+
 }
 
 // - UNUSED CODE ............................................................................................
