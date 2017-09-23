@@ -19,7 +19,7 @@ import org.dimensinfin.eveonline.neocom.connector.MicroServicesCacheConnector;
 import org.dimensinfin.eveonline.neocom.interfaces.INeoComModelStore;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.embedded.ServletRegistrationBean;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
