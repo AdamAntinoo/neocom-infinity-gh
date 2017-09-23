@@ -314,6 +314,7 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 			Login hit = loginList.get(name);
 			if (null == hit) {
 				Login login = new Login(name).addKey(apiKey);
+				loginList.put(name, login);
 			} else {
 				hit.addKey(apiKey);
 			}

@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.connector.AppConnector;
 import org.dimensinfin.eveonline.neocom.industry.Resource;
+import org.dimensinfin.eveonline.neocom.manager.AssetsManager;
 import org.dimensinfin.eveonline.neocom.manager.PlanetaryManager;
 import org.dimensinfin.eveonline.neocom.planetary.PlanetaryProcessor;
 import org.dimensinfin.eveonline.neocom.planetary.PlanetaryScenery;
@@ -35,7 +36,7 @@ public class PlanetaryManagerController {
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/login/{login}/pilot/{identifier}/planetarymanager/location/{locationid}/optimizeprocess", method = RequestMethod.GET, produces = "application/json")
 	public Vector<ProcessingAction> planetaryLocationOptimization(@PathVariable final String login,
-			@PathVariable final String identifier, @PathVariable String locationid) {
+			@PathVariable final String identifier, @PathVariable final String locationid) {
 		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: "
 				+ "/api/v1/login/{login}/pilot/{identifier}/planetarymanager/location/{locationid}/optimizeprocess");
 		logger.info(">> [PilotRoasterController.planetaryLocationOptimization]>login: " + login);
@@ -48,6 +49,7 @@ public class PlanetaryManagerController {
 			AppConnector.getModelStore().activatePilot(Long.valueOf(identifier));
 			// Get the Planetary Manager for this Character. Make sure it is initialized and then get the resources
 			// at the indicated location and optimize processing them.
+			AssetsManager assets = AppConnector.getModelStore().getCurrentPilot().getAssetsManager();
 			PlanetaryManager planetary = AppConnector.getModelStore().getCurrentPilot().getPlanetaryManager();
 			if (!planetary.isInitialized()) planetary.initialize();
 			Vector<Resource> resources = planetary.getLocationContents(locationid);

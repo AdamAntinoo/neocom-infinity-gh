@@ -7,7 +7,7 @@
 package org.dimensinfin.eveonline.neocom.services;
 
 import java.util.Collections;
-import java.util.List;
+import java.util.Hashtable;
 import java.util.Vector;
 import java.util.logging.Logger;
 
@@ -17,6 +17,7 @@ import org.dimensinfin.eveonline.neocom.enums.EComparatorField;
 import org.dimensinfin.eveonline.neocom.enums.EDataBlock;
 import org.dimensinfin.eveonline.neocom.enums.ERequestClass;
 import org.dimensinfin.eveonline.neocom.enums.ERequestState;
+import org.dimensinfin.eveonline.neocom.model.Login;
 import org.dimensinfin.eveonline.neocom.model.NeoComCharacter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
@@ -69,13 +70,9 @@ public class TimedServiceLauncher {
 		//		};
 	}
 
-	@Scheduled(initialDelay = 10000, fixedRate = 10000)
+	@Scheduled(initialDelay = 10000, fixedDelay = 15000)
 	public void onTime() {
-		logger.info(">> [TimedServiceLauncher.onReceive]");
-		//		// Run only if the network is active.
-		//		if (!NeoComApp.checkNetworkAccess()) return;
-		//		// Or if the service is disables by configuration.
-		//		if (this.blockedDownload()) return;
+		logger.info(">> [TimedServiceLauncher.onTime]");
 
 		// STEP 01. Launch pending Data Requests
 		// Get requests pending from the queue service.
@@ -112,15 +109,17 @@ public class TimedServiceLauncher {
 		}
 
 		// STEP 02. Check characters for pending structures to update.
-		List<NeoComCharacter> characters = AppConnector.getModelStore().getActiveCharacters();
-		for (NeoComCharacter eveChar : characters) {
-			EDataBlock updateCode = eveChar.needsUpdate();
-			if (updateCode != EDataBlock.READY) {
-				logger.info("-- [TimeTickReceiver.onReceive] EDataBlock to update: " + eveChar.getName() + " - " + updateCode);
-				AppConnector.getCacheConnector().addCharacterUpdateRequest(eveChar.getCharacterID());
+		Hashtable<String, Login> logins = AppConnector.getModelStore().accessLoginList();
+		for (String key : logins.keySet()) {
+			for (NeoComCharacter eveChar : logins.get(key).getCharacters()) {
+				EDataBlock updateCode = eveChar.needsUpdate();
+				if (updateCode != EDataBlock.READY) {
+					logger.info("-- [TimeTickReceiver.onTime] EDataBlock to update: " + eveChar.getName() + " - " + updateCode);
+					AppConnector.getCacheConnector().addCharacterUpdateRequest(eveChar.getCharacterID());
+				}
 			}
 		}
-		logger.info("<< [TimedServiceLauncher.onReceive]");
+		logger.info("<< [TimedServiceLauncher.onTime]");
 		//		Activity activity = AppModelStore.getSingleton().getActivity();
 		//		if (null != activity) {
 		//			activity.runOnUiThread(new Runnable() {

@@ -114,6 +114,15 @@ public class AppModelStore implements INeoComModelStore {
 		super();
 	}
 
+	/**
+	 * Gets access to the complete list of Logins. If this list is empty we go back to the database to populate
+	 * it.
+	 */
+	public Hashtable<String, Login> accessLoginList() {
+		if (null == _loginList) _loginList = AppConnector.getDBConnector().queryAllLogins();
+		return _loginList;
+	}
+
 	// - M E T H O D - S E C T I O N ..........................................................................
 	/**
 	 * This is the main activation entry point for the Login. If there are no logins already on the ModelStore
@@ -179,16 +188,20 @@ public class AppModelStore implements INeoComModelStore {
 	 */
 	@Deprecated
 	public List<NeoComCharacter> getActiveCharacters() {
-		// Iterate the list of pilots and accumulate the active ones.
-		final Vector<NeoComCharacter> activePilots = new Vector<NeoComCharacter>();
-		if (null == _neocomCharacters) {
-			this.readApiKeys();
-		}
-		for (final NeoComCharacter pilot : _neocomCharacters)
-			if (pilot.isActive()) {
-				activePilots.add(pilot);
-			}
-		return activePilots;
+		if (null == _loginIdentifier)
+			return new Vector<NeoComCharacter>();
+		else
+			return _loginIdentifier.getCharacters();
+		//		// Iterate the list of pilots and accumulate the active ones.
+		//		final Vector<NeoComCharacter> activePilots = new Vector<NeoComCharacter>();
+		//		if (null == _neocomCharacters) {
+		//			this.readApiKeys();
+		//		}
+		//		for (final NeoComCharacter pilot : _neocomCharacters)
+		//			if (pilot.isActive()) {
+		//				activePilots.add(pilot);
+		//			}
+		//		return activePilots;
 	}
 
 	@Deprecated
@@ -309,6 +322,7 @@ public class AppModelStore implements INeoComModelStore {
 	 * 
 	 * @return
 	 */
+	@Deprecated
 	private void readApiKeys() {
 		AppModelStore.logger.info(">> [AppModelStore.readApiKeys]");
 		// Access the database to get the list of keys. From that point on we can retrieve the characters easily.
@@ -340,6 +354,7 @@ public class AppModelStore implements INeoComModelStore {
 	 * @param characterID
 	 * @return
 	 */
+	@Deprecated
 	private NeoComCharacter searchCharacter(final long characterID) {
 		for (NeoComCharacter character : _neocomCharacters) {
 			if (character.getCharacterID() == characterID) return character;

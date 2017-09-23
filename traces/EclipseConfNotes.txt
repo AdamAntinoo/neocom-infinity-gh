@@ -10,3 +10,18 @@ Add missing '@Deprecated' annotations
 Remove unnecessary casts
 Remove unnecessary '$NON-NLS$' tags
 Sort members excluding fields, enum constants, and initializers
+
+
+Remove 'this' qualifier for non static field accesses
+Convert 'for' loops to enhanced 'for' loops
+Add final modifier to private fields
+Add final modifier to method parameters
+Put expressions in parentheses
+Remove unused imports
+Add missing '@Override' annotations
+Add missing '@Override' annotations to implementations of interface methods
+Add missing '@Deprecated' annotations
+Remove unnecessary casts
+Remove unnecessary '$NON-NLS$' tags
+Sort members excluding fields, enum constants, and initializers
+Correct indentation
