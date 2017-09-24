@@ -6,7 +6,7 @@
 //								the SpringBoot+MicroServices+Angular unified web application.
 package org.dimensinfin.eveonline.neocom.connector;
 
-import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.core.CoreCacheConnector;
@@ -76,7 +76,8 @@ public class MicroServicesCacheConnector extends CoreCacheConnector implements I
 	public MarketDataSet searchMarketData(final int itemID, final EMarketSide side) {
 		logger.info(">> [MicroServicesCacheConnector.searchMarketData]> itemid: " + itemID + " side: " + side.name());
 		// Search on the cache. By default load the SELLER as If I am buying the item.
-		HashMap<Integer, MarketDataSet> cache = sellMarketDataCache;
+		AppConnector.startChrono();
+		Hashtable<Integer, MarketDataSet> cache = sellMarketDataCache;
 		if (side == EMarketSide.BUYER) {
 			cache = buyMarketDataCache;
 		}
@@ -90,7 +91,8 @@ public class MicroServicesCacheConnector extends CoreCacheConnector implements I
 				cache.put(itemID, entry);
 			}
 		}
-		logger.info("<< [MicroServicesCacheConnector.searchMarketData]");
+		logger.info(
+				"<< [MicroServicesCacheConnector.searchMarketData]> Time lapse: " + itemID + " - " + AppConnector.timeLapse());
 		return entry;
 	}
 

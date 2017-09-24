@@ -12,7 +12,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Vector;
 import java.util.logging.Logger;
@@ -44,11 +44,11 @@ import org.xml.sax.SAXException;
 @CacheConfig(cacheNames = "MarketData")
 public class MarketDataServer {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger														logger							= Logger.getLogger("MarketDataService");
+	private static Logger															logger							= Logger.getLogger("MarketDataService");
 
 	// - F I E L D - S E C T I O N ............................................................................
-	protected final HashMap<Integer, MarketDataSet>	buyMarketDataCache	= new HashMap<Integer, MarketDataSet>();
-	protected final HashMap<Integer, MarketDataSet>	sellMarketDataCache	= new HashMap<Integer, MarketDataSet>();
+	protected final Hashtable<Integer, MarketDataSet>	buyMarketDataCache	= new Hashtable<Integer, MarketDataSet>();
+	protected final Hashtable<Integer, MarketDataSet>	sellMarketDataCache	= new Hashtable<Integer, MarketDataSet>();
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 
@@ -68,7 +68,8 @@ public class MarketDataServer {
 	//@HystrixCommand(fallbackMethod = "reliable")
 	@Cacheable()
 	public MarketDataSet downloadMarketData(final int localizer, EMarketSide side) {
-		MarketDataServer.logger.info(">< [MarketDataService.accessMarketData]");
+		MarketDataServer.logger.info(">< [MarketDataService.downloadMarketData]");
+		AppConnector.startChrono();
 		String itemName = "";
 		try {
 			// Locate the Eve Item name to be used on the market data search.
@@ -81,22 +82,25 @@ public class MarketDataServer {
 			// Mark the result as a valid and cacheable entry.
 			reference.setValid(true);
 			// Add the data to the cache.
-			HashMap<Integer, MarketDataSet> cache = sellMarketDataCache;
+			Hashtable<Integer, MarketDataSet> cache = sellMarketDataCache;
 			if (side == EMarketSide.BUYER) {
 				cache = buyMarketDataCache;
 			}
 			cache.put(localizer, reference);
 			return reference;
 		} catch (SAXException saxe) {
-			logger
-					.severe("E [MarketDataService.accessMarketData]> Parsing exception while downloading market data for module ["
+			logger.severe(
+					"E [MarketDataService.downloadMarketData]> Parsing exception while downloading market data for module ["
 							+ itemName + "]. " + saxe.getMessage());
 			return new MarketDataSet(localizer, side);
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
-			logger
-					.severe("E [MarketDataService.accessMarketData]> Error parsing the market information. " + ioe.getMessage());
+			logger.severe(
+					"E [MarketDataService.downloadMarketData]> Error parsing the market information. " + ioe.getMessage());
 			return new MarketDataSet(localizer, side);
+		} finally {
+			logger.info("~~ [MarketDataService.downloadMarketData]> Time lapse for Download MarketData " + localizer + " - "
+					+ AppConnector.timeLapse());
 		}
 	}
 
@@ -104,7 +108,7 @@ public class MarketDataServer {
 		logger.info(
 				">< [MarketDataServer.marketDataServiceEntryPoint]>localizer: " + localizer + " side: " + side.toString());
 		// Cache interception performed by EHCache. If we reach this point that means we have not cached the data.
-		HashMap<Integer, MarketDataSet> cache = sellMarketDataCache;
+		Hashtable<Integer, MarketDataSet> cache = sellMarketDataCache;
 		if (side == EMarketSide.BUYER) {
 			cache = buyMarketDataCache;
 		}
@@ -135,7 +139,7 @@ public class MarketDataServer {
 		logger.info(
 				">> [MarketDataServer.marketDataServiceEntryPoint]> localizer: " + localizer + " side: " + side.toString());
 		// Cache interception performed by EHCache. If we reach this point that means we have not cached the data.
-		HashMap<Integer, MarketDataSet> cache = sellMarketDataCache;
+		Hashtable<Integer, MarketDataSet> cache = sellMarketDataCache;
 		if (side == EMarketSide.BUYER) {
 			cache = buyMarketDataCache;
 		}
@@ -165,7 +169,7 @@ public class MarketDataServer {
 	 * @return
 	 */
 	private Vector<MarketDataEntry> extractMarketData(final Vector<TrackEntry> entries) {
-		final HashMap<String, MarketDataEntry> stations = new HashMap<String, MarketDataEntry>();
+		final Hashtable<String, MarketDataEntry> stations = new Hashtable<String, MarketDataEntry>();
 		final Vector<String> stationList = getMarketHubs();
 		final Iterator<TrackEntry> meit = entries.iterator();
 		while (meit.hasNext()) {

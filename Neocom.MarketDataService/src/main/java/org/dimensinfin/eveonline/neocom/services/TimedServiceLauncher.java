@@ -17,9 +17,6 @@ import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
 import org.dimensinfin.eveonline.neocom.enums.ERequestClass;
 import org.dimensinfin.eveonline.neocom.enums.ERequestState;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.core.task.SimpleAsyncTaskExecutor;
-import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -43,40 +40,40 @@ public class TimedServiceLauncher {
 	// - M E T H O D - S E C T I O N ..........................................................................
 	@Scheduled(initialDelay = 10000, fixedDelay = 10000)
 	public void onTime() {
-		logger.info(">> [TimedServiceLauncher.onReceive]");
+		logger.info(">> [TimedServiceLauncher.onTime]");
 
 		// STEP 01. Launch pending Data Requests
 		// Get requests pending from the queue service.
 		Vector<PendingRequestEntry> requests = AppConnector.getCacheConnector().getPendingRequests();
-		synchronized (requests) {
-			// Get the pending requests and order them by the priority.
-			Collections.sort(requests, ComparatorFactory.createComparator(EComparatorField.REQUEST_PRIORITY));
+		//	synchronized (requests) {
+		// Get the pending requests and order them by the priority.
+		Collections.sort(requests, ComparatorFactory.createComparator(EComparatorField.REQUEST_PRIORITY));
 
-			// Process request by priority. Additions to queue are limited.
-			limit = 0;
-			for (PendingRequestEntry entry : requests)
-				if (entry.state == ERequestState.PENDING) {
-					// Filter only MARKETDATA requests.
-					if (entry.reqClass == ERequestClass.MARKETDATA) if (limit <= LAUNCH_LIMIT) if (this.blockedMarket()) {
+		// Process request by priority. Additions to queue are limited.
+		limit = 0;
+		for (PendingRequestEntry entry : requests)
+			if (entry.state == ERequestState.PENDING) {
+				// Filter only MARKETDATA requests.
+				if (entry.reqClass == ERequestClass.MARKETDATA) {
+					if ((limit >= LAUNCH_LIMIT) || (this.blockedMarket())) {
+						logger.info("<< [TimedServiceLauncher.onTime]> Processing limite reached. Terminating run.");
 						return;
-					} else {
-						logger.info("-- [TimedServiceLauncher.onTime]> Update Request Class [" + entry.reqClass + "]");
-						Number content = entry.getContent();
-						entry.state = ERequestState.ON_PROGRESS;
-						//						AppConnector.getCacheConnector().incrementMarketCounter();
-						limit++;
-						marketDataService.downloadMarketData(entry.getContent().intValue(), EMarketSide.BUYER);
-						marketDataService.downloadMarketData(entry.getContent().intValue(), EMarketSide.SELLER);
 					}
+					logger.info("-- [TimedServiceLauncher.onTime]> Update Request Class [" + entry.reqClass + "]");
+					entry.state = ERequestState.ON_PROGRESS;
+					limit++;
+					marketDataService.downloadMarketData(entry.getContent().intValue(), EMarketSide.BUYER);
+					marketDataService.downloadMarketData(entry.getContent().intValue(), EMarketSide.SELLER);
 				}
-		}
-		logger.info("<< [TimedServiceLauncher.onReceive]");
+			}
+		//}
+		logger.info("<< [TimedServiceLauncher.onTime]");
 	}
 
-	@Bean
-	public TaskExecutor taskExecutor() {
-		return new SimpleAsyncTaskExecutor(); // Or use another one of your liking
-	}
+	//	@Bean
+	//	public TaskExecutor taskExecutor() {
+	//		return new SimpleAsyncTaskExecutor(); // Or use another one of your liking
+	//	}
 
 	private boolean blockedDownload() {
 		//		// Read the flag values from the preferences.
