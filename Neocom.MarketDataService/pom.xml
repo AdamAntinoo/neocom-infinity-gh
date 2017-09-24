@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.dimensinfin.eveonline.neocom</groupId>
@@ -14,7 +13,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.6.RELEASE</version>
-		<relativePath />
+		<relativePath/>
 	</parent>
 
 	<properties>
@@ -50,19 +49,26 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}/privatelibs/CoreBase.core-1.4.1.jar</systemPath>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>DimensinfinIndustries</groupId> -->
-<!-- 			<artifactId>EveDevelopments.evemarket</artifactId> -->
-<!-- 			<version>1.0.0</version> -->
-<!-- 			<scope>system</scope> -->
-<!-- 			<systemPath>${project.basedir}/privatelibs/EveDevelopments.evemarket.1.0.0.jar</systemPath> -->
-<!-- 		</dependency> -->
+		<!-- 		<dependency> -->
+		<!-- 			<groupId>DimensinfinIndustries</groupId> -->
+		<!-- 			<artifactId>EveDevelopments.evemarket</artifactId> -->
+		<!-- 			<version>1.0.0</version> -->
+		<!-- 			<scope>system</scope> -->
+		<!-- 			<systemPath>${project.basedir}/privatelibs/EveDevelopments.evemarket.1.0.0.jar</systemPath> -->
+		<!-- 		</dependency> -->
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
 			<version>2.4.0</version>
 			<scope>system</scope>
 			<systemPath>${project.basedir}/privatelibs/hsqldb.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>DimensinfinIndustries</groupId>
+			<artifactId>NeoCom.model</artifactId>
+			<version>0.2.0-SNAPSHOT</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/privatelibs/NeoCom.model-0.2.0-SNAPSHOT.jar</systemPath>
 		</dependency>
 
 		<!-- S P R I N G B O O T -->
@@ -126,7 +132,7 @@
 		<!-- <scope>test</scope> -->
 		<!-- </dependency> -->
 
-		<!-- D E P E N D E N C I E S ... F R O M ... O T H E R ... P A C K A G 
+		<!-- D E P E N D E N C I E S ... F R O M ... O T H E R ... P A C K A G
 			E S -->
 		<dependency>
 			<groupId>joda-time</groupId>
@@ -141,10 +147,27 @@
 	</dependencies>
 
 	<build>
+		<sourceDirectory>src/main/java</sourceDirectory>
 		<plugins>
 			<plugin>
+				<!-- Build an executable JAR -->
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<delimiters>
+						<delimiter>@</delimiter>
+					</delimiters>
+					<useDefaultDelimiters>false</useDefaultDelimiters>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<mainClass>org.dimensinfin.eveonline.neocom.MarketDataServiceApplication</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
