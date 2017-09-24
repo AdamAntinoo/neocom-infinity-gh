@@ -6,17 +6,12 @@
 //								the SpringBoot+MicroServices+Angular unified web application.
 package org.dimensinfin.eveonline.neocom.services;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Vector;
+import java.util.Hashtable;
 import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.connector.AppConnector;
-import org.dimensinfin.eveonline.neocom.core.ComparatorFactory;
-import org.dimensinfin.eveonline.neocom.enums.EComparatorField;
 import org.dimensinfin.eveonline.neocom.enums.EDataBlock;
-import org.dimensinfin.eveonline.neocom.enums.ERequestClass;
-import org.dimensinfin.eveonline.neocom.enums.ERequestState;
+import org.dimensinfin.eveonline.neocom.model.Login;
 import org.dimensinfin.eveonline.neocom.model.NeoComCharacter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
@@ -33,94 +28,90 @@ public class TimedServiceLauncher {
 	private static int			LAUNCH_LIMIT		= 30;
 
 	// - F I E L D - S E C T I O N ............................................................................
-	private int							limit						= 0;
+	private final int				limit						= 0;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 	public TimedServiceLauncher() {
 	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
-	public void launchCharacterDataUpdate(final PendingRequestEntry entry) {
-		logger.info(
-				"-- [TimeTickReceiver.launchCharacterDataUpdate]> Character Update Request Class [" + entry.reqClass + "]");
-		Number content = entry.getContent();
-		entry.state = ERequestState.ON_PROGRESS;
-		new CharacterUpdaterService(content.longValue()).run();
-		//		TaskExecutor executor = taskExecutor();
-		//		return new CommandLineRunner() {
-		//			public void run(String... args) throws Exception {
-		//				executor.execute(new CharacterUpdaterService(content.longValue()));
-		//			}
-		//		};
-	}
+	//	public void launchCharacterDataUpdate(final PendingRequestEntry entry) {
+	//		logger.info(
+	//				"-- [TimeTickReceiver.launchCharacterDataUpdate]> Character Update Request Class [" + entry.reqClass + "]");
+	//		Number content = entry.getContent();
+	//		entry.state = ERequestState.ON_PROGRESS;
+	//		new CharacterUpdaterService(content.longValue()).run();
+	//		//		TaskExecutor executor = taskExecutor();
+	//		//		return new CommandLineRunner() {
+	//		//			public void run(String... args) throws Exception {
+	//		//				executor.execute(new CharacterUpdaterService(content.longValue()));
+	//		//			}
+	//		//		};
+	//	}
 
-	public void launchMarketUpdate(final PendingRequestEntry entry) {
-		logger.info("-- [TimeTickReceiver.launchService Market]> Update Request Class [" + entry.reqClass + "]");
-		Number content = entry.getContent();
-		entry.state = ERequestState.ON_PROGRESS;
-		AppConnector.getCacheConnector().incrementMarketCounter();
-		limit++;
-		//	new MarketDataService(content.intValue()).run();
-		//		TaskExecutor executor = taskExecutor();
-		//		return new CommandLineRunner() {
-		//			public void run(String... args) throws Exception {
-		//				executor.execute(new MarketDataService(content.intValue()));
-		//			}
-		//		};
-	}
+	//	public void launchMarketUpdate(final PendingRequestEntry entry) {
+	//		logger.info("-- [TimeTickReceiver.launchService Market]> Update Request Class [" + entry.reqClass + "]");
+	//		Number content = entry.getContent();
+	//		entry.state = ERequestState.ON_PROGRESS;
+	//		AppConnector.getCacheConnector().incrementMarketCounter();
+	//		limit++;
+	//		//	new MarketDataService(content.intValue()).run();
+	//		//		TaskExecutor executor = taskExecutor();
+	//		//		return new CommandLineRunner() {
+	//		//			public void run(String... args) throws Exception {
+	//		//				executor.execute(new MarketDataService(content.intValue()));
+	//		//			}
+	//		//		};
+	//	}
 
-	@Scheduled(initialDelay = 10000, fixedRate = 10000)
+	@Scheduled(initialDelay = 10000, fixedDelay = 15000)
 	public void onTime() {
-		logger.info(">> [TimedServiceLauncher.onReceive]");
-		//		// Run only if the network is active.
-		//		if (!NeoComApp.checkNetworkAccess()) return;
-		//		// Or if the service is disables by configuration.
-		//		if (this.blockedDownload()) return;
+		logger.info(">> [TimedServiceLauncher.onTime]");
 
 		// STEP 01. Launch pending Data Requests
 		// Get requests pending from the queue service.
-		Vector<PendingRequestEntry> requests = AppConnector.getCacheConnector().getPendingRequests();
-		synchronized (requests) {
-			// Get the pending requests and order them by the priority.
-			Collections.sort(requests, ComparatorFactory.createComparator(EComparatorField.REQUEST_PRIORITY));
-
-			// Process request by priority. Additions to queue are limited.
-			limit = 0;
-			for (PendingRequestEntry entry : requests)
-				if (entry.state == ERequestState.PENDING) {
-					// Filter only MARKETDATA requests.
-					if (entry.reqClass == ERequestClass.MARKETDATA) if (limit <= LAUNCH_LIMIT) if (this.blockedMarket()) {
-						continue;
-					} else {
-						this.launchMarketUpdate(entry);
-					}
-					// Filter the rest of the character data to be updated
-					if (entry.reqClass == ERequestClass.CHARACTERUPDATE) {
-						this.launchCharacterDataUpdate(entry);
-					}
-					//					if (entry.reqClass == ERequestClass.CITADELUPDATE) {
-					//						// Launch the update and remove the event from the queue.
-					//						new UpdateCitadelsTask().execute();
-					//						NeoComApp.getTheCacheConnector().clearPendingRequest(entry.getIdentifier());
-					//					}
-					//					if (entry.reqClass == ERequestClass.OUTPOSTUPDATE) {
-					//						// Launch the update and remove the event from the queue.
-					//						new UpdateOutpostsTask().execute();
-					//						NeoComApp.getTheCacheConnector().clearPendingRequest(entry.getIdentifier());
-					//					}
-				}
-		}
+		//		Vector<PendingRequestEntry> requests = AppConnector.getCacheConnector().getPendingRequests();
+		//		synchronized (requests) {
+		//			// Get the pending requests and order them by the priority.
+		//			Collections.sort(requests, ComparatorFactory.createComparator(EComparatorField.REQUEST_PRIORITY));
+		//
+		//			// Process request by priority. Additions to queue are limited.
+		//			limit = 0;
+		//			for (PendingRequestEntry entry : requests)
+		//				if (entry.state == ERequestState.PENDING) {
+		//					// Filter the rest of the character data to be updated
+		//					if (entry.reqClass == ERequestClass.CHARACTERUPDATE) {
+		//						logger.info(
+		//								"-- [TimedServiceLauncher.onTime]> Character Update Request Class [" + entry.reqClass + "]");
+		//						Number content = entry.getContent();
+		//						entry.state = ERequestState.ON_PROGRESS;
+		//						new CharacterUpdaterService(content.longValue()).run();
+		//					}
+		//					//					if (entry.reqClass == ERequestClass.CITADELUPDATE) {
+		//					//						// Launch the update and remove the event from the queue.
+		//					//						new UpdateCitadelsTask().execute();
+		//					//						NeoComApp.getTheCacheConnector().clearPendingRequest(entry.getIdentifier());
+		//					//					}
+		//					//					if (entry.reqClass == ERequestClass.OUTPOSTUPDATE) {
+		//					//						// Launch the update and remove the event from the queue.
+		//					//						new UpdateOutpostsTask().execute();
+		//					//						NeoComApp.getTheCacheConnector().clearPendingRequest(entry.getIdentifier());
+		//					//					}
+		//				}
+		//		}
 
 		// STEP 02. Check characters for pending structures to update.
-		List<NeoComCharacter> characters = AppConnector.getModelStore().getActiveCharacters();
-		for (NeoComCharacter eveChar : characters) {
-			EDataBlock updateCode = eveChar.needsUpdate();
-			if (updateCode != EDataBlock.READY) {
-				logger.info("-- [TimeTickReceiver.onReceive] EDataBlock to update: " + eveChar.getName() + " - " + updateCode);
-				AppConnector.getCacheConnector().addCharacterUpdateRequest(eveChar.getCharacterID());
+		Hashtable<String, Login> logins = AppConnector.getModelStore().accessLoginList();
+		for (String key : logins.keySet()) {
+			for (NeoComCharacter eveChar : logins.get(key).getCharacters()) {
+				EDataBlock updateCode = eveChar.needsUpdate();
+				if (updateCode != EDataBlock.READY) {
+					logger.info("-- [TimeTickReceiver.onTime] EDataBlock to update: " + eveChar.getName() + " - " + updateCode);
+					CharacterUpdaterService.processCharacter(eveChar);
+				}
 			}
 		}
-		logger.info("<< [TimedServiceLauncher.onReceive]");
+		logger.info("<< [TimedServiceLauncher.onTime]");
 		//		Activity activity = AppModelStore.getSingleton().getActivity();
 		//		if (null != activity) {
 		//			activity.runOnUiThread(new Runnable() {
