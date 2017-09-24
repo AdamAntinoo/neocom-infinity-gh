@@ -23,7 +23,7 @@ public class TimedServiceLauncher {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger			logger					= Logger.getLogger("TimedServiceLauncher");
 	private static boolean		BLOCKED_STATUS	= false;
-	private static int				LAUNCH_LIMIT		= 10;
+	private static int				LAUNCH_LIMIT		= 2;
 
 	// - F I E L D - S E C T I O N ............................................................................
 	@Autowired
@@ -35,14 +35,14 @@ public class TimedServiceLauncher {
 	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
-	@Scheduled(initialDelay = 10000, fixedDelay = 10000)
+	@Scheduled(initialDelay = 10000, fixedDelay = 50000)
 	public void onTime() {
-		logger.info(">> [TimedServiceLauncher.onTime]");
+		//		logger.info(">> [TimedServiceLauncher.onTime]");
 
 		// STEP 01. Launch pending Data Requests
 		// Get requests pending from the queue service.
 		Vector<PendingRequestEntry> requests = AppConnector.getCacheConnector().getPendingRequests();
-		logger.info("-- [TimedServiceLauncher.onTime]> Pending requests level: " + requests.size());
+		logger.info(">> [TimedServiceLauncher.onTime]> Pending requests level: " + requests.size());
 		//		synchronized (requests) {
 		//			// Get the pending requests and order them by the priority.
 		//			Collections.sort(requests, ComparatorFactory.createComparator(EComparatorField.REQUEST_PRIORITY));
@@ -58,11 +58,12 @@ public class TimedServiceLauncher {
 						logger.info("<< [TimedServiceLauncher.onTime]> Processing limite reached. Terminating run.");
 						return;
 					}
-					logger.info("-- [TimedServiceLauncher.onTime]> Update Request Class [" + entry.reqClass + "]");
+					int localizer = entry.getContent().intValue();
+					logger.info("-- [TimedServiceLauncher.onTime]> Update Request Class [" + entry.reqClass + "] - " + localizer);
 					entry.state = ERequestState.ON_PROGRESS;
 					limit++;
-					marketDataService.downloadMarketData(entry.getContent().intValue(), EMarketSide.BUYER);
-					marketDataService.downloadMarketData(entry.getContent().intValue(), EMarketSide.SELLER);
+					marketDataService.downloadMarketData(localizer, EMarketSide.BUYER);
+					marketDataService.downloadMarketData(localizer, EMarketSide.SELLER);
 				}
 			}
 		logger.info("<< [TimedServiceLauncher.onTime]");

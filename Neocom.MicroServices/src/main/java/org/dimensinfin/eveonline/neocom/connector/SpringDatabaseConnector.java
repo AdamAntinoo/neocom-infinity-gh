@@ -177,12 +177,12 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 	 * owner identifier. Those records are from older downloads and have to be removed to avoid merging with the
 	 * new download.
 	 */
-	public synchronized void clearInvalidRecords() {
+	public synchronized void clearInvalidRecords(final long pilotid) {
 		try {
 			ConnectionSource conn = neocomDBHelper.getConnectionSource();
 			DatabaseConnection database = conn.getReadWriteConnection();
 			synchronized (database) {
-				int rowCount = database.delete("DELETE FROM Assets WHERE ownerID=-1", null, null);
+				int rowCount = database.delete("DELETE FROM Assets WHERE ownerID=" + pilotid, null, null);
 				logger
 						.info("-- [NeocomDatabaseConnector.clearInvalidAssets]> rows deleted ASSETS [OWNERID = -1] - " + rowCount);
 				rowCount = database.delete("DELETE FROM Blueprints WHERE ownerID=-1", null, null);
@@ -345,8 +345,9 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 				int rowCount = database.delete("DELETE FROM Assets WHERE ownerID=" + characterID, null, null);
 				logger.info("-- [NeocomDatabaseConnector.replaceAssets]> rows deleted ASSETS [OWNERID = " + characterID + "] - "
 						+ rowCount);
-				rowCount = database.update("UPDATE Assets " + " SET ownerID=" + characterID + " WHERE ownerID=-1", null, null);
-				logger.info("-- [NeocomDatabaseConnector.replaceAssets]> rows replaces ASSETS [OWNERID = " + characterID
+				rowCount = database.update(
+						"UPDATE Assets " + " SET ownerID=" + characterID + " WHERE ownerID=" + (characterID * -1), null, null);
+				logger.info("-- [NeocomDatabaseConnector.replaceAssets]> rows replaced ASSETS [OWNERID = " + characterID
 						+ "] - " + rowCount);
 			}
 		} catch (final SQLException ex) {
