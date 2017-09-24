@@ -6,13 +6,10 @@
 //								the SpringBoot+MicroServices+Angular unified web application.
 package org.dimensinfin.eveonline.neocom.services;
 
-import java.util.Collections;
 import java.util.Vector;
 import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.connector.AppConnector;
-import org.dimensinfin.eveonline.neocom.core.ComparatorFactory;
-import org.dimensinfin.eveonline.neocom.enums.EComparatorField;
 import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
 import org.dimensinfin.eveonline.neocom.enums.ERequestClass;
 import org.dimensinfin.eveonline.neocom.enums.ERequestState;
@@ -45,9 +42,11 @@ public class TimedServiceLauncher {
 		// STEP 01. Launch pending Data Requests
 		// Get requests pending from the queue service.
 		Vector<PendingRequestEntry> requests = AppConnector.getCacheConnector().getPendingRequests();
-		//	synchronized (requests) {
-		// Get the pending requests and order them by the priority.
-		Collections.sort(requests, ComparatorFactory.createComparator(EComparatorField.REQUEST_PRIORITY));
+		logger.info("-- [TimedServiceLauncher.onTime]> Pending requests level: " + requests.size());
+		//		synchronized (requests) {
+		//			// Get the pending requests and order them by the priority.
+		//			Collections.sort(requests, ComparatorFactory.createComparator(EComparatorField.REQUEST_PRIORITY));
+		//		}
 
 		// Process request by priority. Additions to queue are limited.
 		limit = 0;
@@ -66,7 +65,6 @@ public class TimedServiceLauncher {
 					marketDataService.downloadMarketData(entry.getContent().intValue(), EMarketSide.SELLER);
 				}
 			}
-		//}
 		logger.info("<< [TimedServiceLauncher.onTime]");
 	}
 

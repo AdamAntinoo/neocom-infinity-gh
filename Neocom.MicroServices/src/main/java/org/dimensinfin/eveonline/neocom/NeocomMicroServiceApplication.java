@@ -22,7 +22,7 @@ import org.dimensinfin.eveonline.neocom.constant.R;
 import org.dimensinfin.eveonline.neocom.interfaces.INeoComModelStore;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 // - CLASS IMPLEMENTATION ...................................................................................
@@ -33,9 +33,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * 
  * @author Adam Antinoo
  */
-@EnableCaching
-@SpringBootApplication
+//@EnableCaching
+@EnableCircuitBreaker
 @EnableScheduling
+@SpringBootApplication
 public class NeocomMicroServiceApplication implements IConnector/* ,CacheResolver */ {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger												logger						= Logger.getLogger("NeocomMicroServiceApplication");

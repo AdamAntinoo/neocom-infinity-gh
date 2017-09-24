@@ -9,10 +9,10 @@ package org.dimensinfin.eveonline.neocom.controller;
 
 import java.util.logging.Logger;
 
+import org.dimensinfin.eveonline.neocom.connector.AppConnector;
 import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
 import org.dimensinfin.eveonline.neocom.market.MarketDataSet;
 import org.dimensinfin.eveonline.neocom.services.MarketDataServer;
-import org.joda.time.Instant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,7 +40,7 @@ public class MarketDataController {
 		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/marketdata/{itemid}/{itemname}/{side}");
 		logger.info(">> [MarketDataController.marketData]>itemid: " + itemid);
 		logger.info(">> [MarketDataController.marketData]>side: " + side);
-		Instant startInstant = new Instant();
+		AppConnector.startChrono();
 		try {
 			if (null == itemid) return new MarketDataSet(3645, EMarketSide.BUYER);
 			int itemidnumber = Integer.valueOf(itemid).intValue();
@@ -49,9 +49,10 @@ public class MarketDataController {
 			MarketDataSet data = marketDataService.marketDataServiceEntryPoint(itemidnumber, sideenumerated);
 			return data;
 		} finally {
-			Instant endInstant = new Instant();
-			long delta = endInstant.minus(startInstant.getMillis()).getMillis();
-			logger.info("<< [MarketDataController.marketData]>[TIMING] Processing Time for [" + itemid + "] - " + delta);
+			//			Instant endInstant = new Instant();
+			//			long delta = endInstant.minus(startInstant.getMillis()).getMillis();
+			logger.info("<< [MarketDataController.marketData]>[TIMING] Processing Time for [" + itemid + "] - "
+					+ AppConnector.timeLapse());
 		}
 	}
 
