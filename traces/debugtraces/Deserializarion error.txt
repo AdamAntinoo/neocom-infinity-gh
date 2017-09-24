@@ -1,6 +1,6 @@
-2017-09-24 00:33:38.788  INFO 26340 --- [           main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@4470fbd6: startup date [Sun Sep 24 00:33:38 CEST 2017]; root of context hierarchy
-2017-09-24 00:33:40.307  INFO 26340 --- [           main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-09-24 00:33:40.547  INFO 26340 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'configurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$2f8a7d79] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-09-24 01:22:48.352  INFO 28724 --- [           main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@1c93084c: startup date [Sun Sep 24 01:22:48 CEST 2017]; root of context hierarchy
+2017-09-24 01:22:49.833  INFO 28724 --- [           main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-09-24 01:22:50.074  INFO 28724 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'configurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$e6e73226] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -10,202 +10,271 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v1.5.6.RELEASE)
 
-2017-09-24 00:33:42.281  INFO 26340 --- [           main] o.d.e.n.NeocomMicroServiceApplication    : No active profile set, falling back to default profiles: default
-2017-09-24 00:33:42.406  INFO 26340 --- [           main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@210f0cc1: startup date [Sun Sep 24 00:33:42 CEST 2017]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@4470fbd6
-2017-09-24 00:33:47.005  INFO 26340 --- [           main] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [file:/D:/Projects/Neocom%20Web%20Developments/AngularHS%20Web/Neocom.MicroServices/target/classes/hsql_configuration.xml]
-2017-09-24 00:33:47.458  INFO 26340 --- [           main] o.s.b.f.s.DefaultListableBeanFactory     : Overriding bean definition for bean 'hystrixFeature' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.cloud.netflix.hystrix.HystrixCircuitBreakerConfiguration$HystrixWebConfiguration; factoryMethodName=hystrixFeature; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/cloud/netflix/hystrix/HystrixCircuitBreakerConfiguration$HystrixWebConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.cloud.netflix.hystrix.HystrixCircuitBreakerConfiguration; factoryMethodName=hystrixFeature; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/cloud/netflix/hystrix/HystrixCircuitBreakerConfiguration.class]]
-2017-09-24 00:33:48.076  WARN 26340 --- [           main] o.s.c.a.ConfigurationClassPostProcessor  : Cannot enhance @Configuration bean definition 'refreshScope' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
-2017-09-24 00:33:48.549  INFO 26340 --- [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=7033bada-bd2f-362d-9cd3-aeaa99f8ae16
-2017-09-24 00:33:48.595  INFO 26340 --- [           main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-09-24 00:33:49.025  INFO 26340 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cache.annotation.ProxyCachingConfiguration' of type [org.springframework.cache.annotation.ProxyCachingConfiguration$$EnhancerBySpringCGLIB$$5c82b09a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2017-09-24 00:33:49.424  INFO 26340 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration' of type [org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration$$EnhancerBySpringCGLIB$$50f6753e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2017-09-24 00:33:49.511  INFO 26340 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'spring.cache-org.springframework.boot.autoconfigure.cache.CacheProperties' of type [org.springframework.boot.autoconfigure.cache.CacheProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2017-09-24 00:33:49.543  INFO 26340 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'cacheManagerCustomizers' of type [org.springframework.boot.autoconfigure.cache.CacheManagerCustomizers] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2017-09-24 00:33:49.558  INFO 26340 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.cache.GuavaCacheConfiguration' of type [org.springframework.boot.autoconfigure.cache.GuavaCacheConfiguration$$EnhancerBySpringCGLIB$$a893addb] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2017-09-24 00:33:49.589  INFO 26340 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'cacheManager' of type [org.springframework.cache.guava.GuavaCacheManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2017-09-24 00:33:49.605  INFO 26340 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'cacheAutoConfigurationValidator' of type [org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration$CacheManagerValidator] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2017-09-24 00:33:49.652  INFO 26340 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$2f8a7d79] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2017-09-24 00:33:50.766  INFO 26340 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 9000 (http)
-2017-09-24 00:33:50.792  INFO 26340 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2017-09-24 00:33:50.792  INFO 26340 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.16
-2017-09-24 00:33:51.166  INFO 26340 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2017-09-24 00:33:51.166  INFO 26340 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 8760 ms
-2017-09-24 00:33:52.090  INFO 26340 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
-2017-09-24 00:33:52.096  INFO 26340 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'metricsFilter' to: [/*]
-2017-09-24 00:33:52.096  INFO 26340 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
-2017-09-24 00:33:52.096  INFO 26340 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
-2017-09-24 00:33:52.096  INFO 26340 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
-2017-09-24 00:33:52.096  INFO 26340 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
-2017-09-24 00:33:52.096  INFO 26340 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webRequestLoggingFilter' to: [/*]
-2017-09-24 00:33:52.096  INFO 26340 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'applicationContextIdFilter' to: [/*]
-2017-09-24 00:33:52.179  INFO 26340 --- [           main] NeocomMicroServiceApplication            : >> [NeocomMicroServiceApplication.<constructor>]
-2017-09-24 00:33:52.179  INFO 26340 --- [           main] NeocomMicroServiceApplication            : -- [NeocomMicroServiceApplication.<constructor>]> Instantiating the singleton.
-2017-09-24 00:33:52.179  INFO 26340 --- [           main] NeocomMicroServiceApplication            : << [NeocomMicroServiceApplication.<constructor>]
-[Server@739831a4]: Initiating startup sequence...
-[Server@739831a4]: Server socket opened successfully in 15 ms.
-[Server@739831a4]: Database [index=0, id=0, db=file:d:/NeoComDatabase/neocomdata, alias=neocomdata] opened successfully in 650 ms.
-[Server@739831a4]: Startup sequence completed in 665 ms.
-[Server@739831a4]: 2017-09-24 00:33:53.462 HSQLDB server 2.4.0 is online on port 9001
-[Server@739831a4]: To close normally, connect and execute SHUTDOWN SQL
-[Server@739831a4]: From command line, use [Ctrl]+[C] to abort abruptly
-2017-09-24 00:33:53.712  WARN 26340 --- [           main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
-2017-09-24 00:33:53.713  INFO 26340 --- [           main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2017-09-24 00:33:53.731  INFO 26340 --- [           main] c.netflix.config.DynamicPropertyFactory  : DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@3313d477
-2017-09-24 00:33:55.612  INFO 26340 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@210f0cc1: startup date [Sun Sep 24 00:33:42 CEST 2017]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@4470fbd6
-2017-09-24 00:33:55.950  INFO 26340 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/v1/eveitem/{typeID}],methods=[GET],produces=[application/json]}" onto public org.dimensinfin.eveonline.neocom.model.EveItem org.dimensinfin.eveonline.neocom.controller.EveItemController.eveItem(java.lang.String)
-2017-09-24 00:33:55.950  INFO 26340 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/v1/login/{login}/pilot/{identifier}/planetarymanager],methods=[GET],produces=[application/json]}" onto public org.dimensinfin.eveonline.neocom.manager.PlanetaryManager org.dimensinfin.eveonline.neocom.controller.PilotDataController.pilotPlanetaryManager(java.lang.String,java.lang.String)
-2017-09-24 00:33:55.965  INFO 26340 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/v1/login/{login}/pilot/{identifier}/pilotmanagers],methods=[GET],produces=[application/json]}" onto public java.util.Vector<org.dimensinfin.eveonline.neocom.manager.AbstractManager> org.dimensinfin.eveonline.neocom.controller.PilotDataController.pilotManagers(java.lang.String,java.lang.String)
-2017-09-24 00:33:55.965  INFO 26340 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/v1/login/{identifier}/pilotroaster],methods=[GET],produces=[application/json]}" onto public java.util.Vector<org.dimensinfin.eveonline.neocom.model.Pilot> org.dimensinfin.eveonline.neocom.controller.PilotDataController.pilotRoaster(java.lang.String)
-2017-09-24 00:33:55.965  INFO 26340 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/v1/login/{login}/pilot/{identifier}/planetarymanager/location/{locationid}/optimizeprocess],methods=[GET],produces=[application/json]}" onto public java.util.Vector<org.dimensinfin.eveonline.neocom.planetary.ProcessingAction> org.dimensinfin.eveonline.neocom.controller.PlanetaryManagerController.planetaryLocationOptimization(java.lang.String,java.lang.String,java.lang.String)
-2017-09-24 00:33:55.965  INFO 26340 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
-2017-09-24 00:33:55.965  INFO 26340 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
-2017-09-24 00:33:56.202  INFO 26340 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2017-09-24 00:33:56.202  INFO 26340 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2017-09-24 00:33:56.405  INFO 26340 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2017-09-24 00:33:59.041  INFO 26340 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/configprops || /configprops.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
-2017-09-24 00:33:59.043  INFO 26340 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/health || /health.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.HealthMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,java.security.Principal)
-2017-09-24 00:33:59.043  INFO 26340 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/features || /features.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
-2017-09-24 00:33:59.043  INFO 26340 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/heapdump || /heapdump.json],methods=[GET],produces=[application/octet-stream]}" onto public void org.springframework.boot.actuate.endpoint.mvc.HeapdumpMvcEndpoint.invoke(boolean,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,javax.servlet.ServletException
-2017-09-24 00:33:59.043  INFO 26340 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/autoconfig || /autoconfig.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
-2017-09-24 00:33:59.043  INFO 26340 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/metrics/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.MetricsMvcEndpoint.value(java.lang.String)
-2017-09-24 00:33:59.043  INFO 26340 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/metrics || /metrics.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
-2017-09-24 00:33:59.043  INFO 26340 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EnvironmentMvcEndpoint.value(java.lang.String)
-2017-09-24 00:33:59.043  INFO 26340 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env || /env.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
-2017-09-24 00:33:59.058  INFO 26340 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/beans || /beans.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
-2017-09-24 00:33:59.058  INFO 26340 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/restart || /restart.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.restart.RestartMvcEndpoint.invoke()
-2017-09-24 00:33:59.058  INFO 26340 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/mappings || /mappings.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
-2017-09-24 00:33:59.058  INFO 26340 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/archaius || /archaius.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
-2017-09-24 00:33:59.058  INFO 26340 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/auditevents || /auditevents.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public org.springframework.http.ResponseEntity<?> org.springframework.boot.actuate.endpoint.mvc.AuditEventsMvcEndpoint.findByPrincipalAndAfterAndType(java.lang.String,java.util.Date,java.lang.String)
-2017-09-24 00:33:59.058  INFO 26340 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/trace || /trace.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
-2017-09-24 00:33:59.058  INFO 26340 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/resume || /resume.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
-2017-09-24 00:33:59.058  INFO 26340 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.get(java.lang.String)
-2017-09-24 00:33:59.074  INFO 26340 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers/{name:.*}],methods=[POST],consumes=[application/vnd.spring-boot.actuator.v1+json || application/json],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.set(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
-2017-09-24 00:33:59.074  INFO 26340 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers || /loggers.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
-2017-09-24 00:33:59.074  INFO 26340 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/info || /info.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
-2017-09-24 00:33:59.074  INFO 26340 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.value(java.util.Map<java.lang.String, java.lang.String>)
-2017-09-24 00:33:59.074  INFO 26340 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env/reset],methods=[POST]}" onto public java.util.Map<java.lang.String, java.lang.Object> org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.reset()
-2017-09-24 00:33:59.074  INFO 26340 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/refresh || /refresh.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
-2017-09-24 00:33:59.074  INFO 26340 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/hystrix.stream/**]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.cloud.netflix.endpoint.ServletWrappingEndpoint.handle(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
-2017-09-24 00:33:59.074  INFO 26340 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/pause || /pause.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
-2017-09-24 00:33:59.074  INFO 26340 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/dump || /dump.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
-2017-09-24 00:33:59.582  WARN 26340 --- [           main] o.s.c.n.a.ArchaiusAutoConfiguration      : No spring.application.name found, defaulting to 'application'
-2017-09-24 00:33:59.582  WARN 26340 --- [           main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
-2017-09-24 00:33:59.582  INFO 26340 --- [           main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2017-09-24 00:34:00.111  INFO 26340 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
-2017-09-24 00:34:00.130  INFO 26340 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'refreshScope' has been autodetected for JMX exposure
-2017-09-24 00:34:00.131  INFO 26340 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'environmentManager' has been autodetected for JMX exposure
-2017-09-24 00:34:00.132  INFO 26340 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'configurationPropertiesRebinder' has been autodetected for JMX exposure
-2017-09-24 00:34:00.132  INFO 26340 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'refreshEndpoint' has been autodetected for JMX exposure
-2017-09-24 00:34:00.132  INFO 26340 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'restartEndpoint' has been autodetected for JMX exposure
-2017-09-24 00:34:00.132  INFO 26340 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'environmentManager': registering with JMX server as MBean [org.springframework.cloud.context.environment:name=environmentManager,type=EnvironmentManager]
-2017-09-24 00:34:00.147  INFO 26340 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'restartEndpoint': registering with JMX server as MBean [org.springframework.cloud.context.restart:name=restartEndpoint,type=RestartEndpoint]
-2017-09-24 00:34:00.194  INFO 26340 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'refreshScope': registering with JMX server as MBean [org.springframework.cloud.context.scope.refresh:name=refreshScope,type=RefreshScope]
-2017-09-24 00:34:00.226  INFO 26340 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'configurationPropertiesRebinder': registering with JMX server as MBean [org.springframework.cloud.context.properties:name=configurationPropertiesRebinder,context=210f0cc1,type=ConfigurationPropertiesRebinder]
-2017-09-24 00:34:00.257  INFO 26340 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'refreshEndpoint': registering with JMX server as MBean [org.springframework.cloud.endpoint:name=refreshEndpoint,type=RefreshEndpoint]
-2017-09-24 00:34:00.548  INFO 26340 --- [           main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 0
-2017-09-24 00:34:00.642  INFO 26340 --- [           main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
-2017-09-24 00:34:00.658  INFO 26340 --- [           main] ration$HystrixMetricsPollerConfiguration : Starting poller
-2017-09-24 00:34:00.704  INFO 26340 --- [           main] s.a.ScheduledAnnotationBeanPostProcessor : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
-2017-09-24 00:34:00.892  INFO 26340 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 9000 (http)
-2017-09-24 00:34:00.892  INFO 26340 --- [           main] o.d.e.n.NeocomMicroServiceApplication    : Started NeocomMicroServiceApplication in 24.698 seconds (JVM running for 26.813)
-2017-09-24 00:34:10.734  INFO 26340 --- [pool-2-thread-1] TimedServiceLauncher                     : >> [TimedServiceLauncher.onTime]
-2017-09-24 00:34:10.738  INFO 26340 --- [pool-2-thread-1] AppModelStore                            : >> [AppModelStore.initialize]
-2017-09-24 00:34:10.738  INFO 26340 --- [pool-2-thread-1] AppModelStore                            : << [AppModelStore.initialize]
-2017-09-24 00:34:10.816  INFO 26340 --- [pool-2-thread-1] NeocomDBHelper                           : --[NeocomDBHelper.openNeocomDB]> Opened database jdbc:hsqldb:hsql://localhost:9001/neocomdata successfully with version 10.
-2017-09-24 00:34:10.994  INFO 26340 --- [pool-2-thread-1] com.j256.ormlite.table.TableUtils        : creating table 'VERSION'
-2017-09-24 00:34:11.197  INFO 26340 --- [pool-2-thread-1] com.j256.ormlite.table.TableUtils        : creating table 'TIMESTAMP'
-2017-09-24 00:34:11.197  INFO 26340 --- [pool-2-thread-1] com.j256.ormlite.table.TableUtils        : creating table 'APIKEY'
-2017-09-24 00:34:11.213  INFO 26340 --- [pool-2-thread-1] com.j256.ormlite.table.TableUtils        : creating table 'PROPERTIES'
-2017-09-24 00:34:11.213  INFO 26340 --- [pool-2-thread-1] com.j256.ormlite.table.TableUtils        : creating index 'PROPERTIES_ID_idx' for table 'PROPERTIES
-2017-09-24 00:34:11.213  INFO 26340 --- [pool-2-thread-1] com.j256.ormlite.table.TableUtils        : creating table 'RESOURCELIST'
-2017-09-24 00:34:11.213  INFO 26340 --- [pool-2-thread-1] com.j256.ormlite.table.TableUtils        : creating table 'PLANETARYRESOURCE'
-2017-09-24 00:34:11.229  INFO 26340 --- [pool-2-thread-1] com.j256.ormlite.table.TableUtils        : creating table 'ASSETS'
-2017-09-24 00:34:11.229  INFO 26340 --- [pool-2-thread-1] com.j256.ormlite.table.TableUtils        : creating index 'ASSETS_GROUPNAME_idx' for table 'ASSETS
-2017-09-24 00:34:11.229  INFO 26340 --- [pool-2-thread-1] com.j256.ormlite.table.TableUtils        : creating index 'ASSETS_TYPEID_idx' for table 'ASSETS
-2017-09-24 00:34:11.229  INFO 26340 --- [pool-2-thread-1] com.j256.ormlite.table.TableUtils        : creating index 'ASSETS_CATEGORY_idx' for table 'ASSETS
-2017-09-24 00:34:11.229  INFO 26340 --- [pool-2-thread-1] com.j256.ormlite.table.TableUtils        : creating index 'ASSETS_ASSETID_idx' for table 'ASSETS
-2017-09-24 00:34:11.229  INFO 26340 --- [pool-2-thread-1] com.j256.ormlite.table.TableUtils        : creating index 'ASSETS_LOCATIONID_idx' for table 'ASSETS
-2017-09-24 00:34:11.244  INFO 26340 --- [pool-2-thread-1] com.j256.ormlite.table.TableUtils        : creating table 'BLUEPRINTS'
-2017-09-24 00:34:11.244  INFO 26340 --- [pool-2-thread-1] com.j256.ormlite.table.TableUtils        : creating index 'BLUEPRINTS_CONTAINERID_idx' for table 'BLUEPRINTS
-2017-09-24 00:34:11.244  INFO 26340 --- [pool-2-thread-1] com.j256.ormlite.table.TableUtils        : creating index 'BLUEPRINTS_TYPEID_idx' for table 'BLUEPRINTS
-2017-09-24 00:34:11.244  INFO 26340 --- [pool-2-thread-1] com.j256.ormlite.table.TableUtils        : creating index 'BLUEPRINTS_ASSETID_idx' for table 'BLUEPRINTS
-2017-09-24 00:34:11.260  INFO 26340 --- [pool-2-thread-1] com.j256.ormlite.table.TableUtils        : creating table 'JOBS'
-2017-09-24 00:34:11.260  INFO 26340 --- [pool-2-thread-1] com.j256.ormlite.table.TableUtils        : creating index 'JOBS_BLUEPRINTID_idx' for table 'JOBS
-2017-09-24 00:34:11.260  INFO 26340 --- [pool-2-thread-1] com.j256.ormlite.table.TableUtils        : creating index 'JOBS_BLUEPRINTLOCATIONID_idx' for table 'JOBS
-2017-09-24 00:34:11.260  INFO 26340 --- [pool-2-thread-1] com.j256.ormlite.table.TableUtils        : creating table 'MARKETORDERS'
-2017-09-24 00:34:11.275  INFO 26340 --- [pool-2-thread-1] com.j256.ormlite.table.TableUtils        : creating table 'LOCATIONS'
-2017-09-24 00:34:11.275  INFO 26340 --- [pool-2-thread-1] com.j256.ormlite.table.TableUtils        : creating index 'LOCATIONS_ID_idx' for table 'LOCATIONS
-2017-09-24 00:34:11.347  INFO 26340 --- [pool-2-thread-1] NeoComApiKey                             : -- [NeoComApiKey.build]> Creating key: 2889577/Mb6iDKR14m9Xjh9maGTQCGTkpjRHPjOgVUkvK6E9r6fhMtOWtipaqybp0qCzxuuw
-2017-09-24 00:34:15.266  INFO 26340 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Beth Ripley to the _characters
-2017-09-24 00:34:15.266  INFO 26340 --- [pool-2-thread-1] NeoComApiKey                             : -- [NeoComApiKey.build]> Creating key: 3106761/gltCmvVoZl5akrM8d6DbNKZn7Jm2SaukrmqjnSOyqKbvzz5CtNfknTEwdBe6IIFf
-2017-09-24 00:34:17.560  INFO 26340 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Perico Tuerto to the _characters
-2017-09-24 00:34:17.560  INFO 26340 --- [pool-2-thread-1] NeoComApiKey                             : -- [NeoComApiKey.build]> Creating key: 924767/2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P
-2017-09-24 00:34:22.913  INFO 26340 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Adam Antinoo to the _characters
-2017-09-24 00:34:22.914  INFO 26340 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Beth Ripley to the _characters
-2017-09-24 00:34:22.914  INFO 26340 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Perico Tuerto to the _characters
-2017-09-24 00:34:22.915  INFO 26340 --- [pool-2-thread-1] NeoComApiKey                             : -- [NeoComApiKey.build]> Creating key: 6472981/pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z
-2017-09-24 00:34:28.179  INFO 26340 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Zach Zender to the _characters
-2017-09-24 00:34:28.179  INFO 26340 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Zoe Zenote to the _characters
-2017-09-24 00:34:28.179  INFO 26340 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Tip Tophane to the _characters
-2017-09-24 00:34:28.190  INFO 26340 --- [pool-2-thread-1] NeoComApiKey                             : -- [NeoComApiKey.build]> Creating key: 924767/2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P
-2017-09-24 00:34:33.261  INFO 26340 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Adam Antinoo to the _characters
-2017-09-24 00:34:33.261  INFO 26340 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Beth Ripley to the _characters
-2017-09-24 00:34:33.261  INFO 26340 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Perico Tuerto to the _characters
-2017-09-24 00:34:33.268  INFO 26340 --- [pool-2-thread-1] NeoComApiKey                             : -- [NeoComApiKey.build]> Creating key: 6472981/pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z
-2017-09-24 00:34:38.397  INFO 26340 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Zach Zender to the _characters
-2017-09-24 00:34:38.397  INFO 26340 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Zoe Zenote to the _characters
-2017-09-24 00:34:38.397  INFO 26340 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Tip Tophane to the _characters
-2017-09-24 00:35:29.692  INFO 26340 --- [pool-2-thread-1] TimedServiceLauncher                     : -- [TimeTickReceiver.onTime] EDataBlock to update: Tip Tophane - ASSETDATA
-2017-09-24 00:35:34.134  INFO 26340 --- [pool-2-thread-1] CharacterUpdaterService                  : -- [CharacterUpdaterService.onHandleIntent] EDataBlock to process: Tip Tophane - ASSETDATA
-2017-09-24 00:35:39.874  INFO 26340 --- [pool-2-thread-1] AssetsManager                            : >> [AssetsManager.downloadPilotAssets]
-2017-09-24 00:35:46.612  WARN 26340 --- [pool-2-thread-1] SpringDatabaseConnector                  : W> Problem clearing invalid assets. user lacks privilege or object not found: OWNERID in statement [DELETE FROM Assets WHERE ownerID=-1]
-2017-09-24 00:35:57.968  INFO 26340 --- [pool-2-thread-1] CCPDatabaseConnector.java                : -- [StringDatabaseConnector.openCCPDataBase]> Opened CCP database successfully.
-2017-09-24 00:36:02.321  INFO 26340 --- [pool-2-thread-1] MicroServicesCacheConnector              : >> [MicroServicesCacheConnector.searchMarketData]> itemid: 3638 side: BUYER
-2017-09-24 00:36:12.737  INFO 26340 --- [pool-2-thread-1] MarketDataService                        : >< [MarketDataService.getData]> itemid: 3638 side: BUYER
-org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Can not construct instance of org.dimensinfin.eveonline.neocom.market.MarketDataEntry: no suitable constructor found, can not deserialize from Object value (missing default constructor or creator, or perhaps need to add/enable type information?); nested exception is com.fasterxml.jackson.databind.JsonMappingException: Can not construct instance of org.dimensinfin.eveonline.neocom.market.MarketDataEntry: no suitable constructor found, can not deserialize from Object value (missing default constructor or creator, or perhaps need to add/enable type information?)
- at [Source: java.io.PushbackInputStream@bad660c; line: 1, column: 43] (through reference chain: org.dimensinfin.eveonline.neocom.market.MarketDataSet["bestmarkethigh"])
-	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.readJavaType(AbstractJackson2HttpMessageConverter.java:238)
-	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.read(AbstractJackson2HttpMessageConverter.java:223)
-	at org.springframework.web.client.HttpMessageConverterExtractor.extractData(HttpMessageConverterExtractor.java:96)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:655)
-	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:628)
-	at org.springframework.web.client.RestTemplate.getForObject(RestTemplate.java:303)
-	at org.dimensinfin.eveonline.neocom.services.MarketDataClient.getData(MarketDataClient.java:68)
-	at org.dimensinfin.eveonline.neocom.connector.MicroServicesCacheConnector.searchMarketData(MicroServicesCacheConnector.java:86)
-	at org.dimensinfin.eveonline.neocom.model.EveItem.getBuyerMarketData(EveItem.java:256)
-	at org.dimensinfin.eveonline.neocom.model.EveItem.getHighestBuyerPrice(EveItem.java:80)
-	at org.dimensinfin.eveonline.neocom.manager.AssetsManager.calculateAssetValue(AssetsManager.java:691)
-	at org.dimensinfin.eveonline.neocom.manager.AssetsManager.convert2Asset(AssetsManager.java:745)
-	at org.dimensinfin.eveonline.neocom.manager.AssetsManager.processAsset(AssetsManager.java:905)
-	at org.dimensinfin.eveonline.neocom.manager.AssetsManager.downloadPilotAssets(AssetsManager.java:277)
-	at org.dimensinfin.eveonline.neocom.services.CharacterUpdaterService.processCharacter(CharacterUpdaterService.java:40)
-	at org.dimensinfin.eveonline.neocom.services.TimedServiceLauncher.onTime(TimedServiceLauncher.java:110)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65)
-	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
-	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
-	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
-	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.lang.Thread.run(Unknown Source)
-Caused by: com.fasterxml.jackson.databind.JsonMappingException: Can not construct instance of org.dimensinfin.eveonline.neocom.market.MarketDataEntry: no suitable constructor found, can not deserialize from Object value (missing default constructor or creator, or perhaps need to add/enable type information?)
- at [Source: java.io.PushbackInputStream@bad660c; line: 1, column: 43] (through reference chain: org.dimensinfin.eveonline.neocom.market.MarketDataSet["bestmarkethigh"])
-	at com.fasterxml.jackson.databind.JsonMappingException.from(JsonMappingException.java:270)
-	at com.fasterxml.jackson.databind.DeserializationContext.instantiationException(DeserializationContext.java:1456)
-	at com.fasterxml.jackson.databind.DeserializationContext.handleMissingInstantiator(DeserializationContext.java:1012)
-	at com.fasterxml.jackson.databind.deser.BeanDeserializerBase.deserializeFromObjectUsingNonDefault(BeanDeserializerBase.java:1206)
-	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:314)
-	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:148)
-	at com.fasterxml.jackson.databind.deser.SettableBeanProperty.deserialize(SettableBeanProperty.java:504)
-	at com.fasterxml.jackson.databind.deser.impl.FieldProperty.deserializeAndSet(FieldProperty.java:111)
-	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:357)
-	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:148)
-	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:3814)
-	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2938)
-	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.readJavaType(AbstractJackson2HttpMessageConverter.java:235)
-	... 28 more
+2017-09-24 01:22:51.465  INFO 28724 --- [           main] o.d.e.n.MarketDataServiceApplication     : No active profile set, falling back to default profiles: default
+2017-09-24 01:22:51.528  INFO 28724 --- [           main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@45312be2: startup date [Sun Sep 24 01:22:51 CEST 2017]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@1c93084c
+2017-09-24 01:22:55.218  WARN 28724 --- [           main] o.s.c.a.ConfigurationClassPostProcessor  : Cannot enhance @Configuration bean definition 'refreshScope' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2017-09-24 01:22:55.751  INFO 28724 --- [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=c6b382af-02de-3c6c-8ceb-aac4c91adb00
+2017-09-24 01:22:55.814  INFO 28724 --- [           main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-09-24 01:22:56.228  INFO 28724 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$e6e73226] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-09-24 01:22:57.456  INFO 28724 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 9002 (http)
+2017-09-24 01:22:57.504  INFO 28724 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2017-09-24 01:22:57.504  INFO 28724 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.16
+2017-09-24 01:22:58.168  INFO 28724 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-09-24 01:22:58.168  INFO 28724 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 6640 ms
+2017-09-24 01:22:58.183  INFO 28724 --- [ost-startStop-1] MarketDataServiceApplication             : >> [NeocomMicroServiceApplication.<constructor>]
+2017-09-24 01:22:58.183  INFO 28724 --- [ost-startStop-1] MarketDataServiceApplication             : -- [NeocomMicroServiceApplication.<constructor>]> Instantiating the singleton.
+2017-09-24 01:22:58.183  INFO 28724 --- [ost-startStop-1] MarketDataServiceApplication             : << [NeocomMicroServiceApplication.<constructor>]
+2017-09-24 01:22:58.355  WARN 28724 --- [ost-startStop-1] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2017-09-24 01:22:58.355  INFO 28724 --- [ost-startStop-1] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2017-09-24 01:22:58.407  INFO 28724 --- [ost-startStop-1] c.netflix.config.DynamicPropertyFactory  : DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@65f47f51
+2017-09-24 01:22:59.444  INFO 28724 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'hystrixMetricsStreamServlet' to [/hystrix.stream]
+2017-09-24 01:22:59.448  INFO 28724 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-09-24 01:22:59.448  INFO 28724 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'metricsFilter' to: [/*]
+2017-09-24 01:22:59.448  INFO 28724 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-09-24 01:22:59.464  INFO 28724 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-09-24 01:22:59.464  INFO 28724 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-09-24 01:22:59.464  INFO 28724 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-09-24 01:22:59.464  INFO 28724 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webRequestLoggingFilter' to: [/*]
+2017-09-24 01:22:59.464  INFO 28724 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'applicationContextIdFilter' to: [/*]
+2017-09-24 01:23:01.044  INFO 28724 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@45312be2: startup date [Sun Sep 24 01:22:51 CEST 2017]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@1c93084c
+2017-09-24 01:23:01.371  INFO 28724 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/v1/marketdata/{itemid}/{itemname}/{side}],methods=[GET],produces=[application/json]}" onto public org.dimensinfin.eveonline.neocom.market.MarketDataSet org.dimensinfin.eveonline.neocom.controller.MarketDataController.marketData(java.lang.String,java.lang.String,java.lang.String)
+2017-09-24 01:23:01.386  INFO 28724 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/v1/marketdata/{itemid}/{side}],methods=[GET],produces=[application/json]}" onto public org.dimensinfin.eveonline.neocom.market.MarketDataSet org.dimensinfin.eveonline.neocom.controller.MarketDataController.marketData(java.lang.String,java.lang.String)
+2017-09-24 01:23:01.386  INFO 28724 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-09-24 01:23:01.386  INFO 28724 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-09-24 01:23:01.527  INFO 28724 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-09-24 01:23:01.527  INFO 28724 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-09-24 01:23:01.798  INFO 28724 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-09-24 01:23:05.954  INFO 28724 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/pause || /pause.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+2017-09-24 01:23:05.967  INFO 28724 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/mappings || /mappings.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-09-24 01:23:05.968  INFO 28724 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/dump || /dump.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-09-24 01:23:05.968  INFO 28724 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/restart || /restart.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.restart.RestartMvcEndpoint.invoke()
+2017-09-24 01:23:05.968  INFO 28724 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/beans || /beans.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-09-24 01:23:05.968  INFO 28724 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/features || /features.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-09-24 01:23:05.968  INFO 28724 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/health || /health.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.HealthMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,java.security.Principal)
+2017-09-24 01:23:05.968  INFO 28724 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/heapdump || /heapdump.json],methods=[GET],produces=[application/octet-stream]}" onto public void org.springframework.boot.actuate.endpoint.mvc.HeapdumpMvcEndpoint.invoke(boolean,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,javax.servlet.ServletException
+2017-09-24 01:23:05.968  INFO 28724 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/metrics/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.MetricsMvcEndpoint.value(java.lang.String)
+2017-09-24 01:23:05.968  INFO 28724 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/metrics || /metrics.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-09-24 01:23:05.968  INFO 28724 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/info || /info.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-09-24 01:23:05.984  INFO 28724 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/trace || /trace.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-09-24 01:23:05.984  INFO 28724 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/auditevents || /auditevents.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public org.springframework.http.ResponseEntity<?> org.springframework.boot.actuate.endpoint.mvc.AuditEventsMvcEndpoint.findByPrincipalAndAfterAndType(java.lang.String,java.util.Date,java.lang.String)
+2017-09-24 01:23:05.984  INFO 28724 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.value(java.util.Map<java.lang.String, java.lang.String>)
+2017-09-24 01:23:05.984  INFO 28724 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env/reset],methods=[POST]}" onto public java.util.Map<java.lang.String, java.lang.Object> org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.reset()
+2017-09-24 01:23:05.984  INFO 28724 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/refresh || /refresh.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+2017-09-24 01:23:05.984  INFO 28724 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.get(java.lang.String)
+2017-09-24 01:23:05.984  INFO 28724 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers/{name:.*}],methods=[POST],consumes=[application/vnd.spring-boot.actuator.v1+json || application/json],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.set(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2017-09-24 01:23:05.984  INFO 28724 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers || /loggers.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-09-24 01:23:05.984  INFO 28724 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/archaius || /archaius.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-09-24 01:23:05.999  INFO 28724 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/resume || /resume.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+2017-09-24 01:23:05.999  INFO 28724 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/autoconfig || /autoconfig.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-09-24 01:23:05.999  INFO 28724 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/configprops || /configprops.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-09-24 01:23:05.999  INFO 28724 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EnvironmentMvcEndpoint.value(java.lang.String)
+2017-09-24 01:23:05.999  INFO 28724 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env || /env.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-09-24 01:23:06.359  WARN 28724 --- [           main] o.s.c.n.a.ArchaiusAutoConfiguration      : No spring.application.name found, defaulting to 'application'
+2017-09-24 01:23:06.359  WARN 28724 --- [           main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2017-09-24 01:23:06.359  INFO 28724 --- [           main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2017-09-24 01:23:06.522  INFO 28724 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-09-24 01:23:06.537  INFO 28724 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'refreshScope' has been autodetected for JMX exposure
+2017-09-24 01:23:06.553  INFO 28724 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'environmentManager' has been autodetected for JMX exposure
+2017-09-24 01:23:06.553  INFO 28724 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'configurationPropertiesRebinder' has been autodetected for JMX exposure
+2017-09-24 01:23:06.553  INFO 28724 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'refreshEndpoint' has been autodetected for JMX exposure
+2017-09-24 01:23:06.553  INFO 28724 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'restartEndpoint' has been autodetected for JMX exposure
+2017-09-24 01:23:06.569  INFO 28724 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'environmentManager': registering with JMX server as MBean [org.springframework.cloud.context.environment:name=environmentManager,type=EnvironmentManager]
+2017-09-24 01:23:06.600  INFO 28724 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'restartEndpoint': registering with JMX server as MBean [org.springframework.cloud.context.restart:name=restartEndpoint,type=RestartEndpoint]
+2017-09-24 01:23:06.631  INFO 28724 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'refreshScope': registering with JMX server as MBean [org.springframework.cloud.context.scope.refresh:name=refreshScope,type=RefreshScope]
+2017-09-24 01:23:06.836  INFO 28724 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'configurationPropertiesRebinder': registering with JMX server as MBean [org.springframework.cloud.context.properties:name=configurationPropertiesRebinder,context=45312be2,type=ConfigurationPropertiesRebinder]
+2017-09-24 01:23:06.883  INFO 28724 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'refreshEndpoint': registering with JMX server as MBean [org.springframework.cloud.endpoint:name=refreshEndpoint,type=RefreshEndpoint]
+2017-09-24 01:23:07.601  INFO 28724 --- [           main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 0
+2017-09-24 01:23:07.863  INFO 28724 --- [           main] s.a.ScheduledAnnotationBeanPostProcessor : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2017-09-24 01:23:08.522  INFO 28724 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 9002 (http)
+2017-09-24 01:23:08.534  INFO 28724 --- [           main] o.d.e.n.MarketDataServiceApplication     : Started MarketDataServiceApplication in 22.132 seconds (JVM running for 23.736)
+2017-09-24 01:23:17.889  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : >> [TimedServiceLauncher.onReceive]
+2017-09-24 01:23:17.904  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : << [TimedServiceLauncher.onReceive]
+2017-09-24 01:23:19.313  INFO 28724 --- [io-9002-exec-10] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2017-09-24 01:23:19.313  INFO 28724 --- [io-9002-exec-10] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2017-09-24 01:23:19.495  INFO 28724 --- [io-9002-exec-10] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 178 ms
+2017-09-24 01:23:19.707  INFO 28724 --- [io-9002-exec-10] MarketDataController                     : >>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/marketdata/{itemid}/{itemname}/{side}
+2017-09-24 01:23:19.707  INFO 28724 --- [io-9002-exec-10] MarketDataController                     : >> [MarketDataController.marketData]>itemid: 2286
+2017-09-24 01:23:19.707  INFO 28724 --- [io-9002-exec-10] MarketDataController                     : >> [MarketDataController.marketData]>side: BUYER
+2017-09-24 01:23:19.707  INFO 28724 --- [io-9002-exec-10] MarketDataService                        : >> [MarketDataServer.marketDataServiceEntryPoint]> localizer: 2286 side: BUYER
+2017-09-24 01:23:20.339  INFO 28724 --- [io-9002-exec-10] CCPDatabaseConnector.java                : -- [StringDatabaseConnector.openCCPDataBase]> Opened CCP database successfully.
+2017-09-24 01:23:20.351  INFO 28724 --- [io-9002-exec-10] CoreCacheConnector                       : -- [AndroidCacheConnector.addMarketDataRequest] Posting market update for: Planktic Colonies
+2017-09-24 01:23:20.372  INFO 28724 --- [io-9002-exec-10] MarketDataController                     : << [MarketDataController.marketData]>
+2017-09-24 01:23:27.922  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : >> [TimedServiceLauncher.onReceive]
+2017-09-24 01:23:27.923  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : -- [TimedServiceLauncher.onTime]> Update Request Class [MARKETDATA]
+2017-09-24 01:23:27.923  INFO 28724 --- [pool-1-thread-1] MarketDataService                        : >< [MarketDataService.accessMarketData]
+2017-09-24 01:23:27.924  INFO 28724 --- [pool-1-thread-1] MarketDataService                        : >> [MarketDataService.parseMarketData]
+2017-09-24 01:23:30.179  INFO 28724 --- [nio-9002-exec-8] MarketDataController                     : >>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/marketdata/{itemid}/{itemname}/{side}
+2017-09-24 01:23:30.179  INFO 28724 --- [nio-9002-exec-8] MarketDataController                     : >> [MarketDataController.marketData]>itemid: 2286
+2017-09-24 01:23:30.179  INFO 28724 --- [nio-9002-exec-8] MarketDataController                     : >> [MarketDataController.marketData]>side: BUYER
+2017-09-24 01:23:30.179  INFO 28724 --- [nio-9002-exec-8] MarketDataService                        : >> [MarketDataServer.marketDataServiceEntryPoint]> localizer: 2286 side: BUYER
+2017-09-24 01:23:30.179  INFO 28724 --- [nio-9002-exec-8] CoreCacheConnector                       : -- [AndroidCacheConnector.addMarketDataRequest] Posting market update for: Planktic Colonies
+2017-09-24 01:23:33.311  INFO 28724 --- [pool-1-thread-1] MarketDataService                        : << [MarketDataService.parseMarketData]> marketEntries [48]
+2017-09-24 01:23:33.373  INFO 28724 --- [pool-1-thread-1] MarketDataSet                            : -- MarketDataSet.updateBestMarket - setting a better BUYER: MarketDataEntry [qty: 20212569 3.08 ISK location: NeoComLocation [#30002187 (0) [Domain] system: Amarr station: Amarr ] ]
+2017-09-24 01:23:33.373  INFO 28724 --- [pool-1-thread-1] MarketDataSet                            : -- MarketDataSet.updateBestMarket - setting a better BUYER: MarketDataEntry [qty: 21557254 5.6 ISK location: NeoComLocation [#30000142 (0) [The Forge] system: Jita station: Jita ] ]
+2017-09-24 01:23:33.373  INFO 28724 --- [pool-1-thread-1] MarketDataService                        : >< [MarketDataService.accessMarketData]
+2017-09-24 01:23:33.373  INFO 28724 --- [pool-1-thread-1] MarketDataService                        : >> [MarketDataService.parseMarketData]
+2017-09-24 01:23:33.887  INFO 28724 --- [pool-1-thread-1] MarketDataService                        : << [MarketDataService.parseMarketData]> marketEntries [31]
+2017-09-24 01:23:33.911  INFO 28724 --- [pool-1-thread-1] MarketDataSet                            : -- MarketDataSet.updateBestMarket - processing MDE: MarketDataEntry [qty: 5856 7.0 ISK location: NeoComLocation [#30002053 (0) [Metropolis] system: Hek station: Hek ] ]
+2017-09-24 01:23:33.911  INFO 28724 --- [pool-1-thread-1] MarketDataSet                            : -- MarketDataSet.updateBestMarket - processing MDE: MarketDataEntry [qty: 1025742 10.9 ISK location: NeoComLocation [#30002187 (0) [Domain] system: Amarr station: Amarr ] ]
+2017-09-24 01:23:33.911  INFO 28724 --- [pool-1-thread-1] MarketDataSet                            : -- MarketDataSet.updateBestMarket - processing MDE: MarketDataEntry [qty: 1466631 7.99 ISK location: NeoComLocation [#30002510 (0) [Heimatar] system: Rens station: Rens ] ]
+2017-09-24 01:23:33.911  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : << [TimedServiceLauncher.onReceive]
+2017-09-24 01:23:33.911  INFO 28724 --- [nio-9002-exec-8] MarketDataController                     : << [MarketDataController.marketData]>
+2017-09-24 01:23:36.331  INFO 28724 --- [nio-9002-exec-6] MarketDataController                     : >>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/marketdata/{itemid}/{itemname}/{side}
+2017-09-24 01:23:36.331  INFO 28724 --- [nio-9002-exec-6] MarketDataController                     : >> [MarketDataController.marketData]>itemid: 2286
+2017-09-24 01:23:36.331  INFO 28724 --- [nio-9002-exec-6] MarketDataController                     : >> [MarketDataController.marketData]>side: BUYER
+2017-09-24 01:23:36.331  INFO 28724 --- [nio-9002-exec-6] MarketDataService                        : >> [MarketDataServer.marketDataServiceEntryPoint]> localizer: 2286 side: BUYER
+2017-09-24 01:23:36.331  INFO 28724 --- [nio-9002-exec-6] MarketDataController                     : << [MarketDataController.marketData]>
+2017-09-24 01:23:36.765  INFO 28724 --- [nio-9002-exec-6] CCPDatabaseConnector.java                : ~~ Time lapse for [SELECT STATIONTYPEID -2] PT0S
+2017-09-24 01:23:36.769  INFO 28724 --- [nio-9002-exec-6] CCPDatabaseConnector.java                : ~~ Time lapse for [SELECT STATIONTYPEID -2] PT0S
+2017-09-24 01:23:36.769  INFO 28724 --- [nio-9002-exec-6] CCPDatabaseConnector.java                : ~~ Time lapse for [SELECT STATIONTYPEID -2] PT0S
+2017-09-24 01:23:36.773  INFO 28724 --- [nio-9002-exec-6] CCPDatabaseConnector.java                : ~~ Time lapse for [SELECT STATIONTYPEID -2] PT0S
+2017-09-24 01:23:36.773  INFO 28724 --- [nio-9002-exec-6] CCPDatabaseConnector.java                : ~~ Time lapse for [SELECT STATIONTYPEID -2] PT0S
+2017-09-24 01:23:43.922  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : >> [TimedServiceLauncher.onReceive]
+2017-09-24 01:23:43.922  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : << [TimedServiceLauncher.onReceive]
+2017-09-24 01:23:53.924  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : >> [TimedServiceLauncher.onReceive]
+2017-09-24 01:23:53.924  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : << [TimedServiceLauncher.onReceive]
+2017-09-24 01:24:03.937  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : >> [TimedServiceLauncher.onReceive]
+2017-09-24 01:24:03.941  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : << [TimedServiceLauncher.onReceive]
+2017-09-24 01:24:13.955  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : >> [TimedServiceLauncher.onReceive]
+2017-09-24 01:24:13.955  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : << [TimedServiceLauncher.onReceive]
+2017-09-24 01:24:23.969  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : >> [TimedServiceLauncher.onReceive]
+2017-09-24 01:24:23.969  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : << [TimedServiceLauncher.onReceive]
+2017-09-24 01:24:33.985  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : >> [TimedServiceLauncher.onReceive]
+2017-09-24 01:24:33.985  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : << [TimedServiceLauncher.onReceive]
+2017-09-24 01:24:44.000  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : >> [TimedServiceLauncher.onReceive]
+2017-09-24 01:24:44.000  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : << [TimedServiceLauncher.onReceive]
+2017-09-24 01:24:54.015  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : >> [TimedServiceLauncher.onReceive]
+2017-09-24 01:24:54.015  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : << [TimedServiceLauncher.onReceive]
+2017-09-24 01:25:04.019  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : >> [TimedServiceLauncher.onReceive]
+2017-09-24 01:25:04.019  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : << [TimedServiceLauncher.onReceive]
+2017-09-24 01:25:05.130  INFO 28724 --- [nio-9002-exec-3] MarketDataController                     : >>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/marketdata/{itemid}/{itemname}/{side}
+2017-09-24 01:25:05.130  INFO 28724 --- [nio-9002-exec-3] MarketDataController                     : >> [MarketDataController.marketData]>itemid: 16275
+2017-09-24 01:25:05.130  INFO 28724 --- [nio-9002-exec-3] MarketDataController                     : >> [MarketDataController.marketData]>side: BUYER
+2017-09-24 01:25:05.130  INFO 28724 --- [nio-9002-exec-3] MarketDataService                        : >> [MarketDataServer.marketDataServiceEntryPoint]> localizer: 16275 side: BUYER
+2017-09-24 01:25:05.134  INFO 28724 --- [nio-9002-exec-3] CoreCacheConnector                       : -- [AndroidCacheConnector.addMarketDataRequest] Posting market update for: Strontium Clathrates
+2017-09-24 01:25:05.135  INFO 28724 --- [nio-9002-exec-3] MarketDataController                     : << [MarketDataController.marketData]>
+2017-09-24 01:25:14.032  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : >> [TimedServiceLauncher.onReceive]
+2017-09-24 01:25:14.032  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : -- [TimedServiceLauncher.onTime]> Update Request Class [MARKETDATA]
+2017-09-24 01:25:14.033  INFO 28724 --- [pool-1-thread-1] MarketDataService                        : >< [MarketDataService.accessMarketData]
+2017-09-24 01:25:14.033  INFO 28724 --- [pool-1-thread-1] MarketDataService                        : >> [MarketDataService.parseMarketData]
+2017-09-24 01:25:31.013  INFO 28724 --- [pool-1-thread-1] MarketDataService                        : << [MarketDataService.parseMarketData]> marketEntries [263]
+2017-09-24 01:25:31.067  INFO 28724 --- [pool-1-thread-1] MarketDataSet                            : -- MarketDataSet.updateBestMarket - setting a better BUYER: MarketDataEntry [qty: 101777 5702.0 ISK location: NeoComLocation [#30002053 (0) [Metropolis] system: Hek station: Hek ] ]
+2017-09-24 01:25:31.067  INFO 28724 --- [pool-1-thread-1] MarketDataSet                            : -- MarketDataSet.updateBestMarket - setting a better BUYER: MarketDataEntry [qty: 156378 5801.0 ISK location: NeoComLocation [#30002510 (0) [Heimatar] system: Rens station: Rens ] ]
+2017-09-24 01:25:31.067  INFO 28724 --- [pool-1-thread-1] MarketDataService                        : >< [MarketDataService.accessMarketData]
+2017-09-24 01:25:31.067  INFO 28724 --- [pool-1-thread-1] MarketDataService                        : >> [MarketDataService.parseMarketData]
+2017-09-24 01:25:31.969  INFO 28724 --- [pool-1-thread-1] MarketDataService                        : << [MarketDataService.parseMarketData]> marketEntries [853]
+2017-09-24 01:25:31.984  INFO 28724 --- [pool-1-thread-1] MarketDataSet                            : -- MarketDataSet.updateBestMarket - processing MDE: MarketDataEntry [qty: 54262 6698.0 ISK location: NeoComLocation [#30002053 (0) [Metropolis] system: Hek station: Hek ] ]
+2017-09-24 01:25:31.984  INFO 28724 --- [pool-1-thread-1] MarketDataSet                            : -- MarketDataSet.updateBestMarket - processing MDE: MarketDataEntry [qty: 394538 6080.0 ISK location: NeoComLocation [#30002187 (0) [Domain] system: Amarr station: Amarr ] ]
+2017-09-24 01:25:32.000  INFO 28724 --- [pool-1-thread-1] MarketDataSet                            : -- MarketDataSet.updateBestMarket - setting a better SELLER: MarketDataEntry [qty: 394538 6080.0 ISK location: NeoComLocation [#30002187 (0) [Domain] system: Amarr station: Amarr ] ]
+2017-09-24 01:25:32.000  INFO 28724 --- [pool-1-thread-1] MarketDataSet                            : -- MarketDataSet.updateBestMarket - processing MDE: MarketDataEntry [qty: 306013 5700.0 ISK location: NeoComLocation [#30000142 (0) [The Forge] system: Jita station: Jita ] ]
+2017-09-24 01:25:32.000  INFO 28724 --- [pool-1-thread-1] MarketDataSet                            : -- MarketDataSet.updateBestMarket - setting a better SELLER: MarketDataEntry [qty: 306013 5700.0 ISK location: NeoComLocation [#30000142 (0) [The Forge] system: Jita station: Jita ] ]
+2017-09-24 01:25:32.000  INFO 28724 --- [pool-1-thread-1] MarketDataSet                            : -- MarketDataSet.updateBestMarket - processing MDE: MarketDataEntry [qty: 936 6299.0 ISK location: NeoComLocation [#30002510 (0) [Heimatar] system: Rens station: Rens ] ]
+2017-09-24 01:25:32.000  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : << [TimedServiceLauncher.onReceive]
+2017-09-24 01:25:38.017  INFO 28724 --- [nio-9002-exec-1] MarketDataController                     : >>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/marketdata/{itemid}/{itemname}/{side}
+2017-09-24 01:25:38.017  INFO 28724 --- [nio-9002-exec-1] MarketDataController                     : >> [MarketDataController.marketData]>itemid: 16275
+2017-09-24 01:25:38.017  INFO 28724 --- [nio-9002-exec-1] MarketDataController                     : >> [MarketDataController.marketData]>side: BUYER
+2017-09-24 01:25:38.017  INFO 28724 --- [nio-9002-exec-1] MarketDataService                        : >> [MarketDataServer.marketDataServiceEntryPoint]> localizer: 16275 side: BUYER
+2017-09-24 01:25:38.017  INFO 28724 --- [nio-9002-exec-1] MarketDataController                     : << [MarketDataController.marketData]>
+2017-09-24 01:25:38.022  INFO 28724 --- [nio-9002-exec-1] CCPDatabaseConnector.java                : ~~ Time lapse for [SELECT STATIONTYPEID -2] PT0.001S
+2017-09-24 01:25:38.026  INFO 28724 --- [nio-9002-exec-1] CCPDatabaseConnector.java                : ~~ Time lapse for [SELECT STATIONTYPEID -2] PT0S
+2017-09-24 01:25:38.029  INFO 28724 --- [nio-9002-exec-1] CCPDatabaseConnector.java                : ~~ Time lapse for [SELECT STATIONTYPEID -2] PT0.001S
+2017-09-24 01:25:38.031  INFO 28724 --- [nio-9002-exec-1] CCPDatabaseConnector.java                : ~~ Time lapse for [SELECT STATIONTYPEID -2] PT0.001S
+2017-09-24 01:25:38.032  INFO 28724 --- [nio-9002-exec-1] CCPDatabaseConnector.java                : ~~ Time lapse for [SELECT STATIONTYPEID -2] PT0S
+2017-09-24 01:25:42.009  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : >> [TimedServiceLauncher.onReceive]
+2017-09-24 01:25:42.009  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : << [TimedServiceLauncher.onReceive]
+2017-09-24 01:25:46.801  INFO 28724 --- [nio-9002-exec-9] MarketDataController                     : >>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/marketdata/{itemid}/{itemname}/{side}
+2017-09-24 01:25:46.801  INFO 28724 --- [nio-9002-exec-9] MarketDataController                     : >> [MarketDataController.marketData]>itemid: 16275
+2017-09-24 01:25:46.801  INFO 28724 --- [nio-9002-exec-9] MarketDataController                     : >> [MarketDataController.marketData]>side: BUYER
+2017-09-24 01:25:46.805  INFO 28724 --- [nio-9002-exec-9] MarketDataService                        : >> [MarketDataServer.marketDataServiceEntryPoint]> localizer: 16275 side: BUYER
+2017-09-24 01:25:46.805  INFO 28724 --- [nio-9002-exec-9] MarketDataController                     : << [MarketDataController.marketData]>
+2017-09-24 01:25:52.016  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : >> [TimedServiceLauncher.onReceive]
+2017-09-24 01:25:52.016  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : << [TimedServiceLauncher.onReceive]
+2017-09-24 01:26:02.032  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : >> [TimedServiceLauncher.onReceive]
+2017-09-24 01:26:02.032  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : << [TimedServiceLauncher.onReceive]
+2017-09-24 01:26:12.047  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : >> [TimedServiceLauncher.onReceive]
+2017-09-24 01:26:12.047  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : << [TimedServiceLauncher.onReceive]
+2017-09-24 01:26:22.065  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : >> [TimedServiceLauncher.onReceive]
+2017-09-24 01:26:22.065  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : << [TimedServiceLauncher.onReceive]
+2017-09-24 01:26:32.079  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : >> [TimedServiceLauncher.onReceive]
+2017-09-24 01:26:32.079  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : << [TimedServiceLauncher.onReceive]
+2017-09-24 01:26:39.453  INFO 28724 --- [nio-9002-exec-7] MarketDataController                     : >>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/marketdata/{itemid}/{itemname}/{side}
+2017-09-24 01:26:39.453  INFO 28724 --- [nio-9002-exec-7] MarketDataController                     : >> [MarketDataController.marketData]>itemid: 652
+2017-09-24 01:26:39.453  INFO 28724 --- [nio-9002-exec-7] MarketDataController                     : >> [MarketDataController.marketData]>side: BUYER
+2017-09-24 01:26:39.453  INFO 28724 --- [nio-9002-exec-7] MarketDataService                        : >> [MarketDataServer.marketDataServiceEntryPoint]> localizer: 652 side: BUYER
+2017-09-24 01:26:39.458  INFO 28724 --- [nio-9002-exec-7] CoreCacheConnector                       : -- [AndroidCacheConnector.addMarketDataRequest] Posting market update for: Mammoth
+2017-09-24 01:26:39.459  INFO 28724 --- [nio-9002-exec-7] MarketDataController                     : << [MarketDataController.marketData]>
+2017-09-24 01:26:40.457  INFO 28724 --- [nio-9002-exec-6] MarketDataController                     : >>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/marketdata/{itemid}/{itemname}/{side}
+2017-09-24 01:26:40.457  INFO 28724 --- [nio-9002-exec-6] MarketDataController                     : >> [MarketDataController.marketData]>itemid: 2306
+2017-09-24 01:26:40.466  INFO 28724 --- [nio-9002-exec-6] MarketDataController                     : >> [MarketDataController.marketData]>side: BUYER
+2017-09-24 01:26:40.467  INFO 28724 --- [nio-9002-exec-6] MarketDataService                        : >> [MarketDataServer.marketDataServiceEntryPoint]> localizer: 2306 side: BUYER
+2017-09-24 01:26:40.467  INFO 28724 --- [nio-9002-exec-6] CoreCacheConnector                       : -- [AndroidCacheConnector.addMarketDataRequest] Posting market update for: Non-CS Crystals
+2017-09-24 01:26:40.467  INFO 28724 --- [nio-9002-exec-6] MarketDataController                     : << [MarketDataController.marketData]>
+2017-09-24 01:26:40.999  INFO 28724 --- [nio-9002-exec-5] MarketDataController                     : >>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/marketdata/{itemid}/{itemname}/{side}
+2017-09-24 01:26:40.999  INFO 28724 --- [nio-9002-exec-5] MarketDataController                     : >> [MarketDataController.marketData]>itemid: 17366
+2017-09-24 01:26:40.999  INFO 28724 --- [nio-9002-exec-5] MarketDataController                     : >> [MarketDataController.marketData]>side: BUYER
+2017-09-24 01:26:40.999  INFO 28724 --- [nio-9002-exec-5] MarketDataService                        : >> [MarketDataServer.marketDataServiceEntryPoint]> localizer: 17366 side: BUYER
+2017-09-24 01:26:40.999  INFO 28724 --- [nio-9002-exec-5] CoreCacheConnector                       : -- [AndroidCacheConnector.addMarketDataRequest] Posting market update for: Station Container
+2017-09-24 01:26:40.999  INFO 28724 --- [nio-9002-exec-5] MarketDataController                     : << [MarketDataController.marketData]>
+2017-09-24 01:26:41.928  INFO 28724 --- [nio-9002-exec-4] MarketDataController                     : >>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/marketdata/{itemid}/{itemname}/{side}
+2017-09-24 01:26:41.928  INFO 28724 --- [nio-9002-exec-4] MarketDataController                     : >> [MarketDataController.marketData]>itemid: 588
+2017-09-24 01:26:41.934  INFO 28724 --- [nio-9002-exec-4] MarketDataController                     : >> [MarketDataController.marketData]>side: BUYER
+2017-09-24 01:26:41.934  INFO 28724 --- [nio-9002-exec-4] MarketDataService                        : >> [MarketDataServer.marketDataServiceEntryPoint]> localizer: 588 side: BUYER
+2017-09-24 01:26:41.935  INFO 28724 --- [nio-9002-exec-4] CoreCacheConnector                       : -- [AndroidCacheConnector.addMarketDataRequest] Posting market update for: Reaper
+2017-09-24 01:26:41.935  INFO 28724 --- [nio-9002-exec-4] MarketDataController                     : << [MarketDataController.marketData]>
+2017-09-24 01:26:42.093  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : >> [TimedServiceLauncher.onReceive]
+2017-09-24 01:26:42.094  INFO 28724 --- [pool-1-thread-1] TimedServiceLauncher                     : -- [TimedServiceLauncher.onTime]> Update Request Class [MARKETDATA]
+2017-09-24 01:26:42.094  INFO 28724 --- [pool-1-thread-1] MarketDataService                        : >< [MarketDataService.accessMarketData]
+2017-09-24 01:26:42.094  INFO 28724 --- [pool-1-thread-1] MarketDataService                        : >> [MarketDataService.parseMarketData]
+2017-09-24 01:26:42.821  INFO 28724 --- [nio-9002-exec-3] MarketDataController                     : >>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/marketdata/{itemid}/{itemname}/{side}
+2017-09-24 01:26:42.821  INFO 28724 --- [nio-9002-exec-3] MarketDataController                     : >> [MarketDataController.marketData]>itemid: 40519
+2017-09-24 01:26:42.821  INFO 28724 --- [nio-9002-exec-3] MarketDataController                     : >> [MarketDataController.marketData]>side: BUYER
+2017-09-24 01:26:42.821  INFO 28724 --- [nio-9002-exec-3] MarketDataService                        : >> [MarketDataServer.marketDataServiceEntryPoint]> localizer: 40519 side: BUYER
+2017-09-24 01:26:42.821  INFO 28724 --- [nio-9002-exec-3] CoreCacheConnector                       : -- [AndroidCacheConnector.addMarketDataRequest] Posting market update for: Skill Extractor
+2017-09-24 01:26:44.914  INFO 28724 --- [nio-9002-exec-2] MarketDataController                     : >>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/marketdata/{itemid}/{itemname}/{side}
+2017-09-24 01:26:44.915  INFO 28724 --- [nio-9002-exec-2] MarketDataController                     : >> [MarketDataController.marketData]>itemid: 3467
+2017-09-24 01:26:44.915  INFO 28724 --- [nio-9002-exec-2] MarketDataController                     : >> [MarketDataController.marketData]>side: BUYER
+2017-09-24 01:26:44.915  INFO 28724 --- [nio-9002-exec-2] MarketDataService                        : >> [MarketDataServer.marketDataServiceEntryPoint]> localizer: 3467 side: BUYER
+2017-09-24 01:26:46.995  INFO 28724 --- [io-9002-exec-10] MarketDataController                     : >>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/marketdata/{itemid}/{itemname}/{side}
+2017-09-24 01:26:47.016  INFO 28724 --- [io-9002-exec-10] MarketDataController                     : >> [MarketDataController.marketData]>itemid: 2534
+2017-09-24 01:26:47.016  INFO 28724 --- [io-9002-exec-10] MarketDataController                     : >> [MarketDataController.marketData]>side: BUYER
+2017-09-24 01:26:47.016  INFO 28724 --- [io-9002-exec-10] MarketDataService                        : >> [MarketDataServer.marketDataServiceEntryPoint]> localizer: 2534 side: BUYER
+2017-09-24 01:26:49.036  INFO 28724 --- [nio-9002-exec-9] MarketDataController                     : >>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/marketdata/{itemid}/{itemname}/{side}
+2017-09-24 01:26:49.036  INFO 28724 --- [nio-9002-exec-9] MarketDataController                     : >> [MarketDataController.marketData]>itemid: 2551
+2017-09-24 01:26:49.036  INFO 28724 --- [nio-9002-exec-9] MarketDataController                     : >> [MarketDataController.marketData]>side: BUYER
+2017-09-24 01:26:49.046  INFO 28724 --- [nio-9002-exec-9] MarketDataService                        : >> [MarketDataServer.marketDataServiceEntryPoint]> localizer: 2551 side: BUYER
+2017-09-24 01:26:51.097  INFO 28724 --- [nio-9002-exec-8] MarketDataController                     : >>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/marketdata/{itemid}/{itemname}/{side}
+2017-09-24 01:26:51.108  INFO 28724 --- [nio-9002-exec-8] MarketDataController                     : >> [MarketDataController.marketData]>itemid: 2534
+2017-09-24 01:26:51.109  INFO 28724 --- [nio-9002-exec-8] MarketDataController                     : >> [MarketDataController.marketData]>side: BUYER
+2017-09-24 01:26:51.109  INFO 28724 --- [nio-9002-exec-8] MarketDataService                        : >> [MarketDataServer.marketDataServiceEntryPoint]> localizer: 2534 side: BUYER
+2017-09-24 01:26:53.167  INFO 28724 --- [nio-9002-exec-7] MarketDataController                     : >>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/marketdata/{itemid}/{itemname}/{side}
+2017-09-24 01:26:53.167  INFO 28724 --- [nio-9002-exec-7] MarketDataController                     : >> [MarketDataController.marketData]>itemid: 29248
+2017-09-24 01:26:53.167  INFO 28724 --- [nio-9002-exec-7] MarketDataController                     : >> [MarketDataController.marketData]>side: BUYER
+2017-09-24 01:26:53.181  INFO 28724 --- [nio-9002-exec-7] MarketDataService                        : >> [MarketDataServer.marketDataServiceEntryPoint]> localizer: 29248 side: BUYER
+2017-09-24 01:26:55.241  INFO 28724 --- [nio-9002-exec-6] MarketDataController                     : >>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/marketdata/{itemid}/{itemname}/{side}
+2017-09-24 01:26:55.244  INFO 28724 --- [nio-9002-exec-6] MarketDataController                     : >> [MarketDataController.marketData]>itemid: 587
+2017-09-24 01:26:55.244  INFO 28724 --- [nio-9002-exec-6] MarketDataController                     : >> [MarketDataController.marketData]>side: BUYER
+2017-09-24 01:26:55.244  INFO 28724 --- [nio-9002-exec-6] MarketDataService                        : >> [MarketDataServer.marketDataServiceEntryPoint]> localizer: 587 side: BUYER
+2017-09-24 01:26:57.324  INFO 28724 --- [nio-9002-exec-5] MarketDataController                     : >>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/marketdata/{itemid}/{itemname}/{side}
+2017-09-24 01:26:57.324  INFO 28724 --- [nio-9002-exec-5] MarketDataController                     : >> [MarketDataController.marketData]>itemid: 17478
+2017-09-24 01:26:57.329  INFO 28724 --- [nio-9002-exec-5] MarketDataController                     : >> [MarketDataController.marketData]>side: BUYER
+2017-09-24 01:26:57.329  INFO 28724 --- [nio-9002-exec-5] MarketDataService                        : >> [MarketDataServer.marketDataServiceEntryPoint]> localizer: 17478 side: BUYER
+2017-09-24 01:27:01.736  INFO 28724 --- [nio-9002-exec-4] MarketDataController                     : >>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/marketdata/{itemid}/{itemname}/{side}
+2017-09-24 01:27:01.736  INFO 28724 --- [nio-9002-exec-4] MarketDataController                     : >> [MarketDataController.marketData]>itemid: 3467
+2017-09-24 01:27:01.736  INFO 28724 --- [nio-9002-exec-4] MarketDataController                     : >> [MarketDataController.marketData]>side: BUYER
+2017-09-24 01:27:01.744  INFO 28724 --- [nio-9002-exec-4] MarketDataService                        : >> [MarketDataServer.marketDataServiceEntryPoint]> localizer: 3467 side: BUYER
+2017-09-24 01:27:03.772  INFO 28724 --- [io-9002-exec-11] MarketDataController                     : >>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/marketdata/{itemid}/{itemname}/{side}
+2017-09-24 01:27:03.772  INFO 28724 --- [io-9002-exec-11] MarketDataController                     : >> [MarketDataController.marketData]>itemid: 3467
+2017-09-24 01:27:03.772  INFO 28724 --- [io-9002-exec-11] MarketDataController                     : >> [MarketDataController.marketData]>side: BUYER
+2017-09-24 01:27:03.772  INFO 28724 --- [io-9002-exec-11] MarketDataService                        : >> [MarketDataServer.marketDataServiceEntryPoint]> localizer: 3467 side: BUYER
+2017-09-24 01:27:05.878  INFO 28724 --- [io-9002-exec-12] MarketDataController                     : >>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/marketdata/{itemid}/{itemname}/{side}
+2017-09-24 01:27:05.878  INFO 28724 --- [io-9002-exec-12] MarketDataController                     : >> [MarketDataController.marketData]>itemid: 11489
+2017-09-24 01:27:05.878  INFO 28724 --- [io-9002-exec-12] MarketDataController                     : >> [MarketDataController.marketData]>side: BUYER
+2017-09-24 01:27:05.878  INFO 28724 --- [io-9002-exec-12] MarketDataService                        : >> [MarketDataServer.marketDataServiceEntryPoint]> localizer: 11489 side: BUYER
+2017-09-24 01:27:07.958  INFO 28724 --- [io-9002-exec-13] MarketDataController                     : >>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/marketdata/{itemid}/{itemname}/{side}
+2017-09-24 01:27:07.958  INFO 28724 --- [io-9002-exec-13] MarketDataController                     : >> [MarketDataController.marketData]>itemid: 631
+2017-09-24 01:27:07.958  INFO 28724 --- [io-9002-exec-13] MarketDataController                     : >> [MarketDataController.marketData]>side: BUYER
+2017-09-24 01:27:07.959  INFO 28724 --- [io-9002-exec-13] MarketDataService                        : >> [MarketDataServer.marketDataServiceEntryPoint]> localizer: 631 side: BUYER
+2017-09-24 01:27:10.001  INFO 28724 --- [io-9002-exec-14] MarketDataController                     : >>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/marketdata/{itemid}/{itemname}/{side}
+2017-09-24 01:27:10.001  INFO 28724 --- [io-9002-exec-14] MarketDataController                     : >> [MarketDataController.marketData]>itemid: 17476
+2017-09-24 01:27:10.001  INFO 28724 --- [io-9002-exec-14] MarketDataController                     : >> [MarketDataController.marketData]>side: BUYER
+2017-09-24 01:27:10.016  INFO 28724 --- [io-9002-exec-14] MarketDataService                        : >> [MarketDataServer.marketDataServiceEntryPoint]> localizer: 17476 side: BUYER
