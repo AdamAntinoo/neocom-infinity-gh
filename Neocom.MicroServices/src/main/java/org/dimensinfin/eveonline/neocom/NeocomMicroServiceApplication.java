@@ -23,7 +23,6 @@ import org.dimensinfin.eveonline.neocom.interfaces.INeoComModelStore;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 // - CLASS IMPLEMENTATION ...................................................................................
@@ -36,7 +35,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  */
 @EnableCaching
 @SpringBootApplication
-@ImportResource(value = "classpath*:hsql_configuration.xml")
 @EnableScheduling
 public class NeocomMicroServiceApplication implements IConnector/* ,CacheResolver */ {
 	// - S T A T I C - S E C T I O N ..........................................................................

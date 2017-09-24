@@ -11,7 +11,6 @@ import java.net.URI;
 import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.connector.AppConnector;
-import org.dimensinfin.eveonline.neocom.controller.XUserAgentInterceptor;
 import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
 import org.dimensinfin.eveonline.neocom.market.MarketDataSet;
 import org.dimensinfin.eveonline.neocom.model.EveItem;
@@ -62,7 +61,7 @@ public class MarketDataClient {
 		sidecopy = side;
 		// Prepare the call to the independent service. Identify the calling application even not being used
 		RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory());
-		restTemplate.getInterceptors().add(new XUserAgentInterceptor());
+		//	restTemplate.getInterceptors().add(new XUserAgentInterceptor("NeoCom"));
 		URI uri = URI.create(SERVICE_HOST + API_VERSION + ENTRYPOINT_GETDATA + itemid + "/" + side.name());
 
 		MarketDataSet resultData = restTemplate.getForObject(uri, MarketDataSet.class);

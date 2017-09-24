@@ -4,7 +4,7 @@
 //	ENVIRONMENT:	SpringBoot-MS-Java 1.8.
 //	DESCRIPTION:	This is the integration project for all the web server pieces. This is the launcher for
 //								the SpringBoot+MicroServices+Angular unified web application.
-package org.dimensinfin.eveonline.neocom.controller;
+package org.dimensinfin.eveonline.neocom.services;
 
 import java.io.IOException;
 
@@ -27,7 +27,7 @@ public class XUserAgentInterceptor implements ClientHttpRequestInterceptor {
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 	@Autowired
-	public XUserAgentInterceptor() {
+	public XUserAgentInterceptor(final String setAppName) {
 		//	appName = setAppName;
 	}
 
