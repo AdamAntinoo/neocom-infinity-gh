@@ -110,13 +110,16 @@ public class MarketDataServer {
 		}
 		MarketDataSet entry = cache.get(localizer);
 		if (null == entry) {
-			logger.info("-- [MarketDataServer.marketDataServiceEntryPoint]>localizer: " + localizer
+			logger.info("-- [MarketDataServer.marketDataServiceEntryPoint]>[MISS] localizer: " + localizer
 					+ " not cached. Posting download request");
 			// Post request and return the data placeholder.
 			AppConnector.getCacheConnector().addMarketDataRequest(localizer);
 			return new MarketDataSet(localizer, side);
-		} else
+		} else {
+			logger.info("-- [MarketDataServer.marketDataServiceEntryPoint]>[HIT] localizer: " + localizer
+					+ " Using cached information.");
 			return entry;
+		}
 	}
 
 	/**
