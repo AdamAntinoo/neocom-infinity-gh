@@ -13,18 +13,17 @@ import org.dimensinfin.eveonline.neocom.core.CoreCacheConnector;
 import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
 import org.dimensinfin.eveonline.neocom.market.MarketDataSet;
 import org.dimensinfin.eveonline.neocom.services.MarketDataClient;
-import org.springframework.beans.factory.annotation.Autowired;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 public class MicroServicesCacheConnector extends CoreCacheConnector implements ICacheConnector {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger			logger				= Logger.getLogger("MicroServicesCacheConnector");
+	private static Logger						logger						= Logger.getLogger("MicroServicesCacheConnector");
 
 	// - F I E L D - S E C T I O N ............................................................................
-	private int								topCounter		= 0;
-	private int								marketCounter	= 0;
-	@Autowired
-	private MarketDataClient	marketDataService;
+	private int											topCounter				= 0;
+	private int											marketCounter			= 0;
+	//@Autowired
+	private final MarketDataClient	marketDataService	= new MarketDataClient();
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 	public MicroServicesCacheConnector() {

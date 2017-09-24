@@ -102,7 +102,7 @@ public class MarketDataServer {
 
 	public MarketDataSet marketDataServiceEntryPoint(final int localizer, EMarketSide side) {
 		logger.info(
-				">> [MarketDataServer.marketDataServiceEntryPoint]> localizer: " + localizer + " side: " + side.toString());
+				">< [MarketDataServer.marketDataServiceEntryPoint]>localizer: " + localizer + " side: " + side.toString());
 		// Cache interception performed by EHCache. If we reach this point that means we have not cached the data.
 		HashMap<Integer, MarketDataSet> cache = sellMarketDataCache;
 		if (side == EMarketSide.BUYER) {
@@ -110,6 +110,8 @@ public class MarketDataServer {
 		}
 		MarketDataSet entry = cache.get(localizer);
 		if (null == entry) {
+			logger.info("-- [MarketDataServer.marketDataServiceEntryPoint]>localizer: " + localizer
+					+ " not cached. Posting download request");
 			// Post request and return the data placeholder.
 			AppConnector.getCacheConnector().addMarketDataRequest(localizer);
 			return new MarketDataSet(localizer, side);

@@ -63,15 +63,16 @@ public class MarketDataClient {
 		// Prepare the call to the independent service. Identify the calling application even not being used
 		RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory());
 		restTemplate.getInterceptors().add(new XUserAgentInterceptor());
-		URI uri = URI
-				.create(SERVICE_HOST + API_VERSION + ENTRYPOINT_GETDATA + itemid + "/" + itemnamecopy + "/" + side.name());
+		URI uri = URI.create(SERVICE_HOST + API_VERSION + ENTRYPOINT_GETDATA + itemid + "/" + side.name());
 
 		MarketDataSet resultData = restTemplate.getForObject(uri, MarketDataSet.class);
 		// Check that the data returned is the valid data expected. Otherwise resort to the 'reliable' call.
 		// TODO I do not know how to detect bad from good results until testing.
-		if (resultData.valid)
+		if (resultData.valid) {
+			//Update the rest of the fields from the data.
+			resultData.updateBestMarket();
 			return resultData;
-		else
+		} else
 			return errorFallback(itemid, side);
 	}
 
