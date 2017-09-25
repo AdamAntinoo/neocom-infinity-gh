@@ -13,6 +13,7 @@ import 'rxjs/add/operator/catch';
 import { AppModelStoreService } from '../services/app-model-store.service';
 //--- MODELS
 import { NeoComNode } from './NeoComNode.model';
+import { Login } from './Login.model';
 import { Manager } from './Manager.model';
 import { PilotAction } from './pilotaction';
 
@@ -30,6 +31,7 @@ export class NeoComCharacter extends NeoComNode {
   public lastKnownLocation: string = "- HOME -";
   public name: string = "<name>";
   public corporation: boolean = false;
+  public loginParent: Login = null;
 
   constructor(values: Object = {}) {
     super();
@@ -50,6 +52,16 @@ export class NeoComCharacter extends NeoComNode {
   }
   public getUrlforAvatar() {
     return this.urlforAvatar;
+  }
+  /**
+  Sets the link to the parent so we can keep the chain form the deepest element to the head of the Login. There is no other easy way to gett all that information prepared for the links.
+  */
+  public setLoginReference(ref: Login): void {
+    this.loginParent = ref;
+  }
+  public getLoginRefId(): string {
+    if (null != this.loginParent) return this.loginParent.getLoginId();
+    else return null;
   }
   /**
   Get access to the store list of Managers. If this list has not been doanloaded already then we use the Service to go to the backend server to retieve that list.

@@ -8,7 +8,7 @@ import { AppModelStoreService } from '../../services/app-model-store.service';
 //--- COMPONENTS
 import { LoginPageComponent } from '../../pages/login-page/login-page.component';
 //--- MODELS
-import { Render } from '../../models/Render.model';
+import { NeoComCharacter } from '../../models/NeoComCharacter.model';
 import { Region } from '../../models/Region.model';
 import { Location } from '../../models/Location.model';
 import { EVariant } from '../../classes/EVariant.enumerated';
@@ -22,7 +22,7 @@ import { Login } from '../../models/Login.model';
 })
 export class Pilot4RoasterComponent implements OnInit {
   @Input() viewer: LoginPageComponent;
-  @Input() node: Pilot;
+  @Input() node: NeoComCharacter;
   public expanded: boolean = false;
 
   constructor(private appModelStore: AppModelStoreService) { }
@@ -36,7 +36,11 @@ export class Pilot4RoasterComponent implements OnInit {
   public onClickArrow(): void {
     this.expanded = !this.expanded;
   }
+  public isExpandable(): boolean {
+    return true;
+  }
   public getLoginId(): string {
-    return this.appModelStore.accessLogin().getLoginId();
+    //  return this.node.getLoginRefId();
+    return "";
   }
 }

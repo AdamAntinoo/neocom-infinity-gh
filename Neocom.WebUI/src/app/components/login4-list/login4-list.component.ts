@@ -27,7 +27,7 @@ export class Login4ListComponent implements OnInit {
   Toggle the expand collapse status. This changes the expanded attribute and also ndicates other visual elements to change (like the arrow or the shade of the background).
   The second action is to generate again the view llist with a new call to the page component 'refreshViewPort'.
   */
-  public toggleExpanded() {
+  public clickArrow() {
     this.node.toggleExpanded();
     this.viewer.refreshViewPort();
   }

@@ -19,7 +19,7 @@ export class Login extends NeoComNode {
   // private _pilotRoaster: NeoComCharacter[] = null;
   // private downloadPending: boolean = false;
 
-  public loginid: string = "-ID-";
+  //  public loginid: string = "-ID-";
   public name: string = "-ID-";
   public characters: NeoComCharacter[] = null;
 
@@ -27,7 +27,28 @@ export class Login extends NeoComNode {
     super(values);
     Object.assign(this, values);
     this.jsonClass = "Login";
-    //    this.downloadPending = false;
+    // Update the list of characters to point to this login to start the chain.
+    let newchars = [];
+    for (let node of this.characters) {
+      let newnode = null;
+      switch (this.jsonClass) {
+        case "Corporation":
+          newnode = new Corporation(node);
+          newnode.setLoginReference(this);
+          newchars.push(newnode);
+          break;
+        case "Pilot":
+          newnode = new Pilot(node);
+          newnode.setLoginReference(this);
+          newchars.push(newnode);
+          break;
+        default:
+          newchars.push(node);
+          break;
+      }
+    }
+    // Replace the processed characters.
+    this.characters = newchars;
   }
 
   /**
@@ -103,6 +124,7 @@ export class Login extends NeoComNode {
     // If the node is expanded then add its assets.
     if (this.expanded) {
       //  collab.push(new Separator());
+      console.log("--[Login.collaborate2View]>Collaborating " + this.jsonClass);
       collab.push(this);
       // Process each item at the rootlist for more collaborations.
       for (let node of this.characters) {
@@ -110,6 +132,7 @@ export class Login extends NeoComNode {
           let pilot = new Pilot(node)
           // let partialcollab = asset.collaborate2View(variant);
           // for (let partialnode of partialcollab) {
+          console.log("--[Login.collaborate2View]>Collaborating " + pilot.jsonClass);
           collab.push(pilot);
           // }
         }
@@ -117,6 +140,7 @@ export class Login extends NeoComNode {
           let corp = new Corporation(node)
           // let partialcollab = asset.collaborate2View(variant);
           // for (let partialnode of partialcollab) {
+          console.log("--[Login.collaborate2View]>Collaborating " + corp.jsonClass);
           collab.push(corp);
           // }
         }
@@ -124,12 +148,16 @@ export class Login extends NeoComNode {
           let character = new NeoComCharacter(node)
           // let partialcollab = asset.collaborate2View(variant);
           // for (let partialnode of partialcollab) {
+          console.log("--[Login.collaborate2View]>Collaborating " + character.jsonClass);
           collab.push(character);
           //    }
         }
       }
       collab.push(new Separator());
-    } else collab.push(this);
+    } else {
+      console.log("--[Login.collaborate2View]>Collaborating " + this.jsonClass);
+      collab.push(this);
+    }
     return collab;
   }
 }

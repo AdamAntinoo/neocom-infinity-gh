@@ -43,12 +43,14 @@ export class LoginPageComponent extends PageComponent implements OnInit {
     this.appModelStore.accessLoginList()
       .subscribe(result => {
         console.log("--[LoginPageComponent.ngOnInit.accessLoginList]>Loginlist.length: " + result.length);
+        this.loginViewList = [];
         // Loop over all the returned items.
         for (let node of result) {
           let thelist = node.collaborate2View(this.getVariant());
-          this.loginViewList = result;
-          this.downloading = false;
+          this.loginViewList = this.loginViewList.concat(thelist);
         }
+        //    this.loginViewList = result;
+        this.downloading = false;
       });
     console.log("<<[LoginPageComponent.ngOnInit]");
   }
@@ -61,6 +63,7 @@ export class LoginPageComponent extends PageComponent implements OnInit {
     this.appModelStore.accessLoginList()
       .subscribe(result => {
         console.log("--[LoginPageComponent.ngOnInit.accessLoginList]>Loginlist.length: " + result.length);
+        this.loginViewList = [];
         // Loop over all the returned items.
         for (let node of result) {
           let thelist = node.collaborate2View(this.getVariant());
