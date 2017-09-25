@@ -1,0 +1,34 @@
+<div class="neocom-panel" id="content">
+  <table class="neocom-panel-container" cellspacing="0" cellpadding="0" width="100%">
+    <a class="no-underline" [routerLink]="['/login',getLoginId(),'pilot',node.getId()]">
+      <tr>
+        <td><img class="neocom-pilot-avatar" src="{{node.urlforAvatar}}" id="iconsize-48"></td>
+        <td width="70% " class="neocom-panel-column">
+          <div>
+            <div class="neocom-selectable-name">{{node.name}}</div>
+            <div class="pilot-balance glow-white lined-bottomline" id="neocom-ts12">{{node.accountBalance | number:'1.2-2'}} ISK</div>
+            <div class="neocom-label">Balance</div>
+            <!-- <span class="neocom-pilot-data neocom-data-size-12">Active Ship:</span>
+              <span class="neocom-marked-name">{{node.characterInfo.shipName}}</span> -->
+            <!-- <span class="neocom-pilot-data"> - [{{node.characterInfo.shipTypeName}}]</span><br> -->
+            <!-- <span class="neocom-marked-name neocom-marked-glow label-bottomline" style="font-weight: 400;">{{node.characterInfo.lastKnownLocation}}</span><br>
+            <div class="neocom-label">Located At</div> -->
+            <!-- <span class="neocom-pilot-data neocom-data-size-12">Securiry Status:</span>
+              <span class="neocom-pilot-data neocom-data-size-14">{{node.characterInfo.securityStatus | number:'1.2-2'}}</span> -->
+            <span class="neocom-marked-name neocom-marked-glow lined-bottomline" id="neocom-ts12">{{node.characterInfo.skillPoints | number:'1.0-0'}} SP</span><br>
+            <div class="neocom-label">Total SP</div>
+          </div>
+        </td>
+        <td width="30%" class="neocom-panel-right-box" align="right ">
+          <div class="neocom-account-class" id="neocom-ts12">{{getCharacterClass()}}</div>
+          <div class="" id="neocom-ts12">{{node.characterInfo.race | lowercase | capitalizeLetter}}</div>
+          <div class="neocom-marked-name" id="neocom-ts12">{{node.characterSheet.cloneName}}</div>
+          <div class="" style="color:red" id="neocom-ts12">Expired</div>
+        </td>
+        <td width="5%" *ngIf="isExpandable()" class="neocom-arrow-box" (click)="clickArrow()">
+          <img class="neocom-arrow" [ngClass]="{'neocom-arrow-expanded': node.expanded}" src="/assets/icons/arrowright.png ">
+        </td>
+      </tr>
+    </a>
+  </table>
+</div>

@@ -1,0 +1,128 @@
+/* C O M P O N E N T    S T Y L E S */
+
+#iconsize-48 {
+  height: 48px;
+  width: 48px;
+}
+
+.panel-pilot {
+  font-family: "Mons Olympia";
+}
+
+.neocom-pilot-avatar {
+  height: 90px;
+  width: 90px;
+  border: white 1px solid;
+  box-shadow: inset 0px 0px 4px 1px rgba(255, 255, 255, 0.73), 0px 0px 4px 1px rgba(255, 255, 255, 0.73);
+  margin: 3px;
+}
+
+.region-name {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.neocom-icon90 {
+  width: 90px;
+  height: 90px;
+}
+
+.pilot-balance {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.neocom-account-class {
+  color: #0000FF;
+  font-size: 16px;
+  text-shadow: 0px 0px 2px #0000FF;
+  font-weight: 500;
+}
+
+
+/* C O R N E T   B O R D E R */
+
+
+/*background-color: #050505; // Dark black*/
+
+
+/*background-color: #080505; // Dark red*/
+
+
+/* C O M M O N    S T Y L E S */
+
+.left-box {
+  /*padding-right: 10px;*/
+}
+
+.big-label {
+  font-size: 12px;
+}
+
+.topup-label {
+  border-top-color: black;
+  border-top-style: solid;
+  border-top-width: 1px;
+  font-size: 10px;
+}
+
+.neocom-icon-48 {
+  height: 48px;
+  width: 48px;
+}
+
+.neocom-icon-60 {
+  height: 60px;
+  margin-left: 2px;
+  width: 60px;
+}
+
+.neocom-icon-90 {
+  height: 90px;
+  margin-left: 2px;
+  width: 90px;
+}
+
+.panel-node {
+  margin: 2px;
+}
+
+.panel-content-2col {
+  column-count: 1;
+  column-gap: 3px;
+  margin-left: 5px;
+  width: 100%;
+}
+
+.neocom-pilot-data {
+  color: white;
+  font-size: 14px;
+  font-weight: 200;
+}
+
+.neocom-data-size-12 {
+  font-size: 12px;
+}
+
+.neocom-data-size-14 {
+  font-size: 14px;
+}
+
+.neocom-data-size-16 {
+  font-size: 16px;
+}
+
+.neocom-marked-name {
+  color: orange;
+}
+
+.row-separator {
+  border-top-width: 1px;
+  border-top-style: solid;
+  margin-bottom: 3px;
+  border-top-color: white
+}

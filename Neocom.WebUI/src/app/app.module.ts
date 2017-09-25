@@ -44,6 +44,7 @@ import { PilotListDataSourceService } from './services/pilot-list-data-source.se
 import { PilotManagersDataSourceService } from './services/pilot-managers-data-source.service';
 import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
 import { NodePanelComponent } from './components/node-panel/node-panel.component';
+import { Pilot4LoginComponent } from './components/pilot4-login/pilot4-login.component';
 
 
 @NgModule({
@@ -73,6 +74,7 @@ import { NodePanelComponent } from './components/node-panel/node-panel.component
     ResourceComponent,
     ProcessingActionComponent,
     NodePanelComponent,
+    Pilot4LoginComponent,
   ],
   imports: [
     BrowserModule,

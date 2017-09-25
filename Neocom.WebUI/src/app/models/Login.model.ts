@@ -31,7 +31,7 @@ export class Login extends NeoComNode {
     let newchars = [];
     for (let node of this.characters) {
       let newnode = null;
-      switch (this.jsonClass) {
+      switch (node.jsonClass) {
         case "Corporation":
           newnode = new Corporation(node);
           newnode.setLoginReference(this);

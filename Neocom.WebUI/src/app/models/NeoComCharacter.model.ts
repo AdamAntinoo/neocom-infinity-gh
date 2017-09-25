@@ -61,7 +61,7 @@ export class NeoComCharacter extends NeoComNode {
   }
   public getLoginRefId(): string {
     if (null != this.loginParent) return this.loginParent.getLoginId();
-    else return null;
+    else return "-";
   }
   /**
   Get access to the store list of Managers. If this list has not been doanloaded already then we use the Service to go to the backend server to retieve that list.
