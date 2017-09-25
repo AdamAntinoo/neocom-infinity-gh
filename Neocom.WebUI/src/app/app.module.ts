@@ -23,6 +23,7 @@ import { PlanetaryOptimizationPageComponent } from './pages/planetary-optimizati
 //--- COMPONENTS
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
+import { SpinnerCentralComponent } from './components/spinner-central/spinner-central.component';
 import { Pilot4RoasterComponent } from './components/pilot4-roaster/pilot4-roaster.component';
 import { Pilot4DetailComponent } from './components/pilot4-detail/pilot4-detail.component';
 import { PilotManagerComponent } from './components/pilot-manager/pilot-manager.component';
@@ -51,6 +52,7 @@ import { NodePanelComponent } from './components/node-panel/node-panel.component
     ISKNoDecimalsPipe,
     CapitalizeLetterPipe,
     HeaderComponent,
+    SpinnerCentralComponent,
     NavigationMenuComponent,
     PilotRoasterPageComponent,
     RegionComponent,

@@ -2,15 +2,8 @@
   <div class="title">Login Selection</div>
   <!-- <div class="subtitle">Processing Optimization at Location: {{getTargetLocation()}}</div> -->
 </div>
-<div class="spinner-box spinner-sz30" *ngIf="downloading">
-  <div>
-    <span>Downloading Login list...</span>
-    <div class="spinner-in spinner-size60"></div>
-    <div class="spinner-out spinner-size70 spinner-red"></div>
-  </div>
-</div>
+<neocom-spinner-central *ngIf="downloading" [configuration]="{title:'Downloading Login list',subtitle:''}"></neocom-spinner-central>
 <div class="panel-group">
-  view-adapter.component running...
   <div *ngFor="let render of loginViewList">
     <neocom-login4-list *ngIf="render.jsonClass == 'Login'" [node]="render"></neocom-login4-list>
   </div>

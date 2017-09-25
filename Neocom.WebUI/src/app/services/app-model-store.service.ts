@@ -108,15 +108,10 @@ export class AppModelStoreService {
 
   //--- L O G I N    S E C T I O N
   public accessLoginList(): Observable<Login[]> {
-    console.log(">>[AppModelStoreService.accessLoginList]");
+    console.log("><[AppModelStoreService.accessLoginList]");
     if (null == this._loginList) {
       // Get the list form the backend Database.
       return this.getBackendLoginList();
-      // // On this preliminar version simulate it with a hand made list.
-      // this._loginList = [];
-      // this._loginList.push(new Login({ loginid: "Beth Ripley" }));
-      // this._loginList.push(new Login({ loginid: "Perico" }));
-      // this._loginList.push(new Login({ loginid: "CapitanHaddock09" }));
     } else
       return new Observable(observer => {
         setTimeout(() => {
