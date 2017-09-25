@@ -1,0 +1,12488 @@
+{
+CapitanHaddock29: {
+children: [ ],
+jsonClass: "Login",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+name: "CapitanHaddock29",
+characters: [
+{
+children: [ ],
+jsonClass: "Pilot",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+authorization: {},
+characterID: 2113197470,
+delegatedCharacter: {
+name: "Tip Tophane",
+characterID: 2113197470,
+corporationName: "School of Applied Knowledge",
+corporationID: 1000044,
+allianceName: "",
+allianceID: 0,
+factionName: "",
+factionID: 0
+},
+characterInfo: {
+version: 2,
+currentTime: 1506351568000,
+cachedUntil: 1506354988000,
+error: null,
+characterID: 2113197470,
+characterName: "Tip Tophane",
+race: "CALDARI",
+bloodline: "DETEIS",
+accountBalance: 2812504.22,
+skillPoints: 508368,
+shipName: "Tip Tophane's Venture",
+shipTypeID: 32880,
+shipTypeName: "Venture",
+corporationID: 1000044,
+corporation: "School of Applied Knowledge",
+corporationDate: 1505295420000,
+allianceID: null,
+alliance: null,
+allianceDate: null,
+lastKnownLocation: "Akiainavas III - School of Applied Knowledge",
+securityStatus: 0.00139992650171499,
+employmentHistory: [
+{
+corporationID: 1000044,
+startDate: 1505295420000
+}
+]
+},
+accountBalance: 2812504.22,
+active: true,
+locationRoles: null,
+actions4Character: { },
+characterSheet: {
+version: 1,
+currentTime: 1506351568000,
+cachedUntil: 1506354988000,
+error: null,
+characterID: 2113197470,
+name: "Tip Tophane",
+race: "CALDARI",
+dateOfBirth: 1505295412000,
+bloodLine: "DETEIS",
+ancestry: "SCIENTISTS",
+gender: "Male",
+corporationName: "School of Applied Knowledge",
+corporationID: 1000044,
+allianceID: null,
+allianceName: null,
+cloneName: "Clone Grade Alpha",
+cloneSkillPoints: 0,
+balance: 2812504.22,
+attributeEnhancers: [ ],
+intelligence: 20,
+memory: 20,
+charisma: 19,
+perception: 20,
+willpower: 20,
+skills: [
+{
+typeID: 3310,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3429,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3394,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 12442,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 21059,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 3449,
+level: 3,
+skillpoints: 16687,
+unpublished: false
+},
+{
+typeID: 3393,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3453,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 13278,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3431,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3402,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 25863,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 3320,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 25811,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3301,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3452,
+level: 2,
+skillpoints: 5657,
+unpublished: false
+},
+{
+typeID: 21718,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3418,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 28164,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3412,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 32918,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3417,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3450,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3435,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3312,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3321,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 33092,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3419,
+level: 2,
+skillpoints: 4870,
+unpublished: false
+},
+{
+typeID: 3319,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3311,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3334,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3392,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3316,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3330,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3318,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3426,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3428,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3455,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3420,
+level: 2,
+skillpoints: 5657,
+unpublished: false
+},
+{
+typeID: 3432,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3551,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3342,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 3413,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3427,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 3443,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3454,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 3300,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3380,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3315,
+level: 2,
+skillpoints: 5657,
+unpublished: false
+},
+{
+typeID: 3416,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 24241,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 20314,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 3386,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 12441,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 3425,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3436,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 22578,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 21071,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 3327,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3317,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 3424,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3411,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3437,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 25739,
+level: 1,
+skillpoints: 2000,
+unpublished: false
+}
+],
+certificates: [ ],
+corporationRoles: [ ],
+corporationRolesAtHQ: [ ],
+corporationRolesAtBase: [ ],
+corporationRolesAtOther: [ ],
+corporationTitles: [ ]
+},
+skillQueue: [ ],
+skillInTraining: {
+version: 2,
+currentTime: 1506351569000,
+cachedUntil: 1506354988000,
+error: null,
+currentTQTime: 1506351569000,
+trainingEndTime: null,
+trainingStartTime: null,
+trainingTypeID: 0,
+trainingStartSP: 0,
+trainingDestinationSP: 0,
+trainingToLevel: 0,
+skillInTraining: false
+},
+lastKnownLocation: "Akiainavas III - School of Applied Knowledge",
+urlforAvatar: "http://image.eveonline.com/character/2113197470_256.jpg",
+name: "Tip Tophane",
+actions: { },
+planetaryManager: {
+children: [ ],
+jsonClass: "PlanetaryManager",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+initialized: false,
+totalAssetsValue: 0,
+regions: { },
+iconName: "planets.png",
+assetTotalCount: 0,
+orderingName: "Planetary Manager"
+},
+corporation: false
+},
+{
+children: [ ],
+jsonClass: "Pilot",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+authorization: {
+keyID: 6472981,
+characterID: 96662300,
+vcode: "pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z",
+params: {
+keyID: "6472981",
+characterID: "96662300",
+vCode: "pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z"
+}
+},
+characterID: 96662300,
+delegatedCharacter: {
+name: "Zoe Zenote",
+characterID: 96662300,
+corporationName: "Imperial Academy",
+corporationID: 1000166,
+allianceName: "",
+allianceID: 0,
+factionName: "",
+factionID: 0
+},
+characterInfo: {
+version: 2,
+currentTime: 1506351566000,
+cachedUntil: 1506354986000,
+error: null,
+characterID: 96662300,
+characterName: "Zoe Zenote",
+race: "AMARR",
+bloodline: "NI_KUNNI",
+accountBalance: 135043654.24,
+skillPoints: 994001,
+shipName: "Zoe Zenote's Impairor",
+shipTypeID: 596,
+shipTypeName: "Impairor",
+corporationID: 1000166,
+corporation: "Imperial Academy",
+corporationDate: 1471253880000,
+allianceID: null,
+alliance: null,
+allianceDate: null,
+lastKnownLocation: "6-CZ49 VI - Moon 6 - Intaki Syndicate Bureau",
+securityStatus: 0,
+employmentHistory: [
+{
+corporationID: 1000166,
+startDate: 1471253880000
+}
+]
+},
+accountBalance: 135043654.24,
+active: true,
+locationRoles: null,
+actions4Character: { },
+characterSheet: {
+version: 1,
+currentTime: 1506351567000,
+cachedUntil: 1506354987000,
+error: null,
+characterID: 96662300,
+name: "Zoe Zenote",
+race: "AMARR",
+dateOfBirth: 1471253899000,
+bloodLine: "NI_KUNNI",
+ancestry: "BORDER_RUNNERS",
+gender: "Female",
+corporationName: "Imperial Academy",
+corporationID: 1000166,
+allianceID: null,
+allianceName: null,
+cloneName: "Clone Grade Alpha",
+cloneSkillPoints: 0,
+balance: 135043654.24,
+attributeEnhancers: [ ],
+intelligence: 20,
+memory: 20,
+charisma: 19,
+perception: 20,
+willpower: 20,
+skills: [
+{
+typeID: 3551,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 25863,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 3424,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3428,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 3355,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3449,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3418,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 32918,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3300,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 24242,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3318,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 25235,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3316,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3416,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3450,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3429,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 21718,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 11579,
+level: 1,
+skillpoints: 1500,
+unpublished: false
+},
+{
+typeID: 13279,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 25739,
+level: 1,
+skillpoints: 2000,
+unpublished: false
+},
+{
+typeID: 3455,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3317,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3393,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3454,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 13278,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3340,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 3386,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3315,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 3411,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3425,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 3327,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 28164,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3310,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3427,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 2495,
+level: 3,
+skillpoints: 117793,
+unpublished: false
+},
+{
+typeID: 3394,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3453,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3420,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 3311,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 25811,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3437,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3343,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 3413,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3303,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3412,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 3426,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3419,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3443,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3380,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3319,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 26252,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3328,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 26254,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 2505,
+level: 4,
+skillpoints: 181020,
+unpublished: false
+},
+{
+typeID: 3431,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3402,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3331,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3312,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 26261,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3436,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3452,
+level: 2,
+skillpoints: 5657,
+unpublished: false
+},
+{
+typeID: 3435,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3417,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3446,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3392,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3432,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+}
+],
+certificates: [ ],
+corporationRoles: [ ],
+corporationRolesAtHQ: [ ],
+corporationRolesAtBase: [ ],
+corporationRolesAtOther: [ ],
+corporationTitles: [ ]
+},
+skillQueue: [ ],
+skillInTraining: {
+version: 2,
+currentTime: 1506351568000,
+cachedUntil: 1506354987000,
+error: null,
+currentTQTime: 1506351568000,
+trainingEndTime: null,
+trainingStartTime: null,
+trainingTypeID: 0,
+trainingStartSP: 0,
+trainingDestinationSP: 0,
+trainingToLevel: 0,
+skillInTraining: false
+},
+lastKnownLocation: "6-CZ49 VI - Moon 6 - Intaki Syndicate Bureau",
+urlforAvatar: "http://image.eveonline.com/character/96662300_256.jpg",
+name: "Zoe Zenote",
+actions: { },
+planetaryManager: {
+children: [ ],
+jsonClass: "PlanetaryManager",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+initialized: false,
+totalAssetsValue: 0,
+regions: { },
+iconName: "planets.png",
+assetTotalCount: 0,
+orderingName: "Planetary Manager"
+},
+corporation: false
+},
+{
+children: [ ],
+jsonClass: "Pilot",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+authorization: {
+keyID: 6472981,
+characterID: 91734031,
+vcode: "pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z",
+params: {
+keyID: "6472981",
+characterID: "91734031",
+vCode: "pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z"
+}
+},
+characterID: 91734031,
+delegatedCharacter: {
+name: "Zach Zender",
+characterID: 91734031,
+corporationName: "Planet - Express",
+corporationID: 1427661573,
+allianceName: "Silent Infinity",
+allianceID: 117383987,
+factionName: "",
+factionID: 0
+},
+characterInfo: {
+version: 2,
+currentTime: 1506351565000,
+cachedUntil: 1506354985000,
+error: null,
+characterID: 91734031,
+characterName: "Zach Zender",
+race: "GALLENTE",
+bloodline: "GALLENTE",
+accountBalance: 230375905.82,
+skillPoints: 8377615,
+shipName: "Zach Zender's Atron",
+shipTypeID: 608,
+shipTypeName: "Atron",
+corporationID: 1427661573,
+corporation: "Planet - Express",
+corporationDate: 1471298400000,
+allianceID: 117383987,
+alliance: "Silent Infinity",
+allianceDate: 1417817880000,
+lastKnownLocation: "",
+securityStatus: 3.11001338860112,
+employmentHistory: [
+{
+corporationID: 1427661573,
+startDate: 1471298400000
+},
+{
+corporationID: 1000107,
+startDate: 1341334020000
+},
+{
+corporationID: 1616950898,
+startDate: 1335389280000
+},
+{
+corporationID: 1000169,
+startDate: 1330545120000
+}
+]
+},
+accountBalance: 230375905.82,
+active: true,
+locationRoles: null,
+actions4Character: { },
+characterSheet: {
+version: 1,
+currentTime: 1506351565000,
+cachedUntil: 1506354985000,
+error: null,
+characterID: 91734031,
+name: "Zach Zender",
+race: "GALLENTE",
+dateOfBirth: 1330545115000,
+bloodLine: "GALLENTE",
+ancestry: "ACTIVISTS",
+gender: "Male",
+corporationName: "Planet - Express",
+corporationID: 1427661573,
+allianceID: 117383987,
+allianceName: "Silent Infinity",
+cloneName: "Clone Grade Alpha",
+cloneSkillPoints: 0,
+balance: 230375905.82,
+attributeEnhancers: [ ],
+intelligence: 18,
+memory: 18,
+charisma: 22,
+perception: 19,
+willpower: 22,
+skills: [
+{
+typeID: 3356,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3403,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3312,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3320,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3423,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 33399,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 25235,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 26261,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3335,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 3411,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 16598,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 11574,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3355,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3417,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3418,
+level: 4,
+skillpoints: 135765,
+unpublished: false
+},
+{
+typeID: 3380,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 12193,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 12191,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3319,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3332,
+level: 4,
+skillpoints: 226275,
+unpublished: false
+},
+{
+typeID: 3551,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3421,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 33092,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3394,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3318,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3327,
+level: 4,
+skillpoints: 45702,
+unpublished: false
+},
+{
+typeID: 26253,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3422,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 3348,
+level: 4,
+skillpoints: 99208,
+unpublished: false
+},
+{
+typeID: 19719,
+level: 1,
+skillpoints: 1500,
+unpublished: false
+},
+{
+typeID: 3316,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 26260,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3455,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 24241,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 2495,
+level: 4,
+skillpoints: 287464,
+unpublished: false
+},
+{
+typeID: 3410,
+level: 4,
+skillpoints: 729719,
+unpublished: false
+},
+{
+typeID: 3402,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 12195,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3450,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 33093,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 12188,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 21603,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3412,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 3386,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3413,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3405,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 12092,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 3385,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3393,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3454,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 3436,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 17940,
+level: 3,
+skillpoints: 32000,
+unpublished: false
+},
+{
+typeID: 12204,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3339,
+level: 2,
+skillpoints: 11314,
+unpublished: false
+},
+{
+typeID: 26252,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3416,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3334,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3444,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3302,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 16281,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 16069,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 22578,
+level: 4,
+skillpoints: 181020,
+unpublished: false
+},
+{
+typeID: 3184,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 12190,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 13279,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3406,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 11579,
+level: 1,
+skillpoints: 1500,
+unpublished: false
+},
+{
+typeID: 3432,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3311,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3387,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 32918,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 33091,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 22536,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 24242,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3420,
+level: 4,
+skillpoints: 181020,
+unpublished: false
+},
+{
+typeID: 3446,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 12093,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3425,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3419,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 3317,
+level: 4,
+skillpoints: 226275,
+unpublished: false
+},
+{
+typeID: 3340,
+level: 3,
+skillpoints: 59926,
+unpublished: false
+},
+{
+typeID: 12192,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 11584,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3438,
+level: 4,
+skillpoints: 111586,
+unpublished: false
+},
+{
+typeID: 3449,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3453,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 3300,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 33095,
+level: 3,
+skillpoints: 48000,
+unpublished: false
+},
+{
+typeID: 3426,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3389,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3427,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3304,
+level: 4,
+skillpoints: 135765,
+unpublished: false
+},
+{
+typeID: 26254,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 25863,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 3388,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3452,
+level: 3,
+skillpoints: 32000,
+unpublished: false
+},
+{
+typeID: 3322,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3309,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 19921,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3437,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3392,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3424,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 29637,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3330,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3443,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3328,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 33699,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3409,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3442,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 3321,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 3435,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 3429,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3306,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 3303,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3331,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 2505,
+level: 4,
+skillpoints: 866168,
+unpublished: false
+},
+{
+typeID: 3310,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3428,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3301,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3434,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+}
+],
+certificates: [ ],
+corporationRoles: [
+{
+roleID: 562949953421312,
+roleName: "roleCanRentOffice"
+},
+{
+roleID: 9007199254740992,
+roleName: "roleStarbaseConfig"
+},
+{
+roleID: 36028797018963970,
+roleName: "roleChatManager"
+},
+{
+roleID: 1024,
+roleName: "roleFactoryManager"
+},
+{
+roleID: 4096,
+roleName: "roleAuditor"
+},
+{
+roleID: 4294967296,
+roleName: "roleAccountCanTake6"
+},
+{
+roleID: 17179869184,
+roleName: "roleDiplomat"
+},
+{
+roleID: 256,
+roleName: "roleAccountant"
+},
+{
+roleID: 2251799813685248,
+roleName: "roleCanRentResearchSlot"
+},
+{
+roleID: 128,
+roleName: "rolePersonnelManager"
+},
+{
+roleID: 576460752303423500,
+roleName: "roleFittingManager"
+},
+{
+roleID: 134217728,
+roleName: "roleAccountCanTake1"
+},
+{
+roleID: 144115188075855870,
+roleName: "roleInfrastructureTacticalOfficer"
+},
+{
+roleID: 2199023255552,
+roleName: "roleEquipmentConfig"
+},
+{
+roleID: 4503599627370496,
+roleName: "roleJuniorAccountant"
+},
+{
+roleID: 18014398509481984,
+roleName: "roleTrader"
+},
+{
+roleID: 512,
+roleName: "roleSecurityOfficer"
+},
+{
+roleID: 8589934592,
+roleName: "roleAccountCanTake7"
+},
+{
+roleID: 1125899906842624,
+roleName: "roleCanRentFactorySlot"
+},
+{
+roleID: 1073741824,
+roleName: "roleAccountCanTake4"
+},
+{
+roleID: 72057594037927940,
+roleName: "roleContractManager"
+},
+{
+roleID: 2147483648,
+roleName: "roleAccountCanTake5"
+},
+{
+roleID: 288230376151711740,
+roleName: "roleStarbaseCaretaker"
+},
+{
+roleID: 2048,
+roleName: "roleStationManager"
+},
+{
+roleID: 268435456,
+roleName: "roleAccountCanTake2"
+},
+{
+roleID: 536870912,
+roleName: "roleAccountCanTake3"
+}
+],
+corporationRolesAtHQ: [
+{
+roleID: 1048576,
+roleName: "roleHangarCanQuery1"
+},
+{
+roleID: 2097152,
+roleName: "roleHangarCanQuery2"
+},
+{
+roleID: 35184372088832,
+roleName: "roleContainerCanTake4"
+},
+{
+roleID: 17592186044416,
+roleName: "roleContainerCanTake3"
+},
+{
+roleID: 4398046511104,
+roleName: "roleContainerCanTake1"
+},
+{
+roleID: 131072,
+roleName: "roleHangarCanTake5"
+},
+{
+roleID: 16777216,
+roleName: "roleHangarCanQuery5"
+},
+{
+roleID: 67108864,
+roleName: "roleHangarCanQuery7"
+},
+{
+roleID: 8192,
+roleName: "roleHangarCanTake1"
+},
+{
+roleID: 8388608,
+roleName: "roleHangarCanQuery4"
+},
+{
+roleID: 140737488355328,
+roleName: "roleContainerCanTake6"
+},
+{
+roleID: 70368744177664,
+roleName: "roleContainerCanTake5"
+},
+{
+roleID: 33554432,
+roleName: "roleHangarCanQuery6"
+},
+{
+roleID: 524288,
+roleName: "roleHangarCanTake7"
+},
+{
+roleID: 262144,
+roleName: "roleHangarCanTake6"
+},
+{
+roleID: 4194304,
+roleName: "roleHangarCanQuery3"
+},
+{
+roleID: 32768,
+roleName: "roleHangarCanTake3"
+},
+{
+roleID: 65536,
+roleName: "roleHangarCanTake4"
+},
+{
+roleID: 281474976710656,
+roleName: "roleContainerCanTake7"
+},
+{
+roleID: 8796093022208,
+roleName: "roleContainerCanTake2"
+},
+{
+roleID: 16384,
+roleName: "roleHangarCanTake2"
+}
+],
+corporationRolesAtBase: [
+{
+roleID: 17592186044416,
+roleName: "roleContainerCanTake3"
+},
+{
+roleID: 65536,
+roleName: "roleHangarCanTake4"
+},
+{
+roleID: 262144,
+roleName: "roleHangarCanTake6"
+},
+{
+roleID: 4194304,
+roleName: "roleHangarCanQuery3"
+},
+{
+roleID: 131072,
+roleName: "roleHangarCanTake5"
+},
+{
+roleID: 16777216,
+roleName: "roleHangarCanQuery5"
+},
+{
+roleID: 32768,
+roleName: "roleHangarCanTake3"
+},
+{
+roleID: 1048576,
+roleName: "roleHangarCanQuery1"
+},
+{
+roleID: 70368744177664,
+roleName: "roleContainerCanTake5"
+},
+{
+roleID: 8192,
+roleName: "roleHangarCanTake1"
+},
+{
+roleID: 16384,
+roleName: "roleHangarCanTake2"
+},
+{
+roleID: 524288,
+roleName: "roleHangarCanTake7"
+},
+{
+roleID: 140737488355328,
+roleName: "roleContainerCanTake6"
+},
+{
+roleID: 8796093022208,
+roleName: "roleContainerCanTake2"
+},
+{
+roleID: 281474976710656,
+roleName: "roleContainerCanTake7"
+},
+{
+roleID: 2097152,
+roleName: "roleHangarCanQuery2"
+},
+{
+roleID: 33554432,
+roleName: "roleHangarCanQuery6"
+},
+{
+roleID: 35184372088832,
+roleName: "roleContainerCanTake4"
+},
+{
+roleID: 8388608,
+roleName: "roleHangarCanQuery4"
+},
+{
+roleID: 67108864,
+roleName: "roleHangarCanQuery7"
+},
+{
+roleID: 4398046511104,
+roleName: "roleContainerCanTake1"
+}
+],
+corporationRolesAtOther: [
+{
+roleID: 32768,
+roleName: "roleHangarCanTake3"
+},
+{
+roleID: 262144,
+roleName: "roleHangarCanTake6"
+},
+{
+roleID: 65536,
+roleName: "roleHangarCanTake4"
+},
+{
+roleID: 8796093022208,
+roleName: "roleContainerCanTake2"
+},
+{
+roleID: 524288,
+roleName: "roleHangarCanTake7"
+},
+{
+roleID: 8192,
+roleName: "roleHangarCanTake1"
+},
+{
+roleID: 8388608,
+roleName: "roleHangarCanQuery4"
+},
+{
+roleID: 16384,
+roleName: "roleHangarCanTake2"
+},
+{
+roleID: 67108864,
+roleName: "roleHangarCanQuery7"
+},
+{
+roleID: 70368744177664,
+roleName: "roleContainerCanTake5"
+},
+{
+roleID: 4398046511104,
+roleName: "roleContainerCanTake1"
+},
+{
+roleID: 281474976710656,
+roleName: "roleContainerCanTake7"
+},
+{
+roleID: 2097152,
+roleName: "roleHangarCanQuery2"
+},
+{
+roleID: 35184372088832,
+roleName: "roleContainerCanTake4"
+},
+{
+roleID: 140737488355328,
+roleName: "roleContainerCanTake6"
+},
+{
+roleID: 4194304,
+roleName: "roleHangarCanQuery3"
+},
+{
+roleID: 33554432,
+roleName: "roleHangarCanQuery6"
+},
+{
+roleID: 17592186044416,
+roleName: "roleContainerCanTake3"
+},
+{
+roleID: 16777216,
+roleName: "roleHangarCanQuery5"
+},
+{
+roleID: 131072,
+roleName: "roleHangarCanTake5"
+},
+{
+roleID: 1048576,
+roleName: "roleHangarCanQuery1"
+}
+],
+corporationTitles: [ ]
+},
+skillQueue: [ ],
+skillInTraining: {
+version: 2,
+currentTime: 1506351566000,
+cachedUntil: 1506354985000,
+error: null,
+currentTQTime: 1506351566000,
+trainingEndTime: null,
+trainingStartTime: null,
+trainingTypeID: 0,
+trainingStartSP: 0,
+trainingDestinationSP: 0,
+trainingToLevel: 0,
+skillInTraining: false
+},
+lastKnownLocation: "",
+urlforAvatar: "http://image.eveonline.com/character/91734031_256.jpg",
+name: "Zach Zender",
+actions: { },
+planetaryManager: {
+children: [ ],
+jsonClass: "PlanetaryManager",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+initialized: false,
+totalAssetsValue: 0,
+regions: { },
+iconName: "planets.png",
+assetTotalCount: 0,
+orderingName: "Planetary Manager"
+},
+corporation: false
+}
+]
+},
+Beth Ripley: {
+children: [ ],
+jsonClass: "Login",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+name: "Beth Ripley",
+characters: [
+{
+children: [ ],
+jsonClass: "Pilot",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+authorization: {
+keyID: 2889577,
+characterID: 92223647,
+vcode: "Mb6iDKR14m9Xjh9maGTQCGTkpjRHPjOgVUkvK6E9r6fhMtOWtipaqybp0qCzxuuw",
+params: {
+keyID: "2889577",
+characterID: "92223647",
+vCode: "Mb6iDKR14m9Xjh9maGTQCGTkpjRHPjOgVUkvK6E9r6fhMtOWtipaqybp0qCzxuuw"
+}
+},
+characterID: 92223647,
+delegatedCharacter: {
+name: "Beth Ripley",
+characterID: 92223647,
+corporationName: "Industrias Machaque",
+corporationID: 98384726,
+allianceName: "",
+allianceID: 0,
+factionName: "",
+factionID: 0
+},
+characterInfo: {
+version: 2,
+currentTime: 1506351555000,
+cachedUntil: 1506354945000,
+error: null,
+characterID: 92223647,
+characterName: "Beth Ripley",
+race: "MINMATAR",
+bloodline: "BRUTOR",
+accountBalance: 2776090507.17,
+skillPoints: 5590035,
+shipName: "Beth Ripley's Capsule",
+shipTypeID: 670,
+shipTypeName: "Capsule",
+corporationID: 98384726,
+corporation: "Industrias Machaque",
+corporationDate: 1426498080000,
+allianceID: null,
+alliance: null,
+allianceDate: null,
+lastKnownLocation: "Pimebeka VII - Moon 16 - Carthum Conglomerate Factory",
+securityStatus: 0,
+employmentHistory: [
+{
+corporationID: 98384726,
+startDate: 1426498080000
+},
+{
+corporationID: 1000049,
+startDate: 1425146460000
+},
+{
+corporationID: 1465050528,
+startDate: 1425062700000
+},
+{
+corporationID: 1000049,
+startDate: 1342104180000
+},
+{
+corporationID: 1465050528,
+startDate: 1341865860000
+},
+{
+corporationID: 1000172,
+startDate: 1341525180000
+}
+]
+},
+accountBalance: 2776090507.17,
+active: true,
+locationRoles: null,
+actions4Character: { },
+characterSheet: {
+version: 1,
+currentTime: 1506351556000,
+cachedUntil: 1506354976000,
+error: null,
+characterID: 92223647,
+name: "Beth Ripley",
+race: "MINMATAR",
+dateOfBirth: 1341525195000,
+bloodLine: "BRUTOR",
+ancestry: "WORKERS",
+gender: "Female",
+corporationName: "Industrias Machaque",
+corporationID: 98384726,
+allianceID: 0,
+allianceName: null,
+cloneName: "Clone Grade Alpha",
+cloneSkillPoints: 0,
+balance: 2776090507.17,
+attributeEnhancers: [ ],
+intelligence: 20,
+memory: 20,
+charisma: 19,
+perception: 20,
+willpower: 20,
+skills: [
+{
+typeID: 11446,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 16595,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3403,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 33094,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 11584,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 11455,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 3444,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3363,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 19719,
+level: 2,
+skillpoints: 8486,
+unpublished: false
+},
+{
+typeID: 26252,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 33091,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3341,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 3386,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3416,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3431,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3340,
+level: 5,
+skillpoints: 1024000,
+unpublished: false
+},
+{
+typeID: 3427,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3419,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3409,
+level: 4,
+skillpoints: 282478,
+unpublished: false
+},
+{
+typeID: 3450,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 16594,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3405,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3432,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3433,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3426,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3443,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3428,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3327,
+level: 4,
+skillpoints: 71827,
+unpublished: false
+},
+{
+typeID: 24242,
+level: 3,
+skillpoints: 8005,
+unpublished: false
+},
+{
+typeID: 3300,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3406,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 26261,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3333,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 13279,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3302,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 2495,
+level: 4,
+skillpoints: 190091,
+unpublished: false
+},
+{
+typeID: 3418,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3451,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 16622,
+level: 4,
+skillpoints: 135765,
+unpublished: false
+},
+{
+typeID: 3413,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3343,
+level: 2,
+skillpoints: 5666,
+unpublished: false
+},
+{
+typeID: 3455,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 11579,
+level: 4,
+skillpoints: 271530,
+unpublished: false
+},
+{
+typeID: 26254,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 3420,
+level: 3,
+skillpoints: 32000,
+unpublished: false
+},
+{
+typeID: 16597,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 33399,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3380,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3452,
+level: 2,
+skillpoints: 5657,
+unpublished: false
+},
+{
+typeID: 3425,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 4385,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 24270,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3417,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3393,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3446,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3392,
+level: 4,
+skillpoints: 198073,
+unpublished: false
+},
+{
+typeID: 3402,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3355,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3449,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 24624,
+level: 2,
+skillpoints: 18514,
+unpublished: false
+},
+{
+typeID: 3424,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 11443,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3453,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3329,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 26253,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 2505,
+level: 4,
+skillpoints: 181020,
+unpublished: false
+},
+{
+typeID: 25235,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3429,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3394,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 16598,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 32918,
+level: 3,
+skillpoints: 16007,
+unpublished: false
+},
+{
+typeID: 21790,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 3454,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 3331,
+level: 3,
+skillpoints: 34288,
+unpublished: false
+},
+{
+typeID: 3434,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3387,
+level: 2,
+skillpoints: 4022,
+unpublished: false
+},
+{
+typeID: 3388,
+level: 4,
+skillpoints: 678024,
+unpublished: false
+},
+{
+typeID: 21718,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+}
+],
+certificates: [ ],
+corporationRoles: [
+{
+roleID: 1,
+roleName: "roleDirector"
+}
+],
+corporationRolesAtHQ: [
+{
+roleID: 1,
+roleName: "roleDirector"
+}
+],
+corporationRolesAtBase: [
+{
+roleID: 1,
+roleName: "roleDirector"
+}
+],
+corporationRolesAtOther: [
+{
+roleID: 1,
+roleName: "roleDirector"
+}
+],
+corporationTitles: [ ]
+},
+skillQueue: [ ],
+skillInTraining: {
+version: 2,
+currentTime: 1506351556000,
+cachedUntil: 1506354976000,
+error: null,
+currentTQTime: 1506351556000,
+trainingEndTime: null,
+trainingStartTime: null,
+trainingTypeID: 0,
+trainingStartSP: 0,
+trainingDestinationSP: 0,
+trainingToLevel: 0,
+skillInTraining: false
+},
+lastKnownLocation: "Pimebeka VII - Moon 16 - Carthum Conglomerate Factory",
+urlforAvatar: "http://image.eveonline.com/character/92223647_256.jpg",
+name: "Beth Ripley",
+actions: { },
+planetaryManager: {
+children: [ ],
+jsonClass: "PlanetaryManager",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+initialized: false,
+totalAssetsValue: 0,
+regions: { },
+iconName: "planets.png",
+assetTotalCount: 0,
+orderingName: "Planetary Manager"
+},
+corporation: false
+}
+]
+},
+Perico: {
+children: [ ],
+jsonClass: "Login",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+name: "Perico",
+characters: [
+{
+children: [ ],
+jsonClass: "Pilot",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+authorization: {
+keyID: 3106761,
+characterID: 93813310,
+vcode: "gltCmvVoZl5akrM8d6DbNKZn7Jm2SaukrmqjnSOyqKbvzz5CtNfknTEwdBe6IIFf",
+params: {
+keyID: "3106761",
+characterID: "93813310",
+vCode: "gltCmvVoZl5akrM8d6DbNKZn7Jm2SaukrmqjnSOyqKbvzz5CtNfknTEwdBe6IIFf"
+}
+},
+characterID: 93813310,
+delegatedCharacter: {
+name: "Perico Tuerto",
+characterID: 93813310,
+corporationName: "Industrias Machaque",
+corporationID: 98384726,
+allianceName: "",
+allianceID: 0,
+factionName: "",
+factionID: 0
+},
+characterInfo: {
+version: 2,
+currentTime: 1506351558000,
+cachedUntil: 1506354978000,
+error: null,
+characterID: 93813310,
+characterName: "Perico Tuerto",
+race: "AMARR",
+bloodline: "NI_KUNNI",
+accountBalance: 630954363.2,
+skillPoints: 507677,
+shipName: "Perico Tuerto's Capsule",
+shipTypeID: 670,
+shipTypeName: "Capsule",
+corporationID: 98384726,
+corporation: "Industrias Machaque",
+corporationDate: 1426531860000,
+allianceID: null,
+alliance: null,
+allianceDate: null,
+lastKnownLocation: "Pimebeka VII - Moon 16 - Carthum Conglomerate Factory",
+securityStatus: 0,
+employmentHistory: [
+{
+corporationID: 98384726,
+startDate: 1426531860000
+},
+{
+corporationID: 1000072,
+startDate: 1384439760000
+},
+{
+corporationID: 1465050528,
+startDate: 1384120140000
+},
+{
+corporationID: 1000077,
+startDate: 1378755600000
+}
+]
+},
+accountBalance: 630954363.2,
+active: true,
+locationRoles: null,
+actions4Character: { },
+characterSheet: {
+version: 1,
+currentTime: 1506351558000,
+cachedUntil: 1506354978000,
+error: null,
+characterID: 93813310,
+name: "Perico Tuerto",
+race: "AMARR",
+dateOfBirth: 1378755609000,
+bloodLine: "NI_KUNNI",
+ancestry: "BORDER_RUNNERS",
+gender: "Male",
+corporationName: "Industrias Machaque",
+corporationID: 98384726,
+allianceID: 0,
+allianceName: null,
+cloneName: "Clone Grade Alpha",
+cloneSkillPoints: 0,
+balance: 630954363.2,
+attributeEnhancers: [ ],
+intelligence: 20,
+memory: 20,
+charisma: 19,
+perception: 20,
+willpower: 20,
+skills: [
+{
+typeID: 3300,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3386,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3327,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3424,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 2495,
+level: 3,
+skillpoints: 32000,
+unpublished: false
+},
+{
+typeID: 3392,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3405,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3425,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 3426,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 24242,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3340,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 3453,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 13279,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 11579,
+level: 1,
+skillpoints: 1500,
+unpublished: false
+},
+{
+typeID: 3412,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3330,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 25235,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3402,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3380,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3394,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3450,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3331,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 32918,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3420,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 3419,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3303,
+level: 3,
+skillpoints: 42600,
+unpublished: false
+},
+{
+typeID: 19921,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3454,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3355,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3429,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 2505,
+level: 4,
+skillpoints: 181020,
+unpublished: false
+},
+{
+typeID: 3413,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3449,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3455,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 33399,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3329,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 3328,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3427,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3435,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3406,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+}
+],
+certificates: [ ],
+corporationRoles: [
+{
+roleID: 4503599627370496,
+roleName: "roleJuniorAccountant"
+},
+{
+roleID: 72057594037927940,
+roleName: "roleContractManager"
+},
+{
+roleID: 268435456,
+roleName: "roleAccountCanTake2"
+},
+{
+roleID: 18014398509481984,
+roleName: "roleTrader"
+},
+{
+roleID: 36028797018963970,
+roleName: "roleChatManager"
+},
+{
+roleID: 576460752303423500,
+roleName: "roleFittingManager"
+}
+],
+corporationRolesAtHQ: [
+{
+roleID: 1048576,
+roleName: "roleHangarCanQuery1"
+},
+{
+roleID: 4398046511104,
+roleName: "roleContainerCanTake1"
+},
+{
+roleID: 8192,
+roleName: "roleHangarCanTake1"
+}
+],
+corporationRolesAtBase: [
+{
+roleID: 8192,
+roleName: "roleHangarCanTake1"
+},
+{
+roleID: 1048576,
+roleName: "roleHangarCanQuery1"
+},
+{
+roleID: 4398046511104,
+roleName: "roleContainerCanTake1"
+}
+],
+corporationRolesAtOther: [
+{
+roleID: 8192,
+roleName: "roleHangarCanTake1"
+},
+{
+roleID: 4398046511104,
+roleName: "roleContainerCanTake1"
+},
+{
+roleID: 1048576,
+roleName: "roleHangarCanQuery1"
+}
+],
+corporationTitles: [ ]
+},
+skillQueue: [
+{
+queuePosition: 0,
+typeID: 11579,
+level: 2,
+startSP: 1500,
+endSP: 8486,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 1,
+typeID: 11579,
+level: 3,
+startSP: 8486,
+endSP: 48000,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 2,
+typeID: 3406,
+level: 5,
+startSP: 45255,
+endSP: 256000,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 3,
+typeID: 2505,
+level: 5,
+startSP: 181020,
+endSP: 1024000,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 4,
+typeID: 2495,
+level: 4,
+startSP: 32000,
+endSP: 181020,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 5,
+typeID: 2495,
+level: 5,
+startSP: 181020,
+endSP: 1024000,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 6,
+typeID: 3303,
+level: 4,
+startSP: 42600,
+endSP: 45255,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 7,
+typeID: 32918,
+level: 1,
+startSP: 0,
+endSP: 500,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 8,
+typeID: 3455,
+level: 3,
+startSP: 1415,
+endSP: 8000,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 9,
+typeID: 3454,
+level: 2,
+startSP: 1250,
+endSP: 7072,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 10,
+typeID: 3331,
+level: 4,
+startSP: 16000,
+endSP: 90510,
+startTime: null,
+endTime: null
+}
+],
+skillInTraining: {
+version: 2,
+currentTime: 1506351558000,
+cachedUntil: 1506354978000,
+error: null,
+currentTQTime: 1506351558000,
+trainingEndTime: null,
+trainingStartTime: null,
+trainingTypeID: 0,
+trainingStartSP: 0,
+trainingDestinationSP: 0,
+trainingToLevel: 0,
+skillInTraining: false
+},
+lastKnownLocation: "Pimebeka VII - Moon 16 - Carthum Conglomerate Factory",
+urlforAvatar: "http://image.eveonline.com/character/93813310_256.jpg",
+name: "Perico Tuerto",
+actions: { },
+planetaryManager: {
+children: [ ],
+jsonClass: "PlanetaryManager",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+initialized: false,
+totalAssetsValue: 0,
+regions: { },
+iconName: "planets.png",
+assetTotalCount: 0,
+orderingName: "Planetary Manager"
+},
+corporation: false
+}
+]
+},
+CapitanHaddock: {
+children: [ ],
+jsonClass: "Login",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+name: "CapitanHaddock",
+characters: [
+{
+children: [ ],
+jsonClass: "Pilot",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+authorization: {
+keyID: 6472981,
+characterID: 2113197470,
+vcode: "pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z",
+params: {
+keyID: "6472981",
+characterID: "2113197470",
+vCode: "pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z"
+}
+},
+characterID: 2113197470,
+delegatedCharacter: {
+name: "Tip Tophane",
+characterID: 2113197470,
+corporationName: "School of Applied Knowledge",
+corporationID: 1000044,
+allianceName: "",
+allianceID: 0,
+factionName: "",
+factionID: 0
+},
+characterInfo: {
+version: 2,
+currentTime: 1506351578000,
+cachedUntil: 1506354988000,
+error: null,
+characterID: 2113197470,
+characterName: "Tip Tophane",
+race: "CALDARI",
+bloodline: "DETEIS",
+accountBalance: 2812504.22,
+skillPoints: 508368,
+shipName: "Tip Tophane's Venture",
+shipTypeID: 32880,
+shipTypeName: "Venture",
+corporationID: 1000044,
+corporation: "School of Applied Knowledge",
+corporationDate: 1505295420000,
+allianceID: null,
+alliance: null,
+allianceDate: null,
+lastKnownLocation: "Akiainavas III - School of Applied Knowledge",
+securityStatus: 0.00139992650171499,
+employmentHistory: [
+{
+corporationID: 1000044,
+startDate: 1505295420000
+}
+]
+},
+accountBalance: 2812504.22,
+active: true,
+locationRoles: null,
+actions4Character: { },
+characterSheet: {
+version: 1,
+currentTime: 1506351579000,
+cachedUntil: 1506354988000,
+error: null,
+characterID: 2113197470,
+name: "Tip Tophane",
+race: "CALDARI",
+dateOfBirth: 1505295412000,
+bloodLine: "DETEIS",
+ancestry: "SCIENTISTS",
+gender: "Male",
+corporationName: "School of Applied Knowledge",
+corporationID: 1000044,
+allianceID: null,
+allianceName: null,
+cloneName: "Clone Grade Alpha",
+cloneSkillPoints: 0,
+balance: 2812504.22,
+attributeEnhancers: [ ],
+intelligence: 20,
+memory: 20,
+charisma: 19,
+perception: 20,
+willpower: 20,
+skills: [
+{
+typeID: 3416,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3321,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 12441,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 3418,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 28164,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3316,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3300,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3452,
+level: 2,
+skillpoints: 5657,
+unpublished: false
+},
+{
+typeID: 13278,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3315,
+level: 2,
+skillpoints: 5657,
+unpublished: false
+},
+{
+typeID: 3437,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3420,
+level: 2,
+skillpoints: 5657,
+unpublished: false
+},
+{
+typeID: 3428,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3419,
+level: 2,
+skillpoints: 4870,
+unpublished: false
+},
+{
+typeID: 21071,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 25863,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 3453,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3454,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 3425,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3327,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3394,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3342,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 3449,
+level: 3,
+skillpoints: 16687,
+unpublished: false
+},
+{
+typeID: 3413,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3310,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 25739,
+level: 1,
+skillpoints: 2000,
+unpublished: false
+},
+{
+typeID: 3380,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3427,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 3393,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3402,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3424,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3411,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3317,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 24241,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3412,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 3312,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3334,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3320,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3417,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3455,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3301,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 33092,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3443,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 25811,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 20314,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 3318,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3431,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3436,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3392,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3330,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3426,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3386,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3435,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 21059,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 32918,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3429,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3311,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3319,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3432,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3551,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 22578,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 3450,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 12442,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 21718,
+level: 1,
+skillpoints: 750,
+unpublished: false
+}
+],
+certificates: [ ],
+corporationRoles: [ ],
+corporationRolesAtHQ: [ ],
+corporationRolesAtBase: [ ],
+corporationRolesAtOther: [ ],
+corporationTitles: [ ]
+},
+skillQueue: [ ],
+skillInTraining: {
+version: 2,
+currentTime: 1506351579000,
+cachedUntil: 1506354988000,
+error: null,
+currentTQTime: 1506351579000,
+trainingEndTime: null,
+trainingStartTime: null,
+trainingTypeID: 0,
+trainingStartSP: 0,
+trainingDestinationSP: 0,
+trainingToLevel: 0,
+skillInTraining: false
+},
+lastKnownLocation: "Akiainavas III - School of Applied Knowledge",
+urlforAvatar: "http://image.eveonline.com/character/2113197470_256.jpg",
+name: "Tip Tophane",
+actions: { },
+planetaryManager: {
+children: [ ],
+jsonClass: "PlanetaryManager",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+initialized: false,
+totalAssetsValue: 0,
+regions: { },
+iconName: "planets.png",
+assetTotalCount: 0,
+orderingName: "Planetary Manager"
+},
+corporation: false
+},
+{
+children: [ ],
+jsonClass: "Pilot",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+authorization: {
+keyID: 6472981,
+characterID: 96662300,
+vcode: "pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z",
+params: {
+keyID: "6472981",
+characterID: "96662300",
+vCode: "pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z"
+}
+},
+characterID: 96662300,
+delegatedCharacter: {
+name: "Zoe Zenote",
+characterID: 96662300,
+corporationName: "Imperial Academy",
+corporationID: 1000166,
+allianceName: "",
+allianceID: 0,
+factionName: "",
+factionID: 0
+},
+characterInfo: {
+version: 2,
+currentTime: 1506351577000,
+cachedUntil: 1506354986000,
+error: null,
+characterID: 96662300,
+characterName: "Zoe Zenote",
+race: "AMARR",
+bloodline: "NI_KUNNI",
+accountBalance: 135043654.24,
+skillPoints: 994001,
+shipName: "Zoe Zenote's Impairor",
+shipTypeID: 596,
+shipTypeName: "Impairor",
+corporationID: 1000166,
+corporation: "Imperial Academy",
+corporationDate: 1471253880000,
+allianceID: null,
+alliance: null,
+allianceDate: null,
+lastKnownLocation: "6-CZ49 VI - Moon 6 - Intaki Syndicate Bureau",
+securityStatus: 0,
+employmentHistory: [
+{
+corporationID: 1000166,
+startDate: 1471253880000
+}
+]
+},
+accountBalance: 135043654.24,
+active: true,
+locationRoles: null,
+actions4Character: { },
+characterSheet: {
+version: 1,
+currentTime: 1506351577000,
+cachedUntil: 1506354987000,
+error: null,
+characterID: 96662300,
+name: "Zoe Zenote",
+race: "AMARR",
+dateOfBirth: 1471253899000,
+bloodLine: "NI_KUNNI",
+ancestry: "BORDER_RUNNERS",
+gender: "Female",
+corporationName: "Imperial Academy",
+corporationID: 1000166,
+allianceID: null,
+allianceName: null,
+cloneName: "Clone Grade Alpha",
+cloneSkillPoints: 0,
+balance: 135043654.24,
+attributeEnhancers: [ ],
+intelligence: 20,
+memory: 20,
+charisma: 19,
+perception: 20,
+willpower: 20,
+skills: [
+{
+typeID: 3443,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3426,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3319,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3402,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3446,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3449,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 26261,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3331,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3392,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3455,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3413,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3454,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 2495,
+level: 3,
+skillpoints: 117793,
+unpublished: false
+},
+{
+typeID: 3432,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3551,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 21718,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3429,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 13278,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3312,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3420,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 3340,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 3453,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 2505,
+level: 4,
+skillpoints: 181020,
+unpublished: false
+},
+{
+typeID: 3437,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 26254,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 24242,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 25811,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3427,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 32918,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3425,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 11579,
+level: 1,
+skillpoints: 1500,
+unpublished: false
+},
+{
+typeID: 3386,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3450,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3417,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 13279,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3316,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3343,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 3394,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3435,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3416,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 25235,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3393,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3328,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 26252,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3310,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3327,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3418,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 3424,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3431,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 25739,
+level: 1,
+skillpoints: 2000,
+unpublished: false
+},
+{
+typeID: 3315,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 3419,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3452,
+level: 2,
+skillpoints: 5657,
+unpublished: false
+},
+{
+typeID: 3412,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 3311,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3317,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3380,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3303,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 28164,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3318,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3411,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3428,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 3355,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3436,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3300,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 25863,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+}
+],
+certificates: [ ],
+corporationRoles: [ ],
+corporationRolesAtHQ: [ ],
+corporationRolesAtBase: [ ],
+corporationRolesAtOther: [ ],
+corporationTitles: [ ]
+},
+skillQueue: [ ],
+skillInTraining: {
+version: 2,
+currentTime: 1506351578000,
+cachedUntil: 1506354987000,
+error: null,
+currentTQTime: 1506351578000,
+trainingEndTime: null,
+trainingStartTime: null,
+trainingTypeID: 0,
+trainingStartSP: 0,
+trainingDestinationSP: 0,
+trainingToLevel: 0,
+skillInTraining: false
+},
+lastKnownLocation: "6-CZ49 VI - Moon 6 - Intaki Syndicate Bureau",
+urlforAvatar: "http://image.eveonline.com/character/96662300_256.jpg",
+name: "Zoe Zenote",
+actions: { },
+planetaryManager: {
+children: [ ],
+jsonClass: "PlanetaryManager",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+initialized: false,
+totalAssetsValue: 0,
+regions: { },
+iconName: "planets.png",
+assetTotalCount: 0,
+orderingName: "Planetary Manager"
+},
+corporation: false
+},
+{
+children: [ ],
+jsonClass: "Pilot",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+authorization: {
+keyID: 924767,
+characterID: 93813310,
+vcode: "2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P",
+params: {
+keyID: "924767",
+characterID: "93813310",
+vCode: "2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P"
+}
+},
+characterID: 93813310,
+delegatedCharacter: {
+name: "Perico Tuerto",
+characterID: 93813310,
+corporationName: "Industrias Machaque",
+corporationID: 98384726,
+allianceName: "",
+allianceID: 0,
+factionName: "",
+factionID: 0
+},
+characterInfo: {
+version: 2,
+currentTime: 1506351573000,
+cachedUntil: 1506354978000,
+error: null,
+characterID: 93813310,
+characterName: "Perico Tuerto",
+race: "AMARR",
+bloodline: "NI_KUNNI",
+accountBalance: 630954363.2,
+skillPoints: 507677,
+shipName: "Perico Tuerto's Capsule",
+shipTypeID: 670,
+shipTypeName: "Capsule",
+corporationID: 98384726,
+corporation: "Industrias Machaque",
+corporationDate: 1426531860000,
+allianceID: null,
+alliance: null,
+allianceDate: null,
+lastKnownLocation: "Pimebeka VII - Moon 16 - Carthum Conglomerate Factory",
+securityStatus: 0,
+employmentHistory: [
+{
+corporationID: 98384726,
+startDate: 1426531860000
+},
+{
+corporationID: 1000072,
+startDate: 1384439760000
+},
+{
+corporationID: 1465050528,
+startDate: 1384120140000
+},
+{
+corporationID: 1000077,
+startDate: 1378755600000
+}
+]
+},
+accountBalance: 630954363.2,
+active: true,
+locationRoles: null,
+actions4Character: { },
+characterSheet: {
+version: 1,
+currentTime: 1506351573000,
+cachedUntil: 1506354978000,
+error: null,
+characterID: 93813310,
+name: "Perico Tuerto",
+race: "AMARR",
+dateOfBirth: 1378755609000,
+bloodLine: "NI_KUNNI",
+ancestry: "BORDER_RUNNERS",
+gender: "Male",
+corporationName: "Industrias Machaque",
+corporationID: 98384726,
+allianceID: 0,
+allianceName: null,
+cloneName: "Clone Grade Alpha",
+cloneSkillPoints: 0,
+balance: 630954363.2,
+attributeEnhancers: [ ],
+intelligence: 20,
+memory: 20,
+charisma: 19,
+perception: 20,
+willpower: 20,
+skills: [
+{
+typeID: 33399,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3303,
+level: 3,
+skillpoints: 42600,
+unpublished: false
+},
+{
+typeID: 3429,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3427,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3300,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3450,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 24242,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3386,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3420,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 3330,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3453,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3405,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 2495,
+level: 3,
+skillpoints: 32000,
+unpublished: false
+},
+{
+typeID: 3406,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3412,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3454,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3419,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3449,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3328,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 19921,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3392,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3426,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3331,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3355,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3413,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 2505,
+level: 4,
+skillpoints: 181020,
+unpublished: false
+},
+{
+typeID: 25235,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3380,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3402,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3424,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 11579,
+level: 1,
+skillpoints: 1500,
+unpublished: false
+},
+{
+typeID: 32918,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3394,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3455,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3425,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 13279,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3329,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 3435,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3340,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 3327,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+}
+],
+certificates: [ ],
+corporationRoles: [
+{
+roleID: 18014398509481984,
+roleName: "roleTrader"
+},
+{
+roleID: 36028797018963970,
+roleName: "roleChatManager"
+},
+{
+roleID: 576460752303423500,
+roleName: "roleFittingManager"
+},
+{
+roleID: 268435456,
+roleName: "roleAccountCanTake2"
+},
+{
+roleID: 4503599627370496,
+roleName: "roleJuniorAccountant"
+},
+{
+roleID: 72057594037927940,
+roleName: "roleContractManager"
+}
+],
+corporationRolesAtHQ: [
+{
+roleID: 1048576,
+roleName: "roleHangarCanQuery1"
+},
+{
+roleID: 4398046511104,
+roleName: "roleContainerCanTake1"
+},
+{
+roleID: 8192,
+roleName: "roleHangarCanTake1"
+}
+],
+corporationRolesAtBase: [
+{
+roleID: 4398046511104,
+roleName: "roleContainerCanTake1"
+},
+{
+roleID: 8192,
+roleName: "roleHangarCanTake1"
+},
+{
+roleID: 1048576,
+roleName: "roleHangarCanQuery1"
+}
+],
+corporationRolesAtOther: [
+{
+roleID: 8192,
+roleName: "roleHangarCanTake1"
+},
+{
+roleID: 4398046511104,
+roleName: "roleContainerCanTake1"
+},
+{
+roleID: 1048576,
+roleName: "roleHangarCanQuery1"
+}
+],
+corporationTitles: [ ]
+},
+skillQueue: [
+{
+queuePosition: 0,
+typeID: 11579,
+level: 2,
+startSP: 1500,
+endSP: 8486,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 1,
+typeID: 11579,
+level: 3,
+startSP: 8486,
+endSP: 48000,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 2,
+typeID: 3406,
+level: 5,
+startSP: 45255,
+endSP: 256000,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 3,
+typeID: 2505,
+level: 5,
+startSP: 181020,
+endSP: 1024000,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 4,
+typeID: 2495,
+level: 4,
+startSP: 32000,
+endSP: 181020,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 5,
+typeID: 2495,
+level: 5,
+startSP: 181020,
+endSP: 1024000,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 6,
+typeID: 3303,
+level: 4,
+startSP: 42600,
+endSP: 45255,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 7,
+typeID: 32918,
+level: 1,
+startSP: 0,
+endSP: 500,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 8,
+typeID: 3455,
+level: 3,
+startSP: 1415,
+endSP: 8000,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 9,
+typeID: 3454,
+level: 2,
+startSP: 1250,
+endSP: 7072,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 10,
+typeID: 3331,
+level: 4,
+startSP: 16000,
+endSP: 90510,
+startTime: null,
+endTime: null
+}
+],
+skillInTraining: {
+version: 2,
+currentTime: 1506351574000,
+cachedUntil: 1506354978000,
+error: null,
+currentTQTime: 1506351574000,
+trainingEndTime: null,
+trainingStartTime: null,
+trainingTypeID: 0,
+trainingStartSP: 0,
+trainingDestinationSP: 0,
+trainingToLevel: 0,
+skillInTraining: false
+},
+lastKnownLocation: "Pimebeka VII - Moon 16 - Carthum Conglomerate Factory",
+urlforAvatar: "http://image.eveonline.com/character/93813310_256.jpg",
+name: "Perico Tuerto",
+actions: { },
+planetaryManager: {
+children: [ ],
+jsonClass: "PlanetaryManager",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+initialized: false,
+totalAssetsValue: 0,
+regions: { },
+iconName: "planets.png",
+assetTotalCount: 0,
+orderingName: "Planetary Manager"
+},
+corporation: false
+},
+{
+children: [ ],
+jsonClass: "Pilot",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+authorization: {
+keyID: 924767,
+characterID: 92223647,
+vcode: "2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P",
+params: {
+keyID: "924767",
+characterID: "92223647",
+vCode: "2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P"
+}
+},
+characterID: 92223647,
+delegatedCharacter: {
+name: "Beth Ripley",
+characterID: 92223647,
+corporationName: "Industrias Machaque",
+corporationID: 98384726,
+allianceName: "",
+allianceID: 0,
+factionName: "",
+factionID: 0
+},
+characterInfo: {
+version: 2,
+currentTime: 1506351572000,
+cachedUntil: 1506354945000,
+error: null,
+characterID: 92223647,
+characterName: "Beth Ripley",
+race: "MINMATAR",
+bloodline: "BRUTOR",
+accountBalance: 2776090507.17,
+skillPoints: 5590035,
+shipName: "Beth Ripley's Capsule",
+shipTypeID: 670,
+shipTypeName: "Capsule",
+corporationID: 98384726,
+corporation: "Industrias Machaque",
+corporationDate: 1426498080000,
+allianceID: null,
+alliance: null,
+allianceDate: null,
+lastKnownLocation: "Pimebeka VII - Moon 16 - Carthum Conglomerate Factory",
+securityStatus: 0,
+employmentHistory: [
+{
+corporationID: 98384726,
+startDate: 1426498080000
+},
+{
+corporationID: 1000049,
+startDate: 1425146460000
+},
+{
+corporationID: 1465050528,
+startDate: 1425062700000
+},
+{
+corporationID: 1000049,
+startDate: 1342104180000
+},
+{
+corporationID: 1465050528,
+startDate: 1341865860000
+},
+{
+corporationID: 1000172,
+startDate: 1341525180000
+}
+]
+},
+accountBalance: 2776090507.17,
+active: true,
+locationRoles: null,
+actions4Character: { },
+characterSheet: {
+version: 1,
+currentTime: 1506351572000,
+cachedUntil: 1506354976000,
+error: null,
+characterID: 92223647,
+name: "Beth Ripley",
+race: "MINMATAR",
+dateOfBirth: 1341525195000,
+bloodLine: "BRUTOR",
+ancestry: "WORKERS",
+gender: "Female",
+corporationName: "Industrias Machaque",
+corporationID: 98384726,
+allianceID: 0,
+allianceName: null,
+cloneName: "Clone Grade Alpha",
+cloneSkillPoints: 0,
+balance: 2776090507.17,
+attributeEnhancers: [ ],
+intelligence: 20,
+memory: 20,
+charisma: 19,
+perception: 20,
+willpower: 20,
+skills: [
+{
+typeID: 21718,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 2505,
+level: 4,
+skillpoints: 181020,
+unpublished: false
+},
+{
+typeID: 32918,
+level: 3,
+skillpoints: 16007,
+unpublished: false
+},
+{
+typeID: 3425,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3432,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3455,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3434,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3341,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 16595,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3453,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 24242,
+level: 3,
+skillpoints: 8005,
+unpublished: false
+},
+{
+typeID: 3386,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3413,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3392,
+level: 4,
+skillpoints: 198073,
+unpublished: false
+},
+{
+typeID: 11455,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 3443,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3452,
+level: 2,
+skillpoints: 5657,
+unpublished: false
+},
+{
+typeID: 33091,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3333,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 13279,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 21790,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 11446,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 3329,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3449,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 24624,
+level: 2,
+skillpoints: 18514,
+unpublished: false
+},
+{
+typeID: 3363,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 11443,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3424,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3426,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 26252,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3300,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3331,
+level: 3,
+skillpoints: 34288,
+unpublished: false
+},
+{
+typeID: 3388,
+level: 4,
+skillpoints: 678024,
+unpublished: false
+},
+{
+typeID: 3433,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3355,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3380,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3409,
+level: 4,
+skillpoints: 282478,
+unpublished: false
+},
+{
+typeID: 3428,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3444,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3402,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 4385,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 19719,
+level: 2,
+skillpoints: 8486,
+unpublished: false
+},
+{
+typeID: 3416,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3394,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3451,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 3446,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 16598,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3419,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3340,
+level: 5,
+skillpoints: 1024000,
+unpublished: false
+},
+{
+typeID: 24270,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 26253,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 26261,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3387,
+level: 2,
+skillpoints: 4022,
+unpublished: false
+},
+{
+typeID: 26254,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 33399,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3343,
+level: 2,
+skillpoints: 5666,
+unpublished: false
+},
+{
+typeID: 3454,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 3420,
+level: 3,
+skillpoints: 32000,
+unpublished: false
+},
+{
+typeID: 3450,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3431,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3393,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 11584,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 16622,
+level: 4,
+skillpoints: 135765,
+unpublished: false
+},
+{
+typeID: 3405,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3417,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3302,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3406,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 33094,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 16597,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 16594,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 2495,
+level: 4,
+skillpoints: 190091,
+unpublished: false
+},
+{
+typeID: 3403,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3327,
+level: 4,
+skillpoints: 71827,
+unpublished: false
+},
+{
+typeID: 3429,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3418,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3427,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 11579,
+level: 4,
+skillpoints: 271530,
+unpublished: false
+},
+{
+typeID: 25235,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+}
+],
+certificates: [ ],
+corporationRoles: [
+{
+roleID: 1,
+roleName: "roleDirector"
+}
+],
+corporationRolesAtHQ: [
+{
+roleID: 1,
+roleName: "roleDirector"
+}
+],
+corporationRolesAtBase: [
+{
+roleID: 1,
+roleName: "roleDirector"
+}
+],
+corporationRolesAtOther: [
+{
+roleID: 1,
+roleName: "roleDirector"
+}
+],
+corporationTitles: [ ]
+},
+skillQueue: [ ],
+skillInTraining: {
+version: 2,
+currentTime: 1506351573000,
+cachedUntil: 1506354976000,
+error: null,
+currentTQTime: 1506351573000,
+trainingEndTime: null,
+trainingStartTime: null,
+trainingTypeID: 0,
+trainingStartSP: 0,
+trainingDestinationSP: 0,
+trainingToLevel: 0,
+skillInTraining: false
+},
+lastKnownLocation: "Pimebeka VII - Moon 16 - Carthum Conglomerate Factory",
+urlforAvatar: "http://image.eveonline.com/character/92223647_256.jpg",
+name: "Beth Ripley",
+actions: { },
+planetaryManager: {
+children: [ ],
+jsonClass: "PlanetaryManager",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+initialized: false,
+totalAssetsValue: 0,
+regions: { },
+iconName: "planets.png",
+assetTotalCount: 0,
+orderingName: "Planetary Manager"
+},
+corporation: false
+},
+{
+children: [ ],
+jsonClass: "Pilot",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+authorization: {
+keyID: 924767,
+characterID: 92002067,
+vcode: "2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P",
+params: {
+keyID: "924767",
+characterID: "92002067",
+vCode: "2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P"
+}
+},
+characterID: 92002067,
+delegatedCharacter: {
+name: "Adam Antinoo",
+characterID: 92002067,
+corporationName: "Planet - Express",
+corporationID: 1427661573,
+allianceName: "Silent Infinity",
+allianceID: 117383987,
+factionName: "",
+factionID: 0
+},
+characterInfo: {
+version: 2,
+currentTime: 1506351570000,
+cachedUntil: 1506354980000,
+error: null,
+characterID: 92002067,
+characterName: "Adam Antinoo",
+race: "MINMATAR",
+bloodline: "SEBIESTOR",
+accountBalance: 2295978165.15,
+skillPoints: 53618666,
+shipName: "N Recogedor N1",
+shipTypeID: 2998,
+shipTypeName: "Noctis",
+corporationID: 1427661573,
+corporation: "Planet - Express",
+corporationDate: 1437481080000,
+allianceID: 117383987,
+alliance: "Silent Infinity",
+allianceDate: 1417817880000,
+lastKnownLocation: "H-GKI6 VI - Basilica of Maxentius",
+securityStatus: 5.00203252098896,
+employmentHistory: [
+{
+corporationID: 1427661573,
+startDate: 1437481080000
+},
+{
+corporationID: 98144459,
+startDate: 1408395840000
+},
+{
+corporationID: 1000046,
+startDate: 1386772620000
+},
+{
+corporationID: 98144459,
+startDate: 1370962020000
+},
+{
+corporationID: 1000046,
+startDate: 1370764560000
+},
+{
+corporationID: 98144459,
+startDate: 1361389500000
+},
+{
+corporationID: 1000046,
+startDate: 1361211420000
+},
+{
+corporationID: 98144459,
+startDate: 1360698900000
+},
+{
+corporationID: 917701062,
+startDate: 1341505860000
+},
+{
+corporationID: 1000046,
+startDate: 1340293200000
+},
+{
+corporationID: 917701062,
+startDate: 1338139320000
+},
+{
+corporationID: 1000172,
+startDate: 1336592700000
+}
+]
+},
+accountBalance: 2295978165.15,
+active: true,
+locationRoles: null,
+actions4Character: { },
+characterSheet: {
+version: 1,
+currentTime: 1506351570000,
+cachedUntil: 1506354980000,
+error: null,
+characterID: 92002067,
+name: "Adam Antinoo",
+race: "MINMATAR",
+dateOfBirth: 1336592727000,
+bloodLine: "SEBIESTOR",
+ancestry: "TRADERS",
+gender: "Male",
+corporationName: "Planet - Express",
+corporationID: 1427661573,
+allianceID: 117383987,
+allianceName: "Silent Infinity",
+cloneName: "Clone Grade Alpha",
+cloneSkillPoints: 0,
+balance: 2295978165.15,
+attributeEnhancers: [ ],
+intelligence: 19,
+memory: 19,
+charisma: 19,
+perception: 22,
+willpower: 20,
+skills: [
+{
+typeID: 3434,
+level: 3,
+skillpoints: 115874,
+unpublished: false
+},
+{
+typeID: 20312,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 3332,
+level: 5,
+skillpoints: 1280000,
+unpublished: false
+},
+{
+typeID: 33091,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 3410,
+level: 5,
+skillpoints: 768000,
+unpublished: false
+},
+{
+typeID: 22536,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 19760,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 3435,
+level: 5,
+skillpoints: 768000,
+unpublished: false
+},
+{
+typeID: 3425,
+level: 4,
+skillpoints: 121481,
+unpublished: false
+},
+{
+typeID: 3396,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 20213,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3403,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 33095,
+level: 5,
+skillpoints: 1536000,
+unpublished: false
+},
+{
+typeID: 12181,
+level: 4,
+skillpoints: 181020,
+unpublished: false
+},
+{
+typeID: 12191,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3325,
+level: 2,
+skillpoints: 5657,
+unpublished: false
+},
+{
+typeID: 3316,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3444,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 24242,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 12485,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 21059,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 30538,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3408,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 12092,
+level: 2,
+skillpoints: 5657,
+unpublished: false
+},
+{
+typeID: 3380,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3454,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 30651,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 16595,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3428,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 3446,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 11445,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 20315,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 19759,
+level: 3,
+skillpoints: 32000,
+unpublished: false
+},
+{
+typeID: 11579,
+level: 4,
+skillpoints: 271530,
+unpublished: false
+},
+{
+typeID: 23566,
+level: 4,
+skillpoints: 226275,
+unpublished: false
+},
+{
+typeID: 3420,
+level: 4,
+skillpoints: 181020,
+unpublished: false
+},
+{
+typeID: 26258,
+level: 1,
+skillpoints: 2860,
+unpublished: false
+},
+{
+typeID: 3405,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3551,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3333,
+level: 5,
+skillpoints: 1280000,
+unpublished: false
+},
+{
+typeID: 12213,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3388,
+level: 4,
+skillpoints: 522090,
+unpublished: false
+},
+{
+typeID: 3326,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3315,
+level: 4,
+skillpoints: 181020,
+unpublished: false
+},
+{
+typeID: 12098,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 11433,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 26261,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3392,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 25235,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3300,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 11083,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 34390,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 24624,
+level: 3,
+skillpoints: 64000,
+unpublished: false
+},
+{
+typeID: 3416,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3331,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 3442,
+level: 5,
+skillpoints: 1280000,
+unpublished: false
+},
+{
+typeID: 20211,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 22809,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 26260,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 28073,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 12093,
+level: 2,
+skillpoints: 5657,
+unpublished: false
+},
+{
+typeID: 26253,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3395,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 12214,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 3431,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 11449,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 23121,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 3424,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 3338,
+level: 3,
+skillpoints: 64000,
+unpublished: false
+},
+{
+typeID: 24613,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 30652,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 21791,
+level: 3,
+skillpoints: 99362,
+unpublished: false
+},
+{
+typeID: 3324,
+level: 5,
+skillpoints: 768000,
+unpublished: false
+},
+{
+typeID: 30537,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3419,
+level: 4,
+skillpoints: 135765,
+unpublished: false
+},
+{
+typeID: 3429,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3340,
+level: 5,
+skillpoints: 1024000,
+unpublished: false
+},
+{
+typeID: 3302,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 12193,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 11574,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3386,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 21071,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3306,
+level: 5,
+skillpoints: 768000,
+unpublished: false
+},
+{
+typeID: 3322,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3453,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 3413,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 11453,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 22242,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 30532,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 19719,
+level: 1,
+skillpoints: 1500,
+unpublished: false
+},
+{
+typeID: 3451,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 23606,
+level: 4,
+skillpoints: 52187,
+unpublished: false
+},
+{
+typeID: 26256,
+level: 1,
+skillpoints: 756,
+unpublished: false
+},
+{
+typeID: 3350,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 3387,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 30650,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3438,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 3417,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 33094,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 3335,
+level: 5,
+skillpoints: 1280000,
+unpublished: false
+},
+{
+typeID: 3412,
+level: 4,
+skillpoints: 135765,
+unpublished: false
+},
+{
+typeID: 33399,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3402,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 34533,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 12192,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3334,
+level: 5,
+skillpoints: 1280000,
+unpublished: false
+},
+{
+typeID: 33092,
+level: 4,
+skillpoints: 136197,
+unpublished: false
+},
+{
+typeID: 26255,
+level: 1,
+skillpoints: 1499,
+unpublished: false
+},
+{
+typeID: 16591,
+level: 2,
+skillpoints: 8486,
+unpublished: false
+},
+{
+typeID: 11529,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 12210,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 4385,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 24270,
+level: 2,
+skillpoints: 10147,
+unpublished: false
+},
+{
+typeID: 23087,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 12204,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 13279,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 2505,
+level: 5,
+skillpoints: 1024000,
+unpublished: false
+},
+{
+typeID: 30544,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3423,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3308,
+level: 5,
+skillpoints: 1280000,
+unpublished: false
+},
+{
+typeID: 3321,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 3312,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 3385,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 12184,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 12186,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3309,
+level: 5,
+skillpoints: 1280000,
+unpublished: false
+},
+{
+typeID: 3349,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 12365,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 20342,
+level: 5,
+skillpoints: 1280000,
+unpublished: false
+},
+{
+typeID: 21603,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3304,
+level: 5,
+skillpoints: 768000,
+unpublished: false
+},
+{
+typeID: 12441,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3436,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 30552,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3355,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3327,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3455,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 30548,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3422,
+level: 3,
+skillpoints: 75265,
+unpublished: false
+},
+{
+typeID: 3341,
+level: 2,
+skillpoints: 5691,
+unpublished: false
+},
+{
+typeID: 22806,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 24241,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 20314,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3394,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 3336,
+level: 3,
+skillpoints: 64000,
+unpublished: false
+},
+{
+typeID: 25810,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 3452,
+level: 4,
+skillpoints: 496423,
+unpublished: false
+},
+{
+typeID: 12486,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 24625,
+level: 3,
+skillpoints: 232220,
+unpublished: false
+},
+{
+typeID: 19921,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 25739,
+level: 2,
+skillpoints: 11314,
+unpublished: false
+},
+{
+typeID: 30549,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3389,
+level: 5,
+skillpoints: 768000,
+unpublished: false
+},
+{
+typeID: 3411,
+level: 4,
+skillpoints: 135765,
+unpublished: false
+},
+{
+typeID: 3418,
+level: 5,
+skillpoints: 768000,
+unpublished: false
+},
+{
+typeID: 26257,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3443,
+level: 3,
+skillpoints: 25583,
+unpublished: false
+},
+{
+typeID: 23594,
+level: 5,
+skillpoints: 1280000,
+unpublished: false
+},
+{
+typeID: 33096,
+level: 4,
+skillpoints: 1500897,
+unpublished: false
+},
+{
+typeID: 32918,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 13278,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 11443,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 3311,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 22761,
+level: 1,
+skillpoints: 1500,
+unpublished: false
+},
+{
+typeID: 16069,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 12202,
+level: 3,
+skillpoints: 113832,
+unpublished: false
+},
+{
+typeID: 16281,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 12194,
+level: 4,
+skillpoints: 135765,
+unpublished: false
+},
+{
+typeID: 12487,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 11447,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 32999,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 12185,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 24764,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 12188,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 12442,
+level: 3,
+skillpoints: 32000,
+unpublished: false
+},
+{
+typeID: 12182,
+level: 3,
+skillpoints: 32000,
+unpublished: false
+},
+{
+typeID: 12484,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 12305,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 26252,
+level: 3,
+skillpoints: 55315,
+unpublished: false
+},
+{
+typeID: 3361,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 11452,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 3348,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3318,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 3328,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 12215,
+level: 1,
+skillpoints: 2000,
+unpublished: false
+},
+{
+typeID: 11566,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 11584,
+level: 4,
+skillpoints: 135765,
+unpublished: false
+},
+{
+typeID: 2495,
+level: 5,
+skillpoints: 1024000,
+unpublished: false
+},
+{
+typeID: 11442,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 33098,
+level: 5,
+skillpoints: 1536000,
+unpublished: false
+},
+{
+typeID: 11207,
+level: 4,
+skillpoints: 271530,
+unpublished: false
+},
+{
+typeID: 3439,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 33000,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 12206,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 33078,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 3184,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 24268,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3317,
+level: 4,
+skillpoints: 783011,
+unpublished: false
+},
+{
+typeID: 22551,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3337,
+level: 4,
+skillpoints: 362039,
+unpublished: false
+},
+{
+typeID: 12196,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3356,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 17940,
+level: 5,
+skillpoints: 1024000,
+unpublished: false
+},
+{
+typeID: 22808,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 25719,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 16622,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 33002,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 11084,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 11444,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 12367,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3303,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 21718,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3421,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 3432,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 30539,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 33097,
+level: 4,
+skillpoints: 900965,
+unpublished: false
+},
+{
+typeID: 22807,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3319,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3393,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 11448,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 11441,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 11450,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3305,
+level: 5,
+skillpoints: 768000,
+unpublished: false
+},
+{
+typeID: 33093,
+level: 4,
+skillpoints: 136197,
+unpublished: false
+},
+{
+typeID: 12180,
+level: 3,
+skillpoints: 32000,
+unpublished: false
+},
+{
+typeID: 3320,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3406,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3310,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3307,
+level: 4,
+skillpoints: 226275,
+unpublished: false
+},
+{
+typeID: 12190,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3373,
+level: 2,
+skillpoints: 9900,
+unpublished: false
+},
+{
+typeID: 3433,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3450,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 11454,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 12203,
+level: 1,
+skillpoints: 2000,
+unpublished: false
+},
+{
+typeID: 23618,
+level: 4,
+skillpoints: 226275,
+unpublished: false
+},
+{
+typeID: 12183,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 12211,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 12095,
+level: 1,
+skillpoints: 1040,
+unpublished: false
+},
+{
+typeID: 3427,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3449,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3409,
+level: 4,
+skillpoints: 277384,
+unpublished: false
+},
+{
+typeID: 3330,
+level: 4,
+skillpoints: 424627,
+unpublished: false
+},
+{
+typeID: 3343,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 25863,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 3329,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 12201,
+level: 4,
+skillpoints: 135765,
+unpublished: false
+},
+{
+typeID: 20495,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 28164,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 12208,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 33699,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 3357,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3426,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3437,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 20209,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 12195,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 20210,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3339,
+level: 5,
+skillpoints: 2048000,
+unpublished: false
+},
+{
+typeID: 3441,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 11446,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 33001,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 22578,
+level: 4,
+skillpoints: 181020,
+unpublished: false
+},
+{
+typeID: 11455,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 12205,
+level: 3,
+skillpoints: 64000,
+unpublished: false
+},
+{
+typeID: 3359,
+level: 4,
+skillpoints: 135765,
+unpublished: false
+},
+{
+typeID: 21790,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 3440,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 12187,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3301,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 12096,
+level: 1,
+skillpoints: 1500,
+unpublished: false
+},
+{
+typeID: 3397,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 11451,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 26254,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 12366,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 20494,
+level: 1,
+skillpoints: 500,
+unpublished: false
+}
+],
+certificates: [ ],
+corporationRoles: [
+{
+roleID: 2251799813685248,
+roleName: "roleCanRentResearchSlot"
+},
+{
+roleID: 72057594037927940,
+roleName: "roleContractManager"
+},
+{
+roleID: 9007199254740992,
+roleName: "roleStarbaseConfig"
+},
+{
+roleID: 8589934592,
+roleName: "roleAccountCanTake7"
+},
+{
+roleID: 1125899906842624,
+roleName: "roleCanRentFactorySlot"
+},
+{
+roleID: 562949953421312,
+roleName: "roleCanRentOffice"
+},
+{
+roleID: 4294967296,
+roleName: "roleAccountCanTake6"
+},
+{
+roleID: 128,
+roleName: "rolePersonnelManager"
+},
+{
+roleID: 256,
+roleName: "roleAccountant"
+},
+{
+roleID: 1024,
+roleName: "roleFactoryManager"
+},
+{
+roleID: 18014398509481984,
+roleName: "roleTrader"
+},
+{
+roleID: 288230376151711740,
+roleName: "roleStarbaseCaretaker"
+},
+{
+roleID: 144115188075855870,
+roleName: "roleInfrastructureTacticalOfficer"
+},
+{
+roleID: 2199023255552,
+roleName: "roleEquipmentConfig"
+},
+{
+roleID: 4503599627370496,
+roleName: "roleJuniorAccountant"
+}
+],
+corporationRolesAtHQ: [
+{
+roleID: 17592186044416,
+roleName: "roleContainerCanTake3"
+},
+{
+roleID: 32768,
+roleName: "roleHangarCanTake3"
+},
+{
+roleID: 35184372088832,
+roleName: "roleContainerCanTake4"
+},
+{
+roleID: 131072,
+roleName: "roleHangarCanTake5"
+},
+{
+roleID: 8388608,
+roleName: "roleHangarCanQuery4"
+},
+{
+roleID: 2097152,
+roleName: "roleHangarCanQuery2"
+},
+{
+roleID: 67108864,
+roleName: "roleHangarCanQuery7"
+},
+{
+roleID: 70368744177664,
+roleName: "roleContainerCanTake5"
+},
+{
+roleID: 281474976710656,
+roleName: "roleContainerCanTake7"
+},
+{
+roleID: 4194304,
+roleName: "roleHangarCanQuery3"
+},
+{
+roleID: 33554432,
+roleName: "roleHangarCanQuery6"
+},
+{
+roleID: 65536,
+roleName: "roleHangarCanTake4"
+},
+{
+roleID: 8192,
+roleName: "roleHangarCanTake1"
+},
+{
+roleID: 262144,
+roleName: "roleHangarCanTake6"
+},
+{
+roleID: 1048576,
+roleName: "roleHangarCanQuery1"
+},
+{
+roleID: 8796093022208,
+roleName: "roleContainerCanTake2"
+},
+{
+roleID: 524288,
+roleName: "roleHangarCanTake7"
+},
+{
+roleID: 16384,
+roleName: "roleHangarCanTake2"
+},
+{
+roleID: 16777216,
+roleName: "roleHangarCanQuery5"
+},
+{
+roleID: 4398046511104,
+roleName: "roleContainerCanTake1"
+},
+{
+roleID: 140737488355328,
+roleName: "roleContainerCanTake6"
+}
+],
+corporationRolesAtBase: [
+{
+roleID: 33554432,
+roleName: "roleHangarCanQuery6"
+},
+{
+roleID: 67108864,
+roleName: "roleHangarCanQuery7"
+},
+{
+roleID: 16384,
+roleName: "roleHangarCanTake2"
+},
+{
+roleID: 16777216,
+roleName: "roleHangarCanQuery5"
+},
+{
+roleID: 70368744177664,
+roleName: "roleContainerCanTake5"
+},
+{
+roleID: 32768,
+roleName: "roleHangarCanTake3"
+},
+{
+roleID: 524288,
+roleName: "roleHangarCanTake7"
+},
+{
+roleID: 131072,
+roleName: "roleHangarCanTake5"
+},
+{
+roleID: 262144,
+roleName: "roleHangarCanTake6"
+},
+{
+roleID: 140737488355328,
+roleName: "roleContainerCanTake6"
+},
+{
+roleID: 8192,
+roleName: "roleHangarCanTake1"
+},
+{
+roleID: 1048576,
+roleName: "roleHangarCanQuery1"
+},
+{
+roleID: 65536,
+roleName: "roleHangarCanTake4"
+},
+{
+roleID: 4398046511104,
+roleName: "roleContainerCanTake1"
+},
+{
+roleID: 281474976710656,
+roleName: "roleContainerCanTake7"
+},
+{
+roleID: 8388608,
+roleName: "roleHangarCanQuery4"
+},
+{
+roleID: 17592186044416,
+roleName: "roleContainerCanTake3"
+},
+{
+roleID: 4194304,
+roleName: "roleHangarCanQuery3"
+},
+{
+roleID: 8796093022208,
+roleName: "roleContainerCanTake2"
+},
+{
+roleID: 35184372088832,
+roleName: "roleContainerCanTake4"
+},
+{
+roleID: 2097152,
+roleName: "roleHangarCanQuery2"
+}
+],
+corporationRolesAtOther: [
+{
+roleID: 8388608,
+roleName: "roleHangarCanQuery4"
+},
+{
+roleID: 4194304,
+roleName: "roleHangarCanQuery3"
+},
+{
+roleID: 1048576,
+roleName: "roleHangarCanQuery1"
+},
+{
+roleID: 16777216,
+roleName: "roleHangarCanQuery5"
+},
+{
+roleID: 32768,
+roleName: "roleHangarCanTake3"
+},
+{
+roleID: 4398046511104,
+roleName: "roleContainerCanTake1"
+},
+{
+roleID: 35184372088832,
+roleName: "roleContainerCanTake4"
+},
+{
+roleID: 524288,
+roleName: "roleHangarCanTake7"
+},
+{
+roleID: 281474976710656,
+roleName: "roleContainerCanTake7"
+},
+{
+roleID: 17592186044416,
+roleName: "roleContainerCanTake3"
+},
+{
+roleID: 2097152,
+roleName: "roleHangarCanQuery2"
+},
+{
+roleID: 262144,
+roleName: "roleHangarCanTake6"
+},
+{
+roleID: 33554432,
+roleName: "roleHangarCanQuery6"
+},
+{
+roleID: 8796093022208,
+roleName: "roleContainerCanTake2"
+},
+{
+roleID: 67108864,
+roleName: "roleHangarCanQuery7"
+},
+{
+roleID: 8192,
+roleName: "roleHangarCanTake1"
+},
+{
+roleID: 131072,
+roleName: "roleHangarCanTake5"
+},
+{
+roleID: 70368744177664,
+roleName: "roleContainerCanTake5"
+},
+{
+roleID: 16384,
+roleName: "roleHangarCanTake2"
+},
+{
+roleID: 65536,
+roleName: "roleHangarCanTake4"
+},
+{
+roleID: 140737488355328,
+roleName: "roleContainerCanTake6"
+}
+],
+corporationTitles: [
+{
+titleID: 128,
+titleName: "T2/T3 Production Manager"
+}
+]
+},
+skillQueue: [
+{
+queuePosition: 0,
+typeID: 3317,
+level: 5,
+startSP: 783011,
+endSP: 1280000,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 1,
+typeID: 11207,
+level: 5,
+startSP: 271530,
+endSP: 1536000,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 2,
+typeID: 25863,
+level: 4,
+startSP: 24000,
+endSP: 135765,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 3,
+typeID: 3425,
+level: 5,
+startSP: 121481,
+endSP: 512000,
+startTime: null,
+endTime: null
+}
+],
+skillInTraining: {
+version: 2,
+currentTime: 1506351571000,
+cachedUntil: 1506354980000,
+error: null,
+currentTQTime: 1506351571000,
+trainingEndTime: null,
+trainingStartTime: null,
+trainingTypeID: 0,
+trainingStartSP: 0,
+trainingDestinationSP: 0,
+trainingToLevel: 0,
+skillInTraining: false
+},
+lastKnownLocation: "H-GKI6 VI - Basilica of Maxentius",
+urlforAvatar: "http://image.eveonline.com/character/92002067_256.jpg",
+name: "Adam Antinoo",
+actions: { },
+planetaryManager: {
+children: [ ],
+jsonClass: "PlanetaryManager",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+initialized: false,
+totalAssetsValue: 0,
+regions: { },
+iconName: "planets.png",
+assetTotalCount: 0,
+orderingName: "Planetary Manager"
+},
+corporation: false
+},
+{
+children: [ ],
+jsonClass: "Pilot",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+authorization: {
+keyID: 6472981,
+characterID: 91734031,
+vcode: "pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z",
+params: {
+keyID: "6472981",
+characterID: "91734031",
+vCode: "pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z"
+}
+},
+characterID: 91734031,
+delegatedCharacter: {
+name: "Zach Zender",
+characterID: 91734031,
+corporationName: "Planet - Express",
+corporationID: 1427661573,
+allianceName: "Silent Infinity",
+allianceID: 117383987,
+factionName: "",
+factionID: 0
+},
+characterInfo: {
+version: 2,
+currentTime: 1506351575000,
+cachedUntil: 1506354985000,
+error: null,
+characterID: 91734031,
+characterName: "Zach Zender",
+race: "GALLENTE",
+bloodline: "GALLENTE",
+accountBalance: 230375905.82,
+skillPoints: 8377615,
+shipName: "Zach Zender's Atron",
+shipTypeID: 608,
+shipTypeName: "Atron",
+corporationID: 1427661573,
+corporation: "Planet - Express",
+corporationDate: 1471298400000,
+allianceID: 117383987,
+alliance: "Silent Infinity",
+allianceDate: 1417817880000,
+lastKnownLocation: "",
+securityStatus: 3.11001338860112,
+employmentHistory: [
+{
+corporationID: 1427661573,
+startDate: 1471298400000
+},
+{
+corporationID: 1000107,
+startDate: 1341334020000
+},
+{
+corporationID: 1616950898,
+startDate: 1335389280000
+},
+{
+corporationID: 1000169,
+startDate: 1330545120000
+}
+]
+},
+accountBalance: 230375905.82,
+active: true,
+locationRoles: null,
+actions4Character: { },
+characterSheet: {
+version: 1,
+currentTime: 1506351576000,
+cachedUntil: 1506354985000,
+error: null,
+characterID: 91734031,
+name: "Zach Zender",
+race: "GALLENTE",
+dateOfBirth: 1330545115000,
+bloodLine: "GALLENTE",
+ancestry: "ACTIVISTS",
+gender: "Male",
+corporationName: "Planet - Express",
+corporationID: 1427661573,
+allianceID: 117383987,
+allianceName: "Silent Infinity",
+cloneName: "Clone Grade Alpha",
+cloneSkillPoints: 0,
+balance: 230375905.82,
+attributeEnhancers: [ ],
+intelligence: 18,
+memory: 18,
+charisma: 22,
+perception: 19,
+willpower: 22,
+skills: [
+{
+typeID: 3311,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 12204,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3303,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 33699,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 12093,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 24242,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3331,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 3442,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 3422,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 32918,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3335,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 3385,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 12190,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3394,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3387,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 21603,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3432,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3418,
+level: 4,
+skillpoints: 135765,
+unpublished: false
+},
+{
+typeID: 26260,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3443,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3419,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 11579,
+level: 1,
+skillpoints: 1500,
+unpublished: false
+},
+{
+typeID: 3425,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 26253,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 24241,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 13279,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3184,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 3417,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3355,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3412,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 3416,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3435,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 3340,
+level: 3,
+skillpoints: 59926,
+unpublished: false
+},
+{
+typeID: 3424,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 22578,
+level: 4,
+skillpoints: 181020,
+unpublished: false
+},
+{
+typeID: 3319,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3304,
+level: 4,
+skillpoints: 135765,
+unpublished: false
+},
+{
+typeID: 3332,
+level: 4,
+skillpoints: 226275,
+unpublished: false
+},
+{
+typeID: 3402,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 33399,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 3454,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 3309,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3380,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3429,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3438,
+level: 4,
+skillpoints: 111586,
+unpublished: false
+},
+{
+typeID: 3322,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3423,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 33093,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 19921,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 11584,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 12191,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3455,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3421,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3300,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 19719,
+level: 1,
+skillpoints: 1500,
+unpublished: false
+},
+{
+typeID: 3302,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3405,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 12195,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 33092,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3330,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 25863,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 3444,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3410,
+level: 4,
+skillpoints: 729719,
+unpublished: false
+},
+{
+typeID: 26261,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3446,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 17940,
+level: 3,
+skillpoints: 32000,
+unpublished: false
+},
+{
+typeID: 29637,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3409,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3320,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3388,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3312,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3389,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3551,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3348,
+level: 4,
+skillpoints: 99208,
+unpublished: false
+},
+{
+typeID: 3403,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 26254,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3334,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 25235,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3411,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 3327,
+level: 4,
+skillpoints: 45702,
+unpublished: false
+},
+{
+typeID: 3393,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3420,
+level: 4,
+skillpoints: 181020,
+unpublished: false
+},
+{
+typeID: 3427,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3452,
+level: 3,
+skillpoints: 32000,
+unpublished: false
+},
+{
+typeID: 22536,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 16069,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3450,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 26252,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3434,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 3436,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3356,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3386,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3392,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 33091,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 16598,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 2495,
+level: 4,
+skillpoints: 287464,
+unpublished: false
+},
+{
+typeID: 3301,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3426,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 33095,
+level: 3,
+skillpoints: 48000,
+unpublished: false
+},
+{
+typeID: 12188,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 16281,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3339,
+level: 2,
+skillpoints: 11314,
+unpublished: false
+},
+{
+typeID: 3428,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 2505,
+level: 4,
+skillpoints: 866168,
+unpublished: false
+},
+{
+typeID: 3306,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 12193,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3317,
+level: 4,
+skillpoints: 226275,
+unpublished: false
+},
+{
+typeID: 3310,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3437,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3406,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3449,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3413,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3453,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 3318,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 12192,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3328,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 12092,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 11574,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3321,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 3316,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+}
+],
+certificates: [ ],
+corporationRoles: [
+{
+roleID: 256,
+roleName: "roleAccountant"
+},
+{
+roleID: 288230376151711740,
+roleName: "roleStarbaseCaretaker"
+},
+{
+roleID: 9007199254740992,
+roleName: "roleStarbaseConfig"
+},
+{
+roleID: 2048,
+roleName: "roleStationManager"
+},
+{
+roleID: 72057594037927940,
+roleName: "roleContractManager"
+},
+{
+roleID: 144115188075855870,
+roleName: "roleInfrastructureTacticalOfficer"
+},
+{
+roleID: 1073741824,
+roleName: "roleAccountCanTake4"
+},
+{
+roleID: 36028797018963970,
+roleName: "roleChatManager"
+},
+{
+roleID: 536870912,
+roleName: "roleAccountCanTake3"
+},
+{
+roleID: 576460752303423500,
+roleName: "roleFittingManager"
+},
+{
+roleID: 4096,
+roleName: "roleAuditor"
+},
+{
+roleID: 17179869184,
+roleName: "roleDiplomat"
+},
+{
+roleID: 268435456,
+roleName: "roleAccountCanTake2"
+},
+{
+roleID: 8589934592,
+roleName: "roleAccountCanTake7"
+},
+{
+roleID: 2147483648,
+roleName: "roleAccountCanTake5"
+},
+{
+roleID: 128,
+roleName: "rolePersonnelManager"
+},
+{
+roleID: 2251799813685248,
+roleName: "roleCanRentResearchSlot"
+},
+{
+roleID: 1024,
+roleName: "roleFactoryManager"
+},
+{
+roleID: 4294967296,
+roleName: "roleAccountCanTake6"
+},
+{
+roleID: 512,
+roleName: "roleSecurityOfficer"
+},
+{
+roleID: 18014398509481984,
+roleName: "roleTrader"
+},
+{
+roleID: 4503599627370496,
+roleName: "roleJuniorAccountant"
+},
+{
+roleID: 2199023255552,
+roleName: "roleEquipmentConfig"
+},
+{
+roleID: 134217728,
+roleName: "roleAccountCanTake1"
+},
+{
+roleID: 562949953421312,
+roleName: "roleCanRentOffice"
+},
+{
+roleID: 1125899906842624,
+roleName: "roleCanRentFactorySlot"
+}
+],
+corporationRolesAtHQ: [
+{
+roleID: 131072,
+roleName: "roleHangarCanTake5"
+},
+{
+roleID: 32768,
+roleName: "roleHangarCanTake3"
+},
+{
+roleID: 262144,
+roleName: "roleHangarCanTake6"
+},
+{
+roleID: 8192,
+roleName: "roleHangarCanTake1"
+},
+{
+roleID: 8796093022208,
+roleName: "roleContainerCanTake2"
+},
+{
+roleID: 2097152,
+roleName: "roleHangarCanQuery2"
+},
+{
+roleID: 1048576,
+roleName: "roleHangarCanQuery1"
+},
+{
+roleID: 35184372088832,
+roleName: "roleContainerCanTake4"
+},
+{
+roleID: 16384,
+roleName: "roleHangarCanTake2"
+},
+{
+roleID: 524288,
+roleName: "roleHangarCanTake7"
+},
+{
+roleID: 70368744177664,
+roleName: "roleContainerCanTake5"
+},
+{
+roleID: 4194304,
+roleName: "roleHangarCanQuery3"
+},
+{
+roleID: 8388608,
+roleName: "roleHangarCanQuery4"
+},
+{
+roleID: 33554432,
+roleName: "roleHangarCanQuery6"
+},
+{
+roleID: 67108864,
+roleName: "roleHangarCanQuery7"
+},
+{
+roleID: 281474976710656,
+roleName: "roleContainerCanTake7"
+},
+{
+roleID: 65536,
+roleName: "roleHangarCanTake4"
+},
+{
+roleID: 16777216,
+roleName: "roleHangarCanQuery5"
+},
+{
+roleID: 140737488355328,
+roleName: "roleContainerCanTake6"
+},
+{
+roleID: 4398046511104,
+roleName: "roleContainerCanTake1"
+},
+{
+roleID: 17592186044416,
+roleName: "roleContainerCanTake3"
+}
+],
+corporationRolesAtBase: [
+{
+roleID: 262144,
+roleName: "roleHangarCanTake6"
+},
+{
+roleID: 17592186044416,
+roleName: "roleContainerCanTake3"
+},
+{
+roleID: 281474976710656,
+roleName: "roleContainerCanTake7"
+},
+{
+roleID: 33554432,
+roleName: "roleHangarCanQuery6"
+},
+{
+roleID: 8796093022208,
+roleName: "roleContainerCanTake2"
+},
+{
+roleID: 131072,
+roleName: "roleHangarCanTake5"
+},
+{
+roleID: 524288,
+roleName: "roleHangarCanTake7"
+},
+{
+roleID: 8388608,
+roleName: "roleHangarCanQuery4"
+},
+{
+roleID: 32768,
+roleName: "roleHangarCanTake3"
+},
+{
+roleID: 2097152,
+roleName: "roleHangarCanQuery2"
+},
+{
+roleID: 16777216,
+roleName: "roleHangarCanQuery5"
+},
+{
+roleID: 1048576,
+roleName: "roleHangarCanQuery1"
+},
+{
+roleID: 16384,
+roleName: "roleHangarCanTake2"
+},
+{
+roleID: 67108864,
+roleName: "roleHangarCanQuery7"
+},
+{
+roleID: 4194304,
+roleName: "roleHangarCanQuery3"
+},
+{
+roleID: 70368744177664,
+roleName: "roleContainerCanTake5"
+},
+{
+roleID: 4398046511104,
+roleName: "roleContainerCanTake1"
+},
+{
+roleID: 35184372088832,
+roleName: "roleContainerCanTake4"
+},
+{
+roleID: 140737488355328,
+roleName: "roleContainerCanTake6"
+},
+{
+roleID: 8192,
+roleName: "roleHangarCanTake1"
+},
+{
+roleID: 65536,
+roleName: "roleHangarCanTake4"
+}
+],
+corporationRolesAtOther: [
+{
+roleID: 16777216,
+roleName: "roleHangarCanQuery5"
+},
+{
+roleID: 131072,
+roleName: "roleHangarCanTake5"
+},
+{
+roleID: 16384,
+roleName: "roleHangarCanTake2"
+},
+{
+roleID: 65536,
+roleName: "roleHangarCanTake4"
+},
+{
+roleID: 2097152,
+roleName: "roleHangarCanQuery2"
+},
+{
+roleID: 67108864,
+roleName: "roleHangarCanQuery7"
+},
+{
+roleID: 35184372088832,
+roleName: "roleContainerCanTake4"
+},
+{
+roleID: 32768,
+roleName: "roleHangarCanTake3"
+},
+{
+roleID: 33554432,
+roleName: "roleHangarCanQuery6"
+},
+{
+roleID: 524288,
+roleName: "roleHangarCanTake7"
+},
+{
+roleID: 4398046511104,
+roleName: "roleContainerCanTake1"
+},
+{
+roleID: 17592186044416,
+roleName: "roleContainerCanTake3"
+},
+{
+roleID: 262144,
+roleName: "roleHangarCanTake6"
+},
+{
+roleID: 70368744177664,
+roleName: "roleContainerCanTake5"
+},
+{
+roleID: 281474976710656,
+roleName: "roleContainerCanTake7"
+},
+{
+roleID: 8388608,
+roleName: "roleHangarCanQuery4"
+},
+{
+roleID: 8192,
+roleName: "roleHangarCanTake1"
+},
+{
+roleID: 4194304,
+roleName: "roleHangarCanQuery3"
+},
+{
+roleID: 8796093022208,
+roleName: "roleContainerCanTake2"
+},
+{
+roleID: 1048576,
+roleName: "roleHangarCanQuery1"
+},
+{
+roleID: 140737488355328,
+roleName: "roleContainerCanTake6"
+}
+],
+corporationTitles: [ ]
+},
+skillQueue: [ ],
+skillInTraining: {
+version: 2,
+currentTime: 1506351576000,
+cachedUntil: 1506354985000,
+error: null,
+currentTQTime: 1506351576000,
+trainingEndTime: null,
+trainingStartTime: null,
+trainingTypeID: 0,
+trainingStartSP: 0,
+trainingDestinationSP: 0,
+trainingToLevel: 0,
+skillInTraining: false
+},
+lastKnownLocation: "",
+urlforAvatar: "http://image.eveonline.com/character/91734031_256.jpg",
+name: "Zach Zender",
+actions: { },
+planetaryManager: {
+children: [ ],
+jsonClass: "PlanetaryManager",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+initialized: false,
+totalAssetsValue: 0,
+regions: { },
+iconName: "planets.png",
+assetTotalCount: 0,
+orderingName: "Planetary Manager"
+},
+corporation: false
+}
+]
+},
+CapitanHaddock09: {
+children: [ ],
+jsonClass: "Login",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+name: "CapitanHaddock09",
+characters: [
+{
+children: [ ],
+jsonClass: "Pilot",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+authorization: {
+keyID: 924767,
+characterID: 93813310,
+vcode: "2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P",
+params: {
+keyID: "924767",
+characterID: "93813310",
+vCode: "2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P"
+}
+},
+characterID: 93813310,
+delegatedCharacter: {
+name: "Perico Tuerto",
+characterID: 93813310,
+corporationName: "Industrias Machaque",
+corporationID: 98384726,
+allianceName: "",
+allianceID: 0,
+factionName: "",
+factionID: 0
+},
+characterInfo: {
+version: 2,
+currentTime: 1506351563000,
+cachedUntil: 1506354978000,
+error: null,
+characterID: 93813310,
+characterName: "Perico Tuerto",
+race: "AMARR",
+bloodline: "NI_KUNNI",
+accountBalance: 630954363.2,
+skillPoints: 507677,
+shipName: "Perico Tuerto's Capsule",
+shipTypeID: 670,
+shipTypeName: "Capsule",
+corporationID: 98384726,
+corporation: "Industrias Machaque",
+corporationDate: 1426531860000,
+allianceID: null,
+alliance: null,
+allianceDate: null,
+lastKnownLocation: "Pimebeka VII - Moon 16 - Carthum Conglomerate Factory",
+securityStatus: 0,
+employmentHistory: [
+{
+corporationID: 98384726,
+startDate: 1426531860000
+},
+{
+corporationID: 1000072,
+startDate: 1384439760000
+},
+{
+corporationID: 1465050528,
+startDate: 1384120140000
+},
+{
+corporationID: 1000077,
+startDate: 1378755600000
+}
+]
+},
+accountBalance: 630954363.2,
+active: true,
+locationRoles: null,
+actions4Character: { },
+characterSheet: {
+version: 1,
+currentTime: 1506351563000,
+cachedUntil: 1506354978000,
+error: null,
+characterID: 93813310,
+name: "Perico Tuerto",
+race: "AMARR",
+dateOfBirth: 1378755609000,
+bloodLine: "NI_KUNNI",
+ancestry: "BORDER_RUNNERS",
+gender: "Male",
+corporationName: "Industrias Machaque",
+corporationID: 98384726,
+allianceID: 0,
+allianceName: null,
+cloneName: "Clone Grade Alpha",
+cloneSkillPoints: 0,
+balance: 630954363.2,
+attributeEnhancers: [ ],
+intelligence: 20,
+memory: 20,
+charisma: 19,
+perception: 20,
+willpower: 20,
+skills: [
+{
+typeID: 3386,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3420,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 3300,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3454,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3419,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3331,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3329,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 3330,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3405,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3412,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 11579,
+level: 1,
+skillpoints: 1500,
+unpublished: false
+},
+{
+typeID: 3406,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3427,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3355,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3450,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 24242,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3340,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 3426,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3303,
+level: 3,
+skillpoints: 42600,
+unpublished: false
+},
+{
+typeID: 32918,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3425,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 3392,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3424,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3455,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3380,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3429,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 19921,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3328,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3327,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 25235,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 2495,
+level: 3,
+skillpoints: 32000,
+unpublished: false
+},
+{
+typeID: 13279,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3449,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3402,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 2505,
+level: 4,
+skillpoints: 181020,
+unpublished: false
+},
+{
+typeID: 3413,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 33399,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3394,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3435,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3453,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+}
+],
+certificates: [ ],
+corporationRoles: [
+{
+roleID: 4503599627370496,
+roleName: "roleJuniorAccountant"
+},
+{
+roleID: 72057594037927940,
+roleName: "roleContractManager"
+},
+{
+roleID: 18014398509481984,
+roleName: "roleTrader"
+},
+{
+roleID: 36028797018963970,
+roleName: "roleChatManager"
+},
+{
+roleID: 268435456,
+roleName: "roleAccountCanTake2"
+},
+{
+roleID: 576460752303423500,
+roleName: "roleFittingManager"
+}
+],
+corporationRolesAtHQ: [
+{
+roleID: 8192,
+roleName: "roleHangarCanTake1"
+},
+{
+roleID: 1048576,
+roleName: "roleHangarCanQuery1"
+},
+{
+roleID: 4398046511104,
+roleName: "roleContainerCanTake1"
+}
+],
+corporationRolesAtBase: [
+{
+roleID: 4398046511104,
+roleName: "roleContainerCanTake1"
+},
+{
+roleID: 1048576,
+roleName: "roleHangarCanQuery1"
+},
+{
+roleID: 8192,
+roleName: "roleHangarCanTake1"
+}
+],
+corporationRolesAtOther: [
+{
+roleID: 1048576,
+roleName: "roleHangarCanQuery1"
+},
+{
+roleID: 4398046511104,
+roleName: "roleContainerCanTake1"
+},
+{
+roleID: 8192,
+roleName: "roleHangarCanTake1"
+}
+],
+corporationTitles: [ ]
+},
+skillQueue: [
+{
+queuePosition: 0,
+typeID: 11579,
+level: 2,
+startSP: 1500,
+endSP: 8486,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 1,
+typeID: 11579,
+level: 3,
+startSP: 8486,
+endSP: 48000,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 2,
+typeID: 3406,
+level: 5,
+startSP: 45255,
+endSP: 256000,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 3,
+typeID: 2505,
+level: 5,
+startSP: 181020,
+endSP: 1024000,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 4,
+typeID: 2495,
+level: 4,
+startSP: 32000,
+endSP: 181020,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 5,
+typeID: 2495,
+level: 5,
+startSP: 181020,
+endSP: 1024000,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 6,
+typeID: 3303,
+level: 4,
+startSP: 42600,
+endSP: 45255,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 7,
+typeID: 32918,
+level: 1,
+startSP: 0,
+endSP: 500,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 8,
+typeID: 3455,
+level: 3,
+startSP: 1415,
+endSP: 8000,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 9,
+typeID: 3454,
+level: 2,
+startSP: 1250,
+endSP: 7072,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 10,
+typeID: 3331,
+level: 4,
+startSP: 16000,
+endSP: 90510,
+startTime: null,
+endTime: null
+}
+],
+skillInTraining: {
+version: 2,
+currentTime: 1506351564000,
+cachedUntil: 1506354978000,
+error: null,
+currentTQTime: 1506351564000,
+trainingEndTime: null,
+trainingStartTime: null,
+trainingTypeID: 0,
+trainingStartSP: 0,
+trainingDestinationSP: 0,
+trainingToLevel: 0,
+skillInTraining: false
+},
+lastKnownLocation: "Pimebeka VII - Moon 16 - Carthum Conglomerate Factory",
+urlforAvatar: "http://image.eveonline.com/character/93813310_256.jpg",
+name: "Perico Tuerto",
+actions: { },
+planetaryManager: {
+children: [ ],
+jsonClass: "PlanetaryManager",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+initialized: false,
+totalAssetsValue: 0,
+regions: { },
+iconName: "planets.png",
+assetTotalCount: 0,
+orderingName: "Planetary Manager"
+},
+corporation: false
+},
+{
+children: [ ],
+jsonClass: "Pilot",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+authorization: {
+keyID: 924767,
+characterID: 92223647,
+vcode: "2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P",
+params: {
+keyID: "924767",
+characterID: "92223647",
+vCode: "2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P"
+}
+},
+characterID: 92223647,
+delegatedCharacter: {
+name: "Beth Ripley",
+characterID: 92223647,
+corporationName: "Industrias Machaque",
+corporationID: 98384726,
+allianceName: "",
+allianceID: 0,
+factionName: "",
+factionID: 0
+},
+characterInfo: {
+version: 2,
+currentTime: 1506351561000,
+cachedUntil: 1506354945000,
+error: null,
+characterID: 92223647,
+characterName: "Beth Ripley",
+race: "MINMATAR",
+bloodline: "BRUTOR",
+accountBalance: 2776090507.17,
+skillPoints: 5590035,
+shipName: "Beth Ripley's Capsule",
+shipTypeID: 670,
+shipTypeName: "Capsule",
+corporationID: 98384726,
+corporation: "Industrias Machaque",
+corporationDate: 1426498080000,
+allianceID: null,
+alliance: null,
+allianceDate: null,
+lastKnownLocation: "Pimebeka VII - Moon 16 - Carthum Conglomerate Factory",
+securityStatus: 0,
+employmentHistory: [
+{
+corporationID: 98384726,
+startDate: 1426498080000
+},
+{
+corporationID: 1000049,
+startDate: 1425146460000
+},
+{
+corporationID: 1465050528,
+startDate: 1425062700000
+},
+{
+corporationID: 1000049,
+startDate: 1342104180000
+},
+{
+corporationID: 1465050528,
+startDate: 1341865860000
+},
+{
+corporationID: 1000172,
+startDate: 1341525180000
+}
+]
+},
+accountBalance: 2776090507.17,
+active: true,
+locationRoles: null,
+actions4Character: { },
+characterSheet: {
+version: 1,
+currentTime: 1506351562000,
+cachedUntil: 1506354976000,
+error: null,
+characterID: 92223647,
+name: "Beth Ripley",
+race: "MINMATAR",
+dateOfBirth: 1341525195000,
+bloodLine: "BRUTOR",
+ancestry: "WORKERS",
+gender: "Female",
+corporationName: "Industrias Machaque",
+corporationID: 98384726,
+allianceID: 0,
+allianceName: null,
+cloneName: "Clone Grade Alpha",
+cloneSkillPoints: 0,
+balance: 2776090507.17,
+attributeEnhancers: [ ],
+intelligence: 20,
+memory: 20,
+charisma: 19,
+perception: 20,
+willpower: 20,
+skills: [
+{
+typeID: 24624,
+level: 2,
+skillpoints: 18514,
+unpublished: false
+},
+{
+typeID: 11455,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 16597,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 2505,
+level: 4,
+skillpoints: 181020,
+unpublished: false
+},
+{
+typeID: 3300,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 16622,
+level: 4,
+skillpoints: 135765,
+unpublished: false
+},
+{
+typeID: 32918,
+level: 3,
+skillpoints: 16007,
+unpublished: false
+},
+{
+typeID: 3387,
+level: 2,
+skillpoints: 4022,
+unpublished: false
+},
+{
+typeID: 2495,
+level: 4,
+skillpoints: 190091,
+unpublished: false
+},
+{
+typeID: 3419,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3424,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 21790,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 3355,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 16598,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3428,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 11446,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 24242,
+level: 3,
+skillpoints: 8005,
+unpublished: false
+},
+{
+typeID: 3386,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3443,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 11579,
+level: 4,
+skillpoints: 271530,
+unpublished: false
+},
+{
+typeID: 3449,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 16594,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3393,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3450,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3331,
+level: 3,
+skillpoints: 34288,
+unpublished: false
+},
+{
+typeID: 13279,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 33399,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3327,
+level: 4,
+skillpoints: 71827,
+unpublished: false
+},
+{
+typeID: 3388,
+level: 4,
+skillpoints: 678024,
+unpublished: false
+},
+{
+typeID: 25235,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3406,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3405,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 4385,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3446,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3302,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3455,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 33094,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3402,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3416,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3363,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3409,
+level: 4,
+skillpoints: 282478,
+unpublished: false
+},
+{
+typeID: 3444,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3403,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3417,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3451,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 3452,
+level: 2,
+skillpoints: 5657,
+unpublished: false
+},
+{
+typeID: 33091,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3380,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3425,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 11443,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 26253,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3333,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 3340,
+level: 5,
+skillpoints: 1024000,
+unpublished: false
+},
+{
+typeID: 24270,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3433,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 21718,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3426,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 11584,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3453,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3429,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3413,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3418,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 16595,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3432,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3343,
+level: 2,
+skillpoints: 5666,
+unpublished: false
+},
+{
+typeID: 3394,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3431,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3341,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 3454,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 26252,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 26254,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 3434,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3392,
+level: 4,
+skillpoints: 198073,
+unpublished: false
+},
+{
+typeID: 19719,
+level: 2,
+skillpoints: 8486,
+unpublished: false
+},
+{
+typeID: 3329,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3427,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3420,
+level: 3,
+skillpoints: 32000,
+unpublished: false
+},
+{
+typeID: 26261,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+}
+],
+certificates: [ ],
+corporationRoles: [
+{
+roleID: 1,
+roleName: "roleDirector"
+}
+],
+corporationRolesAtHQ: [
+{
+roleID: 1,
+roleName: "roleDirector"
+}
+],
+corporationRolesAtBase: [
+{
+roleID: 1,
+roleName: "roleDirector"
+}
+],
+corporationRolesAtOther: [
+{
+roleID: 1,
+roleName: "roleDirector"
+}
+],
+corporationTitles: [ ]
+},
+skillQueue: [ ],
+skillInTraining: {
+version: 2,
+currentTime: 1506351562000,
+cachedUntil: 1506354976000,
+error: null,
+currentTQTime: 1506351562000,
+trainingEndTime: null,
+trainingStartTime: null,
+trainingTypeID: 0,
+trainingStartSP: 0,
+trainingDestinationSP: 0,
+trainingToLevel: 0,
+skillInTraining: false
+},
+lastKnownLocation: "Pimebeka VII - Moon 16 - Carthum Conglomerate Factory",
+urlforAvatar: "http://image.eveonline.com/character/92223647_256.jpg",
+name: "Beth Ripley",
+actions: { },
+planetaryManager: {
+children: [ ],
+jsonClass: "PlanetaryManager",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+initialized: false,
+totalAssetsValue: 0,
+regions: { },
+iconName: "planets.png",
+assetTotalCount: 0,
+orderingName: "Planetary Manager"
+},
+corporation: false
+},
+{
+children: [ ],
+jsonClass: "Pilot",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+authorization: {
+keyID: 924767,
+characterID: 92002067,
+vcode: "2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P",
+params: {
+keyID: "924767",
+characterID: "92002067",
+vCode: "2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P"
+}
+},
+characterID: 92002067,
+delegatedCharacter: {
+name: "Adam Antinoo",
+characterID: 92002067,
+corporationName: "Planet - Express",
+corporationID: 1427661573,
+allianceName: "Silent Infinity",
+allianceID: 117383987,
+factionName: "",
+factionID: 0
+},
+characterInfo: {
+version: 2,
+currentTime: 1506351560000,
+cachedUntil: 1506354980000,
+error: null,
+characterID: 92002067,
+characterName: "Adam Antinoo",
+race: "MINMATAR",
+bloodline: "SEBIESTOR",
+accountBalance: 2295978165.15,
+skillPoints: 53618666,
+shipName: "N Recogedor N1",
+shipTypeID: 2998,
+shipTypeName: "Noctis",
+corporationID: 1427661573,
+corporation: "Planet - Express",
+corporationDate: 1437481080000,
+allianceID: 117383987,
+alliance: "Silent Infinity",
+allianceDate: 1417817880000,
+lastKnownLocation: "H-GKI6 VI - Basilica of Maxentius",
+securityStatus: 5.00203252098896,
+employmentHistory: [
+{
+corporationID: 1427661573,
+startDate: 1437481080000
+},
+{
+corporationID: 98144459,
+startDate: 1408395840000
+},
+{
+corporationID: 1000046,
+startDate: 1386772620000
+},
+{
+corporationID: 98144459,
+startDate: 1370962020000
+},
+{
+corporationID: 1000046,
+startDate: 1370764560000
+},
+{
+corporationID: 98144459,
+startDate: 1361389500000
+},
+{
+corporationID: 1000046,
+startDate: 1361211420000
+},
+{
+corporationID: 98144459,
+startDate: 1360698900000
+},
+{
+corporationID: 917701062,
+startDate: 1341505860000
+},
+{
+corporationID: 1000046,
+startDate: 1340293200000
+},
+{
+corporationID: 917701062,
+startDate: 1338139320000
+},
+{
+corporationID: 1000172,
+startDate: 1336592700000
+}
+]
+},
+accountBalance: 2295978165.15,
+active: true,
+locationRoles: null,
+actions4Character: { },
+characterSheet: {
+version: 1,
+currentTime: 1506351560000,
+cachedUntil: 1506354980000,
+error: null,
+characterID: 92002067,
+name: "Adam Antinoo",
+race: "MINMATAR",
+dateOfBirth: 1336592727000,
+bloodLine: "SEBIESTOR",
+ancestry: "TRADERS",
+gender: "Male",
+corporationName: "Planet - Express",
+corporationID: 1427661573,
+allianceID: 117383987,
+allianceName: "Silent Infinity",
+cloneName: "Clone Grade Alpha",
+cloneSkillPoints: 0,
+balance: 2295978165.15,
+attributeEnhancers: [ ],
+intelligence: 19,
+memory: 19,
+charisma: 19,
+perception: 22,
+willpower: 20,
+skills: [
+{
+typeID: 3452,
+level: 4,
+skillpoints: 496423,
+unpublished: false
+},
+{
+typeID: 3309,
+level: 5,
+skillpoints: 1280000,
+unpublished: false
+},
+{
+typeID: 12487,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 12195,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 12214,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 17940,
+level: 5,
+skillpoints: 1024000,
+unpublished: false
+},
+{
+typeID: 16622,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 12180,
+level: 3,
+skillpoints: 32000,
+unpublished: false
+},
+{
+typeID: 21071,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3442,
+level: 5,
+skillpoints: 1280000,
+unpublished: false
+},
+{
+typeID: 12485,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 16591,
+level: 2,
+skillpoints: 8486,
+unpublished: false
+},
+{
+typeID: 30552,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 33097,
+level: 4,
+skillpoints: 900965,
+unpublished: false
+},
+{
+typeID: 3343,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 30650,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3441,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 3356,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 11454,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 12213,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3405,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 30548,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 20315,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 3394,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 30539,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3421,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 3426,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3428,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 3440,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 22242,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 19921,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 33092,
+level: 4,
+skillpoints: 136197,
+unpublished: false
+},
+{
+typeID: 11444,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 11447,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 11449,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 12441,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3385,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 25863,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 12203,
+level: 1,
+skillpoints: 2000,
+unpublished: false
+},
+{
+typeID: 13278,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3427,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 25739,
+level: 2,
+skillpoints: 11314,
+unpublished: false
+},
+{
+typeID: 3329,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 21059,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 12210,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 21791,
+level: 3,
+skillpoints: 99362,
+unpublished: false
+},
+{
+typeID: 12196,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 16069,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3423,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3333,
+level: 5,
+skillpoints: 1280000,
+unpublished: false
+},
+{
+typeID: 11584,
+level: 4,
+skillpoints: 135765,
+unpublished: false
+},
+{
+typeID: 3331,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 3449,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 32918,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 33699,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 12096,
+level: 1,
+skillpoints: 1500,
+unpublished: false
+},
+{
+typeID: 3359,
+level: 4,
+skillpoints: 135765,
+unpublished: false
+},
+{
+typeID: 3436,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3409,
+level: 4,
+skillpoints: 277384,
+unpublished: false
+},
+{
+typeID: 23594,
+level: 5,
+skillpoints: 1280000,
+unpublished: false
+},
+{
+typeID: 12188,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 21718,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 12204,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 3322,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 26255,
+level: 1,
+skillpoints: 1499,
+unpublished: false
+},
+{
+typeID: 26260,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3325,
+level: 2,
+skillpoints: 5657,
+unpublished: false
+},
+{
+typeID: 12193,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 33399,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 12191,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3310,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 23566,
+level: 4,
+skillpoints: 226275,
+unpublished: false
+},
+{
+typeID: 12093,
+level: 2,
+skillpoints: 5657,
+unpublished: false
+},
+{
+typeID: 19719,
+level: 1,
+skillpoints: 1500,
+unpublished: false
+},
+{
+typeID: 3316,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 3451,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3386,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 12183,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 11083,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 33095,
+level: 5,
+skillpoints: 1536000,
+unpublished: false
+},
+{
+typeID: 21790,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 19759,
+level: 3,
+skillpoints: 32000,
+unpublished: false
+},
+{
+typeID: 3435,
+level: 5,
+skillpoints: 768000,
+unpublished: false
+},
+{
+typeID: 24764,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3403,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 12194,
+level: 4,
+skillpoints: 135765,
+unpublished: false
+},
+{
+typeID: 12206,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3312,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 3301,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3330,
+level: 4,
+skillpoints: 424627,
+unpublished: false
+},
+{
+typeID: 22807,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 33094,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 20312,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 3443,
+level: 3,
+skillpoints: 25583,
+unpublished: false
+},
+{
+typeID: 3328,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 4385,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 20210,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 11448,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 12205,
+level: 3,
+skillpoints: 64000,
+unpublished: false
+},
+{
+typeID: 11443,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 12201,
+level: 4,
+skillpoints: 135765,
+unpublished: false
+},
+{
+typeID: 11455,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 11451,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 3326,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3446,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3406,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 22578,
+level: 4,
+skillpoints: 181020,
+unpublished: false
+},
+{
+typeID: 25810,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 3348,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 23618,
+level: 4,
+skillpoints: 226275,
+unpublished: false
+},
+{
+typeID: 20342,
+level: 5,
+skillpoints: 1280000,
+unpublished: false
+},
+{
+typeID: 3341,
+level: 2,
+skillpoints: 5691,
+unpublished: false
+},
+{
+typeID: 24624,
+level: 3,
+skillpoints: 64000,
+unpublished: false
+},
+{
+typeID: 3327,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 26257,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 11084,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 26253,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3388,
+level: 4,
+skillpoints: 522090,
+unpublished: false
+},
+{
+typeID: 3317,
+level: 4,
+skillpoints: 783011,
+unpublished: false
+},
+{
+typeID: 12095,
+level: 1,
+skillpoints: 1040,
+unpublished: false
+},
+{
+typeID: 20494,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 12181,
+level: 4,
+skillpoints: 181020,
+unpublished: false
+},
+{
+typeID: 23121,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 28073,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3420,
+level: 4,
+skillpoints: 181020,
+unpublished: false
+},
+{
+typeID: 34390,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 23087,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 3324,
+level: 5,
+skillpoints: 768000,
+unpublished: false
+},
+{
+typeID: 24242,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 12184,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 3319,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3338,
+level: 3,
+skillpoints: 64000,
+unpublished: false
+},
+{
+typeID: 3453,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 11529,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 3392,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 12187,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3373,
+level: 2,
+skillpoints: 9900,
+unpublished: false
+},
+{
+typeID: 33093,
+level: 4,
+skillpoints: 136197,
+unpublished: false
+},
+{
+typeID: 12186,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3305,
+level: 5,
+skillpoints: 768000,
+unpublished: false
+},
+{
+typeID: 22806,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 22551,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3303,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 30549,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3337,
+level: 4,
+skillpoints: 362039,
+unpublished: false
+},
+{
+typeID: 12190,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 30537,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 33002,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 22808,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3432,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 3318,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 3380,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 12202,
+level: 3,
+skillpoints: 113832,
+unpublished: false
+},
+{
+typeID: 12215,
+level: 1,
+skillpoints: 2000,
+unpublished: false
+},
+{
+typeID: 12211,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3422,
+level: 3,
+skillpoints: 75265,
+unpublished: false
+},
+{
+typeID: 3425,
+level: 4,
+skillpoints: 121481,
+unpublished: false
+},
+{
+typeID: 3413,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 23606,
+level: 4,
+skillpoints: 52187,
+unpublished: false
+},
+{
+typeID: 30532,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 12366,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3307,
+level: 4,
+skillpoints: 226275,
+unpublished: false
+},
+{
+typeID: 3418,
+level: 5,
+skillpoints: 768000,
+unpublished: false
+},
+{
+typeID: 20211,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 32999,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 33000,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 20314,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3455,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 33078,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 3416,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 24241,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3408,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 3184,
+level: 1,
+skillpoints: 1000,
+unpublished: false
+},
+{
+typeID: 3304,
+level: 5,
+skillpoints: 768000,
+unpublished: false
+},
+{
+typeID: 3320,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3361,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 34533,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 2505,
+level: 5,
+skillpoints: 1024000,
+unpublished: false
+},
+{
+typeID: 30544,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 11442,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 11446,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 3350,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 12098,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 12182,
+level: 3,
+skillpoints: 32000,
+unpublished: false
+},
+{
+typeID: 25719,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 21603,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 30652,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 26252,
+level: 3,
+skillpoints: 55315,
+unpublished: false
+},
+{
+typeID: 11566,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3454,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 3450,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 20495,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 20213,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3311,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 11452,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 28164,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3355,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3334,
+level: 5,
+skillpoints: 1280000,
+unpublished: false
+},
+{
+typeID: 12192,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3315,
+level: 4,
+skillpoints: 181020,
+unpublished: false
+},
+{
+typeID: 22809,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 3302,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3417,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 12367,
+level: 2,
+skillpoints: 2829,
+unpublished: false
+},
+{
+typeID: 3433,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 24625,
+level: 3,
+skillpoints: 232220,
+unpublished: false
+},
+{
+typeID: 3411,
+level: 4,
+skillpoints: 135765,
+unpublished: false
+},
+{
+typeID: 33091,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 3424,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 3340,
+level: 5,
+skillpoints: 1024000,
+unpublished: false
+},
+{
+typeID: 3357,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 3349,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3438,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 12484,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 33096,
+level: 4,
+skillpoints: 1500897,
+unpublished: false
+},
+{
+typeID: 3397,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 24270,
+level: 2,
+skillpoints: 10147,
+unpublished: false
+},
+{
+typeID: 11207,
+level: 4,
+skillpoints: 271530,
+unpublished: false
+},
+{
+typeID: 11574,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 12486,
+level: 2,
+skillpoints: 7072,
+unpublished: false
+},
+{
+typeID: 13279,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 33001,
+level: 1,
+skillpoints: 500,
+unpublished: false
+},
+{
+typeID: 12365,
+level: 3,
+skillpoints: 16000,
+unpublished: false
+},
+{
+typeID: 11441,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 24268,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3434,
+level: 3,
+skillpoints: 115874,
+unpublished: false
+},
+{
+typeID: 3439,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 12092,
+level: 2,
+skillpoints: 5657,
+unpublished: false
+},
+{
+typeID: 11450,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3431,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 12305,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 19760,
+level: 3,
+skillpoints: 24000,
+unpublished: false
+},
+{
+typeID: 30538,
+level: 1,
+skillpoints: 250,
+unpublished: false
+},
+{
+typeID: 3444,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 26256,
+level: 1,
+skillpoints: 756,
+unpublished: false
+},
+{
+typeID: 16595,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3339,
+level: 5,
+skillpoints: 2048000,
+unpublished: false
+},
+{
+typeID: 26261,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 22536,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 11445,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 3396,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3419,
+level: 4,
+skillpoints: 135765,
+unpublished: false
+},
+{
+typeID: 12185,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3412,
+level: 4,
+skillpoints: 135765,
+unpublished: false
+},
+{
+typeID: 3551,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 26258,
+level: 1,
+skillpoints: 2860,
+unpublished: false
+},
+{
+typeID: 3300,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 22761,
+level: 1,
+skillpoints: 1500,
+unpublished: false
+},
+{
+typeID: 16281,
+level: 3,
+skillpoints: 8000,
+unpublished: false
+},
+{
+typeID: 2495,
+level: 5,
+skillpoints: 1024000,
+unpublished: false
+},
+{
+typeID: 12208,
+level: 1,
+skillpoints: 1250,
+unpublished: false
+},
+{
+typeID: 33098,
+level: 5,
+skillpoints: 1536000,
+unpublished: false
+},
+{
+typeID: 3335,
+level: 5,
+skillpoints: 1280000,
+unpublished: false
+},
+{
+typeID: 3308,
+level: 5,
+skillpoints: 1280000,
+unpublished: false
+},
+{
+typeID: 3395,
+level: 4,
+skillpoints: 90510,
+unpublished: false
+},
+{
+typeID: 26254,
+level: 2,
+skillpoints: 4243,
+unpublished: false
+},
+{
+typeID: 3402,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3387,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 3336,
+level: 3,
+skillpoints: 64000,
+unpublished: false
+},
+{
+typeID: 3393,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3410,
+level: 5,
+skillpoints: 768000,
+unpublished: false
+},
+{
+typeID: 11453,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 20209,
+level: 1,
+skillpoints: 750,
+unpublished: false
+},
+{
+typeID: 3321,
+level: 5,
+skillpoints: 512000,
+unpublished: false
+},
+{
+typeID: 24613,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 30651,
+level: 0,
+skillpoints: 0,
+unpublished: false
+},
+{
+typeID: 3306,
+level: 5,
+skillpoints: 768000,
+unpublished: false
+},
+{
+typeID: 25235,
+level: 2,
+skillpoints: 1415,
+unpublished: false
+},
+{
+typeID: 3429,
+level: 4,
+skillpoints: 45255,
+unpublished: false
+},
+{
+typeID: 3437,
+level: 5,
+skillpoints: 256000,
+unpublished: false
+},
+{
+typeID: 3332,
+level: 5,
+skillpoints: 1280000,
+unpublished: false
+},
+{
+typeID: 11433,
+level: 3,
+skillpoints: 40000,
+unpublished: false
+},
+{
+typeID: 11579,
+level: 4,
+skillpoints: 271530,
+unpublished: false
+},
+{
+typeID: 3389,
+level: 5,
+skillpoints: 768000,
+unpublished: false
+},
+{
+typeID: 12442,
+level: 3,
+skillpoints: 32000,
+unpublished: false
+}
+],
+certificates: [ ],
+corporationRoles: [
+{
+roleID: 4294967296,
+roleName: "roleAccountCanTake6"
+},
+{
+roleID: 128,
+roleName: "rolePersonnelManager"
+},
+{
+roleID: 2251799813685248,
+roleName: "roleCanRentResearchSlot"
+},
+{
+roleID: 288230376151711740,
+roleName: "roleStarbaseCaretaker"
+},
+{
+roleID: 2199023255552,
+roleName: "roleEquipmentConfig"
+},
+{
+roleID: 9007199254740992,
+roleName: "roleStarbaseConfig"
+},
+{
+roleID: 8589934592,
+roleName: "roleAccountCanTake7"
+},
+{
+roleID: 1125899906842624,
+roleName: "roleCanRentFactorySlot"
+},
+{
+roleID: 72057594037927940,
+roleName: "roleContractManager"
+},
+{
+roleID: 1024,
+roleName: "roleFactoryManager"
+},
+{
+roleID: 256,
+roleName: "roleAccountant"
+},
+{
+roleID: 144115188075855870,
+roleName: "roleInfrastructureTacticalOfficer"
+},
+{
+roleID: 562949953421312,
+roleName: "roleCanRentOffice"
+},
+{
+roleID: 4503599627370496,
+roleName: "roleJuniorAccountant"
+},
+{
+roleID: 18014398509481984,
+roleName: "roleTrader"
+}
+],
+corporationRolesAtHQ: [
+{
+roleID: 8388608,
+roleName: "roleHangarCanQuery4"
+},
+{
+roleID: 131072,
+roleName: "roleHangarCanTake5"
+},
+{
+roleID: 33554432,
+roleName: "roleHangarCanQuery6"
+},
+{
+roleID: 2097152,
+roleName: "roleHangarCanQuery2"
+},
+{
+roleID: 4194304,
+roleName: "roleHangarCanQuery3"
+},
+{
+roleID: 67108864,
+roleName: "roleHangarCanQuery7"
+},
+{
+roleID: 65536,
+roleName: "roleHangarCanTake4"
+},
+{
+roleID: 70368744177664,
+roleName: "roleContainerCanTake5"
+},
+{
+roleID: 140737488355328,
+roleName: "roleContainerCanTake6"
+},
+{
+roleID: 1048576,
+roleName: "roleHangarCanQuery1"
+},
+{
+roleID: 32768,
+roleName: "roleHangarCanTake3"
+},
+{
+roleID: 16777216,
+roleName: "roleHangarCanQuery5"
+},
+{
+roleID: 8192,
+roleName: "roleHangarCanTake1"
+},
+{
+roleID: 35184372088832,
+roleName: "roleContainerCanTake4"
+},
+{
+roleID: 262144,
+roleName: "roleHangarCanTake6"
+},
+{
+roleID: 8796093022208,
+roleName: "roleContainerCanTake2"
+},
+{
+roleID: 16384,
+roleName: "roleHangarCanTake2"
+},
+{
+roleID: 524288,
+roleName: "roleHangarCanTake7"
+},
+{
+roleID: 17592186044416,
+roleName: "roleContainerCanTake3"
+},
+{
+roleID: 4398046511104,
+roleName: "roleContainerCanTake1"
+},
+{
+roleID: 281474976710656,
+roleName: "roleContainerCanTake7"
+}
+],
+corporationRolesAtBase: [
+{
+roleID: 16384,
+roleName: "roleHangarCanTake2"
+},
+{
+roleID: 2097152,
+roleName: "roleHangarCanQuery2"
+},
+{
+roleID: 8388608,
+roleName: "roleHangarCanQuery4"
+},
+{
+roleID: 65536,
+roleName: "roleHangarCanTake4"
+},
+{
+roleID: 35184372088832,
+roleName: "roleContainerCanTake4"
+},
+{
+roleID: 70368744177664,
+roleName: "roleContainerCanTake5"
+},
+{
+roleID: 131072,
+roleName: "roleHangarCanTake5"
+},
+{
+roleID: 33554432,
+roleName: "roleHangarCanQuery6"
+},
+{
+roleID: 1048576,
+roleName: "roleHangarCanQuery1"
+},
+{
+roleID: 281474976710656,
+roleName: "roleContainerCanTake7"
+},
+{
+roleID: 262144,
+roleName: "roleHangarCanTake6"
+},
+{
+roleID: 524288,
+roleName: "roleHangarCanTake7"
+},
+{
+roleID: 67108864,
+roleName: "roleHangarCanQuery7"
+},
+{
+roleID: 8796093022208,
+roleName: "roleContainerCanTake2"
+},
+{
+roleID: 17592186044416,
+roleName: "roleContainerCanTake3"
+},
+{
+roleID: 8192,
+roleName: "roleHangarCanTake1"
+},
+{
+roleID: 16777216,
+roleName: "roleHangarCanQuery5"
+},
+{
+roleID: 4398046511104,
+roleName: "roleContainerCanTake1"
+},
+{
+roleID: 140737488355328,
+roleName: "roleContainerCanTake6"
+},
+{
+roleID: 4194304,
+roleName: "roleHangarCanQuery3"
+},
+{
+roleID: 32768,
+roleName: "roleHangarCanTake3"
+}
+],
+corporationRolesAtOther: [
+{
+roleID: 8388608,
+roleName: "roleHangarCanQuery4"
+},
+{
+roleID: 131072,
+roleName: "roleHangarCanTake5"
+},
+{
+roleID: 33554432,
+roleName: "roleHangarCanQuery6"
+},
+{
+roleID: 35184372088832,
+roleName: "roleContainerCanTake4"
+},
+{
+roleID: 70368744177664,
+roleName: "roleContainerCanTake5"
+},
+{
+roleID: 4194304,
+roleName: "roleHangarCanQuery3"
+},
+{
+roleID: 281474976710656,
+roleName: "roleContainerCanTake7"
+},
+{
+roleID: 1048576,
+roleName: "roleHangarCanQuery1"
+},
+{
+roleID: 4398046511104,
+roleName: "roleContainerCanTake1"
+},
+{
+roleID: 17592186044416,
+roleName: "roleContainerCanTake3"
+},
+{
+roleID: 2097152,
+roleName: "roleHangarCanQuery2"
+},
+{
+roleID: 67108864,
+roleName: "roleHangarCanQuery7"
+},
+{
+roleID: 8192,
+roleName: "roleHangarCanTake1"
+},
+{
+roleID: 32768,
+roleName: "roleHangarCanTake3"
+},
+{
+roleID: 16777216,
+roleName: "roleHangarCanQuery5"
+},
+{
+roleID: 16384,
+roleName: "roleHangarCanTake2"
+},
+{
+roleID: 140737488355328,
+roleName: "roleContainerCanTake6"
+},
+{
+roleID: 65536,
+roleName: "roleHangarCanTake4"
+},
+{
+roleID: 8796093022208,
+roleName: "roleContainerCanTake2"
+},
+{
+roleID: 262144,
+roleName: "roleHangarCanTake6"
+},
+{
+roleID: 524288,
+roleName: "roleHangarCanTake7"
+}
+],
+corporationTitles: [
+{
+titleID: 128,
+titleName: "T2/T3 Production Manager"
+}
+]
+},
+skillQueue: [
+{
+queuePosition: 0,
+typeID: 3317,
+level: 5,
+startSP: 783011,
+endSP: 1280000,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 1,
+typeID: 11207,
+level: 5,
+startSP: 271530,
+endSP: 1536000,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 2,
+typeID: 25863,
+level: 4,
+startSP: 24000,
+endSP: 135765,
+startTime: null,
+endTime: null
+},
+{
+queuePosition: 3,
+typeID: 3425,
+level: 5,
+startSP: 121481,
+endSP: 512000,
+startTime: null,
+endTime: null
+}
+],
+skillInTraining: {
+version: 2,
+currentTime: 1506351561000,
+cachedUntil: 1506354980000,
+error: null,
+currentTQTime: 1506351561000,
+trainingEndTime: null,
+trainingStartTime: null,
+trainingTypeID: 0,
+trainingStartSP: 0,
+trainingDestinationSP: 0,
+trainingToLevel: 0,
+skillInTraining: false
+},
+lastKnownLocation: "H-GKI6 VI - Basilica of Maxentius",
+urlforAvatar: "http://image.eveonline.com/character/92002067_256.jpg",
+name: "Adam Antinoo",
+actions: { },
+planetaryManager: {
+children: [ ],
+jsonClass: "PlanetaryManager",
+expanded: false,
+downloaded: true,
+renderWhenEmpty: true,
+visible: true,
+initialized: false,
+totalAssetsValue: 0,
+regions: { },
+iconName: "planets.png",
+assetTotalCount: 0,
+orderingName: "Planetary Manager"
+},
+corporation: false
+}
+]
+}
+}

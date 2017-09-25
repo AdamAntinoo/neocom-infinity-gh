@@ -5,14 +5,19 @@ import 'rxjs/add/operator/catch';
 
 //--- SERVICES
 import { AppModelStoreService } from '../services/app-model-store.service';
+//--- INTERFACES
+import { EVariant } from '../classes/EVariant.enumerated';
 //--- MODELS
-import { Render } from '../models/Render.model';
+import { NeoComNode } from '../models/NeoComNode.model';
 import { NeoComCharacter } from '../models/NeoComCharacter.model';
+import { Pilot } from '../models/Pilot.model';
+import { Corporation } from '../models/Corporation.model';
+import { Separator } from '../models/Separator.model';
 
-export class Login extends Render {
-  private downloaded: boolean = false;
-  private _pilotRoaster: NeoComCharacter[] = null;
-  private downloadPending: boolean = false;
+export class Login extends NeoComNode {
+  // private downloaded: boolean = false;
+  // private _pilotRoaster: NeoComCharacter[] = null;
+  // private downloadPending: boolean = false;
 
   public loginid: string = "-ID-";
   public name: string = "-ID-";
@@ -22,15 +27,15 @@ export class Login extends Render {
     super(values);
     Object.assign(this, values);
     this.jsonClass = "Login";
-    this.downloadPending = false;
+    //    this.downloadPending = false;
   }
 
   /**
   Search the Character by its id and then select if as the current character for next operations.
   */
   public accessCharacterById(id: number): NeoComCharacter {
-    if (null != this._pilotRoaster) {
-      for (let c of this._pilotRoaster) {
+    if (null != this.characters) {
+      for (let c of this.characters) {
         if (c.getId() == id) return c;
       }
     }
@@ -41,7 +46,7 @@ export class Login extends Render {
     if (this.downloaded)
       return new Observable(observer => {
         setTimeout(() => {
-          observer.next(this._pilotRoaster);
+          observer.next(this.characters);
         }, 100);
         setTimeout(() => {
           observer.complete();
@@ -53,7 +58,7 @@ export class Login extends Render {
     }
   }
   public setPilotRoaster(list: NeoComCharacter[]): void {
-    this._pilotRoaster = list;
+    this.characters = list;
   }
   //---  G E T T E R S   A N D   S E T T E R S
   public getLoginId(): string {
@@ -71,23 +76,60 @@ export class Login extends Render {
       return this.characters.length;
     else return 0;
   }
-  public getKeyCountObsrver(downloadService: AppModelStoreService): number {
-    if (this.downloaded) return this._pilotRoaster.length;
-    else {
-      if (this.downloadPending) return 0;
-      else {
-        this.downloadPending = true;
-        // Get the pilot roaster and then calculate the count.
-        downloadService.getBackendPilotRoaster(this.getLoginId())
-          .subscribe(result => {
-            console.log("--[Login.getKeyCount.getBackendPilotRoaster]>Roaster: " + JSON.stringify(result));
-            // The the list of planetary resource lists to the data returned.
-            this._pilotRoaster = result;
-            this.downloaded = true;
-            this.downloadPending = false;
-            return this._pilotRoaster.length;
-          });
+  // public getKeyCountObsrver(downloadService: AppModelStoreService): number {
+  //   if (this.downloaded) return this.characters.length;
+  //   else {
+  //     if (this.downloadPending) return 0;
+  //     else {
+  //       this.downloadPending = true;
+  //       // Get the pilot roaster and then calculate the count.
+  //       downloadService.getBackendPilotRoaster(this.getLoginId())
+  //         .subscribe(result => {
+  //           console.log("--[Login.getKeyCount.getBackendPilotRoaster]>Roaster: " + JSON.stringify(result));
+  //           // The the list of planetary resource lists to the data returned.
+  //           this._pilotRoaster = result;
+  //           this.downloaded = true;
+  //           this.downloadPending = false;
+  //           return this._pilotRoaster.length;
+  //         });
+  //     }
+  //   }
+  // }
+  /**
+  Add to the content of the list to render depending on the expanded state and the contents. This do not extends the collaborarion to the grand children even that should be reviewed.
+  */
+  public collaborate2View(variant: EVariant): NeoComNode[] {
+    let collab = [];
+    // If the node is expanded then add its assets.
+    if (this.expanded) {
+      //  collab.push(new Separator());
+      collab.push(this);
+      // Process each item at the rootlist for more collaborations.
+      for (let node of this.characters) {
+        if (node.jsonClass == "Pilot") {
+          let pilot = new Pilot(node)
+          // let partialcollab = asset.collaborate2View(variant);
+          // for (let partialnode of partialcollab) {
+          collab.push(pilot);
+          // }
+        }
+        if (node.jsonClass == "Corporation") {
+          let corp = new Corporation(node)
+          // let partialcollab = asset.collaborate2View(variant);
+          // for (let partialnode of partialcollab) {
+          collab.push(corp);
+          // }
+        }
+        if (node.jsonClass == "NeoComCharacter") {
+          let character = new NeoComCharacter(node)
+          // let partialcollab = asset.collaborate2View(variant);
+          // for (let partialnode of partialcollab) {
+          collab.push(character);
+          //    }
+        }
       }
-    }
+      collab.push(new Separator());
+    } else collab.push(this);
+    return collab;
   }
 }

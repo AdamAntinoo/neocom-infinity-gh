@@ -116,10 +116,10 @@ export class AppModelStoreService {
       return new Observable(observer => {
         setTimeout(() => {
           observer.next(this._loginList);
-        }, 100);
+        }, 500);
         setTimeout(() => {
           observer.complete();
-        }, 100);
+        }, 500);
       });
   }
   /**

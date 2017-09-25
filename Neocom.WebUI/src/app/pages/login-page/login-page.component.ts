@@ -11,6 +11,9 @@ import { Component, OnInit } from '@angular/core';
 
 //--- SERVICES
 import { AppModelStoreService } from '../../services/app-model-store.service';
+//--- INTERFACES
+import { PageComponent } from '../../classes/PageComponent';
+import { EVariant } from '../../classes/EVariant.enumerated';
 //--- MODELS
 import { Login } from '../../models/Login.model';
 
@@ -19,11 +22,14 @@ import { Login } from '../../models/Login.model';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css']
 })
-export class LoginPageComponent implements OnInit {
-  public loginViewList: Login[] = [];
+export class LoginPageComponent extends PageComponent implements OnInit {
+  public loginViewList: any[] = [];
   public downloading: boolean = true;
 
-  constructor(private appModelStore: AppModelStoreService) { }
+  constructor(private appModelStore: AppModelStoreService) {
+    super();
+    this.setVariant(EVariant.LOGINLIST)
+  }
 
   /** During the initialization we should use an special Service. Services are always
    available from application start so they are the natural place to store
@@ -37,9 +43,34 @@ export class LoginPageComponent implements OnInit {
     this.appModelStore.accessLoginList()
       .subscribe(result => {
         console.log("--[LoginPageComponent.ngOnInit.accessLoginList]>Loginlist.length: " + result.length);
-        this.loginViewList = result;
-        this.downloading = false;
+        // Loop over all the returned items.
+        for (let node of result) {
+          let thelist = node.collaborate2View(this.getVariant());
+          this.loginViewList = result;
+          this.downloading = false;
+        }
       });
     console.log("<<[LoginPageComponent.ngOnInit]");
+  }
+  /**
+  Indicates the viewer container that the model states have changed and that a new Collaborate2View should be executed to generate the new view list.
+  */
+  public refreshViewPort(): void {
+    this.downloading = true;
+    // Call the service to get the list of Logins. Then create the collaboration list formeach of them.
+    this.appModelStore.accessLoginList()
+      .subscribe(result => {
+        console.log("--[LoginPageComponent.ngOnInit.accessLoginList]>Loginlist.length: " + result.length);
+        // Loop over all the returned items.
+        for (let node of result) {
+          let thelist = node.collaborate2View(this.getVariant());
+          this.loginViewList = this.loginViewList.concat(thelist);
+        }
+        //    this.loginViewList = result;
+        this.downloading = false;
+      });
+  }
+  public getViewer(): LoginPageComponent {
+    return this;
   }
 }

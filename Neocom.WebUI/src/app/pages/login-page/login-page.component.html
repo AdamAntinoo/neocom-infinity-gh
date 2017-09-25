@@ -5,6 +5,9 @@
 <neocom-spinner-central *ngIf="downloading" [configuration]="{title:'Downloading Login list',subtitle:''}"></neocom-spinner-central>
 <div class="panel-group">
   <div *ngFor="let render of loginViewList">
-    <neocom-login4-list *ngIf="render.jsonClass == 'Login'" [node]="render"></neocom-login4-list>
+    <neocom-login4-list *ngIf="render.jsonClass == 'Login'" [viewer]="getViewer()" [node]="render"></neocom-login4-list>
+    <neocom-pilot4-roaster *ngIf="render.jsonClass == 'NeoComCharacter'" [viewer]="getViewer()" [node]="render"></neocom-pilot4-roaster>
+    <neocom-pilot4-roaster *ngIf="render.jsonClass == 'Pilot'" [viewer]="getViewer()" [node]="render"></neocom-pilot4-roaster>
+    <neocom-pilot4-roaster *ngIf="render.jsonClass == 'Corporation'" [viewer]="getViewer()" [node]="render"></neocom-pilot4-roaster>
   </div>
 </div>
