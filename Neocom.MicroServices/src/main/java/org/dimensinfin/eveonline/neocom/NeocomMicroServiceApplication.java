@@ -37,7 +37,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableCircuitBreaker
 @EnableScheduling
 @SpringBootApplication
-public class NeocomMicroServiceApplication implements IConnector/* ,CacheResolver */ {
+public class NeocomMicroServiceApplication implements IConnector {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger												logger						= Logger.getLogger("NeocomMicroServiceApplication");
 	public static final String									APPLICATION_NAME	= "NeocomMicroServiceApplication";

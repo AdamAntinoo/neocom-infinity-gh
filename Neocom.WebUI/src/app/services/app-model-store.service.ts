@@ -1,3 +1,12 @@
+// PROJECT:     NEOCOM.WEB (NEOC.W)
+// AUTHORS:     Adam Antinoo - adamantinoo.git@gmail.com
+// COPYRIGHT:   (c) 2017 by Dimensinfin Industries, all rights reserved.
+// ENVIRONMENT: Angular - Service
+
+/**
+This service will store persistent application data and has the knowledge to get to the backend to retrieve any data it is requested to render on the view.
+*/
+
 import { Injectable } from '@angular/core';
 import { Inject } from '@angular/core';
 import { Router } from '@angular/router';
@@ -27,28 +36,48 @@ import { PlanetaryManager } from '../models/PlanetaryManager.model';
 import { ProcessingAction } from '../models/ProcessingAction.model';
 import { Separator } from '../models/Separator.model';
 
-//
-// This service handles the application storage of elements required to setup the data
-// hierarchy while generating the presentations. One of the additional elements it
-// stores besides the Android equivalent is the DataSource associated to the ListView.
-//
 @Injectable()
 export class AppModelStoreService {
   static APPLICATION_SERVICE_PORT = "9000";
   static RESOURCE_SERVICE_URL: string = "http://localhost:" + AppModelStoreService.APPLICATION_SERVICE_PORT + "/api/v1";
 
-  private _loginList: Login[] = null; // List of Login names to be used to aggregate Keys
-  private _currentLogin: Login = null; // The current Login name active.
-  //  private characterList: NeoComCharacter[] = null;
-  private _currentCharacter: NeoComCharacter = null;
+  private _loginList: Login[] = null; // List of Login structures to be used to aggregate Keys
+  private _currentLogin: Login = null; // The current Login active.
+  private _currentCharacter: NeoComCharacter = null; // The current active character
 
-  private _dataSourceCache: IDataSource[] = [];
-  private _activeDataSource: IDataSource = null;
+  //private _dataSourceCache: IDataSource[] = [];
+  //private _activeDataSource: IDataSource = null;
   private _viewList: Observable<Array<Render>>;
 
   constructor(private http: Http, private router: Router) { }
 
   //--- B A C K E N D    C A L L S
+  /**
+  Go to the backend Database to retrieve the list of declared Logins to let the user to select the one he/she wants for working. If the list is already downloaded then do not access again the Database and return the cached list.
+  */
+  public getBackendLoginList(): Observable<Login[]> {
+    console.log("><[AppModelStoreService.getBackendLoginList]");
+    let request = AppModelStoreService.RESOURCE_SERVICE_URL + "/loginlist";
+    return this.http.get(request)
+      .map(res => res.json())
+      .map(result => {
+        // Process the result into a set of Logins or process the Error Message if so.
+        let constructionList: Login[] = [];
+        // Process the resulting hash array into a list of Logins.
+        for (let key in result) {
+          // Access the object into the spot.
+          let node = result[key];
+          // Check that we have an Action on the spot.
+          if (node.jsonClass == "Login") {
+            let convertedLogin = new Login(node);
+            constructionList.push(convertedLogin);
+            //  constructionList.push(new Separator());
+          }
+        }
+        this._loginList = constructionList
+        return this._loginList;
+      });
+  }
   public getBackendPlanetaryOptimizedScenario(locid: number): Observable<ProcessingAction[]> {
     console.log("><[AppModelStoreService.getBackendPilotRoaster]>Loginid = " + locid);
     // Get the current Login identifier and the current Character identifier to be used on the HTTP request.
@@ -78,30 +107,25 @@ export class AppModelStoreService {
   }
 
   //--- L O G I N    S E C T I O N
-  /**
-  Go to the backend Database to retrieve the list of declared Logins to let the user to select the one he/she wants for working. If the list is already downloaded then do not access again the Database and return the cached list.
-  */
-  public getBackendLoginList(): Observable<Login[]> {
-    return this.accessLoginList();
-  }
   public accessLoginList(): Observable<Login[]> {
     console.log(">>[AppModelStoreService.accessLoginList]");
     if (null == this._loginList) {
       // Get the list form the backend Database.
-      // On this preliminar version simulate it with a hand made list.
-      this._loginList = [];
-      this._loginList.push(new Login({ loginid: "Beth Ripley" }));
-      this._loginList.push(new Login({ loginid: "Perico" }));
-      this._loginList.push(new Login({ loginid: "CapitanHaddock09" }));
-    }
-    return new Observable(observer => {
-      setTimeout(() => {
-        observer.next(this._loginList);
-      }, 100);
-      setTimeout(() => {
-        observer.complete();
-      }, 100);
-    });
+      return this.getBackendLoginList();
+      // // On this preliminar version simulate it with a hand made list.
+      // this._loginList = [];
+      // this._loginList.push(new Login({ loginid: "Beth Ripley" }));
+      // this._loginList.push(new Login({ loginid: "Perico" }));
+      // this._loginList.push(new Login({ loginid: "CapitanHaddock09" }));
+    } else
+      return new Observable(observer => {
+        setTimeout(() => {
+          observer.next(this._loginList);
+        }, 100);
+        setTimeout(() => {
+          observer.complete();
+        }, 100);
+      });
   }
   /**
   Sets the new login that comes from the URL when the user selects one from the list of logins.
@@ -244,30 +268,30 @@ export class AppModelStoreService {
       });
   }
 
-  public accessDataSource(): IDataSource {
-    return this._activeDataSource;
-  }
-  public searchDataSource(locator: DataSourceLocator): IDataSource {
-    let target = this._dataSourceCache[locator.getLocator()];
-    return target;
-  }
+  // public accessDataSource(): IDataSource {
+  //   return this._activeDataSource;
+  // }
+  // public searchDataSource(locator: DataSourceLocator): IDataSource {
+  //   let target = this._dataSourceCache[locator.getLocator()];
+  //   return target;
+  // }
 
 
 
   /**
   Checks if this datasource is already present at the registration list. If found returns the already found datasource, otherwise adds this to the list of caches datasources.
 */
-  public registerDataSource(ds: IDataSource): IDataSource {
-    let locator = ds.getLocator();
-    let target = this._dataSourceCache[locator.getLocator()];
-    if (target == null) {
-      this._dataSourceCache.push(ds);
-      return ds;
-    }
-    return target;
-  }
-  public setActiveDataSource(ds: IDataSource): IDataSource {
-    this._activeDataSource = ds;
-    return this._activeDataSource;
-  }
+  // public registerDataSource(ds: IDataSource): IDataSource {
+  //   let locator = ds.getLocator();
+  //   let target = this._dataSourceCache[locator.getLocator()];
+  //   if (target == null) {
+  //     this._dataSourceCache.push(ds);
+  //     return ds;
+  //   }
+  //   return target;
+  // }
+  // public setActiveDataSource(ds: IDataSource): IDataSource {
+  //   this._activeDataSource = ds;
+  //   return this._activeDataSource;
+  // }
 }

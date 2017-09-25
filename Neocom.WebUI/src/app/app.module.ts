@@ -15,7 +15,6 @@ import { AppModelStoreService } from './services/app-model-store.service';
 //--- PIPES
 import { CapitalizeLetterPipe } from './pipes/capitalize-letter.pipe';
 //--- PAGES
-import { PageSplashComponent } from './page/page-splash/page-splash.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roaster-page.component';
 import { PilotDetailPageComponent } from './pages/pilot-detail-page/pilot-detail-page.component';
@@ -35,7 +34,6 @@ import { ResourceComponent } from './components/resource/resource.component';
 import { ProcessingActionComponent } from './components/processing-action/processing-action.component';
 
 //--- REMOVABLES
-import { PageHomeComponent } from './page/page-home/page-home.component';
 import { NavigationMenuComponent } from './component/navigation-menu/navigation-menu.component';
 import { Login4ListComponent } from './components/login4-list/login4-list.component';
 import { SeparatorComponent } from './components/separator/separator.component';
@@ -54,8 +52,6 @@ import { NodePanelComponent } from './components/node-panel/node-panel.component
     CapitalizeLetterPipe,
     HeaderComponent,
     NavigationMenuComponent,
-    PageSplashComponent,
-    PageHomeComponent,
     PilotRoasterPageComponent,
     RegionComponent,
     LocationComponent,

@@ -1,0 +1,301 @@
+2017-09-25 10:48:13.923  INFO 8864 --- [           main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@7ef82753: startup date [Mon Sep 25 10:48:13 CEST 2017]; root of context hierarchy
+2017-09-25 10:48:15.790  INFO 8864 --- [           main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-09-25 10:48:15.948  INFO 8864 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'configurationPropertiesRebinderAutoConfiguration' of type [class org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$eb3a2c34] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.3.5.RELEASE)
+
+2017-09-25 10:48:18.323  INFO 8864 --- [           main] o.d.e.n.NeocomMicroServiceApplication    : No active profile set, falling back to default profiles: default
+2017-09-25 10:48:18.482  INFO 8864 --- [           main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@538613b3: startup date [Mon Sep 25 10:48:18 CEST 2017]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@7ef82753
+2017-09-25 10:48:27.128  INFO 8864 --- [           main] o.s.b.f.s.DefaultListableBeanFactory     : Overriding bean definition for bean 'hystrixFeature' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.cloud.netflix.hystrix.HystrixCircuitBreakerConfiguration$HystrixWebConfiguration; factoryMethodName=hystrixFeature; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/cloud/netflix/hystrix/HystrixCircuitBreakerConfiguration$HystrixWebConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.cloud.netflix.hystrix.HystrixCircuitBreakerConfiguration; factoryMethodName=hystrixFeature; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/cloud/netflix/hystrix/HystrixCircuitBreakerConfiguration.class]]
+2017-09-25 10:48:28.472  WARN 8864 --- [           main] o.s.c.a.ConfigurationClassPostProcessor  : Cannot enhance @Configuration bean definition 'refreshScope' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2017-09-25 10:48:29.115  INFO 8864 --- [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=802e3904-5c0e-346a-b037-c940aa69e8a7
+2017-09-25 10:48:29.168  INFO 8864 --- [           main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-09-25 10:48:30.796  INFO 8864 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [class org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$eb3a2c34] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-09-25 10:48:30.838  INFO 8864 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.RefreshEndpointAutoConfiguration' of type [class org.springframework.cloud.autoconfigure.RefreshEndpointAutoConfiguration$$EnhancerBySpringCGLIB$$94992e2a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-09-25 10:48:32.653  INFO 8864 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 9000 (http)
+2017-09-25 10:48:32.738  INFO 8864 --- [           main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2017-09-25 10:48:32.755  INFO 8864 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.0.33
+2017-09-25 10:48:33.621  INFO 8864 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-09-25 10:48:33.623  INFO 8864 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 15140 ms
+2017-09-25 10:48:37.987  INFO 8864 --- [ost-startStop-1] o.s.b.c.e.ServletRegistrationBean        : Mapping servlet: 'dispatcherServlet' to [/]
+2017-09-25 10:48:37.999  INFO 8864 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'metricFilter' to: [/*]
+2017-09-25 10:48:38.000  INFO 8864 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-09-25 10:48:38.000  INFO 8864 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-09-25 10:48:38.001  INFO 8864 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-09-25 10:48:38.001  INFO 8864 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'requestContextFilter' to: [/*]
+2017-09-25 10:48:38.001  INFO 8864 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'webRequestLoggingFilter' to: [/*]
+2017-09-25 10:48:38.001  INFO 8864 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'applicationContextIdFilter' to: [/*]
+2017-09-25 10:48:38.184  INFO 8864 --- [           main] NeocomMicroServiceApplication            : >> [NeocomMicroServiceApplication.<constructor>]
+2017-09-25 10:48:38.185  INFO 8864 --- [           main] NeocomMicroServiceApplication            : -- [NeocomMicroServiceApplication.<constructor>]> Instantiating the singleton.
+2017-09-25 10:48:38.186  INFO 8864 --- [           main] NeocomMicroServiceApplication            : << [NeocomMicroServiceApplication.<constructor>]
+2017-09-25 10:48:38.629  WARN 8864 --- [           main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2017-09-25 10:48:38.631  INFO 8864 --- [           main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2017-09-25 10:48:38.661  INFO 8864 --- [           main] c.netflix.config.DynamicPropertyFactory  : DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@69909c14
+2017-09-25 10:48:39.894  INFO 8864 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@538613b3: startup date [Mon Sep 25 10:48:18 CEST 2017]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@7ef82753
+2017-09-25 10:48:40.348  INFO 8864 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/v1/eveitem/{typeID}],methods=[GET],produces=[application/json]}" onto public org.dimensinfin.eveonline.neocom.model.EveItem org.dimensinfin.eveonline.neocom.controller.EveItemController.eveItem(java.lang.String)
+2017-09-25 10:48:40.353  INFO 8864 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/v1/loginlist],methods=[GET],produces=[application/json]}" onto public java.util.Hashtable<java.lang.String, org.dimensinfin.eveonline.neocom.model.Login> org.dimensinfin.eveonline.neocom.controller.LoginController.loginlistEntryPoint()
+2017-09-25 10:48:40.355  INFO 8864 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/v1/login/{login}/pilot/{identifier}/pilotmanagers],methods=[GET],produces=[application/json]}" onto public java.util.Vector<org.dimensinfin.eveonline.neocom.manager.AbstractManager> org.dimensinfin.eveonline.neocom.controller.PilotDataController.pilotManagers(java.lang.String,java.lang.String)
+2017-09-25 10:48:40.356  INFO 8864 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/v1/login/{identifier}/pilotroaster],methods=[GET],produces=[application/json]}" onto public java.util.Vector<org.dimensinfin.eveonline.neocom.model.Pilot> org.dimensinfin.eveonline.neocom.controller.PilotDataController.pilotRoaster(java.lang.String)
+2017-09-25 10:48:40.357  INFO 8864 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/v1/login/{login}/pilot/{identifier}/planetarymanager],methods=[GET],produces=[application/json]}" onto public org.dimensinfin.eveonline.neocom.manager.PlanetaryManager org.dimensinfin.eveonline.neocom.controller.PilotDataController.pilotPlanetaryManager(java.lang.String,java.lang.String)
+2017-09-25 10:48:40.358  INFO 8864 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/v1/login/{login}/pilot/{identifier}/planetarymanager/location/{locationid}/optimizeprocess],methods=[GET],produces=[application/json]}" onto public java.util.Vector<org.dimensinfin.eveonline.neocom.planetary.ProcessingAction> org.dimensinfin.eveonline.neocom.controller.PlanetaryManagerController.planetaryLocationOptimization(java.lang.String,java.lang.String,java.lang.String)
+2017-09-25 10:48:40.362  INFO 8864 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-09-25 10:48:40.363  INFO 8864 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-09-25 10:48:40.549  INFO 8864 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-09-25 10:48:40.549  INFO 8864 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-09-25 10:48:40.720  INFO 8864 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-09-25 10:48:43.172  INFO 8864 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/hystrix.stream/**]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.cloud.netflix.endpoint.ServletWrappingEndpoint.handle(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+2017-09-25 10:48:43.173  INFO 8864 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/metrics/{name:.*}],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.MetricsMvcEndpoint.value(java.lang.String)
+2017-09-25 10:48:43.174  INFO 8864 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/metrics || /metrics.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-09-25 10:48:43.178  INFO 8864 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/refresh || /refresh.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+2017-09-25 10:48:43.179  INFO 8864 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/configprops || /configprops.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-09-25 10:48:43.180  INFO 8864 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/autoconfig || /autoconfig.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-09-25 10:48:43.181  INFO 8864 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/archaius || /archaius.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-09-25 10:48:43.182  INFO 8864 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.value(java.util.Map<java.lang.String, java.lang.String>)
+2017-09-25 10:48:43.182  INFO 8864 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env/reset],methods=[POST]}" onto public java.util.Map<java.lang.String, java.lang.Object> org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.reset()
+2017-09-25 10:48:43.183  INFO 8864 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/trace || /trace.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-09-25 10:48:43.184  INFO 8864 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/resume || /resume.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+2017-09-25 10:48:43.186  INFO 8864 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/restart || /restart.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.restart.RestartMvcEndpoint.invoke()
+2017-09-25 10:48:43.187  INFO 8864 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/mappings || /mappings.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-09-25 10:48:43.190  INFO 8864 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/health || /health.json],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.HealthMvcEndpoint.invoke(java.security.Principal)
+2017-09-25 10:48:43.191  INFO 8864 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/dump || /dump.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-09-25 10:48:43.192  INFO 8864 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/beans || /beans.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-09-25 10:48:43.194  INFO 8864 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/features || /features.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-09-25 10:48:43.195  INFO 8864 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/info || /info.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-09-25 10:48:43.196  INFO 8864 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/pause || /pause.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+2017-09-25 10:48:43.197  INFO 8864 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env/{name:.*}],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EnvironmentMvcEndpoint.value(java.lang.String)
+2017-09-25 10:48:43.198  INFO 8864 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env || /env.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-09-25 10:48:43.608  WARN 8864 --- [           main] o.s.c.n.a.ArchaiusAutoConfiguration      : No spring.application.name found, defaulting to 'application'
+2017-09-25 10:48:43.609  WARN 8864 --- [           main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2017-09-25 10:48:43.609  INFO 8864 --- [           main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2017-09-25 10:48:44.080  INFO 8864 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-09-25 10:48:44.099  INFO 8864 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'refreshScope' has been autodetected for JMX exposure
+2017-09-25 10:48:44.100  INFO 8864 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'environmentManager' has been autodetected for JMX exposure
+2017-09-25 10:48:44.103  INFO 8864 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'configurationPropertiesRebinder' has been autodetected for JMX exposure
+2017-09-25 10:48:44.104  INFO 8864 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'refreshEndpoint' has been autodetected for JMX exposure
+2017-09-25 10:48:44.107  INFO 8864 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'restartEndpoint' has been autodetected for JMX exposure
+2017-09-25 10:48:44.112  INFO 8864 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'environmentManager': registering with JMX server as MBean [org.springframework.cloud.context.environment:name=environmentManager,type=EnvironmentManager]
+2017-09-25 10:48:44.159  INFO 8864 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'restartEndpoint': registering with JMX server as MBean [org.springframework.cloud.context.restart:name=restartEndpoint,type=RestartEndpoint]
+2017-09-25 10:48:44.194  INFO 8864 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'refreshScope': registering with JMX server as MBean [org.springframework.cloud.context.scope.refresh:name=refreshScope,type=RefreshScope]
+2017-09-25 10:48:44.212  INFO 8864 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'configurationPropertiesRebinder': registering with JMX server as MBean [org.springframework.cloud.context.properties:name=configurationPropertiesRebinder,context=538613b3,type=ConfigurationPropertiesRebinder]
+2017-09-25 10:48:44.226  INFO 8864 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'refreshEndpoint': registering with JMX server as MBean [org.springframework.cloud.endpoint:name=refreshEndpoint,type=RefreshEndpoint]
+2017-09-25 10:48:44.535  INFO 8864 --- [           main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 0
+2017-09-25 10:48:44.621  INFO 8864 --- [           main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2017-09-25 10:48:44.645  INFO 8864 --- [           main] ration$HystrixMetricsPollerConfiguration : Starting poller
+2017-09-25 10:48:44.997  INFO 8864 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 9000 (http)
+2017-09-25 10:48:45.004  INFO 8864 --- [           main] o.d.e.n.NeocomMicroServiceApplication    : Started NeocomMicroServiceApplication in 34.394 seconds (JVM running for 37.867)
+2017-09-25 10:48:46.909  INFO 8864 --- [nio-9000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2017-09-25 10:48:46.910  INFO 8864 --- [nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2017-09-25 10:48:47.098  INFO 8864 --- [nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 188 ms
+2017-09-25 10:48:47.436  INFO 8864 --- [nio-9000-exec-1] LoginController.java                     : >>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/loginlist
+2017-09-25 10:48:47.437  INFO 8864 --- [nio-9000-exec-1] LoginController.java                     : >> [LoginController.loginlistEntryPoint]
+2017-09-25 10:48:47.595  INFO 8864 --- [nio-9000-exec-1] AppModelStore                            : >> [AppModelStore.initialize]
+2017-09-25 10:48:47.595  INFO 8864 --- [nio-9000-exec-1] AppModelStore                            : << [AppModelStore.initialize]
+2017-09-25 10:48:47.795 ERROR 8864 --- [nio-9000-exec-1] com.j256.ormlite.db.SqliteDatabaseType   : WARNING: you seem to not be using the Xerial SQLite driver.  See ORMLite docs on SQLite: http://ormlite.com/docs/sqlite
+2017-09-25 10:48:47.827  INFO 8864 --- [nio-9000-exec-1] NeocomDBHelper                           : --[NeocomDBHelper.openNeocomDB]> Opened database jdbc:sqlite:src/main/resources/neocomdata.db successfully with version 20.
+2017-09-25 10:48:48.059  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating table 'Version'
+2017-09-25 10:48:49.012  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE TABLE IF NOT EXISTS `Version` (`versionNumber` INTEGER , PRIMARY KEY (`versionNumber`) ) 
+2017-09-25 10:48:49.024  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating table 'TimeStamp'
+2017-09-25 10:48:49.026  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE TABLE IF NOT EXISTS `TimeStamp` (`reference` VARCHAR , `timeStamp` BIGINT , `dateTimeUserReference` VARCHAR , PRIMARY KEY (`reference`) ) 
+2017-09-25 10:48:49.030  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating table 'apikey'
+2017-09-25 10:48:49.032  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE TABLE IF NOT EXISTS `apikey` (`id` INTEGER PRIMARY KEY AUTOINCREMENT , `login` VARCHAR , `keynumber` INTEGER , `validationcode` VARCHAR ) 
+2017-09-25 10:48:49.036  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating table 'Properties'
+2017-09-25 10:48:49.037  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating index 'Properties_id_idx' for table 'Properties
+2017-09-25 10:48:49.037  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE TABLE IF NOT EXISTS `Properties` (`id` INTEGER PRIMARY KEY AUTOINCREMENT , `propertyType` VARCHAR , `stringValue` VARCHAR , `numericValue` DOUBLE PRECISION , `ownerID` BIGINT ) 
+2017-09-25 10:48:49.038  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE INDEX IF NOT EXISTS `Properties_id_idx` ON `Properties` ( `id` )
+2017-09-25 10:48:49.041  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating table 'ResourceList'
+2017-09-25 10:48:49.042  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE TABLE IF NOT EXISTS `ResourceList` (`id` INTEGER PRIMARY KEY AUTOINCREMENT , `name` VARCHAR ) 
+2017-09-25 10:48:49.049  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating table 'PlanetaryResource'
+2017-09-25 10:48:49.050  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE TABLE IF NOT EXISTS `PlanetaryResource` (`id` INTEGER PRIMARY KEY AUTOINCREMENT , `typeid` INTEGER , `quantity` DOUBLE PRECISION , `name` VARCHAR , `ownerList_id` INTEGER ) 
+2017-09-25 10:48:49.066  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating table 'Assets'
+2017-09-25 10:48:49.067  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating index 'Assets_locationID_idx' for table 'Assets
+2017-09-25 10:48:49.068  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating index 'Assets_groupName_idx' for table 'Assets
+2017-09-25 10:48:49.068  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating index 'Assets_typeID_idx' for table 'Assets
+2017-09-25 10:48:49.068  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating index 'Assets_category_idx' for table 'Assets
+2017-09-25 10:48:49.068  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating index 'Assets_assetID_idx' for table 'Assets
+2017-09-25 10:48:49.069  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE TABLE IF NOT EXISTS `Assets` (`id` INTEGER PRIMARY KEY AUTOINCREMENT , `assetID` BIGINT , `locationID` BIGINT , `typeID` INTEGER , `quantity` INTEGER , `flag` INTEGER , `singleton` BOOLEAN , `parentAssetID` BIGINT , `ownerID` BIGINT , `name` VARCHAR , `category` VARCHAR , `groupName` VARCHAR , `tech` VARCHAR , `blueprintFlag` BOOLEAN , `userLabel` VARCHAR , `shipFlag` BOOLEAN , `containerFlag` BOOLEAN , `iskValue` DOUBLE PRECISION ) 
+2017-09-25 10:48:49.070  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE INDEX IF NOT EXISTS `Assets_locationID_idx` ON `Assets` ( `locationID` )
+2017-09-25 10:48:49.071  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE INDEX IF NOT EXISTS `Assets_groupName_idx` ON `Assets` ( `groupName` )
+2017-09-25 10:48:49.071  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE INDEX IF NOT EXISTS `Assets_typeID_idx` ON `Assets` ( `typeID` )
+2017-09-25 10:48:49.072  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE INDEX IF NOT EXISTS `Assets_category_idx` ON `Assets` ( `category` )
+2017-09-25 10:48:49.073  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE INDEX IF NOT EXISTS `Assets_assetID_idx` ON `Assets` ( `assetID` )
+2017-09-25 10:48:49.085  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating table 'Blueprints'
+2017-09-25 10:48:49.086  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating index 'Blueprints_typeID_idx' for table 'Blueprints
+2017-09-25 10:48:49.086  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating index 'Blueprints_containerID_idx' for table 'Blueprints
+2017-09-25 10:48:49.087  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating index 'Blueprints_assetID_idx' for table 'Blueprints
+2017-09-25 10:48:49.088  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE TABLE IF NOT EXISTS `Blueprints` (`id` INTEGER PRIMARY KEY AUTOINCREMENT , `assetID` BIGINT , `containerID` BIGINT , `typeID` INTEGER , `typeName` VARCHAR , `flag` INTEGER , `quantity` INTEGER , `timeEfficiency` INTEGER , `materialEfficiency` INTEGER , `runs` INTEGER , `ownerID` BIGINT , `bpo` BOOLEAN , `packaged` BOOLEAN , `tech` VARCHAR , `moduleTypeID` INTEGER , `stackIDRefences` VARCHAR , `manufactureIndex` INTEGER , `inventionIndex` INTEGER , `jobProductionCost` DOUBLE PRECISION , `manufacturableCount` INTEGER ) 
+2017-09-25 10:48:49.088  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE INDEX IF NOT EXISTS `Blueprints_typeID_idx` ON `Blueprints` ( `typeID` )
+2017-09-25 10:48:49.089  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE INDEX IF NOT EXISTS `Blueprints_containerID_idx` ON `Blueprints` ( `containerID` )
+2017-09-25 10:48:49.090  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE INDEX IF NOT EXISTS `Blueprints_assetID_idx` ON `Blueprints` ( `assetID` )
+2017-09-25 10:48:49.099  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating table 'Jobs'
+2017-09-25 10:48:49.100  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating index 'Jobs_blueprintLocationID_idx' for table 'Jobs
+2017-09-25 10:48:49.100  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating index 'Jobs_blueprintID_idx' for table 'Jobs
+2017-09-25 10:48:49.101  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE TABLE IF NOT EXISTS `Jobs` (`jobID` BIGINT , `jobType` VARCHAR , `facilityID` BIGINT , `stationID` BIGINT , `activityID` INTEGER , `blueprintID` BIGINT , `blueprintTypeID` INTEGER , `blueprintLocationID` BIGINT , `runs` INTEGER , `cost` DOUBLE PRECISION , `licensedRuns` INTEGER , `productTypeID` INTEGER , `status` INTEGER , `timeInSeconds` INTEGER , `startDate` TIMESTAMP , `endDate` TIMESTAMP , `completedDate` TIMESTAMP , `completedCharacterID` BIGINT , `successfulRuns` INTEGER , `ownerID` BIGINT , PRIMARY KEY (`jobID`) ) 
+2017-09-25 10:48:49.102  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE INDEX IF NOT EXISTS `Jobs_blueprintLocationID_idx` ON `Jobs` ( `blueprintLocationID` )
+2017-09-25 10:48:49.103  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE INDEX IF NOT EXISTS `Jobs_blueprintID_idx` ON `Jobs` ( `blueprintID` )
+2017-09-25 10:48:49.110  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating table 'MarketOrders'
+2017-09-25 10:48:49.112  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE TABLE IF NOT EXISTS `MarketOrders` (`orderID` BIGINT , `ownerID` BIGINT , `stationID` BIGINT , `volEntered` INTEGER , `volRemaining` INTEGER , `minVolume` INTEGER , `orderState` INTEGER , `typeID` INTEGER , `range` INTEGER , `accountKey` INTEGER , `duration` INTEGER , `escrow` DOUBLE PRECISION , `price` DOUBLE PRECISION , `bid` BOOLEAN , `issuedDate` TIMESTAMP , PRIMARY KEY (`orderID`) ) 
+2017-09-25 10:48:49.124  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating table 'Locations'
+2017-09-25 10:48:49.124  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating index 'Locations_id_idx' for table 'Locations
+2017-09-25 10:48:49.125  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE TABLE IF NOT EXISTS `Locations` (`id` BIGINT , `stationID` BIGINT , `station` VARCHAR , `systemID` BIGINT , `system` VARCHAR , `constellationID` BIGINT , `constellation` VARCHAR , `regionID` BIGINT , `region` VARCHAR , `security` VARCHAR , `typeID` INTEGER , PRIMARY KEY (`id`) ) 
+2017-09-25 10:48:49.133  INFO 8864 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE INDEX IF NOT EXISTS `Locations_id_idx` ON `Locations` ( `id` )
+2017-09-25 10:48:49.214  INFO 8864 --- [nio-9000-exec-1] NeoComApiKey                             : -- [NeoComApiKey.build]> Creating key: 2889577/Mb6iDKR14m9Xjh9maGTQCGTkpjRHPjOgVUkvK6E9r6fhMtOWtipaqybp0qCzxuuw
+2017-09-25 10:48:53.108  INFO 8864 --- [nio-9000-exec-1] Login                                    : -- [Login.addKey]> Adding Beth Ripley to the _characters
+2017-09-25 10:48:53.109  INFO 8864 --- [nio-9000-exec-1] NeoComApiKey                             : -- [NeoComApiKey.build]> Creating key: 3106761/gltCmvVoZl5akrM8d6DbNKZn7Jm2SaukrmqjnSOyqKbvzz5CtNfknTEwdBe6IIFf
+2017-09-25 10:48:54.707  INFO 8864 --- [pool-2-thread-1] TimedServiceLauncher                     : >> [TimedServiceLauncher.onTime]
+2017-09-25 10:48:54.711  INFO 8864 --- [pool-2-thread-1] NeoComApiKey                             : -- [NeoComApiKey.build]> Creating key: 2889577/Mb6iDKR14m9Xjh9maGTQCGTkpjRHPjOgVUkvK6E9r6fhMtOWtipaqybp0qCzxuuw
+2017-09-25 10:48:55.234  INFO 8864 --- [nio-9000-exec-1] Login                                    : -- [Login.addKey]> Adding Perico Tuerto to the _characters
+2017-09-25 10:48:55.234  INFO 8864 --- [nio-9000-exec-1] NeoComApiKey                             : -- [NeoComApiKey.build]> Creating key: 924767/2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P
+2017-09-25 10:48:56.886  INFO 8864 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Beth Ripley to the _characters
+2017-09-25 10:48:56.886  INFO 8864 --- [pool-2-thread-1] NeoComApiKey                             : -- [NeoComApiKey.build]> Creating key: 3106761/gltCmvVoZl5akrM8d6DbNKZn7Jm2SaukrmqjnSOyqKbvzz5CtNfknTEwdBe6IIFf
+2017-09-25 10:48:59.024  INFO 8864 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Perico Tuerto to the _characters
+2017-09-25 10:48:59.024  INFO 8864 --- [pool-2-thread-1] NeoComApiKey                             : -- [NeoComApiKey.build]> Creating key: 924767/2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P
+2017-09-25 10:49:00.512  INFO 8864 --- [nio-9000-exec-1] Login                                    : -- [Login.addKey]> Adding Adam Antinoo to the _characters
+2017-09-25 10:49:00.513  INFO 8864 --- [nio-9000-exec-1] Login                                    : -- [Login.addKey]> Adding Beth Ripley to the _characters
+2017-09-25 10:49:00.513  INFO 8864 --- [nio-9000-exec-1] Login                                    : -- [Login.addKey]> Adding Perico Tuerto to the _characters
+2017-09-25 10:49:00.514  INFO 8864 --- [nio-9000-exec-1] NeoComApiKey                             : -- [NeoComApiKey.build]> Creating key: 6472981/pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z
+2017-09-25 10:49:04.206  INFO 8864 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Adam Antinoo to the _characters
+2017-09-25 10:49:04.206  INFO 8864 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Beth Ripley to the _characters
+2017-09-25 10:49:04.207  INFO 8864 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Perico Tuerto to the _characters
+2017-09-25 10:49:04.207  INFO 8864 --- [pool-2-thread-1] NeoComApiKey                             : -- [NeoComApiKey.build]> Creating key: 6472981/pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z
+2017-09-25 10:49:05.728  INFO 8864 --- [nio-9000-exec-1] Login                                    : -- [Login.addKey]> Adding Zach Zender to the _characters
+2017-09-25 10:49:05.729  INFO 8864 --- [nio-9000-exec-1] Login                                    : -- [Login.addKey]> Adding Zoe Zenote to the _characters
+2017-09-25 10:49:05.729  INFO 8864 --- [nio-9000-exec-1] Login                                    : -- [Login.addKey]> Adding Tip Tophane to the _characters
+2017-09-25 10:49:05.729  INFO 8864 --- [nio-9000-exec-1] NeoComApiKey                             : -- [NeoComApiKey.build]> Creating key: 924767/2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P
+2017-09-25 10:49:09.337  INFO 8864 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Zach Zender to the _characters
+2017-09-25 10:49:09.337  INFO 8864 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Zoe Zenote to the _characters
+2017-09-25 10:49:09.337  INFO 8864 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Tip Tophane to the _characters
+2017-09-25 10:49:09.337  INFO 8864 --- [pool-2-thread-1] NeoComApiKey                             : -- [NeoComApiKey.build]> Creating key: 924767/2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P
+2017-09-25 10:49:10.856  INFO 8864 --- [nio-9000-exec-1] Login                                    : -- [Login.addKey]> Adding Adam Antinoo to the _characters
+2017-09-25 10:49:10.856  INFO 8864 --- [nio-9000-exec-1] Login                                    : -- [Login.addKey]> Adding Beth Ripley to the _characters
+2017-09-25 10:49:10.856  INFO 8864 --- [nio-9000-exec-1] Login                                    : -- [Login.addKey]> Adding Perico Tuerto to the _characters
+2017-09-25 10:49:10.856  INFO 8864 --- [nio-9000-exec-1] NeoComApiKey                             : -- [NeoComApiKey.build]> Creating key: 6472981/pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z
+2017-09-25 10:49:14.360  INFO 8864 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Adam Antinoo to the _characters
+2017-09-25 10:49:14.361  INFO 8864 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Beth Ripley to the _characters
+2017-09-25 10:49:14.361  INFO 8864 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Perico Tuerto to the _characters
+2017-09-25 10:49:14.361  INFO 8864 --- [pool-2-thread-1] NeoComApiKey                             : -- [NeoComApiKey.build]> Creating key: 6472981/pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z
+2017-09-25 10:49:16.131  INFO 8864 --- [nio-9000-exec-1] Login                                    : -- [Login.addKey]> Adding Zach Zender to the _characters
+2017-09-25 10:49:16.132  INFO 8864 --- [nio-9000-exec-1] Login                                    : -- [Login.addKey]> Adding Zoe Zenote to the _characters
+2017-09-25 10:49:16.132  INFO 8864 --- [nio-9000-exec-1] Login                                    : -- [Login.addKey]> Adding Tip Tophane to the _characters
+2017-09-25 10:49:16.139  INFO 8864 --- [nio-9000-exec-1] LoginController.java                     : << [LoginController.loginlistEntryPoint]>[TIMING] Processing Time: - PT28.548S
+2017-09-25 10:49:19.585  INFO 8864 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Zach Zender to the _characters
+2017-09-25 10:49:19.586  INFO 8864 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Zoe Zenote to the _characters
+2017-09-25 10:49:19.586  INFO 8864 --- [pool-2-thread-1] Login                                    : -- [Login.addKey]> Adding Tip Tophane to the _characters
+2017-09-25 10:49:19.662  INFO 8864 --- [pool-2-thread-1] TimedServiceLauncher                     : -- [TimeTickReceiver.onTime] EDataBlock to update: Tip Tophane - ASSETDATA
+2017-09-25 10:49:19.666  INFO 8864 --- [pool-2-thread-1] CharacterUpdaterService                  : -- [CharacterUpdaterService.onHandleIntent] EDataBlock to process: Tip Tophane - ASSETDATA
+2017-09-25 10:49:19.667  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : >> [AssetsManager.downloadPilotAssets]
+2017-09-25 10:49:19.991  INFO 8864 --- [pool-2-thread-1] SpringDatabaseConnector                  : -- [NeocomDatabaseConnector.clearInvalidAssets]> rows deleted ASSETS [OWNERID = -1] - 33
+2017-09-25 10:49:19.992  INFO 8864 --- [pool-2-thread-1] SpringDatabaseConnector                  : -- [NeocomDatabaseConnector.clearInvalidAssets]> rows deleted BLUEPRINTS [OWNERID = -1] - 0
+2017-09-25 10:49:20.527  INFO 8864 --- [pool-2-thread-1] CCPDatabaseConnector.java                : -- [StringDatabaseConnector.openCCPDataBase]> Opened CCP database successfully.
+2017-09-25 10:49:20.601  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : >> [MicroServicesCacheConnector.searchMarketData]> itemid: 3638 side: BUYER
+2017-09-25 10:49:20.602  INFO 8864 --- [pool-2-thread-1] MarketDataService                        : >< [MarketDataService.getData]> itemid: 3638 side: BUYER
+2017-09-25 10:49:24.648  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : << [MicroServicesCacheConnector.searchMarketData]> Time lapse: 3638 - PT4.047S
+2017-09-25 10:49:24.983  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025460190014]
+2017-09-25 10:49:25.012  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : >> [MicroServicesCacheConnector.searchMarketData]> itemid: 3651 side: BUYER
+2017-09-25 10:49:25.012  INFO 8864 --- [pool-2-thread-1] MarketDataService                        : >< [MarketDataService.getData]> itemid: 3651 side: BUYER
+2017-09-25 10:49:27.068  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : << [MicroServicesCacheConnector.searchMarketData]> Time lapse: 3651 - PT2.056S
+2017-09-25 10:49:27.522  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025460190015]
+2017-09-25 10:49:27.681  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : >> [MicroServicesCacheConnector.searchMarketData]> itemid: 21857 side: BUYER
+2017-09-25 10:49:27.682  INFO 8864 --- [pool-2-thread-1] MarketDataService                        : >< [MarketDataService.getData]> itemid: 21857 side: BUYER
+2017-09-25 10:49:29.805  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : << [MicroServicesCacheConnector.searchMarketData]> Time lapse: 21857 - PT2.124S
+2017-09-25 10:49:29.988  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025460190016]
+2017-09-25 10:49:30.037  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : >> [MicroServicesCacheConnector.searchMarketData]> itemid: 25885 side: BUYER
+2017-09-25 10:49:30.038  INFO 8864 --- [pool-2-thread-1] MarketDataService                        : >< [MarketDataService.getData]> itemid: 25885 side: BUYER
+2017-09-25 10:49:32.108  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : << [MicroServicesCacheConnector.searchMarketData]> Time lapse: 25885 - PT2.071S
+2017-09-25 10:49:32.331  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025460201648]
+2017-09-25 10:49:32.365  WARN 8864 --- [pool-2-thread-1] CCPDatabaseConnector.java                : W> AndroidDatabaseConnector.searchItembyID -- Item <42683> not found.
+2017-09-25 10:49:32.366  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : >> [MicroServicesCacheConnector.searchMarketData]> itemid: 34 side: BUYER
+2017-09-25 10:49:32.366  INFO 8864 --- [pool-2-thread-1] MarketDataService                        : >< [MarketDataService.getData]> itemid: 34 side: BUYER
+2017-09-25 10:49:34.439  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : << [MicroServicesCacheConnector.searchMarketData]> Time lapse: 34 - PT2.073S
+2017-09-25 10:49:34.660  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025460217172]
+2017-09-25 10:49:34.714  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : >> [MicroServicesCacheConnector.searchMarketData]> itemid: 15331 side: BUYER
+2017-09-25 10:49:34.715  INFO 8864 --- [pool-2-thread-1] MarketDataService                        : >< [MarketDataService.getData]> itemid: 15331 side: BUYER
+2017-09-25 10:49:36.774  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : << [MicroServicesCacheConnector.searchMarketData]> Time lapse: 15331 - PT2.059S
+2017-09-25 10:49:37.107  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025460370225]
+2017-09-25 10:49:37.573  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025460473720]
+2017-09-25 10:49:37.575  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : >> [MicroServicesCacheConnector.searchMarketData]> itemid: 27014 side: BUYER
+2017-09-25 10:49:37.576  INFO 8864 --- [pool-2-thread-1] MarketDataService                        : >< [MarketDataService.getData]> itemid: 27014 side: BUYER
+2017-09-25 10:49:39.695  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : << [MicroServicesCacheConnector.searchMarketData]> Time lapse: 27014 - PT2.120S
+2017-09-25 10:49:39.918  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025460491264]
+2017-09-25 10:49:39.919  WARN 8864 --- [pool-2-thread-1] CCPDatabaseConnector.java                : W> AndroidDatabaseConnector.searchItembyID -- Item <42640> not found.
+2017-09-25 10:49:39.919  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : >> [MicroServicesCacheConnector.searchMarketData]> itemid: 34 side: BUYER
+2017-09-25 10:49:39.919  INFO 8864 --- [pool-2-thread-1] MarketDataService                        : >< [MarketDataService.getData]> itemid: 34 side: BUYER
+2017-09-25 10:49:41.962  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : << [MicroServicesCacheConnector.searchMarketData]> Time lapse: 34 - PT2.043S
+2017-09-25 10:49:42.228  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025460558810]
+2017-09-25 10:49:42.271  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : >> [MicroServicesCacheConnector.searchMarketData]> itemid: 222 side: BUYER
+2017-09-25 10:49:42.271  INFO 8864 --- [pool-2-thread-1] MarketDataService                        : >< [MarketDataService.getData]> itemid: 222 side: BUYER
+2017-09-25 10:49:44.335  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : << [MicroServicesCacheConnector.searchMarketData]> Time lapse: 222 - PT2.064S
+2017-09-25 10:49:44.596  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025460590461]
+2017-09-25 10:49:44.671  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : >> [MicroServicesCacheConnector.searchMarketData]> itemid: 32880 side: BUYER
+2017-09-25 10:49:44.671  INFO 8864 --- [pool-2-thread-1] MarketDataService                        : >< [MarketDataService.getData]> itemid: 32880 side: BUYER
+2017-09-25 10:49:46.728  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : << [MicroServicesCacheConnector.searchMarketData]> Time lapse: 32880 - PT2.057S
+2017-09-25 10:49:47.734  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025460747649]
+2017-09-25 10:49:47.930  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025460750678]
+2017-09-25 10:49:48.171  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025460750679]
+2017-09-25 10:49:48.213  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : >> [MicroServicesCacheConnector.searchMarketData]> itemid: 601 side: BUYER
+2017-09-25 10:49:48.213  INFO 8864 --- [pool-2-thread-1] MarketDataService                        : >< [MarketDataService.getData]> itemid: 601 side: BUYER
+2017-09-25 10:49:50.286  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : << [MicroServicesCacheConnector.searchMarketData]> Time lapse: 601 - PT2.073S
+2017-09-25 10:49:51.265  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025461292977]
+2017-09-25 10:49:51.287  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : >> [MicroServicesCacheConnector.searchMarketData]> itemid: 483 side: BUYER
+2017-09-25 10:49:51.287  INFO 8864 --- [pool-2-thread-1] MarketDataService                        : >< [MarketDataService.getData]> itemid: 483 side: BUYER
+2017-09-25 10:49:53.366  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : << [MicroServicesCacheConnector.searchMarketData]> Time lapse: 483 - PT2.079S
+2017-09-25 10:49:53.569  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025461296178]
+2017-09-25 10:49:53.601  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : >> [MicroServicesCacheConnector.searchMarketData]> itemid: 4529 side: BUYER
+2017-09-25 10:49:53.602  INFO 8864 --- [pool-2-thread-1] MarketDataService                        : >< [MarketDataService.getData]> itemid: 4529 side: BUYER
+2017-09-25 10:49:55.661  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : << [MicroServicesCacheConnector.searchMarketData]> Time lapse: 4529 - PT2.060S
+2017-09-25 10:49:56.134  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025462647896]
+2017-09-25 10:49:57.120  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025465012093]
+2017-09-25 10:49:57.135  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : >> [MicroServicesCacheConnector.searchMarketData]> itemid: 603 side: BUYER
+2017-09-25 10:49:57.136  INFO 8864 --- [pool-2-thread-1] MarketDataService                        : >< [MarketDataService.getData]> itemid: 603 side: BUYER
+2017-09-25 10:49:59.215  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : << [MicroServicesCacheConnector.searchMarketData]> Time lapse: 603 - PT2.078S
+2017-09-25 10:50:00.235  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025468226659]
+2017-09-25 10:50:00.274  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : >> [MicroServicesCacheConnector.searchMarketData]> itemid: 1317 side: BUYER
+2017-09-25 10:50:00.275  INFO 8864 --- [pool-2-thread-1] MarketDataService                        : >< [MarketDataService.getData]> itemid: 1317 side: BUYER
+2017-09-25 10:50:02.350  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : << [MicroServicesCacheConnector.searchMarketData]> Time lapse: 1317 - PT2.075S
+2017-09-25 10:50:02.669  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025468308807]
+2017-09-25 10:50:02.760  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : >> [MicroServicesCacheConnector.searchMarketData]> itemid: 10678 side: BUYER
+2017-09-25 10:50:02.761  INFO 8864 --- [pool-2-thread-1] MarketDataService                        : >< [MarketDataService.getData]> itemid: 10678 side: BUYER
+2017-09-25 10:50:04.941  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : << [MicroServicesCacheConnector.searchMarketData]> Time lapse: 10678 - PT2.180S
+2017-09-25 10:50:05.228  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025460590459]
+2017-09-25 10:50:05.316  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : >> [MicroServicesCacheConnector.searchMarketData]> itemid: 6003 side: BUYER
+2017-09-25 10:50:05.317  INFO 8864 --- [pool-2-thread-1] MarketDataService                        : >< [MarketDataService.getData]> itemid: 6003 side: BUYER
+2017-09-25 10:50:07.384  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : << [MicroServicesCacheConnector.searchMarketData]> Time lapse: 6003 - PT2.067S
+2017-09-25 10:50:07.667  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025460596995]
+2017-09-25 10:50:07.718  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : >> [MicroServicesCacheConnector.searchMarketData]> itemid: 2046 side: BUYER
+2017-09-25 10:50:07.718  INFO 8864 --- [pool-2-thread-1] MarketDataService                        : >< [MarketDataService.getData]> itemid: 2046 side: BUYER
+2017-09-25 10:50:09.779  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : << [MicroServicesCacheConnector.searchMarketData]> Time lapse: 2046 - PT2.060S
+2017-09-25 10:50:10.091  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025460600515]
+2017-09-25 10:50:10.422  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025460601545]
+2017-09-25 10:50:10.671  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025460603107]
+2017-09-25 10:50:10.998  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025460404349]
+2017-09-25 10:50:11.036  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : >> [MicroServicesCacheConnector.searchMarketData]> itemid: 10039 side: BUYER
+2017-09-25 10:50:11.037  INFO 8864 --- [pool-2-thread-1] MarketDataService                        : >< [MarketDataService.getData]> itemid: 10039 side: BUYER
+2017-09-25 10:50:13.112  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : << [MicroServicesCacheConnector.searchMarketData]> Time lapse: 10039 - PT2.075S
+2017-09-25 10:50:13.361  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025460415731]
+2017-09-25 10:50:13.434  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : >> [MicroServicesCacheConnector.searchMarketData]> itemid: 30328 side: BUYER
+2017-09-25 10:50:13.435  INFO 8864 --- [pool-2-thread-1] MarketDataService                        : >< [MarketDataService.getData]> itemid: 30328 side: BUYER
+2017-09-25 10:50:15.492  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : << [MicroServicesCacheConnector.searchMarketData]> Time lapse: 30328 - PT2.058S
+2017-09-25 10:50:15.700  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025460590456]
+2017-09-25 10:50:15.956  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025460747650]
+2017-09-25 10:50:16.006  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : >> [MicroServicesCacheConnector.searchMarketData]> itemid: 22542 side: BUYER
+2017-09-25 10:50:16.006  INFO 8864 --- [pool-2-thread-1] MarketDataService                        : >< [MarketDataService.getData]> itemid: 22542 side: BUYER
+2017-09-25 10:50:18.052  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : << [MicroServicesCacheConnector.searchMarketData]> Time lapse: 22542 - PT2.045S
+2017-09-25 10:50:18.228  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025460747651]
+2017-09-25 10:50:18.287  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : >> [MicroServicesCacheConnector.searchMarketData]> itemid: 25861 side: BUYER
+2017-09-25 10:50:18.287  INFO 8864 --- [pool-2-thread-1] MarketDataService                        : >< [MarketDataService.getData]> itemid: 25861 side: BUYER
+2017-09-25 10:50:20.350  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : << [MicroServicesCacheConnector.searchMarketData]> Time lapse: 25861 - PT2.063S
+2017-09-25 10:50:20.709  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025460747652]
+2017-09-25 10:50:21.011  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025460750680]
+2017-09-25 10:50:21.322  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025461285873]
+2017-09-25 10:50:21.396  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : >> [MicroServicesCacheConnector.searchMarketData]> itemid: 17471 side: BUYER
+2017-09-25 10:50:21.397  INFO 8864 --- [pool-2-thread-1] MarketDataService                        : >< [MarketDataService.getData]> itemid: 17471 side: BUYER
+2017-09-25 10:50:23.453  INFO 8864 --- [pool-2-thread-1] MicroServicesCacheConnector              : << [MicroServicesCacheConnector.searchMarketData]> Time lapse: 17471 - PT2.056S
+2017-09-25 10:50:23.889  INFO 8864 --- [pool-2-thread-1] AssetsManager                            : -- Wrote asset to database id [1025462480431]
+2017-09-25 10:50:36.020  INFO 8864 --- [nio-9000-exec-3] LoginController.java                     : >>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/loginlist
+2017-09-25 10:50:36.021  INFO 8864 --- [nio-9000-exec-3] LoginController.java                     : >> [LoginController.loginlistEntryPoint]
+2017-09-25 10:50:36.021  INFO 8864 --- [nio-9000-exec-3] LoginController.java                     : << [LoginController.loginlistEntryPoint]>[TIMING] Processing Time: - PT0S

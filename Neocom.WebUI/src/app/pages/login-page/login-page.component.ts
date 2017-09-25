@@ -2,12 +2,9 @@
 // AUTHORS:     Adam Antinoo - adamantinoo.git@gmail.com
 // COPYRIGHT:   (c) 2017 by Dimensinfin Industries, all rights reserved.
 // ENVIRONMENT: Angular - Page Component
-//
-/** Defines the Login page. At this page we pretend to show the list of Logins
-available on the NeoCom database. Then the User may be able to select one and
-then introduce the corresponding password. He/she can also add new Logins or edit
-the ones available by adding Keys to them. Finally the interface may allow to
-create and delete Logins.
+
+/** Defines the Login page. At this page we pretend to show the list of Logins available on the NeoCom database. Inisde the Login there are the associated keys and then those keys contain the list of Characters. So in a single plage we get 3 levels on the data hierarchy.
+Then the User may be able to select one and then introduce the corresponding password. He/she can also add new Logins or edit the ones available by adding Keys to them. Finally the interface may allow to create and delete Logins.
 */
 
 import { Component, OnInit } from '@angular/core';
@@ -26,9 +23,7 @@ export class LoginPageComponent implements OnInit {
   public loginViewList: Login[] = [];
   public downloading: boolean = true;
 
-  constructor(private appModelStore: AppModelStoreService) {
-    this.downloading = true;
-  }
+  constructor(private appModelStore: AppModelStoreService) { }
 
   /** During the initialization we should use an special Service. Services are always
    available from application start so they are the natural place to store
@@ -37,10 +32,11 @@ export class LoginPageComponent implements OnInit {
    */
   ngOnInit() {
     console.log(">>[LoginPageComponent.ngOnInit]");
+    this.downloading = true;
     // Call the service to get the list of Logins.
     this.appModelStore.accessLoginList()
       .subscribe(result => {
-        console.log("--[LoginPageComponent.ngOnInit.accessLoginList]>Loginlist: " + JSON.stringify(result));
+        console.log("--[LoginPageComponent.ngOnInit.accessLoginList]>Loginlist.length: " + result.length);
         this.loginViewList = result;
         this.downloading = false;
       });

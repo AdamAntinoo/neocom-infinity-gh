@@ -15,7 +15,8 @@ export class Login extends Render {
   private downloadPending: boolean = false;
 
   public loginid: string = "-ID-";
-  //  public keyCount: number = -1;
+  public name: string = "-ID-";
+  public characters: NeoComCharacter[] = null;
 
   constructor(values: Object = {}) {
     super(values);
@@ -56,7 +57,7 @@ export class Login extends Render {
   }
   //---  G E T T E R S   A N D   S E T T E R S
   public getLoginId(): string {
-    return this.loginid;
+    return this.name;
   }
   public getPanelIcon(): string {
     return "login.png";
@@ -67,7 +68,7 @@ export class Login extends Render {
   */
   public getKeyCount(): number {
     if (this.downloaded)
-      return this._pilotRoaster.length;
+      return this.characters.length;
     else return 0;
   }
   public getKeyCountObsrver(downloadService: AppModelStoreService): number {

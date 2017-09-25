@@ -24,6 +24,10 @@ export class Login4ListComponent implements OnInit {
   Broadcast to the node the request but adding a reference to the Service to be able to complete the operation if the data is not already downloaded.
   */
   public getKeyCount(): number {
-    return this.node.getKeyCountObsrver(this.appModelStore);
+    return 3;
+    //    return this.node.getKeyCountObsrver(this.appModelStore);
+  }
+  public isExpandable(): boolean {
+    return true;
   }
 }

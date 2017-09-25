@@ -1,7 +1,14 @@
-<p>
-  login-page works!
-</p>
-<span *ngIf="downloading" class="spinner spinner-large spinner-red spinner-fat spinner-slow spinner-location"></span>
+<div class="title-box">
+  <div class="title">Login Selection</div>
+  <!-- <div class="subtitle">Processing Optimization at Location: {{getTargetLocation()}}</div> -->
+</div>
+<div class="spinner-box spinner-sz30" *ngIf="downloading">
+  <div>
+    <span>Downloading Login list...</span>
+    <div class="spinner-in spinner-size60"></div>
+    <div class="spinner-out spinner-size70 spinner-red"></div>
+  </div>
+</div>
 <div class="panel-group">
   view-adapter.component running...
   <div *ngFor="let render of loginViewList">
