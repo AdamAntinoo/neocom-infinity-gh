@@ -57,7 +57,7 @@ Gets the parametrs from the Route. With those parameters we can get access to th
             this.route.params.map(p => p.id)
               .subscribe((characterid: number) => {
                 this.pilot = selectedLogin.accessCharacterById(characterid);
-                this.pilot.accessPilotManagers(this.appModelStore)
+                this.pilot.accessPilotDetailed(this.appModelStore)
                   .subscribe(result => {
                     console.log("--[PilotDetailPageComponent.ngOnInit.activateLoginById.accessPilotManagers]");
                     // Copnserve the current Login reference.

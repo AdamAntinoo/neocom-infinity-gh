@@ -83,43 +83,16 @@ export class PlanetaryOptimizationPageComponent extends PageComponent implements
                   // Character accessed. Update it at the core Service.
                   this.appModelStore.setPilotById(_characterid);
                   // Get the list of Managers that can be accessed for this Character. If the list is not available thenrequest it again to the backend.
-                  this.pilot.accessPilotManagers(this.appModelStore)
+                  this.pilot.accessPlanetaryManager(this.appModelStore)
                     .subscribe(result => {
                       console.log("--[PlanetaryOptimizationPageComponent.ngOnInit.accessPilotManagers]>ManagerList: ");
                       // Store the returned list into the current Character.
-                      this.pilot.storePilotManagers(result);
+                      //    this.pilot.storePilotManagers(result);
                       // Search for the Planetary Manager from the list of Managers. There is no way to complete it differently.
-                      for (let manager of result) {
-                        if (manager.jsonClass == "PlanetaryManager") {
-                          // We have found the Planetary Manager. Call the backend to optimize that list.
-                          this.planetaryManager = new PlanetaryManager(manager);
-                          this.route.params.map(p => p.locationid)
-                            .subscribe((locationid: number) => {
-                              this.planetaryManager.getOptimizedScenario(locationid, this.appModelStore)
-                                .subscribe(result => {
-                                  // We should get a list of the optimized actions. Use that list on the viewer.
-                                  this.adapterViewList = result;
-                                  this.downloading = false;
-                                });
-                            });
-                        }
-                      }
-                    });
-                });
-            } else {
-              // Character accessed. Update it at the core Service.
-              this.appModelStore.setPilotById(_characterid);
-              // Get the list of Managers that can be accessed for this Character. If the list is not available then request it again to the backend.
-              this.pilot.accessPilotManagers(this.appModelStore)
-                .subscribe(result => {
-                  console.log("--[PlanetaryOptimizationPageComponent.ngOnInit.accessPilotManagers]>ManagerList: ");
-                  // Store the returned list into the current Character.
-                  this.pilot.storePilotManagers(result);
-                  // Search for the Planetary Manager from the list of Managers. There is no way to complete it differently.
-                  for (let manager of result) {
-                    if (manager.jsonClass == "PlanetaryManager") {
+                      //    for (let manager of result) {
+                      //    if (manager.jsonClass == "PlanetaryManager") {
                       // We have found the Planetary Manager. Call the backend to optimize that list.
-                      this.planetaryManager = new PlanetaryManager(manager);
+                      this.planetaryManager = new PlanetaryManager(result);
                       this.route.params.map(p => p.locationid)
                         .subscribe((locationid: number) => {
                           this.planetaryManager.getOptimizedScenario(locationid, this.appModelStore)
@@ -129,8 +102,35 @@ export class PlanetaryOptimizationPageComponent extends PageComponent implements
                               this.downloading = false;
                             });
                         });
-                    }
-                  }
+                      //    }
+                      //  }
+                    });
+                });
+            } else {
+              // Character accessed. Update it at the core Service.
+              this.appModelStore.setPilotById(_characterid);
+              // Get the list of Managers that can be accessed for this Character. If the list is not available then request it again to the backend.
+              this.pilot.accessPlanetaryManager(this.appModelStore)
+                .subscribe(result => {
+                  console.log("--[PlanetaryOptimizationPageComponent.ngOnInit.accessPilotManagers]>ManagerList: ");
+                  // Store the returned list into the current Character.
+                  //      this.pilot.storePilotManagers(result);
+                  // Search for the Planetary Manager from the list of Managers. There is no way to complete it differently.
+                  //    for (let manager of result) {
+                  //        if (manager.jsonClass == "PlanetaryManager") {
+                  // We have found the Planetary Manager. Call the backend to optimize that list.
+                  this.planetaryManager = new PlanetaryManager(result);
+                  this.route.params.map(p => p.locationid)
+                    .subscribe((locationid: number) => {
+                      this.planetaryManager.getOptimizedScenario(locationid, this.appModelStore)
+                        .subscribe(result => {
+                          // We should get a list of the optimized actions. Use that list on the viewer.
+                          this.adapterViewList = result;
+                          this.downloading = false;
+                        });
+                    });
+                  //      }
+                  //    }
                 });
             }
           });

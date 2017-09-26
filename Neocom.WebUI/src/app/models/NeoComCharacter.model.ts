@@ -15,14 +15,16 @@ import { AppModelStoreService } from '../services/app-model-store.service';
 import { NeoComNode } from './NeoComNode.model';
 import { Login } from './Login.model';
 import { Manager } from './Manager.model';
+import { AssetsManager } from './AssetsManager.model';
+import { PlanetaryManager } from './PlanetaryManager.model';
 import { PilotAction } from './pilotaction';
 
 export class NeoComCharacter extends NeoComNode {
   private _downloaded: boolean = false;
   //  private downloading: boolean = false;
   private _managerList: Manager[] = null;
-  private _assetsManager: Manager = null;
-  private _planetaryManager: Manager = null;
+  private assetsManager: AssetsManager = null;
+  private planetaryManager: PlanetaryManager = null;
 
   public characterID: number = -1.0;
   public active: boolean = true;
@@ -36,8 +38,6 @@ export class NeoComCharacter extends NeoComNode {
   constructor(values: Object = {}) {
     super();
     Object.assign(this, values);
-    // Process the Managers if available to store thir respective instances at the right place.
-    //    this._managerList = this.processManagers();
     this.jsonClass = "NeoComCharacter";
   }
 
@@ -66,93 +66,66 @@ export class NeoComCharacter extends NeoComNode {
     if (null != this.loginParent) return this.loginParent.getLoginId();
     else return "-";
   }
-  public getManagers() {
+  public getManagers(): Manager[] {
     let manlist = [];
-    if ()
+    if (null != this.assetsManager) manlist.push(this.assetsManager);
+    if (null != this.planetaryManager) manlist.push(this.planetaryManager);
+    return manlist;
   }
   /**
   Get access to the store list of Managers. If this list has not been doanloaded already then we use the Service to go to the backend server to retieve that list.
   */
-  public accessPilotManagers(downloadService: AppModelStoreService): Observable<NeoComCharacter> {
-    if (this._downloaded)
-      return new Observable(observer => {
-        setTimeout(() => {
-          observer.next(this);
-        }, 100);
-        setTimeout(() => {
-          observer.complete();
-        }, 100);
-      });
-    else {
-      this._downloaded = true;
-      // Get access to the parent login information to get the ID.
-      if (null != this.loginParent) {
-        let loginid = this.loginParent.getLoginId();
-        return downloadService.getBackendPilotManagerList(loginid, this.getId());
-      } else {
-        let loginid = downloadService.accessLogin().getLoginId();
-        return downloadService.getBackendPilotManagerList(loginid, this.getId());
-      }
+  public accessPilotDetailed(downloadService: AppModelStoreService): Observable<NeoComCharacter> {
+    // Get access to the parent login information to get the ID.
+    if (null != this.loginParent) {
+      let loginid = this.loginParent.getLoginId();
+      return downloadService.getBackendPilotDetailed(loginid, this.getId());
+    } else {
+      let loginid = downloadService.accessLogin().getLoginId();
+      return downloadService.getBackendPilotDetailed(loginid, this.getId());
     }
   }
   public accessPlanetaryManager(downloadService: AppModelStoreService): Observable<Manager> {
-    if (this._downloaded)
-      return new Observable(observer => {
-        setTimeout(() => {
-          // Search for the PLanetary Manager
-          //    if (null == this._planetaryManager) {
-          //    this._managerList = this.processManagers();
-          for (let manager of this._managerList) {
-            if (manager.jsonClass == "PlanetaryManager") {
-              // let managers = [];
-              // managers.push(manager);
-              observer.next(manager);
-              //  return;
-            }
-          }
-          //    observer.next(null);
-          // If we reach this point we have not found the manager.
-          //  throw new TypeError("Planetary Manager not found.");
-          // } else {
-          //   let managers = [];
-          //   managers.push(this._planetaryManager);
-          //   observer.next(managers);
-          // }
-        }, 100);
-        setTimeout(() => {
-          observer.complete();
-        }, 100);
-      });
-    else {
-      this._downloaded = true;
-      downloadService.getBackendPilotManagerList(this.getId());
-      // .subscribe(result => {
-      //   this._managerList = result;
-      //   return this.accessPlanetaryManager(downloadService);
-      // });
-    }
+    return new Observable(observer => {
+      setTimeout(() => {
+        observer.next(this.planetaryManager);
+      }, 500);
+      setTimeout(() => {
+        observer.complete();
+      }, 500);
+    });
   }
-  public storePilotManagers(managers: Manager[]): void {
-    this._managerList = managers;
+  public accessAssetsManager(downloadService: AppModelStoreService): Observable<Manager> {
+    return new Observable(observer => {
+      setTimeout(() => {
+        observer.next(this.assetsManager);
+      }, 500);
+      setTimeout(() => {
+        observer.complete();
+      }, 500);
+    });
   }
-  public setPlanetaryManager(manager: Manager): Manager {
-    this._planetaryManager = manager;
-    return this._planetaryManager;
-  }
-  private processManagers(): Manager[] {
-    let managers = [];
-    for (let manager of this._managerList) {
-      managers.push(manager);
-      switch (manager.jsonClass) {
-        case "AssetsManager":
-          this._assetsManager = manager;
-          break
-        case "Planetary":
-          this._planetaryManager = manager;
-          break
-      }
-
-      return managers;
-    }
-  }
+  // public storePilotManagers(managers: Manager[]): void {
+  //   this._managerList = managers;
+  // }
+  // public setPlanetaryManager(manager: Manager): Manager {
+  //   this._planetaryManager = manager;
+  //   return this._planetaryManager;
+  // }
+  // private processManagers(): Manager[] {
+  //   let managers = [];
+  //   for (let manager of this._managerList) {
+  //     managers.push(manager);
+  //     switch (manager.jsonClass) {
+  //       case "AssetsManager":
+  //         this.assetsManager = manager;
+  //         break
+  //       case "Planetary":
+  //         this.planetaryManager = manager;
+  //         break
+  //     }
+  //
+  //     return managers;
+  //   }
+  // }
 }

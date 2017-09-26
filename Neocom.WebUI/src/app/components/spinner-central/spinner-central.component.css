@@ -10,6 +10,7 @@
   padding-top: 30px;
   position: relative;
   width: 100%;
+  padding-left: 5px;
 }
 
 @keyframes spinner-in {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 
+//--- CLASSES
+import { PageComponent } from '../../classes/PageComponent';
 //--- MODELS
 import { Render } from '../../models/Render.model';
 import { Region } from '../../models/Region.model';
@@ -13,11 +15,12 @@ import { Pilot } from '../../models/Pilot.model';
   templateUrl: './pilot4-detail.component.html',
   styleUrls: ['./pilot4-detail.component.css']
 })
-export class Pilot4DetailComponent implements OnInit {
+export class Pilot4DetailComponent extends PageComponent implements OnInit {
   @Input() pilot: Pilot;
-  public expanded: boolean = true;
 
-  constructor() { }
+  constructor() {
+    super();
+  }
 
   ngOnInit() {
   }
@@ -28,5 +31,10 @@ export class Pilot4DetailComponent implements OnInit {
     if (this.pilot.corporation == true) return "CORPORATION";
     else return "PILOT";
   }
-
+  public isExpandable(): boolean {
+    return false;
+  }
+  public hasMenu(): boolean {
+    return false;
+  }
 }

@@ -108,7 +108,7 @@ export class AppModelStoreService {
   /**
   The initial version only reported the Managers but seems more effective to retieve the complete Character with theis Managers initialized.
   */
-  public getBackendPilotManagerList(loginid: string, characterid: number): Observable<NeoComCharacter> {
+  public getBackendPilotDetailed(loginid: string, characterid: number): Observable<NeoComCharacter> {
     console.log("><[AppModelStoreService.getBackendPilotManagerList]>Characterid = " + characterid);
     //  let loginid = this.accessLogin().getLoginId();
     return this.http.get(AppModelStoreService.RESOURCE_SERVICE_URL + "/login/" + loginid + "/pilot/" + characterid)
@@ -176,6 +176,9 @@ export class AppModelStoreService {
         }, 500);
       });
   }
+  /**
+  This methos was recursive that seemed to generate some inconsistencies. Removed.
+  */
   public activateLoginById(newloginid: string): Observable<Login> {
     if (null == this._loginList) {
       this.accessLoginList()
@@ -183,7 +186,20 @@ export class AppModelStoreService {
           console.log("--[AppModelStoreService.activateLoginById.accessLoginList]>");
           // Put the resulting list on the structure and reenter recursively to continue the processing.
           this._loginList = result;
-          return this.activateLoginById(newloginid);
+          // Search for the parameter login id.
+          for (let lg of this._loginList) {
+            if (lg.getLoginId() == newloginid) {
+              this._currentLogin = lg;
+              return new Observable(observer => {
+                setTimeout(() => {
+                  observer.next(this._currentLogin);
+                }, 500);
+                setTimeout(() => {
+                  observer.complete();
+                }, 500);
+              });
+            }
+          }
         });
     } else {
       // We are sure that the list is present.
@@ -201,9 +217,9 @@ export class AppModelStoreService {
           });
         }
       }
+      // We have run all the list and we have not found any Login with the right id. We should trigger an exception.
+      //  throw new TypeError("Login identifier " + newloginid + " not found. Cannot select that login");
     }
-    // We have run all the list and we have not found any Login with the right id. We should trigger an exception.
-    throw new TypeError("Login identifier " + newloginid + " not found. Cannot select that login");
   }
   /**
   Sets the new login that comes from the URL when the user selects one from the list of logins.

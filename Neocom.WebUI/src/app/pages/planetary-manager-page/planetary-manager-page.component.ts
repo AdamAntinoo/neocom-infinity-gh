@@ -72,18 +72,22 @@ export class PlanetaryManagerPageComponent extends PageComponent implements OnIn
               }
               this.pilot = this.appModelStore.accessLogin().accessCharacterById(characterid);
               // Get the list of Managers that can be accessed for this Character.
-              this.pilot.accessPilotManagers(this.appModelStore)
+              this.pilot.accessPilotDetailed(this.appModelStore)
                 .subscribe(result => {
                   console.log("--[PilotDetailPageComponent.ngOnInit.accessPilotRoaster]>ManagerList: " + JSON.stringify(result));
+                  result.setLoginReference(this.pilot.getLoginReference());
+                  this.pilot = result;
                   // Search for the Planetary Manager from the list of Managers. There is no way to complete it differently.
-                  this.pilot.storePilotManagers(result);
-                  for (let manager of result) {
-                    if (manager.jsonClass == "PlanetaryManager") {
-                      let thelist = manager.collaborate2View(this.getVariant());
-                      this.adapterViewList = thelist;
-                      this.downloading = false;
-                    }
-                  }
+                  this.pilot.accessPlanetaryManager(this.appModelStore)
+                    .subscribe(result => {
+                      if (null != result) {
+                        // for (let manager of result) {
+                        //   if (manager.jsonClass == "PlanetaryManager") {
+                        let thelist = result.collaborate2View(this.getVariant());
+                        this.adapterViewList = thelist;
+                        this.downloading = false;
+                      }
+                    });
                 });
             });
         } else {
