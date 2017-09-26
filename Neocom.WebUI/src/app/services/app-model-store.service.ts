@@ -106,6 +106,7 @@ export class AppModelStoreService {
       });
   }
 
+
   //--- L O G I N    S E C T I O N
   public accessLoginList(): Observable<Login[]> {
     console.log("><[AppModelStoreService.accessLoginList]");
@@ -121,6 +122,35 @@ export class AppModelStoreService {
           observer.complete();
         }, 500);
       });
+  }
+  public activateLoginById(newloginid: string): Observable<Login> {
+    if (null == this._loginList) {
+      this.accessLoginList()
+        .subscribe(result => {
+          console.log("--[AppModelStoreService.activateLoginById.accessLoginList]>");
+          // Put the resulting list on the structure and reenter recursively to continue the processing.
+          this._loginList = result;
+          return this.activateLoginById(newloginid);
+        });
+    } else {
+      // We are sure that the list is present.
+      // Search for the parameter login id.
+      for (let lg of this._loginList) {
+        if (lg.getLoginId() == newloginid) {
+          this._currentLogin = lg;
+          return new Observable(observer => {
+            setTimeout(() => {
+              observer.next(this._currentLogin);
+            }, 500);
+            setTimeout(() => {
+              observer.complete();
+            }, 500);
+          });
+        }
+      }
+    }
+    // We have run all the list and we have not found any Login with the right id. We should trigger an exception.
+    throw new TypeError("Login identifier " + newloginid + " not found. Cannot select that login");
   }
   /**
   Sets the new login that comes from the URL when the user selects one from the list of logins.

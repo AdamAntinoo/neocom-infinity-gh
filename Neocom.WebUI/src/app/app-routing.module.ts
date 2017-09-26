@@ -16,7 +16,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   { path: 'login', component: LoginPageComponent },
-  { path: 'login/:loginid/pilotroaster', component: PilotRoasterPageComponent },
+  //  { path: 'login/:loginid/pilotroaster', component: PilotRoasterPageComponent },
   { path: 'login/:loginid/pilot/:id', component: PilotDetailPageComponent },
   { path: 'login/:loginid/pilot/:id/PlanetaryManager', component: PlanetaryManagerPageComponent },
   { path: 'login/:loginid/pilot/:id/PlanetaryManager/location/:locationid/PlanetaryOptimization', component: PlanetaryOptimizationPageComponent },

@@ -3,10 +3,10 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
 //--- SERVICES
-import { PilotRoasterService } from '../../services/pilot-roaster.service';
+//import { PilotRoasterService } from '../../services/pilot-roaster.service';
 import { AppModelStoreService } from '../../services/app-model-store.service';
-import { PilotListDataSourceService } from '../../services/pilot-list-data-source.service';
-import { PilotManagersDataSourceService } from '../../services/pilot-managers-data-source.service';
+//import { PilotListDataSourceService } from '../../services/pilot-list-data-source.service';
+//import { PilotManagersDataSourceService } from '../../services/pilot-managers-data-source.service';
 //--- INTERFACES
 import { PageComponent } from '../../classes/PageComponent';
 import { EVariant } from '../../classes/EVariant.enumerated';
@@ -15,6 +15,7 @@ import { EVariant } from '../../classes/EVariant.enumerated';
 import { DataSourceLocator } from '../../classes/DataSourceLocator';
 //--- MODELS
 import { Render } from '../../models/Render.model';
+import { Login } from '../../models/Login.model';
 import { NeoComCharacter } from '../../models/NeoComCharacter.model';
 import { Pilot } from '../../models/Pilot.model';
 import { Region } from '../../models/Region.model';
@@ -29,75 +30,46 @@ import { Manager } from '../../models/Manager.model';
 export class PilotDetailPageComponent extends PageComponent implements OnInit {
   public adapterViewList: Manager[] = [];
   public downloading: boolean = true;
-  public pilot: NeoComCharacter;
+  public login: Login = null;
+  public pilot: NeoComCharacter = null;
 
-  //  public completed: boolean = false;
-  //  private selectedId;
-
-  constructor(private appModelStore: AppModelStoreService, private pilotManagerService: PilotManagersDataSourceService, private route: ActivatedRoute, private router: Router) {
+  constructor(private appModelStore: AppModelStoreService, private route: ActivatedRoute, private router: Router) {
     super();
+    this.setVariant(EVariant.PILOTDETAILS)
     this.setVariant(EVariant.PILOTMANAGERS)
   }
   /**
-
+Gets the parametrs from the Route. With those parameters we can get access to the data requested and required to draw the page.
   */
   ngOnInit() {
     console.log(">>[PilotDetailPageComponent.ngOnInit]");
     this.downloading = true;
-    let _characterid = null;
+    // let _characterid = null;
     // Extract the login identifier from the URL structure.
     this.route.params.map(p => p.loginid)
       .subscribe((login: string) => {
         // Set the login at the Service to update the other data structures. Pass the login id
-        this.appModelStore.setLoginById(login);
-        // Check that we have a Valid login selected.
-        if (null == this.appModelStore.accessLogin()) {
-          // Move the page back to the Login List.
-          this.router.navigate(['/login']);
-        }
+        this.appModelStore.activateLoginById(login)
+          .subscribe(result => {
+            console.log("--[PilotDetailPageComponent.ngOnInit.activateLoginById]");
+            // We have reached the selected Login. Search now for the character.
+            let selectedLogin = result;
+            this.route.params.map(p => p.id)
+              .subscribe((characterid: number) => {
+                this.pilot = selectedLogin.accessCharacterById(characterid);
+                this.pilot.accessPilotManagers(this.appModelStore)
+                  .subscribe(result => {
+                    console.log("--[PilotDetailPageComponent.ngOnInit.activateLoginById.accessPilotManagers]"); this.pilot.storePilotManagers(result);
+                    // The the list of planetary resource lists to the data returned.
+                    this.adapterViewList = result;
+                    this.downloading = false;
+                  });
+              });
+          });
       });
-    // Extract also the Pilot Identifier.
-    this.route.params.map(p => p.id)
-      .subscribe((characterid: number) => {
-        _characterid = characterid;
-        // Set the login at the Service to update the other data structures.
-        if (null == this.appModelStore.accessLogin().accessCharacterById(characterid)) {
-          // Retry the download of the roaster and then select the Pilot.
-          this.appModelStore.accessLogin().accessPilotRoaster(this.appModelStore)
-            .subscribe((roaster: NeoComCharacter[]) => {
-              this.appModelStore.accessLogin().setPilotRoaster(roaster);
-              if (null == this.appModelStore.accessLogin().accessCharacterById(characterid)) {
-                this.router.navigate(['/login', this.appModelStore.accessLogin().getLoginId(), 'pilotroaster']);
-              }
-              this.pilot = this.appModelStore.accessLogin().accessCharacterById(characterid);
-              // Get the list of Managers that can be accessed for this Character.
-              this.appModelStore.accessLogin()
-                .accessCharacterById(characterid)
-                .accessPilotManagers(this.appModelStore)
-                .subscribe(result => {
-                  console.log("--[PilotDetailPageComponent.ngOnInit.accessPilotRoaster]>ManagerList: " + JSON.stringify(result));
-                  this.pilot.storePilotManagers(result);
-                  // The the list of planetary resource lists to the data returned.
-                  this.adapterViewList = result;
-                  this.downloading = false;
-                });
-            });
-        } else {
-          this.pilot = this.appModelStore.accessLogin().accessCharacterById(characterid);
-          // Get the list of Managers that can be accessed for this Character.
-          this.appModelStore.accessLogin()
-            .accessCharacterById(characterid)
-            .accessPilotManagers(this.appModelStore)
-            .subscribe(result => {
-              console.log("--[PilotDetailPageComponent.ngOnInit.accessPilotRoaster]>ManagerList: " + JSON.stringify(result));
-              this.pilot.storePilotManagers(result);
-              // The the list of planetary resource lists to the data returned.
-              this.adapterViewList = result;
-              this.downloading = false;
-            });
-        }
-      });
-
     console.log("<<[PilotDetailPageComponent.ngOnInit]");
+  }
+  public getViewer(): PilotDetailPageComponent {
+    return this;
   }
 }
