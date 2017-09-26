@@ -15,7 +15,7 @@ import org.dimensinfin.eveonline.neocom.connector.ICacheConnector;
 import org.dimensinfin.eveonline.neocom.connector.IConnector;
 import org.dimensinfin.eveonline.neocom.connector.IDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.IStorageConnector;
-import org.dimensinfin.eveonline.neocom.connector.MicroServicesCacheConnector;
+import org.dimensinfin.eveonline.neocom.connector.MarketDataServiceCacheConnector;
 import org.dimensinfin.eveonline.neocom.interfaces.INeoComModelStore;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -85,7 +85,7 @@ public class MarketDataServiceApplication implements IConnector {
 
 	@Override
 	public ICacheConnector getCacheConnector() {
-		if (null == cacheConnector) cacheConnector = new MicroServicesCacheConnector();
+		if (null == cacheConnector) cacheConnector = new MarketDataServiceCacheConnector();
 		return cacheConnector;
 	}
 

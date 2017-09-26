@@ -6,7 +6,7 @@
 //								the SpringBoot+MicroServices+Angular unified web application.
 package org.dimensinfin.eveonline.neocom.services;
 
-import java.util.Vector;
+import java.util.concurrent.PriorityBlockingQueue;
 import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.connector.AppConnector;
@@ -21,43 +21,47 @@ import org.springframework.stereotype.Component;
 @Component
 public class TimedServiceLauncher {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger			logger					= Logger.getLogger("TimedServiceLauncher");
-	private static boolean		BLOCKED_STATUS	= false;
-	private static int				LAUNCH_LIMIT		= 2;
+	private static Logger			logger				= Logger.getLogger("TimedServiceLauncher");
+	//	private static boolean		BLOCKED_STATUS	= false;
+	private static int				LAUNCH_LIMIT	= 10;
 
 	// - F I E L D - S E C T I O N ............................................................................
 	@Autowired
 	private MarketDataServer	marketDataService;
-	private int								limit						= 0;
+	private int								limit					= 0;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 	public TimedServiceLauncher() {
 	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
-	@Scheduled(initialDelay = 10000, fixedDelay = 50000)
+	/**
+	 * Process some number of elements from the queue before sleeping for 5 seconds. During tghe processing the
+	 * extraction retrieves completed elements that should be discarded.
+	 */
+	@Scheduled(initialDelay = 10000, fixedDelay = 5000)
 	public void onTime() {
-		//		logger.info(">> [TimedServiceLauncher.onTime]");
-
 		// STEP 01. Launch pending Data Requests
 		// Get requests pending from the queue service.
-		Vector<PendingRequestEntry> requests = AppConnector.getCacheConnector().getPendingRequests();
+		PriorityBlockingQueue<PendingRequestEntry> requests = AppConnector.getCacheConnector().getPendingRequests();
 		logger.info(">> [TimedServiceLauncher.onTime]> Pending requests level: " + requests.size());
-		//		synchronized (requests) {
-		//			// Get the pending requests and order them by the priority.
-		//			Collections.sort(requests, ComparatorFactory.createComparator(EComparatorField.REQUEST_PRIORITY));
-		//		}
-
-		// Process request by priority. Additions to queue are limited.
 		limit = 0;
-		for (PendingRequestEntry entry : requests)
+		if (this.blockedMarket()) {
+			logger.info("<< [TimedServiceLauncher.onTime]> Blocked the Market processing. Exiting.");
+			return;
+		}
+		while (limit <= LAUNCH_LIMIT) {
+			// Process request by priority. Additions to queue are limited.
+			PendingRequestEntry entry = requests.poll();
+			if (null == entry) {
+				logger.info("<< [TimedServiceLauncher.onTime]> Queue empty. Exiting.");
+				return;
+			}
+			// Remove completed entries.
+			if (entry.state == ERequestState.COMPLETED) continue;
 			if (entry.state == ERequestState.PENDING) {
 				// Filter only MARKETDATA requests.
 				if (entry.reqClass == ERequestClass.MARKETDATA) {
-					if ((limit >= LAUNCH_LIMIT) || (this.blockedMarket())) {
-						logger.info("<< [TimedServiceLauncher.onTime]> Processing limite reached. Terminating run.");
-						return;
-					}
 					int localizer = entry.getContent().intValue();
 					logger.info("-- [TimedServiceLauncher.onTime]> Update Request Class [" + entry.reqClass + "] - " + localizer);
 					entry.state = ERequestState.ON_PROGRESS;
@@ -66,19 +70,8 @@ public class TimedServiceLauncher {
 					marketDataService.downloadMarketData(localizer, EMarketSide.SELLER);
 				}
 			}
-		logger.info("<< [TimedServiceLauncher.onTime]");
-	}
-
-	//	@Bean
-	//	public TaskExecutor taskExecutor() {
-	//		return new SimpleAsyncTaskExecutor(); // Or use another one of your liking
-	//	}
-
-	private boolean blockedDownload() {
-		//		// Read the flag values from the preferences.
-		//		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(_context);
-		//		boolean blockDownload = sharedPrefs.getBoolean(AppWideConstants.preference.PREF_BLOCKDOWNLOAD, false);
-		return false;
+		}
+		logger.info("<< [TimedServiceLauncher.onTime]> Terminating run.");
 	}
 
 	private boolean blockedMarket() {
