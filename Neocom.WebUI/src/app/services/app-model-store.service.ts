@@ -105,6 +105,59 @@ export class AppModelStoreService {
         return actionList;
       });
   }
+  /**
+  The initial version only reported the Managers but seems more effective to retieve the complete Character with theis Managers initialized.
+  */
+  public getBackendPilotManagerList(loginid: string, characterid: number): Observable<NeoComCharacter> {
+    console.log("><[AppModelStoreService.getBackendPilotManagerList]>Characterid = " + characterid);
+    //  let loginid = this.accessLogin().getLoginId();
+    return this.http.get(AppModelStoreService.RESOURCE_SERVICE_URL + "/login/" + loginid + "/pilot/" + characterid)
+      .map(res => res.json())
+      .map(result => {
+        let newnode = null;
+        switch (result.jsonClass) {
+          case "Corporation":
+            newnode = new Corporation(result);
+            break;
+          case "Pilot":
+            newnode = new Pilot(result);
+            break;
+          default:
+            newnode = result;
+            break;
+        }
+        return newnode;
+      });
+  }
+  // /**
+  // The initial version only reported the Managers but seems more effective to retieve the complete Character with theis Managers initialized.
+  // */
+  // public getBackendPilotManagerList(loginid:string, characterid: number): Observable<NeoComCharacter> {
+  //   console.log("><[AppModelStoreService.getBackendPilotManagerList]>Characterid = " + characterid);
+  // //  let loginid = this.accessLogin().getLoginId();
+  //   return this.http.get(AppModelStoreService.RESOURCE_SERVICE_URL + "/login/" + loginid + "/pilot/" + characterid )
+  //     .map(res => res.json())
+  //     .map(result => {
+  //       let roaster: Manager[] = [];
+  //       for (let manager of result) {
+  //         // Check the differentiation between Pilot and Corporation.
+  //         let newman = null;
+  //         switch (manager.jsonClass) {
+  //           case "AssetsManager":
+  //             newman = new AssetsManager(manager);
+  //             break;
+  //           case "PlanetaryManager":
+  //             newman = new PlanetaryManager(manager);
+  //             break;
+  //           default:
+  //             newman = new Manager(manager);
+  //             break;
+  //         }
+  //         roaster.push(newman);
+  //       }
+  //       return roaster;
+  //     });
+  // }
 
 
   //--- L O G I N    S E C T I O N
@@ -237,32 +290,6 @@ export class AppModelStoreService {
         }
         // Before returning the data set it to the Model hierarchy.
         this._currentLogin.setPilotRoaster(roaster);
-        return roaster;
-      });
-  }
-  public getBackendPilotManagerList(characterid: number): Observable<Manager[]> {
-    console.log("><[AppModelStoreService.getBackendPilotManagerList]>Characterid = " + characterid);
-    let loginid = this.accessLogin().getLoginId();
-    return this.http.get(AppModelStoreService.RESOURCE_SERVICE_URL + "/login/" + loginid + "/pilot/" + characterid + "/pilotmanagers")
-      .map(res => res.json())
-      .map(result => {
-        let roaster: Manager[] = [];
-        for (let manager of result) {
-          // Check the differentiation between Pilot and Corporation.
-          let newman = null;
-          switch (manager.jsonClass) {
-            case "AssetsManager":
-              newman = new AssetsManager(manager);
-              break;
-            case "PlanetaryManager":
-              newman = new PlanetaryManager(manager);
-              break;
-            default:
-              newman = new Manager(manager);
-              break;
-          }
-          roaster.push(newman);
-        }
         return roaster;
       });
   }

@@ -59,18 +59,25 @@ export class NeoComCharacter extends NeoComNode {
   public setLoginReference(ref: Login): void {
     this.loginParent = ref;
   }
+  public getLoginReference(): Login {
+    return this.loginParent;
+  }
   public getLoginRefId(): string {
     if (null != this.loginParent) return this.loginParent.getLoginId();
     else return "-";
   }
+  public getManagers() {
+    let manlist = [];
+    if ()
+  }
   /**
   Get access to the store list of Managers. If this list has not been doanloaded already then we use the Service to go to the backend server to retieve that list.
   */
-  public accessPilotManagers(downloadService: AppModelStoreService): Observable<Manager[]> {
+  public accessPilotManagers(downloadService: AppModelStoreService): Observable<NeoComCharacter> {
     if (this._downloaded)
       return new Observable(observer => {
         setTimeout(() => {
-          observer.next(this._managerList);
+          observer.next(this);
         }, 100);
         setTimeout(() => {
           observer.complete();
@@ -78,7 +85,14 @@ export class NeoComCharacter extends NeoComNode {
       });
     else {
       this._downloaded = true;
-      return downloadService.getBackendPilotManagerList(this.getId());
+      // Get access to the parent login information to get the ID.
+      if (null != this.loginParent) {
+        let loginid = this.loginParent.getLoginId();
+        return downloadService.getBackendPilotManagerList(loginid, this.getId());
+      } else {
+        let loginid = downloadService.accessLogin().getLoginId();
+        return downloadService.getBackendPilotManagerList(loginid, this.getId());
+      }
     }
   }
   public accessPlanetaryManager(downloadService: AppModelStoreService): Observable<Manager> {

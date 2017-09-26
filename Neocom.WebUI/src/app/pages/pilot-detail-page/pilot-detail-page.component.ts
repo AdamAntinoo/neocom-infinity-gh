@@ -59,9 +59,12 @@ Gets the parametrs from the Route. With those parameters we can get access to th
                 this.pilot = selectedLogin.accessCharacterById(characterid);
                 this.pilot.accessPilotManagers(this.appModelStore)
                   .subscribe(result => {
-                    console.log("--[PilotDetailPageComponent.ngOnInit.activateLoginById.accessPilotManagers]"); this.pilot.storePilotManagers(result);
+                    console.log("--[PilotDetailPageComponent.ngOnInit.activateLoginById.accessPilotManagers]");
+                    // Copnserve the current Login reference.
+                    result.setLoginReference(this.pilot.getLoginReference());
+                    this.pilot = result;
                     // The the list of planetary resource lists to the data returned.
-                    this.adapterViewList = result;
+                    this.adapterViewList = this.pilot.getManagers();
                     this.downloading = false;
                   });
               });
