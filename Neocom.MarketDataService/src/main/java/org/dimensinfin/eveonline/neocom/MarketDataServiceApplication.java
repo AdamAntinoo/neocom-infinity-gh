@@ -8,6 +8,9 @@ package org.dimensinfin.eveonline.neocom;
 
 import java.util.logging.Logger;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.dimensinfin.eveonline.neocom.connector.AppConnector;
 import org.dimensinfin.eveonline.neocom.connector.CCPDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.ICCPDatabaseConnector;
@@ -17,6 +20,7 @@ import org.dimensinfin.eveonline.neocom.connector.IDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.IStorageConnector;
 import org.dimensinfin.eveonline.neocom.connector.MarketDataServiceCacheConnector;
 import org.dimensinfin.eveonline.neocom.interfaces.INeoComModelStore;
+import org.dimensinfin.eveonline.neocom.services.MarketDataServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -68,14 +72,14 @@ public class MarketDataServiceApplication implements IConnector {
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 	public MarketDataServiceApplication() {
-		logger.info(">> [NeocomMicroServiceApplication.<constructor>]");
+		logger.info(">> [MarketDataServiceApplication.<constructor>]");
 		// Create and connect the adapters.
 		if (null == singleton) {
-			logger.info("-- [NeocomMicroServiceApplication.<constructor>]> Instantiating the singleton.");
+			logger.info("-- [MarketDataServiceApplication.<constructor>]> Instantiating the singleton.");
 			singleton = this;
 		}
 		AppConnector.setConnector(singleton);
-		logger.info("<< [NeocomMicroServiceApplication.<constructor>]");
+		logger.info("<< [MarketDataServiceApplication.<constructor>]");
 	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
@@ -112,11 +116,34 @@ public class MarketDataServiceApplication implements IConnector {
 		throw new RuntimeException("Application connector not defined. Functionality 'getStorageConnector' disabled.");
 	}
 
+	/**
+	 * Run this after the application is initialized. The contents are to read back from persistence storage the
+	 * cache contents before starting the application.
+	 */
+	@PostConstruct
+	public void postConstruct() {
+		logger.info(">> [MarketDataServiceApplication.postConstruct]");
+		// Read back the cache contents
+		MarketDataServer.readCacheFromStorage();
+		logger.info("<< [MarketDataServiceApplication.postConstruct]");
+	}
+
 	// - W E B   E N T R Y   P O I N T S
 	// Register the hystrix.stream to publish hystrix data to the dashboard
 	@Bean
 	public ServletRegistrationBean servletRegistrationBean() {
 		return new ServletRegistrationBean(new HystrixMetricsStreamServlet(), "/hystrix.stream");
+	}
+
+	/**
+	 * Run this before termianting the application. I should write the cache to disk for persistence.
+	 */
+	@PreDestroy
+	public void terminate() {
+		logger.info(">> [MarketDataServiceApplication.terminate]");
+		// Write the cache contents
+		MarketDataServer.writeCacheToStorage();
+		logger.info("<< [MarketDataServiceApplication.terminate]");
 	}
 }
 // - UNUSED CODE ............................................................................................

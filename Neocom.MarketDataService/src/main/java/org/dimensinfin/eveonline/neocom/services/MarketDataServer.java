@@ -6,10 +6,18 @@
 package org.dimensinfin.eveonline.neocom.services;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Hashtable;
@@ -44,19 +52,69 @@ import org.xml.sax.SAXException;
 @CacheConfig(cacheNames = "MarketData")
 public class MarketDataServer {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger															logger							= Logger.getLogger("MarketDataService");
+	private static Logger														logger							= Logger.getLogger("MarketDataService");
+	private static final String											CACHESTORE_FILENAME	= "./MarketDataService.store";
+	public static Hashtable<Integer, MarketDataSet>	buyMarketDataCache	= new Hashtable<Integer, MarketDataSet>();
+	public static Hashtable<Integer, MarketDataSet>	sellMarketDataCache	= new Hashtable<Integer, MarketDataSet>();
+
+	@SuppressWarnings("unchecked")
+	public synchronized static void readCacheFromStorage() {
+		File modelStoreFile = new File(CACHESTORE_FILENAME);
+		try {
+			final BufferedInputStream buffer = new BufferedInputStream(new FileInputStream(modelStoreFile));
+			final ObjectInputStream input = new ObjectInputStream(buffer);
+			try {
+				//				this.getStore().setApiKeys((HashMap<Integer, NeoComApiKey>) input.readObject());
+				buyMarketDataCache = (Hashtable<Integer, MarketDataSet>) input.readObject();
+				logger.info("-- [MarketDataServer.readCacheFromStorage]> Restored cache BUY");
+				sellMarketDataCache = (Hashtable<Integer, MarketDataSet>) input.readObject();
+				logger.info("-- [MarketDataServer.readCacheFromStorage]> Restored cache SELL");
+			} finally {
+				input.close();
+				buffer.close();
+			}
+		} catch (final ClassNotFoundException ex) {
+			logger.warning("W> [MarketDataServer.readCacheFromStorage]>ClassNotFoundException."); //$NON-NLS-1$
+		} catch (final FileNotFoundException fnfe) {
+			logger.warning("W> [MarketDataServer.readCacheFromStorage]>FileNotFoundException."); //$NON-NLS-1$
+		} catch (final IOException ex) {
+			logger.warning("W> [MarketDataServer.readCacheFromStorage]>IOException."); //$NON-NLS-1$
+		} catch (final RuntimeException rex) {
+			rex.printStackTrace();
+		}
+	}
+
+	public synchronized static void writeCacheToStorage() {
+		File modelStoreFile = new File(CACHESTORE_FILENAME);
+		try {
+			final BufferedOutputStream buffer = new BufferedOutputStream(new FileOutputStream(modelStoreFile));
+			final ObjectOutput output = new ObjectOutputStream(buffer);
+			try {
+				output.writeObject(buyMarketDataCache);
+				logger.info("-- [MarketDataServer.writeCacheToStorage]> Wrote cache BUY");
+				output.writeObject(sellMarketDataCache);
+				logger.info("-- [MarketDataServer.writeCacheToStorage]> Wrote cache SELL");
+			} finally {
+				output.flush();
+				output.close();
+				buffer.close();
+			}
+		} catch (final FileNotFoundException fnfe) {
+			logger.warning("W> [MarketDataServer.writeCacheToStorage]>FileNotFoundException."); //$NON-NLS-1$
+		} catch (final IOException ex) {
+			logger.warning("W> [MarketDataServer.writeCacheToStorage]>IOException."); //$NON-NLS-1$
+		}
+	}
 
 	// - F I E L D - S E C T I O N ............................................................................
-	protected final Hashtable<Integer, MarketDataSet>	buyMarketDataCache	= new Hashtable<Integer, MarketDataSet>();
-	protected final Hashtable<Integer, MarketDataSet>	sellMarketDataCache	= new Hashtable<Integer, MarketDataSet>();
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 
+	// - M E T H O D - S E C T I O N ..........................................................................
 	@CacheEvict(allEntries = true)
 	public void clearCache() {
 	}
 
-	// - M E T H O D - S E C T I O N ..........................................................................
 	/**
 	 * This should represent the service entry point. It will be called by the common implementation. It should
 	 * receive the localized key for the eve item and be called after the network availability has been checked
