@@ -3,7 +3,8 @@ import { IPage } from './IPage.interface';
 import { EVariant } from './EVariant.enumerated';
 
 export class PageComponent implements IPage {
-  public expanded: boolean = true;
+  public expanded: boolean = false;
+  private _expandable: boolean = false;
   private _variant: EVariant = EVariant.DEFAULT;
 
   public getVariant(): EVariant {
@@ -19,7 +20,11 @@ export class PageComponent implements IPage {
     this.expanded = !this.expanded;
   }
   public isExpandable(): boolean {
-    return false;
+    return this._expandable;
+  }
+  public setExpandable(flag: boolean): boolean {
+    this._expandable = flag;
+    return this._expandable;
   }
   public hasMenu(): boolean {
     return false;

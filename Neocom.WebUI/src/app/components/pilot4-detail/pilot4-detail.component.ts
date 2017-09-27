@@ -24,17 +24,8 @@ export class Pilot4DetailComponent extends PageComponent implements OnInit {
 
   ngOnInit() {
   }
-  public onClickArrow(): void {
-    this.expanded = !this.expanded;
-  }
   public getCharacterClass(): string {
     if (this.pilot.corporation == true) return "CORPORATION";
     else return "PILOT";
-  }
-  public isExpandable(): boolean {
-    return false;
-  }
-  public hasMenu(): boolean {
-    return false;
   }
 }

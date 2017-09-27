@@ -7,8 +7,8 @@
         <div class="neocom-marked-name" id="neocom-ts14">{{pilot.delegatedCharacter.corporationName}}</div>
         <div id="neocom-ts14">
           <span class="">{{pilot.characterSheet.gender}}</span> -
-          <span class="neocom-pilot-data">{{pilot.characterSheet.race | lowercase | capitalizeLetter}}</span>          -
-          <span class="neocom-pilot-data">{{pilot.characterSheet.bloodLine | lowercase | capitalizeLetter}}</span>          -
+          <span class="neocom-pilot-data">{{pilot.characterSheet.race | lowercase | capitalizeLetter}}</span> -
+          <span class="neocom-pilot-data">{{pilot.characterSheet.bloodLine | lowercase | capitalizeLetter}}</span> -
           <span class="neocom-pilot-data">{{pilot.characterSheet.ancestry | lowercase | capitalizeLetter}}</span>
         </div>
 
@@ -23,20 +23,20 @@
         <span class="neocom-pilot-data neocom-data-size-12">Secutiry Status:</span>
         <span class="neocom-pilot-data neocom-data-size-14">{{pilot.characterInfo.securityStatus | number:'1.2-2'}}</span>
       </td>
-      <td width="40%" class="neocom-panel-right-box" align="right ">
+      <td width="40%" class="neocom-panel-right-box" align="right">
         <div class="neocom-account-class">{{getCharacterClass()}}</div>
         <div>
           <span class="neocom-pilot-data neocom-data-size-12">Total SP:</span>
           <span class="neocom-pilot-data neocom-data-size-14 neocom-marked-name">{{pilot.characterInfo.skillPoints | number:'1.0-0'}}</span>
         </div>
         <div>
-          <span class="neocom-pilot-data neocom-data-size-12">Account status:</span><br>
+          <span class="lined-bottomline" id="neocom-ts12">Account status</span><br>
           <span class="neocom-pilot-data neocom-data-size-14">{{pilot.characterSheet.cloneName}}</span><br>
-          <span class="neocom-pilot-data neocom-data-size-12" style="color:red">Expired</span><br>
+          <span class="" id="neocom-ts14" style="color:red">Expired</span><br>
         </div>
       </td>
       <td width="5%" *ngIf="isExpandable()" class="neocom-arrow-box" (click)="clickArrow()">
-        <img class="neocom-arrow" [ngClass]="{'neocom-arrow-expanded': node.expanded}" src="/assets/icons/arrowright.png ">
+        <img class="neocom-arrow" [ngClass]="{'neocom-arrow-expanded': pilot.expanded}" src="/assets/icons/arrowright.png ">
       </td>
     </tr>
     <!-- <tr class="row-separator" *ngIf="expanded">
