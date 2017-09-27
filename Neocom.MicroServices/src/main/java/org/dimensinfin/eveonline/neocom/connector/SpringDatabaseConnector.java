@@ -291,6 +291,34 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 	}
 
 	/**
+	 * Return the list of all the distinct Locations where a Character has assets. There is one location with a
+	 * minus value id that is the <code>undefined</code> that contains all the items inside another elements
+	 * (before assets processing) and the items on stations or space locations that do not belong to this
+	 * character.<br>
+	 * Once the assets are processed inside a location this list can change because it may contain other
+	 * elements that are Ships or Containers. When processing the list we should connect them properly on the
+	 * new hierarchy.<br>
+	 * 
+	 * @return
+	 */
+	public List<NeoComAsset> queryAllAssetLocations(final long identifier) {
+		// Get access to one assets with a distinct location. Discard the rest of the data and only process the Location id
+		List<NeoComAsset> uniqueLocations = new Vector<NeoComAsset>();
+		try {
+			Dao<NeoComAsset, String> assetDao = this.getAssetDAO();
+			QueryBuilder<NeoComAsset, String> queryBuilder = assetDao.queryBuilder().distinct().selectColumns("locationID");
+			Where<NeoComAsset, String> where = queryBuilder.where();
+			where.eq("ownerID", identifier);
+			PreparedQuery<NeoComAsset> preparedQuery = queryBuilder.prepare();
+			uniqueLocations = assetDao.query(preparedQuery);
+		} catch (java.sql.SQLException sqle) {
+			sqle.printStackTrace();
+			logger.warning("W [SpringDatabaseConnector.queryAllLogins]> Excpetion reading all Logins" + sqle.getMessage());
+		}
+		return uniqueLocations;
+	}
+
+	/**
 	 * Reads all the keys stored at the database and classified them into a set of Login names.
 	 */
 	@Override

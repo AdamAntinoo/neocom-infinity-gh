@@ -49,23 +49,28 @@ Gets the parametrs from the Route. With those parameters we can get access to th
     this.route.params.map(p => p.loginid)
       .subscribe((login: string) => {
         // Set the login at the Service to update the other data structures. Pass the login id
-        this.appModelStore.activateLoginById(login)
+        this.appModelStore.accessLoginList()
           .subscribe(result => {
-            console.log("--[PilotDetailPageComponent.ngOnInit.activateLoginById]");
-            // We have reached the selected Login. Search now for the character.
-            let selectedLogin = result;
-            this.route.params.map(p => p.id)
-              .subscribe((characterid: number) => {
-                this.pilot = selectedLogin.accessCharacterById(characterid);
-                this.pilot.accessPilotDetailed(this.appModelStore)
-                  .subscribe(result => {
-                    console.log("--[PilotDetailPageComponent.ngOnInit.activateLoginById.accessPilotManagers]");
-                    // Copnserve the current Login reference.
-                    result.setLoginReference(this.pilot.getLoginReference());
-                    this.pilot = result;
-                    // The the list of planetary resource lists to the data returned.
-                    this.adapterViewList = this.pilot.getManagers();
-                    this.downloading = false;
+            console.log("--[PilotDetailPageComponent.ngOnInit.accessLoginList]");
+            this.appModelStore.setLoginList(result);
+            this.appModelStore.activateLoginById(login)
+              .subscribe(result => {
+                console.log("--[PilotDetailPageComponent.ngOnInit.activateLoginById]");
+                // We have reached the selected Login. Search now for the character.
+                let selectedLogin = result;
+                this.route.params.map(p => p.id)
+                  .subscribe((characterid: number) => {
+                    this.pilot = selectedLogin.accessCharacterById(characterid);
+                    this.pilot.accessPilotDetailed(this.appModelStore)
+                      .subscribe(result => {
+                        console.log("--[PilotDetailPageComponent.ngOnInit.activateLoginById.accessPilotManagers]");
+                        // Copnserve the current Login reference.
+                        result.setLoginReference(this.pilot.getLoginReference());
+                        this.pilot = result;
+                        // The the list of planetary resource lists to the data returned.
+                        this.adapterViewList = this.pilot.getManagers();
+                        this.downloading = false;
+                      });
                   });
               });
           });

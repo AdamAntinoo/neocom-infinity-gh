@@ -19,6 +19,7 @@ import org.dimensinfin.eveonline.neocom.generator.PilotManagersGenerator;
 import org.dimensinfin.eveonline.neocom.generator.PilotRoasterGenerator;
 import org.dimensinfin.eveonline.neocom.interfaces.IModelGenerator;
 import org.dimensinfin.eveonline.neocom.manager.AbstractManager;
+import org.dimensinfin.eveonline.neocom.manager.AssetsManager;
 import org.dimensinfin.eveonline.neocom.manager.PlanetaryManager;
 import org.dimensinfin.eveonline.neocom.model.NeoComCharacter;
 import org.dimensinfin.eveonline.neocom.model.Pilot;
@@ -50,7 +51,8 @@ public class PilotDataController {
 			AppConnector.getModelStore().activateLoginIdentifier(login);
 			NeoComCharacter pilot = AppConnector.getModelStore().activatePilot(Long.valueOf(identifier));
 			// Activate the managers one by one and return the new Character.
-			pilot.getAssetsManager().initialize();
+			// The Assets Manager is an special case. Remove and punt another clean one.
+			pilot.setAssetsManager(new AssetsManager(pilot).initialize());
 			pilot.getPlanetaryManager().initialize();
 			// Get a new model interface for the Pilot roaster using as unique identifier the login.
 			//			DataSourceLocator locator = new DataSourceLocator().addIdentifier(login).addIdentifier(identifier)
