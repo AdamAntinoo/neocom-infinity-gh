@@ -22,7 +22,7 @@ import org.dimensinfin.eveonline.neocom.model.EveLocation;
 // - CLASS IMPLEMENTATION ...................................................................................
 public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger										logger									= Logger.getLogger("CCPDatabaseConnector.java");
+	private static Logger										logger									= Logger.getLogger("CCPDatabaseConnector");
 	private static final String							CCPDATABASE_URL					= "jdbc:sqlite:src/main/resources/eve.db";
 
 	// - F I E L D   I N D E X   D E F I N I T I O N S

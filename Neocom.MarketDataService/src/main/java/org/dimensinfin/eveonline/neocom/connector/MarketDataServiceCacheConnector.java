@@ -8,8 +8,6 @@ package org.dimensinfin.eveonline.neocom.connector;
 
 import java.util.logging.Logger;
 
-import org.dimensinfin.eveonline.neocom.core.CoreCacheConnector;
-
 // - CLASS IMPLEMENTATION ...................................................................................
 /**
  * This implements the Cacdhe Connector and implements the specific platform methods that require the

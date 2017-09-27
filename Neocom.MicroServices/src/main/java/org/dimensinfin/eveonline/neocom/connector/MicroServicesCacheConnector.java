@@ -9,7 +9,6 @@ package org.dimensinfin.eveonline.neocom.connector;
 import java.util.Hashtable;
 import java.util.logging.Logger;
 
-import org.dimensinfin.eveonline.neocom.core.CoreCacheConnector;
 import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
 import org.dimensinfin.eveonline.neocom.market.MarketDataSet;
 import org.dimensinfin.eveonline.neocom.services.MarketDataClient;
