@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Input } from '@angular/core';
@@ -10,8 +11,10 @@ import { Input } from '@angular/core';
 })
 export class SpinnerCentralComponent implements OnInit {
   @Input() configuration: any = { title: "-TITLE-", subtitle: "-SUBTITLE-" };
+  public timer;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
@@ -22,5 +25,18 @@ export class SpinnerCentralComponent implements OnInit {
   public getSubTitle(): string {
     if (null == this.configuration) return "-SUBTITLE-";
     else return this.configuration.subtitle;
+  }
+  public timeLapseTimer() {
+    Observable.interval(1000)
+      .map((x) => x + 1)
+      .subscribe((x) => {
+        this.timer = x;
+      });
+  }
+  public checkTimer() {
+    if (this.configuration.subtitle == "-TIMER-") {
+      this.timeLapseTimer();
+      return true;
+    } else return false;
   }
 }

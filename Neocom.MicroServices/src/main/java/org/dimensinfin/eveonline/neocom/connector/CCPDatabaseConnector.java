@@ -266,7 +266,7 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 				ex.printStackTrace();
 			}
 		}
-		logger.info("~~ Time lapse for [SELECT STATIONTYPEID " + stationID + "] " + AppConnector.timeLapse());
+		//	logger.info("~~ Time lapse for [SELECT STATIONTYPEID " + stationID + "] " + AppConnector.timeLapse());
 		return stationTypeID;
 	}
 

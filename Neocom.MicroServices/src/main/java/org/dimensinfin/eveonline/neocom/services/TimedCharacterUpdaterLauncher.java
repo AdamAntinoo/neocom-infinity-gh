@@ -19,12 +19,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class TimedCharacterUpdaterLauncher {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger		logger					= Logger.getLogger("TimedCharacterUpdaterLauncher");
-	private static boolean	BLOCKED_STATUS	= false;
-	private static int			LAUNCH_LIMIT		= 30;
+	private static Logger logger = Logger.getLogger("TimedCharacterUpdaterLauncher");
+	//	private static boolean	BLOCKED_STATUS	= false;
+	//	private static int			LAUNCH_LIMIT		= 30;
 
 	// - F I E L D - S E C T I O N ............................................................................
-	private final int				limit						= 0;
+	//	private final int				limit						= 0;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 	public TimedCharacterUpdaterLauncher() {
@@ -48,24 +48,5 @@ public class TimedCharacterUpdaterLauncher {
 		}
 		logger.info("<< [TimedCharacterUpdaterLauncher.onTime]");
 	}
-
-	//	@Bean
-	//	public TaskExecutor taskExecutor() {
-	//		return new SimpleAsyncTaskExecutor(); // Or use another one of your liking
-	//	}
-
-	//	private boolean blockedDownload() {
-	//		//		// Read the flag values from the preferences.
-	//		//		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(_context);
-	//		//		boolean blockDownload = sharedPrefs.getBoolean(AppWideConstants.preference.PREF_BLOCKDOWNLOAD, false);
-	//		return false;
-	//	}
-	//
-	//	private boolean blockedMarket() {
-	//		//		// Read the flag values from the preferences.
-	//		//		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(_context);
-	//		//		boolean blockDownload = sharedPrefs.getBoolean(AppWideConstants.preference.PREF_BLOCKMARKET, false);
-	//		return false;
-	//	}
 }
 // - UNUSED CODE ............................................................................................
