@@ -20,7 +20,6 @@ import org.dimensinfin.eveonline.neocom.generator.PilotRoasterGenerator;
 import org.dimensinfin.eveonline.neocom.interfaces.IModelGenerator;
 import org.dimensinfin.eveonline.neocom.manager.AbstractManager;
 import org.dimensinfin.eveonline.neocom.manager.AssetsManager;
-import org.dimensinfin.eveonline.neocom.manager.PlanetaryManager;
 import org.dimensinfin.eveonline.neocom.model.NeoComCharacter;
 import org.dimensinfin.eveonline.neocom.model.Pilot;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -104,7 +103,7 @@ public class PilotDataController {
 
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/login/{login}/pilot/{identifier}/planetarymanager", method = RequestMethod.GET, produces = "application/json")
-	public PlanetaryManager pilotPlanetaryManager(@PathVariable final String login,
+	public AbstractManager pilotPlanetaryManager(@PathVariable final String login,
 			@PathVariable final String identifier) {
 		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/pilot/{identifier}/planetarymanager");
 		logger.info(">> [PilotRoasterController.pilotPlanetaryManager]");

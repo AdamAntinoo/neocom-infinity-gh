@@ -7,11 +7,13 @@
 package org.dimensinfin.eveonline.neocom.connector;
 
 import java.util.Hashtable;
+import java.util.Vector;
 import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
 import org.dimensinfin.eveonline.neocom.market.MarketDataSet;
 import org.dimensinfin.eveonline.neocom.services.MarketDataClient;
+import org.dimensinfin.eveonline.neocom.services.PendingRequestEntry;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 public class MicroServicesCacheConnector extends CoreCacheConnector implements ICacheConnector {
@@ -45,6 +47,12 @@ public class MicroServicesCacheConnector extends CoreCacheConnector implements I
 			topCounter = 0;
 		}
 		return topCounter;
+	}
+
+	@Override
+	public Vector<PendingRequestEntry> getAndroidPendingRequests() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override

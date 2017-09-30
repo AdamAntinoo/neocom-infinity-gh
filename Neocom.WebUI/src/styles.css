@@ -233,8 +233,8 @@ body {
 .stack-counter {
   font-size: 22px;
   font-weight: 600;
-  /*padding-bottom: 3px;*/
-  padding-top: 3px;
+  padding-top: 2px;
+  color: white;
 }
 
 
@@ -248,6 +248,10 @@ body {
 
 .neocom-arrow {
   filter: blur(1px);
+}
+
+.neocom-arrow-expanded {
+  transform: rotate(90deg);
 }
 
 

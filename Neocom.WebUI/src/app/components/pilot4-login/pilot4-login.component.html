@@ -5,8 +5,26 @@
         <td><img class="neocom-pilot-avatar" src="{{node.urlforAvatar}}" id="iconsize-48"></td>
         <td width="70% " class="neocom-panel-column">
           <div class="neocom-selectable-name">{{node.name}}</div>
-          <div class="pilot-balance glow-white lined-bottomline" id="neocom-ts12">{{node.accountBalance | number:'1.2-2'}} ISK</div>
-          <div class="neocom-label">Balance</div>
+          <table cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+              <td align="left">
+                <div class="pilot-balance glow-white lined-bottomline" id="neocom-ts12">{{node.accountBalance | number:'1.2-2'}} ISK</div>
+              </td>
+              <td align="right">
+                <div class="stack-counter glow-white lined-bottomline" id="neocom-ts12">{{node.assetsManager.assetTotalCount | number:'1.0-0'}}</div>
+              </td>
+            </tr>
+            <tr>
+              <td align="left">
+                <div class="neocom-label">Balance</div>
+              </td>
+              <td align="right">
+                <div class="neocom-label">Assets</div>
+              </td>
+            </tr>
+          </table>
+
+
           <!-- <span class="neocom-pilot-data neocom-data-size-12">Active Ship:</span>
               <span class="neocom-marked-name">{{node.characterInfo.shipName}}</span> -->
           <!-- <span class="neocom-pilot-data"> - [{{node.characterInfo.shipTypeName}}]</span><br> -->

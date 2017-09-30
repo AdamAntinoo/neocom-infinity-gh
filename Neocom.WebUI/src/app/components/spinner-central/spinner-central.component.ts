@@ -23,8 +23,8 @@ export class SpinnerCentralComponent implements OnInit {
     else return this.configuration.title;
   }
   public getSubTitle(): string {
-    if (null == this.configuration) return "-SUBTITLE-";
-    else return this.configuration.subtitle;
+    if (null == this.configuration) return this.timer;
+    else return this.configuration.subtitle + " - " + this.timer;
   }
   public timeLapseTimer() {
     Observable.interval(1000)

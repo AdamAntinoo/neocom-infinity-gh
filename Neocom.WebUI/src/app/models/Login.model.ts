@@ -125,6 +125,7 @@ export class Login extends NeoComNode {
     if (this.expanded) {
       //  collab.push(new Separator());
       console.log("--[Login.collaborate2View]>Collaborating " + this.jsonClass);
+      collab.push(new Separator());
       collab.push(this);
       // Process each item at the rootlist for more collaborations.
       for (let node of this.characters) {
