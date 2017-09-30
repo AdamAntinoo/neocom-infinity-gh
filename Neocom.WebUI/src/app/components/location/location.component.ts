@@ -29,6 +29,10 @@ export class LocationComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  public getIdentifier(): number {
+    return Math.max(Math.max(Math.max(this.node.stationID, this.node.systemID), this.node.constellationID), this.node.regionID);
+  }
   public toggleExpanded() {
     this.node.toggleExpanded();
     this.viewer.refreshViewPort();

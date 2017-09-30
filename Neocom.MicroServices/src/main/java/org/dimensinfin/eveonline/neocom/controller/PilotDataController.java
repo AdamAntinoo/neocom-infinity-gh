@@ -42,7 +42,7 @@ public class PilotDataController {
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/login/{login}/pilot/{identifier}", method = RequestMethod.GET, produces = "application/json")
 	public NeoComCharacter pilotDetailed(@PathVariable final String login, @PathVariable final String identifier) {
-		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/login/{login}/pilot/{" + identifier + "}");
+		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/login/{" + login + "}/pilot/{" + identifier + "}");
 		logger.info(">> [PilotRoasterController.pilotDetailed]");
 		//	Vector<AbstractManager> managerList = new Vector<AbstractManager>();
 		try {

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+//--- SERVICES
+import { AppModelStoreService } from '../../services/app-model-store.service';
+
 @Component({
   selector: 'neocom-header',
   templateUrl: './header.component.html',
@@ -7,11 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private appModelStore: AppModelStoreService) { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  public getAppName() {
+    return this.appModelStore.getApplicationName();
   }
-  public getVersion(): string {
-    return "v 0.1.0 stable";
+
+  public getVersion() {
+    return this.appModelStore.getApplicationVersion();
   }
 }

@@ -39,7 +39,7 @@ export class PilotDetailPageComponent extends PageComponent implements OnInit {
     this.setVariant(EVariant.PILOTMANAGERS)
   }
   /**
-Gets the parametrs from the Route. With those parameters we can get access to the data requested and required to draw the page.
+  Gets the parametrs from the Route. With those parameters we can get access to the data requested and required to draw the page.
   */
   ngOnInit() {
     console.log(">>[PilotDetailPageComponent.ngOnInit]");

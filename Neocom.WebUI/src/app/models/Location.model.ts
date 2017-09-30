@@ -11,7 +11,12 @@ export class Location extends NeoComNode {
 
   // public location: string = "LOCATION";
   // public position: string;
-  public id;
+  //  public id;
+  public stationID;
+  public systemID;
+  public constellationID;
+  public regionID;
+
   public children = [];
   public stackCount: number = 0;
 
@@ -28,6 +33,7 @@ export class Location extends NeoComNode {
     }
     this.stackCount = this.children.length;
   }
+
   public collaborate2View(variant: EVariant): NeoComNode[] {
     let collab = [];
     // If the node is expanded then add its assets.
@@ -48,7 +54,7 @@ export class Location extends NeoComNode {
     } else collab.push(this);
     return collab;
   }
-  public getLocationId() {
-    return this.id;
+  public getLocationId(): number {
+    return Math.max(Math.max(Math.max(this.stationID, this.systemID), this.constellationID), this.regionID);
   }
 }

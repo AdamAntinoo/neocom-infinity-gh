@@ -38,6 +38,8 @@ import { Separator } from '../models/Separator.model';
 
 @Injectable()
 export class AppModelStoreService {
+  static APPLICATION_NAME: string = "NeoCom";
+  static APPLICATION_VERSION: string = "v 0.2.0 - STABLE"
   static APPLICATION_SERVICE_PORT = "9000";
   static RESOURCE_SERVICE_URL: string = "http://localhost:" + AppModelStoreService.APPLICATION_SERVICE_PORT + "/api/v1";
 
@@ -50,6 +52,14 @@ export class AppModelStoreService {
   private _viewList: Observable<Array<Render>>;
 
   constructor(private http: Http, private router: Router) { }
+
+  //--- C O M M O N    C A L L S
+  public getApplicationName(): string {
+    return AppModelStoreService.APPLICATION_NAME;
+  }
+  public getApplicationVersion(): string {
+    return AppModelStoreService.APPLICATION_VERSION;
+  }
 
   //--- B A C K E N D    C A L L S
   /**

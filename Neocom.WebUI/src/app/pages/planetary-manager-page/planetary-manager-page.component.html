@@ -1,13 +1,8 @@
-<p>
-  planetary-manager-page works!
-</p>
-<div>
-  <span>Planetary Manager</span>
-  <span>Resources By Location</span>
+<div class="title-box">
+  <div class="title">Planetary Manager</div>
+  <div class="subtitle">Resources By Location</div>
 </div>
-<div width="60%" height="30px">
-  <span class="spinner spinner-location"></span>
-</div>
+<neocom-spinner-central *ngIf="downloading" [configuration]="{title:'Downloading Planetary Resources',subtitle:''}"></neocom-spinner-central>
 <div class="panel-group">
   <div *ngFor="let render of adapterViewList">
     <neocom-region *ngIf="render.jsonClass == 'Region'" [viewer]="getViewer()" [node]="render"></neocom-region>

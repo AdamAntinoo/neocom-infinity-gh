@@ -319,10 +319,12 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 	}
 
 	/**
-	 * Reads all the keys stored at the database and classified them into a set of Login names.
+	 * Reads all the keys stored at the database and classified them into a set of Login names. Added
+	 * synchronization to avoid blocking while starting up. This call is only used when activating the Login
+	 * list and this is found to be empty. While we fill it, block any other call.
 	 */
 	@Override
-	public Hashtable<String, Login> queryAllLogins() {
+	public synchronized Hashtable<String, Login> queryAllLogins() {
 		// Get access to all ApiKey registers
 		List<ApiKey> keyList = new Vector<ApiKey>();
 		try {

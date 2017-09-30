@@ -12,31 +12,48 @@ import { Input } from '@angular/core';
 export class SpinnerCentralComponent implements OnInit {
   @Input() configuration: any = { title: "-TITLE-", subtitle: "-SUBTITLE-" };
   public timer;
+  public waitTime: Date = new Date(null);
+  private ticks = 0;
 
   constructor() {
   }
 
   ngOnInit() {
+    this.timer = Observable.timer(2000, 1000);
+    this.timer.subscribe(t => {
+      this.ticks = t;
+      //  var date = new Date(null);
+      this.waitTime.setSeconds(this.ticks);
+      //   this.waitTime=date;
+    });
   }
   public getTitle(): string {
     if (null == this.configuration) return "-TITLE-";
     else return this.configuration.title;
   }
-  public getSubTitle(): string {
-    if (null == this.configuration) return this.timer;
-    else return this.configuration.subtitle + " - " + this.timer;
+  public getWaitingTime() {
+    var date = new Date(null);
+    date.setSeconds(this.ticks);
+    this.waitTime = date;
   }
-  public timeLapseTimer() {
-    Observable.interval(1000)
-      .map((x) => x + 1)
-      .subscribe((x) => {
-        this.timer = x;
-      });
-  }
-  public checkTimer() {
-    if (this.configuration.subtitle == "-TIMER-") {
-      this.timeLapseTimer();
-      return true;
-    } else return false;
-  }
+  // public getSubTitle(): string {
+  //   // Start the timer.
+  //   this.timeLapseTimer();
+  //   if (null == this.configuration) return this.timer;
+  //   else return this.configuration.subtitle + " - " + this.timer;
+  // }
+  // public timeLapseTimer() {
+  //   this.timer = 0;
+  //   Observable.interval(1000)
+  //     .map((x) => x + 1)
+  //     .subscribe((x) => {
+  //       this.timer++;
+  //     });
+  // }
+  // public checkTimer() {
+  //   if (this.configuration.subtitle == "-TIMER-") {
+  //     this.timeLapseTimer();
+  //     return true;
+  //   } else return false;
+  // }
 }

@@ -133,9 +133,9 @@ public class AppModelStore implements INeoComModelStore {
 
 	/**
 	 * Gets access to the complete list of Logins. If this list is empty we go back to the database to populate
-	 * it.
+	 * it. Block any other attempt to get the list while we are loading it.
 	 */
-	public Hashtable<String, Login> accessLoginList() {
+	public synchronized Hashtable<String, Login> accessLoginList() {
 		if (null == _loginList) _loginList = AppConnector.getDBConnector().queryAllLogins();
 		return _loginList;
 	}
