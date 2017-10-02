@@ -1,6 +1,5 @@
-<!-- <div class="neocom-panel" id="content">
-  <div class="striped">&nbsp;
-  </div>
-</div> -->
-<div class="dotted">&nbsp;
+<div [ngClass]="{'solid-orange': isOrange(),'solid-green': isGreen(),'empty_marker': isEmpty()}">
+  <span>&nbsp;</span>
+  <span class="empty-content elemental-ff glow-white" *ngIf="isEmpty()">EMPTY</span>
+  <span>&nbsp;</span>
 </div>

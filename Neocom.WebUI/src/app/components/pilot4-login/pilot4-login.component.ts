@@ -29,15 +29,18 @@ export class Pilot4LoginComponent implements OnInit {
 
   ngOnInit() {
   }
-  public getCharacterClass(): string {
-    if (this.node.corporation == true) return "CORPORATION";
-    else return "PILOT";
+  public hasMenu(): boolean {
+    return false;
+  }
+  public isExpandable(): boolean {
+    return true;
   }
   public onClickArrow(): void {
     this.expanded = !this.expanded;
   }
-  public isExpandable(): boolean {
-    return false;
+  public getCharacterClass(): string {
+    if (this.node.corporation == true) return "CORPORATION";
+    else return "PILOT";
   }
   public getLoginId(): string {
     return this.node.getLoginRefId();

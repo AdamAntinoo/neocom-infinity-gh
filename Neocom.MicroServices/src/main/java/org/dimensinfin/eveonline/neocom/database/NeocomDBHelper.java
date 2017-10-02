@@ -27,6 +27,7 @@ import org.dimensinfin.eveonline.neocom.planetary.ResourceList;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
+import com.j256.ormlite.jdbc.JdbcPooledConnectionSource;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
@@ -323,7 +324,7 @@ public class NeocomDBHelper {
 				//				DataSourceConnectionSource dcs = new DataSourceConnectionSource(slds, "jdbc:sqlite:src/main/resources/");
 				//				new JdbcConnectionSource()
 				//				neocomDatasource = dcs;
-				neocomDatasource = new JdbcConnectionSource(databaseName);
+				neocomDatasource = new JdbcPooledConnectionSource(databaseName);
 				// Only keep the connections open for 5 minutes
 				//				neocomDatasource.setMaxConnectionAgeMillis(MAX_CONNECTION_AGE);
 				//				// Change the check-every milliseconds from 30 seconds to 60

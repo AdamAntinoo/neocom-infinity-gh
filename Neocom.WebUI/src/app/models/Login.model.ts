@@ -7,6 +7,7 @@ import 'rxjs/add/operator/catch';
 import { AppModelStoreService } from '../services/app-model-store.service';
 //--- INTERFACES
 import { EVariant } from '../classes/EVariant.enumerated';
+import { ESeparator } from '../classes/ESeparator.enumerated';
 //--- MODELS
 import { NeoComNode } from '../models/NeoComNode.model';
 import { NeoComCharacter } from '../models/NeoComCharacter.model';
@@ -127,6 +128,9 @@ export class Login extends NeoComNode {
       console.log("--[Login.collaborate2View]>Collaborating " + this.jsonClass);
       collab.push(new Separator());
       collab.push(this);
+      // If the list of Characters is empty then add the Empty variation Separator
+      //  if (null == this.characters) collab.push(new Separator().setVariation(ESeparator.EMPTY));
+      //  else {
       // Process each item at the rootlist for more collaborations.
       for (let node of this.characters) {
         if (node.jsonClass == "Pilot") {
@@ -154,6 +158,7 @@ export class Login extends NeoComNode {
           //    }
         }
       }
+      //  }
       collab.push(new Separator());
     } else {
       console.log("--[Login.collaborate2View]>Collaborating " + this.jsonClass);

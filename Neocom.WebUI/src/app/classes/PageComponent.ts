@@ -29,4 +29,7 @@ export class PageComponent implements IPage {
   public hasMenu(): boolean {
     return false;
   }
+  // This is a method that should be imeplemented by all dependents.
+  public refreshViewPort(): void {
+  }
 }
