@@ -63,11 +63,13 @@ public class PlanetaryManagerController {
 			bestScenario = proc.startProfitSearch(null);
 
 			// Get the results back to the UI. Format them to tho expected data structure.
+			return bestScenario;
 		} catch (RuntimeException rtx) {
 			rtx.printStackTrace();
+			return new Vector<ProcessingAction>();
+		} finally {
+			logger.info("<< [PilotRoasterController.planetaryLocationOptimization]");
 		}
-		logger.info("<< [PilotRoasterController.planetaryLocationOptimization]");
-		return bestScenario;
 	}
 }
 
