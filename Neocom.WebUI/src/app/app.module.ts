@@ -41,7 +41,7 @@ import { SeparatorComponent } from './components/separator/separator.component';
 import { RenderComponent } from './components/render/render.component';
 //import { PilotRoasterService } from './services/pilot-roaster.service';
 import { PilotListDataSourceService } from './services/pilot-list-data-source.service';
-import { PilotManagersDataSourceService } from './services/pilot-managers-data-source.service';
+//import { PilotManagersDataSourceService } from './services/pilot-managers-data-source.service';
 import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
 import { NodePanelComponent } from './components/node-panel/node-panel.component';
 import { Pilot4LoginComponent } from './components/pilot4-login/pilot4-login.component';
@@ -89,7 +89,7 @@ import { Pilot4LoginComponent } from './components/pilot4-login/pilot4-login.com
     AppModelStoreService,
     //  PilotRoasterService,
     PilotListDataSourceService,
-    PilotManagersDataSourceService,
+    //  PilotManagersDataSourceService,
   ],
   bootstrap: [AppComponent]
 })

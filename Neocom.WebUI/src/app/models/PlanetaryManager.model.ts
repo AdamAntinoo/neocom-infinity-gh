@@ -22,25 +22,39 @@ import { Render } from './Render.model';
 import { ProcessingAction } from './ProcessingAction.model';
 
 export class PlanetaryManager extends Manager {
-  //  public jsonClass: string = "Manager";
-  // public regions: Region[] = [];
-  // public locations: Location[] = [];
 
   constructor(values: Object = {}) {
     super();
     Object.assign(this, values);
     this.jsonClass = "PlanetaryManager";
-    this.locations = this.extractLocations();
+    this.regions = this.extractData();
+    //    this.locations = this.extractLocations();
     this.locationCount = this.locations.length;
-    // // Convert the internal structures to their own class instances.
-    // let construction = [];
-    // let test = this.regions;
-    // for (let key of this.regions) {
-    //   let region = this.regions[key];
-    //   let regClass = new Region(region);
-    //   construction.push(regClass);
-    // }
-    // this.regions = construction;
+  }
+
+  /**
+  Transform the anonymous data downloaded from the backend into the classed data. Process the Regions.
+  */
+  private extractData(): Region[] {
+    let regs = [];
+    let locs = [];
+    this.regionCount = 0;
+    this.locationCount = 0;
+    for (let key of Object.keys(this.regions)) {
+      let region = this.regions[key];
+      regs.push(new Region(region));
+      this.regionCount++;
+      if (key != "-1") {
+        let lochash = this.regions[key].locations;
+        for (let lockey of Object.keys(lochash)) {
+          locs.push(new Location(lochash[lockey]));
+        }
+        this.locationCount++;
+      }
+    }
+    this.regions = regs;
+    this.locations = locs;
+    return regs;
   }
   /**
   Call the backend to use that location as the input for the new Planetary Optimizer. The result should be the list of action to perform with this Location resources to optimize its Market value.
@@ -55,10 +69,10 @@ export class PlanetaryManager extends Manager {
     // Check the variant and return the list depending on it.
     if (variant == EVariant.PLANETARYMANAGER) {
       // Check the size of the Region list and is small then use the list of Locations.
-      if (this.regionCount < 4)
-        rootlist = this.locations;
-      else
-        rootlist = this.regions;
+      // if (this.regionCount < 4)
+      //   rootlist = this.locations;
+      // else
+      rootlist = this.regions;
       // Process each item at the rootlist for more collaborations.
       for (let node of rootlist) {
         let partialcollab = node.collaborate2View(variant);
@@ -69,18 +83,18 @@ export class PlanetaryManager extends Manager {
     }
     return collab;
   }
-  private extractLocations(): Location[] {
-    let locs = [];
-    for (let key of Object.keys(this.regions)) {
-      let region = this.regions[key];
-      if (key != "-1") {
-        let lochash = this.regions[key].locations;
-        for (let lockey of Object.keys(lochash)) {
-          locs.push(new Location(lochash[lockey]));
-        }
-        this.locationCount = this.locations.length;
-      }
-    }
-    return locs;
-  }
+  // private extractLocations(): Location[] {
+  //   let locs = [];
+  //   for (let key of Object.keys(this.regions)) {
+  //     let region = this.regions[key];
+  //     if (key != "-1") {
+  //       let lochash = this.regions[key].locations;
+  //       for (let lockey of Object.keys(lochash)) {
+  //         locs.push(new Location(lochash[lockey]));
+  //       }
+  //       this.locationCount = this.locations.length;
+  //     }
+  //   }
+  //   return locs;
+  // }
 }

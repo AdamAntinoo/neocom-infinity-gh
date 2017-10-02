@@ -19,7 +19,6 @@ export class NeoComNode implements INeoComNode {
   public visible: boolean = true;
 
   constructor(values: Object = {}) {
-    //  super(values);
     Object.assign(this, values);
     this.jsonClass = "Node";
   }

@@ -31,7 +31,7 @@ export class Manager extends NeoComNode {
     super();
     Object.assign(this, values);
     this.jsonClass = "Manager";
-    // Fiil additional fields after the object is parsed.
+    // Fill additional fields after the object is parsed.
     this.regionCount = Object.keys(this.regions).length;
   }
   public collaborate2View(variant: EVariant): NeoComNode[] {
