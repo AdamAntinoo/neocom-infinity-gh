@@ -36,6 +36,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 //@EnableCaching
 @EnableCircuitBreaker
 @EnableScheduling
+//@EnableAsync
 @SpringBootApplication
 public class NeocomMicroServiceApplication implements IConnector {
 	// - S T A T I C - S E C T I O N ..........................................................................
@@ -79,9 +80,6 @@ public class NeocomMicroServiceApplication implements IConnector {
 		this.getCacheConnector().addCharacterUpdateRequest(characterID);
 	}
 
-	public String getAppName() {
-		return APPLICATION_NAME;
-	}
 	//	@Bean
 	//	public CacheManagerCustomizer<ConcurrentMapCacheManager> cacheManagerCustomizer() {
 	//		return new CacheManagerCustomizer<ConcurrentMapCacheManager>() {
@@ -91,6 +89,33 @@ public class NeocomMicroServiceApplication implements IConnector {
 	//			}
 	//		};
 	//	}
+	//	@Bean
+	//	public Executor asyncExecutor() {
+	//		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+	//		executor.setCorePoolSize(2);
+	//		executor.setMaxPoolSize(2);
+	//		executor.setQueueCapacity(500);
+	//		executor.setThreadNamePrefix("GithubLookup-");
+	//		executor.initialize();
+	//		return executor;
+	//	}
+
+	public String getAppName() {
+		return APPLICATION_NAME;
+	}
+
+	@Override
+	public IConnector getAppSingleton() {
+		return NeocomMicroServiceApplication.singleton;
+	}
+
+	/**
+	 * Return FALSE if we like the hierarchy assets format. Or TRUE if we want the flat format.
+	 */
+	@Override
+	public boolean getAssetsFormat() {
+		return true;
+	}
 
 	@Override
 	public ICacheConnector getCacheConnector() {

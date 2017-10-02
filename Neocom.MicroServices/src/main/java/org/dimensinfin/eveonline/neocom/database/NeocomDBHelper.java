@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.dimensinfin.eveonline.neocom.constant.R;
 import org.dimensinfin.eveonline.neocom.industry.Job;
 import org.dimensinfin.eveonline.neocom.market.NeoComMarketOrder;
 import org.dimensinfin.eveonline.neocom.model.ApiKey;
@@ -183,6 +184,21 @@ public class NeocomDBHelper {
 	public void loadSeedData() {
 		// Add seed data to the new database is the tables are empty.
 		try {
+			//---  D A T A B A S E    V E R S I O N
+			Dao<DatabaseVersion, String> version = this.getVersionDao();
+			QueryBuilder<DatabaseVersion, String> queryBuilder = version.queryBuilder();
+			queryBuilder.setCountOf(true);
+			long records = version.countOf(queryBuilder.prepare());
+
+			// If the table is empty then insert the seeded Api Keys
+			if (records < 1) {
+				DatabaseVersion key = new DatabaseVersion(R.getResourceString("R.string.databaseversion"));
+			}
+		} catch (SQLException sqle) {
+			logger.severe("E> Error creating the initial table on the app database.");
+			sqle.printStackTrace();
+		}
+		try {
 			//--- A P I   K E Y S
 			Dao<ApiKey, String> apikey = getApiKeysDao();
 			QueryBuilder<ApiKey, String> queryBuilder = apikey.queryBuilder();
@@ -194,15 +210,15 @@ public class NeocomDBHelper {
 				ApiKey key = new ApiKey("Beth Ripley").setKeynumber(2889577)
 						.setValidationcode("Mb6iDKR14m9Xjh9maGTQCGTkpjRHPjOgVUkvK6E9r6fhMtOWtipaqybp0qCzxuuw");
 				key = new ApiKey("Perico").setKeynumber(3106761)
-						.setValidationcode("gltCmvVoZl5akrM8d6DbNKZn7Jm2SaukrmqjnSOyqKbvzz5CtNfknTEwdBe6IIFf");
+						.setValidationcode("gltCmvVoZl5akrM8d6DbNKZn7Jm2SaukrmqjnSOyqKbvzz5CtNfknTEwdBe6IIFf").setActive(false);
 				key = new ApiKey("CapitanHaddock09").setKeynumber(924767)
-						.setValidationcode("2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P");
+						.setValidationcode("2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P").setActive(false);
 				key = new ApiKey("CapitanHaddock29").setKeynumber(6472981)
-						.setValidationcode("pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z");
+						.setValidationcode("pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z").setActive(false);
 				key = new ApiKey("CapitanHaddock").setKeynumber(924767)
-						.setValidationcode("2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P");
+						.setValidationcode("2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P").setActive(false);
 				key = new ApiKey("CapitanHaddock").setKeynumber(6472981)
-						.setValidationcode("pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z");
+						.setValidationcode("pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z").setActive(false);
 			}
 		} catch (SQLException sqle) {
 			logger.severe("E> Error creating the initial table on the app database.");

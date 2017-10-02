@@ -2,3 +2,12 @@ http://localhost:9000/api/v1/login/Beth%20Ripley/pilot/92223647/planetarymanager
 http://localhost:9000/api/v1/login/Perico/pilot/93813310/planetarymanager
 
 http://localhost:9000/api/v1/login/Beth%20Ripley/pilot/92223647/planetarymanager/location/60014089/optimizeprocess
+
+
+--NEW ULS VALID
+/api/v1/loginlist
+/api/v1/login/CapitanHaddock/pilot/92223647
+
+
+/api/v1/login/CapitanHaddock/pilot/92223647/pilotmanagers
+/api/v1/login/CapitanHaddock/pilot/92223647/planetarymanager

@@ -21,10 +21,9 @@ import { PilotAction } from './pilotaction';
 
 export class NeoComCharacter extends NeoComNode {
   private _downloaded: boolean = false;
-  //  private downloading: boolean = false;
   private _managerList: Manager[] = null;
-  private assetsManager: AssetsManager = null;
-  private planetaryManager: PlanetaryManager = null;
+  private _assetsManager: AssetsManager = null;
+  private _planetaryManager: PlanetaryManager = null;
 
   public characterID: number = -1.0;
   public active: boolean = true;
@@ -66,12 +65,12 @@ export class NeoComCharacter extends NeoComNode {
     if (null != this.loginParent) return this.loginParent.getLoginId();
     else return "-";
   }
-  public getManagers(): Manager[] {
-    let manlist = [];
-    if (null != this.assetsManager) manlist.push(this.assetsManager);
-    if (null != this.planetaryManager) manlist.push(this.planetaryManager);
-    return manlist;
-  }
+  // public getManagers(): Manager[] {
+  //   let manlist = [];
+  //   if (null != this.assetsManager) manlist.push(this.assetsManager);
+  //   if (null != this.planetaryManager) manlist.push(this.planetaryManager);
+  //   return manlist;
+  // }
   /**
   Get access to the store list of Managers. If this list has not been doanloaded already then we use the Service to go to the backend server to retieve that list.
   */
@@ -85,25 +84,63 @@ export class NeoComCharacter extends NeoComNode {
       return downloadService.getBackendPilotDetailed(loginid, this.getId());
     }
   }
-  public accessPlanetaryManager(downloadService: AppModelStoreService): Observable<Manager> {
+  public accessPilotManagers(downloadService: AppModelStoreService): Observable<Manager[]> {
+    // Check we are connected to the Login.
+    if (null == this.loginParent) throw new TypeError("PIlot not connected to parent Login.");
+    // Check if the managers are already available.
+    if (null == this._managerList) {
+      return downloadService.getBackendPilotManagers(this.loginParent.getLoginId(), this.getId());
+    } else {
+      return new Observable(observer => {
+        //  let managers = [];
+        setTimeout(() => {
+          for (let manager of this._managerList) {
+            observer.next(this._planetaryManager);
+            switch (manager.jsonClass) {
+              case "AssetsManager":
+                this._assetsManager = new AssetsManager(manager);
+                break
+              case "Planetary":
+                this._planetaryManager = new PlanetaryManager(manager);
+                break
+            }
+          }
+        }, 500);
+        setTimeout(() => {
+          observer.complete();
+        }, 500);
+      });
+    }
+  }
+  public accessAssetsManager(downloadService: AppModelStoreService): Observable<Manager> {
     return new Observable(observer => {
       setTimeout(() => {
-        observer.next(this.planetaryManager);
+        observer.next(this._assetsManager);
       }, 500);
       setTimeout(() => {
         observer.complete();
       }, 500);
     });
   }
-  public accessAssetsManager(downloadService: AppModelStoreService): Observable<Manager> {
-    return new Observable(observer => {
-      setTimeout(() => {
-        observer.next(this.assetsManager);
-      }, 500);
-      setTimeout(() => {
-        observer.complete();
-      }, 500);
-    });
+  public setAssetsManager(newassets: AssetsManager): void {
+    this._assetsManager = newassets;
+  }
+  public accessPlanetaryManager(downloadService: AppModelStoreService): Observable<Manager> {
+    if (null == this._planetaryManager)
+      return downloadService.getBackendPilotPlanetaryManager(this.getId());
+    else {
+      return new Observable(observer => {
+        setTimeout(() => {
+          observer.next(this._planetaryManager);
+        }, 500);
+        setTimeout(() => {
+          observer.complete();
+        }, 500);
+      });
+    }
+  }
+  public setPlanetaryManager(newplanetary: PlanetaryManager): void {
+    this._planetaryManager = newplanetary;
   }
   // public storePilotManagers(managers: Manager[]): void {
   //   this._managerList = managers;

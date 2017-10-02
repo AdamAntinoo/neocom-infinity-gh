@@ -4,6 +4,14 @@
 // ENVIRONMENT: Angular - CLASS
 // DESCRIPTION: Defines the structure of a EVE Pilot. May depend on other classes to complete the character information hierarchy.
 
+//--- CORE
+import { Observable } from 'rxjs/Rx';
+// Import RxJs required methods
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+
+//--- SERVICES
+import { AppModelStoreService } from '../services/app-model-store.service';
 //--- INTERFACES
 import { EVariant } from '../classes/EVariant.enumerated';
 //--- MODELS
@@ -11,6 +19,7 @@ import { NeoComNode } from './NeoComNode.model';
 //import { PilotAction } from './pilotaction';
 import { Region } from './Region.model';
 import { Location } from './Location.model';
+import { ProcessingAction } from './ProcessingAction.model';
 
 export class Manager extends NeoComNode {
   public regions: Region[] = [];

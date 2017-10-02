@@ -75,6 +75,8 @@ export class PlanetaryManagerPageComponent extends PageComponent implements OnIn
                             if (null != result) {
                               if (result.jsonClass == "PlanetaryManager") {
                                 let planetary = new PlanetaryManager(result);
+                                // Store back this at the pilot if we have received a new download.
+                                this.pilot.setPlanetaryManager(planetary);
                                 let thelist = planetary.collaborate2View(this.getVariant());
                                 this.adapterViewList = thelist;
                                 this.downloading = false;

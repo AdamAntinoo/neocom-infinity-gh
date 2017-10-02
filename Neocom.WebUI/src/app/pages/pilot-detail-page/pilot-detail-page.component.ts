@@ -20,6 +20,8 @@ import { NeoComCharacter } from '../../models/NeoComCharacter.model';
 import { Pilot } from '../../models/Pilot.model';
 import { Region } from '../../models/Region.model';
 import { Manager } from '../../models/Manager.model';
+import { AssetsManager } from '../../models/AssetsManager.model';
+import { PlanetaryManager } from '../../models/PlanetaryManager.model';
 
 @Component({
   selector: 'neocom-pilot-detail-page',
@@ -63,13 +65,33 @@ export class PilotDetailPageComponent extends PageComponent implements OnInit {
                     this.pilot = selectedLogin.accessCharacterById(characterid);
                     this.pilot.accessPilotDetailed(this.appModelStore)
                       .subscribe(result => {
-                        console.log("--[PilotDetailPageComponent.ngOnInit.activateLoginById.accessPilotManagers]");
+                        console.log("--[PilotDetailPageComponent.ngOnInit.accessPilotDetailed]");
                         // Copnserve the current Login reference.
                         result.setLoginReference(this.pilot.getLoginReference());
                         this.pilot = result;
-                        // The the list of planetary resource lists to the data returned.
-                        this.adapterViewList = this.pilot.getManagers();
-                        this.downloading = false;
+                        // Download the managers.
+                        this.pilot.accessPilotManagers(this.appModelStore)
+                          .subscribe(result => {
+                            console.log("--[PilotDetailPageComponent.ngOnInit.accessPilotManagers]");
+                            // The the list of pilot managers that should be stored at the pilot.
+                            let man = null;
+                            for (let manager of result) {
+                              switch (manager.jsonClass) {
+                                case "AssetsManager":
+                                  man = new AssetsManager(manager);
+                                  this.pilot.setAssetsManager(man);
+                                  this.adapterViewList.push(man)
+                                  break;
+                                case "PlanetaryManager":
+                                  man = new PlanetaryManager(manager);
+                                  this.pilot.setPlanetaryManager(man);
+                                  this.adapterViewList.push(man)
+                                  break;
+                              }
+                            }
+                            //s              this.adapterViewList = this.pilot.getManagers();
+                            this.downloading = false;
+                          });
                       });
                   });
               });

@@ -1,0 +1,668 @@
+{
+  CapitanHaddock29: {
+    jsonClass: "Login",
+    expanded: false,
+    downloaded: true,
+    renderWhenEmpty: true,
+    visible: true,
+    name: "CapitanHaddock29",
+    characters: []
+  },
+  Beth Ripley: {
+    jsonClass: "Login",
+    expanded: false,
+    downloaded: true,
+    renderWhenEmpty: true,
+    visible: true,
+    name: "Beth Ripley",
+    characters: [{
+      jsonClass: "Pilot",
+      expanded: false,
+      downloaded: true,
+      renderWhenEmpty: true,
+      visible: true,
+      authorization: {
+        keyID: 2889577,
+        characterID: 92223647,
+        vcode: "Mb6iDKR14m9Xjh9maGTQCGTkpjRHPjOgVUkvK6E9r6fhMtOWtipaqybp0qCzxuuw",
+        params: {
+          keyID: "2889577",
+          characterID: "92223647",
+          vCode: "Mb6iDKR14m9Xjh9maGTQCGTkpjRHPjOgVUkvK6E9r6fhMtOWtipaqybp0qCzxuuw"
+        }
+      },
+      characterID: 92223647,
+      delegatedCharacter: {
+        name: "Beth Ripley",
+        characterID: 92223647,
+        corporationName: "Industrias Machaque",
+        corporationID: 98384726,
+        allianceName: "",
+        allianceID: 0,
+        factionName: "",
+        factionID: 0
+      },
+      characterInfo: {
+        version: 2,
+        currentTime: 1506936247000,
+        cachedUntil: 1506937850000,
+        error: null,
+        characterID: 92223647,
+        characterName: "Beth Ripley",
+        race: "MINMATAR",
+        bloodline: "BRUTOR",
+        accountBalance: 2776090507.17,
+        skillPoints: 5622963,
+        shipName: "Beth Ripley's Capsule",
+        shipTypeID: 670,
+        shipTypeName: "Capsule",
+        corporationID: 98384726,
+        corporation: "Industrias Machaque",
+        corporationDate: 1426498080000,
+        allianceID: null,
+        alliance: null,
+        allianceDate: null,
+        lastKnownLocation: "Pimebeka VII - Moon 16 - Carthum Conglomerate Factory",
+        securityStatus: 0,
+        employmentHistory: [{
+            corporationID: 98384726,
+            startDate: 1426498080000
+          },
+          {
+            corporationID: 1000049,
+            startDate: 1425146460000
+          },
+          {
+            corporationID: 1465050528,
+            startDate: 1425062700000
+          },
+          {
+            corporationID: 1000049,
+            startDate: 1342104180000
+          },
+          {
+            corporationID: 1465050528,
+            startDate: 1341865860000
+          },
+          {
+            corporationID: 1000172,
+            startDate: 1341525180000
+          }
+        ]
+      },
+      accountBalance: 2776090507.17,
+      active: true,
+      locationRoles: null,
+      actions4Character: null,
+      characterSheet: {
+        version: 1,
+        currentTime: 1506936248000,
+        cachedUntil: 1506937851000,
+        error: null,
+        characterID: 92223647,
+        name: "Beth Ripley",
+        race: "MINMATAR",
+        dateOfBirth: 1341525195000,
+        bloodLine: "BRUTOR",
+        ancestry: "WORKERS",
+        gender: "Female",
+        corporationName: "Industrias Machaque",
+        corporationID: 98384726,
+        allianceID: 0,
+        allianceName: null,
+        cloneName: "Clone Grade Alpha",
+        cloneSkillPoints: 0,
+        balance: 2776090507.17,
+        attributeEnhancers: [],
+        intelligence: 20,
+        memory: 20,
+        charisma: 19,
+        perception: 20,
+        willpower: 20,
+        skills: [{
+            typeID: 3406,
+            level: 5,
+            skillpoints: 256000,
+            unpublished: false
+          },
+          {
+            typeID: 3434,
+            level: 2,
+            skillpoints: 4243,
+            unpublished: false
+          },
+          {
+            typeID: 3329,
+            level: 4,
+            skillpoints: 90510,
+            unpublished: false
+          },
+          {
+            typeID: 3388,
+            level: 4,
+            skillpoints: 678024,
+            unpublished: false
+          },
+          {
+            typeID: 3327,
+            level: 4,
+            skillpoints: 71827,
+            unpublished: false
+          },
+          {
+            typeID: 3392,
+            level: 4,
+            skillpoints: 198073,
+            unpublished: false
+          },
+          {
+            typeID: 3419,
+            level: 0,
+            skillpoints: 0,
+            unpublished: false
+          },
+          {
+            typeID: 11446,
+            level: 3,
+            skillpoints: 40000,
+            unpublished: false
+          },
+          {
+            typeID: 3416,
+            level: 2,
+            skillpoints: 1415,
+            unpublished: false
+          },
+          {
+            typeID: 2495,
+            level: 4,
+            skillpoints: 190091,
+            unpublished: false
+          },
+          {
+            typeID: 3446,
+            level: 4,
+            skillpoints: 90510,
+            unpublished: false
+          },
+          {
+            typeID: 3413,
+            level: 5,
+            skillpoints: 256000,
+            unpublished: false
+          },
+          {
+            typeID: 3355,
+            level: 1,
+            skillpoints: 250,
+            unpublished: false
+          },
+          {
+            typeID: 32918,
+            level: 3,
+            skillpoints: 16007,
+            unpublished: false
+          },
+          {
+            typeID: 16595,
+            level: 3,
+            skillpoints: 8000,
+            unpublished: false
+          },
+          {
+            typeID: 24242,
+            level: 3,
+            skillpoints: 8005,
+            unpublished: false
+          },
+          {
+            typeID: 26261,
+            level: 2,
+            skillpoints: 4243,
+            unpublished: false
+          },
+          {
+            typeID: 24624,
+            level: 2,
+            skillpoints: 18514,
+            unpublished: false
+          },
+          {
+            typeID: 3340,
+            level: 5,
+            skillpoints: 1024000,
+            unpublished: false
+          },
+          {
+            typeID: 3444,
+            level: 2,
+            skillpoints: 2829,
+            unpublished: false
+          },
+          {
+            typeID: 33091,
+            level: 2,
+            skillpoints: 2829,
+            unpublished: false
+          },
+          {
+            typeID: 3363,
+            level: 1,
+            skillpoints: 250,
+            unpublished: false
+          },
+          {
+            typeID: 3402,
+            level: 5,
+            skillpoints: 256000,
+            unpublished: false
+          },
+          {
+            typeID: 3418,
+            level: 2,
+            skillpoints: 4243,
+            unpublished: false
+          },
+          {
+            typeID: 3426,
+            level: 5,
+            skillpoints: 256000,
+            unpublished: false
+          },
+          {
+            typeID: 3432,
+            level: 4,
+            skillpoints: 90510,
+            unpublished: false
+          },
+          {
+            typeID: 11455,
+            level: 3,
+            skillpoints: 40000,
+            unpublished: false
+          },
+          {
+            typeID: 16597,
+            level: 2,
+            skillpoints: 4243,
+            unpublished: false
+          },
+          {
+            typeID: 25235,
+            level: 3,
+            skillpoints: 8000,
+            unpublished: false
+          },
+          {
+            typeID: 3427,
+            level: 3,
+            skillpoints: 16000,
+            unpublished: false
+          },
+          {
+            typeID: 3420,
+            level: 3,
+            skillpoints: 32000,
+            unpublished: false
+          },
+          {
+            typeID: 3386,
+            level: 2,
+            skillpoints: 1415,
+            unpublished: false
+          },
+          {
+            typeID: 3333,
+            level: 3,
+            skillpoints: 40000,
+            unpublished: false
+          },
+          {
+            typeID: 11584,
+            level: 1,
+            skillpoints: 750,
+            unpublished: false
+          },
+          {
+            typeID: 3451,
+            level: 1,
+            skillpoints: 500,
+            unpublished: false
+          },
+          {
+            typeID: 11443,
+            level: 1,
+            skillpoints: 1250,
+            unpublished: false
+          },
+          {
+            typeID: 16598,
+            level: 2,
+            skillpoints: 4243,
+            unpublished: false
+          },
+          {
+            typeID: 26252,
+            level: 3,
+            skillpoints: 16000,
+            unpublished: false
+          },
+          {
+            typeID: 3409,
+            level: 4,
+            skillpoints: 282478,
+            unpublished: false
+          },
+          {
+            typeID: 3393,
+            level: 3,
+            skillpoints: 8000,
+            unpublished: false
+          },
+          {
+            typeID: 3455,
+            level: 4,
+            skillpoints: 45255,
+            unpublished: false
+          },
+          {
+            typeID: 26254,
+            level: 3,
+            skillpoints: 24000,
+            unpublished: false
+          },
+          {
+            typeID: 3403,
+            level: 1,
+            skillpoints: 250,
+            unpublished: false
+          },
+          {
+            typeID: 3453,
+            level: 3,
+            skillpoints: 16000,
+            unpublished: false
+          },
+          {
+            typeID: 3450,
+            level: 4,
+            skillpoints: 45255,
+            unpublished: false
+          },
+          {
+            typeID: 3341,
+            level: 1,
+            skillpoints: 1000,
+            unpublished: false
+          },
+          {
+            typeID: 3387,
+            level: 2,
+            skillpoints: 4022,
+            unpublished: false
+          },
+          {
+            typeID: 3380,
+            level: 5,
+            skillpoints: 256000,
+            unpublished: false
+          },
+          {
+            typeID: 3433,
+            level: 1,
+            skillpoints: 750,
+            unpublished: false
+          },
+          {
+            typeID: 3405,
+            level: 1,
+            skillpoints: 250,
+            unpublished: false
+          },
+          {
+            typeID: 33094,
+            level: 4,
+            skillpoints: 90510,
+            unpublished: false
+          },
+          {
+            typeID: 3300,
+            level: 3,
+            skillpoints: 8000,
+            unpublished: false
+          },
+          {
+            typeID: 3431,
+            level: 2,
+            skillpoints: 1415,
+            unpublished: false
+          },
+          {
+            typeID: 21718,
+            level: 2,
+            skillpoints: 4243,
+            unpublished: false
+          },
+          {
+            typeID: 19719,
+            level: 2,
+            skillpoints: 8486,
+            unpublished: false
+          },
+          {
+            typeID: 16622,
+            level: 4,
+            skillpoints: 135765,
+            unpublished: false
+          },
+          {
+            typeID: 3449,
+            level: 4,
+            skillpoints: 45255,
+            unpublished: false
+          },
+          {
+            typeID: 3425,
+            level: 4,
+            skillpoints: 90510,
+            unpublished: false
+          },
+          {
+            typeID: 3302,
+            level: 3,
+            skillpoints: 8000,
+            unpublished: false
+          },
+          {
+            typeID: 16594,
+            level: 1,
+            skillpoints: 750,
+            unpublished: false
+          },
+          {
+            typeID: 24270,
+            level: 2,
+            skillpoints: 4243,
+            unpublished: false
+          },
+          {
+            typeID: 3343,
+            level: 2,
+            skillpoints: 5666,
+            unpublished: false
+          },
+          {
+            typeID: 33399,
+            level: 2,
+            skillpoints: 2829,
+            unpublished: false
+          },
+          {
+            typeID: 21790,
+            level: 2,
+            skillpoints: 7072,
+            unpublished: false
+          },
+          {
+            typeID: 2505,
+            level: 4,
+            skillpoints: 181020,
+            unpublished: false
+          },
+          {
+            typeID: 3428,
+            level: 3,
+            skillpoints: 16000,
+            unpublished: false
+          },
+          {
+            typeID: 3424,
+            level: 4,
+            skillpoints: 90510,
+            unpublished: false
+          },
+          {
+            typeID: 13279,
+            level: 2,
+            skillpoints: 1415,
+            unpublished: false
+          },
+          {
+            typeID: 3331,
+            level: 3,
+            skillpoints: 34288,
+            unpublished: false
+          },
+          {
+            typeID: 3452,
+            level: 2,
+            skillpoints: 5657,
+            unpublished: false
+          },
+          {
+            typeID: 4385,
+            level: 1,
+            skillpoints: 1250,
+            unpublished: false
+          },
+          {
+            typeID: 3443,
+            level: 4,
+            skillpoints: 45255,
+            unpublished: false
+          },
+          {
+            typeID: 3417,
+            level: 3,
+            skillpoints: 8000,
+            unpublished: false
+          },
+          {
+            typeID: 3454,
+            level: 3,
+            skillpoints: 40000,
+            unpublished: false
+          },
+          {
+            typeID: 11579,
+            level: 4,
+            skillpoints: 271530,
+            unpublished: false
+          },
+          {
+            typeID: 3394,
+            level: 4,
+            skillpoints: 90510,
+            unpublished: false
+          },
+          {
+            typeID: 26253,
+            level: 1,
+            skillpoints: 750,
+            unpublished: false
+          },
+          {
+            typeID: 3429,
+            level: 3,
+            skillpoints: 8000,
+            unpublished: false
+          }
+        ],
+        certificates: [],
+        corporationRoles: [{
+          roleID: 1,
+          roleName: "roleDirector"
+        }],
+        corporationRolesAtHQ: [{
+          roleID: 1,
+          roleName: "roleDirector"
+        }],
+        corporationRolesAtBase: [{
+          roleID: 1,
+          roleName: "roleDirector"
+        }],
+        corporationRolesAtOther: [{
+          roleID: 1,
+          roleName: "roleDirector"
+        }],
+        corporationTitles: []
+      },
+      skillQueue: [{
+        queuePosition: 0,
+        typeID: 3333,
+        level: 4,
+        startSP: 40000,
+        endSP: 226275,
+        startTime: 1506421192000,
+        endTime: 1507166292000
+      }],
+      skillInTraining: {
+        version: 2,
+        currentTime: 1506936248000,
+        cachedUntil: 1506937851000,
+        error: null,
+        currentTQTime: 1506936248000,
+        trainingEndTime: 1507166292000,
+        trainingStartTime: 1506421192000,
+        trainingTypeID: 3333,
+        trainingStartSP: 40000,
+        trainingDestinationSP: 226275,
+        trainingToLevel: 4,
+        skillInTraining: true
+      },
+      urlforAvatar: "http://image.eveonline.com/character/92223647_256.jpg",
+      lastKnownLocation: "Pimebeka VII - Moon 16 - Carthum Conglomerate Factory",
+      name: "Beth Ripley",
+      actions: {},
+      corporation: false,
+      apiKeyExpiration: null
+    }]
+  },
+  Perico: {
+    jsonClass: "Login",
+    expanded: false,
+    downloaded: true,
+    renderWhenEmpty: true,
+    visible: true,
+    name: "Perico",
+    characters: []
+  },
+  CapitanHaddock: {
+    jsonClass: "Login",
+    expanded: false,
+    downloaded: true,
+    renderWhenEmpty: true,
+    visible: true,
+    name: "CapitanHaddock",
+    characters: []
+  },
+  CapitanHaddock09: {
+    jsonClass: "Login",
+    expanded: false,
+    downloaded: true,
+    renderWhenEmpty: true,
+    visible: true,
+    name: "CapitanHaddock09",
+    characters: []
+  }
+}

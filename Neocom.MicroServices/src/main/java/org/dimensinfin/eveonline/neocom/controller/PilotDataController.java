@@ -15,11 +15,9 @@ import org.dimensinfin.eveonline.neocom.connector.AppConnector;
 import org.dimensinfin.eveonline.neocom.core.DataSourceLocator;
 import org.dimensinfin.eveonline.neocom.enums.ENeoComVariants;
 import org.dimensinfin.eveonline.neocom.generator.ModelGeneratorStore;
-import org.dimensinfin.eveonline.neocom.generator.PilotManagersGenerator;
 import org.dimensinfin.eveonline.neocom.generator.PilotRoasterGenerator;
 import org.dimensinfin.eveonline.neocom.interfaces.IModelGenerator;
 import org.dimensinfin.eveonline.neocom.manager.AbstractManager;
-import org.dimensinfin.eveonline.neocom.manager.AssetsManager;
 import org.dimensinfin.eveonline.neocom.model.NeoComCharacter;
 import org.dimensinfin.eveonline.neocom.model.Pilot;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -51,8 +49,8 @@ public class PilotDataController {
 			NeoComCharacter pilot = AppConnector.getModelStore().activatePilot(Long.valueOf(identifier));
 			// Activate the managers one by one and return the new Character.
 			// The Assets Manager is an special case. Remove and punt another clean one.
-			pilot.setAssetsManager(new AssetsManager(pilot).initialize());
-			pilot.getPlanetaryManager().initialize();
+			//			pilot.setAssetsManager(new AssetsManager(pilot).initialize());
+			//			pilot.getPlanetaryManager().initialize();
 			// Get a new model interface for the Pilot roaster using as unique identifier the login.
 			//			DataSourceLocator locator = new DataSourceLocator().addIdentifier(login).addIdentifier(identifier)
 			//					.addIdentifier(ENeoComVariants.PILOT_MANAGERS.name());
@@ -82,18 +80,9 @@ public class PilotDataController {
 		try {
 			// Initialize the model data hierarchies.
 			AppConnector.getModelStore().activateLoginIdentifier(login);
-			AppConnector.getModelStore().activatePilot(Long.valueOf(identifier));
-			//			if (null != login) {
-			// Get a new model interface for the Pilot roaster using as unique identifier the login.
-			DataSourceLocator locator = new DataSourceLocator().addIdentifier(login).addIdentifier(identifier)
-					.addIdentifier(ENeoComVariants.PILOT_MANAGERS.name());
-			IModelGenerator adapter = ModelGeneratorStore.registerGenerator(new PilotManagersGenerator(locator,
-					ENeoComVariants.PILOT_MANAGERS.name(), AppConnector.getModelStore().getCurrentPilot()));
-			RootNode pilotNode = adapter.collaborate2Model();
-			for (IGEFNode manager : pilotNode.getChildren()) {
-				managerList.add((AbstractManager) manager);
-			}
-			//			}
+			NeoComCharacter pilot = AppConnector.getModelStore().activatePilot(Long.valueOf(identifier));
+			managerList.addElement(pilot.getAssetsManager().initialize());
+			managerList.addElement(pilot.getPlanetaryManager().initialize());
 		} catch (RuntimeException rtx) {
 			rtx.printStackTrace();
 		}
@@ -105,7 +94,8 @@ public class PilotDataController {
 	@RequestMapping(value = "/api/v1/login/{login}/pilot/{identifier}/planetarymanager", method = RequestMethod.GET, produces = "application/json")
 	public AbstractManager pilotPlanetaryManager(@PathVariable final String login,
 			@PathVariable final String identifier) {
-		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/pilot/{identifier}/planetarymanager");
+		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/login/{" + login + "}/pilot/{" + identifier
+				+ "}/planetarymanager");
 		logger.info(">> [PilotRoasterController.pilotPlanetaryManager]");
 		try {
 			// Initialize the model data hierarchies.
