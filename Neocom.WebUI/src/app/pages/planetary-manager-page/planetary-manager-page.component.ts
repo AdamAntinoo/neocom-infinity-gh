@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
 //--- SERVICES
-import { PilotRoasterService } from '../../services/pilot-roaster.service';
+//import { PilotRoasterService } from '../../services/pilot-roaster.service';
 import { AppModelStoreService } from '../../services/app-model-store.service';
 import { PilotListDataSourceService } from '../../services/pilot-list-data-source.service';
 import { PilotManagersDataSourceService } from '../../services/pilot-managers-data-source.service';
@@ -20,6 +20,7 @@ import { NeoComCharacter } from '../../models/NeoComCharacter.model';
 import { Pilot } from '../../models/Pilot.model';
 import { Region } from '../../models/Region.model';
 import { Manager } from '../../models/Manager.model';
+import { AssetsManager } from '../../models/AssetsManager.model';
 import { PlanetaryManager } from '../../models/PlanetaryManager.model';
 
 @Component({
@@ -65,23 +66,43 @@ export class PlanetaryManagerPageComponent extends PageComponent implements OnIn
                     this.pilot = selectedLogin.accessCharacterById(characterid);
                     this.pilot.accessPilotDetailed(this.appModelStore)
                       .subscribe(result => {
-                        console.log("--[PlanetaryManagerPageComponent.ngOnInit.activateLoginById.accessPilotManagers]");
+                        console.log("--[PlanetaryManagerPageComponent.ngOnInit.accessPilotDetailed]");
                         // Copnserve the current Login reference.
                         result.setLoginReference(this.pilot.getLoginReference());
                         this.pilot = result;
-                        // Search for the Planetary Manager from the list of Managers. There is no way to complete it differently.
-                        this.pilot.accessPlanetaryManager(this.appModelStore)
+                        // Download the managers.
+                        this.pilot.accessPilotManagers(this.appModelStore)
                           .subscribe(result => {
-                            if (null != result) {
-                              if (result.jsonClass == "PlanetaryManager") {
-                                let planetary = new PlanetaryManager(result);
-                                // Store back this at the pilot if we have received a new download.
-                                this.pilot.setPlanetaryManager(planetary);
-                                let thelist = planetary.collaborate2View(this.getVariant());
-                                this.adapterViewList = thelist;
-                                this.downloading = false;
+                            console.log("--[PlanetaryManagerPageComponent.ngOnInit.accessPilotManagers]");
+                            // The the list of pilot managers that should be stored at the pilot.
+                            let man = null;
+                            for (let manager of result) {
+                              switch (manager.jsonClass) {
+                                case "AssetsManager":
+                                  man = new AssetsManager(manager);
+                                  this.pilot.setAssetsManager(man);
+                                  //    this.adapterViewList.push(man)
+                                  break;
+                                case "PlanetaryManager":
+                                  man = new PlanetaryManager(manager);
+                                  this.pilot.setPlanetaryManager(man);
+                                  //  this.adapterViewList.push(man)
+                                  break;
                               }
                             }
+                            this.pilot.accessPlanetaryManager(this.appModelStore)
+                              .subscribe(result => {
+                                if (null != result) {
+                                  if (result.jsonClass == "PlanetaryManager") {
+                                    let planetary = new PlanetaryManager(result);
+                                    // Store back this at the pilot if we have received a new download.
+                                    this.pilot.setPlanetaryManager(planetary);
+                                    let thelist = planetary.collaborate2View(this.getVariant());
+                                    this.adapterViewList = thelist;
+                                    this.downloading = false;
+                                  }
+                                }
+                              });
                           });
                       });
                   });
