@@ -10,6 +10,7 @@ import { AppModelStoreService } from '../../services/app-model-store.service';
 //--- INTERFACES
 import { PageComponent } from '../../classes/PageComponent';
 import { EVariant } from '../../classes/EVariant.enumerated';
+import { ESeparator } from '../../classes/ESeparator.enumerated';
 //--- CLASSES
 //import { PilotListDataSource } from '../../classes/PilotListDataSource';
 import { DataSourceLocator } from '../../classes/DataSourceLocator';
@@ -22,6 +23,7 @@ import { Region } from '../../models/Region.model';
 import { Manager } from '../../models/Manager.model';
 import { AssetsManager } from '../../models/AssetsManager.model';
 import { PlanetaryManager } from '../../models/PlanetaryManager.model';
+import { Separator } from '../../models/Separator.model';
 
 @Component({
   selector: 'neocom-pilot-detail-page',
@@ -31,6 +33,7 @@ import { PlanetaryManager } from '../../models/PlanetaryManager.model';
 
 export class PilotDetailPageComponent extends PageComponent implements OnInit {
   public adapterViewList: Manager[] = [];
+  public headerSeparator: Separator = new Separator().setVariation(ESeparator.GREEN);
   public downloading: boolean = true;
   public login: Login = null;
   public pilot: NeoComCharacter = null;
@@ -62,7 +65,7 @@ export class PilotDetailPageComponent extends PageComponent implements OnInit {
                 let selectedLogin = result;
                 this.route.params.map(p => p.id)
                   .subscribe((characterid: number) => {
-                    this.pilot = selectedLogin.accessCharacterById(characterid);
+                    this.pilot = selectedLogin.accessCharacterById(characterid); // Should not fail.
                     this.pilot.accessPilotDetailed(this.appModelStore)
                       .subscribe(result => {
                         console.log("--[PilotDetailPageComponent.ngOnInit.accessPilotDetailed]");

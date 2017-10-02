@@ -40,6 +40,7 @@ export class NeoComCharacter extends NeoComNode {
     this.jsonClass = "NeoComCharacter";
   }
 
+  //---  G E T T E R S   A N D   S E T T E R S
   public getId() {
     return this.characterID;
   }
@@ -71,6 +72,8 @@ export class NeoComCharacter extends NeoComNode {
   //   if (null != this.planetaryManager) manlist.push(this.planetaryManager);
   //   return manlist;
   // }
+
+  //--- F U N C T I O N A L    A C C E S O R S
   /**
   Get access to the store list of Managers. If this list has not been doanloaded already then we use the Service to go to the backend server to retieve that list.
   */

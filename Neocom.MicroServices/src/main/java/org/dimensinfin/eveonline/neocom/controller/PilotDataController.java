@@ -83,11 +83,13 @@ public class PilotDataController {
 			NeoComCharacter pilot = AppConnector.getModelStore().activatePilot(Long.valueOf(identifier));
 			managerList.addElement(pilot.getAssetsManager().initialize());
 			managerList.addElement(pilot.getPlanetaryManager().initialize());
+			return managerList;
 		} catch (RuntimeException rtx) {
 			rtx.printStackTrace();
+			return new Vector<AbstractManager>();
+		} finally {
+			logger.info("<< [PilotRoasterController.pilotManagers]");
 		}
-		logger.info("<< [PilotRoasterController.pilotManagers]");
-		return managerList;
 	}
 
 	@CrossOrigin()

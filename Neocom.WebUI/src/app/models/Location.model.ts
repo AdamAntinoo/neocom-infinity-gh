@@ -16,8 +16,9 @@ export class Location extends NeoComNode {
   public systemID;
   public constellationID;
   public regionID;
+  public contents = [];
 
-  public children = [];
+  //  public children = [];
   public stackCount: number = 0;
 
   constructor(values: Object = {}) {
@@ -27,11 +28,16 @@ export class Location extends NeoComNode {
     // Calculate the toal value of this location contents.
     this.totalValueCalculated = 0;
     this.totalVolumeCalculated = 0;
-    for (let asset of this.children) {
+    let newassetlist = [];
+    for (let asset of this.contents) {
       this.totalValueCalculated += asset.item.baseprice * asset.quantity;
       this.totalVolumeCalculated += asset.item.volume * asset.quantity;
+      // Convert the assets.
+      let as = new Asset(asset);
+      newassetlist.push(as);
     }
-    this.stackCount = this.children.length;
+    this.contents = newassetlist;
+    this.stackCount = this.contents.length;
   }
 
   public collaborate2View(variant: EVariant): NeoComNode[] {
@@ -41,7 +47,7 @@ export class Location extends NeoComNode {
       collab.push(new Separator());
       collab.push(this);
       // Process each item at the rootlist for more collaborations.
-      for (let node of this.children) {
+      for (let node of this.contents) {
         if (node.jsonClass == "NeoComAsset") {
           let asset = new Asset(node)
           let partialcollab = asset.collaborate2View(variant);

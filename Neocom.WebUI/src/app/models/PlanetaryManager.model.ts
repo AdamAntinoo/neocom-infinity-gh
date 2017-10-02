@@ -74,7 +74,7 @@ export class PlanetaryManager extends Manager {
     for (let key of Object.keys(this.regions)) {
       let region = this.regions[key];
       if (key != "-1") {
-        let lochash = this.regions[key].children;
+        let lochash = this.regions[key].locations;
         for (let lockey of Object.keys(lochash)) {
           locs.push(new Location(lochash[lockey]));
         }

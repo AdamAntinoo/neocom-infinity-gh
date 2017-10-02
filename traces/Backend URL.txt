@@ -5,9 +5,10 @@ http://localhost:9000/api/v1/login/Beth%20Ripley/pilot/92223647/planetarymanager
 
 
 --NEW ULS VALID
+/api/v1/location/updatecitadels
+/api/v1/location/updateoutposts
+
 /api/v1/loginlist
-/api/v1/login/CapitanHaddock/pilot/92223647
+/api/v1/login/Beth Ripley/pilot/92223647
 
-
-/api/v1/login/CapitanHaddock/pilot/92223647/pilotmanagers
-/api/v1/login/CapitanHaddock/pilot/92223647/planetarymanager
+/api/v1/login/Beth Ripley/pilot/92223647/pilotmanagers
