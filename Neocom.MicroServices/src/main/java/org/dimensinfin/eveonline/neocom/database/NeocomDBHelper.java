@@ -213,7 +213,7 @@ public class NeocomDBHelper {
 				key = new ApiKey("Perico").setKeynumber(3106761)
 						.setValidationcode("gltCmvVoZl5akrM8d6DbNKZn7Jm2SaukrmqjnSOyqKbvzz5CtNfknTEwdBe6IIFf").setActive(false);
 				key = new ApiKey("CapitanHaddock09").setKeynumber(924767)
-						.setValidationcode("2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P").setActive(false);
+						.setValidationcode("2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P").setActive(true);
 				key = new ApiKey("CapitanHaddock29").setKeynumber(6472981)
 						.setValidationcode("pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z").setActive(false);
 				key = new ApiKey("CapitanHaddock").setKeynumber(924767)

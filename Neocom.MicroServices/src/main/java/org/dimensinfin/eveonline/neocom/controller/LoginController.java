@@ -15,6 +15,7 @@ import org.dimensinfin.eveonline.neocom.model.Login;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 // - CLASS IMPLEMENTATION ...................................................................................
@@ -32,11 +33,14 @@ public class LoginController {
 	// - M E T H O D - S E C T I O N ..........................................................................
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/loginlist", method = RequestMethod.GET, produces = "application/json")
-	public Hashtable<String, Login> loginlistEntryPoint() {
+	public Hashtable<String, Login> loginlistEntryPoint(
+			@RequestParam(value = "force", required = false) final String force) {
 		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/loginlist");
 		logger.info(">> [LoginController.loginlistEntryPoint]");
 		try {
 			AppConnector.startChrono();
+			// If we receive a force command we should clear data before executing the request.
+			if (force != null) if (force.equalsIgnoreCase("true")) AppModelStore.getSingleton().clearLoginList();
 			return AppModelStore.getSingleton().accessLoginList();
 		} catch (RuntimeException rtex) {
 			return new Hashtable<String, Login>();

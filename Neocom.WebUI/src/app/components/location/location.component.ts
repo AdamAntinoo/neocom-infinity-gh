@@ -30,19 +30,30 @@ export class LocationComponent implements OnInit {
   ngOnInit() {
   }
 
-  public getIdentifier(): number {
-    return Math.max(Math.max(Math.max(this.node.stationID, this.node.systemID), this.node.constellationID), this.node.regionID);
-  }
-  public toggleExpanded() {
-    this.node.toggleExpanded();
-    this.viewer.refreshViewPort();
-  }
   /**
   If the Panel has some specific attributes they should be tested for display. The current actions are the Menu and the Expand Arrow.
   */
   public hasMenu(): boolean {
     return true;
   }
+  public isExpandable(): boolean {
+    return true;
+  }
+  /**
+  Toggle the expand collapse status. This changes the expanded attribute and also ndicates other visual elements to change (like the arrow or the shade of the background).
+  The second action is to generate again the view llist with a new call to the page component 'refreshViewPort'.
+  */
+  public clickArrow() {
+    this.node.toggleExpanded();
+    this.viewer.refreshViewPort();
+  }
+  public getIdentifier(): number {
+    return Math.max(Math.max(Math.max(this.node.stationID, this.node.systemID), this.node.constellationID), this.node.regionID);
+  }
+  // public toggleExpanded() {
+  //   this.node.toggleExpanded();
+  //   this.viewer.refreshViewPort();
+  // }
   public getLoginId(): string {
     return this.appModelStore.accessLogin().getLoginId();
   }

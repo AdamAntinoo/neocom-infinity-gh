@@ -28,7 +28,7 @@
             </a>
           </div>
         </td>
-        <td width="5%" class="neocom-arrow-box" (click)="toggleExpanded()">
+        <td width="5%" *ngIf="isExpandable()" class="neocom-arrow-box" (click)="clickArrow()">
           <img class="neocom-arrow" [ngClass]="{'neocom-arrow-expanded': node.expanded}" src="/assets/icons/arrowright.png ">
         </td>
       </tr>

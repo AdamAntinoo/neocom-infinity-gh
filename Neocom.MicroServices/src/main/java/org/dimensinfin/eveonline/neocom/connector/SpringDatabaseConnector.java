@@ -278,6 +278,7 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 		neocomDBHelper.loadSeedData();
 	}
 
+	@Deprecated
 	public boolean openAppDataBase() {
 		throw new RuntimeException(
 				"Application connector not defined. Functionality 'openAppDataBase' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
@@ -297,6 +298,7 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 		return true;
 	}
 
+	@Deprecated
 	public boolean openDAO() {
 		neocomDBHelper = new NeocomDBHelper(databaseLink, dbVersion);
 		return false;

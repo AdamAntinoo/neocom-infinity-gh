@@ -203,6 +203,11 @@ public class AppModelStore implements INeoComModelStore {
 	//		return _neocomApiKeys;
 	//	}
 
+	public void clearLoginList() {
+		AppModelStore.logger.info(">< [AppModelStore.clearLoginList]");
+		_loginList = null;
+	}
+
 	public NeoComCharacter getActiveCharacter() {
 		if (null != _pilot) return _pilot;
 		throw new NeocomRuntimeException(
