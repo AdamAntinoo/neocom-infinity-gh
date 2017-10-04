@@ -4,3 +4,4 @@
 .recommenders/
 .metadata/
 *.db-journal
+Neocom.MarketDataService/MarketDataService.store
