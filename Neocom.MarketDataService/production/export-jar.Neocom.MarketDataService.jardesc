@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jardesc>
+    <jar path="Neocom.MarketDataService/production/Neocom.MarketDataService-1.0.0.jar"/>
+    <options buildIfNeeded="true" compress="false" descriptionLocation="/Neocom.MarketDataService/production/export-jar.Neocom.MarketDataService.jardesc" exportErrors="false" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="false" mainClassHandleIdentifier="=Neocom.MarketDataService/src\/main\/java&lt;org.dimensinfin.eveonline.neocom{MarketDataServiceApplication.java[MarketDataServiceApplication" manifestLocation="/Neocom.MarketDataService/production/Manifest.txt" manifestVersion="1.0" reuseManifest="true" saveManifest="true" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
+        <file path="/Neocom.MarketDataService/src/main/resources/application.properties"/>
+        <file path="/Neocom.MarketDataService/.gitignore"/>
+        <file path="/Neocom.MarketDataService/mvnw"/>
+        <file path="/Neocom.MarketDataService/.project"/>
+        <folder path="/Neocom.MarketDataService/target"/>
+        <file path="/Neocom.MarketDataService/pom.xml"/>
+        <javaElement handleIdentifier="=Neocom.MarketDataService/src\/test\/java"/>
+        <folder path="/Neocom.MarketDataService/src"/>
+        <file path="/Neocom.MarketDataService/mvnw.cmd"/>
+        <file path="/Neocom.MarketDataService/.classpath"/>
+        <file path="/Neocom.MarketDataService/src/main/resources/ehcache.xml"/>
+        <folder path="/Neocom.MarketDataService/privatelibs"/>
+        <javaElement handleIdentifier="=Neocom.MarketDataService/src\/main\/java"/>
+        <file path="/Neocom.MarketDataService/src/main/resources/hsql_configuration.xml"/>
+    </selectedElements>
+</jardesc>
