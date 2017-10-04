@@ -3,10 +3,10 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
 //--- SERVICES
-import { PilotRoasterService } from '../../services/pilot-roaster.service';
+//import { PilotRoasterService } from '../../services/pilot-roaster.service';
 import { AppModelStoreService } from '../../services/app-model-store.service';
 import { PilotListDataSourceService } from '../../services/pilot-list-data-source.service';
-import { PilotManagersDataSourceService } from '../../services/pilot-managers-data-source.service';
+//import { PilotManagersDataSourceService } from '../../services/pilot-managers-data-source.service';
 //--- INTERFACES
 import { PageComponent } from '../../classes/PageComponent';
 import { EVariant } from '../../classes/EVariant.enumerated';

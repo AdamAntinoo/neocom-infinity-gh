@@ -49,7 +49,6 @@ export class LoginPageComponent extends PageComponent implements OnInit {
           let thelist = node.collaborate2View(this.getVariant());
           this.loginViewList = this.loginViewList.concat(thelist);
         }
-        //    this.loginViewList = result;
         this.downloading = false;
       });
     console.log("<<[LoginPageComponent.ngOnInit]");
@@ -69,7 +68,6 @@ export class LoginPageComponent extends PageComponent implements OnInit {
           let thelist = node.collaborate2View(this.getVariant());
           this.loginViewList = this.loginViewList.concat(thelist);
         }
-        //    this.loginViewList = result;
         this.downloading = false;
       });
   }

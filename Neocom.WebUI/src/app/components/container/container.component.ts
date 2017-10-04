@@ -15,18 +15,17 @@ import { Render } from '../../models/Render.model';
 import { Asset } from '../../models/Asset.model';
 
 @Component({
-  selector: 'neocom-asset',
-  templateUrl: './asset.component.html',
-  styleUrls: ['./asset.component.css']
+  selector: 'neocom-container',
+  templateUrl: './container.component.html',
+  styleUrls: ['./container.component.css']
 })
-export class AssetComponent implements OnInit {
+export class ContainerComponent implements OnInit {
   @Input() viewer: PlanetaryManagerPageComponent;
   @Input() node: Asset;
 
   constructor(private appModelStore: AppModelStoreService) {
     //  super();
   }
-
 
   ngOnInit() {
   }

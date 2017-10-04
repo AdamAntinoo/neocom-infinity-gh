@@ -148,7 +148,7 @@ public class AppModelStore implements INeoComModelStore {
 	 * @param login
 	 */
 	public Login activateLoginIdentifier(final String loginTarget) {
-		logger.info(">< [AppModelStore.activateLoginIdentifier]loginTarget: " + loginTarget);
+		logger.info(">< [AppModelStore.activateLoginIdentifier] loginTarget: " + loginTarget);
 		if (null == _loginList) _loginList = AppConnector.getDBConnector().queryAllLogins();
 		// OPTIMIZATION: If the character is already the selected one do nothing.
 		if (null != _loginIdentifier) if (_loginIdentifier.getName().equalsIgnoreCase(loginTarget)) return _loginIdentifier;

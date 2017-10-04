@@ -4,6 +4,7 @@ import { EVariant } from '../classes/EVariant.enumerated';
 import { NeoComNode } from '../models/NeoComNode.model';
 import { Asset } from '../models/Asset.model';
 import { Separator } from '../models/Separator.model';
+import { Container } from '../models/Container.model';
 
 export class Location extends NeoComNode {
   private totalValueCalculated: number = -1;
@@ -40,6 +41,8 @@ export class Location extends NeoComNode {
     this.stackCount = this.contents.length;
   }
 
+
+
   public collaborate2View(variant: EVariant): NeoComNode[] {
     let collab = [];
     // If the node is expanded then add its assets.
@@ -48,12 +51,21 @@ export class Location extends NeoComNode {
       collab.push(this);
       // Process each item at the rootlist for more collaborations.
       for (let node of this.contents) {
-        if (node.jsonClass == "NeoComAsset") {
-          let asset = new Asset(node)
-          let partialcollab = asset.collaborate2View(variant);
-          for (let partialnode of partialcollab) {
-            collab.push(partialnode);
-          }
+        switch (node.jsonClass) {
+          case "Asset":
+            let asset = new Asset(node);
+            let partialcollab = asset.collaborate2View(variant);
+            for (let partialnode of partialcollab) {
+              collab.push(partialnode);
+            }
+            break;
+          case "Container":
+            let container = new Container(node);
+            let containerCollaboration = container.collaborate2View(variant);
+            for (let partialnode of containerCollaboration) {
+              collab.push(partialnode);
+            }
+            break;
         }
       }
       collab.push(new Separator());

@@ -2,7 +2,7 @@
   <div class="title">Capsuleer Selection</div>
 </div>
 <neocom-spinner-central *ngIf="downloading" [configuration]="{title:'Downloading Login list',subtitle:''}"></neocom-spinner-central>
-<div class="panel-group">
+<div class="neocom-panel-container">
   <div *ngFor="let render of loginViewList">
     <neocom-separator *ngIf="render.jsonClass == 'Separator'" [viewer]="getViewer()" [node]="render"></neocom-separator>
     <neocom-login4-list *ngIf="render.jsonClass == 'Login'" [viewer]="getViewer()" [node]="render"></neocom-login4-list>

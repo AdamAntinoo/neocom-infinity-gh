@@ -5,7 +5,7 @@
 <neocom-pilot4-detail *ngIf="!downloading" [pilot]="pilot"></neocom-pilot4-detail>
 <neocom-separator [viewer]="getViewer()" [node]="headerSeparator"></neocom-separator>
 <neocom-spinner-central *ngIf="downloading" [configuration]="{title:'Downloading Capsuleer Managers',subtitle:''}"></neocom-spinner-central>
-<div class="panel-group">
+<div class="neocom-panel-container">
   <div *ngFor="let render of adapterViewList">
     <neocom-separator *ngIf="render.jsonClass == 'Separator'" [viewer]="getViewer()" [node]="render"></neocom-separator>
     <neocom-planetary-manager *ngIf="render.jsonClass == 'PlanetaryManager'" [pilot]="pilot" [manager]="render"></neocom-planetary-manager>

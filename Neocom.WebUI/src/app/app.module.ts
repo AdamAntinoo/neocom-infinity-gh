@@ -16,7 +16,7 @@ import { AppModelStoreService } from './services/app-model-store.service';
 import { CapitalizeLetterPipe } from './pipes/capitalize-letter.pipe';
 //--- PAGES
 import { LoginPageComponent } from './pages/login-page/login-page.component';
-import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roaster-page.component';
+//import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roaster-page.component';
 import { PilotDetailPageComponent } from './pages/pilot-detail-page/pilot-detail-page.component';
 import { PlanetaryManagerPageComponent } from './pages/planetary-manager-page/planetary-manager-page.component';
 import { PlanetaryOptimizationPageComponent } from './pages/planetary-optimization-page/planetary-optimization-page.component';
@@ -39,12 +39,11 @@ import { NavigationMenuComponent } from './component/navigation-menu/navigation-
 import { Login4ListComponent } from './components/login4-list/login4-list.component';
 import { SeparatorComponent } from './components/separator/separator.component';
 import { RenderComponent } from './components/render/render.component';
-//import { PilotRoasterService } from './services/pilot-roaster.service';
 import { PilotListDataSourceService } from './services/pilot-list-data-source.service';
-//import { PilotManagersDataSourceService } from './services/pilot-managers-data-source.service';
 import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
 import { NodePanelComponent } from './components/node-panel/node-panel.component';
 import { Pilot4LoginComponent } from './components/pilot4-login/pilot4-login.component';
+import { ContainerComponent } from './components/container/container.component';
 
 
 @NgModule({
@@ -55,7 +54,7 @@ import { Pilot4LoginComponent } from './components/pilot4-login/pilot4-login.com
     HeaderComponent,
     SpinnerCentralComponent,
     NavigationMenuComponent,
-    PilotRoasterPageComponent,
+    //  PilotRoasterPageComponent,
     RegionComponent,
     LocationComponent,
     Pilot4RoasterComponent,
@@ -75,6 +74,7 @@ import { Pilot4LoginComponent } from './components/pilot4-login/pilot4-login.com
     ProcessingActionComponent,
     NodePanelComponent,
     Pilot4LoginComponent,
+    ContainerComponent,
   ],
   imports: [
     BrowserModule,

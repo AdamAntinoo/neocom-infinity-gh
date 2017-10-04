@@ -13,6 +13,7 @@ import org.dimensinfin.eveonline.neocom.connector.AppConnector;
 import org.dimensinfin.eveonline.neocom.enums.EDataBlock;
 import org.dimensinfin.eveonline.neocom.model.Login;
 import org.dimensinfin.eveonline.neocom.model.NeoComCharacter;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 // - CLASS IMPLEMENTATION ...................................................................................
@@ -31,11 +32,9 @@ public class TimedCharacterUpdaterLauncher {
 	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
-	//@Scheduled(initialDelay = 10000, fixedDelay = 15000)
+	@Scheduled(initialDelay = 60000, fixedDelay = 15000)
 	public void onTime() {
 		logger.info(">> [TimedCharacterUpdaterLauncher.onTime]");
-
-		// STEP 02. Check characters for pending structures to update.
 		Hashtable<String, Login> logins = AppConnector.getModelStore().accessLoginList();
 		for (String key : logins.keySet()) {
 			for (NeoComCharacter eveChar : logins.get(key).getCharacters()) {
