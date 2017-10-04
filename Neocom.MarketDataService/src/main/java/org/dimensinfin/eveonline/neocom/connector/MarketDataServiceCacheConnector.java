@@ -6,7 +6,10 @@
 //								the SpringBoot+MicroServices+Angular unified web application.
 package org.dimensinfin.eveonline.neocom.connector;
 
+import java.util.Vector;
 import java.util.logging.Logger;
+
+import org.dimensinfin.eveonline.neocom.services.PendingRequestEntry;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 /**
@@ -44,6 +47,12 @@ public class MarketDataServiceCacheConnector extends CoreCacheConnector implemen
 			topCounter = 0;
 		}
 		return topCounter;
+	}
+
+	@Override
+	public Vector<PendingRequestEntry> getAndroidPendingRequests() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override

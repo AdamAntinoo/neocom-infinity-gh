@@ -88,6 +88,16 @@ public class MarketDataServiceApplication implements IConnector {
 	}
 
 	@Override
+	public IConnector getAppSingleton() {
+		return singleton;
+	}
+
+	@Override
+	public boolean getAssetsFormat() {
+		return true;
+	}
+
+	@Override
 	public ICacheConnector getCacheConnector() {
 		if (null == cacheConnector) cacheConnector = new MarketDataServiceCacheConnector();
 		return cacheConnector;
