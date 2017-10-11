@@ -145,24 +145,6 @@ export class AppModelStoreService {
           let manager = new PlanetaryManager(result);
           return manager;
         } else return result;
-        // let roaster: Manager[] = [];
-        // for (let manager of result) {
-        //   // Check the differentiation between Pilot and Corporation.
-        //   let newman = null;
-        //   switch (manager.jsonClass) {
-        //     case "AssetsManager":
-        //       newman = new AssetsManager(manager);
-        //       break;
-        //     case "PlanetaryManager":
-        //       newman = new PlanetaryManager(manager);
-        //       break;
-        //     default:
-        //       newman = new Manager(manager);
-        //       break;
-        //   }
-        //   roaster.push(newman);
-        // }
-        // return roaster;
       });
   }
   public getBackendPlanetaryOptimizedScenario(locid: number): Observable<ProcessingAction[]> {
@@ -192,35 +174,18 @@ export class AppModelStoreService {
         return actionList;
       });
   }
-  // /**
-  // The initial version only reported the Managers but seems more effective to retieve the complete Character with theis Managers initialized.
-  // */
-  // public getBackendPilotManagerList(loginid:string, characterid: number): Observable<NeoComCharacter> {
-  //   console.log("><[AppModelStoreService.getBackendPilotManagerList]>Characterid = " + characterid);
-  // //  let loginid = this.accessLogin().getLoginId();
-  //   return this.http.get(AppModelStoreService.RESOURCE_SERVICE_URL + "/login/" + loginid + "/pilot/" + characterid )
-  //     .map(res => res.json())
-  //     .map(result => {
-  //       let roaster: Manager[] = [];
-  //       for (let manager of result) {
-  //         // Check the differentiation between Pilot and Corporation.
-  //         let newman = null;
-  //         switch (manager.jsonClass) {
-  //           case "AssetsManager":
-  //             newman = new AssetsManager(manager);
-  //             break;
-  //           case "PlanetaryManager":
-  //             newman = new PlanetaryManager(manager);
-  //             break;
-  //           default:
-  //             newman = new Manager(manager);
-  //             break;
-  //         }
-  //         roaster.push(newman);
-  //       }
-  //       return roaster;
-  //     });
-  // }
+  public getBackendPilotAssetsManager(characterid: number): Observable<Manager> {
+    console.log("><[AppModelStoreService.getBackendPilotAssetsManager]>Characterid = " + characterid);
+    let loginid = this.accessLogin().getLoginId();
+    return this.http.get(AppModelStoreService.RESOURCE_SERVICE_URL + "/login/" + loginid + "/pilot/" + characterid + "/assetsmanager")
+      .map(res => res.json())
+      .map(result => {
+        if (result.jsonClass == "AssetsManager") {
+          let manager = new AssetsManager(result);
+          return manager;
+        } else return result;
+      });
+  }
 
 
   //--- L O G I N    S E C T I O N

@@ -8,6 +8,7 @@
 <div class="neocom-panel-container">
   <div *ngFor="let render of adapterViewList">
     <neocom-separator *ngIf="render.jsonClass == 'Separator'" [viewer]="getViewer()" [node]="render"></neocom-separator>
+    <neocom-assets-manager *ngIf="render.jsonClass == 'AssetsManager'" [pilot]="pilot" [manager]="render"></neocom-assets-manager>
     <neocom-planetary-manager *ngIf="render.jsonClass == 'PlanetaryManager'" [pilot]="pilot" [manager]="render"></neocom-planetary-manager>
   </div>
 </div>

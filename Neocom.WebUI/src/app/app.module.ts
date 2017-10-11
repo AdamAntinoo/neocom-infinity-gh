@@ -18,6 +18,7 @@ import { CapitalizeLetterPipe } from './pipes/capitalize-letter.pipe';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 //import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roaster-page.component';
 import { PilotDetailPageComponent } from './pages/pilot-detail-page/pilot-detail-page.component';
+import { AssetsManagerPageComponent } from './pages/assets-manager-page/assets-manager-page.component';
 import { PlanetaryManagerPageComponent } from './pages/planetary-manager-page/planetary-manager-page.component';
 import { PlanetaryOptimizationPageComponent } from './pages/planetary-optimization-page/planetary-optimization-page.component';
 //--- COMPONENTS
@@ -27,6 +28,7 @@ import { SpinnerCentralComponent } from './components/spinner-central/spinner-ce
 import { Pilot4RoasterComponent } from './components/pilot4-roaster/pilot4-roaster.component';
 import { Pilot4DetailComponent } from './components/pilot4-detail/pilot4-detail.component';
 import { PilotManagerComponent } from './components/pilot-manager/pilot-manager.component';
+import { AssetsManagerComponent } from './components/assets-manager/assets-manager.component';
 import { PlanetaryManagerComponent } from './components/planetary-manager/planetary-manager.component';
 import { RegionComponent } from './components/region/region.component';
 import { LocationComponent } from './components/location/location.component';
@@ -54,7 +56,6 @@ import { ContainerComponent } from './components/container/container.component';
     HeaderComponent,
     SpinnerCentralComponent,
     NavigationMenuComponent,
-    //  PilotRoasterPageComponent,
     RegionComponent,
     LocationComponent,
     Pilot4RoasterComponent,
@@ -64,6 +65,7 @@ import { ContainerComponent } from './components/container/container.component';
     PlanetaryManagerComponent,
     LoginPageComponent,
     Login4ListComponent,
+    AssetsManagerPageComponent,
     PlanetaryManagerPageComponent,
     AssetComponent,
     SeparatorComponent,
@@ -75,6 +77,7 @@ import { ContainerComponent } from './components/container/container.component';
     NodePanelComponent,
     Pilot4LoginComponent,
     ContainerComponent,
+    AssetsManagerComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,14 +85,11 @@ import { ContainerComponent } from './components/container/container.component';
     HttpModule,
     JsonpModule,
     CookieModule.forRoot(),
-    //    Ng2MenuModule,
     AppRoutingModule,
   ],
   providers: [
     AppModelStoreService,
-    //  PilotRoasterService,
     PilotListDataSourceService,
-    //  PilotManagersDataSourceService,
   ],
   bootstrap: [AppComponent]
 })

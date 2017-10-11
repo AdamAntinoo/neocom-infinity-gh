@@ -116,14 +116,18 @@ export class NeoComCharacter extends NeoComNode {
     }
   }
   public accessAssetsManager(downloadService: AppModelStoreService): Observable<Manager> {
-    return new Observable(observer => {
-      setTimeout(() => {
-        observer.next(this._assetsManager);
-      }, 500);
-      setTimeout(() => {
-        observer.complete();
-      }, 500);
-    });
+    if (null == this._assetsManager)
+      return downloadService.getBackendPilotAssetsManager(this.getId());
+    else {
+      return new Observable(observer => {
+        setTimeout(() => {
+          observer.next(this._assetsManager);
+        }, 500);
+        setTimeout(() => {
+          observer.complete();
+        }, 500);
+      });
+    }
   }
   public setAssetsManager(newassets: AssetsManager): void {
     this._assetsManager = newassets;

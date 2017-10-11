@@ -3,6 +3,7 @@
 // COPYRIGHT:   (c) 2017 by Dimensinfin Industries, all rights reserved.
 // ENVIRONMENT: Angular - CLASS
 // DESCRIPTION: Defines the structure of a EVE Pilot. May depend on other classes to complete the character information hierarchy.
+
 import { Observable } from 'rxjs/Rx';
 // Import RxJs required methods
 import 'rxjs/add/operator/map';
