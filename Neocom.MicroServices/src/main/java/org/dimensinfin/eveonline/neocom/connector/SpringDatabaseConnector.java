@@ -221,7 +221,7 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 		// Access the database to get the list of keys. From that point on we can retrieve the characters easily.
 		List<ApiKey> apilist = null;
 		try {
-			Dao<ApiKey, String> keyDao = AppConnector.getDBConnector().getApiKeysDao();
+			Dao<ApiKey, String> keyDao = NeoComMSConnector.getSingleton().getDBConnector().getApiKeysDao();
 			QueryBuilder<ApiKey, String> queryBuilder = keyDao.queryBuilder();
 			Where<ApiKey, String> where = queryBuilder.where();
 			where.eq("login", login);
@@ -302,6 +302,29 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 	public boolean openDAO() {
 		neocomDBHelper = new NeocomDBHelper(databaseLink, dbVersion);
 		return false;
+	}
+
+	/**
+	 * Returns the list of distinct identifiers for parentAssetId that should represent the container where an
+	 * asset is located. That list can represent known Locations, Assets and unknown locations that should
+	 * represent other Corporation assets like the Customs or not listed Space Structures.
+	 */
+	public List<NeoComAsset> queryAllAssetContainers(final long identifier) {
+		// Get access to one assets with a distinct location. Discard the rest of the data and only process the Location id
+		List<NeoComAsset> uniqueContainers = new Vector<NeoComAsset>();
+		try {
+			Dao<NeoComAsset, String> assetDao = this.getAssetDAO();
+			QueryBuilder<NeoComAsset, String> queryBuilder = assetDao.queryBuilder().distinct()
+					.selectColumns("parentAssetID");
+			Where<NeoComAsset, String> where = queryBuilder.where();
+			where.eq("ownerID", identifier);
+			PreparedQuery<NeoComAsset> preparedQuery = queryBuilder.prepare();
+			uniqueContainers = assetDao.query(preparedQuery);
+		} catch (java.sql.SQLException sqle) {
+			sqle.printStackTrace();
+			logger.warning("W [SpringDatabaseConnector.queryAllLogins]> Excpetion reading all Logins" + sqle.getMessage());
+		}
+		return uniqueContainers;
 	}
 
 	/**
@@ -835,7 +858,7 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 	 */
 	public int searchStationType(final long stationID) {
 		int stationTypeID = 1529;
-		AppConnector.startChrono();
+		NeoComMSConnector.getSingleton().startChrono();
 		PreparedStatement prepStmt = null;
 		ResultSet cursor = null;
 		try {
@@ -859,7 +882,8 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 				ex.printStackTrace();
 			}
 		}
-		logger.info("~~ Time lapse for [SELECT STATIONTYPEID " + stationID + "] " + AppConnector.timeLapse());
+		logger.info(
+				"~~ Time lapse for [SELECT STATIONTYPEID " + stationID + "] " + NeoComMSConnector.getSingleton().timeLapse());
 		return stationTypeID;
 	}
 

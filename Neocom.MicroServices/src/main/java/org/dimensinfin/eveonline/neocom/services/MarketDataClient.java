@@ -10,7 +10,7 @@ package org.dimensinfin.eveonline.neocom.services;
 import java.net.URI;
 import java.util.logging.Logger;
 
-import org.dimensinfin.eveonline.neocom.connector.AppConnector;
+import org.dimensinfin.eveonline.neocom.connector.NeoComMSConnector;
 import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
 import org.dimensinfin.eveonline.neocom.market.MarketDataSet;
 import org.dimensinfin.eveonline.neocom.model.EveItem;
@@ -56,7 +56,7 @@ public class MarketDataClient {
 		logger.info(">< [MarketDataService.getData]> itemid: " + itemid + " side: " + side.name());
 		try {
 			// Store parameters to be used on fallback methods.
-			EveItem item = AppConnector.getCCPDBConnector().searchItembyID(itemid);
+			EveItem item = NeoComMSConnector.getSingleton().getCCPDBConnector().searchItembyID(itemid);
 			itemidcopy = itemid;
 			//		String itemnamecopy = "";
 			//	if (null != item) itemnamecopy = item.getName();

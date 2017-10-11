@@ -120,7 +120,7 @@ public class AppModelStore implements INeoComModelStore {
 	 * not kept and is calculated each time the call is received.
 	 */
 	public Set<NeoComCharacter> accessCharacterList() {
-		Hashtable<String, Login> loginList = AppConnector.getModelStore().accessLoginList();
+		Hashtable<String, Login> loginList = NeoComMSConnector.getSingleton().getModelStore().accessLoginList();
 		Set<NeoComCharacter> charList = new HashSet<NeoComCharacter>();
 		for (String key : loginList.keySet()) {
 			Login login = loginList.get(key);
@@ -136,7 +136,7 @@ public class AppModelStore implements INeoComModelStore {
 	 * it. Block any other attempt to get the list while we are loading it.
 	 */
 	public synchronized Hashtable<String, Login> accessLoginList() {
-		if (null == _loginList) _loginList = AppConnector.getDBConnector().queryAllLogins();
+		if (null == _loginList) _loginList = NeoComMSConnector.getSingleton().getDBConnector().queryAllLogins();
 		return _loginList;
 	}
 
@@ -149,7 +149,7 @@ public class AppModelStore implements INeoComModelStore {
 	 */
 	public Login activateLoginIdentifier(final String loginTarget) {
 		logger.info(">< [AppModelStore.activateLoginIdentifier] loginTarget: " + loginTarget);
-		if (null == _loginList) _loginList = AppConnector.getDBConnector().queryAllLogins();
+		if (null == _loginList) _loginList = NeoComMSConnector.getSingleton().getDBConnector().queryAllLogins();
 		// OPTIMIZATION: If the character is already the selected one do nothing.
 		if (null != _loginIdentifier) if (_loginIdentifier.getName().equalsIgnoreCase(loginTarget)) return _loginIdentifier;
 		for (String key : _loginList.keySet()) {

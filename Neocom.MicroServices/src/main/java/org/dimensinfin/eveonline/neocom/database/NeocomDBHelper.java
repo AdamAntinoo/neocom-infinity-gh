@@ -208,13 +208,13 @@ public class NeocomDBHelper {
 			// If the table is empty then insert the seeded Api Keys
 			if (records < 1) {
 				ApiKey key = new ApiKey("Beth Ripley").setKeynumber(2889577)
-						.setValidationcode("Mb6iDKR14m9Xjh9maGTQCGTkpjRHPjOgVUkvK6E9r6fhMtOWtipaqybp0qCzxuuw");
+						.setValidationcode("Mb6iDKR14m9Xjh9maGTQCGTkpjRHPjOgVUkvK6E9r6fhMtOWtipaqybp0qCzxuuw").setActive(true);
 				key = new ApiKey("Perico").setKeynumber(3106761)
 						.setValidationcode("gltCmvVoZl5akrM8d6DbNKZn7Jm2SaukrmqjnSOyqKbvzz5CtNfknTEwdBe6IIFf").setActive(false);
 				key = new ApiKey("CapitanHaddock09").setKeynumber(924767)
-						.setValidationcode("2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P").setActive(true);
+						.setValidationcode("2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P").setActive(false);
 				key = new ApiKey("CapitanHaddock29").setKeynumber(6472981)
-						.setValidationcode("pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z").setActive(false);
+						.setValidationcode("pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z").setActive(true);
 				key = new ApiKey("CapitanHaddock").setKeynumber(924767)
 						.setValidationcode("2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P").setActive(false);
 				key = new ApiKey("CapitanHaddock").setKeynumber(6472981)

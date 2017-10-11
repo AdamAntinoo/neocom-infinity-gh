@@ -9,8 +9,8 @@ package org.dimensinfin.eveonline.neocom.controller;
 import java.util.Hashtable;
 import java.util.logging.Logger;
 
-import org.dimensinfin.eveonline.neocom.connector.AppConnector;
 import org.dimensinfin.eveonline.neocom.connector.AppModelStore;
+import org.dimensinfin.eveonline.neocom.connector.NeoComMSConnector;
 import org.dimensinfin.eveonline.neocom.model.Login;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,14 +38,15 @@ public class LoginController {
 		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/loginlist");
 		logger.info(">> [LoginController.loginlistEntryPoint]");
 		try {
-			AppConnector.startChrono();
+			NeoComMSConnector.getSingleton().startChrono();
 			// If we receive a force command we should clear data before executing the request.
 			if (force != null) if (force.equalsIgnoreCase("true")) AppModelStore.getSingleton().clearLoginList();
 			return AppModelStore.getSingleton().accessLoginList();
 		} catch (RuntimeException rtex) {
 			return new Hashtable<String, Login>();
 		} finally {
-			logger.info("<< [LoginController.loginlistEntryPoint]>[TIMING] Processing Time: - " + AppConnector.timeLapse());
+			logger.info("<< [LoginController.loginlistEntryPoint]>[TIMING] Processing Time: - "
+					+ NeoComMSConnector.getSingleton().timeLapse());
 		}
 	}
 }

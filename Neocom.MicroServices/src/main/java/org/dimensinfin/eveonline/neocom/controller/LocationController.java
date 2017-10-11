@@ -22,7 +22,7 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-import org.dimensinfin.eveonline.neocom.connector.AppConnector;
+import org.dimensinfin.eveonline.neocom.connector.NeoComMSConnector;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,13 +58,14 @@ public class LocationController {
 		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/location/updatecitadels");
 		logger.info(">> [LocationController.updateCitadels]");
 		try {
-			AppConnector.startChrono();
+			NeoComMSConnector.getSingleton().startChrono();
 			return "<< [LocationController.updateCitadels]>[COUNTER]> Citadels Processed: - "
 					+ updateCitadelsProcess().size();
 		} catch (RuntimeException rtex) {
 			return "<< [LocationController.updateCitadels]>[COUNTER]> Detected Exception: - " + rtex.getMessage();
 		} finally {
-			logger.info("<< [LocationController.updateCitadels]>[TIMING] Processing Time: - " + AppConnector.timeLapse());
+			logger.info("<< [LocationController.updateCitadels]>[TIMING] Processing Time: - "
+					+ NeoComMSConnector.getSingleton().timeLapse());
 		}
 	}
 
@@ -74,13 +75,14 @@ public class LocationController {
 		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/location/updateoutposts");
 		logger.info(">> [LocationController.updateOutposts]");
 		try {
-			AppConnector.startChrono();
+			NeoComMSConnector.getSingleton().startChrono();
 			return "<< [LocationController.updateOutposts]>[COUNTER]> Outposts Processed: - "
 					+ updateOutpostsProcess().getStations().size();
 		} catch (RuntimeException rtex) {
 			return "<< [LocationController.updateOutposts]>[COUNTER]> Detected Exception: - " + rtex.getMessage();
 		} finally {
-			logger.info("<< [LocationController.updateOutposts]>[TIMING] Processing Time: - " + AppConnector.timeLapse());
+			logger.info("<< [LocationController.updateOutposts]>[TIMING] Processing Time: - "
+					+ NeoComMSConnector.getSingleton().timeLapse());
 		}
 	}
 

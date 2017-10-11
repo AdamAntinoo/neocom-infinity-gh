@@ -8,18 +8,19 @@ package org.dimensinfin.eveonline.neocom;
 
 import java.util.logging.Logger;
 
-import org.dimensinfin.eveonline.neocom.connector.AppConnector;
 import org.dimensinfin.eveonline.neocom.connector.AppModelStore;
 import org.dimensinfin.eveonline.neocom.connector.CCPDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.ICCPDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.ICacheConnector;
-import org.dimensinfin.eveonline.neocom.connector.IConnector;
 import org.dimensinfin.eveonline.neocom.connector.IDatabaseConnector;
-import org.dimensinfin.eveonline.neocom.connector.IStorageConnector;
+import org.dimensinfin.eveonline.neocom.connector.INeoComMSConnector;
 import org.dimensinfin.eveonline.neocom.connector.MicroServicesCacheConnector;
+import org.dimensinfin.eveonline.neocom.connector.NeoComMSConnector;
 import org.dimensinfin.eveonline.neocom.connector.SpringDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.constant.R;
 import org.dimensinfin.eveonline.neocom.interfaces.INeoComModelStore;
+import org.joda.time.Duration;
+import org.joda.time.Instant;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
@@ -38,11 +39,15 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 //@EnableAsync
 @SpringBootApplication
-public class NeocomMicroServiceApplication implements IConnector {
+public class NeocomMicroServiceApplication implements INeoComMSConnector {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger												logger						= Logger.getLogger("NeocomMicroServiceApplication");
-	public static final String									APPLICATION_NAME	= "NeocomMicroServiceApplication";
-	public static NeocomMicroServiceApplication	singleton					= null;
+	private static Logger				logger						= Logger.getLogger("NeocomMicroServiceApplication");
+	public static final String	APPLICATION_NAME	= "NeocomMicroServiceApplication";
+	//	public static NeocomMicroServiceApplication	singleton					= null;
+	//
+	//	public static INeoComMSConnector getSingleton() {
+	//		return singleton;
+	//	}
 
 	// - M A I N   E N T R Y P O I N T ........................................................................
 	/**
@@ -56,65 +61,33 @@ public class NeocomMicroServiceApplication implements IConnector {
 	}
 
 	// - F I E L D - S E C T I O N ............................................................................
+	private NeoComMSConnector			_connector				= null;
+	private Instant								chrono						= null;
+
 	private IDatabaseConnector		dbNeocomConnector	= null;
 	private ICCPDatabaseConnector	dbCCPConnector		= null;
 	private ICacheConnector				cacheConnector		= null;
-	//	@Autowired
-	//	public CacheManager					cacheManager;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 	public NeocomMicroServiceApplication() {
 		logger.info(">> [NeocomMicroServiceApplication.<constructor>]");
 		// Create and connect the adapters.
-		if (null == singleton) {
-			logger.info("-- [NeocomMicroServiceApplication.<constructor>]> Instantiating the singleton.");
-			singleton = this;
-		}
-		AppConnector.setConnector(singleton);
+		//		if (null == singleton) {
+		//			logger.info("-- [NeocomMicroServiceApplication.<constructor>]> Instantiating the singleton.");
+		//			singleton = this;
+		//		}
+		_connector = new NeoComMSConnector(this);
 		logger.info("<< [NeocomMicroServiceApplication.<constructor>]");
 	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
-	@Override
-	public void addCharacterUpdateRequest(final long characterID) {
-		this.getCacheConnector().addCharacterUpdateRequest(characterID);
-	}
-
-	//	@Bean
-	//	public CacheManagerCustomizer<ConcurrentMapCacheManager> cacheManagerCustomizer() {
-	//		return new CacheManagerCustomizer<ConcurrentMapCacheManager>() {
-	//			@Override
-	//			public void customize(ConcurrentMapCacheManager cacheManager) {
-	//				cacheManager.setAllowNullValues(false);
-	//			}
-	//		};
-	//	}
-	//	@Bean
-	//	public Executor asyncExecutor() {
-	//		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-	//		executor.setCorePoolSize(2);
-	//		executor.setMaxPoolSize(2);
-	//		executor.setQueueCapacity(500);
-	//		executor.setThreadNamePrefix("GithubLookup-");
-	//		executor.initialize();
-	//		return executor;
+	//	@Override
+	//	public void addCharacterUpdateRequest(final long characterID) {
+	//		this.getCacheConnector().addCharacterUpdateRequest(characterID);
 	//	}
 
 	public String getAppName() {
 		return APPLICATION_NAME;
-	}
-
-	@Override
-	public IConnector getAppSingleton() {
-		return NeocomMicroServiceApplication.singleton;
-	}
-
-	/**
-	 * Return FALSE if we like the hierarchy assets format. Or TRUE if we want the flat format.
-	 */
-	@Override
-	public boolean getAssetsFormat() {
-		return true;
 	}
 
 	@Override
@@ -143,17 +116,95 @@ public class NeocomMicroServiceApplication implements IConnector {
 		return dbNeocomConnector;
 	}
 
+	@Override
 	public INeoComModelStore getModelStore() {
 		return AppModelStore.getSingleton();
 	}
 
-	public NeocomMicroServiceApplication getSingletonApp() {
-		return NeocomMicroServiceApplication.singleton;
+	public void startChrono() {
+		chrono = new Instant();
 	}
 
-	@Override
-	public IStorageConnector getStorageConnector() {
-		return null;
+	public Duration timeLapse() {
+		return new Duration(chrono, new Instant());
 	}
+
+	/**
+	 * Return FALSE if we like the hierarchy assets format. Or TRUE if we want the flat format.
+	 */
+	//	@Override
+	//	public boolean getAssetsFormat() {
+	//		return true;
+	//	}
+
+	//	public ICacheConnector getCacheConnector() {
+	//		if (null == cacheConnector) cacheConnector = new MicroServicesCacheConnector();
+	//		return cacheConnector;
+	//	}
+	//
+	//	public ICCPDatabaseConnector getCCPDBConnector() {
+	//		if (null == dbCCPConnector) {
+	//			dbCCPConnector = new CCPDatabaseConnector();
+	//		}
+	//		return dbCCPConnector;
+	//	}
+	//
+	//	//	@Override
+	//	//	public IConnector getAppSingleton() {
+	//	//		return NeocomMicroServiceApplication.singleton;
+	//	//	}
+	//
+	//	public IDatabaseConnector getDBConnector() {
+	//		if (null == dbNeocomConnector) {
+	//			String dblocation = R.getResourceString("R.string.appdatabasepath");
+	//			String dbname = R.getResourceString("R.string.appdatabasefilename");
+	//			String dbversion = R.getResourceString("R.string.databaseversion");
+	//			dbNeocomConnector = new SpringDatabaseConnector(dblocation, dbname, dbversion);
+	//			dbNeocomConnector.loadSeedData();
+	//		}
+	//		return dbNeocomConnector;
+	//	}
+	//
+	//	public INeoComModelStore getModelStore() {
+	//		return AppModelStore.getSingleton();
+	//	}
+
+	//	@Bean
+	//	public CacheManagerCustomizer<ConcurrentMapCacheManager> cacheManagerCustomizer() {
+	//		return new CacheManagerCustomizer<ConcurrentMapCacheManager>() {
+	//			@Override
+	//			public void customize(ConcurrentMapCacheManager cacheManager) {
+	//				cacheManager.setAllowNullValues(false);
+	//			}
+	//		};
+	//	}
+	//	@Bean
+	//	public Executor asyncExecutor() {
+	//		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+	//		executor.setCorePoolSize(2);
+	//		executor.setMaxPoolSize(2);
+	//		executor.setQueueCapacity(500);
+	//		executor.setThreadNamePrefix("GithubLookup-");
+	//		executor.initialize();
+	//		return executor;
+	//	}
+	//	@Override
+	//	public void startChrono() {
+	//		chrono = new Instant();
+	//	}
+	//
+	//	@Override
+	//	public Duration timeLapse() {
+	//		return new Duration(chrono, new Instant());
+	//	}
+
+	//	public NeocomMicroServiceApplication getSingletonApp() {
+	//		return NeocomMicroServiceApplication.singleton;
+	//	}
+
+	//	@Override
+	//	public IStorageConnector getStorageConnector() {
+	//		return null;
+	//	}
 }
 // - UNUSED CODE ............................................................................................

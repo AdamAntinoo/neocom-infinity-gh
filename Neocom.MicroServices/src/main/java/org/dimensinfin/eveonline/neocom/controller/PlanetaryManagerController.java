@@ -9,7 +9,7 @@ package org.dimensinfin.eveonline.neocom.controller;
 import java.util.Vector;
 import java.util.logging.Logger;
 
-import org.dimensinfin.eveonline.neocom.connector.AppConnector;
+import org.dimensinfin.eveonline.neocom.connector.NeoComMSConnector;
 import org.dimensinfin.eveonline.neocom.industry.Resource;
 import org.dimensinfin.eveonline.neocom.manager.AssetsManager;
 import org.dimensinfin.eveonline.neocom.manager.PlanetaryManager;
@@ -45,12 +45,13 @@ public class PlanetaryManagerController {
 		Vector<ProcessingAction> bestScenario = new Vector<ProcessingAction>();
 		try {
 			// Initialize the model data hierarchies.
-			AppConnector.getModelStore().activateLoginIdentifier(login);
-			AppConnector.getModelStore().activatePilot(Long.valueOf(identifier));
+			NeoComMSConnector.getSingleton().getModelStore().activateLoginIdentifier(login);
+			NeoComMSConnector.getSingleton().getModelStore().activatePilot(Long.valueOf(identifier));
 			// Get the Planetary Manager for this Character. Make sure it is initialized and then get the resources
 			// at the indicated location and optimize processing them.
-			AssetsManager assets = AppConnector.getModelStore().getCurrentPilot().getAssetsManager();
-			PlanetaryManager planetary = AppConnector.getModelStore().getCurrentPilot().getPlanetaryManager();
+			AssetsManager assets = NeoComMSConnector.getSingleton().getModelStore().getCurrentPilot().getAssetsManager();
+			PlanetaryManager planetary = NeoComMSConnector.getSingleton().getModelStore().getCurrentPilot()
+					.getPlanetaryManager();
 			if (!planetary.isInitialized()) planetary.initialize();
 			Vector<Resource> resources = planetary.getLocationContents(locationid);
 

@@ -83,7 +83,7 @@ public class MicroServicesCacheConnector extends CoreCacheConnector implements I
 	public MarketDataSet searchMarketData(final int itemID, final EMarketSide side) {
 		logger.info(">> [MicroServicesCacheConnector.searchMarketData]> itemid: " + itemID + " side: " + side.name());
 		// Search on the cache. By default load the SELLER as If I am buying the item.
-		AppConnector.startChrono();
+		NeoComMSConnector.getSingleton().startChrono();
 		Hashtable<Integer, MarketDataSet> cache = sellMarketDataCache;
 		if (side == EMarketSide.BUYER) {
 			cache = buyMarketDataCache;
@@ -98,8 +98,8 @@ public class MicroServicesCacheConnector extends CoreCacheConnector implements I
 				cache.put(itemID, entry);
 			}
 		}
-		logger.info(
-				"<< [MicroServicesCacheConnector.searchMarketData]> Time lapse: " + itemID + " - " + AppConnector.timeLapse());
+		logger.info("<< [MicroServicesCacheConnector.searchMarketData]> Time lapse: " + itemID + " - "
+				+ NeoComMSConnector.getSingleton().timeLapse());
 		return entry;
 	}
 

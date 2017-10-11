@@ -9,7 +9,7 @@ package org.dimensinfin.eveonline.neocom.controller;
 
 import java.util.logging.Logger;
 
-import org.dimensinfin.eveonline.neocom.connector.AppConnector;
+import org.dimensinfin.eveonline.neocom.connector.NeoComMSConnector;
 import org.dimensinfin.eveonline.neocom.model.EveItem;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,7 +41,7 @@ public class EveItemController {
 		logger.info(">> [NeoComApplication.eveItem]");
 		logger.info("-- [NeoComApplication.eveItem]> typeID: " + typeID);
 		// Connect to the eve database and generate an output for the query related to the eve item received as parameter.
-		EveItem item = AppConnector.getCCPDBConnector().searchItembyID(Integer.parseInt(typeID));
+		EveItem item = NeoComMSConnector.getSingleton().getCCPDBConnector().searchItembyID(Integer.parseInt(typeID));
 		// Initialize the market data from start because this is a requirements on serialization.
 		item.getHighestBuyerPrice();
 		item.getLowestSellerPrice();

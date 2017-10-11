@@ -9,7 +9,7 @@ package org.dimensinfin.eveonline.neocom.controller;
 import java.util.Vector;
 import java.util.logging.Logger;
 
-import org.dimensinfin.eveonline.neocom.connector.AppConnector;
+import org.dimensinfin.eveonline.neocom.connector.NeoComMSConnector;
 import org.dimensinfin.eveonline.neocom.manager.AbstractManager;
 import org.dimensinfin.eveonline.neocom.model.NeoComCharacter;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,6 +28,25 @@ public class PilotDataController {
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 
+	@CrossOrigin()
+	@RequestMapping(value = "/api/v1/login/{login}/pilot/{identifier}/assetsmanager", method = RequestMethod.GET, produces = "application/json")
+	public AbstractManager pilotAssetsManager(@PathVariable final String login, @PathVariable final String identifier) {
+		logger.info(
+				">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/login/{" + login + "}/pilot/{" + identifier + "}/assetsmanager");
+		logger.info(">> [PilotRoasterController.pilotAssetsManager]");
+		try {
+			// Initialize the model data hierarchies.
+			NeoComMSConnector.getSingleton().getModelStore().activateLoginIdentifier(login);
+			NeoComMSConnector.getSingleton().getModelStore().activatePilot(Long.valueOf(identifier));
+			return NeoComMSConnector.getSingleton().getModelStore().getActiveCharacter().getAssetsManager().initialize();
+		} catch (RuntimeException rtx) {
+			rtx.printStackTrace();
+			return null;
+		} finally {
+			logger.info("<< [PilotRoasterController.pilotPlanetaryManager]");
+		}
+	}
+
 	// - M E T H O D - S E C T I O N ..........................................................................
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/login/{login}/pilot/{identifier}", method = RequestMethod.GET, produces = "application/json")
@@ -37,8 +56,8 @@ public class PilotDataController {
 		//	Vector<AbstractManager> managerList = new Vector<AbstractManager>();
 		try {
 			// Initialize the model data hierarchies.
-			AppConnector.getModelStore().activateLoginIdentifier(login);
-			NeoComCharacter pilot = AppConnector.getModelStore().activatePilot(Long.valueOf(identifier));
+			NeoComMSConnector.getSingleton().getModelStore().activateLoginIdentifier(login);
+			NeoComCharacter pilot = NeoComMSConnector.getSingleton().getModelStore().activatePilot(Long.valueOf(identifier));
 			return pilot;
 		} catch (RuntimeException rtx) {
 			rtx.printStackTrace();
@@ -58,8 +77,8 @@ public class PilotDataController {
 		Vector<AbstractManager> managerList = new Vector<AbstractManager>();
 		try {
 			// Initialize the model data hierarchies.
-			AppConnector.getModelStore().activateLoginIdentifier(login);
-			NeoComCharacter pilot = AppConnector.getModelStore().activatePilot(Long.valueOf(identifier));
+			NeoComMSConnector.getSingleton().getModelStore().activateLoginIdentifier(login);
+			NeoComCharacter pilot = NeoComMSConnector.getSingleton().getModelStore().activatePilot(Long.valueOf(identifier));
 			managerList.addElement(pilot.getAssetsManager().initialize());
 			managerList.addElement(pilot.getPlanetaryManager().initialize());
 			return managerList;
@@ -80,9 +99,9 @@ public class PilotDataController {
 		logger.info(">> [PilotRoasterController.pilotPlanetaryManager]");
 		try {
 			// Initialize the model data hierarchies.
-			AppConnector.getModelStore().activateLoginIdentifier(login);
-			AppConnector.getModelStore().activatePilot(Long.valueOf(identifier));
-			return AppConnector.getModelStore().getCurrentPilot().getPlanetaryManager().initialize();
+			NeoComMSConnector.getSingleton().getModelStore().activateLoginIdentifier(login);
+			NeoComMSConnector.getSingleton().getModelStore().activatePilot(Long.valueOf(identifier));
+			return NeoComMSConnector.getSingleton().getModelStore().getCurrentPilot().getPlanetaryManager().initialize();
 		} catch (RuntimeException rtx) {
 			rtx.printStackTrace();
 			return null;
@@ -90,36 +109,6 @@ public class PilotDataController {
 			logger.info("<< [PilotRoasterController.pilotPlanetaryManager]");
 		}
 	}
-	//	/**
-	//	 * This requests will extract the login identifier from the session cookie and then with that identifier
-	//	 * search for the api keys on the database. Those keys will be the input to the datasource to get the list
-	//	 * of pilots associated with the identified login. With that information the datasource will be able to go
-	//	 * to the CCP servers to get the each <code>Pilot</code> information.
-	//	 * 
-	//	 * @return list of <code>Pilot</code>s associated to the current session login. Each of this may become a
-	//	 *         different datasource item that can be cached.
-	//	 */
-	//	@CrossOrigin()
-	//	@RequestMapping(value = "/api/v1/login/{identifier}/pilotroaster", method = RequestMethod.GET, produces = "application/json")
-	//	public Vector<Pilot> pilotRoaster(@PathVariable final String identifier) {
-	//		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/login/{identifier}/pilotroaster");
-	//		logger.info(">> [PilotRoasterController.pilotRoaster]>identifier=" + identifier);
-	//		// Get the cookie and the login identifier inside it.
-	//		//		String login = "Beth";
-	//		AppConnector.getModelStore().activateLoginIdentifier(identifier);
-	//		Vector<Pilot> pilotList = new Vector<Pilot>();
-	//		if (null != identifier) {
-	//			// Get a new model interface for the Pilot roaster using as unique identifier the login.
-	//			IModelGenerator adapter = ModelGeneratorStore.registerGenerator(new PilotRoasterGenerator(
-	//					new DataSourceLocator().addIdentifier(identifier), ENeoComVariants.CAPSULEER_LIST.name(), identifier));
-	//			RootNode pilotNode = adapter.collaborate2Model();
-	//			for (IGEFNode pilot : pilotNode.getChildren()) {
-	//				pilotList.add((Pilot) pilot);
-	//			}
-	//		}
-	//		logger.info("<< [PilotRoasterController.pilotRoaster]");
-	//		return pilotList;
-	//	}
 }
 
 // - UNUSED CODE ............................................................................................

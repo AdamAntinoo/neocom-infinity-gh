@@ -9,7 +9,7 @@ package org.dimensinfin.eveonline.neocom.services;
 import java.util.Hashtable;
 import java.util.logging.Logger;
 
-import org.dimensinfin.eveonline.neocom.connector.AppConnector;
+import org.dimensinfin.eveonline.neocom.connector.NeoComMSConnector;
 import org.dimensinfin.eveonline.neocom.enums.EDataBlock;
 import org.dimensinfin.eveonline.neocom.model.Login;
 import org.dimensinfin.eveonline.neocom.model.NeoComCharacter;
@@ -35,7 +35,7 @@ public class TimedCharacterUpdaterLauncher {
 	@Scheduled(initialDelay = 60000, fixedDelay = 15000)
 	public void onTime() {
 		logger.info(">> [TimedCharacterUpdaterLauncher.onTime]");
-		Hashtable<String, Login> logins = AppConnector.getModelStore().accessLoginList();
+		Hashtable<String, Login> logins = NeoComMSConnector.getSingleton().getModelStore().accessLoginList();
 		for (String key : logins.keySet()) {
 			for (NeoComCharacter eveChar : logins.get(key).getCharacters()) {
 				EDataBlock updateCode = eveChar.needsUpdate();
