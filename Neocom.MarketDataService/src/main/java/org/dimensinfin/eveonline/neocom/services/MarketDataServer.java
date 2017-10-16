@@ -37,6 +37,8 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.xml.sax.ContentHandler;
+import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 
 // - CLASS IMPLEMENTATION ...................................................................................
@@ -400,8 +402,8 @@ public class MarketDataServer {
 
 		// Create out specific parser for this type of content.
 		EVEMarketDataParser content = new EVEMarketDataParser();
-		reader.setContentHandler(content);
-		reader.setErrorHandler(content);
+		reader.setContentHandler((ContentHandler) content);
+		reader.setErrorHandler((ErrorHandler) content);
 		String URLDestination = null;
 		if (opType == EMarketSide.SELLER) {
 			URLDestination = getModuleLink(itemName, "SELL");

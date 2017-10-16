@@ -24,11 +24,7 @@ import org.joda.time.Duration;
 import org.joda.time.Instant;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
-
-import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 /**
@@ -134,10 +130,10 @@ public class MarketDataServiceApplication implements INeoComMSConnector {
 
 	// - W E B   E N T R Y   P O I N T S
 	// Register the hystrix.stream to publish hystrix data to the dashboard
-	@Bean
-	public ServletRegistrationBean servletRegistrationBean() {
-		return new ServletRegistrationBean(new HystrixMetricsStreamServlet(), "/hystrix.stream");
-	}
+	//	@Bean
+	//	public ServletRegistrationBean servletRegistrationBean() {
+	//		return new ServletRegistrationBean(new HystrixMetricsStreamServlet(), "/hystrix.stream");
+	//	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
 	//	@Override
