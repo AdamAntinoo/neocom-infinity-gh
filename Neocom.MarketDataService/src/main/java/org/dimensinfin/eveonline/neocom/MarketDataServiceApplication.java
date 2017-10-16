@@ -11,11 +11,11 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-import org.dimensinfin.eveonline.neocom.connector.CCPDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.ICCPDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.ICacheConnector;
 import org.dimensinfin.eveonline.neocom.connector.IDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.INeoComMSConnector;
+import org.dimensinfin.eveonline.neocom.connector.MDSCCPDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.MarketDataServiceCacheConnector;
 import org.dimensinfin.eveonline.neocom.connector.NeoComMSConnector;
 import org.dimensinfin.eveonline.neocom.interfaces.INeoComModelStore;
@@ -96,7 +96,7 @@ public class MarketDataServiceApplication implements INeoComMSConnector {
 	@Override
 	public ICCPDatabaseConnector getCCPDBConnector() {
 		if (null == dbCCPConnector) {
-			dbCCPConnector = new CCPDatabaseConnector();
+			dbCCPConnector = new MDSCCPDatabaseConnector();
 		}
 		return dbCCPConnector;
 	}
