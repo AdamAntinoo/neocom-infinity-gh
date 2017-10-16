@@ -25,7 +25,7 @@ import java.util.Iterator;
 import java.util.Vector;
 import java.util.logging.Logger;
 
-import org.dimensinfin.eveonline.neocom.connector.AppConnector;
+import org.dimensinfin.eveonline.neocom.connector.ModelAppConnector;
 import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
 import org.dimensinfin.eveonline.neocom.market.EVEMarketDataParser;
 import org.dimensinfin.eveonline.neocom.market.MarketDataEntry;
@@ -127,11 +127,11 @@ public class MarketDataServer {
 	@Cacheable()
 	public MarketDataSet downloadMarketData(final int localizer, EMarketSide side) {
 		MarketDataServer.logger.info(">< [MarketDataService.downloadMarketData]");
-		AppConnector.startChrono();
+		ModelAppConnector.getSingleton().startChrono();
 		String itemName = "";
 		try {
 			// Locate the Eve Item name to be used on the market data search.
-			final EveItem item = AppConnector.getCCPDBConnector().searchItembyID(localizer);
+			final EveItem item = ModelAppConnector.getSingleton().getCCPDBConnector().searchItembyID(localizer);
 			itemName = item.getName();
 			Vector<TrackEntry> marketEntries = parseMarketDataEMD(itemName, side);
 			Vector<MarketDataEntry> hubData = extractMarketData(marketEntries);
@@ -158,7 +158,7 @@ public class MarketDataServer {
 			return new MarketDataSet(localizer, side);
 		} finally {
 			logger.info("~~ [MarketDataService.downloadMarketData]> Time lapse for Download MarketData " + localizer + " - "
-					+ AppConnector.timeLapse());
+					+ ModelAppConnector.getSingleton().timeLapse());
 		}
 	}
 
@@ -175,7 +175,7 @@ public class MarketDataServer {
 			logger.info("-- [MarketDataServer.marketDataServiceEntryPoint]>[MISS] localizer: " + localizer
 					+ " not cached. Posting download request");
 			// Post request and return the data placeholder.
-			AppConnector.getCacheConnector().addMarketDataRequest(localizer);
+			ModelAppConnector.getSingleton().getCacheConnector().addMarketDataRequest(localizer);
 			return new MarketDataSet(localizer, side);
 		} else {
 			logger.info("-- [MarketDataServer.marketDataServiceEntryPoint]>[HIT] localizer: " + localizer
@@ -204,7 +204,7 @@ public class MarketDataServer {
 		MarketDataSet entry = cache.get(localizer);
 		if (null == entry) {
 			// Post request and return the data placeholder.
-			AppConnector.getCacheConnector().addMarketDataRequest(localizer);
+			ModelAppConnector.getSingleton().getCacheConnector().addMarketDataRequest(localizer);
 			return new MarketDataSet(localizer, side);
 		} else
 			return entry;
@@ -287,7 +287,7 @@ public class MarketDataServer {
 		final String hubRegion = parts[0].trim();
 
 		// Search for the system on the list of locations.
-		return AppConnector.getCCPDBConnector().searchLocationBySystem(hubSystem);
+		return ModelAppConnector.getSingleton().getCCPDBConnector().searchLocationBySystem(hubSystem);
 	}
 
 	private Vector<String> getMarketHubs() {

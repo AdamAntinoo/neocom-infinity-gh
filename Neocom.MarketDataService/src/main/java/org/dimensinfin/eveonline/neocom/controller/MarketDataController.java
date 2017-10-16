@@ -9,7 +9,7 @@ package org.dimensinfin.eveonline.neocom.controller;
 
 import java.util.logging.Logger;
 
-import org.dimensinfin.eveonline.neocom.connector.AppConnector;
+import org.dimensinfin.eveonline.neocom.connector.ModelAppConnector;
 import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
 import org.dimensinfin.eveonline.neocom.market.MarketDataSet;
 import org.dimensinfin.eveonline.neocom.services.MarketDataServer;
@@ -40,7 +40,7 @@ public class MarketDataController {
 		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/marketdata/{itemid}/{itemname}/{side}");
 		logger.info(">> [MarketDataController.marketData]>itemid: " + itemid);
 		logger.info(">> [MarketDataController.marketData]>side: " + side);
-		AppConnector.startChrono();
+		ModelAppConnector.getSingleton().startChrono();
 		try {
 			if (null == itemid) return new MarketDataSet(3645, EMarketSide.BUYER);
 			int itemidnumber = Integer.valueOf(itemid).intValue();
@@ -52,7 +52,7 @@ public class MarketDataController {
 			//			Instant endInstant = new Instant();
 			//			long delta = endInstant.minus(startInstant.getMillis()).getMillis();
 			logger.info("<< [MarketDataController.marketData]>[TIMING] Processing Time for [" + itemid + "] - "
-					+ AppConnector.timeLapse());
+					+ ModelAppConnector.getSingleton().timeLapse());
 		}
 	}
 

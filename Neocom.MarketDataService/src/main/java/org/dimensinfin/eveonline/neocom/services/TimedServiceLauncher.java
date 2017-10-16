@@ -9,7 +9,7 @@ package org.dimensinfin.eveonline.neocom.services;
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.logging.Logger;
 
-import org.dimensinfin.eveonline.neocom.connector.AppConnector;
+import org.dimensinfin.eveonline.neocom.connector.ModelAppConnector;
 import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
 import org.dimensinfin.eveonline.neocom.enums.ERequestClass;
 import org.dimensinfin.eveonline.neocom.enums.ERequestState;
@@ -43,7 +43,8 @@ public class TimedServiceLauncher {
 	public void onTime() {
 		// STEP 01. Launch pending Data Requests
 		// Get requests pending from the queue service.
-		PriorityBlockingQueue<PendingRequestEntry> requests = AppConnector.getCacheConnector().getPendingRequests();
+		PriorityBlockingQueue<PendingRequestEntry> requests = ModelAppConnector.getSingleton().getCacheConnector()
+				.getPendingRequests();
 		logger.info(">> [TimedServiceLauncher.onTime]> Pending requests level: " + requests.size());
 		limit = 0;
 		if (this.blockedMarket()) {
