@@ -82,7 +82,7 @@ public class MarketDataServiceApplication implements INeoComMSConnector {
 		logger.info("<< [MarketDataServiceApplication.<constructor>]");
 	}
 
-	//	@Override
+	// - M E T H O D - S E C T I O N ..........................................................................
 	public boolean getAssetsFormat() {
 		return true;
 	}
@@ -111,11 +111,6 @@ public class MarketDataServiceApplication implements INeoComMSConnector {
 		throw new RuntimeException("Application connector not defined. Functionality 'getModelStore' disabled.");
 	}
 
-	//	@Override
-	//	public IStorageConnector getStorageConnector() {
-	//		throw new RuntimeException("Application connector not defined. Functionality 'getStorageConnector' disabled.");
-	//	}
-
 	/**
 	 * Run this after the application is initialized. The contents are to read back from persistence storage the
 	 * cache contents before starting the application.
@@ -135,7 +130,6 @@ public class MarketDataServiceApplication implements INeoComMSConnector {
 	//		return new ServletRegistrationBean(new HystrixMetricsStreamServlet(), "/hystrix.stream");
 	//	}
 
-	// - M E T H O D - S E C T I O N ..........................................................................
 	//	@Override
 	//	public void addCharacterUpdateRequest(long characterID) {
 	//	}
