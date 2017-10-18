@@ -350,7 +350,7 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 			uniqueLocations = assetDao.query(preparedQuery);
 		} catch (java.sql.SQLException sqle) {
 			sqle.printStackTrace();
-			logger.warning("W [SpringDatabaseConnector.queryAllLogins]> Excpetion reading all Logins" + sqle.getMessage());
+			logger.warning("W [SpringDatabaseConnector.queryAllLogins]> Exception reading all Logins" + sqle.getMessage());
 		}
 		return uniqueLocations;
 	}
@@ -392,6 +392,64 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 	public int queryBlueprintDependencies(final int bpitemID) {
 		throw new RuntimeException(
 				"Application connector not defined. Functionality 'queryBlueprintDependencies' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
+	}
+
+	public List<NeoComAsset> queryContainerContents(final long identifier) {
+		// Get access to one assets with a distinct location. Discard the rest of the data and only process the Location id
+		List<NeoComAsset> contents = new Vector<NeoComAsset>();
+		try {
+			Dao<NeoComAsset, String> assetDao = this.getAssetDAO();
+			QueryBuilder<NeoComAsset, String> queryBuilder = assetDao.queryBuilder();
+			Where<NeoComAsset, String> where = queryBuilder.where();
+			//			where.eq("ownerID", identifier);
+			where.eq("locationID", identifier);
+			PreparedQuery<NeoComAsset> preparedQuery = queryBuilder.prepare();
+			contents = assetDao.query(preparedQuery);
+		} catch (java.sql.SQLException sqle) {
+			sqle.printStackTrace();
+			logger.warning(
+					"W [SpringDatabaseConnector.queryLocationContents]> Exception reading Location contents" + sqle.getMessage());
+		}
+		return contents;
+	}
+
+	public List<NeoComAsset> queryLocationContents(final long identifier) {
+		// Get access to one assets with a distinct location. Discard the rest of the data and only process the Location id
+		List<NeoComAsset> contents = new Vector<NeoComAsset>();
+		try {
+			Dao<NeoComAsset, String> assetDao = this.getAssetDAO();
+			QueryBuilder<NeoComAsset, String> queryBuilder = assetDao.queryBuilder();
+			Where<NeoComAsset, String> where = queryBuilder.where();
+			//			where.eq("ownerID", identifier);
+			where.eq("locationID", identifier);
+			PreparedQuery<NeoComAsset> preparedQuery = queryBuilder.prepare();
+			contents = assetDao.query(preparedQuery);
+		} catch (java.sql.SQLException sqle) {
+			sqle.printStackTrace();
+			logger.warning(
+					"W [SpringDatabaseConnector.queryLocationContents]> Exception reading Location contents" + sqle.getMessage());
+		}
+		return contents;
+	}
+
+	public List<NeoComAsset> queryLocationPlanetaryContents(final long identifier) {
+		// Get access to one assets with a distinct location. Discard the rest of the data and only process the Location id
+		List<NeoComAsset> contents = new Vector<NeoComAsset>();
+		try {
+			Dao<NeoComAsset, String> assetDao = this.getAssetDAO();
+			QueryBuilder<NeoComAsset, String> queryBuilder = assetDao.queryBuilder();
+			Where<NeoComAsset, String> where = queryBuilder.where();
+			where.eq("locationID", identifier);
+			where.and().eq("category", "Planetary Commodities");
+			where.or().eq("category", "Planetary Resources");
+			PreparedQuery<NeoComAsset> preparedQuery = queryBuilder.prepare();
+			contents = assetDao.query(preparedQuery);
+		} catch (java.sql.SQLException sqle) {
+			sqle.printStackTrace();
+			logger.warning(
+					"W [SpringDatabaseConnector.queryLocationContents]> Exception reading Location contents" + sqle.getMessage());
+		}
+		return contents;
 	}
 
 	public ArrayList<Resource> refineOre(final int itemID) {
@@ -519,7 +577,7 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 					hit = assetList.get(0);
 					containerCache.put(hit.getAssetID(), hit);
 				}
-			} catch (java.sql.SQLException sqle) {
+			} catch (SQLException sqle) {
 				sqle.printStackTrace();
 			}
 		}
@@ -690,104 +748,104 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 				"Application connector not defined. Functionality 'searchListOfReaction' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
 	}
 
-	public EveLocation searchLocationbyID(final long locationID) {
-		EveLocation hit = new EveLocation(locationID);
-		PreparedStatement prepStmt = null;
-		ResultSet cursor = null;
-		try {
-			prepStmt = getCCPDatabase().prepareStatement(SELECT_LOCATIONBYID);
-			prepStmt.setString(1, Long.valueOf(locationID).toString());
-			cursor = prepStmt.executeQuery();
-			boolean detected = false;
-			while (cursor.next()) {
-				//				if (cursor.moveToFirst()) {
-				detected = true;
-				// Check returned values when doing the assignments.
-				long fragmentID = cursor.getLong(5);
-				if (fragmentID > 0) {
-					hit.setSystemID(fragmentID);
-					hit.setSystem(cursor.getString(6));
-				} else {
-					hit.setSystem(cursor.getString(3));
-				}
-				fragmentID = cursor.getLong(7);
-				if (fragmentID > 0) {
-					hit.setConstellationID(fragmentID);
-					hit.setConstellation(cursor.getString(8));
-				}
-				fragmentID = cursor.getLong(9);
-				if (fragmentID > 0) {
-					hit.setRegionID(fragmentID);
-					hit.setRegion(cursor.getString(10));
-				}
-				hit.setTypeID(cursor.getInt(2));
-				hit.setStation(cursor.getString(3));
-				hit.setLocationID(cursor.getLong(1));
-				hit.setSecurity(cursor.getString(4));
-				// Update the final ID
-				hit.getID();
-				detected = true;
-			}
-			//			if (!detected) // Search the location on the list of outposts.
-			//				hit = searchOutpostbyID(locationID);
-			//	}
-		} catch (final Exception ex) {
-			logger.warning("Location <" + locationID + "> not found.");
-		}
-		return hit;
-	}
-
-	public EveLocation searchLocationBySystem(final String name) {
-		EveLocation hit = new EveLocation();
-		PreparedStatement prepStmt = null;
-		ResultSet cursor = null;
-		try {
-			prepStmt = getCCPDatabase().prepareStatement(SELECT_LOCATIONBYSYSTEM);
-			prepStmt.setString(1, name);
-			cursor = prepStmt.executeQuery();
-			boolean detected = false;
-			while (cursor.next()) {
-				//				if (cursor.moveToFirst()) {
-				detected = true;
-				// Check returned values when doing the assignments.
-				long fragmentID = cursor.getInt(1);
-				if (fragmentID > 0) {
-					hit.setSystemID(fragmentID);
-					//					hit.setSystem(cursor.getString(6));
-					//				} else {
-					//					hit.setSystem(cursor.getString(3));
-				}
-				//				fragmentID = cursor.getLong(7);
-				//				if (fragmentID > 0) {
-				//					hit.setConstellationID(fragmentID);
-				//					hit.setConstellation(cursor.getString(8));
-				//				}
-				//				fragmentID = cursor.getLong(9);
-				//				if (fragmentID > 0) {
-				//					hit.setRegionID(fragmentID);
-				//					hit.setRegion(cursor.getString(10));
-				//				}
-				//				hit.setTypeID(cursor.getInt(2));
-				//				hit.setStation(cursor.getString(3));
-				//				hit.setLocationID(cursor.getLong(1));
-				//				hit.setSecurity(cursor.getString(4));
-				//				// Update the final ID
-				//				hit.getID();
-				detected = true;
-			}
-			//			if (!detected) // Search the location on the list of outposts.
-			//				hit = searchOutpostbyID(locationID);
-			//	}
-		} catch (final Exception ex) {
-			logger.warning("Location <" + name + "> not found.");
-		}
-		return searchLocationbyID(hit.getSystemID());
-	}
-
 	public int searchModule4Blueprint(final int bpitemID) {
 		throw new RuntimeException(
 				"Application connector not defined. Functionality 'searchModule4Blueprint' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
 	}
+
+	//	public EveLocation searchLocationbyID(final long locationID) {
+	//		EveLocation hit = new EveLocation(locationID);
+	//		PreparedStatement prepStmt = null;
+	//		ResultSet cursor = null;
+	//		try {
+	//			prepStmt = getCCPDatabase().prepareStatement(SELECT_LOCATIONBYID);
+	//			prepStmt.setString(1, Long.valueOf(locationID).toString());
+	//			cursor = prepStmt.executeQuery();
+	//			boolean detected = false;
+	//			while (cursor.next()) {
+	//				//				if (cursor.moveToFirst()) {
+	//				detected = true;
+	//				// Check returned values when doing the assignments.
+	//				long fragmentID = cursor.getLong(5);
+	//				if (fragmentID > 0) {
+	//					hit.setSystemID(fragmentID);
+	//					hit.setSystem(cursor.getString(6));
+	//				} else {
+	//					hit.setSystem(cursor.getString(3));
+	//				}
+	//				fragmentID = cursor.getLong(7);
+	//				if (fragmentID > 0) {
+	//					hit.setConstellationID(fragmentID);
+	//					hit.setConstellation(cursor.getString(8));
+	//				}
+	//				fragmentID = cursor.getLong(9);
+	//				if (fragmentID > 0) {
+	//					hit.setRegionID(fragmentID);
+	//					hit.setRegion(cursor.getString(10));
+	//				}
+	//				hit.setTypeID(ELocationType.CCPLOCATION);
+	//				hit.setStation(cursor.getString(3));
+	//				hit.setLocationID(cursor.getLong(1));
+	//				hit.setSecurity(cursor.getString(4));
+	//				// Update the final ID
+	//				hit.getID();
+	//				detected = true;
+	//			}
+	//			//			if (!detected) // Search the location on the list of outposts.
+	//			//				hit = searchOutpostbyID(locationID);
+	//			//	}
+	//		} catch (final Exception ex) {
+	//			logger.warning("Location <" + locationID + "> not found.");
+	//		}
+	//		return hit;
+	//	}
+
+	//	public EveLocation searchLocationBySystem(final String name) {
+	//		EveLocation hit = new EveLocation();
+	//		PreparedStatement prepStmt = null;
+	//		ResultSet cursor = null;
+	//		try {
+	//			prepStmt = getCCPDatabase().prepareStatement(SELECT_LOCATIONBYSYSTEM);
+	//			prepStmt.setString(1, name);
+	//			cursor = prepStmt.executeQuery();
+	//			boolean detected = false;
+	//			while (cursor.next()) {
+	//				//				if (cursor.moveToFirst()) {
+	//				detected = true;
+	//				// Check returned values when doing the assignments.
+	//				long fragmentID = cursor.getInt(1);
+	//				if (fragmentID > 0) {
+	//					hit.setSystemID(fragmentID);
+	//					//					hit.setSystem(cursor.getString(6));
+	//					//				} else {
+	//					//					hit.setSystem(cursor.getString(3));
+	//				}
+	//				//				fragmentID = cursor.getLong(7);
+	//				//				if (fragmentID > 0) {
+	//				//					hit.setConstellationID(fragmentID);
+	//				//					hit.setConstellation(cursor.getString(8));
+	//				//				}
+	//				//				fragmentID = cursor.getLong(9);
+	//				//				if (fragmentID > 0) {
+	//				//					hit.setRegionID(fragmentID);
+	//				//					hit.setRegion(cursor.getString(10));
+	//				//				}
+	//				//				hit.setTypeID(cursor.getInt(2));
+	//				//				hit.setStation(cursor.getString(3));
+	//				//				hit.setLocationID(cursor.getLong(1));
+	//				//				hit.setSecurity(cursor.getString(4));
+	//				//				// Update the final ID
+	//				//				hit.getID();
+	//				detected = true;
+	//			}
+	//			//			if (!detected) // Search the location on the list of outposts.
+	//			//				hit = searchOutpostbyID(locationID);
+	//			//	}
+	//		} catch (final Exception ex) {
+	//			logger.warning("Location <" + name + "> not found.");
+	//		}
+	//		return searchLocationbyID(hit.getSystemID());
+	//	}
 
 	public int searchRawPlanetaryOutput(final int typeID) {
 		int outputResourceId = typeID;
@@ -890,6 +948,21 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 	public String searchTech4Blueprint(final int blueprintID) {
 		throw new RuntimeException(
 				"Application connector not defined. Functionality 'searchTech4Blueprint' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
+	}
+
+	public int totalLocationContentCount(final long identifier) {
+		try {
+			Dao<NeoComAsset, String> assetDao = this.getAssetDAO();
+			QueryBuilder<NeoComAsset, String> queryBuilder = assetDao.queryBuilder();
+			queryBuilder.setCountOf(true).where().eq("locationID", identifier);
+			long totalAssets = assetDao.countOf(queryBuilder.prepare());
+			return Long.valueOf(totalAssets).intValue();
+		} catch (java.sql.SQLException sqle) {
+			sqle.printStackTrace();
+			logger.warning("W [SpringDatabaseConnector.getLocationContentCount]> Exception reading Location contents count."
+					+ sqle.getMessage());
+			return 0;
+		}
 	}
 
 	private Connection getCCPDatabase() {

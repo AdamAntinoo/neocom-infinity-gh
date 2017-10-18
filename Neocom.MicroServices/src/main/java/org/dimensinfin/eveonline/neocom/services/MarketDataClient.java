@@ -17,6 +17,7 @@ import org.dimensinfin.eveonline.neocom.model.EveItem;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
@@ -76,6 +77,10 @@ public class MarketDataClient {
 			} else
 				return errorFallback(itemid, side);
 		} catch (ResourceAccessException raex) {
+			logger.info("W [MarketDataService.getData]> Exception processing HTTP request: " + raex.getMessage());
+			return errorFallback(itemid, side);
+		} catch (HttpMessageNotReadableException hmnrex) {
+			logger.info("W [MarketDataService.getData]> Exception processing HTTP request: " + hmnrex.getMessage());
 			return errorFallback(itemid, side);
 		}
 	}

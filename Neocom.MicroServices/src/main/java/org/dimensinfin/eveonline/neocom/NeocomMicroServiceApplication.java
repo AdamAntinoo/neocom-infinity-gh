@@ -8,6 +8,8 @@ package org.dimensinfin.eveonline.neocom;
 
 import java.util.logging.Logger;
 
+import javax.annotation.PostConstruct;
+
 import org.dimensinfin.eveonline.neocom.connector.AppModelStore;
 import org.dimensinfin.eveonline.neocom.connector.CCPDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.ICCPDatabaseConnector;
@@ -121,6 +123,18 @@ public class NeocomMicroServiceApplication implements INeoComMSConnector {
 		return AppModelStore.getSingleton();
 	}
 
+	/**
+	 * Run this after the application is initialized. The contents are to read back from persistence storage the
+	 * cache contents before starting the application.
+	 */
+	@PostConstruct
+	public void postConstruct() {
+		logger.info(">> [MarketDataServiceApplication.postConstruct]");
+		// Read back the cache contents
+		MicroServicesCacheConnector.readCacheFromStorage();
+		logger.info("<< [MarketDataServiceApplication.postConstruct]");
+	}
+
 	public void startChrono() {
 		chrono = new Instant();
 	}
@@ -128,83 +142,5 @@ public class NeocomMicroServiceApplication implements INeoComMSConnector {
 	public Duration timeLapse() {
 		return new Duration(chrono, new Instant());
 	}
-
-	/**
-	 * Return FALSE if we like the hierarchy assets format. Or TRUE if we want the flat format.
-	 */
-	//	@Override
-	//	public boolean getAssetsFormat() {
-	//		return true;
-	//	}
-
-	//	public ICacheConnector getCacheConnector() {
-	//		if (null == cacheConnector) cacheConnector = new MicroServicesCacheConnector();
-	//		return cacheConnector;
-	//	}
-	//
-	//	public ICCPDatabaseConnector getCCPDBConnector() {
-	//		if (null == dbCCPConnector) {
-	//			dbCCPConnector = new CCPDatabaseConnector();
-	//		}
-	//		return dbCCPConnector;
-	//	}
-	//
-	//	//	@Override
-	//	//	public IConnector getAppSingleton() {
-	//	//		return NeocomMicroServiceApplication.singleton;
-	//	//	}
-	//
-	//	public IDatabaseConnector getDBConnector() {
-	//		if (null == dbNeocomConnector) {
-	//			String dblocation = R.getResourceString("R.string.appdatabasepath");
-	//			String dbname = R.getResourceString("R.string.appdatabasefilename");
-	//			String dbversion = R.getResourceString("R.string.databaseversion");
-	//			dbNeocomConnector = new SpringDatabaseConnector(dblocation, dbname, dbversion);
-	//			dbNeocomConnector.loadSeedData();
-	//		}
-	//		return dbNeocomConnector;
-	//	}
-	//
-	//	public INeoComModelStore getModelStore() {
-	//		return AppModelStore.getSingleton();
-	//	}
-
-	//	@Bean
-	//	public CacheManagerCustomizer<ConcurrentMapCacheManager> cacheManagerCustomizer() {
-	//		return new CacheManagerCustomizer<ConcurrentMapCacheManager>() {
-	//			@Override
-	//			public void customize(ConcurrentMapCacheManager cacheManager) {
-	//				cacheManager.setAllowNullValues(false);
-	//			}
-	//		};
-	//	}
-	//	@Bean
-	//	public Executor asyncExecutor() {
-	//		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-	//		executor.setCorePoolSize(2);
-	//		executor.setMaxPoolSize(2);
-	//		executor.setQueueCapacity(500);
-	//		executor.setThreadNamePrefix("GithubLookup-");
-	//		executor.initialize();
-	//		return executor;
-	//	}
-	//	@Override
-	//	public void startChrono() {
-	//		chrono = new Instant();
-	//	}
-	//
-	//	@Override
-	//	public Duration timeLapse() {
-	//		return new Duration(chrono, new Instant());
-	//	}
-
-	//	public NeocomMicroServiceApplication getSingletonApp() {
-	//		return NeocomMicroServiceApplication.singleton;
-	//	}
-
-	//	@Override
-	//	public IStorageConnector getStorageConnector() {
-	//		return null;
-	//	}
 }
 // - UNUSED CODE ............................................................................................

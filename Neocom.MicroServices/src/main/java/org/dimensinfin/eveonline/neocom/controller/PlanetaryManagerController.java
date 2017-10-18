@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.connector.NeoComMSConnector;
 import org.dimensinfin.eveonline.neocom.industry.Resource;
-import org.dimensinfin.eveonline.neocom.manager.AssetsManager;
 import org.dimensinfin.eveonline.neocom.manager.PlanetaryManager;
 import org.dimensinfin.eveonline.neocom.planetary.PlanetaryProcessor;
 import org.dimensinfin.eveonline.neocom.planetary.PlanetaryScenery;
@@ -49,8 +48,8 @@ public class PlanetaryManagerController {
 			NeoComMSConnector.getSingleton().getModelStore().activatePilot(Long.valueOf(identifier));
 			// Get the Planetary Manager for this Character. Make sure it is initialized and then get the resources
 			// at the indicated location and optimize processing them.
-			AssetsManager assets = NeoComMSConnector.getSingleton().getModelStore().getCurrentPilot().getAssetsManager();
-			PlanetaryManager planetary = NeoComMSConnector.getSingleton().getModelStore().getCurrentPilot()
+			//			AssetsManager assets = NeoComMSConnector.getSingleton().getModelStore().getActiveCharacter().getAssetsManager();
+			PlanetaryManager planetary = NeoComMSConnector.getSingleton().getModelStore().getActiveCharacter()
 					.getPlanetaryManager();
 			if (!planetary.isInitialized()) planetary.initialize();
 			Vector<Resource> resources = planetary.getLocationContents(locationid);

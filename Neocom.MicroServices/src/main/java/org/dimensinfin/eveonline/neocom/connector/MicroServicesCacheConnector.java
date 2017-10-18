@@ -6,6 +6,12 @@
 //								the SpringBoot+MicroServices+Angular unified web application.
 package org.dimensinfin.eveonline.neocom.connector;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Hashtable;
 import java.util.Vector;
 import java.util.logging.Logger;
@@ -18,7 +24,35 @@ import org.dimensinfin.eveonline.neocom.services.PendingRequestEntry;
 // - CLASS IMPLEMENTATION ...................................................................................
 public class MicroServicesCacheConnector extends CoreCacheConnector implements ICacheConnector {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger						logger						= Logger.getLogger("MicroServicesCacheConnector");
+	private static Logger				logger							= Logger.getLogger("MicroServicesCacheConnector");
+	private static final String	CACHESTORE_FILENAME	= "./MarketDataService.store";
+
+	@SuppressWarnings("unchecked")
+	public synchronized static void readCacheFromStorage() {
+		File modelStoreFile = new File(CACHESTORE_FILENAME);
+		try {
+			final BufferedInputStream buffer = new BufferedInputStream(new FileInputStream(modelStoreFile));
+			final ObjectInputStream input = new ObjectInputStream(buffer);
+			try {
+				//				this.getStore().setApiKeys((HashMap<Integer, NeoComApiKey>) input.readObject());
+				buyMarketDataCache = (Hashtable<Integer, MarketDataSet>) input.readObject();
+				logger.info("-- [MarketDataServer.readCacheFromStorage]> Restored cache BUY");
+				sellMarketDataCache = (Hashtable<Integer, MarketDataSet>) input.readObject();
+				logger.info("-- [MarketDataServer.readCacheFromStorage]> Restored cache SELL");
+			} finally {
+				input.close();
+				buffer.close();
+			}
+		} catch (final ClassNotFoundException ex) {
+			logger.warning("W> [MarketDataServer.readCacheFromStorage]> ClassNotFoundException."); //$NON-NLS-1$
+		} catch (final FileNotFoundException fnfe) {
+			logger.warning("W> [MarketDataServer.readCacheFromStorage]> FileNotFoundException."); //$NON-NLS-1$
+		} catch (final IOException ex) {
+			logger.warning("W> [MarketDataServer.readCacheFromStorage]> IOException."); //$NON-NLS-1$
+		} catch (final RuntimeException rex) {
+			rex.printStackTrace();
+		}
+	}
 
 	// - F I E L D - S E C T I O N ............................................................................
 	private int											topCounter				= 0;

@@ -27,6 +27,7 @@ import org.dimensinfin.eveonline.neocom.planetary.ResourceList;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
+import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
@@ -67,10 +68,10 @@ public class NeocomDBHelper {
 		this.databaseVersion = databaseVersion;
 		// Open the database and check the version number.
 		if (openNeocomDB()) {
+			int version = readDatabaseVersion();
 			// During the current POC version force the creation of the tables and forget the version control.
 			onCreate(neocomDatasource);
 			//			// Read the version information from the database.
-			//			int version = readDatabaseVersion();
 			//			if (0 == version) {
 			//				onUpgrade(neocomDatasource, version, version);
 			//			} else {
@@ -212,13 +213,15 @@ public class NeocomDBHelper {
 				key = new ApiKey("Perico").setKeynumber(3106761)
 						.setValidationcode("gltCmvVoZl5akrM8d6DbNKZn7Jm2SaukrmqjnSOyqKbvzz5CtNfknTEwdBe6IIFf").setActive(false);
 				key = new ApiKey("CapitanHaddock09").setKeynumber(924767)
-						.setValidationcode("2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P").setActive(false);
+						.setValidationcode("2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P").setActive(true);
 				key = new ApiKey("CapitanHaddock29").setKeynumber(6472981)
 						.setValidationcode("pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z").setActive(true);
 				key = new ApiKey("CapitanHaddock").setKeynumber(924767)
 						.setValidationcode("2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P").setActive(false);
 				key = new ApiKey("CapitanHaddock").setKeynumber(6472981)
 						.setValidationcode("pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z").setActive(false);
+				key = new ApiKey("Tip Tophane").setKeynumber(6512872)
+						.setValidationcode("hxvp38umg9tzNjhgZBtox8mmUMLT9q2fIVRlwx7qWAk5MP8PskZr4SgipPoF8SmF").setActive(true);
 			}
 		} catch (SQLException sqle) {
 			logger.severe("E> Error creating the initial table on the app database.");
@@ -329,15 +332,21 @@ public class NeocomDBHelper {
 	}
 
 	private int readDatabaseVersion() {
-		return 0;
-		//		// Access the version object persistent on the database.
-		//		try {
-		//			DatabaseVersion version = getVersionDao().queryForFirst(null);
-		//			return version.getVersionNumber();
-		//		} catch (SQLException sqle) {
-		//			logger.warning("W- [NeocomDBHelper.readDatabaseVersion]> Database exception: " + sqle.getMessage());
-		//			return 0;
-		//		}
+		// Access the version object persistent on the database.
+		try {
+			Dao<DatabaseVersion, String> versionDao = this.getVersionDao();
+			QueryBuilder<DatabaseVersion, String> queryBuilder = versionDao.queryBuilder();
+			PreparedQuery<DatabaseVersion> preparedQuery = queryBuilder.prepare();
+			List<DatabaseVersion> versionList = versionDao.query(preparedQuery);
+			if (versionList.size() > 0) {
+				DatabaseVersion version = versionList.get(0);
+				return version.getVersionNumber();
+			} else
+				return 0;
+		} catch (SQLException sqle) {
+			logger.warning("W- [NeocomDBHelper.readDatabaseVersion]> Database exception: " + sqle.getMessage());
+			return 0;
+		}
 	}
 
 }

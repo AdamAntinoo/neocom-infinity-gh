@@ -5,3 +5,4 @@
 .metadata/
 *.db-journal
 Neocom.MarketDataService/MarketDataService.store
+Neocom.MicroServices/MarketDataService.store
