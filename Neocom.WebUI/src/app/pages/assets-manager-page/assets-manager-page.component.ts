@@ -32,7 +32,7 @@ export class AssetsManagerPageComponent extends PageComponent implements OnInit 
 
   constructor(private appModelStore: AppModelStoreService, private route: ActivatedRoute, private router: Router) {
     super();
-    this.setVariant(EVariant.ASSETSMANAGER)
+    this.setVariant(EVariant.ASSETSMANAGER);
   }
   /**
   Initialize the view list from the data chain that starts with the Login and ends on the Planetary Manager.

@@ -23,24 +23,28 @@ export class Login4ListComponent implements OnInit {
 
   ngOnInit() {
   }
+  public hasMenu(): boolean {
+    return false;
+  }
+  public isExpandable(): boolean {
+    return true;
+  }
   /**
   Toggle the expand collapse status. This changes the expanded attribute and also ndicates other visual elements to change (like the arrow or the shade of the background).
   The second action is to generate again the view llist with a new call to the page component 'refreshViewPort'.
   */
   public clickArrow() {
+    console.log("><[Login4ListComponent.clickArrow]> Toggle state for: "+this.node.getLoginId);
     this.node.toggleExpanded();
     this.viewer.refreshViewPort();
   }
-  /**
-  Broadcast to the node the request but adding a reference to the Service to be able to complete the operation if the data is not already downloaded.
-  */
-  public getKeyCount(): number {
-    return 3;
-    //    return this.node.getKeyCountObsrver(this.appModelStore);
-  }
-  public isExpandable(): boolean {
-    return true;
-  }
+  // /**
+  // Broadcast to the node the request but adding a reference to the Service to be able to complete the operation if the data is not already downloaded.
+  // */
+  // public getKeyCount(): number {
+  //   return 3;
+  //   //    return this.node.getKeyCountObsrver(this.appModelStore);
+  // }
   public getLoginId(): string {
     return this.appModelStore.accessLogin().getLoginId();
   }

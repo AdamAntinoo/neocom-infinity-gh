@@ -24,35 +24,16 @@ export class Region extends NeoComNode {
   }
   private extractLocations(): Location[] {
     let locs = [];
-    //    this.locationCount=0;
-    //  for (let key of Object.keys(this.regions)) {
-    //    let region = this.regions[key];
-    //  if (key != "-1") {
-    //      let lochash = this.regions[key].locations;
     for (let lockey of Object.keys(this.locations)) {
       locs.push(new Location(this.locations[lockey]));
     }
     this.locationCount = this.locations.length;
-    //    }
-    //  }
     return locs;
   }
-  // public collaborate2View(variant: EVariant): NeoComNode[] {
-  //    let collab = [];
-  //    collab.push(this);
-  //    return collab;
-  //  }
+
   public collaborate2View(variant: EVariant): NeoComNode[] {
     // Initialize the list to be output.
     let collab: NeoComNode[] = [];
-    //   let rootlist: NeoComNode[] = [];
-    // Check the variant and return the list depending on it.
-    //   if (variant == EVariant.PLANETARYMANAGER) {
-    // Check the size of the Region list and is small then use the list of Locations.
-    // if (this.regionCount < 4)
-    //   rootlist = this.locations;
-    // else
-    //     rootlist = this.regions;
     // Check if the Region is expanded or not.
     if (this.expanded) {
       collab.push(new Separator().setVariation(ESeparator.GREEN));

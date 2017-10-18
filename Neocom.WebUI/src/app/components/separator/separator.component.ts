@@ -44,12 +44,20 @@ export class SeparatorComponent implements OnInit {
   public getVariation(): ESeparator {
     return this.node.variation;
   }
+  public isRed(): boolean {
+    if (this.node.variation == ESeparator.RED) return true;
+    else return false;
+  }
   public isOrange(): boolean {
     if (this.node.variation == ESeparator.ORANGE) return true;
     else return false;
   }
   public isGreen(): boolean {
     if (this.node.variation == ESeparator.GREEN) return true;
+    else return false;
+  }
+  public isBlue(): boolean {
+    if (this.node.variation == ESeparator.BLUE) return true;
     else return false;
   }
   public isEmpty(): boolean {

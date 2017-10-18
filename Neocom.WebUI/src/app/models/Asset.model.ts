@@ -33,4 +33,7 @@ export class Asset extends NeoComNode {
   public canBeExpanded(): boolean {
     return false;
   }
+  public getName(): string {
+    return this.name;
+  }
 }

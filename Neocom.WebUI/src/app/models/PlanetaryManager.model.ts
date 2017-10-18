@@ -22,6 +22,7 @@ import { Location } from './Location.model';
 import { Render } from './Render.model';
 import { ProcessingAction } from './ProcessingAction.model';
 
+
 export class PlanetaryManager extends Manager {
 
   constructor(values: Object = {}) {
@@ -57,6 +58,7 @@ export class PlanetaryManager extends Manager {
     this.locations = locs;
     return regs;
   }
+  // --- P U B L I C   A P I
   /**
   Call the backend to use that location as the input for the new Planetary Optimizer. The result should be the list of action to perform with this Location resources to optimize its Market value.
   */
@@ -80,22 +82,19 @@ export class PlanetaryManager extends Manager {
         for (let partialnode of partialcollab) {
           collab.push(partialnode);
         }
+      } {
       }
     }
     return collab;
   }
-  // private extractLocations(): Location[] {
-  //   let locs = [];
-  //   for (let key of Object.keys(this.regions)) {
-  //     let region = this.regions[key];
-  //     if (key != "-1") {
-  //       let lochash = this.regions[key].locations;
-  //       for (let lockey of Object.keys(lochash)) {
-  //         locs.push(new Location(lochash[lockey]));
-  //       }
-  //       this.locationCount = this.locations.length;
-  //     }
-  //   }
-  //   return locs;
-  // }
+  /**
+  Searched for the target Location on the list of locations available on the Planetary Manager. During the instance creation and the data processing we should convert the input data to Regions and also extract the locations to another list of Locations to simplify this search.
+  */
+  public search4Location(id: number): Location {
+    for (let loc of this.locations) {
+      if (loc.getLocationId() == id)
+        return loc;
+    }
+    return null;
+  }
 }

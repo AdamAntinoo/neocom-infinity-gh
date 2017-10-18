@@ -71,6 +71,7 @@ export class AppModelStoreService {
     return this.http.get(request)
       .map(res => res.json())
       .map(result => {
+        console.log("--[AppModelStoreService.getBackendLoginList]> Processing response.");
         // Process the result into a set of Logins or process the Error Message if so.
         let constructionList: Login[] = [];
         // Process the resulting hash array into a list of Logins.
@@ -80,11 +81,12 @@ export class AppModelStoreService {
           // Check that we have an Action on the spot.
           if (node.jsonClass == "Login") {
             let convertedLogin = new Login(node);
+            console.log("--[AppModelStoreService.getBackendLoginList]> Identified Login node: " + convertedLogin.getLoginId());
             constructionList.push(convertedLogin);
-            //  constructionList.push(new Separator());
           }
         }
         this._loginList = constructionList
+        console.log("<<[AppModelStoreService.getBackendLoginList]> Processed: " + this._loginList.length);
         return this._loginList;
       });
   }

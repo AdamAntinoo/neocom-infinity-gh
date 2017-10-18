@@ -1,6 +1,9 @@
 <div>
   <div class="spinner-position">
-    <span>{{getTitle()}}<br>Waiting: {{waitTime | date:'mm:ss'}} secs</span>
+    <span>{{getTitle()}}<br>Waiting:
+      <!-- {{myDate | amTimeAgo:true}} -->
+      <!-- <timer interval="1000">{{minutes}}:{{seconds}}</timer> -->
+    </span>
     <span class="spinner-in spinner-size60"></span>
     <div class="spinner-out spinner-size70 spinner-red"></div>
   </div>

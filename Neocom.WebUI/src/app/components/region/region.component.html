@@ -1,16 +1,19 @@
-<div class="neocom-panel" id="content">
+<div class="neocom-panel" id="panelborder-red">
   <table class="neocom-panel-container" cellspacing="0" cellpadding="0" width="100%">
     <tr>
-      <td>
+        <td style="padding-top: 2px;padding-bottom: 2px;">
         <img class="neocom-icon" src="/assets/icons/region.png " id="iconsize-48">
       </td>
       <td width="80%" class="neocom-panel-column">
-        <span class="neocom-selectable-name">{{node.title}}</span>
+        <span class="neocom-selectable-name" id="neocom-ts20">{{node.title}}</span>
       </td>
       <td width="20%" class="neocom-panel-right-box" align="right ">
-        <div class="neocom-classname">REGION</div>
-        <div class="stack-counter lined-bottomline">{{node.locationCount}}</div>
+        <div class="neocom-classname-white" id="neocom-ts14">REGION</div>
+        <div class="stack-counter">{{node.locationCount}}</div>
         <div class="neocom-label">STATIONS</div>
+      </td>
+      <td width="5%" *ngIf="!isExpandable()">
+        <span>&nbsp;&nbsp;</span>
       </td>
       <td width="5%" *ngIf="isExpandable()" class="neocom-arrow-box" (click)="clickArrow()">
         <img class="neocom-arrow" [ngClass]="{'neocom-arrow-expanded': node.expanded}" src="/assets/icons/arrowright.png ">

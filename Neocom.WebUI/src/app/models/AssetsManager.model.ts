@@ -56,14 +56,17 @@ export class AssetsManager extends Manager {
     this.locations = locs;
     return regs;
   }
+  /**
+  Generates the list of nodes that should be rendered depending on the Manager state.
+  */
   public collaborate2View(variant: EVariant): NeoComNode[] {
     let collab = [];
-    // Add myself to the list and then if expanded add all my data depending on the Variant.
-    collab.push(this);
-
-    if (this.expanded) {
-      if (variant == EVariant.PILOTMANAGERS) {
-        collab.push(this);
+    // Add all the Regions that are the first representation level.
+    for (let reg of this.regions) {
+      // Each of the nodes should have the possibility to add their own collaboration nodes.
+      let collaboration = reg.collaborate2View(variant);
+      for (let node of collaboration) {
+        collab.push(node);
       }
     }
     return collab;

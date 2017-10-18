@@ -28,17 +28,20 @@ export class Login extends NeoComNode {
     super(values);
     Object.assign(this, values);
     this.jsonClass = "Login";
+    this.renderWhenEmpty = false;
     // Update the list of characters to point to this login to start the chain.
     let newchars = [];
     for (let node of this.characters) {
       let newnode = null;
       switch (node.jsonClass) {
         case "Corporation":
+          console.log("--[Login.<constructor>]> Processing Corporation.");
           newnode = new Corporation(node);
           newnode.setLoginReference(this);
           newchars.push(newnode);
           break;
         case "Pilot":
+          console.log("--[Login.<constructor>]> Processing Pilot.");
           newnode = new Pilot(node);
           newnode.setLoginReference(this);
           newchars.push(newnode);
@@ -50,6 +53,7 @@ export class Login extends NeoComNode {
     }
     // Replace the processed characters.
     this.characters = newchars;
+    this.downloaded = true;
   }
 
   /**
@@ -119,6 +123,7 @@ export class Login extends NeoComNode {
   // }
   /**
   Add to the content of the list to render depending on the expanded state and the contents. This do not extends the collaborarion to the grand children even that should be reviewed.
+  If the Login is empty we can remove it form the listing or replace it by an special separator
   */
   public collaborate2View(variant: EVariant): NeoComNode[] {
     let collab = [];
@@ -131,32 +136,36 @@ export class Login extends NeoComNode {
       // If the list of Characters is empty then add the Empty variation Separator
       //  if (null == this.characters) collab.push(new Separator().setVariation(ESeparator.EMPTY));
       //  else {
-      // Process each item at the rootlist for more collaborations.
-      for (let node of this.characters) {
-        if (node.jsonClass == "Pilot") {
-          let pilot = new Pilot(node)
-          // let partialcollab = asset.collaborate2View(variant);
-          // for (let partialnode of partialcollab) {
-          console.log("--[Login.collaborate2View]>Collaborating " + pilot.jsonClass);
-          collab.push(pilot);
-          // }
+      if (this.characters.length > 0) {
+        // Process each item at the rootlist for more collaborations.
+        for (let node of this.characters) {
+          if (node.jsonClass == "Pilot") {
+            let pilot = new Pilot(node)
+            // let partialcollab = asset.collaborate2View(variant);
+            // for (let partialnode of partialcollab) {
+            console.log("--[Login.collaborate2View]>Collaborating " + pilot.jsonClass);
+            collab.push(pilot);
+            // }
+          }
+          if (node.jsonClass == "Corporation") {
+            let corp = new Corporation(node)
+            // let partialcollab = asset.collaborate2View(variant);
+            // for (let partialnode of partialcollab) {
+            console.log("--[Login.collaborate2View]>Collaborating " + corp.jsonClass);
+            collab.push(corp);
+            // }
+          }
+          if (node.jsonClass == "NeoComCharacter") {
+            let character = new NeoComCharacter(node)
+            // let partialcollab = asset.collaborate2View(variant);
+            // for (let partialnode of partialcollab) {
+            console.log("--[Login.collaborate2View]>Collaborating " + character.jsonClass);
+            collab.push(character);
+            //    }
+          }
         }
-        if (node.jsonClass == "Corporation") {
-          let corp = new Corporation(node)
-          // let partialcollab = asset.collaborate2View(variant);
-          // for (let partialnode of partialcollab) {
-          console.log("--[Login.collaborate2View]>Collaborating " + corp.jsonClass);
-          collab.push(corp);
-          // }
-        }
-        if (node.jsonClass == "NeoComCharacter") {
-          let character = new NeoComCharacter(node)
-          // let partialcollab = asset.collaborate2View(variant);
-          // for (let partialnode of partialcollab) {
-          console.log("--[Login.collaborate2View]>Collaborating " + character.jsonClass);
-          collab.push(character);
-          //    }
-        }
+      } else {
+        collab = [];
       }
       //  }
       collab.push(new Separator());

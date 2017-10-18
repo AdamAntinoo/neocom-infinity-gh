@@ -18,7 +18,7 @@
         </td>
         <td width="20%" class="neocom-panel-right-box" align="right ">
           <div class="neocom-marked neocom-marked-glow neocom-ts14">{{node.region}} ► {{node.constellation}}</div>
-          <div class="stack-counter lined-bottomline" style="padding-bottom: 1px;">{{node.stackCount}}</div>
+          <div class="stack-counter lined-bottomline" style="padding-bottom: 1px;">{{node.getFormattedStackCount()}}</div>
           <div class="neocom-label label-small">ITEMS</div>
         </td>
         <td *ngIf="hasMenu()" width="5%" class="">
@@ -36,7 +36,8 @@
         <td colspan="2">
           <div *ngIf="!node.downloaded" class="right-data">
             <span class="location-totals-label">&nbsp;&nbsp;&nbsp;&nbsp;TOTAL VALUE</span>
-            <span class="right-data neocom-ts16">- ISK</span><br>
+            <span class="right-data neocom-ts16">- ISK</span>
+            <br>
             <span class="location-totals-label">&nbsp;TOTAL VOLUME</span>
             <span class="right-data neocom-ts16">- M3</span>
           </div>

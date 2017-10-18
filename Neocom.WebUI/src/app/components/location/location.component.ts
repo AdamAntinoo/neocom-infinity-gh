@@ -5,10 +5,10 @@ import { Input } from '@angular/core';
 
 //--- SERVICES
 import { AppModelStoreService } from '../../services/app-model-store.service';
+//--- INTERFACES
+import { EVariant } from '../../classes/EVariant.enumerated';
 //--- COMPONENTS
 import { PageComponent } from '../../classes/PageComponent';
-//--- COMPONENTS
-//import { RenderComponent } from '../render/render.component';
 import { PlanetaryManagerPageComponent } from '../../pages/planetary-manager-page/planetary-manager-page.component';
 //--- MODELS
 import { Render } from '../../models/Render.model';
@@ -32,9 +32,13 @@ export class LocationComponent implements OnInit {
 
   /**
   If the Panel has some specific attributes they should be tested for display. The current actions are the Menu and the Expand Arrow.
+  Locations have menu onlt on Planetary environments. Remove the shown when we are in other Managers.
   */
   public hasMenu(): boolean {
-    return true;
+    // Check the Page variant to see if we show the menu or not.
+    if (this.viewer.getVariant() == EVariant.PLANETARYMANAGER)
+      return true;
+    else return false;
   }
   public isExpandable(): boolean {
     return true;

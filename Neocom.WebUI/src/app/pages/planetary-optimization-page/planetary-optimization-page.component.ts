@@ -3,15 +3,12 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
 //--- SERVICES
-//import { PilotRoasterService } from '../../services/pilot-roaster.service';
 import { AppModelStoreService } from '../../services/app-model-store.service';
 import { PilotListDataSourceService } from '../../services/pilot-list-data-source.service';
-//import { PilotManagersDataSourceService } from '../../services/pilot-managers-data-source.service';
 //--- INTERFACES
 import { PageComponent } from '../../classes/PageComponent';
 import { EVariant } from '../../classes/EVariant.enumerated';
 //--- CLASSES
-import { NeoComError } from '../../classes/NeoComError';
 import { DataSourceLocator } from '../../classes/DataSourceLocator';
 //--- MODELS
 import { Render } from '../../models/Render.model';
@@ -20,8 +17,10 @@ import { NeoComCharacter } from '../../models/NeoComCharacter.model';
 import { Pilot } from '../../models/Pilot.model';
 import { Region } from '../../models/Region.model';
 import { Manager } from '../../models/Manager.model';
-import { ProcessingAction } from '../../models/ProcessingAction.model';
+import { AssetsManager } from '../../models/AssetsManager.model';
 import { PlanetaryManager } from '../../models/PlanetaryManager.model';
+import { ProcessingAction } from '../../models/ProcessingAction.model';
+import { Location } from '../../models/Location.model';
 
 @Component({
   selector: 'neocom-planetary-optimization-page',
@@ -34,112 +33,92 @@ export class PlanetaryOptimizationPageComponent extends PageComponent implements
   public pilot: NeoComCharacter = null;
   public planetaryManager: PlanetaryManager = null;
   private exceptionList: Error[] = [];
+  public targetLocation: Location = null;
 
   constructor(private appModelStore: AppModelStoreService, private route: ActivatedRoute, private router: Router) {
     super();
     this.setVariant(EVariant.PLANETARYOPTIMIZATION)
   }
 
+  /**
+  Initialize the view list from the data chain that starts with the Login and ends on the Planetary Manager.
+  */
   ngOnInit() {
     console.log(">>[PlanetaryOptimizationPageComponent.ngOnInit]");
     this.downloading = true;
-    let _characterid = null;
-    // Force the reading of the Login list.
-    this.appModelStore.accessLoginList()
-      .subscribe(result => {
-        // Extract the login identifier from the URL structure.
-        this.route.params.map(p => p.loginid)
-          .subscribe((loginname: string) => {
-            // Set the login at the Service to update the other data structures. Pass the login id
-            this.appModelStore.accessLoginById(loginname);
-            // Check that we have a Valid login selected.
-            if (null == this.appModelStore.accessLoginById(loginname)) {
-              // Move the page back to the Login List.
-              this.router.navigate(['/login']);
-              this.exceptionList.push(new NeoComError({ message: "Login identifier " + loginname + " not found. Cannot select that login" }));
-            }
-          });
-        // Extract also the Pilot Identifier.
-        this.route.params.map(p => p.id)
-          .subscribe((characterid: number) => {
-            _characterid = characterid;
-            // Set the login at the Service to update the other data structures.
-            this.pilot = this.appModelStore.accessLogin().accessCharacterById(characterid);
-            if (null == this.pilot) {
-              // Retry the download of the roaster and then select the Pilot.
-              this.appModelStore.accessLogin().accessPilotRoaster(this.appModelStore)
-                .subscribe((roaster: NeoComCharacter[]) => {
-                  // Store the result on the select Login.
-                  this.appModelStore.accessLogin().setPilotRoaster(roaster);
-                  // Retry the character selection after the update of the roaster.
-                  this.pilot = this.appModelStore.accessLogin().accessCharacterById(characterid);
-                  if (null == this.pilot) {
-                    // Failed after the new roaster download. Cannot recover rom this error.
-                    this.router.navigate(['/login', this.appModelStore.accessLogin().getLoginId(), 'pilotroaster']);
-                    this.exceptionList.push(new NeoComError({ message: "Pilot identifier " + characterid + " not found. Cannot select that Character" }));
-                    return;
-                  }
-                  //    this.pilot = this.appModelStore.accessLogin().accessCharacterById(characterid);
-                  // Character accessed. Update it at the core Service.
-                  this.appModelStore.setPilotById(_characterid);
-                  // Get the list of Managers that can be accessed for this Character. If the list is not available thenrequest it again to the backend.
-                  this.pilot.accessPlanetaryManager(this.appModelStore)
-                    .subscribe(result => {
-                      console.log("--[PlanetaryOptimizationPageComponent.ngOnInit.accessPilotManagers]>ManagerList: ");
-                      // Store the returned list into the current Character.
-                      //    this.pilot.storePilotManagers(result);
-                      // Search for the Planetary Manager from the list of Managers. There is no way to complete it differently.
-                      //    for (let manager of result) {
-                      //    if (manager.jsonClass == "PlanetaryManager") {
-                      // We have found the Planetary Manager. Call the backend to optimize that list.
-                      this.planetaryManager = new PlanetaryManager(result);
-                      this.route.params.map(p => p.locationid)
-                        .subscribe((locationid: number) => {
-                          this.planetaryManager.getOptimizedScenario(locationid, this.appModelStore)
-                            .subscribe(result => {
-                              // We should get a list of the optimized actions. Use that list on the viewer.
-                              this.adapterViewList = result;
-                              this.downloading = false;
-                            });
-                        });
-                      //    }
-                      //  }
-                    });
-                });
-            } else {
-              // Character accessed. Update it at the core Service.
-              this.appModelStore.setPilotById(_characterid);
-              // Get the list of Managers that can be accessed for this Character. If the list is not available then request it again to the backend.
-              this.pilot.accessPlanetaryManager(this.appModelStore)
-                .subscribe(result => {
-                  console.log("--[PlanetaryOptimizationPageComponent.ngOnInit.accessPilotManagers]>ManagerList: ");
-                  // Store the returned list into the current Character.
-                  //      this.pilot.storePilotManagers(result);
-                  // Search for the Planetary Manager from the list of Managers. There is no way to complete it differently.
-                  //    for (let manager of result) {
-                  //        if (manager.jsonClass == "PlanetaryManager") {
-                  // We have found the Planetary Manager. Call the backend to optimize that list.
-                  this.planetaryManager = new PlanetaryManager(result);
-                  this.route.params.map(p => p.locationid)
-                    .subscribe((locationid: number) => {
-                      this.planetaryManager.getOptimizedScenario(locationid, this.appModelStore)
-                        .subscribe(result => {
-                          // We should get a list of the optimized actions. Use that list on the viewer.
-                          this.adapterViewList = result;
-                          this.downloading = false;
-                        });
-                    });
-                  //      }
-                  //    }
-                });
-            }
+    // let _characterid = null;
+    // Extract the login identifier from the URL structure.
+    this.route.params.map(p => p.loginid)
+      .subscribe((login: string) => {
+        // Set the login at the Service to update the other data structures. Pass the login id
+        this.appModelStore.accessLoginList()
+          .subscribe(result => {
+            console.log("--[PlanetaryOptimizationPageComponent.ngOnInit.accessLoginList]");
+            this.appModelStore.setLoginList(result);
+            this.appModelStore.activateLoginById(login)
+              .subscribe(result => {
+                console.log("--[PlanetaryOptimizationPageComponent.ngOnInit.activateLoginById]");
+                // We have reached the selected Login. Search now for the character.
+                let selectedLogin = result;
+                this.route.params.map(p => p.id)
+                  .subscribe((characterid: number) => {
+                    this.pilot = selectedLogin.accessCharacterById(characterid);
+                    this.pilot.accessPilotDetailed(this.appModelStore)
+                      .subscribe(result => {
+                        console.log("--[PlanetaryOptimizationPageComponent.ngOnInit.accessPilotDetailed]");
+                        // Copnserve the current Login reference.
+                        result.setLoginReference(this.pilot.getLoginReference());
+                        this.pilot = result;
+                        // Download the managers.
+                        this.pilot.accessPilotManagers(this.appModelStore)
+                          .subscribe(result => {
+                            console.log("--[PlanetaryOptimizationPageComponent.ngOnInit.accessPilotManagers]");
+                            // The the list of pilot managers that should be stored at the pilot.
+                            let man = null;
+                            for (let manager of result) {
+                              switch (manager.jsonClass) {
+                                case "AssetsManager":
+                                  man = new AssetsManager(manager);
+                                  this.pilot.setAssetsManager(man);
+                                  break;
+                                case "PlanetaryManager":
+                                  man = new PlanetaryManager(manager);
+                                  this.pilot.setPlanetaryManager(man);
+                                  break;
+                              }
+                            }
+                            this.pilot.accessPlanetaryManager(this.appModelStore)
+                              .subscribe(result => {
+                                console.log("--[PlanetaryOptimizationPageComponent.ngOnInit.accessPilotManagers]> ManagerList: ");
+                                if (null != result) {
+                                  if (result.jsonClass == "PlanetaryManager") {
+                                    let planetary = new PlanetaryManager(result);
+                                    // Store back this at the pilot if we have received a new download.
+                                    this.pilot.setPlanetaryManager(planetary);
+                                    this.route.params.map(p => p.locationid)
+                                      .subscribe((locationid: number) => {
+                                        // Set the location accesible to the viewer to display its information
+                                        this.targetLocation = planetary.search4Location(locationid);
+                                        this.planetaryManager.getOptimizedScenario(locationid, this.appModelStore)
+                                          .subscribe(result => {
+                                            // We should get a list of the optimized actions. Use that list on the viewer.
+                                            this.adapterViewList = result;
+                                            this.downloading = false;
+                                          });
+                                      });
+                                  }
+                                }
+                              });
+                          });
+                      });
+                  });
+              });
           });
       });
-    console.log("<<[PilotDetailPageComponent.ngOnInit]");
-    //    this.adapterViewList.push(new ProcessingAction());
+    console.log("<<[PlanetaryOptimizationPageComponent.ngOnInit]");
   }
-  public getTargetLocation(): number {
-    return 60014089;
+  public getTargetName(): string {
+    if (null != this.targetLocation) return this.targetLocation.getName();
   }
   /**
   Indicates the viewer container that the model states have changed and that a new Collaborate2View should be executed to generate the new view list.

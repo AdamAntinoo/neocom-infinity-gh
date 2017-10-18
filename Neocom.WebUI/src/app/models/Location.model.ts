@@ -10,17 +10,17 @@ export class Location extends NeoComNode {
   private totalValueCalculated: number = -1;
   private totalVolumeCalculated: number = -1;
 
-  // public location: string = "LOCATION";
-  // public position: string;
-  //  public id;
   public stationID;
   public systemID;
   public constellationID;
   public regionID;
+  public name: string = "-NAME-";
+  public realId: number = -2;
+  public typeID: string = "CCPLOCATION";
   public contents = [];
+  public contentSize: number = 0;
 
-  //  public children = [];
-  public stackCount: number = 0;
+  //  public stackCount: number = 0;
 
   constructor(values: Object = {}) {
     super(values);
@@ -38,41 +38,70 @@ export class Location extends NeoComNode {
       newassetlist.push(as);
     }
     this.contents = newassetlist;
-    this.stackCount = this.contents.length;
+    //    this.stackCount = this.contents.length;
   }
-
-
-
+  public getFormattedStackCount(): string {
+    if (this.contentSize == 0) return "-";
+    else return this.contentSize.toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+  }
+  /**
+  This is the standard method to generate the list of elements that should be rendered on the viewer page. For a Location the collaboration of a collapsed one the result should be itself. For an expanded location we should recursively add the Locations contents collaboration to the list. So a Location with a Container will check also the state of that Container.
+  When the Location is expanded se add two Separators, one before the Location and another after the collaborated list of nodes.
+  The list of assets collaborated should be ordered by name, but taking on mind not to include on that order their contents at the same time. So the ordering should be made before the collaboration loop.
+  */
   public collaborate2View(variant: EVariant): NeoComNode[] {
     let collab = [];
     // If the node is expanded then add its assets.
     if (this.expanded) {
-      collab.push(new Separator());
-      collab.push(this);
-      // Process each item at the rootlist for more collaborations.
-      for (let node of this.contents) {
-        switch (node.jsonClass) {
-          case "Asset":
-            let asset = new Asset(node);
-            let partialcollab = asset.collaborate2View(variant);
-            for (let partialnode of partialcollab) {
-              collab.push(partialnode);
-            }
-            break;
-          case "Container":
-            let container = new Container(node);
-            let containerCollaboration = container.collaborate2View(variant);
-            for (let partialnode of containerCollaboration) {
-              collab.push(partialnode);
-            }
-            break;
+      // Check if the contents of the Location are downloaded.
+      if (this.downloaded) {
+        collab.push(new Separator());
+        collab.push(this);
+        // Process each item at the rootlist for more collaborations.
+        // Apply the processing policies before entering the processing loop. Usually does the sort.
+        let sortedContents: Asset[] = this.contents.sort((n1, n2) => {
+          if (n1.getName() > n2.getName()) {
+            return 1;
+          }
+          if (n1.getName() < n2.getName()) {
+            return -1;
+          }
+          return 0;
+        });
+        for (let node of sortedContents) {
+          switch (node.jsonClass) {
+            case "Asset":
+              let asset = new Asset(node);
+              let partialcollab = asset.collaborate2View(variant);
+              for (let partialnode of partialcollab) {
+                collab.push(partialnode);
+              }
+              break;
+            case "Container":
+              let container = new Container(node);
+              let containerCollaboration = container.collaborate2View(variant);
+              for (let partialnode of containerCollaboration) {
+                collab.push(partialnode);
+              }
+              break;
+          }
         }
+      } else {
+        // ire a download message.
       }
       collab.push(new Separator());
     } else collab.push(this);
     return collab;
   }
+  public getName(): string {
+    return this.name;
+  }
+  /**
+  This method should know the internal representation of the different types of Locations and return the unique ID that represents the unique locator. If the Location is a CCP location this is a selector depending on the available values on the system, constellation or region.
+  */
   public getLocationId(): number {
-    return Math.max(Math.max(Math.max(this.stationID, this.systemID), this.constellationID), this.regionID);
+    if (this.typeID == "CCPLOCATION")
+      return Math.max(Math.max(Math.max(this.stationID, this.systemID), this.constellationID), this.regionID);
+    else return this.realId;
   }
 }

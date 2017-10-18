@@ -10,6 +10,7 @@ import { AssetsManagerPageComponent } from './pages/assets-manager-page/assets-m
 import { PlanetaryManagerPageComponent } from './pages/planetary-manager-page/planetary-manager-page.component';
 import { PlanetaryOptimizationPageComponent } from './pages/planetary-optimization-page/planetary-optimization-page.component';
 
+
 const routes: Routes = [
   {
     path: '',
