@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./spinner-test-page.component.css']
 })
 export class SpinnerTestPageComponent implements OnInit {
+  public downloading: boolean = true;
 
   constructor() { }
 
   ngOnInit() {
+    this.downloading = true;
   }
 
 }
