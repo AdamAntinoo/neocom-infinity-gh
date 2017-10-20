@@ -194,10 +194,10 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 			ConnectionSource conn = neocomDBHelper.getConnectionSource();
 			DatabaseConnection database = conn.getReadWriteConnection();
 			synchronized (database) {
-				int rowCount = database.delete("DELETE FROM Assets WHERE ownerID=" + pilotid, null, null);
+				int rowCount = database.delete("DELETE FROM Assets WHERE ownerID=" + (pilotid * -1), null, null);
 				logger
 						.info("-- [NeocomDatabaseConnector.clearInvalidAssets]> rows deleted ASSETS [OWNERID = -1] - " + rowCount);
-				rowCount = database.delete("DELETE FROM Blueprints WHERE ownerID=-1", null, null);
+				rowCount = database.delete("DELETE FROM Blueprints WHERE ownerID=" + (pilotid * -1), null, null);
 				logger.info(
 						"-- [NeocomDatabaseConnector.clearInvalidAssets]> rows deleted BLUEPRINTS [OWNERID = -1] - " + rowCount);
 			}

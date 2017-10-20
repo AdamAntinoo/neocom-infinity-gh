@@ -45,17 +45,18 @@ public class TimedServiceLauncher {
 		// Get requests pending from the queue service.
 		PriorityBlockingQueue<PendingRequestEntry> requests = ModelAppConnector.getSingleton().getCacheConnector()
 				.getPendingRequests();
-		logger.info(">> [TimedServiceLauncher.onTime]> Pending requests level: " + requests.size());
+		if (requests.size() > 0)
+			logger.info(">> [TimedServiceLauncher.onTime]> Pending requests level: " + requests.size());
 		limit = 0;
 		if (this.blockedMarket()) {
-			logger.info("<< [TimedServiceLauncher.onTime]> Blocked the Market processing. Exiting.");
+			if (requests.size() > 0) logger.info("<< [TimedServiceLauncher.onTime]> Blocked the Market processing. Exiting.");
 			return;
 		}
 		while (limit <= LAUNCH_LIMIT) {
 			// Process request by priority. Additions to queue are limited.
 			PendingRequestEntry entry = requests.poll();
 			if (null == entry) {
-				logger.info("<< [TimedServiceLauncher.onTime]> Queue empty. Exiting.");
+				if (requests.size() > 0) logger.info("<< [TimedServiceLauncher.onTime]> Queue empty. Exiting.");
 				return;
 			}
 			// Remove completed entries.

@@ -102,25 +102,7 @@ export class Login extends NeoComNode {
       return this.characters.length;
     else return 0;
   }
-  // public getKeyCountObsrver(downloadService: AppModelStoreService): number {
-  //   if (this.downloaded) return this.characters.length;
-  //   else {
-  //     if (this.downloadPending) return 0;
-  //     else {
-  //       this.downloadPending = true;
-  //       // Get the pilot roaster and then calculate the count.
-  //       downloadService.getBackendPilotRoaster(this.getLoginId())
-  //         .subscribe(result => {
-  //           console.log("--[Login.getKeyCount.getBackendPilotRoaster]>Roaster: " + JSON.stringify(result));
-  //           // The the list of planetary resource lists to the data returned.
-  //           this._pilotRoaster = result;
-  //           this.downloaded = true;
-  //           this.downloadPending = false;
-  //           return this._pilotRoaster.length;
-  //         });
-  //     }
-  //   }
-  // }
+
   /**
   Add to the content of the list to render depending on the expanded state and the contents. This do not extends the collaborarion to the grand children even that should be reviewed.
   If the Login is empty we can remove it form the listing or replace it by an special separator
@@ -131,44 +113,32 @@ export class Login extends NeoComNode {
     if (this.expanded) {
       //  collab.push(new Separator());
       console.log("--[Login.collaborate2View]>Collaborating " + this.jsonClass);
-      collab.push(new Separator());
+      collab.push(new Separator().setVariation(ESeparator.RED));
       collab.push(this);
       // If the list of Characters is empty then add the Empty variation Separator
-      //  if (null == this.characters) collab.push(new Separator().setVariation(ESeparator.EMPTY));
-      //  else {
       if (this.characters.length > 0) {
         // Process each item at the rootlist for more collaborations.
         for (let node of this.characters) {
           if (node.jsonClass == "Pilot") {
             let pilot = new Pilot(node)
-            // let partialcollab = asset.collaborate2View(variant);
-            // for (let partialnode of partialcollab) {
             console.log("--[Login.collaborate2View]>Collaborating " + pilot.jsonClass);
             collab.push(pilot);
-            // }
           }
           if (node.jsonClass == "Corporation") {
             let corp = new Corporation(node)
-            // let partialcollab = asset.collaborate2View(variant);
-            // for (let partialnode of partialcollab) {
             console.log("--[Login.collaborate2View]>Collaborating " + corp.jsonClass);
             collab.push(corp);
-            // }
           }
           if (node.jsonClass == "NeoComCharacter") {
             let character = new NeoComCharacter(node)
-            // let partialcollab = asset.collaborate2View(variant);
-            // for (let partialnode of partialcollab) {
             console.log("--[Login.collaborate2View]>Collaborating " + character.jsonClass);
             collab.push(character);
-            //    }
           }
         }
       } else {
         collab = [];
       }
-      //  }
-      collab.push(new Separator());
+      collab.push(new Separator().setVariation(ESeparator.RED));
     } else {
       console.log("--[Login.collaborate2View]>Collaborating " + this.jsonClass);
       collab.push(this);

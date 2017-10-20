@@ -102,6 +102,8 @@ export class Location extends NeoComNode {
   public getLocationId(): number {
     if (this.typeID == "CCPLOCATION")
       return Math.max(Math.max(Math.max(this.stationID, this.systemID), this.constellationID), this.regionID);
-    else return this.realId;
+    if (this.typeID == "UNKNOWN")
+      return this.stationID;
+    return this.realId;
   }
 }

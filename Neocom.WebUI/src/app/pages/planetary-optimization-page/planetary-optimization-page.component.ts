@@ -62,7 +62,8 @@ export class PlanetaryOptimizationPageComponent extends PageComponent implements
                 let selectedLogin = result;
                 this.route.params.map(p => p.id)
                   .subscribe((characterid: number) => {
-                    this.pilot = selectedLogin.accessCharacterById(characterid);
+                    //    this.pilot = selectedLogin.accessCharacterById(characterid);
+                    this.pilot = this.appModelStore.setPilotById(characterid);
                     this.pilot.accessPilotDetailed(this.appModelStore)
                       .subscribe(result => {
                         console.log("--[PlanetaryOptimizationPageComponent.ngOnInit.accessPilotDetailed]");
@@ -93,6 +94,7 @@ export class PlanetaryOptimizationPageComponent extends PageComponent implements
                                 if (null != result) {
                                   if (result.jsonClass == "PlanetaryManager") {
                                     let planetary = new PlanetaryManager(result);
+                                    this.planetaryManager = planetary;
                                     // Store back this at the pilot if we have received a new download.
                                     this.pilot.setPlanetaryManager(planetary);
                                     this.route.params.map(p => p.locationid)
@@ -119,26 +121,8 @@ export class PlanetaryOptimizationPageComponent extends PageComponent implements
   }
   public getTargetName(): string {
     if (null != this.targetLocation) return this.targetLocation.getName();
+    else return "-WAITING-";
   }
-  /**
-  Indicates the viewer container that the model states have changed and that a new Collaborate2View should be executed to generate the new view list.
-  */
-  // public refreshViewPort(): void {
-  //   this.downloading = true;
-  //   // Get the list of Managers that can be accessed for this Character.
-  //   this.pilot.accessPlanetaryManager(this.appModelStore)
-  //     .subscribe(result => {
-  //       console.log("--[PilotDetailPageComponent.ngOnInit.accessPilotRoaster]>ManagerList: " + JSON.stringify(result));
-  //       // Store the result at the PIlot.
-  //       // let planetary = result[0];
-  //       // this.pilot.setPlanetaryManager(planetary);
-  //       // Call the collaboration methods to start the model view list.
-  //       let thelist = result.collaborate2View(this.getVariant());
-  //       this.adapterViewList = thelist;
-  //       this.downloading = false;
-  //     });
-  //
-  // }
   public getViewer(): PlanetaryOptimizationPageComponent {
     return this;
   }

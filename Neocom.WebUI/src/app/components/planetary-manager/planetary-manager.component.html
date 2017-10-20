@@ -9,7 +9,7 @@
         </td>
         <td width="20%" class="neocom-panel-right-box" align="right">
           <!-- <div class="big-label ">{{manager.iconName}}</div> -->
-          <div class="stack-counter lined-bottomline" style="color: white;">{{manager.assetTotalCount}}</div>
+          <div class="stack-counter lined-bottomline" style="color: white;">{{manager.assetTotalCount | number:'1.0-0'}}</div>
           <div class="neocom-label"><span>RESOURCES</span></div>
         </td>
         <td width="5%" *ngIf="isExpandable()" class="neocom-arrow-box" (click)="clickArrow()">

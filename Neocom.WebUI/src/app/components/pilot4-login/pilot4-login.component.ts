@@ -33,7 +33,7 @@ export class Pilot4LoginComponent implements OnInit {
     return false;
   }
   public isExpandable(): boolean {
-    return true;
+    return false;
   }
   public onClickArrow(): void {
     this.expanded = !this.expanded;

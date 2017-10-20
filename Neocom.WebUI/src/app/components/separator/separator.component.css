@@ -1,4 +1,4 @@
-.solid-orange {
+.solid-red {
   height: 4px;
   line-height: 1.0;
   opacity: 0.7;
@@ -6,6 +6,7 @@
   border: 1px red solid;
   box-shadow: inset 0px 0px 4px 1px red, 0px 0px 4px 1px red;
 }
+
 .solid-orange {
   height: 4px;
   line-height: 1.0;

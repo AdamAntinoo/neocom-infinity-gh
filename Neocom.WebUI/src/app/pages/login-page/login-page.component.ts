@@ -38,40 +38,48 @@ export class LoginPageComponent extends PageComponent implements OnInit {
    */
   ngOnInit() {
     console.log(">>[LoginPageComponent.ngOnInit]");
-    this.downloading = true;
-    // Call the service to get the list of Logins.
-    this.appModelStore.accessLoginList()
-      .subscribe(result => {
-        console.log("--[LoginPageComponent.ngOnInit.accessLoginList]>Loginlist.length: " + result.length);
-        this.loginViewList = [];
-        // Loop over all the returned items.
-        for (let node of result) {
-          let thelist = node.collaborate2View(this.getVariant());
-          this.loginViewList = this.loginViewList.concat(thelist);
-        }
-        this.downloading = false;
-      });
+    this.refreshViewPort();
     console.log("<<[LoginPageComponent.ngOnInit]");
   }
   /**
   Indicates the viewer container that the model states have changed and that a new Collaborate2View should be executed to generate the new view list.
   */
   public refreshViewPort(): void {
+    console.log(">>[LoginPageComponent.refreshViewPort]");
     this.downloading = true;
-    // Call the service to get the list of Logins. Then create the collaboration list formeach of them.
+    // Call the service to get the list of Logins.
     this.appModelStore.accessLoginList()
       .subscribe(result => {
         console.log("--[LoginPageComponent.ngOnInit.accessLoginList]>Loginlist.length: " + result.length);
         this.loginViewList = [];
+        // Sort the list of Logins before processing their collaborations.
+        let sortedLogins = this.sortLogins(result);
         // Loop over all the returned items.
         for (let node of result) {
-          let thelist = node.collaborate2View(this.getVariant());
-          this.loginViewList = this.loginViewList.concat(thelist);
+          // Add to the result only the Logins with at least one character.
+          if (node.getKeyCount() > 0) {
+            let thelist = node.collaborate2View(this.getVariant());
+            this.loginViewList = this.loginViewList.concat(thelist);
+          }
         }
         this.downloading = false;
       });
+    console.log("<<[LoginPageComponent.refreshViewPort]");
   }
   public getViewer(): LoginPageComponent {
     return this;
+  }
+
+  private sortLogins(nodeList: Login[]): Login[] {
+    let sortedContents: Login[] = nodeList.sort((n1, n2) => {
+      if (n1.getLoginId() > n2.getLoginId()) {
+        return 1;
+      }
+      if (n1.getLoginId() < n2.getLoginId()) {
+        return -1;
+      }
+      return 0;
+    });
+    return sortedContents;
   }
 }

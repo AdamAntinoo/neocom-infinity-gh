@@ -31,6 +31,7 @@ public class PilotDataController {
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 
+	// - M E T H O D - S E C T I O N ..........................................................................
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/login/{login}/pilot/{identifier}/assetsmanager", method = RequestMethod.GET, produces = "application/json")
 	public AbstractManager pilotAssetsManager(@PathVariable final String login, @PathVariable final String identifier) {
@@ -56,7 +57,6 @@ public class PilotDataController {
 		}
 	}
 
-	// - M E T H O D - S E C T I O N ..........................................................................
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/login/{login}/pilot/{identifier}", method = RequestMethod.GET, produces = "application/json")
 	public NeoComCharacter pilotDetailed(@PathVariable final String login, @PathVariable final String identifier) {

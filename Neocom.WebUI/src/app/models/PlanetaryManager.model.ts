@@ -75,7 +75,7 @@ export class PlanetaryManager extends Manager {
       // if (this.regionCount < 4)
       //   rootlist = this.locations;
       // else
-      rootlist = this.regions;
+      rootlist = this.sortRegions(this.regions);
       // Process each item at the rootlist for more collaborations.
       for (let node of rootlist) {
         let partialcollab = node.collaborate2View(variant);
@@ -97,4 +97,17 @@ export class PlanetaryManager extends Manager {
     }
     return null;
   }
+  private sortRegions(nodeList: Region[]): Region[] {
+    let sortedContents: Region[] = nodeList.sort((n1, n2) => {
+      if (n1.title > n2.title) {
+        return 1;
+      }
+      if (n1.title < n2.title) {
+        return -1;
+      }
+      return 0;
+    });
+    return sortedContents;
+  }
+
 }
