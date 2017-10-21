@@ -69,9 +69,11 @@ public class MarketDataServer {
 			try {
 				//				this.getStore().setApiKeys((HashMap<Integer, NeoComApiKey>) input.readObject());
 				buyMarketDataCache = (Hashtable<Integer, MarketDataSet>) input.readObject();
-				logger.info("-- [MarketDataServer.readCacheFromStorage]> Restored cache BUY");
+				logger.info("-- [MarketDataServer.readCacheFromStorage]> Restored cache BUY: " + buyMarketDataCache.size()
+						+ " entries.");
 				sellMarketDataCache = (Hashtable<Integer, MarketDataSet>) input.readObject();
-				logger.info("-- [MarketDataServer.readCacheFromStorage]> Restored cache SELL");
+				logger.info("-- [MarketDataServer.readCacheFromStorage]> Restored cache SELL: " + sellMarketDataCache.size()
+						+ " entries.");
 			} finally {
 				input.close();
 				buffer.close();
