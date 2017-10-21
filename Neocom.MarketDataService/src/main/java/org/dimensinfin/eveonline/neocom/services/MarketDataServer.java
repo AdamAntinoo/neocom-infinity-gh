@@ -26,6 +26,8 @@ import java.util.Vector;
 import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.connector.ModelAppConnector;
+import org.dimensinfin.eveonline.neocom.connector.NeoComMSConnector;
+import org.dimensinfin.eveonline.neocom.constant.ModelWideConstants;
 import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
 import org.dimensinfin.eveonline.neocom.market.EVEMarketDataParser;
 import org.dimensinfin.eveonline.neocom.market.MarketDataEntry;
@@ -33,12 +35,11 @@ import org.dimensinfin.eveonline.neocom.market.MarketDataSet;
 import org.dimensinfin.eveonline.neocom.market.TrackEntry;
 import org.dimensinfin.eveonline.neocom.model.EveItem;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
+import org.joda.time.Instant;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import org.xml.sax.ContentHandler;
-import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 
 // - CLASS IMPLEMENTATION ...................................................................................
@@ -146,6 +147,8 @@ public class MarketDataServer {
 			if (side == EMarketSide.BUYER) {
 				cache = buyMarketDataCache;
 			}
+			// Update the timestamp of the data to be cached.
+			reference.setTimestamp(Instant.now());
 			cache.put(localizer, reference);
 			return reference;
 		} catch (SAXException saxe) {
@@ -182,6 +185,12 @@ public class MarketDataServer {
 		} else {
 			logger.info("-- [MarketDataServer.marketDataServiceEntryPoint]>[HIT] localizer: " + localizer
 					+ " Using cached information.");
+			// Check if the cached data is staled. If we detect taht we then post an update of the data.
+			if (NeoComMSConnector.getSingleton().checkExpiration(entry.getTimestamp(), ModelWideConstants.HOURS24)) {
+				logger.info("-- [MarketDataServer.marketDataServiceEntryPoint]> Cached data stale. Posting update");
+				// Post request and return the data placeholder.
+				ModelAppConnector.getSingleton().getCacheConnector().addMarketDataRequest(localizer);
+			}
 			return entry;
 		}
 	}
@@ -402,8 +411,8 @@ public class MarketDataServer {
 
 		// Create out specific parser for this type of content.
 		EVEMarketDataParser content = new EVEMarketDataParser();
-		reader.setContentHandler((ContentHandler) content);
-		reader.setErrorHandler((ErrorHandler) content);
+		reader.setContentHandler(content);
+		reader.setErrorHandler(content);
 		String URLDestination = null;
 		if (opType == EMarketSide.SELLER) {
 			URLDestination = getModuleLink(itemName, "SELL");

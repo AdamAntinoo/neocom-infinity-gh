@@ -73,6 +73,8 @@ public class TimedServiceLauncher {
 				}
 			}
 		}
+		// Save cached data after a block is finished.
+		MarketDataServer.writeCacheToStorage();
 		logger.info("<< [TimedServiceLauncher.onTime]> Terminating run.");
 	}
 
