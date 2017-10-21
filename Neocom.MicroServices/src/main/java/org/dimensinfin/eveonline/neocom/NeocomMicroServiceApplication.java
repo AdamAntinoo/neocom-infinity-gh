@@ -14,8 +14,8 @@ import org.dimensinfin.eveonline.neocom.connector.AppModelStore;
 import org.dimensinfin.eveonline.neocom.connector.CCPDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.ICCPDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.ICacheConnector;
-import org.dimensinfin.eveonline.neocom.connector.IDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.INeoComMSConnector;
+import org.dimensinfin.eveonline.neocom.connector.INeoComModelDatabase;
 import org.dimensinfin.eveonline.neocom.connector.MicroServicesCacheConnector;
 import org.dimensinfin.eveonline.neocom.connector.NeoComMSConnector;
 import org.dimensinfin.eveonline.neocom.connector.SpringDatabaseConnector;
@@ -66,7 +66,7 @@ public class NeocomMicroServiceApplication implements INeoComMSConnector {
 	private NeoComMSConnector			_connector				= null;
 	private Instant								chrono						= null;
 
-	private IDatabaseConnector		dbNeocomConnector	= null;
+	private INeoComModelDatabase	dbNeocomConnector	= null;
 	private ICCPDatabaseConnector	dbCCPConnector		= null;
 	private ICacheConnector				cacheConnector		= null;
 
@@ -107,7 +107,7 @@ public class NeocomMicroServiceApplication implements INeoComMSConnector {
 	}
 
 	@Override
-	public IDatabaseConnector getDBConnector() {
+	public INeoComModelDatabase getDBConnector() {
 		if (null == dbNeocomConnector) {
 			String dblocation = R.getResourceString("R.string.appdatabasepath");
 			String dbname = R.getResourceString("R.string.appdatabasefilename");

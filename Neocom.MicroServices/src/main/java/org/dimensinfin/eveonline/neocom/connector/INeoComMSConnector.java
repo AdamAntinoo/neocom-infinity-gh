@@ -15,7 +15,7 @@ public interface INeoComMSConnector extends IModelAppConnector {
 
 	public ICCPDatabaseConnector getCCPDBConnector();
 
-	public IDatabaseConnector getDBConnector();
+	public INeoComModelDatabase getDBConnector();
 
 	public INeoComModelStore getModelStore();
 

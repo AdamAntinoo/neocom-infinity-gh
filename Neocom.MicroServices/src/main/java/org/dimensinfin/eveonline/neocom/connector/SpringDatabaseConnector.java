@@ -18,9 +18,9 @@ import java.util.Vector;
 import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.constant.ModelWideConstants;
+import org.dimensinfin.eveonline.neocom.database.NeoComBaseDatabase;
 import org.dimensinfin.eveonline.neocom.database.NeocomDBHelper;
 import org.dimensinfin.eveonline.neocom.industry.Job;
-import org.dimensinfin.eveonline.neocom.industry.Resource;
 import org.dimensinfin.eveonline.neocom.market.NeoComMarketOrder;
 import org.dimensinfin.eveonline.neocom.model.ApiKey;
 import org.dimensinfin.eveonline.neocom.model.DatabaseVersion;
@@ -46,7 +46,7 @@ import com.j256.ormlite.support.DatabaseConnection;
 // - CLASS IMPLEMENTATION ...................................................................................
 //@Component
 //@CacheConfig(cacheNames = "MarketData")
-public class SpringDatabaseConnector implements IDatabaseConnector {
+public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoComModelDatabase {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger												logger										= Logger.getLogger("SpringDatabaseConnector");
 
@@ -174,15 +174,15 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 	//		}
 	//		return data.toString();
 	//	}
-	public boolean checkInvention(final int typeID) {
-		throw new RuntimeException(
-				"Application connector not defined. Functionality 'checkExpiration' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	}
-
-	public boolean checkManufacturable(final int typeid) {
-		throw new RuntimeException(
-				"Application connector not defined. Functionality 'checkExpiration' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	}
+	//	public boolean checkInvention(final int typeID) {
+	//		throw new RuntimeException(
+	//				"Application connector not defined. Functionality 'checkExpiration' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
+	//	}
+	//
+	//	public boolean checkManufacturable(final int typeid) {
+	//		throw new RuntimeException(
+	//				"Application connector not defined. Functionality 'checkExpiration' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
+	//	}
 
 	/**
 	 * removes from the application database any asset and blueprint that contains the special -1 code as the
@@ -206,10 +206,10 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 		}
 	}
 
-	public void closeDatabases() {
-		throw new RuntimeException(
-				"Application connector not defined. Functionality 'checkExpiration' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	}
+	//	public void closeDatabases() {
+	//		throw new RuntimeException(
+	//				"Application connector not defined. Functionality 'checkExpiration' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
+	//	}
 
 	public Dao<ApiKey, String> getApiKeysDao() throws SQLException {
 		return this.getNeocomDBHelper().getApiKeysDao();
@@ -278,11 +278,11 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 		neocomDBHelper.loadSeedData();
 	}
 
-	@Deprecated
-	public boolean openAppDataBase() {
-		throw new RuntimeException(
-				"Application connector not defined. Functionality 'openAppDataBase' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	}
+	//	@Deprecated
+	//	public boolean openAppDataBase() {
+	//		throw new RuntimeException(
+	//				"Application connector not defined. Functionality 'openAppDataBase' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
+	//	}
 
 	public boolean openCCPDataBase() {
 		if (null == ccpDatabase) {
@@ -298,11 +298,11 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 		return true;
 	}
 
-	@Deprecated
-	public boolean openDAO() {
-		neocomDBHelper = new NeocomDBHelper(databaseLink, dbVersion);
-		return false;
-	}
+	//	@Deprecated
+	//	public boolean openDAO() {
+	//		neocomDBHelper = new NeocomDBHelper(databaseLink, dbVersion);
+	//		return false;
+	//	}
 
 	/**
 	 * Returns the list of distinct identifiers for parentAssetId that should represent the container where an
@@ -389,10 +389,10 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 		return loginList;
 	}
 
-	public int queryBlueprintDependencies(final int bpitemID) {
-		throw new RuntimeException(
-				"Application connector not defined. Functionality 'queryBlueprintDependencies' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	}
+	//	public int queryBlueprintDependencies(final int bpitemID) {
+	//		throw new RuntimeException(
+	//				"Application connector not defined. Functionality 'queryBlueprintDependencies' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
+	//	}
 
 	public List<NeoComAsset> queryContainerContents(final long identifier) {
 		// Get access to one assets with a distinct location. Discard the rest of the data and only process the Location id
@@ -452,10 +452,10 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 		return contents;
 	}
 
-	public ArrayList<Resource> refineOre(final int itemID) {
-		throw new RuntimeException(
-				"Application connector not defined. Functionality 'refineOre' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	}
+	//	public ArrayList<Resource> refineOre(final int itemID) {
+	//		throw new RuntimeException(
+	//				"Application connector not defined. Functionality 'refineOre' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
+	//	}
 
 	/**
 	 * Changes the owner id for all records from a new download with the id of the current character. This
@@ -498,10 +498,10 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 		}
 	}
 
-	public void replaceJobs(final long characterID) {
-		throw new RuntimeException(
-				"Application connector not defined. Functionality 'replaceJobs' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	}
+	//	public void replaceJobs(final long characterID) {
+	//		throw new RuntimeException(
+	//				"Application connector not defined. Functionality 'replaceJobs' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
+	//	}
 
 	/**
 	 * Get the list of all the Blueprints for a given Character. It can ge a Pilot or a Corporation and the
@@ -642,15 +642,15 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 		return result;
 	}
 
-	public ArrayList<Integer> searchInventionableBlueprints(final String resourceIDs) {
-		throw new RuntimeException(
-				"Application connector not defined. Functionality 'searchInventionableBlueprints' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	}
-
-	public int searchInventionProduct(final int typeID) {
-		throw new RuntimeException(
-				"Application connector not defined. Functionality 'searchInventionProduct' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	}
+	//	public ArrayList<Integer> searchInventionableBlueprints(final String resourceIDs) {
+	//		throw new RuntimeException(
+	//				"Application connector not defined. Functionality 'searchInventionableBlueprints' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
+	//	}
+	//
+	//	public int searchInventionProduct(final int typeID) {
+	//		throw new RuntimeException(
+	//				"Application connector not defined. Functionality 'searchInventionProduct' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
+	//	}
 
 	/**
 	 * Search on the eve.db database for the attributes that describe an Item. Items are the lowest data
@@ -723,35 +723,35 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 		return hit;
 	}
 
-	public ArrayList<Job> searchJob4Class(final long characterID, final String string) {
-		throw new RuntimeException(
-				"Application connector not defined. Functionality 'searchJob4Class' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	}
-
-	public int searchJobExecutionTime(final int typeID, final int activityID) {
-		throw new RuntimeException(
-				"Application connector not defined. Functionality 'searchJobExecutionTime' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	}
-
-	public ArrayList<Resource> searchListOfDatacores(final int itemID) {
-		throw new RuntimeException(
-				"Application connector not defined. Functionality 'searchListOfDatacores' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	}
-
-	public ArrayList<Resource> searchListOfMaterials(final int itemID) {
-		throw new RuntimeException(
-				"Application connector not defined. Functionality 'searchListOfMaterials' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	}
-
-	public ArrayList<Resource> searchListOfReaction(final int itemID) {
-		throw new RuntimeException(
-				"Application connector not defined. Functionality 'searchListOfReaction' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	}
-
-	public int searchModule4Blueprint(final int bpitemID) {
-		throw new RuntimeException(
-				"Application connector not defined. Functionality 'searchModule4Blueprint' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	}
+	//	public ArrayList<Job> searchJob4Class(final long characterID, final String string) {
+	//		throw new RuntimeException(
+	//				"Application connector not defined. Functionality 'searchJob4Class' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
+	//	}
+	//
+	//	public int searchJobExecutionTime(final int typeID, final int activityID) {
+	//		throw new RuntimeException(
+	//				"Application connector not defined. Functionality 'searchJobExecutionTime' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
+	//	}
+	//
+	//	public ArrayList<Resource> searchListOfDatacores(final int itemID) {
+	//		throw new RuntimeException(
+	//				"Application connector not defined. Functionality 'searchListOfDatacores' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
+	//	}
+	//
+	//	public ArrayList<Resource> searchListOfMaterials(final int itemID) {
+	//		throw new RuntimeException(
+	//				"Application connector not defined. Functionality 'searchListOfMaterials' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
+	//	}
+	//
+	//	public ArrayList<Resource> searchListOfReaction(final int itemID) {
+	//		throw new RuntimeException(
+	//				"Application connector not defined. Functionality 'searchListOfReaction' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
+	//	}
+	//
+	//	public int searchModule4Blueprint(final int bpitemID) {
+	//		throw new RuntimeException(
+	//				"Application connector not defined. Functionality 'searchModule4Blueprint' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
+	//	}
 
 	//	public EveLocation searchLocationbyID(final long locationID) {
 	//		EveLocation hit = new EveLocation(locationID);
@@ -875,10 +875,10 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 		return outputResourceId;
 	}
 
-	public int searchReactionOutputMultiplier(final int itemID) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	//	public int searchReactionOutputMultiplier(final int itemID) {
+	//		// TODO Auto-generated method stub
+	//		return 0;
+	//	}
 
 	public Vector<Schematics> searchSchematics4Output(final int targetId) {
 		Vector<Schematics> scheList = new Vector<Schematics>();
@@ -945,25 +945,25 @@ public class SpringDatabaseConnector implements IDatabaseConnector {
 		return stationTypeID;
 	}
 
-	public String searchTech4Blueprint(final int blueprintID) {
-		throw new RuntimeException(
-				"Application connector not defined. Functionality 'searchTech4Blueprint' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	}
+	//	public String searchTech4Blueprint(final int blueprintID) {
+	//		throw new RuntimeException(
+	//				"Application connector not defined. Functionality 'searchTech4Blueprint' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
+	//	}
 
-	public int totalLocationContentCount(final long identifier) {
-		try {
-			Dao<NeoComAsset, String> assetDao = this.getAssetDAO();
-			QueryBuilder<NeoComAsset, String> queryBuilder = assetDao.queryBuilder();
-			queryBuilder.setCountOf(true).where().eq("locationID", identifier);
-			long totalAssets = assetDao.countOf(queryBuilder.prepare());
-			return Long.valueOf(totalAssets).intValue();
-		} catch (java.sql.SQLException sqle) {
-			sqle.printStackTrace();
-			logger.warning("W [SpringDatabaseConnector.getLocationContentCount]> Exception reading Location contents count."
-					+ sqle.getMessage());
-			return 0;
-		}
-	}
+	//	public int totalLocationContentCount(final long identifier) {
+	//		try {
+	//			Dao<NeoComAsset, String> assetDao = this.getAssetDAO();
+	//			QueryBuilder<NeoComAsset, String> queryBuilder = assetDao.queryBuilder();
+	//			queryBuilder.setCountOf(true).where().eq("locationID", identifier);
+	//			long totalAssets = assetDao.countOf(queryBuilder.prepare());
+	//			return Long.valueOf(totalAssets).intValue();
+	//		} catch (java.sql.SQLException sqle) {
+	//			sqle.printStackTrace();
+	//			logger.warning("W [SpringDatabaseConnector.getLocationContentCount]> Exception reading Location contents count."
+	//					+ sqle.getMessage());
+	//			return 0;
+	//		}
+	//	}
 
 	private Connection getCCPDatabase() {
 		if (null == ccpDatabase) openCCPDataBase();
