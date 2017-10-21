@@ -88,7 +88,7 @@ export class AssetsManagerPageComponent extends PageComponent implements OnInit 
                                     let assetman = new AssetsManager(result);
                                     // Store back this at the pilot if we have received a new download.
                                     this.pilot.setAssetsManager(assetman);
-                                    let thelist = assetman.collaborate2View(this.getVariant());
+                                    let thelist = assetman.collaborate2View(this.appModelStore, this.getVariant());
                                     this.adapterViewList = thelist;
                                     this.downloading = false;
                                   }
@@ -115,7 +115,7 @@ export class AssetsManagerPageComponent extends PageComponent implements OnInit 
             let assetman = new AssetsManager(result);
             // Store back this at the pilot if we have received a new download.
             this.pilot.setAssetsManager(assetman);
-            let thelist = assetman.collaborate2View(this.getVariant());
+            let thelist = assetman.collaborate2View(this.appModelStore, this.getVariant());
             this.adapterViewList = thelist;
             this.downloading = false;
           }

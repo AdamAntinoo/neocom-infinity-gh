@@ -34,7 +34,7 @@ export class Manager extends NeoComNode {
     // Fill additional fields after the object is parsed.
     this.regionCount = Object.keys(this.regions).length;
   }
-  public collaborate2View(variant: EVariant): NeoComNode[] {
+  public collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): NeoComNode[] {
     let collab = [];
     // Add myself to the list and then if expanded add all my data depending on the Variant.
     collab.push(this);

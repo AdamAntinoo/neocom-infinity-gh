@@ -59,12 +59,12 @@ export class AssetsManager extends Manager {
   /**
   Generates the list of nodes that should be rendered depending on the Manager state.
   */
-  public collaborate2View(variant: EVariant): NeoComNode[] {
+  public collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): NeoComNode[] {
     let collab = [];
     // Add all the Regions that are the first representation level.
     for (let reg of this.regions) {
       // Each of the nodes should have the possibility to add their own collaboration nodes.
-      let collaboration = reg.collaborate2View(variant);
+      let collaboration = reg.collaborate2View(appModelStore, variant);
       for (let node of collaboration) {
         collab.push(node);
       }

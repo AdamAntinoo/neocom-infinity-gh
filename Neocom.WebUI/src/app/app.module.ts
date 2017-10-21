@@ -41,7 +41,6 @@ import { NavigationMenuComponent } from './component/navigation-menu/navigation-
 import { Login4ListComponent } from './components/login4-list/login4-list.component';
 import { SeparatorComponent } from './components/separator/separator.component';
 import { RenderComponent } from './components/render/render.component';
-import { PilotListDataSourceService } from './services/pilot-list-data-source.service';
 import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
 import { NodePanelComponent } from './components/node-panel/node-panel.component';
 import { Pilot4LoginComponent } from './components/pilot4-login/pilot4-login.component';
@@ -89,7 +88,6 @@ import { ContainerComponent } from './components/container/container.component';
   ],
   providers: [
     AppModelStoreService,
-    PilotListDataSourceService,
   ],
   bootstrap: [AppComponent]
 })

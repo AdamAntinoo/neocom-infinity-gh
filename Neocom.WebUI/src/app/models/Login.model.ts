@@ -107,7 +107,7 @@ export class Login extends NeoComNode {
   Add to the content of the list to render depending on the expanded state and the contents. This do not extends the collaborarion to the grand children even that should be reviewed.
   If the Login is empty we can remove it form the listing or replace it by an special separator
   */
-  public collaborate2View(variant: EVariant): NeoComNode[] {
+  public collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): NeoComNode[] {
     let collab = [];
     // If the node is expanded then add its assets.
     if (this.expanded) {

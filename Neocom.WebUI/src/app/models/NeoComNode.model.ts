@@ -5,11 +5,13 @@
 // DESCRIPTION: Defines the atributes for a common and core data hierarchy node.
 
 import { Observable } from 'rxjs/Rx';
+//--- SERVICES
+import { AppModelStoreService } from '../services/app-model-store.service';
 //--- INTERFACES
 import { EVariant } from '../classes/EVariant.enumerated';
 import { INeoComNode } from '../classes/INeoComNode.interface';
 //--- MODELS
-//import { Render } from '../models/Render.model';
+//import { NeoComNode } from '../models/NeoComNode.model';
 
 export class NeoComNode implements INeoComNode {
   public jsonClass = "NeoComNode";
@@ -22,8 +24,8 @@ export class NeoComNode implements INeoComNode {
     Object.assign(this, values);
     this.jsonClass = "Node";
   }
-  public collaborate2View(variant: EVariant): NeoComNode[] {
-    let collab = [];
+  public collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): NeoComNode[] {
+    let collab: NeoComNode[] = [];
     collab.push(this);
     return collab;
   }

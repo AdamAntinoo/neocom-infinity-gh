@@ -58,7 +58,7 @@ export class LoginPageComponent extends PageComponent implements OnInit {
         for (let node of result) {
           // Add to the result only the Logins with at least one character.
           if (node.getKeyCount() > 0) {
-            let thelist = node.collaborate2View(this.getVariant());
+            let thelist = node.collaborate2View(this.appModelStore,this.getVariant());
             this.loginViewList = this.loginViewList.concat(thelist);
           }
         }

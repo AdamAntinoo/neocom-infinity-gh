@@ -65,7 +65,7 @@ export class PlanetaryManager extends Manager {
   public getOptimizedScenario(locid: number, downloadService: AppModelStoreService): Observable<ProcessingAction[]> {
     return downloadService.getBackendPlanetaryOptimizedScenario(locid);
   }
-  public collaborate2View(variant: EVariant): NeoComNode[] {
+  public collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): NeoComNode[] {
     // Initialize the list to be output.
     let collab: NeoComNode[] = [];
     let rootlist: NeoComNode[] = [];
@@ -78,7 +78,7 @@ export class PlanetaryManager extends Manager {
       rootlist = this.sortRegions(this.regions);
       // Process each item at the rootlist for more collaborations.
       for (let node of rootlist) {
-        let partialcollab = node.collaborate2View(variant);
+        let partialcollab = node.collaborate2View(appModelStore, variant);
         for (let partialnode of partialcollab) {
           collab.push(partialnode);
         }

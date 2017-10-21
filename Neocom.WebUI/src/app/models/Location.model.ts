@@ -1,3 +1,5 @@
+//--- SERVICES
+import { AppModelStoreService } from '../services/app-model-store.service';
 //--- INTERFACES
 import { EVariant } from '../classes/EVariant.enumerated';
 //--- MODELS
@@ -49,7 +51,7 @@ export class Location extends NeoComNode {
   When the Location is expanded se add two Separators, one before the Location and another after the collaborated list of nodes.
   The list of assets collaborated should be ordered by name, but taking on mind not to include on that order their contents at the same time. So the ordering should be made before the collaboration loop.
   */
-  public collaborate2View(variant: EVariant): NeoComNode[] {
+  public collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): NeoComNode[] {
     let collab = [];
     // If the node is expanded then add its assets.
     if (this.expanded) {
@@ -72,14 +74,14 @@ export class Location extends NeoComNode {
           switch (node.jsonClass) {
             case "Asset":
               let asset = new Asset(node);
-              let partialcollab = asset.collaborate2View(variant);
+              let partialcollab = asset.collaborate2View(appModelStore, variant);
               for (let partialnode of partialcollab) {
                 collab.push(partialnode);
               }
               break;
             case "Container":
               let container = new Container(node);
-              let containerCollaboration = container.collaborate2View(variant);
+              let containerCollaboration = container.collaborate2View(appModelStore, variant);
               for (let partialnode of containerCollaboration) {
                 collab.push(partialnode);
               }
@@ -87,7 +89,8 @@ export class Location extends NeoComNode {
           }
         }
       } else {
-        // ire a download message.
+        // Call the backend to download the contents. On callback we need to fire an event to refresh the display.
+
       }
       collab.push(new Separator());
     } else collab.push(this);

@@ -1,3 +1,5 @@
+//--- SERVICES
+import { AppModelStoreService } from '../services/app-model-store.service';
 //--- INTERFACES
 import { EVariant } from '../classes/EVariant.enumerated';
 import { ESeparator } from '../classes/ESeparator.enumerated';
@@ -31,7 +33,7 @@ export class Region extends NeoComNode {
     return locs;
   }
 
-  public collaborate2View(variant: EVariant): NeoComNode[] {
+  public collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): NeoComNode[] {
     // Initialize the list to be output.
     let collab: NeoComNode[] = [];
     // Check if the Region is expanded or not.
@@ -42,10 +44,10 @@ export class Region extends NeoComNode {
       for (let node of this.locations) {
         let partialcollab = [];
         if (node.jsonClass == "Location")
-          partialcollab = node.collaborate2View(variant);
+          partialcollab = node.collaborate2View(appModelStore, variant);
         else {
           let loc = new Location(node);
-          partialcollab = node.collaborate2View(variant);
+          partialcollab = node.collaborate2View(appModelStore, variant);
         }
         for (let partialnode of partialcollab) {
           collab.push(partialnode);
