@@ -22,16 +22,11 @@ import org.dimensinfin.eveonline.neocom.enums.ELocationType;
 import org.dimensinfin.eveonline.neocom.model.EveItem;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
 
-import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.stmt.PreparedQuery;
-import com.j256.ormlite.stmt.QueryBuilder;
-import com.j256.ormlite.stmt.Where;
-
 // - CLASS IMPLEMENTATION ...................................................................................
 public class MDSCCPDatabaseConnector implements ICCPDatabaseConnector {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger												logger																= Logger
-			.getLogger(" java");
+			.getLogger("MDSCCPDatabaseConnector");
 	private static final String									CCPDATABASE_URL												= "jdbc:sqlite:src/main/resources/eve.db";
 	private static Statistics										locationsCacheStatistics							= new Statistics();
 
@@ -87,8 +82,7 @@ public class MDSCCPDatabaseConnector implements ICCPDatabaseConnector {
 			} catch (Exception sqle) {
 				logger.warning(sqle.getClass().getName() + ": " + sqle.getMessage());
 			}
-			logger
-					.info("-- [StringDatabaseConnector.openCCPDataBase]> Opened CCP database successfully.");
+			logger.info("-- [StringDatabaseConnector.openCCPDataBase]> Opened CCP database successfully.");
 		}
 		return true;
 	}
@@ -117,7 +111,7 @@ public class MDSCCPDatabaseConnector implements ICCPDatabaseConnector {
 				//			final Cursor cursor = getCCPDatabase().rawQuery(SELECT_ITEM_BYID,
 				//					new String[] { Integer.valueOf(typeID).toString() });
 				//	      Statement stmt = getCCPDatabase().createStatement();
-				prepStmt = this.getCCPDatabase().prepareStatement( SELECT_ITEM_BYID);
+				prepStmt = this.getCCPDatabase().prepareStatement(SELECT_ITEM_BYID);
 				prepStmt.setString(1, Integer.valueOf(typeID).toString());
 				cursor = prepStmt.executeQuery();
 				// The query can be run but now there are ids that do not return data.
@@ -149,12 +143,10 @@ public class MDSCCPDatabaseConnector implements ICCPDatabaseConnector {
 					}
 				}
 				if (!found) {
-					 logger
-							.warning("W> AndroidDatabaseConnector.searchItembyID -- Item <" + typeID + "> not found.");
+					logger.warning("W> AndroidDatabaseConnector.searchItembyID -- Item <" + typeID + "> not found.");
 				}
 			} catch (Exception e) {
-				 logger
-						.warning("W> AndroidDatabaseConnector.searchItembyID -- Item <" + typeID + "> not found.");
+				logger.warning("W> AndroidDatabaseConnector.searchItembyID -- Item <" + typeID + "> not found.");
 				return new EveItem();
 			} finally {
 				try {
@@ -189,30 +181,30 @@ public class MDSCCPDatabaseConnector implements ICCPDatabaseConnector {
 	 */
 	@Override
 	public EveLocation searchLocationbyID(final long locationID) {
-		 logger.info(">< [ searchLocationbyID]> Searching ID: " + locationID);
+		logger.info(">< [MDSCCPDatabaseConnector.searchLocationbyID]> Searching ID: " + locationID);
 		// First check if the location is already on the cache table.
 		EveLocation hit = locationsCache.get(locationID);
 		if (null != hit) {
-			int access =  locationsCacheStatistics.accountAccess(true);
-			int hits =  locationsCacheStatistics.getHits();
-			 logger.info(">< [ searchLocationbyID]> [HIT-" + hits + "/" + access
-					+ "] Location " + locationID + " found at cache.");
+			int access = locationsCacheStatistics.accountAccess(true);
+			int hits = locationsCacheStatistics.getHits();
+			logger.info(">< [MDSCCPDatabaseConnector.searchLocationbyID]> [HIT-" + hits + "/" + access + "] Location "
+					+ locationID + " found at cache.");
 			return hit;
 		} else {
 			// Try to get that id from the cache tables
-			int access =  locationsCacheStatistics.accountAccess(false);
+			int access = locationsCacheStatistics.accountAccess(false);
 			List<EveLocation> locationList = new ArrayList();
-//			try {
-//				Dao<EveLocation, String> locationDao = ModelAppConnector.getSingleton().getDBConnector().getLocationDAO();
-//				QueryBuilder<EveLocation, String> queryBuilder = locationDao.queryBuilder();
-//				Where<EveLocation, String> where = queryBuilder.where();
-//				where.eq("id", locationID);
-//				PreparedQuery<EveLocation> preparedQuery = queryBuilder.prepare();
-//				locationList = locationDao.query(preparedQuery);
-//			} catch (java.sql.SQLException sqle) {
-//				sqle.printStackTrace();
-//				return new EveLocation(locationID);
-//			}
+			//			try {
+			//				Dao<EveLocation, String> locationDao = ModelAppConnector.getSingleton().getDBConnector().getLocationDAO();
+			//				QueryBuilder<EveLocation, String> queryBuilder = locationDao.queryBuilder();
+			//				Where<EveLocation, String> where = queryBuilder.where();
+			//				where.eq("id", locationID);
+			//				PreparedQuery<EveLocation> preparedQuery = queryBuilder.prepare();
+			//				locationList = locationDao.query(preparedQuery);
+			//			} catch (java.sql.SQLException sqle) {
+			//				sqle.printStackTrace();
+			//				return new EveLocation(locationID);
+			//			}
 
 			// Check list contents. If found we have the location. Else then check if Office
 			if (locationList.size() < 1) {
@@ -230,7 +222,7 @@ public class MDSCCPDatabaseConnector implements ICCPDatabaseConnector {
 				hit = new EveLocation(fixedLocationID);
 				ResultSet cursor = null;
 				try {
-					PreparedStatement prepStmt = this.getCCPDatabase().prepareStatement( SELECT_LOCATIONBYID);
+					PreparedStatement prepStmt = this.getCCPDatabase().prepareStatement(SELECT_LOCATIONBYID);
 					prepStmt.setString(1, Long.valueOf(fixedLocationID).toString());
 					cursor = prepStmt.executeQuery();
 					if (null != cursor) {
@@ -240,45 +232,45 @@ public class MDSCCPDatabaseConnector implements ICCPDatabaseConnector {
 							//							 logger.info(
 							//									"-- [ searchLocationbyID]> Location: " + locationID + " Obtained from CCP data.");
 							// Check returned values when doing the assignments.
-							long fragmentID = cursor.getLong( LOCATIONBYID_SYSTEMID_CONINDEX);
+							long fragmentID = cursor.getLong(LOCATIONBYID_SYSTEMID_CONINDEX);
 							if (fragmentID > 0) {
 								hit.setSystemID(fragmentID);
-								hit.setSystem(cursor.getString( LOCATIONBYID_SYSTEM_CONINDEX));
+								hit.setSystem(cursor.getString(LOCATIONBYID_SYSTEM_CONINDEX));
 							} else {
-								hit.setSystem(cursor.getString( LOCATIONBYID_LOCATIONNAME_CONINDEX));
+								hit.setSystem(cursor.getString(LOCATIONBYID_LOCATIONNAME_CONINDEX));
 							}
-							fragmentID = cursor.getLong( LOCATIONBYID_CONSTELLATIONID_CONINDEX);
+							fragmentID = cursor.getLong(LOCATIONBYID_CONSTELLATIONID_CONINDEX);
 							if (fragmentID > 0) {
 								hit.setConstellationID(fragmentID);
-								hit.setConstellation(cursor.getString( LOCATIONBYID_CONSTELLATION_CONINDEX));
+								hit.setConstellation(cursor.getString(LOCATIONBYID_CONSTELLATION_CONINDEX));
 							}
-							fragmentID = cursor.getLong( LOCATIONBYID_REGIONID_CONINDEX);
+							fragmentID = cursor.getLong(LOCATIONBYID_REGIONID_CONINDEX);
 							if (fragmentID > 0) {
 								hit.setRegionID(fragmentID);
-								hit.setRegion(cursor.getString( LOCATIONBYID_REGION_CONINDEX));
+								hit.setRegion(cursor.getString(LOCATIONBYID_REGION_CONINDEX));
 							}
 							hit.setTypeID(ELocationType.CCPLOCATION);
-							hit.setStation(cursor.getString( LOCATIONBYID_LOCATIONNAME_CONINDEX));
-							hit.setLocationID(cursor.getLong( LOCATIONBYID_LOCATIONID_CONINDEX));
-							hit.setSecurity(cursor.getString( LOCATIONBYID_SECURITY_CONINDEX));
+							hit.setStation(cursor.getString(LOCATIONBYID_LOCATIONNAME_CONINDEX));
+							hit.setLocationID(cursor.getLong(LOCATIONBYID_LOCATIONID_CONINDEX));
+							hit.setSecurity(cursor.getString(LOCATIONBYID_SECURITY_CONINDEX));
 							// Update the final ID
 							hit.getID();
 
 							// Location found on CCP database.
-							int hits =  locationsCacheStatistics.getHits();
-							 logger.info(">< [ searchLocationbyID]> [HIT-" + hits + "/"
-									+ access + "] Location " + locationID + " found at CCP Database.");
+							int hits = locationsCacheStatistics.getHits();
+							logger.info(">< [MDSCCPDatabaseConnector.searchLocationbyID]> [HIT-" + hits + "/" + access + "] Location "
+									+ locationID + " found at CCP Database.");
 							locationsCache.put(hit.getID(), hit);
 						}
 						if (!detected) {
-							 logger
-									.info("-- [searchLocationbyID]> Location: " + locationID + " not found on any Database - UNKNOWN-.");
+							logger.info("-- [MDSCCPDatabaseConnector.searchLocationbyID]> Location: " + locationID
+									+ " not found on any Database - UNKNOWN-.");
 							hit.setSystem("ID>" + Long.valueOf(locationID).toString());
 						}
 					}
 				} catch (final Exception ex) {
-					 logger.warning(
-							"W- [AndroidDatabaseConnector.searchLocationbyID]> Location <" + fixedLocationID + "> not found.");
+					logger.warning(
+							"W- [MDSCCPDatabaseConnector.searchLocationbyID]> Location <" + fixedLocationID + "> not found.");
 				} finally {
 					try {
 						cursor.close();
@@ -291,9 +283,9 @@ public class MDSCCPDatabaseConnector implements ICCPDatabaseConnector {
 				return hit;
 			} else {
 				// Location found on the Application database.
-				int hits =  locationsCacheStatistics.getHits();
-				 logger.info(">< [ searchLocationbyID]> [HIT-" + hits + "/" + access
-						+ "] Location " + locationID + " found at Application Database.");
+				int hits = locationsCacheStatistics.getHits();
+				logger.info(">< [MDSCCPDatabaseConnector.searchLocationbyID]> [HIT-" + hits + "/" + access + "] Location "
+						+ locationID + " found at Application Database.");
 				EveLocation foundLoc = locationList.get(0);
 				locationsCache.put(foundLoc.getID(), foundLoc);
 				return locationList.get(0);
@@ -307,7 +299,7 @@ public class MDSCCPDatabaseConnector implements ICCPDatabaseConnector {
 		PreparedStatement prepStmt = null;
 		ResultSet cursor = null;
 		try {
-			prepStmt = this.getCCPDatabase().prepareStatement( SELECT_LOCATIONBYSYSTEM);
+			prepStmt = this.getCCPDatabase().prepareStatement(SELECT_LOCATIONBYSYSTEM);
 			prepStmt.setString(1, name);
 			cursor = prepStmt.executeQuery();
 			boolean detected = false;
@@ -344,7 +336,7 @@ public class MDSCCPDatabaseConnector implements ICCPDatabaseConnector {
 			//				hit = searchOutpostbyID(locationID);
 			//	}
 		} catch (final Exception ex) {
-			 logger.warning("Location <" + name + "> not found.");
+			logger.warning("Location <" + name + "> not found.");
 		}
 		return this.searchLocationbyID(hit.getSystemID());
 	}
@@ -368,15 +360,14 @@ public class MDSCCPDatabaseConnector implements ICCPDatabaseConnector {
 		PreparedStatement prepStmt = null;
 		ResultSet cursor = null;
 		try {
-			prepStmt = this.getCCPDatabase().prepareStatement( STATIONTYPE);
+			prepStmt = this.getCCPDatabase().prepareStatement(STATIONTYPE);
 			prepStmt.setString(1, Long.valueOf(stationID).toString());
 			cursor = prepStmt.executeQuery();
 			while (cursor.next()) {
-				stationTypeID = cursor.getInt( STATIONTYPEID_COLINDEX);
+				stationTypeID = cursor.getInt(STATIONTYPEID_COLINDEX);
 			}
 		} catch (Exception ex) {
-			 logger
-					.warning("W- [SpingDatabaseConnector.searchStationType]> Database exception: " + ex.getMessage());
+			logger.warning("W- [SpingDatabaseConnector.searchStationType]> Database exception: " + ex.getMessage());
 		} finally {
 			try {
 				if (cursor != null) {

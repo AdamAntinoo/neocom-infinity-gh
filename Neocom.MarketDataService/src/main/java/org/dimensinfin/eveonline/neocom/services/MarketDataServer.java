@@ -96,9 +96,11 @@ public class MarketDataServer {
 			final ObjectOutput output = new ObjectOutputStream(buffer);
 			try {
 				output.writeObject(buyMarketDataCache);
-				logger.info("-- [MarketDataServer.writeCacheToStorage]> Wrote cache BUY");
+				logger.info(
+						"-- [MarketDataServer.writeCacheToStorage]> Wrote cache BUY: " + buyMarketDataCache.size() + " entries.");
 				output.writeObject(sellMarketDataCache);
-				logger.info("-- [MarketDataServer.writeCacheToStorage]> Wrote cache SELL");
+				logger.info(
+						"-- [MarketDataServer.writeCacheToStorage]> Wrote cache SELL: " + sellMarketDataCache.size() + " entries.");
 			} finally {
 				output.flush();
 				output.close();
