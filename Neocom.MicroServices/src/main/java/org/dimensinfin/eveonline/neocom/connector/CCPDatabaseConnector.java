@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Vector;
 import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.constant.ModelWideConstants;
@@ -23,6 +24,7 @@ import org.dimensinfin.eveonline.neocom.enums.ELocationType;
 import org.dimensinfin.eveonline.neocom.industry.Resource;
 import org.dimensinfin.eveonline.neocom.model.EveItem;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
+import org.dimensinfin.eveonline.neocom.planetary.Schematics;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.stmt.PreparedQuery;
@@ -86,6 +88,12 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 			+ " AND it.typeID = itm.materialTypeID" + " AND ito.typeID = itm.typeID" + " ORDER BY itm.materialTypeID";
 	private static final String									SELECT_BLUEPRINT4MODULE									= "SELECT typeID FROM industryActivityProducts BT"
 			+ " WHERE productTypeID = ? AND activityID = 1";
+	private static final String									SELECT_RAW_PRODUCTRESULT								= "SELECT pstmo.typeID, pstmo.quantity, pstmo.schematicID"
+			+ " FROM   planetSchematicsTypeMap pstmi, planetSchematicsTypeMap pstmo" + " WHERE  pstmi.typeID = ?"
+			+ " AND    pstmo.schematicID = pstmi.schematicID" + " AND    pstmo.isInput = 0";
+	private static final String									SELECT_SCHEMATICS4OUTPUT								= "SELECT pstms.typeID, pstms.quantity, pstms.isInput"
+			+ " FROM   planetSchematicsTypeMap pstmt, planetSchematicsTypeMap pstms" + " WHERE  pstmt.typeID = ?"
+			+ " AND    pstmt.isInput = 0" + " AND    pstms.schematicID = pstmt.schematicID";
 
 	// - F I E L D - S E C T I O N ............................................................................
 	private Connection													ccpDatabase															= null;
@@ -447,6 +455,62 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 			}
 		}
 		return -1;
+	}
+
+	public int searchRawPlanetaryOutput(final int typeID) {
+		int outputResourceId = typeID;
+		PreparedStatement prepStmt = null;
+		ResultSet cursor = null;
+		try {
+			prepStmt = getCCPDatabase().prepareStatement(SELECT_RAW_PRODUCTRESULT);
+			prepStmt.setString(1, Integer.valueOf(typeID).toString());
+			cursor = prepStmt.executeQuery();
+			while (cursor.next()) {
+				outputResourceId = cursor.getInt(1);
+			}
+		} catch (Exception ex) {
+			logger.warning("W- [SpingDatabaseConnector.searchRawPlanetaryOutput]> Database exception: " + ex.getMessage());
+		} finally {
+			try {
+				if (cursor != null) cursor.close();
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+			try {
+				if (prepStmt != null) prepStmt.close();
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+		}
+		return outputResourceId;
+	}
+
+	public Vector<Schematics> searchSchematics4Output(final int targetId) {
+		Vector<Schematics> scheList = new Vector<Schematics>();
+		PreparedStatement prepStmt = null;
+		ResultSet cursor = null;
+		try {
+			prepStmt = getCCPDatabase().prepareStatement(SELECT_SCHEMATICS4OUTPUT);
+			prepStmt.setString(1, Integer.valueOf(targetId).toString());
+			cursor = prepStmt.executeQuery();
+			while (cursor.next()) {
+				scheList.add(new Schematics().addData(cursor.getInt(1), cursor.getInt(2), cursor.getBoolean(3)));
+			}
+		} catch (Exception ex) {
+			logger.warning("W- [SpingDatabaseConnector.searchRawPlanetaryOutput]> Database exception: " + ex.getMessage());
+		} finally {
+			try {
+				if (cursor != null) cursor.close();
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+			try {
+				if (prepStmt != null) prepStmt.close();
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+		}
+		return scheList;
 	}
 
 	/**

@@ -34,7 +34,6 @@ import org.dimensinfin.eveonline.neocom.model.Property;
 import org.dimensinfin.eveonline.neocom.model.TimeStamp;
 import org.dimensinfin.eveonline.neocom.planetary.PlanetaryResource;
 import org.dimensinfin.eveonline.neocom.planetary.ResourceList;
-import org.dimensinfin.eveonline.neocom.planetary.Schematics;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.stmt.PreparedQuery;
@@ -58,15 +57,9 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 	//	protected static String												DATABASE_NAME							= "neocomdata.db";
 	//	protected static int													DATABASE_VERSION					= 010;
 	//
-	private static final String									SELECT_RAW_PRODUCTRESULT	= "SELECT pstmo.typeID, pstmo.quantity, pstmo.schematicID"
-			+ " FROM   planetSchematicsTypeMap pstmi, planetSchematicsTypeMap pstmo" + " WHERE  pstmi.typeID = ?"
-			+ " AND    pstmo.schematicID = pstmi.schematicID" + " AND    pstmo.isInput = 0";
 	private static final String									SELECT_TIER2_INPUTS				= "SELECT pstmt.TYPEid, pstmt.quantity"
 			+ " FROM  planetSchematicsTypeMap pstms, planetSchematicsTypeMap pstmt" + " WHERE pstms.typeID = ?"
 			+ " AND   pstms.isInput = 0" + " AND   pstmt.schematicID = pstms.schematicID" + " AND   pstmT.isInput = 1";
-	private static final String									SELECT_SCHEMATICS_INFO		= "SELECT pstms.typeID, pstms.quantity, pstms.isInput"
-			+ " FROM   planetSchematicsTypeMap pstmt, planetSchematicsTypeMap pstms" + " WHERE  pstmt.typeID = ?"
-			+ " AND    pstmt.isInput = 0" + " AND    pstms.schematicID = pstmt.schematicID";
 
 	//private static final String							DATABASE_URL							= "jdbc:sqlite:D:\\Development\\WorkStage\\ProjectsAngular\\NeoCom\\src\\main\\resources\\eve.db";
 	//private static final String							DATABASE_URL							= "jdbc:sqlite:D:\\Development\\ProjectsAngular\\NeoCom\\src\\main\\resources\\eve.db";
@@ -847,66 +840,10 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 	//		return searchLocationbyID(hit.getSystemID());
 	//	}
 
-	public int searchRawPlanetaryOutput(final int typeID) {
-		int outputResourceId = typeID;
-		PreparedStatement prepStmt = null;
-		ResultSet cursor = null;
-		try {
-			prepStmt = getCCPDatabase().prepareStatement(SELECT_RAW_PRODUCTRESULT);
-			prepStmt.setString(1, Integer.valueOf(typeID).toString());
-			cursor = prepStmt.executeQuery();
-			while (cursor.next()) {
-				outputResourceId = cursor.getInt(1);
-			}
-		} catch (Exception ex) {
-			logger.warning("W- [SpingDatabaseConnector.searchRawPlanetaryOutput]> Database exception: " + ex.getMessage());
-		} finally {
-			try {
-				if (cursor != null) cursor.close();
-			} catch (SQLException ex) {
-				ex.printStackTrace();
-			}
-			try {
-				if (prepStmt != null) prepStmt.close();
-			} catch (SQLException ex) {
-				ex.printStackTrace();
-			}
-		}
-		return outputResourceId;
-	}
-
 	//	public int searchReactionOutputMultiplier(final int itemID) {
 	//		// TODO Auto-generated method stub
 	//		return 0;
 	//	}
-
-	public Vector<Schematics> searchSchematics4Output(final int targetId) {
-		Vector<Schematics> scheList = new Vector<Schematics>();
-		PreparedStatement prepStmt = null;
-		ResultSet cursor = null;
-		try {
-			prepStmt = getCCPDatabase().prepareStatement(SELECT_SCHEMATICS_INFO);
-			prepStmt.setString(1, Integer.valueOf(targetId).toString());
-			cursor = prepStmt.executeQuery();
-			while (cursor.next()) {
-				scheList.add(new Schematics().addData(cursor.getInt(1), cursor.getInt(2), cursor.getBoolean(3)));
-			}
-		} catch (Exception ex) {
-			logger.warning("W- [SpingDatabaseConnector.searchRawPlanetaryOutput]> Database exception: " + ex.getMessage());
-		} finally {
-			try {
-				if (cursor != null) cursor.close();
-			} catch (SQLException ex) {
-				ex.printStackTrace();
-			}
-			try {
-				if (prepStmt != null) prepStmt.close();
-			} catch (SQLException ex) {
-				ex.printStackTrace();
-			}
-		}
-		return scheList;
-	}
 
 	/**
 	 * Returns the resource identifier of the station class to locate icons or other type related resources.
