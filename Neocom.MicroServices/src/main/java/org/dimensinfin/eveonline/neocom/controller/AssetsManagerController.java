@@ -47,7 +47,7 @@ public class AssetsManagerController {
 			// Get the Assets Manager for this Character. Make sure it is initialized and then get the resources
 			// at the indicated location and optimize processing them.
 			AssetsManager assetsMan = pilot.getAssetsManager();
-			if (!assetsMan.isInitialized()) assetsMan.initialize();
+			assetsMan.initialize();
 			ExtendedLocation loc = assetsMan.getLocationById(Long.valueOf(locationid).longValue());
 			if (null == loc)
 				return new Vector<NeoComAsset>();

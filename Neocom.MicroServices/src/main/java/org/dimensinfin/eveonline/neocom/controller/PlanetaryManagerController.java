@@ -51,7 +51,7 @@ public class PlanetaryManagerController {
 			//			AssetsManager assets = NeoComMSConnector.getSingleton().getModelStore().getActiveCharacter().getAssetsManager();
 			PlanetaryManager planetary = NeoComMSConnector.getSingleton().getModelStore().getActiveCharacter()
 					.getPlanetaryManager();
-			if (!planetary.isInitialized()) planetary.initialize();
+			planetary.initialize();
 			Vector<Resource> resources = planetary.getLocationContents(locationid);
 
 			// The Planetary Advisor requires a list of Planetary Resources to be stocked to start the profit calculations.
