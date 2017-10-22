@@ -16,11 +16,6 @@ import { Corporation } from '../models/Corporation.model';
 import { Separator } from '../models/Separator.model';
 
 export class Login extends NeoComNode {
-  // private downloaded: boolean = false;
-  // private _pilotRoaster: NeoComCharacter[] = null;
-  // private downloadPending: boolean = false;
-
-  //  public loginid: string = "-ID-";
   public name: string = "-ID-";
   public characters: NeoComCharacter[] = null;
 

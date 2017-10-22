@@ -36,7 +36,7 @@ public class AssetsManagerController {
 	@RequestMapping(value = "/api/v1/login/{login}/pilot/{identifier}/assetsmanager/location/{locationid}/downloadcontents", method = RequestMethod.GET, produces = "application/json")
 	public Vector<NeoComAsset> planetaryLocationOptimization(@PathVariable final String login,
 			@PathVariable final String identifier, @PathVariable final String locationid) {
-		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/login/{login}/pilot/{" + identifier
+		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/login/{" + login + "}/pilot/{" + identifier
 				+ "}/assetsmanager/location/{" + locationid + "}/downloadcontents");
 		logger.info(">> [AssetsManagerController.planetaryLocationOptimization]");
 		//			Vector<NeoComAsset> locationContents = new Vector<NeoComAsset>();

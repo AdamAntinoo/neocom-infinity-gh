@@ -8,6 +8,7 @@ import { NeoComNode } from '../models/NeoComNode.model';
 import { Asset } from '../models/Asset.model';
 import { Separator } from '../models/Separator.model';
 import { Container } from '../models/Container.model';
+import { Ship } from '../models/Ship.model';
 
 export class Location extends NeoComNode {
   private totalValueCalculated: number = -1;
@@ -95,7 +96,8 @@ export class Location extends NeoComNode {
           .subscribe(result => {
             console.log("--[Location.collaborate2View.getBackendLocationsContents]>AssetList: " + result.length);
             // The the list of assets contained at the location.
-            this.contents = result;
+            // Process them to upgrade to expandable types and also to account for their volume and price.
+            this.contents = this.processDownloadedAssets(result);
             this.downloaded = true;
             appModelStore.fireRefresh();
           });
@@ -118,5 +120,31 @@ export class Location extends NeoComNode {
     if (this.typeID == "UNKNOWN")
       return this.stationID;
     return this.realId;
+  }
+  private processDownloadedAssets(assets: NeoComNode[]): NeoComNode[] {
+    let results: NeoComNode[] = [];
+    for (let node of assets) {
+      switch (node.jsonClass) {
+        case "Asset":
+          let asset = new Asset(node);
+          this.totalValueCalculated += asset.item.baseprice * asset.quantity;
+          this.totalVolumeCalculated += asset.item.volume * asset.quantity;
+          results.push(asset);
+          break;
+        case "Container":
+          let container = new Container(node);
+          // this.totalValueCalculated += container.item.baseprice * container.quantity;
+          // this.totalVolumeCalculated += container.item.volume * container.quantity;
+          results.push(container);
+          break;
+        case "Ship":
+          let ship = new Ship(node);
+          this.totalValueCalculated += ship.item.baseprice;
+          //     this.totalVolumeCalculated += container.item.volume * container.quantity;
+          results.push(ship);
+          break;
+      }
+    }
+    return results;
   }
 }
