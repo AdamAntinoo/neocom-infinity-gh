@@ -57,6 +57,7 @@ export class AssetsManagerPageComponent extends PageComponent implements OnInit 
                 this.route.params.map(p => p.id)
                   .subscribe((characterid: number) => {
                     this.pilot = selectedLogin.accessCharacterById(characterid);
+                    this.appModelStore.setPilotById(characterid);
                     this.pilot.accessPilotDetailed(this.appModelStore)
                       .subscribe(result => {
                         console.log("--[PlanetaryManagerPageComponent.ngOnInit.accessPilotDetailed]");
@@ -88,6 +89,8 @@ export class AssetsManagerPageComponent extends PageComponent implements OnInit 
                                     let assetman = new AssetsManager(result);
                                     // Store back this at the pilot if we have received a new download.
                                     this.pilot.setAssetsManager(assetman);
+                                    // Setup the callback trap.
+                                    this.appModelStore.setCallbackViewer(this);
                                     let thelist = assetman.collaborate2View(this.appModelStore, this.getVariant());
                                     this.adapterViewList = thelist;
                                     this.downloading = false;

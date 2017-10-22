@@ -44,6 +44,9 @@ export class NeoComCharacter extends NeoComNode {
   public getId() {
     return this.characterID;
   }
+  public getCharacterId() {
+    return this.characterID;
+  }
   public getName() {
     return this.name;
   }

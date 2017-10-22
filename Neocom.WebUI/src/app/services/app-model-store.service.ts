@@ -35,6 +35,7 @@ import { AssetsManager } from '../models/AssetsManager.model';
 import { PlanetaryManager } from '../models/PlanetaryManager.model';
 import { ProcessingAction } from '../models/ProcessingAction.model';
 import { Separator } from '../models/Separator.model';
+import { PageComponent } from '../classes/PageComponent';
 
 @Injectable()
 export class AppModelStoreService {
@@ -46,10 +47,8 @@ export class AppModelStoreService {
   private _loginList: Login[] = null; // List of Login structures to be used to aggregate Keys
   private _currentLogin: Login = null; // The current Login active.
   private _currentCharacter: NeoComCharacter = null; // The current active character
-
-  //private _dataSourceCache: IDataSource[] = [];
-  //private _activeDataSource: IDataSource = null;
   private _viewList: Observable<Array<Render>>;
+  private _lastViewer: PageComponent = null;
 
   constructor(private http: Http, private router: Router) { }
 
@@ -188,6 +187,18 @@ export class AppModelStoreService {
         } else return result;
       });
   }
+  public getBackendLocationsContents(locationid: number): Observable<NeoComNode[]> {
+    // console.log("><[AppModelStoreService.getBackendLocationsContents]> LOginid = " + loginid);
+    // console.log("><[AppModelStoreService.getBackendLocationsContents]> Characterid = " + characterid);
+    console.log("><[AppModelStoreService.getBackendLocationsContents]> Locationid = " + locationid);
+    let loginid = this.accessLogin().getLoginId();
+    let pilot = this.accessCharacter();
+    return this.http.get(AppModelStoreService.RESOURCE_SERVICE_URL + "/login/" + loginid + "/pilot/" + pilot.getCharacterId() + "/assetsmanager/location/" + locationid + "/downloadcontents")
+      .map(res => res.json())
+      .map(result => {
+        return result;
+      });
+  }
 
 
   //--- L O G I N    S E C T I O N
@@ -235,49 +246,6 @@ export class AppModelStoreService {
       }
     }
   }
-  // public activateLoginById(newloginid: string): Observable<Login> {
-  //   console.log("><[AppModelStoreService.activateLoginById]");
-  //   if (null == this._loginList) {
-  //     this.accessLoginList()
-  //       .subscribe(result => {
-  //         console.log("--[AppModelStoreService.activateLoginById.accessLoginList]>");
-  //         // Put the resulting list on the structure and reenter recursively to continue the processing.
-  //         this._loginList = result;
-  //         // Search for the parameter login id.
-  //         for (let lg of this._loginList) {
-  //           if (lg.getLoginId() == newloginid) {
-  //             this._currentLogin = lg;
-  //             return new Observable(observer => {
-  //               setTimeout(() => {
-  //                 observer.next(this._currentLogin);
-  //               }, 500);
-  //               setTimeout(() => {
-  //                 observer.complete();
-  //               }, 500);
-  //             });
-  //           }
-  //         }
-  //       });
-  //   } else {
-  //     // We are sure that the list is present.
-  //     // Search for the parameter login id.
-  //     for (let lg of this._loginList) {
-  //       if (lg.getLoginId() == newloginid) {
-  //         this._currentLogin = lg;
-  //         return new Observable(observer => {
-  //           setTimeout(() => {
-  //             observer.next(this._currentLogin);
-  //           }, 500);
-  //           setTimeout(() => {
-  //             observer.complete();
-  //           }, 500);
-  //         });
-  //       }
-  //     }
-  //     // We have run all the list and we have not found any Login with the right id. We should trigger an exception.
-  //     //  throw new TypeError("Login identifier " + newloginid + " not found. Cannot select that login");
-  //   }
-  // }
   /**
   Sets the new login that comes from the URL when the user selects one from the list of logins.
   If the Login set is different from the current Login then we fire the download of
@@ -367,30 +335,14 @@ export class AppModelStoreService {
       });
   }
 
-  // public accessDataSource(): IDataSource {
-  //   return this._activeDataSource;
-  // }
-  // public searchDataSource(locator: DataSourceLocator): IDataSource {
-  //   let target = this._dataSourceCache[locator.getLocator()];
-  //   return target;
-  // }
-
-
-
+  //--- C A L L B A C K   S E C T I O N
   /**
-  Checks if this datasource is already present at the registration list. If found returns the already found datasource, otherwise adds this to the list of caches datasources.
-*/
-  // public registerDataSource(ds: IDataSource): IDataSource {
-  //   let locator = ds.getLocator();
-  //   let target = this._dataSourceCache[locator.getLocator()];
-  //   if (target == null) {
-  //     this._dataSourceCache.push(ds);
-  //     return ds;
-  //   }
-  //   return target;
-  // }
-  // public setActiveDataSource(ds: IDataSource): IDataSource {
-  //   this._activeDataSource = ds;
-  //   return this._activeDataSource;
-  // }
+  Signal the termination of a callback to the last viewer that was active. There is no check that the viewer is the right one but it has no impact on the result.
+  */
+  public fireRefresh() {
+    if (null != this._lastViewer) this._lastViewer.refreshViewPort();
+  }
+  public setCallbackViewer(viewer: PageComponent) {
+    this._lastViewer = viewer;
+  }
 }

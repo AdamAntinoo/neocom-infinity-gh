@@ -90,7 +90,14 @@ export class Location extends NeoComNode {
         }
       } else {
         // Call the backend to download the contents. On callback we need to fire an event to refresh the display.
-
+        appModelStore.getBackendLocationsContents(this.getLocationId())
+          .subscribe(result => {
+            console.log("--[Location.collaborate2View.getBackendLocationsContents]>AssetList: " + result.length);
+            // The the list of assets contained at the location.
+            this.contents = result;
+            this.downloaded = true;
+            appModelStore.fireRefresh();
+          });
       }
       collab.push(new Separator());
     } else collab.push(this);
