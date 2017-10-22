@@ -34,6 +34,7 @@ export class PlanetaryManagerPageComponent extends PageComponent implements OnIn
     super();
     this.setVariant(EVariant.PLANETARYMANAGER)
   }
+
   /**
   Initialize the view list from the data chain that starts with the Login and ends on the Planetary Manager.
   */

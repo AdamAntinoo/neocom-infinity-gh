@@ -24,8 +24,6 @@ import org.joda.time.Duration;
 import org.joda.time.Instant;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 
 // - CLASS IMPLEMENTATION ...................................................................................
@@ -43,8 +41,8 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
  * @author Adam Antinoo
  */
 @SpringBootApplication
-@EnableEurekaClient
-@EnableFeignClients
+//@EnableEurekaClient
+//@EnableFeignClients
 @EnableHystrix
 public class MarketDataServiceApplication implements INeoComMSConnector {
 	// - S T A T I C - S E C T I O N ..........................................................................
