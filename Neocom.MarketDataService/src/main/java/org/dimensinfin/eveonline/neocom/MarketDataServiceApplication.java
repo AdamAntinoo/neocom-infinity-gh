@@ -13,8 +13,8 @@ import javax.annotation.PreDestroy;
 
 import org.dimensinfin.eveonline.neocom.connector.ICCPDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.ICacheConnector;
-import org.dimensinfin.eveonline.neocom.connector.IDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.INeoComMSConnector;
+import org.dimensinfin.eveonline.neocom.connector.INeoComModelDatabase;
 import org.dimensinfin.eveonline.neocom.connector.MDSCCPDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.MarketDataServiceCacheConnector;
 import org.dimensinfin.eveonline.neocom.connector.NeoComMSConnector;
@@ -102,7 +102,7 @@ public class MarketDataServiceApplication implements INeoComMSConnector {
 	}
 
 	@Override
-	public IDatabaseConnector getDBConnector() {
+	public INeoComModelDatabase getDBConnector() {
 		throw new RuntimeException("Application connector not defined. Functionality 'getDBConnector' disabled.");
 	}
 
