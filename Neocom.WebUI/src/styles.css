@@ -314,8 +314,20 @@ body {
   width: 60%;
 }
 
-.panel-expanded {
-  background-color: #0F0F10;
+.panel-red-expanded {
+  background-color: #250000;
+}
+
+.panel-orange-expanded {
+  background-color: #301000;
+}
+
+.panel-yellow-expanded {
+  background-color: #303000;
+}
+
+.panel-blue-expanded {
+  background-color: #0F0F25;
 }
 
 .neocom-panel-container {

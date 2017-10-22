@@ -45,6 +45,7 @@ import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
 import { NodePanelComponent } from './components/node-panel/node-panel.component';
 import { Pilot4LoginComponent } from './components/pilot4-login/pilot4-login.component';
 import { ContainerComponent } from './components/container/container.component';
+import { ShipComponent } from './components/ship/ship.component';
 
 
 @NgModule({
@@ -77,6 +78,7 @@ import { ContainerComponent } from './components/container/container.component';
     Pilot4LoginComponent,
     ContainerComponent,
     AssetsManagerComponent,
+    ShipComponent,
   ],
   imports: [
     BrowserModule,

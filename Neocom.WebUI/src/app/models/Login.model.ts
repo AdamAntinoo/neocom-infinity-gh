@@ -117,8 +117,10 @@ export class Login extends NeoComNode {
       collab.push(this);
       // If the list of Characters is empty then add the Empty variation Separator
       if (this.characters.length > 0) {
+        // Sort the list of Characters before processing their collaborations.
+        let sortedCharacters = this.sortCharacters(this.characters);
         // Process each item at the rootlist for more collaborations.
-        for (let node of this.characters) {
+        for (let node of sortedCharacters) {
           if (node.jsonClass == "Pilot") {
             let pilot = new Pilot(node)
             console.log("--[Login.collaborate2View]>Collaborating " + pilot.jsonClass);
@@ -144,5 +146,17 @@ export class Login extends NeoComNode {
       collab.push(this);
     }
     return collab;
+  }
+  private sortCharacters(nodeList: NeoComCharacter[]): NeoComCharacter[] {
+    let sortedContents: NeoComCharacter[] = nodeList.sort((n1, n2) => {
+      if (n1.getName() > n2.getName()) {
+        return 1;
+      }
+      if (n1.getName() < n2.getName()) {
+        return -1;
+      }
+      return 0;
+    });
+    return sortedContents;
   }
 }

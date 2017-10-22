@@ -61,8 +61,10 @@ export class AssetsManager extends Manager {
   */
   public collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): NeoComNode[] {
     let collab = [];
+    // Sort the list of Characters before processing their collaborations.
+    let sortedRegions = this.sortRegions(this.regions);
     // Add all the Regions that are the first representation level.
-    for (let reg of this.regions) {
+    for (let reg of sortedRegions) {
       // Each of the nodes should have the possibility to add their own collaboration nodes.
       let collaboration = reg.collaborate2View(appModelStore, variant);
       for (let node of collaboration) {
@@ -70,5 +72,17 @@ export class AssetsManager extends Manager {
       }
     }
     return collab;
+  }
+  private sortRegions(nodeList: Region[]): Region[] {
+    let sortedContents: Region[] = nodeList.sort((n1, n2) => {
+      if (n1.getName() > n2.getName()) {
+        return 1;
+      }
+      if (n1.getName() < n2.getName()) {
+        return -1;
+      }
+      return 0;
+    });
+    return sortedContents;
   }
 }

@@ -1,5 +1,7 @@
 <div class="title-box">
-  <div class="title">Assets Manager</div>
+  <div class="title">
+    <span>Assets Manager</span><span style="color: white;">{{getCharacterName()}}</span>
+  </div>
   <div class="subtitle">Assets By Location</div>
 </div>
 <neocom-spinner-central *ngIf="downloading" [configuration]="{title:'Downloading Assets',subtitle:''}"></neocom-spinner-central>

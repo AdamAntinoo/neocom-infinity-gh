@@ -57,4 +57,7 @@ export class Region extends NeoComNode {
     } else collab.push(this);
     return collab;
   }
+  public getName(): string {
+    return this.title;
+  }
 }

@@ -1,5 +1,5 @@
 <div class="neocom-panel" id="panelborder-red">
-  <div [ngClass]="{'panel-expanded': node.expanded}">
+  <div [ngClass]="{'panel-red-expanded': node.expanded}">
     <table class="neocom-panel-container" cellspacing="0" cellpadding="0" width="100%">
       <tr>
         <td style="padding-top: 2px;padding-bottom: 2px;">
@@ -12,6 +12,13 @@
           <div class="neocom-classname-white" id="neocom-ts14">REGION</div>
           <div class="stack-counter">{{node.locationCount}}</div>
           <div class="neocom-label">STATIONS</div>
+        </td>
+        <td *ngIf="hasMenu()" width="5%" class="">
+          <div class="">
+            <!-- <a class="no-underline" [routerLink]="['/login',getLoginId(),'pilot',getCharacterId(),'PlanetaryManager','location',getLocationId(),'PlanetaryOptimization']"> -->
+            <img src="/assets/icons/menuicon.jpg" width="16px" height="16px" style="filter: invert(100%);">
+            <!-- </a> -->
+          </div>
         </td>
         <td width="5%" *ngIf="!isExpandable()">
           <span>&nbsp;&nbsp;</span>

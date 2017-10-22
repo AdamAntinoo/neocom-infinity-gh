@@ -33,7 +33,7 @@ export class ContainerComponent implements OnInit {
   If the Panel has some specific attributes they should be tested for display. The current actions are the Menu and the Expand Arrow.
   */
   public hasMenu(): boolean {
-    return true;
+    return false;
   }
   public isExpandable(): boolean {
     return true;
@@ -51,7 +51,8 @@ export class ContainerComponent implements OnInit {
     return value;
   }
   public totalVolume(): number {
-    let value = this.node.item.volume * this.node.quantity;
+    let value = 0;
+    //  let value = this.node.item.volume * this.node.quantity;
     return value;
   }
 }

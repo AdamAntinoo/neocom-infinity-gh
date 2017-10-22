@@ -1,5 +1,5 @@
-<div class="neocom-panel" id="content">
-  <div class="panel-collapsed" [ngClass]="{'panel-expanded': node.expanded}">
+<div class="neocom-panel" id="panelborder-yellow">
+  <div [ngClass]="{'panel-yellow-expanded': node.expanded}">
     <table class="neocom-panel-container" cellspacing="0" cellpadding="0" width="100%">
       <tr>
         <td>
@@ -21,8 +21,18 @@
         <td width="20%" class="neocom-panel-right-box" align="right ">
           <div class="stack-counter lined-bottomline">{{node.quantity | number:'1.0-0'}}</div>
           <div class="neocom-label right-data">NO. ITEMS</div>
-          <!-- <div class="lined-bottomline right-data" style="padding-top: 0px;" id="neocom-ts16">{{totalVolume() | number:'1.0-0'}} M3</div> -->
+          <div class="lined-bottomline right-data" style="padding-top: 0px;" id="neocom-ts16">{{totalVolume() | number:'1.0-0'}} M3</div>
           <div class="neocom-label right-data">VOLUME</div>
+        </td>
+        <td *ngIf="hasMenu()" width="5%" class="">
+          <div class="">
+            <!-- <a class="no-underline" [routerLink]="['/login',getLoginId(),'pilot',getCharacterId(),'PlanetaryManager','location',getLocationId(),'PlanetaryOptimization']"> -->
+            <img src="/assets/icons/menuicon.jpg" width="16px" height="16px" style="filter: invert(100%);">
+            <!-- </a> -->
+          </div>
+        </td>
+        <td width="5%" *ngIf="!isExpandable()">
+          <span>&nbsp;&nbsp;</span>
         </td>
         <td width="5%" *ngIf="isExpandable()" class="neocom-arrow-box" (click)="clickArrow()">
           <img class="neocom-arrow" [ngClass]="{'neocom-arrow-expanded': node.expanded}" src="/assets/icons/arrowright.png ">
