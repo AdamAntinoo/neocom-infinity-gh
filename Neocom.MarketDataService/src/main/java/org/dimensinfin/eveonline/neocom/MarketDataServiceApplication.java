@@ -24,7 +24,9 @@ import org.joda.time.Duration;
 import org.joda.time.Instant;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 /**
@@ -40,10 +42,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * 
  * @author Adam Antinoo
  */
-//@EnableCaching
-@EnableScheduling
 @SpringBootApplication
-//@ImportResource(value = "classpath*:hsql_configuration.xml")
+@EnableEurekaClient
+@EnableFeignClients
+@EnableHystrix
 public class MarketDataServiceApplication implements INeoComMSConnector {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger												logger		= Logger.getLogger("MarketDataServiceApplication");
@@ -72,12 +74,6 @@ public class MarketDataServiceApplication implements INeoComMSConnector {
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 	public MarketDataServiceApplication() {
 		logger.info(">> [MarketDataServiceApplication.<constructor>]");
-		// Create and connect the adapters.
-		//		if (null == singleton) {
-		//			logger.info("-- [MarketDataServiceApplication.<constructor>]> Instantiating the singleton.");
-		//			singleton = this;
-		//		}
-		//		ModelAppConnector.getSingleton().setConnector(singleton);
 		_connector = new NeoComMSConnector(this);
 		logger.info("<< [MarketDataServiceApplication.<constructor>]");
 	}

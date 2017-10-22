@@ -50,7 +50,6 @@ import org.xml.sax.SAXException;
  * 
  * @author Adam Antinoo
  */
-//@EnableCircuitBreaker
 @Service
 @CacheConfig(cacheNames = "MarketData")
 public class MarketDataServer {
