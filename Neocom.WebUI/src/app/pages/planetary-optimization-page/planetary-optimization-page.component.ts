@@ -4,7 +4,6 @@ import 'rxjs/add/operator/switchMap';
 
 //--- SERVICES
 import { AppModelStoreService } from '../../services/app-model-store.service';
-import { PilotListDataSourceService } from '../../services/pilot-list-data-source.service';
 //--- INTERFACES
 import { PageComponent } from '../../classes/PageComponent';
 import { EVariant } from '../../classes/EVariant.enumerated';

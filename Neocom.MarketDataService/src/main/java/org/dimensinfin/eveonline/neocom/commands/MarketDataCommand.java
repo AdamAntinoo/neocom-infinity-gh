@@ -12,15 +12,14 @@ import java.util.logging.Logger;
 import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
 import org.dimensinfin.eveonline.neocom.market.MarketDataSet;
 import org.dimensinfin.eveonline.neocom.services.MarketDataServer;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
 
 // - CLASS IMPLEMENTATION ...................................................................................
-public class FallbackMarketDataCommand extends HystrixCommand<MarketDataSet> {
+public class MarketDataCommand extends HystrixCommand<MarketDataSet> {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger				logger						= Logger.getLogger("FallbackMarketDataCommand");
+	private static Logger				logger						= Logger.getLogger("MarketDataCommand");
 	private static final String	COMMAND_GROUP			= "MarketData";
 
 	// - F I E L D - S E C T I O N ............................................................................
@@ -28,28 +27,27 @@ public class FallbackMarketDataCommand extends HystrixCommand<MarketDataSet> {
 	private String							sideInput					= null;
 	private int									itemidnumber			= 3645;
 	private EMarketSide					sideenumerated		= EMarketSide.BUYER;
-	@Autowired
 	private MarketDataServer		marketDataService	= new MarketDataServer();
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
-	public FallbackMarketDataCommand() {
+	public MarketDataCommand() {
 		super(HystrixCommandGroupKey.Factory.asKey(COMMAND_GROUP));
 	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
-	public FallbackMarketDataCommand setItemId(String itemId) {
+	public MarketDataCommand setItemId(String itemId) {
 		this.itemIdInput = itemId;
 		return this;
 	}
 
-	public FallbackMarketDataCommand setSide(String side) {
+	public MarketDataCommand setSide(String side) {
 		this.sideInput = side;
 		return this;
 	}
 
 	@Override
 	protected MarketDataSet getFallback() {
-		logger.warning("W> [FallbackMarketDataCommand.marketData]> Error detected. Falling back to default value.");
+		logger.warning("W> [MarketDataCommand.marketData]> Error detected. Falling back to default value.");
 		return new MarketDataSet(itemidnumber, sideenumerated);
 	}
 

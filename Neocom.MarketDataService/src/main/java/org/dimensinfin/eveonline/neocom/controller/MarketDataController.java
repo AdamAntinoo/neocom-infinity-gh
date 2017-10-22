@@ -9,7 +9,7 @@ package org.dimensinfin.eveonline.neocom.controller;
 
 import java.util.logging.Logger;
 
-import org.dimensinfin.eveonline.neocom.commands.FallbackMarketDataCommand;
+import org.dimensinfin.eveonline.neocom.commands.MarketDataCommand;
 import org.dimensinfin.eveonline.neocom.connector.ModelAppConnector;
 import org.dimensinfin.eveonline.neocom.market.MarketDataSet;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -39,7 +39,7 @@ public class MarketDataController {
 		logger.info(">> [MarketDataController.marketData]>side: " + side);
 		try {
 			ModelAppConnector.getSingleton().startChrono();
-			FallbackMarketDataCommand fallbackCommand = new FallbackMarketDataCommand();
+			MarketDataCommand fallbackCommand = new MarketDataCommand();
 			fallbackCommand.setItemId(itemid).setSide(side);
 			return fallbackCommand.execute();
 		} finally {
@@ -47,26 +47,6 @@ public class MarketDataController {
 					+ ModelAppConnector.getSingleton().timeLapse());
 		}
 	}
-
-	//	@CrossOrigin()
-	//	@RequestMapping(value = "/api/v1/marketdata/{itemid}/{itemname}/{side}", method = RequestMethod.GET, produces = "application/json")
-	//	public MarketDataSet marketData(@PathVariable final String itemid, @PathVariable final String itemname,
-	//			@PathVariable String side) {
-	//		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/marketdata/{itemid}/{itemname}/{side}");
-	//		logger.info(">> [MarketDataController.marketData]>itemid: " + itemid);
-	//		logger.info(">> [MarketDataController.marketData]>itemname: " + itemname);
-	//		logger.info(">> [MarketDataController.marketData]>side: " + side);
-	//		//		try {
-	//		if (null == itemid) return new MarketDataSet(3645, EMarketSide.BUYER);
-	//		int itemidnumber = Integer.valueOf(itemid).intValue();
-	//		EMarketSide sideenumerated = EMarketSide.BUYER;
-	//		if (null != side) if (side.equalsIgnoreCase(EMarketSide.SELLER.name())) sideenumerated = EMarketSide.SELLER;
-	//		if (null == itemname) return new MarketDataSet(itemidnumber, sideenumerated);
-	//		MarketDataSet data = marketDataService.marketDataServiceEntryPoint(itemidnumber, itemname, sideenumerated);
-	//		logger.info("<< [MarketDataController.marketData]>");
-	//		return data;
-	//	}
-
 }
 
 // - UNUSED CODE ............................................................................................

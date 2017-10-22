@@ -4,7 +4,6 @@ import 'rxjs/add/operator/switchMap';
 
 //--- SERVICES
 import { AppModelStoreService } from '../../services/app-model-store.service';
-import { PilotListDataSourceService } from '../../services/pilot-list-data-source.service';
 //--- INTERFACES
 import { PageComponent } from '../../classes/PageComponent';
 import { EVariant } from '../../classes/EVariant.enumerated';
@@ -106,7 +105,7 @@ export class PlanetaryManagerPageComponent extends PageComponent implements OnIn
             let planetary = new PlanetaryManager(result);
             // Store back this at the pilot if we have received a new download.
             this.pilot.setPlanetaryManager(planetary);
-            let thelist = planetary.collaborate2View(this.appModelStore,this.getVariant());
+            let thelist = planetary.collaborate2View(this.appModelStore, this.getVariant());
             this.adapterViewList = thelist;
             this.downloading = false;
           }

@@ -42,6 +42,8 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
 // - CLASS IMPLEMENTATION ...................................................................................
 /**
  * This class interfaces the downloading eve online market data services and serves as the integration layer
@@ -129,7 +131,7 @@ public class MarketDataServer {
 	 * added to a library that has common access to all that functions (market and CCP database) at the same
 	 * time.
 	 */
-	//@HystrixCommand(fallbackMethod = "reliable")
+	@HystrixCommand(fallbackMethod = "downloadMarketDataFallback")
 	@Cacheable()
 	public MarketDataSet downloadMarketData(final int localizer, EMarketSide side) {
 		MarketDataServer.logger.info(">< [MarketDataService.downloadMarketData]");
@@ -168,6 +170,10 @@ public class MarketDataServer {
 			logger.info("~~ [MarketDataService.downloadMarketData]> Time lapse for Download MarketData " + localizer + " - "
 					+ ModelAppConnector.getSingleton().timeLapse());
 		}
+	}
+
+	public MarketDataSet downloadMarketDataFallback(final int localizer, EMarketSide side) {
+		return new MarketDataSet(localizer, side);
 	}
 
 	public MarketDataSet marketDataServiceEntryPoint(final int localizer, EMarketSide side) {
@@ -222,11 +228,6 @@ public class MarketDataServer {
 			return new MarketDataSet(localizer, side);
 		} else
 			return entry;
-	}
-
-	public MarketDataSet reliable(final int localizer, String itemName, EMarketSide side) {
-		return new MarketDataSet(localizer, side);
-		//	return new MarketDataSet(3645, EMarketSide.BUYER);
 	}
 
 	/**
