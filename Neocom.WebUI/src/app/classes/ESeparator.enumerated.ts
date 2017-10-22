@@ -1,3 +1,3 @@
 export enum ESeparator {
-RED,   ORANGE, GREEN, BLUE, EMPTY
+  RED, ORANGE, GREEN, BLUE, EMPTY, SPINNER
 }

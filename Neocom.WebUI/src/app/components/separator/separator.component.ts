@@ -64,4 +64,8 @@ export class SeparatorComponent implements OnInit {
     if (this.node.variation == ESeparator.EMPTY) return true;
     else return false;
   }
+  public isSpinner(): boolean {
+    if (this.node.variation == ESeparator.SPINNER) return true;
+    else return false;
+  }
 }

@@ -314,6 +314,10 @@ body {
   width: 60%;
 }
 
+.panel-expanded {
+  background-color: #0F0F10;
+}
+
 .neocom-panel-container {
   margin: 5px;
 }

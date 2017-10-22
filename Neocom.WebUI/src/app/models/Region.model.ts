@@ -38,7 +38,7 @@ export class Region extends NeoComNode {
     let collab: NeoComNode[] = [];
     // Check if the Region is expanded or not.
     if (this.expanded) {
-      collab.push(new Separator().setVariation(ESeparator.GREEN));
+      collab.push(new Separator().setVariation(ESeparator.RED));
       collab.push(this);
       // Process each Location for new collaborations.
       for (let node of this.locations) {
@@ -53,7 +53,7 @@ export class Region extends NeoComNode {
           collab.push(partialnode);
         }
       }
-      collab.push(new Separator().setVariation(ESeparator.GREEN));
+      collab.push(new Separator().setVariation(ESeparator.RED));
     } else collab.push(this);
     return collab;
   }

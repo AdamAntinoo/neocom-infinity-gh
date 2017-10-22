@@ -2,6 +2,7 @@
 import { AppModelStoreService } from '../services/app-model-store.service';
 //--- INTERFACES
 import { EVariant } from '../classes/EVariant.enumerated';
+import { ESeparator } from '../classes/ESeparator.enumerated';
 //--- MODELS
 import { NeoComNode } from '../models/NeoComNode.model';
 import { Asset } from '../models/Asset.model';
@@ -57,7 +58,7 @@ export class Location extends NeoComNode {
     if (this.expanded) {
       // Check if the contents of the Location are downloaded.
       if (this.downloaded) {
-        collab.push(new Separator());
+        collab.push(new Separator().setVariation(ESeparator.ORANGE));
         collab.push(this);
         // Process each item at the rootlist for more collaborations.
         // Apply the processing policies before entering the processing loop. Usually does the sort.
@@ -98,8 +99,10 @@ export class Location extends NeoComNode {
             this.downloaded = true;
             appModelStore.fireRefresh();
           });
+        // Add an spinner to the output to inform the user of the background task.
+        collab.push(new Separator().setVariation(ESeparator.SPINNER));
       }
-      collab.push(new Separator());
+      collab.push(new Separator().setVariation(ESeparator.ORANGE));
     } else collab.push(this);
     return collab;
   }
