@@ -5,45 +5,60 @@ import { EVariant } from '../classes/EVariant.enumerated';
 import { ESeparator } from '../classes/ESeparator.enumerated';
 //--- MODELS
 import { NeoComNode } from '../models/NeoComNode.model';
-import { Asset } from '../models/Asset.model';
-import { Separator } from '../models/Separator.model';
-import { Container } from '../models/Container.model';
+import { NeoComAsset } from '../models/NeoComAsset.model';
+import { SpaceContainer } from '../models/SpaceContainer.model';
 import { Ship } from '../models/Ship.model';
+import { Separator } from '../models/Separator.model';
 
 export class Location extends NeoComNode {
   private totalValueCalculated: number = -1;
   private totalVolumeCalculated: number = -1;
 
-  public stationID;
-  public systemID;
-  public constellationID;
-  public regionID;
+  public stationID: number = -2;
+  public systemID: number = -2;
+  public constellationID: number = -2;
+  public regionID: number = -2;
   public name: string = "-NAME-";
   public realId: number = -2;
   public typeID: string = "CCPLOCATION";
   public contents = [];
   public contentSize: number = 0;
 
-  //  public stackCount: number = 0;
-
   constructor(values: Object = {}) {
     super(values);
     Object.assign(this, values);
-    this.jsonClass = "Location";
+    //    this.jsonClass = "Location";
     // Calculate the toal value of this location contents.
     this.totalValueCalculated = 0;
     this.totalVolumeCalculated = 0;
-    let newassetlist = [];
-    for (let asset of this.contents) {
-      this.totalValueCalculated += asset.item.baseprice * asset.quantity;
-      this.totalVolumeCalculated += asset.item.volume * asset.quantity;
-      // Convert the assets.
-      let as = new Asset(asset);
-      newassetlist.push(as);
-    }
-    this.contents = newassetlist;
-    //    this.stackCount = this.contents.length;
+    this.contents = this.processDownloadedAssets(this.contents);
+    // let newassetlist = [];
+    // for (let node of this.contents) {
+    //   // Convert the nodes received.
+    //   switch (node.jsonClass) {
+    //     case "NeoComAsset":
+    //       let asset = new NeoComAsset(node);
+    //       newassetlist.push(asset);
+    //       this.totalValueCalculated += asset.item.baseprice * asset.quantity;
+    //       this.totalVolumeCalculated += asset.item.volume * asset.quantity;
+    //       break;
+    //     case "SpaceContainer":
+    //       let container = new SpaceContainer(node);
+    //       newassetlist.push(container);
+    //       break;
+    //     case "Ship":
+    //       let ship = new Ship(node);
+    //       newassetlist.push(ship);
+    //       this.totalValueCalculated += ship.item.baseprice;
+    //       break;
+    //     default:
+    //       newassetlist.push(node);
+    //       break;
+    //   }
+    //    }
+    //    this.contents = newassetlist;
   }
+
   public getFormattedStackCount(): string {
     if (this.contentSize == 0) return "-";
     else return this.contentSize.toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
@@ -63,7 +78,7 @@ export class Location extends NeoComNode {
         collab.push(this);
         // Process each item at the rootlist for more collaborations.
         // Apply the processing policies before entering the processing loop. Usually does the sort.
-        let sortedContents: Asset[] = this.contents.sort((n1, n2) => {
+        let sortedContents: NeoComAsset[] = this.contents.sort((n1, n2) => {
           if (n1.getName() > n2.getName()) {
             return 1;
           }
@@ -73,22 +88,22 @@ export class Location extends NeoComNode {
           return 0;
         });
         for (let node of sortedContents) {
-          switch (node.jsonClass) {
-            case "NeoComAsset":
-              let asset = new Asset(node);
-              let partialcollab = asset.collaborate2View(appModelStore, variant);
-              for (let partialnode of partialcollab) {
-                collab.push(partialnode);
-              }
-              break;
-            case "SpaceContainer":
-              let container = new Container(node);
-              let containerCollaboration = container.collaborate2View(appModelStore, variant);
-              for (let partialnode of containerCollaboration) {
-                collab.push(partialnode);
-              }
-              break;
+          // switch (node.jsonClass) {
+          //   case "NeoComAsset":
+          //      let asset = new NeoComAsset(node);
+          let partialcollab = node.collaborate2View(appModelStore, variant);
+          for (let partialnode of partialcollab) {
+            collab.push(partialnode);
           }
+          //   break;
+          // case "SpaceContainer":
+          //   let container = new SpaceContainer(node);
+          //     let containerCollaboration = container.collaborate2View(appModelStore, variant);
+          //     for (let partialnode of containerCollaboration) {
+          //       collab.push(partialnode);
+          //     }
+          //     break;
+          // }
         }
       } else {
         // Call the backend to download the contents. On callback we need to fire an event to refresh the display.
@@ -121,18 +136,18 @@ export class Location extends NeoComNode {
       return this.stationID;
     return this.realId;
   }
-  private processDownloadedAssets(assets: NeoComNode[]): NeoComNode[] {
-    let results: NeoComNode[] = [];
+  private processDownloadedAssets(assets: NeoComNode[]): NeoComAsset[] {
+    let results: NeoComAsset[] = [];
     for (let node of assets) {
       switch (node.jsonClass) {
         case "NeoComAsset":
-          let asset = new Asset(node);
+          let asset = new NeoComAsset(node);
           this.totalValueCalculated += asset.item.baseprice * asset.quantity;
           this.totalVolumeCalculated += asset.item.volume * asset.quantity;
           results.push(asset);
           break;
         case "SpaceContainer":
-          let container = new Container(node);
+          let container = new SpaceContainer(node);
           // this.totalValueCalculated += container.item.baseprice * container.quantity;
           // this.totalVolumeCalculated += container.item.volume * container.quantity;
           results.push(container);

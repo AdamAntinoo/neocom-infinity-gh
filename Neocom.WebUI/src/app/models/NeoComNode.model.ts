@@ -11,7 +11,7 @@ import { AppModelStoreService } from '../services/app-model-store.service';
 import { EVariant } from '../classes/EVariant.enumerated';
 import { INeoComNode } from '../classes/INeoComNode.interface';
 //--- MODELS
-//import { NeoComNode } from '../models/NeoComNode.model';
+import { Location } from '../models/Location.model';
 
 export class NeoComNode implements INeoComNode {
   public jsonClass = "NeoComNode";
@@ -22,7 +22,7 @@ export class NeoComNode implements INeoComNode {
 
   constructor(values: Object = {}) {
     Object.assign(this, values);
-    this.jsonClass = "Node";
+    //  this.jsonClass = "Node";
   }
   public collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): NeoComNode[] {
     let collab: NeoComNode[] = [];

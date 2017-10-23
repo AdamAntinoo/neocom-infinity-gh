@@ -19,20 +19,12 @@ export class Region extends NeoComNode {
     super(values);
     Object.assign(this, values);
     this.jsonClass = "Region";
-    this.locations = this.extractLocations();
+    this.locations = this.extractLocations(this.locations);
   }
+
   public addLocation(newlocation: Location) {
     this.locations.push(newlocation);
   }
-  private extractLocations(): Location[] {
-    let locs = [];
-    for (let lockey of Object.keys(this.locations)) {
-      locs.push(new Location(this.locations[lockey]));
-    }
-    this.locationCount = this.locations.length;
-    return locs;
-  }
-
   public collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): NeoComNode[] {
     // Initialize the list to be output.
     let collab: NeoComNode[] = [];
@@ -43,12 +35,12 @@ export class Region extends NeoComNode {
       // Process each Location for new collaborations.
       for (let node of this.locations) {
         let partialcollab = [];
-        if (node.jsonClass == "Location")
-          partialcollab = node.collaborate2View(appModelStore, variant);
-        else {
-          let loc = new Location(node);
-          partialcollab = node.collaborate2View(appModelStore, variant);
-        }
+        //  if (node.jsonClass == "Location")
+        partialcollab = node.collaborate2View(appModelStore, variant);
+        // else {
+        //   let loc = new Location(node);
+        //   partialcollab = node.collaborate2View(appModelStore, variant);
+        // }
         for (let partialnode of partialcollab) {
           collab.push(partialnode);
         }
@@ -59,5 +51,15 @@ export class Region extends NeoComNode {
   }
   public getName(): string {
     return this.title;
+  }
+  /**
+  Method to process the downloaded data and converting the anonymous json objects to the Model classes.
+  */
+  public extractLocations(locs: any[]): Location[] {
+    let results: Location[] = [];
+    for (let lockey in locs) {
+      results.push(new Location(lockey));
+    }
+    return results;
   }
 }

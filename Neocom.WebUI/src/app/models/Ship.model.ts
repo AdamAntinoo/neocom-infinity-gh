@@ -7,15 +7,16 @@
 //--- MODELS
 import { NeoComNode } from './NeoComNode.model';
 import { PilotAction } from './pilotaction';
-import { Asset } from './Asset.model';
+import { NeoComAsset } from './NeoComAsset.model';
 
-export class Ship extends Asset {
-  public contents = [];
+export class Ship extends NeoComAsset {
 
   constructor(values: Object = {}) {
     super();
     Object.assign(this, values);
-    this.jsonClass = "Ship";
+    this.totalValueCalculated = 0;
+    this.totalVolumeCalculated = 0;
+    this.contents = this.processDownloadedAssets(this.contents);
   }
   /**
   This method informs the view renderer that this node can be expanded. This should trigger the rendering for the expand/collapse arrow icon and its functionality.

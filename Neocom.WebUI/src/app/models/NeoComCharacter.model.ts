@@ -11,6 +11,9 @@ import 'rxjs/add/operator/catch';
 
 //--- SERVICES
 import { AppModelStoreService } from '../services/app-model-store.service';
+//--- INTERFACES
+import { EVariant } from '../classes/EVariant.enumerated';
+import { INeoComNode } from '../classes/INeoComNode.interface';
 //--- MODELS
 import { NeoComNode } from './NeoComNode.model';
 import { Login } from './Login.model';
@@ -56,6 +59,9 @@ export class NeoComCharacter extends NeoComNode {
   public getUrlforAvatar() {
     return this.urlforAvatar;
   }
+  public getTotalAssets(): number {
+    if (null != this._assetsManager) return this._assetsManager.totalAssets;
+  }
   /**
   Sets the link to the parent so we can keep the chain form the deepest element to the head of the Login. There is no other easy way to gett all that information prepared for the links.
   */
@@ -69,12 +75,6 @@ export class NeoComCharacter extends NeoComNode {
     if (null != this.loginParent) return this.loginParent.getLoginId();
     else return "-";
   }
-  // public getManagers(): Manager[] {
-  //   let manlist = [];
-  //   if (null != this.assetsManager) manlist.push(this.assetsManager);
-  //   if (null != this.planetaryManager) manlist.push(this.planetaryManager);
-  //   return manlist;
-  // }
 
   //--- F U N C T I O N A L    A C C E S O R S
   /**
@@ -92,25 +92,32 @@ export class NeoComCharacter extends NeoComNode {
   }
   public accessPilotManagers(downloadService: AppModelStoreService): Observable<Manager[]> {
     // Check we are connected to the Login.
-    if (null == this.loginParent) throw new TypeError("PIlot not connected to parent Login.");
+    if (null == this.loginParent) throw new TypeError("Pilot not connected to parent Login.");
     // Check if the managers are already available.
     if (null == this._managerList) {
-      return downloadService.getBackendPilotManagers(this.loginParent.getLoginId(), this.getId());
-    } else {
-      return new Observable(observer => {
-        //  let managers = [];
-        setTimeout(() => {
-          for (let manager of this._managerList) {
-            observer.next(this._planetaryManager);
+      return downloadService.getBackendPilotManagers(this.loginParent.getLoginId(), this.getId())
+        .map(result => {
+          // The the list of pilot managers that should be stored at the pilot.
+          //    let man: any = null;
+          this._managerList = [];
+          for (let manager of result) {
             switch (manager.jsonClass) {
               case "AssetsManager":
-                this._assetsManager = new AssetsManager(manager);
-                break
-              case "Planetary":
-                this._planetaryManager = new PlanetaryManager(manager);
-                break
+                this.setAssetsManager(<AssetsManager>manager);
+                this._managerList.push(manager);
+                break;
+              case "PlanetaryManager":
+                this.setPlanetaryManager(<PlanetaryManager>manager);
+                this._managerList.push(manager);
+                break;
             }
           }
+          return result;
+        });
+    } else {
+      return new Observable(observer => {
+        setTimeout(() => {
+          observer.next(this._managerList);
         }, 500);
         setTimeout(() => {
           observer.complete();
@@ -132,6 +139,9 @@ export class NeoComCharacter extends NeoComNode {
       });
     }
   }
+  public getAssetsManager(): Manager {
+    return this._assetsManager;
+  }
   public setAssetsManager(newassets: AssetsManager): void {
     this._assetsManager = newassets;
   }
@@ -152,27 +162,13 @@ export class NeoComCharacter extends NeoComNode {
   public setPlanetaryManager(newplanetary: PlanetaryManager): void {
     this._planetaryManager = newplanetary;
   }
-  // public storePilotManagers(managers: Manager[]): void {
-  //   this._managerList = managers;
-  // }
-  // public setPlanetaryManager(manager: Manager): Manager {
-  //   this._planetaryManager = manager;
-  //   return this._planetaryManager;
-  // }
-  // private processManagers(): Manager[] {
-  //   let managers = [];
-  //   for (let manager of this._managerList) {
-  //     managers.push(manager);
-  //     switch (manager.jsonClass) {
-  //       case "AssetsManager":
-  //         this.assetsManager = manager;
-  //         break
-  //       case "Planetary":
-  //         this.planetaryManager = manager;
-  //         break
-  //     }
-  //
-  //     return managers;
-  //   }
-  // }
+
+  // --- I N T E R F A C E   M E T H O D S
+  public collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): Manager[] {
+    let collab: Manager[] = [];
+    for (let manager of this._managerList) {
+      collab.push(manager)
+    }
+    return collab;
+  }
 }
