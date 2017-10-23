@@ -6,7 +6,6 @@
 
 //--- MODELS
 import { NeoComNode } from './NeoComNode.model';
-import { PilotAction } from './pilotaction';
 
 export class PlanetaryTransformation extends NeoComNode {
   public assetID: number = -1.0;
@@ -25,7 +24,7 @@ export class PlanetaryTransformation extends NeoComNode {
   constructor(values: Object = {}) {
     super();
     Object.assign(this, values);
-    this.jsonClass = "PlanetaryTransformation";
+    //    this.jsonClass = "PlanetaryTransformation";
   }
   /**
   This method informs the view renderer that this node can be expanded. This should trigger the rendering for the expand/collapse arrow icon and its functionality.

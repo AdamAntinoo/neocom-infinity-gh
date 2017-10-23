@@ -20,7 +20,6 @@ import { Login } from './Login.model';
 import { Manager } from './Manager.model';
 import { AssetsManager } from './AssetsManager.model';
 import { PlanetaryManager } from './PlanetaryManager.model';
-import { PilotAction } from './pilotaction';
 
 export class NeoComCharacter extends NeoComNode {
   private _downloaded: boolean = false;

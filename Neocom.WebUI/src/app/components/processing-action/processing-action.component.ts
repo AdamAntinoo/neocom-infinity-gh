@@ -9,7 +9,6 @@ import { AppModelStoreService } from '../../services/app-model-store.service';
 import { PageComponent } from '../../classes/PageComponent';
 import { PlanetaryManagerPageComponent } from '../../pages/planetary-manager-page/planetary-manager-page.component';
 //--- MODELS
-import { Render } from '../../models/Render.model';
 import { ProcessingAction } from '../../models/ProcessingAction.model';
 
 @Component({

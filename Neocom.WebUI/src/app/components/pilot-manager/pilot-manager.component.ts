@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 
 //--- MODELS
-import { Render } from '../../models/Render.model';
 import { Region } from '../../models/Region.model';
 import { Location } from '../../models/Location.model';
 import { EVariant } from '../../classes/EVariant.enumerated';

@@ -40,7 +40,6 @@ import { ProcessingActionComponent } from './components/processing-action/proces
 import { NavigationMenuComponent } from './component/navigation-menu/navigation-menu.component';
 import { Login4ListComponent } from './components/login4-list/login4-list.component';
 import { SeparatorComponent } from './components/separator/separator.component';
-import { RenderComponent } from './components/render/render.component';
 import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
 import { NodePanelComponent } from './components/node-panel/node-panel.component';
 import { Pilot4LoginComponent } from './components/pilot4-login/pilot4-login.component';
@@ -69,7 +68,6 @@ import { ShipComponent } from './components/ship/ship.component';
     PlanetaryManagerPageComponent,
     AssetComponent,
     SeparatorComponent,
-    RenderComponent,
     AssetComponent,
     PlanetaryOptimizationPageComponent,
     ResourceComponent,

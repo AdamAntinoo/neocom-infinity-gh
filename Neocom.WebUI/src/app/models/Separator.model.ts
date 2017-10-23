@@ -1,7 +1,6 @@
 //--- INTERFACES
 import { ESeparator } from '../classes/ESeparator.enumerated';
 //--- MODELS
-import { Render } from '../models/Render.model';
 import { NeoComNode } from '../models/NeoComNode.model';
 
 export class Separator extends NeoComNode {

@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Rx';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Input } from '@angular/core';
-import { MomentModule } from 'angular2-moment';
+//import { MomentModule } from 'angular2-moment';
 
 @Component({
   selector: 'neocom-spinner-central',

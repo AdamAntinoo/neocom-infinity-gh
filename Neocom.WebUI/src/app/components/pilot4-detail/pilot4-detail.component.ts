@@ -4,7 +4,6 @@ import { Input } from '@angular/core';
 //--- CLASSES
 import { PageComponent } from '../../classes/PageComponent';
 //--- MODELS
-import { Render } from '../../models/Render.model';
 import { Region } from '../../models/Region.model';
 import { Location } from '../../models/Location.model';
 import { EVariant } from '../../classes/EVariant.enumerated';
