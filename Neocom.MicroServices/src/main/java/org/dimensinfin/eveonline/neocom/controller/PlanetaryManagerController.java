@@ -48,7 +48,6 @@ public class PlanetaryManagerController {
 			NeoComMSConnector.getSingleton().getModelStore().activatePilot(Long.valueOf(identifier));
 			// Get the Planetary Manager for this Character. Make sure it is initialized and then get the resources
 			// at the indicated location and optimize processing them.
-			//			AssetsManager assets = NeoComMSConnector.getSingleton().getModelStore().getActiveCharacter().getAssetsManager();
 			PlanetaryManager planetary = NeoComMSConnector.getSingleton().getModelStore().getActiveCharacter()
 					.getPlanetaryManager();
 			planetary.initialize();

@@ -52,8 +52,8 @@ public class AssetsManagerController {
 			if (null == loc)
 				return new Vector<NeoComAsset>();
 			else {
-				// get sure the Locations contens are on place.
-				List<NeoComAsset> contents = loc.getContents();
+				// Get sure the Locations contents are on place.
+				List<NeoComAsset> contents = loc.downloadContents();
 				return (Vector<NeoComAsset>) contents;
 			}
 		} catch (RuntimeException rtx) {

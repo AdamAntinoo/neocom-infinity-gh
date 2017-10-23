@@ -6,14 +6,12 @@
 //								the SpringBoot+MicroServices+Angular unified web application.
 package org.dimensinfin.eveonline.neocom.controller;
 
-import java.util.Hashtable;
 import java.util.Vector;
 import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.connector.NeoComMSConnector;
 import org.dimensinfin.eveonline.neocom.manager.AbstractManager;
 import org.dimensinfin.eveonline.neocom.manager.AssetsManager;
-import org.dimensinfin.eveonline.neocom.model.ExtendedLocation;
 import org.dimensinfin.eveonline.neocom.model.NeoComCharacter;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,11 +41,11 @@ public class PilotDataController {
 			NeoComMSConnector.getSingleton().getModelStore().activateLoginIdentifier(login);
 			NeoComCharacter pilot = NeoComMSConnector.getSingleton().getModelStore().activatePilot(Long.valueOf(identifier));
 			AssetsManager assetsMan = pilot.getAssetsManager().initialize();
-			// Download the contens for all locations.
-			Hashtable<Long, ExtendedLocation> locs = assetsMan.getLocations();
-			for (Long key : locs.keySet()) {
-				locs.get(key).getContents();
-			}
+			//			// Download the contents for all locations.
+			//			Hashtable<Long, ExtendedLocation> locs = assetsMan.getLocations();
+			//			for (Long key : locs.keySet()) {
+			//				locs.get(key).getContents();
+			//			}
 			return assetsMan;
 		} catch (RuntimeException rtx) {
 			rtx.printStackTrace();
@@ -88,8 +86,10 @@ public class PilotDataController {
 			// Initialize the model data hierarchies.
 			NeoComMSConnector.getSingleton().getModelStore().activateLoginIdentifier(login);
 			NeoComCharacter pilot = NeoComMSConnector.getSingleton().getModelStore().activatePilot(Long.valueOf(identifier));
-			managerList.addElement(pilot.getAssetsManager().initialize());
-			managerList.addElement(pilot.getPlanetaryManager().initialize());
+			logger.info("-- [PilotRoasterController.pilotManagers]> Accessing AssetsManager.");
+			managerList.addElement(pilot.getAssetsManager());
+			logger.info("-- [PilotRoasterController.pilotManagers]> Accessing PlanetaryManager.");
+			managerList.addElement(pilot.getPlanetaryManager());
 			return managerList;
 		} catch (RuntimeException rtx) {
 			rtx.printStackTrace();

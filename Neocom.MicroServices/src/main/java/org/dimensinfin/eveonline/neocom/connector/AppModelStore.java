@@ -229,6 +229,19 @@ public class AppModelStore implements INeoComModelStore {
 			return _loginIdentifier.getCharacters();
 	}
 
+	@Override
+	public Login getActiveLogin() {
+		if (null != _loginIdentifier) return _loginIdentifier;
+		throw new NeocomRuntimeException(
+				"RT [AppModelStore.getLoginIdentifier]>Login Identifier not defined. Setting to default if possible.");
+	}
+
+	public String getActiveLoginName() {
+		if (null != _loginIdentifier) return _loginIdentifier.getName();
+		throw new NeocomRuntimeException(
+				"RT [AppModelStore.getLoginIdentifier]>Login Identifier not defined. Setting to default if possible.");
+	}
+
 	/**
 	 * Returns the current active pilot or corporation if exists. If the value is not defined then this means
 	 * that the model store has been initialized and that we should go back to the pilot roaster page to select
@@ -243,9 +256,7 @@ public class AppModelStore implements INeoComModelStore {
 
 	@Deprecated
 	public String getLoginIdentifier() {
-		if (null != _loginIdentifier) return _loginIdentifier.getName();
-		throw new NeocomRuntimeException(
-				"RT [AppModelStore.getLoginIdentifier]>Login Identifier not defined. Setting to default if possible.");
+		return getActiveLoginName();
 	}
 
 	@Deprecated
