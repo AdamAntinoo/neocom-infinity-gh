@@ -9,9 +9,9 @@
   <div *ngFor="let render of adapterViewList">
     <neocom-region *ngIf="render.jsonClass == 'Region'" [viewer]="getViewer()" [node]="render"></neocom-region>
     <neocom-location *ngIf="render.jsonClass == 'Location'" [viewer]="getViewer()" [node]="render"></neocom-location>
-    <neocom-asset *ngIf="render.jsonClass == 'Asset'" [viewer]="getViewer()" [node]="render"></neocom-asset>
+    <neocom-asset *ngIf="render.jsonClass == 'NeoComAsset'" [viewer]="getViewer()" [node]="render"></neocom-asset>
     <neocom-separator *ngIf="render.jsonClass == 'Separator'" [viewer]="getViewer()" [node]="render"></neocom-separator>
-    <neocom-container *ngIf="render.jsonClass == 'Container'" [viewer]="getViewer()" [node]="render"></neocom-container>
+    <neocom-container *ngIf="render.jsonClass == 'SpaceContainer'" [viewer]="getViewer()" [node]="render"></neocom-container>
     <neocom-ship *ngIf="render.jsonClass == 'Ship'" [viewer]="getViewer()" [node]="render"></neocom-ship>
   </div>
 </div>

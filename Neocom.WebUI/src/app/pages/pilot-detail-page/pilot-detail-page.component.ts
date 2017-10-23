@@ -32,7 +32,7 @@ export class PilotDetailPageComponent extends PageComponent implements OnInit {
   public adapterViewList: Manager[] = [];
   public headerSeparator: Separator = new Separator().setVariation(ESeparator.GREEN);
   public downloading: boolean = true;
-  public login: Login = null;
+  public selectedLogin: Login = null;
   public pilot: NeoComCharacter = null;
 
   constructor(private appModelStore: AppModelStoreService, private route: ActivatedRoute, private router: Router) {
@@ -46,7 +46,6 @@ export class PilotDetailPageComponent extends PageComponent implements OnInit {
   ngOnInit() {
     console.log(">>[PilotDetailPageComponent.ngOnInit]");
     this.downloading = true;
-    // let _characterid = null;
     // Extract the login identifier from the URL structure.
     this.route.params.map(p => p.loginid)
       .subscribe((login: string) => {
@@ -54,44 +53,22 @@ export class PilotDetailPageComponent extends PageComponent implements OnInit {
         this.appModelStore.accessLoginList()
           .subscribe(result => {
             console.log("--[PilotDetailPageComponent.ngOnInit.accessLoginList]");
-            this.appModelStore.setLoginList(result);
+            //    this.appModelStore.setLoginList(result);
             this.appModelStore.activateLoginById(login)
               .subscribe(result => {
                 console.log("--[PilotDetailPageComponent.ngOnInit.activateLoginById]");
                 // We have reached the selected Login. Search now for the character.
-                let selectedLogin = result;
+                this.selectedLogin = result;
                 this.route.params.map(p => p.id)
                   .subscribe((characterid: number) => {
-                    this.pilot = selectedLogin.accessCharacterById(characterid); // Should not fail.
-                    this.pilot.accessPilotDetailed(this.appModelStore)
+                    this.pilot = this.appModelStore.activatePilotById(characterid);
+                    // Download the managers.
+                    this.pilot.accessPilotManagers(this.appModelStore)
                       .subscribe(result => {
-                        console.log("--[PilotDetailPageComponent.ngOnInit.accessPilotDetailed]");
-                        // Copnserve the current Login reference.
-                        result.setLoginReference(this.pilot.getLoginReference());
-                        this.pilot = result;
-                        // Download the managers.
-                        this.pilot.accessPilotManagers(this.appModelStore)
-                          .subscribe(result => {
-                            console.log("--[PilotDetailPageComponent.ngOnInit.accessPilotManagers]");
-                            // The the list of pilot managers that should be stored at the pilot.
-                            let man = null;
-                            for (let manager of result) {
-                              switch (manager.jsonClass) {
-                                case "AssetsManager":
-                                  man = new AssetsManager(manager);
-                                  this.pilot.setAssetsManager(man);
-                                  this.adapterViewList.push(man)
-                                  break;
-                                case "PlanetaryManager":
-                                  man = new PlanetaryManager(manager);
-                                  this.pilot.setPlanetaryManager(man);
-                                  this.adapterViewList.push(man)
-                                  break;
-                              }
-                            }
-                            //s              this.adapterViewList = this.pilot.getManagers();
-                            this.downloading = false;
-                          });
+                        console.log("--[PilotDetailPageComponent.ngOnInit.accessPilotManagers]");
+                        // The the list of pilot managers should be stored at the pilot.
+                        this.adapterViewList = this.pilot.collaborate2View(this.appModelStore, this.getVariant());
+                        this.downloading = false;
                       });
                   });
               });

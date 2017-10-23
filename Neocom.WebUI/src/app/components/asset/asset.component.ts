@@ -34,10 +34,10 @@ export class AssetComponent implements OnInit {
   If the Panel has some specific attributes they should be tested for display. The current actions are the Menu and the Expand Arrow.
   */
   public hasMenu(): boolean {
-    return true;
+    return false;
   }
   public isExpandable(): boolean {
-    return true;
+    return false;
   }
   /**
   Toggle the expand collapse status. This changes the expanded attribute and also ndicates other visual elements to change (like the arrow or the shade of the background).

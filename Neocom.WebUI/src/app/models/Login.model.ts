@@ -52,7 +52,7 @@ export class Login extends NeoComNode {
   }
 
   /**
-  Search the Character by its id and then select if as the current character for next operations.
+  Search the Character by its id and then select if as the current character for next operations. We have no connection to the global model service so we cannot connect the character as the deafult character. This needs another external call to do that connection.
   */
   public accessCharacterById(id: number): NeoComCharacter {
     if (null != this.characters) {
@@ -61,7 +61,6 @@ export class Login extends NeoComNode {
       }
     }
     return null;
-    //  throw new TypeError("Character identifier " + id + " not found. Cannot select that NeoComCharacter");
   }
   public accessPilotRoaster(downloadService: AppModelStoreService): Observable<NeoComCharacter[]> {
     if (this.downloaded)

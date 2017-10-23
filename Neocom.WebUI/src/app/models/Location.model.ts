@@ -74,14 +74,14 @@ export class Location extends NeoComNode {
         });
         for (let node of sortedContents) {
           switch (node.jsonClass) {
-            case "Asset":
+            case "NeoComAsset":
               let asset = new Asset(node);
               let partialcollab = asset.collaborate2View(appModelStore, variant);
               for (let partialnode of partialcollab) {
                 collab.push(partialnode);
               }
               break;
-            case "Container":
+            case "SpaceContainer":
               let container = new Container(node);
               let containerCollaboration = container.collaborate2View(appModelStore, variant);
               for (let partialnode of containerCollaboration) {
@@ -125,13 +125,13 @@ export class Location extends NeoComNode {
     let results: NeoComNode[] = [];
     for (let node of assets) {
       switch (node.jsonClass) {
-        case "Asset":
+        case "NeoComAsset":
           let asset = new Asset(node);
           this.totalValueCalculated += asset.item.baseprice * asset.quantity;
           this.totalVolumeCalculated += asset.item.volume * asset.quantity;
           results.push(asset);
           break;
-        case "Container":
+        case "SpaceContainer":
           let container = new Container(node);
           // this.totalValueCalculated += container.item.baseprice * container.quantity;
           // this.totalVolumeCalculated += container.item.volume * container.quantity;

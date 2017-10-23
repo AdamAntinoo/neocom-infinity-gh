@@ -52,6 +52,10 @@ export class SeparatorComponent implements OnInit {
     if (this.node.variation == ESeparator.ORANGE) return true;
     else return false;
   }
+  public isYellow(): boolean {
+    if (this.node.variation == ESeparator.YELLOW) return true;
+    else return false;
+  }
   public isGreen(): boolean {
     if (this.node.variation == ESeparator.GREEN) return true;
     else return false;

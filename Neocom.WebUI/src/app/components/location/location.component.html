@@ -16,11 +16,13 @@
             <span class="">STATION</span>
           </div>
         </td>
+        <!-- RIGHT BLOCK -->
         <td width="20%" class="neocom-panel-right-box" align="right ">
           <div class="neocom-marked neocom-marked-glow neocom-ts14">{{node.region}} ► {{node.constellation}}</div>
           <div class="stack-counter lined-bottomline" style="padding-bottom: 1px;">{{node.getFormattedStackCount()}}</div>
           <div class="neocom-label label-small">ITEMS</div>
         </td>
+        <!-- MENU BLOCK -->
         <td *ngIf="hasMenu()" width="5%" class="">
           <div class="">
             <a class="no-underline" [routerLink]="['/login',getLoginId(),'pilot',getCharacterId(),'PlanetaryManager','location',getLocationId(),'PlanetaryOptimization']">
@@ -28,8 +30,13 @@
             </a>
           </div>
         </td>
+        <!-- RIGHT ARROW -->
         <td width="5%" *ngIf="isExpandable()" class="neocom-arrow-box" (click)="clickArrow()">
           <img class="neocom-arrow" [ngClass]="{'neocom-arrow-expanded': node.expanded}" src="/assets/icons/arrowright.png ">
+        </td>
+        <!-- SEPARATOR WHEN NO RIGHT ARROW -->
+        <td width="5%" *ngIf="!isExpandable()">
+          &nbsp;&nbsp;&nbsp;
         </td>
       </tr>
       <tr>

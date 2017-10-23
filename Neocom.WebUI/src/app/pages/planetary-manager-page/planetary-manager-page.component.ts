@@ -58,6 +58,7 @@ export class PlanetaryManagerPageComponent extends PageComponent implements OnIn
                 this.route.params.map(p => p.id)
                   .subscribe((characterid: number) => {
                     this.pilot = selectedLogin.accessCharacterById(characterid);
+                    this.appModelStore.setPilotById(characterid);
                     this.pilot.accessPilotDetailed(this.appModelStore)
                       .subscribe(result => {
                         console.log("--[PlanetaryManagerPageComponent.ngOnInit.accessPilotDetailed]");

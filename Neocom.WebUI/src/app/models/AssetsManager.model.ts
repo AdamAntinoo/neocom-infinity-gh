@@ -24,6 +24,7 @@ import { ProcessingAction } from './ProcessingAction.model';
 
 export class AssetsManager extends Manager {
   public ships: any[] = [];
+  public totalAssets: number = 0;
 
   constructor(values: Object = {}) {
     super();

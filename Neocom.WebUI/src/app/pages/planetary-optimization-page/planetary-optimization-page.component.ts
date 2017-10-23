@@ -39,6 +39,7 @@ export class PlanetaryOptimizationPageComponent extends PageComponent implements
     this.setVariant(EVariant.PLANETARYOPTIMIZATION)
   }
 
+
   /**
   Initialize the view list from the data chain that starts with the Login and ends on the Planetary Manager.
   */

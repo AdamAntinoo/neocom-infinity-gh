@@ -16,6 +16,7 @@ import { PageComponent } from '../../classes/PageComponent';
 import { EVariant } from '../../classes/EVariant.enumerated';
 //--- MODELS
 import { Login } from '../../models/Login.model';
+import { NeoComNode } from '../../models/NeoComNode.model';
 
 @Component({
   selector: 'neocom-login-page',
@@ -23,7 +24,7 @@ import { Login } from '../../models/Login.model';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent extends PageComponent implements OnInit {
-  public loginViewList: any[] = [];
+  public loginViewList: NeoComNode[] = [];
   public downloading: boolean = true;
 
   constructor(private appModelStore: AppModelStoreService) {
@@ -58,8 +59,8 @@ export class LoginPageComponent extends PageComponent implements OnInit {
         for (let node of result) {
           // Add to the result only the Logins with at least one character.
           if (node.getKeyCount() > 0) {
-            let thelist = node.collaborate2View(this.appModelStore,this.getVariant());
-            this.loginViewList = this.loginViewList.concat(thelist);
+            let theList = node.collaborate2View(this.appModelStore, this.getVariant());
+            this.loginViewList = this.loginViewList.concat(theList);
           }
         }
         this.downloading = false;

@@ -86,7 +86,7 @@ export class AppModelStoreService {
         }
         this._loginList = constructionList
         console.log("<<[AppModelStoreService.getBackendLoginList]> Processed: " + this._loginList.length);
-        return this._loginList;
+        return constructionList;
       });
   }
   /**
@@ -202,11 +202,18 @@ export class AppModelStoreService {
 
 
   //--- L O G I N    S E C T I O N
+  /**
+  If the list is empty go to the backend and get a new list. Otherwise return the current list. The call to the backend and being the list owned by the same service gets updated with the returned result but this is not the common result of backend access operations.
+  */
   public accessLoginList(): Observable<Login[]> {
     console.log("><[AppModelStoreService.accessLoginList]");
     if (null == this._loginList) {
       // Get the list form the backend Database.
-      return this.getBackendLoginList();
+      return this.getBackendLoginList()
+        .map(result => {
+          this._loginList = result;
+          return result;
+        });
     } else
       return new Observable(observer => {
         setTimeout(() => {
@@ -222,7 +229,7 @@ export class AppModelStoreService {
     return this._loginList;
   }
   /**
-  This methos was recursive that seemed to generate some inconsistencies. Removed.
+  This method was recursive and that seemed to generate some inconsistencies. Removed.
   */
   public activateLoginById(newloginid: string): Observable<Login> {
     console.log("><[AppModelStoreService.activateLoginById]");
@@ -286,6 +293,9 @@ export class AppModelStoreService {
   /**
   Sets the current Pilot selected to the identifier received as a parameter. The selection requires the search for the character on the list of Pilots that should be related to the current Login. This starts to require the hierarchical model storage on the Service.
   */
+  public activatePilotById(id: number): NeoComCharacter {
+    return this.setPilotById(id);
+  }
   public setPilotById(id: number): NeoComCharacter {
     if (null != this._currentLogin) {
       this._currentCharacter = this._currentLogin.accessCharacterById(id);

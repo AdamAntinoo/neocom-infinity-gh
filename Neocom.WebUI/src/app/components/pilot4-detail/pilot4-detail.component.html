@@ -18,35 +18,35 @@
               <div class="pilot-balance glow-white lined-bottomline" id="neocom-ts12">{{pilot.accountBalance | number:'1.2-2'}} ISK</div>
             </td>
             <td align="right">
-              <div class="stack-counter glow-white lined-bottomline" id="neocom-ts12">{{pilot.assetTotalCount | number:'1.0-0'}}</div>
+              <div class="stack-counter glow-white lined-bottomline" id="neocom-ts12">{{pilot.assetCount | number:'1.0-0'}}</div>
             </td>
           </tr>
           <tr>
             <td align="left">
-              <div class="neocom-label">Balance</div>
+              <div class="neocom-label">BALANCE</div>
             </td>
             <td align="right">
-              <div class="neocom-label">Assets</div>
+              <div class="neocom-label">ASSETS</div>
             </td>
           </tr>
         </table>
 
-        <span class="neocom-pilot-data neocom-data-size-12">Active Ship:</span>
+        <span class="neocom-label">ACTIVE SHIP ► </span>
         <span class="neocom-marked-name">{{pilot.characterInfo.shipName}}</span>
         <span class="neocom-pilot-data"> - [{{pilot.characterInfo.shipTypeName}}]</span><br>
-        <span class="neocom-pilot-data neocom-data-size-12">Located in:</span>
+        <span class="neocom-label">LOCATED IN ► </span>
         <span class="neocom-pilot-data neocom-data-size-14 neocom-marked-name">{{pilot.characterInfo.lastKnownLocation}}</span><br>
-        <span class="neocom-pilot-data neocom-data-size-12">Secutiry Status:</span>
+        <span class="neocom-label">SECURITY STATUS ► </span>
         <span class="neocom-pilot-data neocom-data-size-14">{{pilot.characterInfo.securityStatus | number:'1.2-2'}}</span>
       </td>
       <td width="40%" class="neocom-panel-right-box" align="right">
         <div class="neocom-account-class">{{getCharacterClass()}}</div>
         <div>
-          <span class="neocom-pilot-data neocom-data-size-12">Total SP:</span>
+          <span class="neocom-label">TOTAL SP ► </span>
           <span class="neocom-pilot-data neocom-data-size-14 neocom-marked-name">{{pilot.characterInfo.skillPoints | number:'1.0-0'}}</span>
         </div>
         <div>
-          <span class="lined-bottomline" id="neocom-ts12">Account status</span><br>
+          <span class="neocom-label" id="neocom-ts12">ACCOUNT STATUS</span><br>
           <span class="neocom-pilot-data neocom-data-size-14">{{pilot.characterSheet.cloneName}}</span><br>
           <span class="" id="neocom-ts14" style="color:red">Expired</span><br>
         </div>
