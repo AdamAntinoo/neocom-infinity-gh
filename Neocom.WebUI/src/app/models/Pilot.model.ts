@@ -7,7 +7,6 @@
 //--- MODELS
 import { NeoComNode } from './NeoComNode.model';
 import { NeoComCharacter } from './NeoComCharacter.model';
-import { PilotAction } from './pilotaction';
 
 export class Pilot extends NeoComCharacter {
   public characterID: number = -1.0;
@@ -16,7 +15,7 @@ export class Pilot extends NeoComCharacter {
   public urlforAvatar: string = "http://image.eveonline.com/character/92223647_256.jpg";
   public lastKnownLocation: string = "- HOME -";
   public name: string = "<name>";
-  public actions: PilotAction[] = [];
+  //  public actions: PilotAction[] = [];
   public corporation: boolean = false;
 
 

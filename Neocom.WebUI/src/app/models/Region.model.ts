@@ -4,7 +4,6 @@ import { AppModelStoreService } from '../services/app-model-store.service';
 import { EVariant } from '../classes/EVariant.enumerated';
 import { ESeparator } from '../classes/ESeparator.enumerated';
 //--- MODELS
-import { Render } from '../models/Render.model';
 import { NeoComNode } from '../models/NeoComNode.model';
 import { Location } from '../models/Location.model';
 import { Separator } from '../models/Separator.model';
@@ -18,13 +17,13 @@ export class Region extends NeoComNode {
   constructor(values: Object = {}) {
     super(values);
     Object.assign(this, values);
-    this.jsonClass = "Region";
+    //    this.jsonClass = "Region";
     this.locations = this.extractLocations(this.locations);
   }
 
-  public addLocation(newlocation: Location) {
-    this.locations.push(newlocation);
-  }
+  // public addLocation(newlocation: Location) {
+  //   this.locations.push(newlocation);
+  // }
   public collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): NeoComNode[] {
     // Initialize the list to be output.
     let collab: NeoComNode[] = [];

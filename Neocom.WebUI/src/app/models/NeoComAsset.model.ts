@@ -11,7 +11,6 @@ import { EVariant } from '../classes/EVariant.enumerated';
 import { ESeparator } from '../classes/ESeparator.enumerated';
 //--- MODELS
 import { NeoComNode } from './NeoComNode.model';
-import { PilotAction } from './pilotaction';
 import { Separator } from './Separator.model';
 import { Ship } from './Ship.model';
 import { SpaceContainer } from './SpaceContainer.model';

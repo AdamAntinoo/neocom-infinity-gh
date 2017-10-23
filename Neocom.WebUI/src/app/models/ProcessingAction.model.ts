@@ -1,9 +1,7 @@
 //--- INTERFACES
-import { EVariant } from '../classes/EVariant.enumerated';
+//import { EVariant } from '../classes/EVariant.enumerated';
 //--- MODELS
 import { NeoComNode } from '../models/NeoComNode.model';
-import { Asset } from '../models/Asset.model';
-import { Separator } from '../models/Separator.model';
 import { Resource } from '../models/Resource.model';
 import { PlanetaryTransformation } from '../models/PlanetaryTransformation.model';
 
@@ -26,7 +24,7 @@ export class ProcessingAction extends NeoComNode {
   constructor(values: Object = {}) {
     super(values);
     Object.assign(this, values);
-    this.jsonClass = "ProcessingAction";
+    //    this.jsonClass = "ProcessingAction";
 
     // Process the downloaded data into our understandable properties.
     this.inputs = [];
@@ -51,25 +49,4 @@ export class ProcessingAction extends NeoComNode {
     // this.outputs.push(new Resource({ id: 3645, name: "Water", quantity: 0 }))
     // this.outputs.push(new Resource({ id: 3645, name: "Superconductors", quantity: 165 }))
   }
-
-  // public collaborate2View(variant: EVariant): NeoComNode[] {
-  //   let collab = [];
-  //   // If the node is expanded then add its assets.
-  //   if (this.expanded) {
-  //     collab.push(new Separator());
-  //     collab.push(this);
-  //     // Process each item at the rootlist for more collaborations.
-  //     for (let node of this.children) {
-  //       if (node.jsonClass == "NeoComAsset") {
-  //         let asset = new Asset(node)
-  //         let partialcollab = asset.collaborate2View(variant);
-  //         for (let partialnode of partialcollab) {
-  //           collab.push(partialnode);
-  //         }
-  //       }
-  //     }
-  //     collab.push(new Separator());
-  //   } else collab.push(this);
-  //   return collab;
-  // }
 }

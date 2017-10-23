@@ -15,13 +15,10 @@ import { AppModelStoreService } from '../services/app-model-store.service';
 import { EVariant } from '../classes/EVariant.enumerated';
 //--- MODELS
 import { NeoComNode } from './NeoComNode.model';
-import { PilotAction } from './pilotaction';
 import { Region } from './Region.model';
 import { Manager } from './Manager.model';
 import { Location } from './Location.model';
-import { Render } from './Render.model';
 import { ProcessingAction } from './ProcessingAction.model';
-
 
 export class PlanetaryManager extends Manager {
 
