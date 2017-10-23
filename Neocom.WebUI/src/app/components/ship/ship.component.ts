@@ -12,7 +12,7 @@ import { PageComponent } from '../../classes/PageComponent';
 import { PlanetaryManagerPageComponent } from '../../pages/planetary-manager-page/planetary-manager-page.component';
 //--- MODELS
 import { Render } from '../../models/Render.model';
-import { Asset } from '../../models/Asset.model';
+import { NeoComAsset } from '../../models/NeoComAsset.model';
 
 @Component({
   selector: 'neocom-ship',
@@ -21,7 +21,7 @@ import { Asset } from '../../models/Asset.model';
 })
 export class ShipComponent implements OnInit {
   @Input() viewer: PlanetaryManagerPageComponent;
-  @Input() node: Asset;
+  @Input() node: NeoComAsset;
 
   constructor(private appModelStore: AppModelStoreService) {
     //  super();
