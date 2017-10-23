@@ -8,9 +8,8 @@ import { AppModelStoreService } from '../../services/app-model-store.service';
 import { PageComponent } from '../../classes/PageComponent';
 import { EVariant } from '../../classes/EVariant.enumerated';
 //--- CLASSES
-import { DataSourceLocator } from '../../classes/DataSourceLocator';
+//import { DataSourceLocator } from '../../classes/DataSourceLocator';
 //--- MODELS
-import { Render } from '../../models/Render.model';
 import { NeoComNode } from '../../models/NeoComNode.model';
 import { NeoComCharacter } from '../../models/NeoComCharacter.model';
 import { Pilot } from '../../models/Pilot.model';

@@ -20,12 +20,11 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 //--- SERVICES
 //--- INTERFACES
-import { IDataSource } from '../classes/IDataSource.interface';
+//import { IDataSource } from '../classes/IDataSource.interface';
 //--- CLASSES
-import { DataSourceLocator } from '../classes/DataSourceLocator';
+//import { DataSourceLocator } from '../classes/DataSourceLocator';
 //--- MODELS
 import { Login } from '../models/Login.model';
-import { Render } from '../models/Render.model';
 import { Pilot } from '../models/Pilot.model';
 import { Corporation } from '../models/Corporation.model';
 import { NeoComNode } from '../models/NeoComNode.model';
@@ -47,7 +46,6 @@ export class AppModelStoreService {
   private _loginList: Login[] = null; // List of Login structures to be used to aggregate Keys
   private _currentLogin: Login = null; // The current Login active.
   private _currentCharacter: NeoComCharacter = null; // The current active character
-  private _viewList: Observable<Array<Render>>;
   private _lastViewer: PageComponent = null;
 
   constructor(private http: Http, private router: Router) { }
