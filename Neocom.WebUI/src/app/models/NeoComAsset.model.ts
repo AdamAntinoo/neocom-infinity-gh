@@ -2,7 +2,7 @@
 // AUTHORS:     Adam Antinoo - adamantinoo.git@gmail.com
 // COPYRIGHT:   (c) 2017 by Dimensinfin Industries, all rights reserved.
 // ENVIRONMENT: Angular - CLASS
-// DESCRIPTION: Defines the structure of a EVE Pilot. May depend on other classes to complete the character information hierarchy.
+// DESCRIPTION: This class defines the properties of the Eve Online game assets. Matches the functionality of the Java Android class of the same name. Assets by default cannot contain other elements. They are a reference to an EveItem, come properties and a size of the number of elements of the same kind represented.
 
 //--- SERVICES
 import { AppModelStoreService } from '../services/app-model-store.service';
