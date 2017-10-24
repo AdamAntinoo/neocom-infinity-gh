@@ -76,7 +76,7 @@ export class Ship extends NeoComAsset {
     } else collab.push(this);
     return collab;
   }
-  private processDownloadedAssets(assets: NeoComNode[]): NeoComAsset[] {
+  public processDownloadedAssets(assets: NeoComNode[]): NeoComAsset[] {
     let results: NeoComAsset[] = [];
     for (let node of assets) {
       switch (node.jsonClass) {

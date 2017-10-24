@@ -33,8 +33,34 @@ public class AssetsManagerController {
 
 	// - M E T H O D - S E C T I O N ..........................................................................
 	@CrossOrigin()
+	@RequestMapping(value = "/api/v1/login/{login}/pilot/{identifier}/assetsmanager/container/{containerid}/downloadcontents", method = RequestMethod.GET, produces = "application/json")
+	public List<NeoComAsset> planetaryContainerContents(@PathVariable final String login,
+			@PathVariable final String identifier, @PathVariable final String containerid) {
+		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/login/{" + login + "}/pilot/{" + identifier
+				+ "}/assetsmanager/container/{" + containerid + "}/downloadcontents");
+		logger.info(">> [AssetsManagerController.planetaryContainerContents]");
+		try {
+			// Initialize the model data hierarchies.
+			//			NeoComMSConnector.getSingleton().getModelStore().activateLoginIdentifier(login);
+			//			NeoComCharacter pilot = NeoComMSConnector.getSingleton().getModelStore().activatePilot(Long.valueOf(identifier));
+			// Get the Assets Manager for this Character. Make sure it is initialized and then get the resources
+			// at the indicated location and optimize processing them.
+			//			AssetsManager assetsMan = pilot.getAssetsManager().initialize();
+			long containeridnumber = Long.valueOf(containerid).longValue();
+			List<NeoComAsset> contents = NeoComMSConnector.getSingleton().getDBConnector()
+					.queryContainerContents(containeridnumber);
+			return contents;
+		} catch (RuntimeException rtx) {
+			rtx.printStackTrace();
+			return new Vector<NeoComAsset>();
+		} finally {
+			logger.info("<< [AssetsManagerController.planetaryContainerContents]");
+		}
+	}
+
+	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/login/{login}/pilot/{identifier}/assetsmanager/location/{locationid}/downloadcontents", method = RequestMethod.GET, produces = "application/json")
-	public Vector<NeoComAsset> planetaryLocationOptimization(@PathVariable final String login,
+	public Vector<NeoComAsset> planetaryLocationContents(@PathVariable final String login,
 			@PathVariable final String identifier, @PathVariable final String locationid) {
 		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/login/{" + login + "}/pilot/{" + identifier
 				+ "}/assetsmanager/location/{" + locationid + "}/downloadcontents");
@@ -60,7 +86,7 @@ public class AssetsManagerController {
 			rtx.printStackTrace();
 			return new Vector<NeoComAsset>();
 		} finally {
-			logger.info("<< [AssetsManagerController.planetaryLocationOptimization]");
+			logger.info("<< [AssetsManagerController.planetaryLocationContents]");
 		}
 	}
 }

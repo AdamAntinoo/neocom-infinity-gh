@@ -400,8 +400,8 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 			contents = assetDao.query(preparedQuery);
 		} catch (java.sql.SQLException sqle) {
 			sqle.printStackTrace();
-			logger.warning(
-					"W [SpringDatabaseConnector.queryLocationContents]> Exception reading Location contents" + sqle.getMessage());
+			logger.warning("W [SpringDatabaseConnector.queryContainerContents]> Exception reading Location contents"
+					+ sqle.getMessage());
 		}
 		return contents;
 	}
