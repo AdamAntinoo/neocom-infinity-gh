@@ -28,4 +28,9 @@ BETH RIPLEY
 
 
 PERICO TUERTO
+/api/v1/loginlist
+/api/v1/login/CapitanHaddock09/pilot/93813310
 /api/v1/login/CapitanHaddock09/pilot/93813310/pilotmanagers
+/api/v1/login/CapitanHaddock09/pilot/93813310/assetsmanager
+/api/v1/login/CapitanHaddock09/pilot/93813310/planetarymanager
+/api/v1/login/CapitanHaddock09/pilot/93813310/assetsmanager/location/1023075604524/downloadcontents

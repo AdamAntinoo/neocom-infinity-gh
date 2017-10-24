@@ -10,8 +10,6 @@ import { AppModelStoreService } from '../services/app-model-store.service';
 //--- INTERFACES
 import { EVariant } from '../classes/EVariant.enumerated';
 import { INeoComNode } from '../classes/INeoComNode.interface';
-//--- MODELS
-import { Location } from '../models/Location.model';
 
 export class NeoComNode implements INeoComNode {
   public jsonClass = "NeoComNode";

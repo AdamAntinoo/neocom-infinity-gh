@@ -197,6 +197,16 @@ export class AppModelStoreService {
         return result;
       });
   }
+  public getBackendContainerContents(containerid: number): Observable<NeoComNode[]> {
+    console.log("><[AppModelStoreService.getBackendContainerContents]> Locationid = " + containerid);
+    let loginid = this.accessLogin().getLoginId();
+    let pilot = this.accessCharacter();
+    return this.http.get(AppModelStoreService.RESOURCE_SERVICE_URL + "/login/" + loginid + "/pilot/" + pilot.getCharacterId() + "/assetsmanager/container/" + containerid + "/downloadcontents")
+      .map(res => res.json())
+      .map(result => {
+        return result;
+      });
+  }
 
 
   //--- L O G I N    S E C T I O N
