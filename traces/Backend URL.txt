@@ -33,4 +33,5 @@ PERICO TUERTO
 /api/v1/login/CapitanHaddock09/pilot/93813310/pilotmanagers
 /api/v1/login/CapitanHaddock09/pilot/93813310/assetsmanager
 /api/v1/login/CapitanHaddock09/pilot/93813310/planetarymanager
-/api/v1/login/CapitanHaddock09/pilot/93813310/assetsmanager/location/1023075604524/downloadcontents
+/api/v1/login/CapitanHaddock09/pilot/93813310/assetsmanager/location/60014089/downloadcontents
+/api/v1/login/CapitanHaddock09/pilot/93813310/assetsmanager/container/1019123153786/downloadcontents

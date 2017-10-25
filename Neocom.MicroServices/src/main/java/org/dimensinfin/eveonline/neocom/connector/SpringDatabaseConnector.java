@@ -29,7 +29,6 @@ import org.dimensinfin.eveonline.neocom.model.EveLocation;
 import org.dimensinfin.eveonline.neocom.model.Login;
 import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
 import org.dimensinfin.eveonline.neocom.model.NeoComBlueprint;
-import org.dimensinfin.eveonline.neocom.model.Outpost;
 import org.dimensinfin.eveonline.neocom.model.Property;
 import org.dimensinfin.eveonline.neocom.model.TimeStamp;
 import org.dimensinfin.eveonline.neocom.planetary.PlanetaryResource;
@@ -47,23 +46,21 @@ import com.j256.ormlite.support.DatabaseConnection;
 //@CacheConfig(cacheNames = "MarketData")
 public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoComModelDatabase {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger												logger										= Logger.getLogger("SpringDatabaseConnector");
+	private static Logger												logger									= Logger.getLogger("SpringDatabaseConnector");
 
 	// - F I E L D   I D E N T I F I E R S
-	private static int													STATIONTYPEID_COLINDEX		= 1;
+	private static int													STATIONTYPEID_COLINDEX	= 1;
 
 	// - S Q L   C O M M A N D S
-	private static final String									CCPDATABASE_URL						= "jdbc:sqlite:src/main/resources/eve.db";
-	//	protected static String												DATABASE_NAME							= "neocomdata.db";
-	//	protected static int													DATABASE_VERSION					= 010;
+	private static final String									CCPDATABASE_URL					= "jdbc:sqlite:src/main/resources/eve.db";
 	//
-	private static final String									SELECT_TIER2_INPUTS				= "SELECT pstmt.TYPEid, pstmt.quantity"
+	private static final String									SELECT_TIER2_INPUTS			= "SELECT pstmt.TYPEid, pstmt.quantity"
 			+ " FROM  planetSchematicsTypeMap pstms, planetSchematicsTypeMap pstmt" + " WHERE pstms.typeID = ?"
 			+ " AND   pstms.isInput = 0" + " AND   pstmt.schematicID = pstms.schematicID" + " AND   pstmT.isInput = 1";
 
 	//private static final String							DATABASE_URL							= "jdbc:sqlite:D:\\Development\\WorkStage\\ProjectsAngular\\NeoCom\\src\\main\\resources\\eve.db";
 	//private static final String							DATABASE_URL							= "jdbc:sqlite:D:\\Development\\ProjectsAngular\\NeoCom\\src\\main\\resources\\eve.db";
-	private static final String									SELECT_ITEM_BYID					= "SELECT it.typeID AS typeID, it.typeName AS typeName"
+	private static final String									SELECT_ITEM_BYID				= "SELECT it.typeID AS typeID, it.typeName AS typeName"
 			+ " , ig.groupName AS groupName" + " , ic.categoryName AS categoryName" + " , it.basePrice AS basePrice"
 			+ " , it.volume AS volume" + " , IFNULL(img.metaGroupName, " + '"' + "NOTECH" + '"' + ") AS Tech"
 			+ " FROM invTypes it" + " LEFT OUTER JOIN invGroups ig ON ig.groupID = it.groupID"
@@ -71,61 +68,54 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 			+ " LEFT OUTER JOIN invMetaTypes imt ON imt.typeID = it.typeID"
 			+ " LEFT OUTER JOIN invMetaGroups img ON img.metaGroupID = imt.metaGroupID" + " WHERE it.typeID = ?";
 
-	private static final String									SELECT_LOCATIONBYID				= "SELECT md.itemID AS locationID, md.typeID AS typeID, md.itemName AS locationName, md.security AS security"
-			+ " , IFNULL(md.solarSystemID, -1) AS systemID, ms.solarSystemName AS system"
-			+ " , IFNULL(md.constellationID, -1) AS constellationID, mc.constellationName AS constellation"
-			+ " , IFNULL(md.regionID, -1) AS regionID, mr.regionName AS region" + " FROM mapDenormalize md"
-			+ " LEFT OUTER JOIN mapRegions mr ON mr.regionID = md.regionID"
-			+ " LEFT OUTER JOIN mapConstellations mc ON mc.constellationID = md.constellationID"
-			+ " LEFT OUTER JOIN mapSolarSystems ms ON ms.solarSystemID = md.solarSystemID" + " WHERE itemID = ?";
-	private static final String									SELECT_LOCATIONBYSYSTEM		= "SELECT solarSystemID from mapSolarSystems WHERE solarSystemName = ?";
-
-	private static final String									LOM4BLUEPRINT							= "SELECT iam.typeID, itb.typeName, iam.materialTypeID, it.typeName, ig.groupName, ic.categoryName, iam.quantity, iam.consume"
-			+ " FROM industryActivityMaterials iam, invTypes itb, invTypes it, invGroups ig, invCategories ic"
-			+ " WHERE iam.typeID = ?" + " AND iam.activityID = 1" + " AND itb.typeID = iam.typeID"
-			+ " AND it.typeID = iam.materialTypeID" + " AND ig.groupID = it.groupID" + " AND ic.categoryID = ig.categoryID";
-
-	private static final String									TECH4BLUEPRINT						= "SELECT iap.typeID, it.typeName, imt.metaGroupID, img.metaGroupName"
-			+ " FROM industryActivityProducts iap, invTypes it, invMetaTypes imt, invMetaGroups img" + " WHERE it.typeID =?"
-			+ " AND iap.typeID = it.typeID" + " AND imt.typeID = productTypeID" + " AND img.metaGroupID = imt.metaGroupID"
-			+ " AND iap.activityID = 1";
-
-	private static final String									REFINING_ASTEROID					= "SELECT itm.materialTypeID AS materialTypeID, itm.quantity AS qty"
-			+ " , it.typeName AS materialName" + " , ito.portionSize AS portionSize"
-			+ " FROM invTypeMaterials itm, invTypes it, invTypes ito" + " WHERE itm.typeID = ?"
-			+ " AND it.typeID = itm.materialTypeID" + " AND ito.typeID = itm.typeID" + " ORDER BY itm.materialTypeID";
-
-	private static final String									INDUSTRYACTIVITYMATERIALS	= "SELECT materialTypeID, quantity, consume FROM industryActivityMaterials WHERE typeID = ? AND activityID = 8";
-	private static final String									STATIONTYPE								= "SELECT stationTypeID FROM staStations WHERE stationID = ?";
-	private static final String									JOB_COMPLETION_TIME				= "SELECT typeID, time FROM industryActivity WHERE typeID = ? AND activityID = ?";
-	private static final String									CHECK_INVENTION						= "SELECT count(*) AS counter"
-			+ " FROM industryActivityProducts iap" + " WHERE iap.typeID = ?" + " AND iap.activityID = 8";
-	private static final String									INVENTION_PRODUCT					= "SELECT productTypeID FROM industryActivityProducts WHERE typeID = ? AND activityID = 8";
-	private static final String									CHECK_MANUFACTURABLE			= "SELECT count(*) AS counter FROM industryActivityProducts iap WHERE iap.productTypeID = ? AND iap.activityID = 1";
-	private static final String									CHECK_REACTIONABLE				= "SELECT count(*) AS counter FROM industryActivityProducts iap WHERE iap.productTypeID = ? AND iap.activityID = 1";
-	private static final String									CHECK_PLANETARYPRODUCED		= "SELECT count(*) AS counter FROM industryActivityProducts iap WHERE iap.productTypeID = ? AND iap.activityID = 1";
-	private static final String									REACTION_COMPONENTS				= "SELECT"
-			+ "   invTypeReactions.reactionTypeID" + " , invTypes.typeID, invTypes.typeName" + " , invTypeReactions.input"
-			+ " , COALESCE(dgmTypeAttributes.valueInt, dgmTypeAttributes.valueFloat) * invTypeReactions.quantity AS quantity"
-			+ " FROM invTypeReactions, dgmTypeAttributes, invTypes" + " WHERE"
-			+ " invTypes.typeId = invTypeReactions.typeID AND" + " invTypeReactions.reactionTypeID IN ("
-			+ "    SELECT reactionTypeID" + "    FROM invTypeReactions" + "    WHERE typeID = ? ) AND"
-			+ " dgmTypeAttributes.typeID = invTypeReactions.typeID";
+	//	private static final String									SELECT_LOCATIONBYID				= "SELECT md.itemID AS locationID, md.typeID AS typeID, md.itemName AS locationName, md.security AS security"
+	//			+ " , IFNULL(md.solarSystemID, -1) AS systemID, ms.solarSystemName AS system"
+	//			+ " , IFNULL(md.constellationID, -1) AS constellationID, mc.constellationName AS constellation"
+	//			+ " , IFNULL(md.regionID, -1) AS regionID, mr.regionName AS region" + " FROM mapDenormalize md"
+	//			+ " LEFT OUTER JOIN mapRegions mr ON mr.regionID = md.regionID"
+	//			+ " LEFT OUTER JOIN mapConstellations mc ON mc.constellationID = md.constellationID"
+	//			+ " LEFT OUTER JOIN mapSolarSystems ms ON ms.solarSystemID = md.solarSystemID" + " WHERE itemID = ?";
+	//	private static final String									SELECT_LOCATIONBYSYSTEM		= "SELECT solarSystemID from mapSolarSystems WHERE solarSystemName = ?";
+	//
+	//	private static final String									LOM4BLUEPRINT							= "SELECT iam.typeID, itb.typeName, iam.materialTypeID, it.typeName, ig.groupName, ic.categoryName, iam.quantity, iam.consume"
+	//			+ " FROM industryActivityMaterials iam, invTypes itb, invTypes it, invGroups ig, invCategories ic"
+	//			+ " WHERE iam.typeID = ?" + " AND iam.activityID = 1" + " AND itb.typeID = iam.typeID"
+	//			+ " AND it.typeID = iam.materialTypeID" + " AND ig.groupID = it.groupID" + " AND ic.categoryID = ig.categoryID";
+	//
+	//	private static final String									TECH4BLUEPRINT						= "SELECT iap.typeID, it.typeName, imt.metaGroupID, img.metaGroupName"
+	//			+ " FROM industryActivityProducts iap, invTypes it, invMetaTypes imt, invMetaGroups img" + " WHERE it.typeID =?"
+	//			+ " AND iap.typeID = it.typeID" + " AND imt.typeID = productTypeID" + " AND img.metaGroupID = imt.metaGroupID"
+	//			+ " AND iap.activityID = 1";
+	//
+	//	private static final String									REFINING_ASTEROID					= "SELECT itm.materialTypeID AS materialTypeID, itm.quantity AS qty"
+	//			+ " , it.typeName AS materialName" + " , ito.portionSize AS portionSize"
+	//			+ " FROM invTypeMaterials itm, invTypes it, invTypes ito" + " WHERE itm.typeID = ?"
+	//			+ " AND it.typeID = itm.materialTypeID" + " AND ito.typeID = itm.typeID" + " ORDER BY itm.materialTypeID";
+	//
+	//	private static final String									INDUSTRYACTIVITYMATERIALS	= "SELECT materialTypeID, quantity, consume FROM industryActivityMaterials WHERE typeID = ? AND activityID = 8";
+	private static final String									STATIONTYPE							= "SELECT stationTypeID FROM staStations WHERE stationID = ?";
+	//	private static final String									JOB_COMPLETION_TIME				= "SELECT typeID, time FROM industryActivity WHERE typeID = ? AND activityID = ?";
+	//	private static final String									CHECK_INVENTION						= "SELECT count(*) AS counter"
+	//			+ " FROM industryActivityProducts iap" + " WHERE iap.typeID = ?" + " AND iap.activityID = 8";
+	//	private static final String									INVENTION_PRODUCT					= "SELECT productTypeID FROM industryActivityProducts WHERE typeID = ? AND activityID = 8";
+	//	private static final String									CHECK_MANUFACTURABLE			= "SELECT count(*) AS counter FROM industryActivityProducts iap WHERE iap.productTypeID = ? AND iap.activityID = 1";
+	//	private static final String									CHECK_REACTIONABLE				= "SELECT count(*) AS counter FROM industryActivityProducts iap WHERE iap.productTypeID = ? AND iap.activityID = 1";
+	//	private static final String									CHECK_PLANETARYPRODUCED		= "SELECT count(*) AS counter FROM industryActivityProducts iap WHERE iap.productTypeID = ? AND iap.activityID = 1";
+	//	private static final String									REACTION_COMPONENTS				= "SELECT"
+	//			+ "   invTypeReactions.reactionTypeID" + " , invTypes.typeID, invTypes.typeName" + " , invTypeReactions.input"
+	//			+ " , COALESCE(dgmTypeAttributes.valueInt, dgmTypeAttributes.valueFloat) * invTypeReactions.quantity AS quantity"
+	//			+ " FROM invTypeReactions, dgmTypeAttributes, invTypes" + " WHERE"
+	//			+ " invTypes.typeId = invTypeReactions.typeID AND" + " invTypeReactions.reactionTypeID IN ("
+	//			+ "    SELECT reactionTypeID" + "    FROM invTypeReactions" + "    WHERE typeID = ? ) AND"
+	//			+ " dgmTypeAttributes.typeID = invTypeReactions.typeID";
 
 	// - F I E L D - S E C T I O N ............................................................................
-	private String															databaseLink							= "jdbc:sqlite:src/main/resourcesneocomdata.db";
-	private int																	dbVersion									= 10;
-	private NeocomDBHelper											neocomDBHelper						= null;
-	private Connection													ccpDatabase								= null;
-
-	//	private Context														_context									= null;
-	//	private SQLiteDatabase										staticDatabase						= null;
-	//	private EveDroidDBHelper									appDatabaseHelper					= null;
-	private final Hashtable<Integer, EveItem>		itemCache									= new Hashtable<Integer, EveItem>();
-	//	private final HashMap<Integer, MarketDataSet>	buyMarketDataCache				= new HashMap<Integer, MarketDataSet>();
-	//	private final HashMap<Integer, MarketDataSet>	sellMarketDataCache				= new HashMap<Integer, MarketDataSet>();
-	private final Hashtable<Integer, Outpost>		outpostsCache							= new Hashtable<Integer, Outpost>();
-	private final Hashtable<Long, NeoComAsset>	containerCache						= new Hashtable<Long, NeoComAsset>();;
+	private String															databaseLink						= "jdbc:sqlite:src/main/resourcesneocomdata.db";
+	private int																	dbVersion								= 10;
+	private NeocomDBHelper											neocomDBHelper					= null;
+	private Connection													ccpDatabase							= null;
+	private final Hashtable<Integer, EveItem>		itemCache								= new Hashtable<Integer, EveItem>();
+	private final Hashtable<Long, NeoComAsset>	containerCache					= new Hashtable<Long, NeoComAsset>();;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 	public SpringDatabaseConnector(final String dblocation, final String dbname, final String dbversion) {
@@ -136,20 +126,20 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 		neocomDBHelper = new NeocomDBHelper(databaseLink, dbVersion);
 	}
 
-	/**
-	 * Get the complete list of assets that are Planetary Materials.
-	 * 
-	 * @return
-	 */
-	public ArrayList<NeoComAsset> accessAllPlanetaryAssets(final long characterID) {
-		// Select assets for each one of the Planetary categories.
-		ArrayList<NeoComAsset> assetList = new ArrayList<NeoComAsset>();
-		assetList.addAll(this.searchAsset4Category(characterID, "Planetary Commodities"));
-		assetList.addAll(this.searchAsset4Category(characterID, "Planetary Resources"));
-		return assetList;
-	}
-
 	// - M E T H O D - S E C T I O N ..........................................................................
+	//	/**
+	//	 * Get the complete list of assets that are Planetary Materials.
+	//	 * 
+	//	 * @return
+	//	 */
+	//	public ArrayList<NeoComAsset> accessAllPlanetaryAssets(final long characterID) {
+	//		// Select assets for each one of the Planetary categories.
+	//		ArrayList<NeoComAsset> assetList = new ArrayList<NeoComAsset>();
+	//		assetList.addAll(this.searchAsset4Category(characterID, "Planetary Commodities"));
+	//		assetList.addAll(this.searchAsset4Category(characterID, "Planetary Resources"));
+	//		return assetList;
+	//	}
+
 	//[02]
 	//	private String readJsonData() {
 	//		//	String fileLocation = "C:\\Users\\ldediego\\UserData\\Workstage\\OrangeProjectsMars\\NeoCom\\src\\main\resources\\outposts.json";
@@ -271,12 +261,7 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 		neocomDBHelper.loadSeedData();
 	}
 
-	//	@Deprecated
-	//	public boolean openAppDataBase() {
-	//		throw new RuntimeException(
-	//				"Application connector not defined. Functionality 'openAppDataBase' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	//	}
-
+	@Deprecated
 	public boolean openCCPDataBase() {
 		if (null == ccpDatabase) {
 			try {
@@ -290,12 +275,6 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 		}
 		return true;
 	}
-
-	//	@Deprecated
-	//	public boolean openDAO() {
-	//		neocomDBHelper = new NeocomDBHelper(databaseLink, dbVersion);
-	//		return false;
-	//	}
 
 	/**
 	 * Returns the list of distinct identifiers for parentAssetId that should represent the container where an
@@ -382,11 +361,6 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 		return loginList;
 	}
 
-	//	public int queryBlueprintDependencies(final int bpitemID) {
-	//		throw new RuntimeException(
-	//				"Application connector not defined. Functionality 'queryBlueprintDependencies' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	//	}
-
 	public List<NeoComAsset> queryContainerContents(final long identifier) {
 		// Get access to one assets with a distinct location. Discard the rest of the data and only process the Location id
 		List<NeoComAsset> contents = new Vector<NeoComAsset>();
@@ -402,25 +376,6 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 			sqle.printStackTrace();
 			logger.warning("W [SpringDatabaseConnector.queryContainerContents]> Exception reading Location contents"
 					+ sqle.getMessage());
-		}
-		return contents;
-	}
-
-	public List<NeoComAsset> queryLocationContents(final long identifier) {
-		// Get access to one assets with a distinct location. Discard the rest of the data and only process the Location id
-		List<NeoComAsset> contents = new Vector<NeoComAsset>();
-		try {
-			Dao<NeoComAsset, String> assetDao = this.getAssetDAO();
-			QueryBuilder<NeoComAsset, String> queryBuilder = assetDao.queryBuilder();
-			Where<NeoComAsset, String> where = queryBuilder.where();
-			//			where.eq("ownerID", identifier);
-			where.eq("locationID", identifier);
-			PreparedQuery<NeoComAsset> preparedQuery = queryBuilder.prepare();
-			contents = assetDao.query(preparedQuery);
-		} catch (java.sql.SQLException sqle) {
-			sqle.printStackTrace();
-			logger.warning(
-					"W [SpringDatabaseConnector.queryLocationContents]> Exception reading Location contents" + sqle.getMessage());
 		}
 		return contents;
 	}
@@ -444,11 +399,6 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 		}
 		return contents;
 	}
-
-	//	public ArrayList<Resource> refineOre(final int itemID) {
-	//		throw new RuntimeException(
-	//				"Application connector not defined. Functionality 'refineOre' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	//	}
 
 	/**
 	 * Changes the owner id for all records from a new download with the id of the current character. This
@@ -491,11 +441,6 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 		}
 	}
 
-	//	public void replaceJobs(final long characterID) {
-	//		throw new RuntimeException(
-	//				"Application connector not defined. Functionality 'replaceJobs' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	//	}
-
 	/**
 	 * Get the list of all the Blueprints for a given Character. It can ge a Pilot or a Corporation and the
 	 * differences should be none.
@@ -509,31 +454,30 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 		assetList.addAll(this.searchAsset4Category(characterID, "Blueprint"));
 		return assetList;
 	}
-
-	/**
-	 * Gets the list of assets of a select Category
-	 * 
-	 * @param characterID
-	 * @param typeID
-	 * @return
-	 */
-	public ArrayList<NeoComAsset> searchAsset4Category(final long characterID, final String categoryName) {
-		// Select assets for the owner and with an specific type id.
-		List<NeoComAsset> assetList = new ArrayList<NeoComAsset>();
-		try {
-			Dao<NeoComAsset, String> assetDao = this.getAssetDAO();
-			QueryBuilder<NeoComAsset, String> queryBuilder = assetDao.queryBuilder();
-			Where<NeoComAsset, String> where = queryBuilder.where();
-			where.eq("ownerID", characterID);
-			where.and();
-			where.eq("category", categoryName);
-			PreparedQuery<NeoComAsset> preparedQuery = queryBuilder.prepare();
-			assetList = assetDao.query(preparedQuery);
-		} catch (java.sql.SQLException sqle) {
-			sqle.printStackTrace();
-		}
-		return (ArrayList<NeoComAsset>) assetList;
-	}
+	//	/**
+	//	 * Gets the list of assets of a select Category
+	//	 * 
+	//	 * @param characterID
+	//	 * @param typeID
+	//	 * @return
+	//	 */
+	//	public ArrayList<NeoComAsset> searchAsset4Category(final long characterID, final String categoryName) {
+	//		// Select assets for the owner and with an specific type id.
+	//		List<NeoComAsset> assetList = new ArrayList<NeoComAsset>();
+	//		try {
+	//			Dao<NeoComAsset, String> assetDao = this.getAssetDAO();
+	//			QueryBuilder<NeoComAsset, String> queryBuilder = assetDao.queryBuilder();
+	//			Where<NeoComAsset, String> where = queryBuilder.where();
+	//			where.eq("ownerID", characterID);
+	//			where.and();
+	//			where.eq("category", categoryName);
+	//			PreparedQuery<NeoComAsset> preparedQuery = queryBuilder.prepare();
+	//			assetList = assetDao.query(preparedQuery);
+	//		} catch (java.sql.SQLException sqle) {
+	//			sqle.printStackTrace();
+	//		}
+	//		return (ArrayList<NeoComAsset>) assetList;
+	//	}
 
 	public ArrayList<NeoComAsset> searchAsset4Type(final long characterID, final int typeID) {
 		// Select assets for the owner and with an specific type id.
@@ -607,6 +551,7 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 	 * @param typeID
 	 * @return
 	 */
+	@Deprecated
 	public Vector<Integer> searchInputResources(final int typeID) {
 		Vector<Integer> result = new Vector<Integer>();
 		PreparedStatement prepStmt = null;
@@ -634,16 +579,6 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 		}
 		return result;
 	}
-
-	//	public ArrayList<Integer> searchInventionableBlueprints(final String resourceIDs) {
-	//		throw new RuntimeException(
-	//				"Application connector not defined. Functionality 'searchInventionableBlueprints' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	//	}
-	//
-	//	public int searchInventionProduct(final int typeID) {
-	//		throw new RuntimeException(
-	//				"Application connector not defined. Functionality 'searchInventionProduct' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	//	}
 
 	/**
 	 * Search on the eve.db database for the attributes that describe an Item. Items are the lowest data
@@ -716,135 +651,6 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 		return hit;
 	}
 
-	//	public ArrayList<Job> searchJob4Class(final long characterID, final String string) {
-	//		throw new RuntimeException(
-	//				"Application connector not defined. Functionality 'searchJob4Class' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	//	}
-	//
-	//	public int searchJobExecutionTime(final int typeID, final int activityID) {
-	//		throw new RuntimeException(
-	//				"Application connector not defined. Functionality 'searchJobExecutionTime' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	//	}
-	//
-	//	public ArrayList<Resource> searchListOfDatacores(final int itemID) {
-	//		throw new RuntimeException(
-	//				"Application connector not defined. Functionality 'searchListOfDatacores' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	//	}
-	//
-	//	public ArrayList<Resource> searchListOfMaterials(final int itemID) {
-	//		throw new RuntimeException(
-	//				"Application connector not defined. Functionality 'searchListOfMaterials' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	//	}
-	//
-	//	public ArrayList<Resource> searchListOfReaction(final int itemID) {
-	//		throw new RuntimeException(
-	//				"Application connector not defined. Functionality 'searchListOfReaction' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	//	}
-	//
-	//	public int searchModule4Blueprint(final int bpitemID) {
-	//		throw new RuntimeException(
-	//				"Application connector not defined. Functionality 'searchModule4Blueprint' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	//	}
-
-	//	public EveLocation searchLocationbyID(final long locationID) {
-	//		EveLocation hit = new EveLocation(locationID);
-	//		PreparedStatement prepStmt = null;
-	//		ResultSet cursor = null;
-	//		try {
-	//			prepStmt = getCCPDatabase().prepareStatement(SELECT_LOCATIONBYID);
-	//			prepStmt.setString(1, Long.valueOf(locationID).toString());
-	//			cursor = prepStmt.executeQuery();
-	//			boolean detected = false;
-	//			while (cursor.next()) {
-	//				//				if (cursor.moveToFirst()) {
-	//				detected = true;
-	//				// Check returned values when doing the assignments.
-	//				long fragmentID = cursor.getLong(5);
-	//				if (fragmentID > 0) {
-	//					hit.setSystemID(fragmentID);
-	//					hit.setSystem(cursor.getString(6));
-	//				} else {
-	//					hit.setSystem(cursor.getString(3));
-	//				}
-	//				fragmentID = cursor.getLong(7);
-	//				if (fragmentID > 0) {
-	//					hit.setConstellationID(fragmentID);
-	//					hit.setConstellation(cursor.getString(8));
-	//				}
-	//				fragmentID = cursor.getLong(9);
-	//				if (fragmentID > 0) {
-	//					hit.setRegionID(fragmentID);
-	//					hit.setRegion(cursor.getString(10));
-	//				}
-	//				hit.setTypeID(ELocationType.CCPLOCATION);
-	//				hit.setStation(cursor.getString(3));
-	//				hit.setLocationID(cursor.getLong(1));
-	//				hit.setSecurity(cursor.getString(4));
-	//				// Update the final ID
-	//				hit.getID();
-	//				detected = true;
-	//			}
-	//			//			if (!detected) // Search the location on the list of outposts.
-	//			//				hit = searchOutpostbyID(locationID);
-	//			//	}
-	//		} catch (final Exception ex) {
-	//			logger.warning("Location <" + locationID + "> not found.");
-	//		}
-	//		return hit;
-	//	}
-
-	//	public EveLocation searchLocationBySystem(final String name) {
-	//		EveLocation hit = new EveLocation();
-	//		PreparedStatement prepStmt = null;
-	//		ResultSet cursor = null;
-	//		try {
-	//			prepStmt = getCCPDatabase().prepareStatement(SELECT_LOCATIONBYSYSTEM);
-	//			prepStmt.setString(1, name);
-	//			cursor = prepStmt.executeQuery();
-	//			boolean detected = false;
-	//			while (cursor.next()) {
-	//				//				if (cursor.moveToFirst()) {
-	//				detected = true;
-	//				// Check returned values when doing the assignments.
-	//				long fragmentID = cursor.getInt(1);
-	//				if (fragmentID > 0) {
-	//					hit.setSystemID(fragmentID);
-	//					//					hit.setSystem(cursor.getString(6));
-	//					//				} else {
-	//					//					hit.setSystem(cursor.getString(3));
-	//				}
-	//				//				fragmentID = cursor.getLong(7);
-	//				//				if (fragmentID > 0) {
-	//				//					hit.setConstellationID(fragmentID);
-	//				//					hit.setConstellation(cursor.getString(8));
-	//				//				}
-	//				//				fragmentID = cursor.getLong(9);
-	//				//				if (fragmentID > 0) {
-	//				//					hit.setRegionID(fragmentID);
-	//				//					hit.setRegion(cursor.getString(10));
-	//				//				}
-	//				//				hit.setTypeID(cursor.getInt(2));
-	//				//				hit.setStation(cursor.getString(3));
-	//				//				hit.setLocationID(cursor.getLong(1));
-	//				//				hit.setSecurity(cursor.getString(4));
-	//				//				// Update the final ID
-	//				//				hit.getID();
-	//				detected = true;
-	//			}
-	//			//			if (!detected) // Search the location on the list of outposts.
-	//			//				hit = searchOutpostbyID(locationID);
-	//			//	}
-	//		} catch (final Exception ex) {
-	//			logger.warning("Location <" + name + "> not found.");
-	//		}
-	//		return searchLocationbyID(hit.getSystemID());
-	//	}
-
-	//	public int searchReactionOutputMultiplier(final int itemID) {
-	//		// TODO Auto-generated method stub
-	//		return 0;
-	//	}
-
 	/**
 	 * Returns the resource identifier of the station class to locate icons or other type related resources.
 	 * 
@@ -881,26 +687,6 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 				"~~ Time lapse for [SELECT STATIONTYPEID " + stationID + "] " + NeoComMSConnector.getSingleton().timeLapse());
 		return stationTypeID;
 	}
-
-	//	public String searchTech4Blueprint(final int blueprintID) {
-	//		throw new RuntimeException(
-	//				"Application connector not defined. Functionality 'searchTech4Blueprint' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
-	//	}
-
-	//	public int totalLocationContentCount(final long identifier) {
-	//		try {
-	//			Dao<NeoComAsset, String> assetDao = this.getAssetDAO();
-	//			QueryBuilder<NeoComAsset, String> queryBuilder = assetDao.queryBuilder();
-	//			queryBuilder.setCountOf(true).where().eq("locationID", identifier);
-	//			long totalAssets = assetDao.countOf(queryBuilder.prepare());
-	//			return Long.valueOf(totalAssets).intValue();
-	//		} catch (java.sql.SQLException sqle) {
-	//			sqle.printStackTrace();
-	//			logger.warning("W [SpringDatabaseConnector.getLocationContentCount]> Exception reading Location contents count."
-	//					+ sqle.getMessage());
-	//			return 0;
-	//		}
-	//	}
 
 	private Connection getCCPDatabase() {
 		if (null == ccpDatabase) openCCPDataBase();

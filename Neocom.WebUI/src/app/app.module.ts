@@ -45,6 +45,8 @@ import { NodePanelComponent } from './components/node-panel/node-panel.component
 import { Pilot4LoginComponent } from './components/pilot4-login/pilot4-login.component';
 import { ContainerComponent } from './components/container/container.component';
 import { ShipComponent } from './components/ship/ship.component';
+import { ShipSlotGroupComponent } from './components/ship-slot-group/ship-slot-group.component';
+import { ExpandableComponent } from './components/expandable/expandable.component';
 
 
 @NgModule({
@@ -77,6 +79,8 @@ import { ShipComponent } from './components/ship/ship.component';
     ContainerComponent,
     AssetsManagerComponent,
     ShipComponent,
+    ShipSlotGroupComponent,
+    ExpandableComponent,
   ],
   imports: [
     BrowserModule,

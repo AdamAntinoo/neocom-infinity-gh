@@ -34,7 +34,7 @@ export class NeoComAsset extends NeoComNode {
   public item = null;
 
   constructor(values: Object = {}) {
-    super();
+    super(values);
     Object.assign(this, values);
     //  this.jsonClass = "Asset";
   }

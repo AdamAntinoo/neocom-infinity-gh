@@ -14,11 +14,12 @@ import { Separator } from './Separator.model';
 import { NeoComNode } from './NeoComNode.model';
 import { NeoComAsset } from './NeoComAsset.model';
 import { SpaceContainer } from './SpaceContainer.model';
+import { AssetGroup } from './AssetGroup.model';
 
 export class Ship extends NeoComAsset {
 
   constructor(values: Object = {}) {
-    super();
+    super(values);
     Object.assign(this, values);
     this.totalValueCalculated = 0;
     this.totalVolumeCalculated = 0;
@@ -39,22 +40,25 @@ export class Ship extends NeoComAsset {
     if (this.expanded) {
       // Check if the contents of the Location are downloaded.
       if (this.downloaded) {
+        console.log(">>[Region.collaborate2View]> Collaborating: " + "Separator.YELLOW");
         collab.push(new Separator().setVariation(ESeparator.YELLOW));
+        console.log(">>[Region.collaborate2View]> Collaborating: " + "Ship");
         collab.push(this);
         // Process each item at the rootlist for more collaborations.
         // Apply the processing policies before entering the processing loop. Usually does the sort.
-        let sortedContents: NeoComAsset[] = this.contents.sort((n1, n2) => {
-          if (n1.getName() > n2.getName()) {
-            return 1;
-          }
-          if (n1.getName() < n2.getName()) {
-            return -1;
-          }
-          return 0;
-        });
-        for (let node of sortedContents) {
+        // let sortedContents: NeoComAsset[] = this.contents.sort((n1, n2) => {
+        //   if (n1.getName() > n2.getName()) {
+        //     return 1;
+        //   }
+        //   if (n1.getName() < n2.getName()) {
+        //     return -1;
+        //   }
+        //   return 0;
+        // });
+        for (let node of this.contents) {
           let partialcollab = node.collaborate2View(appModelStore, variant);
           for (let partialnode of partialcollab) {
+            console.log(">>[Region.collaborate2View]> Collaborating: " + "NeoComAsset");
             collab.push(partialnode);
           }
         }
@@ -70,10 +74,15 @@ export class Ship extends NeoComAsset {
             appModelStore.fireRefresh();
           });
         // Add an spinner to the output to inform the user of the background task.
+        console.log(">>[Region.collaborate2View]> Collaborating: " + "Separator.SPINNER");
         collab.push(new Separator().setVariation(ESeparator.SPINNER));
       }
+      console.log(">>[Region.collaborate2View]> Collaborating: " + "Separator.YELLOW");
       collab.push(new Separator().setVariation(ESeparator.YELLOW));
-    } else collab.push(this);
+    } else {
+      console.log(">>[Region.collaborate2View]> Collaborating: " + "Ship");
+      collab.push(this);
+    }
     return collab;
   }
   public processDownloadedAssets(assets: NeoComNode[]): NeoComAsset[] {
@@ -88,15 +97,16 @@ export class Ship extends NeoComAsset {
           break;
         case "SpaceContainer":
           let container = new SpaceContainer(node);
-          // this.totalValueCalculated += container.item.baseprice * container.quantity;
-          // this.totalVolumeCalculated += container.item.volume * container.quantity;
           results.push(container);
           break;
         case "Ship":
           let ship = new Ship(node);
           this.totalValueCalculated += ship.item.baseprice;
-          //     this.totalVolumeCalculated += container.item.volume * container.quantity;
           results.push(ship);
+          break;
+        case "AssetGroup":
+          let group = new AssetGroup(node);
+          results.push(group);
           break;
         default:
           //        results.push(node);

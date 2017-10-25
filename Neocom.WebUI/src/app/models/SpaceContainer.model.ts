@@ -18,7 +18,7 @@ import { Ship } from './Ship.model';
 export class SpaceContainer extends NeoComAsset {
 
   constructor(values: Object = {}) {
-    super();
+    super(values);
     Object.assign(this, values);
     this.totalValueCalculated = 0;
     this.totalVolumeCalculated = 0;

@@ -8,8 +8,8 @@ export class Separator extends NeoComNode {
   public variation: ESeparator = ESeparator.ORANGE;
 
   constructor(values: Object = {}) {
-    super();
-    this.jsonClass = "Separator";
+    super(values);
+    //  this.jsonClass = "Separator";
   }
   public setVariation(newstate: ESeparator): Separator {
     this.variation = newstate;

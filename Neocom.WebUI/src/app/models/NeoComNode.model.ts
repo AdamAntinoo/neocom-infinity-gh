@@ -27,6 +27,18 @@ export class NeoComNode implements INeoComNode {
     collab.push(this);
     return collab;
   }
+  public collapse(): boolean {
+    this.expanded = false;
+    return this.expanded;
+  }
+  public expand(): boolean {
+    this.expanded = true;
+    return this.expanded;
+  }
+  public setDownloadState(newstate: boolean): boolean {
+    this.downloaded = newstate;
+    return this.downloaded;
+  }
   public toggleExpanded() {
     this.expanded = !this.expanded;
   }

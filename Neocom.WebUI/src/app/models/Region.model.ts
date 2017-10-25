@@ -18,7 +18,7 @@ export class Region extends NeoComNode {
     super(values);
     Object.assign(this, values);
     //    this.jsonClass = "Region";
-    this.locations = this.extractLocations(this.locations);
+    this.locations = this.processLocations(this.locations);
   }
 
   // public addLocation(newlocation: Location) {
@@ -29,7 +29,9 @@ export class Region extends NeoComNode {
     let collab: NeoComNode[] = [];
     // Check if the Region is expanded or not.
     if (this.expanded) {
+      console.log(">>[Region.collaborate2View]> Collaborating: " + "Separator.RED");
       collab.push(new Separator().setVariation(ESeparator.RED));
+      console.log(">>[Region.collaborate2View]> Collaborating: " + "Region");
       collab.push(this);
       // Process each Location for new collaborations.
       for (let node of this.locations) {
@@ -44,8 +46,12 @@ export class Region extends NeoComNode {
           collab.push(partialnode);
         }
       }
+      console.log(">>[Region.collaborate2View]> Collaborating: " + "Separator.RED");
       collab.push(new Separator().setVariation(ESeparator.RED));
-    } else collab.push(this);
+    } else {
+      console.log(">>[Region.collaborate2View]> Collaborating: " + "Region");
+      collab.push(this);
+    }
     return collab;
   }
   public getName(): string {
@@ -54,10 +60,14 @@ export class Region extends NeoComNode {
   /**
   Method to process the downloaded data and converting the anonymous json objects to the Model classes.
   */
-  public extractLocations(locs: any[]): Location[] {
+  public processLocations(locs: any[]): Location[] {
     let results: Location[] = [];
-    for (let lockey in locs) {
-      results.push(new Location(lockey));
+    for (let lockey of locs) {
+      // Reload the right download stae of the Locations.
+      let newloc = new Location(lockey);
+      newloc.setDownloadState(false);
+      newloc.collapse();
+      results.push(newloc);
     }
     return results;
   }

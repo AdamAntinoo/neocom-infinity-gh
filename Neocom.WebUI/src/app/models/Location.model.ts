@@ -32,31 +32,6 @@ export class Location extends NeoComNode {
     this.totalValueCalculated = 0;
     this.totalVolumeCalculated = 0;
     this.contents = this.processDownloadedAssets(this.contents);
-    // let newassetlist = [];
-    // for (let node of this.contents) {
-    //   // Convert the nodes received.
-    //   switch (node.jsonClass) {
-    //     case "NeoComAsset":
-    //       let asset = new NeoComAsset(node);
-    //       newassetlist.push(asset);
-    //       this.totalValueCalculated += asset.item.baseprice * asset.quantity;
-    //       this.totalVolumeCalculated += asset.item.volume * asset.quantity;
-    //       break;
-    //     case "SpaceContainer":
-    //       let container = new SpaceContainer(node);
-    //       newassetlist.push(container);
-    //       break;
-    //     case "Ship":
-    //       let ship = new Ship(node);
-    //       newassetlist.push(ship);
-    //       this.totalValueCalculated += ship.item.baseprice;
-    //       break;
-    //     default:
-    //       newassetlist.push(node);
-    //       break;
-    //   }
-    //    }
-    //    this.contents = newassetlist;
   }
 
   public getFormattedStackCount(): string {
@@ -74,7 +49,9 @@ export class Location extends NeoComNode {
     if (this.expanded) {
       // Check if the contents of the Location are downloaded.
       if (this.downloaded) {
+        console.log(">>[Region.collaborate2View]> Collaborating: " + "Separator.ORANGE");
         collab.push(new Separator().setVariation(ESeparator.ORANGE));
+        console.log(">>[Region.collaborate2View]> Collaborating: " + "Location");
         collab.push(this);
         // Process each item at the rootlist for more collaborations.
         // Apply the processing policies before entering the processing loop. Usually does the sort.
@@ -88,22 +65,10 @@ export class Location extends NeoComNode {
           return 0;
         });
         for (let node of sortedContents) {
-          // switch (node.jsonClass) {
-          //   case "NeoComAsset":
-          //      let asset = new NeoComAsset(node);
           let partialcollab = node.collaborate2View(appModelStore, variant);
           for (let partialnode of partialcollab) {
             collab.push(partialnode);
           }
-          //   break;
-          // case "SpaceContainer":
-          //   let container = new SpaceContainer(node);
-          //     let containerCollaboration = container.collaborate2View(appModelStore, variant);
-          //     for (let partialnode of containerCollaboration) {
-          //       collab.push(partialnode);
-          //     }
-          //     break;
-          // }
         }
       } else {
         // Call the backend to download the contents. On callback we need to fire an event to refresh the display.
@@ -117,10 +82,15 @@ export class Location extends NeoComNode {
             appModelStore.fireRefresh();
           });
         // Add an spinner to the output to inform the user of the background task.
+        console.log(">>[Region.collaborate2View]> Collaborating: " + "Separator.SPINNER");
         collab.push(new Separator().setVariation(ESeparator.SPINNER));
       }
+      console.log(">>[Region.collaborate2View]> Collaborating: " + "Separator.ORANGE");
       collab.push(new Separator().setVariation(ESeparator.ORANGE));
-    } else collab.push(this);
+    } else {
+      console.log(">>[Region.collaborate2View]> Collaborating: " + "Location");
+      collab.push(this);
+    }
     return collab;
   }
   public getName(): string {
