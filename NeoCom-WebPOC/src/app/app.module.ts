@@ -4,12 +4,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { JsonpModule } from '@angular/http';
-//import { CookieModule } from 'ngx-cookie';
 
 //--- ROUTING
 import { AppRoutingModule } from './app-routing.module';
 //--- PAGES
+import { PageSelectorComponent } from './pages/page-selector/page-selector.component';
 import { SpinnerTestPageComponent } from './pages/spinner-test-page/spinner-test-page.component';
+import { CustomSerializationPageComponent } from './pages/custom-serialization-page/custom-serialization-page.component';
 //--- COMPONENTS
 import { AppComponent } from './app.component';
 import { SpinnerCentralComponent } from './components/spinner/spinner.component';
@@ -18,7 +19,9 @@ import { HeaderComponent } from './components/neocom-header/header.component';
 @NgModule({
   declarations: [
     AppComponent,
+    PageSelectorComponent,
     SpinnerTestPageComponent,
+    CustomSerializationPageComponent,
     SpinnerCentralComponent,
     HeaderComponent,
   ],
