@@ -43,8 +43,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 public class NeocomMicroServiceApplication implements INeoComMSConnector {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger				logger						= Logger.getLogger("NeocomMicroServiceApplication");
-	public static final String	APPLICATION_NAME	= "NeocomMicroServiceApplication";
+	private static Logger logger = Logger.getLogger("NeocomMicroServiceApplication");
+	public static final String APPLICATION_NAME = "NeocomMicroServiceApplication";
+
 	//	public static NeocomMicroServiceApplication	singleton					= null;
 	//
 	//	public static INeoComMSConnector getSingleton() {
@@ -57,21 +58,21 @@ public class NeocomMicroServiceApplication implements INeoComMSConnector {
 	 * 
 	 * @param args
 	 */
-	public static void main(final String[] args) {
+	public static void main ( final String[] args ) {
 		// Instance and connect the Adaptors.
 		SpringApplication.run(NeocomMicroServiceApplication.class, args);
 	}
 
 	// - F I E L D - S E C T I O N ............................................................................
-	private NeoComMSConnector			_connector				= null;
-	private Instant								chrono						= null;
+	private NeoComMSConnector _connector = null;
+	private Instant chrono = null;
 
-	private INeoComModelDatabase	dbNeocomConnector	= null;
-	private ICCPDatabaseConnector	dbCCPConnector		= null;
-	private ICacheConnector				cacheConnector		= null;
+	private INeoComModelDatabase dbNeocomConnector = null;
+	private ICCPDatabaseConnector dbCCPConnector = null;
+	private ICacheConnector cacheConnector = null;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
-	public NeocomMicroServiceApplication() {
+	public NeocomMicroServiceApplication () {
 		logger.info(">> [NeocomMicroServiceApplication.<constructor>]");
 		// Create and connect the adapters.
 		//		if (null == singleton) {
@@ -88,18 +89,18 @@ public class NeocomMicroServiceApplication implements INeoComMSConnector {
 	//		this.getCacheConnector().addCharacterUpdateRequest(characterID);
 	//	}
 
-	public String getAppName() {
+	public String getAppName () {
 		return APPLICATION_NAME;
 	}
 
 	@Override
-	public ICacheConnector getCacheConnector() {
+	public ICacheConnector getCacheConnector () {
 		if (null == cacheConnector) cacheConnector = new MicroServicesCacheConnector();
 		return cacheConnector;
 	}
 
 	@Override
-	public ICCPDatabaseConnector getCCPDBConnector() {
+	public ICCPDatabaseConnector getCCPDBConnector () {
 		if (null == dbCCPConnector) {
 			dbCCPConnector = new CCPDatabaseConnector();
 		}
@@ -107,7 +108,7 @@ public class NeocomMicroServiceApplication implements INeoComMSConnector {
 	}
 
 	@Override
-	public INeoComModelDatabase getDBConnector() {
+	public INeoComModelDatabase getDBConnector () {
 		if (null == dbNeocomConnector) {
 			String dblocation = R.getResourceString("R.string.appdatabasepath");
 			String dbname = R.getResourceString("R.string.appdatabasefilename");
@@ -119,7 +120,7 @@ public class NeocomMicroServiceApplication implements INeoComMSConnector {
 	}
 
 	@Override
-	public INeoComModelStore getModelStore() {
+	public INeoComModelStore getModelStore () {
 		return AppModelStore.getSingleton();
 	}
 
@@ -128,18 +129,18 @@ public class NeocomMicroServiceApplication implements INeoComMSConnector {
 	 * cache contents before starting the application.
 	 */
 	@PostConstruct
-	public void postConstruct() {
+	public void postConstruct () {
 		logger.info(">> [MarketDataServiceApplication.postConstruct]");
 		// Read back the cache contents
 		MicroServicesCacheConnector.readCacheFromStorage();
 		logger.info("<< [MarketDataServiceApplication.postConstruct]");
 	}
 
-	public void startChrono() {
+	public void startChrono () {
 		chrono = new Instant();
 	}
 
-	public Duration timeLapse() {
+	public Duration timeLapse () {
 		return new Duration(chrono, new Instant());
 	}
 }

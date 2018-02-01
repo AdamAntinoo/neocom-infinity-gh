@@ -5,9 +5,9 @@ http://localhost:9000/api/v1/login/Beth%20Ripley/pilot/92223647/planetarymanager
 http://localhost:9000/api/v1/login/CapitanHaddock29/pilot/2113197470/assetsmanager/location/60015001/downloadcontents
 http://localhost:4200/login/CapitanHaddock29/pilot/2113197470
 
---NEW ULS VALID
-/api/v1/location/updatecitadels
-/api/v1/location/updateoutposts
+--NEW URLS VALID
+http://localhost:9000/api/v1/location/updatecitadels
+http://localhost:9000/api/v1/location/updateoutposts
 
 /api/v1/loginlist
 

@@ -43,7 +43,7 @@ import net.nikr.eve.jeveasset.data.Citadel;
 @RestController
 public class LocationController {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger logger = Logger.getLogger("LocationController");
+	private static Logger	logger	= Logger.getLogger("LocationController");
 
 	// - F I E L D - S E C T I O N ............................................................................
 
@@ -100,12 +100,15 @@ public class LocationController {
 		String destination = "https://stop.hammerti.me.uk/api/citadel/all";
 		// Create a trust manager that does not validate certificate chains
 		TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
+			@Override
 			public void checkClientTrusted(final X509Certificate[] certs, final String authType) {
 			}
 
+			@Override
 			public void checkServerTrusted(final X509Certificate[] certs, final String authType) {
 			}
 
+			@Override
 			public java.security.cert.X509Certificate[] getAcceptedIssuers() {
 				return null;
 			}
@@ -200,6 +203,7 @@ public class LocationController {
 }
 
 final class Verifier implements HostnameVerifier {
+	@Override
 	public boolean verify(final String hostname, final SSLSession session) {
 		return true;
 	}

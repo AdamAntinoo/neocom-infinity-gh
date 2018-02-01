@@ -7,21 +7,24 @@
 package org.dimensinfin.eveonline.neocom.connector;
 
 import org.dimensinfin.eveonline.neocom.interfaces.INeoComModelStore;
-import org.joda.time.Duration;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 public interface INeoComMSConnector extends IModelAppConnector {
-	public ICacheConnector getCacheConnector();
+	@Override
+	public ICacheConnector getCacheConnector ();
 
-	public ICCPDatabaseConnector getCCPDBConnector();
+	@Override
+	public ICCPDatabaseConnector getCCPDBConnector ();
 
-	public INeoComModelDatabase getDBConnector();
+	@Override
+	public INeoComModelDatabase getDBConnector ();
 
-	public INeoComModelStore getModelStore();
+	@Override
+	public INeoComModelStore getModelStore ();
 
-	public void startChrono();
-
-	public Duration timeLapse();
+	//	public void startChrono ();
+	//
+	//	public Duration timeLapse ();
 }
 
 // - UNUSED CODE ............................................................................................

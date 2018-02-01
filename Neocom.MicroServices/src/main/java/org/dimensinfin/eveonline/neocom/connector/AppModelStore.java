@@ -44,9 +44,9 @@ import org.dimensinfin.eveonline.neocom.model.NeoComCharacter;
 public class AppModelStore implements INeoComModelStore {
 
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static final long			serialVersionUID	= 8777607802616543118L;
-	private static Logger					logger						= Logger.getLogger("AppModelStore");
-	private static AppModelStore	singleton					= null;
+	private static final long serialVersionUID = 8777607802616543118L;
+	private static Logger logger = Logger.getLogger("AppModelStore");
+	private static AppModelStore singleton = null;
 
 	/**
 	 * Returns the single global instance of the Store to be used as an instance. In case the instance does not
@@ -55,7 +55,7 @@ public class AppModelStore implements INeoComModelStore {
 	 * 
 	 * @return the single global instance
 	 */
-	public static AppModelStore getSingleton() {
+	public static AppModelStore getSingleton () {
 		if (null == AppModelStore.singleton) {
 			// Initiate the recovery.
 			AppModelStore.initialize();
@@ -67,7 +67,7 @@ public class AppModelStore implements INeoComModelStore {
 	 * Forces the initialization of the Model store from the api list file. Instead reading the data from the
 	 * store file it will process the api list and reload all the character information from scratch.
 	 */
-	public static void initialize() {
+	public static void initialize () {
 		AppModelStore.logger.info(">> [AppModelStore.initialize]");
 		// Create a new from scratch.
 		AppModelStore.singleton = new AppModelStore();
@@ -76,21 +76,21 @@ public class AppModelStore implements INeoComModelStore {
 
 	// - F I E L D - S E C T I O N ............................................................................
 	/** This is the unique list for all registered distinct Logins at the database. */
-	private Hashtable<String, Login>			_loginList				= null;
+	private Hashtable<String, Login> _loginList = null;
 	/**
 	 * This is the string identifier assigned to this session and that relates to an specific set of api keys.
 	 */
-	private Login													_loginIdentifier	= null;
+	private Login _loginIdentifier = null;
 	/** Reference to the current active Character, be it a Pilot or a Corporation */
-	private transient NeoComCharacter			_pilot						= null;
+	private transient NeoComCharacter _pilot = null;
 
 	/** The list of keys related to a login identifier */
 	//	private List<NeoComApiKey>						_neocomApiKeys		= null;
 	//	private List<NeoComCharacter>					_neocomCharacters	= null;
-	private final long										_pilotIdentifier	= -1L;
+	private final long _pilotIdentifier = -1L;
 
-	private final List<ApiKey>						_apiKeys					= null;
-	private final Vector<NeoComCharacter>	_pilotRoaster			= null;
+	private final List<ApiKey> _apiKeys = null;
+	private final Vector<NeoComCharacter> _pilotRoaster = null;
 
 	//	/** Reference to the application menu to make it accessible to any level. */
 	//	private transient Menu									_appMenu					= null;
@@ -109,7 +109,7 @@ public class AppModelStore implements INeoComModelStore {
 	//	private final long											lastCCPAccessTime	= 0;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
-	private AppModelStore() {
+	private AppModelStore () {
 		super();
 	}
 
@@ -119,7 +119,8 @@ public class AppModelStore implements INeoComModelStore {
 	 * This action is done without disturbing the login selected or any other AppModel structure. The list is
 	 * not kept and is calculated each time the call is received.
 	 */
-	public Set<NeoComCharacter> accessCharacterList() {
+	@Override
+	public Set<NeoComCharacter> accessCharacterList () {
 		Hashtable<String, Login> loginList = NeoComMSConnector.getSingleton().getModelStore().accessLoginList();
 		Set<NeoComCharacter> charList = new HashSet<NeoComCharacter>();
 		for (String key : loginList.keySet()) {
@@ -135,7 +136,8 @@ public class AppModelStore implements INeoComModelStore {
 	 * Gets access to the complete list of Logins. If this list is empty we go back to the database to populate
 	 * it. Block any other attempt to get the list while we are loading it.
 	 */
-	public synchronized Hashtable<String, Login> accessLoginList() {
+	@Override
+	public synchronized Hashtable<String, Login> accessLoginList () {
 		if (null == _loginList) _loginList = NeoComMSConnector.getSingleton().getDBConnector().queryAllLogins();
 		return _loginList;
 	}
@@ -147,11 +149,13 @@ public class AppModelStore implements INeoComModelStore {
 	 * 
 	 * @param login
 	 */
-	public Login activateLoginIdentifier(final String loginTarget) {
+	@Override
+	public Login activateLoginIdentifier ( final String loginTarget ) {
 		logger.info(">< [AppModelStore.activateLoginIdentifier] loginTarget: " + loginTarget);
 		if (null == _loginList) _loginList = NeoComMSConnector.getSingleton().getDBConnector().queryAllLogins();
 		// OPTIMIZATION: If the character is already the selected one do nothing.
-		if (null != _loginIdentifier) if (_loginIdentifier.getName().equalsIgnoreCase(loginTarget)) return _loginIdentifier;
+		if (null != _loginIdentifier)
+			if (_loginIdentifier.getName().equalsIgnoreCase(loginTarget)) return _loginIdentifier;
 		for (String key : _loginList.keySet()) {
 			if (_loginList.get(key).getName().equalsIgnoreCase(loginTarget)) {
 				_loginIdentifier = _loginList.get(key);
@@ -161,8 +165,8 @@ public class AppModelStore implements INeoComModelStore {
 			}
 		}
 		// We run through all the login list and did not found the login. Or a problem of an error. Fire exception.
-		throw new NeocomRuntimeException(
-				"RT [AppModelStore.activateLoginIdentifier]>Login " + loginTarget + " not found on current login list.");
+		throw new NeocomRuntimeException("RT [AppModelStore.activateLoginIdentifier]>Login " + loginTarget
+						+ " not found on current login list.");
 	}
 
 	/**
@@ -175,23 +179,27 @@ public class AppModelStore implements INeoComModelStore {
 	 * @param characterid
 	 *          id of the character to activate and select for work with.
 	 */
-	public NeoComCharacter activatePilot(final long characterid) {
+	@Override
+	public NeoComCharacter activatePilot ( final long characterid ) {
 		logger.info(">< [AppModelStore.activatePilot]Id: " + characterid);
 		// If the current pilot is the one searched simplify the search.
 		if ((null != _pilot) && ((_pilot.getCharacterID()) == characterid)) return _pilot;
 		// If the active Login is empty then we do not know where to search.
-		if (null == _loginIdentifier) throw new NeocomRuntimeException(
-				"RT [AppModelStore.activatePilot]> There is no active Login. Cannot search for character.");
+		if (null == _loginIdentifier)
+			throw new NeocomRuntimeException(
+							"RT [AppModelStore.activatePilot]> There is no active Login. Cannot search for character.");
 
 		// Search for character at the active Login.
 		NeoComCharacter hit = _loginIdentifier.searchCharacter(characterid);
-		if (null == hit) throw new RuntimeException(
-				"RT [AppModelStore.activatePilot]>Pilot with id: " + characterid + " not located at active Login.");
+		if (null == hit)
+			throw new RuntimeException("RT [AppModelStore.activatePilot]>Pilot with id: " + characterid
+							+ " not located at active Login.");
 		_pilot = hit;
 		return hit;
 	}
 
-	public NeoComCharacter activatePilot(final String characterstring) {
+	@Override
+	public NeoComCharacter activatePilot ( final String characterstring ) {
 		return activatePilot(Long.valueOf(characterstring).longValue());
 	}
 
@@ -203,15 +211,16 @@ public class AppModelStore implements INeoComModelStore {
 	//		return _neocomApiKeys;
 	//	}
 
-	public void clearLoginList() {
+	public void clearLoginList () {
 		AppModelStore.logger.info(">< [AppModelStore.clearLoginList]");
 		_loginList = null;
 	}
 
-	public NeoComCharacter getActiveCharacter() {
+	@Override
+	public NeoComCharacter getActiveCharacter () {
 		if (null != _pilot) return _pilot;
 		throw new NeocomRuntimeException(
-				"RT [AppModelStore.getCurrentPilot]>There is not default Character defined. Cannot complete the request.");
+						"RT [AppModelStore.getCurrentPilot]>There is not default Character defined. Cannot complete the request.");
 	}
 
 	/**
@@ -222,7 +231,8 @@ public class AppModelStore implements INeoComModelStore {
 	 * @return
 	 */
 	@Deprecated
-	public List<NeoComCharacter> getActiveCharacters() {
+	@Override
+	public List<NeoComCharacter> getActiveCharacters () {
 		if (null == _loginIdentifier)
 			return new Vector<NeoComCharacter>();
 		else
@@ -230,16 +240,17 @@ public class AppModelStore implements INeoComModelStore {
 	}
 
 	@Override
-	public Login getActiveLogin() {
+	public Login getActiveLogin () {
 		if (null != _loginIdentifier) return _loginIdentifier;
 		throw new NeocomRuntimeException(
-				"RT [AppModelStore.getLoginIdentifier]>Login Identifier not defined. Setting to default if possible.");
+						"RT [AppModelStore.getLoginIdentifier]>Login Identifier not defined. Setting to default if possible.");
 	}
 
-	public String getActiveLoginName() {
+	@Override
+	public String getActiveLoginName () {
 		if (null != _loginIdentifier) return _loginIdentifier.getName();
 		throw new NeocomRuntimeException(
-				"RT [AppModelStore.getLoginIdentifier]>Login Identifier not defined. Setting to default if possible.");
+						"RT [AppModelStore.getLoginIdentifier]>Login Identifier not defined. Setting to default if possible.");
 	}
 
 	/**
@@ -248,19 +259,21 @@ public class AppModelStore implements INeoComModelStore {
 	 * a new one.
 	 */
 	@Deprecated
-	public NeoComCharacter getCurrentPilot() {
+	@Override
+	public NeoComCharacter getCurrentPilot () {
 		if (null != _pilot) return _pilot;
 		throw new NeocomRuntimeException(
-				"RT [AppModelStore.getCurrentPilot]>There is not default Character defined. Cannot complete the request.");
+						"RT [AppModelStore.getCurrentPilot]>There is not default Character defined. Cannot complete the request.");
 	}
 
 	@Deprecated
-	public String getLoginIdentifier() {
+	@Override
+	public String getLoginIdentifier () {
 		return getActiveLoginName();
 	}
 
 	@Deprecated
-	public NeoComCharacter getPilot() {
+	public NeoComCharacter getPilot () {
 		return this.getCurrentPilot();
 	}
 

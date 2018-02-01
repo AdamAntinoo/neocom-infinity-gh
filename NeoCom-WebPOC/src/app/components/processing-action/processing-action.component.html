@@ -1,0 +1,37 @@
+<div class="processing-result-name">
+  <span style="color: white;">Target ► </span>
+  <span>{{node.targetItem.name}}</span>
+</div>
+<div class="neocom-panel" id="content2">
+  <table class="neocom-panel-container" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="45%" class="processing-inputs">
+        <div class="action-value">
+          <span>Value:</span>
+          <span class="glow-white">{{getInputValue() | number:'1.0-0'}} ISK</span>
+        </div>
+        <div *ngFor="let node of getInputs()">
+          <neocom-resource *ngIf="node.jsonClass == 'Resource'" [node]="node"></neocom-resource>
+        </div>
+      </td>
+      <td width="10%">
+        <div class="processing-runs-box">
+          <span class="processing-runs">{{node.possibleCycles}}</span>
+        </div>
+      </td>
+      <td width="45%" class="processing-inputs">
+        <div class="action-value">
+          <span>Value:</span>
+          <span class="glow-white">{{getOutputValue() | number:'1.0-0'}} ISK</span>
+        </div>
+        <div *ngFor="let node of getOutputs()">
+          <neocom-resource *ngIf="node.jsonClass == 'Resource'" [node]="node"></neocom-resource>
+        </div>
+      </td>
+      <!-- <td width="5%" class="neocom-arrow-box">
+        <img class="neocom-arrow" *ngIf="!node.expanded " src="/assets/icons/arrowleft.png ">
+        <img class="neocom-arrow" *ngIf="node.expanded " src="/assets/icons/arrowright.png ">
+      </td> -->
+    </tr>
+  </table>
+</div>

@@ -32,7 +32,6 @@ import org.dimensinfin.eveonline.neocom.model.NeoComBlueprint;
 import org.dimensinfin.eveonline.neocom.model.Property;
 import org.dimensinfin.eveonline.neocom.model.TimeStamp;
 import org.dimensinfin.eveonline.neocom.planetary.PlanetaryResource;
-import org.dimensinfin.eveonline.neocom.planetary.ResourceList;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.stmt.PreparedQuery;
@@ -46,27 +45,27 @@ import com.j256.ormlite.support.DatabaseConnection;
 //@CacheConfig(cacheNames = "MarketData")
 public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoComModelDatabase {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger												logger									= Logger.getLogger("SpringDatabaseConnector");
+	private static Logger logger = Logger.getLogger("SpringDatabaseConnector");
 
 	// - F I E L D   I D E N T I F I E R S
-	private static int													STATIONTYPEID_COLINDEX	= 1;
+	private static int STATIONTYPEID_COLINDEX = 1;
 
 	// - S Q L   C O M M A N D S
-	private static final String									CCPDATABASE_URL					= "jdbc:sqlite:src/main/resources/eve.db";
+	private static final String CCPDATABASE_URL = "jdbc:sqlite:src/main/resources/eve.db";
 	//
-	private static final String									SELECT_TIER2_INPUTS			= "SELECT pstmt.TYPEid, pstmt.quantity"
-			+ " FROM  planetSchematicsTypeMap pstms, planetSchematicsTypeMap pstmt" + " WHERE pstms.typeID = ?"
-			+ " AND   pstms.isInput = 0" + " AND   pstmt.schematicID = pstms.schematicID" + " AND   pstmT.isInput = 1";
+	private static final String SELECT_TIER2_INPUTS = "SELECT pstmt.TYPEid, pstmt.quantity"
+					+ " FROM  planetSchematicsTypeMap pstms, planetSchematicsTypeMap pstmt" + " WHERE pstms.typeID = ?"
+					+ " AND   pstms.isInput = 0" + " AND   pstmt.schematicID = pstms.schematicID" + " AND   pstmT.isInput = 1";
 
 	//private static final String							DATABASE_URL							= "jdbc:sqlite:D:\\Development\\WorkStage\\ProjectsAngular\\NeoCom\\src\\main\\resources\\eve.db";
 	//private static final String							DATABASE_URL							= "jdbc:sqlite:D:\\Development\\ProjectsAngular\\NeoCom\\src\\main\\resources\\eve.db";
-	private static final String									SELECT_ITEM_BYID				= "SELECT it.typeID AS typeID, it.typeName AS typeName"
-			+ " , ig.groupName AS groupName" + " , ic.categoryName AS categoryName" + " , it.basePrice AS basePrice"
-			+ " , it.volume AS volume" + " , IFNULL(img.metaGroupName, " + '"' + "NOTECH" + '"' + ") AS Tech"
-			+ " FROM invTypes it" + " LEFT OUTER JOIN invGroups ig ON ig.groupID = it.groupID"
-			+ " LEFT OUTER JOIN invCategories ic ON ic.categoryID = ig.categoryID"
-			+ " LEFT OUTER JOIN invMetaTypes imt ON imt.typeID = it.typeID"
-			+ " LEFT OUTER JOIN invMetaGroups img ON img.metaGroupID = imt.metaGroupID" + " WHERE it.typeID = ?";
+	private static final String SELECT_ITEM_BYID = "SELECT it.typeID AS typeID, it.typeName AS typeName"
+					+ " , ig.groupName AS groupName" + " , ic.categoryName AS categoryName" + " , it.basePrice AS basePrice"
+					+ " , it.volume AS volume" + " , IFNULL(img.metaGroupName, " + '"' + "NOTECH" + '"' + ") AS Tech"
+					+ " FROM invTypes it" + " LEFT OUTER JOIN invGroups ig ON ig.groupID = it.groupID"
+					+ " LEFT OUTER JOIN invCategories ic ON ic.categoryID = ig.categoryID"
+					+ " LEFT OUTER JOIN invMetaTypes imt ON imt.typeID = it.typeID"
+					+ " LEFT OUTER JOIN invMetaGroups img ON img.metaGroupID = imt.metaGroupID" + " WHERE it.typeID = ?";
 
 	//	private static final String									SELECT_LOCATIONBYID				= "SELECT md.itemID AS locationID, md.typeID AS typeID, md.itemName AS locationName, md.security AS security"
 	//			+ " , IFNULL(md.solarSystemID, -1) AS systemID, ms.solarSystemName AS system"
@@ -93,7 +92,7 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 	//			+ " AND it.typeID = itm.materialTypeID" + " AND ito.typeID = itm.typeID" + " ORDER BY itm.materialTypeID";
 	//
 	//	private static final String									INDUSTRYACTIVITYMATERIALS	= "SELECT materialTypeID, quantity, consume FROM industryActivityMaterials WHERE typeID = ? AND activityID = 8";
-	private static final String									STATIONTYPE							= "SELECT stationTypeID FROM staStations WHERE stationID = ?";
+	private static final String STATIONTYPE = "SELECT stationTypeID FROM staStations WHERE stationID = ?";
 	//	private static final String									JOB_COMPLETION_TIME				= "SELECT typeID, time FROM industryActivity WHERE typeID = ? AND activityID = ?";
 	//	private static final String									CHECK_INVENTION						= "SELECT count(*) AS counter"
 	//			+ " FROM industryActivityProducts iap" + " WHERE iap.typeID = ?" + " AND iap.activityID = 8";
@@ -110,15 +109,15 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 	//			+ " dgmTypeAttributes.typeID = invTypeReactions.typeID";
 
 	// - F I E L D - S E C T I O N ............................................................................
-	private String															databaseLink						= "jdbc:sqlite:src/main/resourcesneocomdata.db";
-	private int																	dbVersion								= 10;
-	private NeocomDBHelper											neocomDBHelper					= null;
-	private Connection													ccpDatabase							= null;
-	private final Hashtable<Integer, EveItem>		itemCache								= new Hashtable<Integer, EveItem>();
-	private final Hashtable<Long, NeoComAsset>	containerCache					= new Hashtable<Long, NeoComAsset>();;
+	private String databaseLink = "jdbc:sqlite:src/main/resourcesneocomdata.db";
+	private int dbVersion = 10;
+	private NeocomDBHelper neocomDBHelper = null;
+	private Connection ccpDatabase = null;
+	private final Hashtable<Integer, EveItem> itemCache = new Hashtable<Integer, EveItem>();
+	private final Hashtable<Long, NeoComAsset> containerCache = new Hashtable<Long, NeoComAsset>();;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
-	public SpringDatabaseConnector(final String dblocation, final String dbname, final String dbversion) {
+	public SpringDatabaseConnector ( final String dblocation, final String dbname, final String dbversion ) {
 		if ((null != dblocation) && (null != dbname)) {
 			databaseLink = dblocation + dbname;
 		}
@@ -172,17 +171,17 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 	 * owner identifier. Those records are from older downloads and have to be removed to avoid merging with the
 	 * new download.
 	 */
-	public synchronized void clearInvalidRecords(final long pilotid) {
+	@Override
+	public synchronized void clearInvalidRecords ( final long pilotid ) {
 		try {
 			ConnectionSource conn = neocomDBHelper.getConnectionSource();
 			DatabaseConnection database = conn.getReadWriteConnection();
 			synchronized (database) {
 				int rowCount = database.delete("DELETE FROM Assets WHERE ownerID=" + (pilotid * -1), null, null);
-				logger
-						.info("-- [NeocomDatabaseConnector.clearInvalidAssets]> rows deleted ASSETS [OWNERID = -1] - " + rowCount);
+				logger.info("-- [NeocomDatabaseConnector.clearInvalidAssets]> rows deleted ASSETS [OWNERID = -1] - " + rowCount);
 				rowCount = database.delete("DELETE FROM Blueprints WHERE ownerID=" + (pilotid * -1), null, null);
-				logger.info(
-						"-- [NeocomDatabaseConnector.clearInvalidAssets]> rows deleted BLUEPRINTS [OWNERID = -1] - " + rowCount);
+				logger.info("-- [NeocomDatabaseConnector.clearInvalidAssets]> rows deleted BLUEPRINTS [OWNERID = -1] - "
+								+ rowCount);
 			}
 		} catch (final SQLException ex) {
 			logger.warning("W> Problem clearing invalid assets. " + ex.getMessage());
@@ -194,12 +193,13 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 	//				"Application connector not defined. Functionality 'checkExpiration' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
 	//	}
 
-	public Dao<ApiKey, String> getApiKeysDao() throws SQLException {
+	@Override
+	public Dao<ApiKey, String> getApiKeysDao () throws SQLException {
 		return this.getNeocomDBHelper().getApiKeysDao();
 	}
 
 	@Deprecated
-	public List<ApiKey> getApiList4Login(final String login) {
+	public List<ApiKey> getApiList4Login ( final String login ) {
 		logger.info(">> [AndroidDatabaseConnector.getApiList4Login] login=" + login);
 		// Access the database to get the list of keys. From that point on we can retrieve the characters easily.
 		List<ApiKey> apilist = null;
@@ -217,52 +217,63 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 		return apilist;
 	}
 
-	public Dao<NeoComAsset, String> getAssetDAO() throws SQLException {
+	@Override
+	public Dao<NeoComAsset, String> getAssetDAO () throws SQLException {
 		return this.getNeocomDBHelper().getAssetDAO();
 	}
 
-	public Dao<NeoComBlueprint, String> getBlueprintDAO() throws SQLException {
+	@Override
+	public Dao<NeoComBlueprint, String> getBlueprintDAO () throws SQLException {
 		return this.getNeocomDBHelper().getBlueprintDAO();
 	}
 
-	public Dao<Job, String> getJobDAO() throws SQLException {
+	@Override
+	public Dao<Job, String> getJobDAO () throws SQLException {
 		return this.getNeocomDBHelper().getJobDAO();
 	}
 
-	public Dao<EveLocation, String> getLocationDAO() throws SQLException {
+	@Override
+	public Dao<EveLocation, String> getLocationDAO () throws SQLException {
 		return this.getNeocomDBHelper().getLocationDAO();
 	}
 
-	public Dao<NeoComMarketOrder, String> getMarketOrderDAO() throws SQLException {
+	@Override
+	public Dao<NeoComMarketOrder, String> getMarketOrderDAO () throws SQLException {
 		return this.getNeocomDBHelper().getMarketOrderDAO();
 	}
 
-	public Dao<PlanetaryResource, String> getPlanetaryResourceDao() throws SQLException {
+	@Override
+	public Dao<PlanetaryResource, String> getPlanetaryResourceDao () throws SQLException {
 		return this.getNeocomDBHelper().getPlanetaryResourceDao();
 	}
 
-	public Dao<Property, String> getPropertyDAO() throws SQLException {
+	@Override
+	public Dao<Property, String> getPropertyDAO () throws SQLException {
 		return this.getNeocomDBHelper().getPropertyDAO();
 	}
 
-	public Dao<ResourceList, String> getResourceListDao() throws SQLException {
-		return this.getNeocomDBHelper().getResourceListDao();
-	}
+	//	@Override
+	//	public Dao<ResourceList, String> getResourceListDao () throws SQLException {
+	//		return this.getNeocomDBHelper().getResourceListDao();
+	//	}
 
-	public Dao<TimeStamp, String> getTimeStampDAO() throws SQLException {
+	@Override
+	public Dao<TimeStamp, String> getTimeStampDAO () throws SQLException {
 		return this.getNeocomDBHelper().getTimeStampDAO();
 	}
 
-	public Dao<DatabaseVersion, String> getVersionDao() throws SQLException {
+	@Override
+	public Dao<DatabaseVersion, String> getVersionDao () throws SQLException {
 		return this.getNeocomDBHelper().getVersionDao();
 	}
 
-	public void loadSeedData() {
+	@Override
+	public void loadSeedData () {
 		neocomDBHelper.loadSeedData();
 	}
 
 	@Deprecated
-	public boolean openCCPDataBase() {
+	public boolean openCCPDataBase () {
 		if (null == ccpDatabase) {
 			try {
 				Class.forName("org.sqlite.JDBC");
@@ -281,13 +292,13 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 	 * asset is located. That list can represent known Locations, Assets and unknown locations that should
 	 * represent other Corporation assets like the Customs or not listed Space Structures.
 	 */
-	public List<NeoComAsset> queryAllAssetContainers(final long identifier) {
+	public List<NeoComAsset> queryAllAssetContainers ( final long identifier ) {
 		// Get access to one assets with a distinct location. Discard the rest of the data and only process the Location id
 		List<NeoComAsset> uniqueContainers = new Vector<NeoComAsset>();
 		try {
 			Dao<NeoComAsset, String> assetDao = this.getAssetDAO();
 			QueryBuilder<NeoComAsset, String> queryBuilder = assetDao.queryBuilder().distinct()
-					.selectColumns("parentAssetID");
+							.selectColumns("parentAssetID");
 			Where<NeoComAsset, String> where = queryBuilder.where();
 			where.eq("ownerID", identifier);
 			PreparedQuery<NeoComAsset> preparedQuery = queryBuilder.prepare();
@@ -310,7 +321,8 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 	 * 
 	 * @return
 	 */
-	public List<NeoComAsset> queryAllAssetLocations(final long identifier) {
+	@Override
+	public List<NeoComAsset> queryAllAssetLocations ( final long identifier ) {
 		// Get access to one assets with a distinct location. Discard the rest of the data and only process the Location id
 		List<NeoComAsset> uniqueLocations = new Vector<NeoComAsset>();
 		try {
@@ -333,7 +345,7 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 	 * list and this is found to be empty. While we fill it, block any other call.
 	 */
 	@Override
-	public synchronized Hashtable<String, Login> queryAllLogins() {
+	public synchronized Hashtable<String, Login> queryAllLogins () {
 		// Get access to all ApiKey registers
 		List<ApiKey> keyList = new Vector<ApiKey>();
 		try {
@@ -361,7 +373,7 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 		return loginList;
 	}
 
-	public List<NeoComAsset> queryContainerContents(final long identifier) {
+	public List<NeoComAsset> queryContainerContents ( final long identifier ) {
 		// Get access to one assets with a distinct location. Discard the rest of the data and only process the Location id
 		List<NeoComAsset> contents = new Vector<NeoComAsset>();
 		try {
@@ -375,12 +387,12 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 		} catch (java.sql.SQLException sqle) {
 			sqle.printStackTrace();
 			logger.warning("W [SpringDatabaseConnector.queryContainerContents]> Exception reading Location contents"
-					+ sqle.getMessage());
+							+ sqle.getMessage());
 		}
 		return contents;
 	}
 
-	public List<NeoComAsset> queryLocationPlanetaryContents(final long identifier) {
+	public List<NeoComAsset> queryLocationPlanetaryContents ( final long identifier ) {
 		// Get access to one assets with a distinct location. Discard the rest of the data and only process the Location id
 		List<NeoComAsset> contents = new Vector<NeoComAsset>();
 		try {
@@ -394,8 +406,8 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 			contents = assetDao.query(preparedQuery);
 		} catch (java.sql.SQLException sqle) {
 			sqle.printStackTrace();
-			logger.warning(
-					"W [SpringDatabaseConnector.queryLocationContents]> Exception reading Location contents" + sqle.getMessage());
+			logger.warning("W [SpringDatabaseConnector.queryLocationContents]> Exception reading Location contents"
+							+ sqle.getMessage());
 		}
 		return contents;
 	}
@@ -405,36 +417,37 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 	 * completes the download and the assignment of the resources to the character without interrupting the
 	 * processing of data by the application.
 	 */
-	public synchronized void replaceAssets(final long characterID) {
+	@Override
+	public synchronized void replaceAssets ( final long characterID ) {
 		try {
 			ConnectionSource conn = neocomDBHelper.getConnectionSource();
 			DatabaseConnection database = conn.getReadWriteConnection();
 			synchronized (database) {
 				int rowCount = database.delete("DELETE FROM Assets WHERE ownerID=" + characterID, null, null);
-				logger.info("-- [NeocomDatabaseConnector.replaceAssets]> rows deleted ASSETS [OWNERID = " + characterID + "] - "
-						+ rowCount);
-				rowCount = database.update(
-						"UPDATE Assets " + " SET ownerID=" + characterID + " WHERE ownerID=" + (characterID * -1), null, null);
+				logger.info("-- [NeocomDatabaseConnector.replaceAssets]> rows deleted ASSETS [OWNERID = " + characterID
+								+ "] - " + rowCount);
+				rowCount = database.update("UPDATE Assets " + " SET ownerID=" + characterID + " WHERE ownerID="
+								+ (characterID * -1), null, null);
 				logger.info("-- [NeocomDatabaseConnector.replaceAssets]> rows replaced ASSETS [OWNERID = " + characterID
-						+ "] - " + rowCount);
+								+ "] - " + rowCount);
 			}
 		} catch (final SQLException ex) {
 			logger.warning("W> Problem clearing invalid assets. " + ex.getMessage());
 		}
 	}
 
-	public synchronized void replaceBlueprints(final long characterID) {
+	public synchronized void replaceBlueprints ( final long characterID ) {
 		try {
 			ConnectionSource conn = neocomDBHelper.getConnectionSource();
 			DatabaseConnection database = conn.getReadWriteConnection();
 			synchronized (database) {
 				int rowCount = database.delete("DELETE FROM Blueprints WHERE ownerID=" + characterID, null, null);
 				logger.info("-- [NeocomDatabaseConnector.replaceAssets]> rows deleted BLUEPRINTS [OWNERID = " + characterID
-						+ "] - " + rowCount);
-				rowCount = database
-						.update("UPDATE FROM Blueprints WHERE ownerID=" + characterID + " SET ownerID=" + characterID, null, null);
+								+ "] - " + rowCount);
+				rowCount = database.update("UPDATE FROM Blueprints WHERE ownerID=" + characterID + " SET ownerID="
+								+ characterID, null, null);
 				logger.info("-- [NeocomDatabaseConnector.replaceAssets]> rows replaces BLUEPRINTS [OWNERID = " + characterID
-						+ "] - " + rowCount);
+								+ "] - " + rowCount);
 			}
 		} catch (final SQLException ex) {
 			logger.warning("W> Problem clearing invalid assets. " + ex.getMessage());
@@ -448,12 +461,14 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 	 * @param characterID
 	 * @return
 	 */
-	public ArrayList<NeoComAsset> searchAllBlueprintAssets(final long characterID) {
+	@Override
+	public ArrayList<NeoComAsset> searchAllBlueprintAssets ( final long characterID ) {
 		// Select assets for each one of the Planetary categories.
 		ArrayList<NeoComAsset> assetList = new ArrayList<NeoComAsset>();
 		assetList.addAll(this.searchAsset4Category(characterID, "Blueprint"));
 		return assetList;
 	}
+
 	//	/**
 	//	 * Gets the list of assets of a select Category
 	//	 * 
@@ -479,7 +494,8 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 	//		return (ArrayList<NeoComAsset>) assetList;
 	//	}
 
-	public ArrayList<NeoComAsset> searchAsset4Type(final long characterID, final int typeID) {
+	@Override
+	public ArrayList<NeoComAsset> searchAsset4Type ( final long characterID, final int typeID ) {
 		// Select assets for the owner and with an specific type id.
 		List<NeoComAsset> assetList = new ArrayList<NeoComAsset>();
 		try {
@@ -497,7 +513,8 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 		return (ArrayList<NeoComAsset>) assetList;
 	}
 
-	public NeoComAsset searchAssetByID(final long assetID) {
+	@Override
+	public NeoComAsset searchAssetByID ( final long assetID ) {
 		// search for the asset on the cache. Usually searching for containers.
 		NeoComAsset hit = containerCache.get(assetID);
 		if (null == hit) {
@@ -521,7 +538,8 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 		return hit;
 	}
 
-	public ArrayList<NeoComAsset> searchAssetContainedAt(final long characterID, final long containerId) {
+	@Override
+	public ArrayList<NeoComAsset> searchAssetContainedAt ( final long characterID, final long containerId ) {
 		// Select assets for the owner and with an specific type id.
 		List<NeoComAsset> assetList = new ArrayList<NeoComAsset>();
 		try {
@@ -539,9 +557,9 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 		return (ArrayList<NeoComAsset>) assetList;
 	}
 
-	public int searchBlueprint4Module(final int moduleID) {
+	public int searchBlueprint4Module ( final int moduleID ) {
 		throw new RuntimeException(
-				"Application connector not defined. Functionality 'searchBlueprint4Module' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
+						"Application connector not defined. Functionality 'searchBlueprint4Module' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
 	}
 
 	/**
@@ -552,7 +570,7 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 	 * @return
 	 */
 	@Deprecated
-	public Vector<Integer> searchInputResources(final int typeID) {
+	public Vector<Integer> searchInputResources ( final int typeID ) {
 		Vector<Integer> result = new Vector<Integer>();
 		PreparedStatement prepStmt = null;
 		ResultSet cursor = null;
@@ -586,7 +604,7 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 	 * different treatment and also we check for the availability of the item at the current cache if
 	 * implemented.
 	 */
-	public synchronized EveItem searchItembyID(final int typeID) {
+	public synchronized EveItem searchItembyID ( final int typeID ) {
 		// Search the item on the cache.
 		EveItem hit = itemCache.get(typeID);
 		if (null == hit) {
@@ -657,7 +675,7 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 	 * @param stationID
 	 * @return
 	 */
-	public int searchStationType(final long stationID) {
+	public int searchStationType ( final long stationID ) {
 		int stationTypeID = 1529;
 		NeoComMSConnector.getSingleton().startChrono();
 		PreparedStatement prepStmt = null;
@@ -683,20 +701,19 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 				ex.printStackTrace();
 			}
 		}
-		logger.info(
-				"~~ Time lapse for [SELECT STATIONTYPEID " + stationID + "] " + NeoComMSConnector.getSingleton().timeLapse());
+		logger.info("~~ Time lapse for [SELECT STATIONTYPEID " + stationID + "] "
+						+ NeoComMSConnector.getSingleton().timeLapse());
 		return stationTypeID;
 	}
 
-	private Connection getCCPDatabase() {
+	private Connection getCCPDatabase () {
 		if (null == ccpDatabase) openCCPDataBase();
 		return ccpDatabase;
 	}
 
-	private NeocomDBHelper getNeocomDBHelper() {
+	private NeocomDBHelper getNeocomDBHelper () {
 		if (null == neocomDBHelper) {
-			logger.warning(
-					"W> [StringDatabaseConnector.getNeocomDBHelper]> helper not found. Creating a new one with default database.");
+			logger.warning("W> [StringDatabaseConnector.getNeocomDBHelper]> helper not found. Creating a new one with default database.");
 			neocomDBHelper = new NeocomDBHelper(databaseLink, dbVersion);
 		}
 		return neocomDBHelper;

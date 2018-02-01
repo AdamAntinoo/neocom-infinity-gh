@@ -1,0 +1,6 @@
+<div style="margin-top: 2px;" [ngClass]="{'solid-red': isRed(),'solid-orange': isOrange(),'solid-yellow': isYellow(),'solid-blue': isBlue(),'solid-green': isGreen(),'empty_marker': isEmpty()}">
+  <span>&nbsp;</span>
+  <span class="empty-content elemental-ff glow-white" *ngIf="isEmpty()">EMPTY</span>
+  <neocom-spinner-central [configuration]="{title:'Downloading Location Assets',subtitle:''}" *ngIf="isSpinner()"></neocom-spinner-central>
+  <span>&nbsp;</span>
+</div>

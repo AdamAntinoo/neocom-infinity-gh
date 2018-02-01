@@ -26,6 +26,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
 // - CLASS IMPLEMENTATION ...................................................................................
 @RestController
 public class AssetsManagerController {
@@ -48,10 +52,10 @@ public class AssetsManagerController {
 	 */
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/login/{login}/pilot/{identifier}/assetsmanager/container/{containerid}/downloadcontents", method = RequestMethod.GET, produces = "application/json")
-	public List<?> planetaryContainerContents(@PathVariable final String login, @PathVariable final String identifier,
-			@PathVariable final String containerid) {
+	public List<?> planetaryContainerContents ( @PathVariable final String login, @PathVariable final String identifier,
+					@PathVariable final String containerid ) {
 		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/login/{" + login + "}/pilot/{" + identifier
-				+ "}/assetsmanager/container/{" + containerid + "}/downloadcontents");
+						+ "}/assetsmanager/container/{" + containerid + "}/downloadcontents");
 		logger.info(">> [AssetsManagerController.planetaryContainerContents]");
 		try {
 			// Initialize the model data hierarchies.
@@ -96,10 +100,10 @@ public class AssetsManagerController {
 
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/login/{login}/pilot/{identifier}/assetsmanager/location/{locationid}/downloadcontents", method = RequestMethod.GET, produces = "application/json")
-	public List<NeoComAsset> planetaryLocationContents(@PathVariable final String login,
-			@PathVariable final String identifier, @PathVariable final String locationid) {
+	public String planetaryLocationContents ( @PathVariable final String login, @PathVariable final String identifier,
+					@PathVariable final String locationid ) {
 		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/login/{" + login + "}/pilot/{" + identifier
-				+ "}/assetsmanager/location/{" + locationid + "}/downloadcontents");
+						+ "}/assetsmanager/location/{" + locationid + "}/downloadcontents");
 		logger.info(">> [AssetsManagerController.planetaryLocationOptimization]");
 		//			Vector<NeoComAsset> locationContents = new Vector<NeoComAsset>();
 		try {
@@ -112,10 +116,17 @@ public class AssetsManagerController {
 			ExtendedLocation newloc = new ExtendedLocation(pilot, location);
 			newloc.setContentManager(new DefaultAssetsContentManager(newloc));
 			List<NeoComAsset> contents = newloc.downloadContents();
-			return contents;
-		} catch (RuntimeException rtx) {
+
+			// Use my own serailization control to return the data to generate exactly what I want.
+			ObjectMapper mapper = new ObjectMapper();
+			mapper.enable(SerializationFeature.INDENT_OUTPUT);
+			final String contentsSerialized = mapper.writeValueAsString(contents);
+
+			return contentsSerialized;
+		} catch (RuntimeException | JsonProcessingException rtx) {
 			rtx.printStackTrace();
-			return new Vector<NeoComAsset>();
+			return "{errorMessage: 'No contents'}";
+			//			return new Vector<NeoComAsset>();
 		} finally {
 			logger.info("<< [AssetsManagerController.planetaryLocationContents]");
 		}

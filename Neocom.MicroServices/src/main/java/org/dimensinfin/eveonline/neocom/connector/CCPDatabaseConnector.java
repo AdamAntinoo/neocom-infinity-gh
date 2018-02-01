@@ -34,80 +34,83 @@ import com.j256.ormlite.stmt.Where;
 // - CLASS IMPLEMENTATION ...................................................................................
 public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger												logger																	= Logger
-			.getLogger("CCPDatabaseConnector");
-	private static final String									CCPDATABASE_URL													= "jdbc:sqlite:src/main/resources/eve.db";
-	private static AccessStatistics							locationsCacheStatistics								= new AccessStatistics();
+	private static Logger logger = Logger.getLogger("CCPDatabaseConnector");
+	private static final String CCPDATABASE_URL = "jdbc:sqlite:src/main/resources/eve.db";
+	private static AccessStatistics locationsCacheStatistics = new AccessStatistics();
 
 	// - F I E L D   I N D E X   D E F I N I T I O N S
-	private static int													STATIONTYPEID_COLINDEX									= 1;
-	private static int													LOCATIONBYID_SYSTEMID_COLINDEX					= 5;
-	private static int													LOCATIONBYID_SYSTEM_COLINDEX						= 6;
-	private static int													LOCATIONBYID_LOCATIONNAME_COLINDEX			= 3;
-	private static int													LOCATIONBYID_CONSTELLATIONID_COLINDEX		= 7;
-	private static int													LOCATIONBYID_CONSTELLATION_COLINDEX			= 8;
-	private static int													LOCATIONBYID_REGIONID_COLINDEX					= 9;
-	private static int													LOCATIONBYID_REGION_COLINDEX						= 10;
-	private static int													LOCATIONBYID_TYPEID_COLINDEX						= 2;
-	private static int													LOCATIONBYID_LOCATIONID_COLINDEX				= 1;
-	private static int													LOCATIONBYID_SECURITY_COLINDEX					= 4;
-	private static int													MODULE4BLUEPRINT_PRODUCTTYPEID_COLINDEX	= 1;
-	private static int													TECH4BLUEPRINT_METAGROUPID_COLINDEX			= 3;
-	private static int													REFINEORE_MATERIALTYPEID_COLINDEX				= 1;
-	private static int													REFINEORE_QUANTITY_COLINDEX							= 2;
-	private static int													REFINEORE_PORTIONSIZE_COLINDEX					= 4;
-	private static int													BLUEPRINT4MODULE_TYPEID_COLINDEX				= 1;
+	private static int STATIONTYPEID_COLINDEX = 1;
+	private static int LOCATIONBYID_SYSTEMID_COLINDEX = 5;
+	private static int LOCATIONBYID_SYSTEM_COLINDEX = 6;
+	private static int LOCATIONBYID_LOCATIONNAME_COLINDEX = 3;
+	private static int LOCATIONBYID_CONSTELLATIONID_COLINDEX = 7;
+	private static int LOCATIONBYID_CONSTELLATION_COLINDEX = 8;
+	private static int LOCATIONBYID_REGIONID_COLINDEX = 9;
+	private static int LOCATIONBYID_REGION_COLINDEX = 10;
+	private static int LOCATIONBYID_TYPEID_COLINDEX = 2;
+	private static int LOCATIONBYID_LOCATIONID_COLINDEX = 1;
+	private static int LOCATIONBYID_SECURITY_COLINDEX = 4;
+	private static int MODULE4BLUEPRINT_PRODUCTTYPEID_COLINDEX = 1;
+	private static int TECH4BLUEPRINT_METAGROUPID_COLINDEX = 3;
+	private static int REFINEORE_MATERIALTYPEID_COLINDEX = 1;
+	private static int REFINEORE_QUANTITY_COLINDEX = 2;
+	private static int REFINEORE_PORTIONSIZE_COLINDEX = 4;
+	private static int BLUEPRINT4MODULE_TYPEID_COLINDEX = 1;
 
 	// - S Q L   C O M M A N D S
-	private static final String									SELECT_ITEM_BYID												= "SELECT it.typeID AS typeID, it.typeName AS typeName"
-			+ " , ig.groupName AS groupName" + " , ic.categoryName AS categoryName" + " , it.basePrice AS basePrice"
-			+ " , it.volume AS volume" + " , IFNULL(img.metaGroupName, " + '"' + "NOTECH" + '"' + ") AS Tech"
-			+ " FROM invTypes it" + " LEFT OUTER JOIN invGroups ig ON ig.groupID = it.groupID"
-			+ " LEFT OUTER JOIN invCategories ic ON ic.categoryID = ig.categoryID"
-			+ " LEFT OUTER JOIN invMetaTypes imt ON imt.typeID = it.typeID"
-			+ " LEFT OUTER JOIN invMetaGroups img ON img.metaGroupID = imt.metaGroupID" + " WHERE it.typeID = ?";
-	private static final String									SELECT_LOCATIONBYID											= "SELECT md.itemID AS locationID, md.typeID AS typeID, md.itemName AS locationName, md.security AS security"
-			+ " , IFNULL(md.solarSystemID, -1) AS systemID, ms.solarSystemName AS system"
-			+ " , IFNULL(md.constellationID, -1) AS constellationID, mc.constellationName AS constellation"
-			+ " , IFNULL(md.regionID, -1) AS regionID, mr.regionName AS region" + " FROM mapDenormalize md"
-			+ " LEFT OUTER JOIN mapRegions mr ON mr.regionID = md.regionID"
-			+ " LEFT OUTER JOIN mapConstellations mc ON mc.constellationID = md.constellationID"
-			+ " LEFT OUTER JOIN mapSolarSystems ms ON ms.solarSystemID = md.solarSystemID" + " WHERE itemID = ?";
-	private static final String									SELECT_LOCATIONBYSYSTEM									= "SELECT solarSystemID FROM mapSolarSystems"
-			+ " WHERE solarSystemName = ?";
-	private static final String									SELECT_STATIONTYPE											= "SELECT stationTypeID FROM staStations WHERE stationID = ?";
-	private static final String									SELECT_MODULE4BLUEPRINT									= "SELECT productTypeID FROM industryActivityProducts BT"
-			+ " WHERE typeID = ? AND activityID = 1";
-	private static final String									SELECT_TECH4BLUEPRINT										= "SELECT iap.typeID, it.typeName, imt.metaGroupID, img.metaGroupName"
-			+ " FROM industryActivityProducts iap, invTypes it, invMetaTypes imt, invMetaGroups img" + " WHERE it.typeID =?"
-			+ " AND iap.typeID = it.typeID" + " AND imt.typeID = productTypeID" + " AND img.metaGroupID = imt.metaGroupID"
-			+ " AND iap.activityID = 1";
-	private static final String									SELECT_REFININGASTEROID									= "SELECT itm.materialTypeID AS materialTypeID, itm.quantity AS qty"
-			+ " , it.typeName AS materialName" + " , ito.portionSize AS portionSize"
-			+ " FROM invTypeMaterials itm, invTypes it, invTypes ito" + " WHERE itm.typeID = ?"
-			+ " AND it.typeID = itm.materialTypeID" + " AND ito.typeID = itm.typeID" + " ORDER BY itm.materialTypeID";
-	private static final String									SELECT_BLUEPRINT4MODULE									= "SELECT typeID FROM industryActivityProducts BT"
-			+ " WHERE productTypeID = ? AND activityID = 1";
-	private static final String									SELECT_RAW_PRODUCTRESULT								= "SELECT pstmo.typeID, pstmo.quantity, pstmo.schematicID"
-			+ " FROM   planetSchematicsTypeMap pstmi, planetSchematicsTypeMap pstmo" + " WHERE  pstmi.typeID = ?"
-			+ " AND    pstmo.schematicID = pstmi.schematicID" + " AND    pstmo.isInput = 0";
-	private static final String									SELECT_SCHEMATICS4OUTPUT								= "SELECT pstms.typeID, pstms.quantity, pstms.isInput"
-			+ " FROM   planetSchematicsTypeMap pstmt, planetSchematicsTypeMap pstms" + " WHERE  pstmt.typeID = ?"
-			+ " AND    pstmt.isInput = 0" + " AND    pstms.schematicID = pstmt.schematicID";
+	private static final String SELECT_ITEM_BYID = "SELECT it.typeID AS typeID, it.typeName AS typeName"
+					+ " , ig.groupName AS groupName" + " , ic.categoryName AS categoryName" + " , it.basePrice AS basePrice"
+					+ " , it.volume AS volume" + " , IFNULL(img.metaGroupName, " + '"' + "NOTECH" + '"' + ") AS Tech"
+					+ " FROM invTypes it" + " LEFT OUTER JOIN invGroups ig ON ig.groupID = it.groupID"
+					+ " LEFT OUTER JOIN invCategories ic ON ic.categoryID = ig.categoryID"
+					+ " LEFT OUTER JOIN invMetaTypes imt ON imt.typeID = it.typeID"
+					+ " LEFT OUTER JOIN invMetaGroups img ON img.metaGroupID = imt.metaGroupID" + " WHERE it.typeID = ?";
+	private static final String SELECT_LOCATIONBYID = "SELECT md.itemID AS locationID, md.typeID AS typeID, md.itemName AS locationName, md.security AS security"
+					+ " , IFNULL(md.solarSystemID, -1) AS systemID, ms.solarSystemName AS system"
+					+ " , IFNULL(md.constellationID, -1) AS constellationID, mc.constellationName AS constellation"
+					+ " , IFNULL(md.regionID, -1) AS regionID, mr.regionName AS region"
+					+ " FROM mapDenormalize md"
+					+ " LEFT OUTER JOIN mapRegions mr ON mr.regionID = md.regionID"
+					+ " LEFT OUTER JOIN mapConstellations mc ON mc.constellationID = md.constellationID"
+					+ " LEFT OUTER JOIN mapSolarSystems ms ON ms.solarSystemID = md.solarSystemID" + " WHERE itemID = ?";
+	private static final String SELECT_LOCATIONBYSYSTEM = "SELECT solarSystemID FROM mapSolarSystems"
+					+ " WHERE solarSystemName = ?";
+	private static final String SELECT_STATIONTYPE = "SELECT stationTypeID FROM staStations WHERE stationID = ?";
+	private static final String SELECT_MODULE4BLUEPRINT = "SELECT productTypeID FROM industryActivityProducts BT"
+					+ " WHERE typeID = ? AND activityID = 1";
+	private static final String SELECT_TECH4BLUEPRINT = "SELECT iap.typeID, it.typeName, imt.metaGroupID, img.metaGroupName"
+					+ " FROM industryActivityProducts iap, invTypes it, invMetaTypes imt, invMetaGroups img"
+					+ " WHERE it.typeID =?"
+					+ " AND iap.typeID = it.typeID"
+					+ " AND imt.typeID = productTypeID"
+					+ " AND img.metaGroupID = imt.metaGroupID" + " AND iap.activityID = 1";
+	private static final String SELECT_REFININGASTEROID = "SELECT itm.materialTypeID AS materialTypeID, itm.quantity AS qty"
+					+ " , it.typeName AS materialName"
+					+ " , ito.portionSize AS portionSize"
+					+ " FROM invTypeMaterials itm, invTypes it, invTypes ito"
+					+ " WHERE itm.typeID = ?"
+					+ " AND it.typeID = itm.materialTypeID" + " AND ito.typeID = itm.typeID" + " ORDER BY itm.materialTypeID";
+	private static final String SELECT_BLUEPRINT4MODULE = "SELECT typeID FROM industryActivityProducts BT"
+					+ " WHERE productTypeID = ? AND activityID = 1";
+	private static final String SELECT_RAW_PRODUCTRESULT = "SELECT pstmo.typeID, pstmo.quantity, pstmo.schematicID"
+					+ " FROM   planetSchematicsTypeMap pstmi, planetSchematicsTypeMap pstmo" + " WHERE  pstmi.typeID = ?"
+					+ " AND    pstmo.schematicID = pstmi.schematicID" + " AND    pstmo.isInput = 0";
+	private static final String SELECT_SCHEMATICS4OUTPUT = "SELECT pstms.typeID, pstms.quantity, pstms.isInput"
+					+ " FROM   planetSchematicsTypeMap pstmt, planetSchematicsTypeMap pstms" + " WHERE  pstmt.typeID = ?"
+					+ " AND    pstmt.isInput = 0" + " AND    pstms.schematicID = pstmt.schematicID";
 
 	// - F I E L D - S E C T I O N ............................................................................
-	private Connection													ccpDatabase															= null;
-	private final Hashtable<Integer, EveItem>		itemCache																= new Hashtable<Integer, EveItem>();
-	private final Hashtable<Long, EveLocation>	locationsCache													= new Hashtable<Long, EveLocation>(
-			200);
+	private Connection ccpDatabase = null;
+	private final Hashtable<Integer, EveItem> itemCache = new Hashtable<Integer, EveItem>();
+	private final Hashtable<Long, EveLocation> locationsCache = new Hashtable<Long, EveLocation>(200);
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
-	public CCPDatabaseConnector() {
+	public CCPDatabaseConnector () {
 	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
 	@Override
-	public boolean openCCPDataBase() {
+	public boolean openCCPDataBase () {
 		if (null == ccpDatabase) {
 			try {
 				Class.forName("org.sqlite.JDBC");
@@ -117,12 +120,13 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 				CCPDatabaseConnector.logger.warning(sqle.getClass().getName() + ": " + sqle.getMessage());
 			}
 			CCPDatabaseConnector.logger
-					.info("-- [StringDatabaseConnector.openCCPDataBase]> Opened CCP database successfully.");
+							.info("-- [StringDatabaseConnector.openCCPDataBase]> Opened CCP database successfully.");
 		}
 		return true;
 	}
 
-	public ArrayList<Resource> refineOre(final int oreID) {
+	@Override
+	public ArrayList<Resource> refineOre ( final int oreID ) {
 		ArrayList<Resource> results = new ArrayList<Resource>();
 		PreparedStatement prepStmt = null;
 		ResultSet cursor = null;
@@ -160,7 +164,8 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 	/**
 	 * Returns the blueprint id that matched this module from the <code>invBlueprintTypes</code> table.
 	 */
-	public int searchBlueprint4Module(final int moduleID) {
+	@Override
+	public int searchBlueprint4Module ( final int moduleID ) {
 		PreparedStatement prepStmt = null;
 		ResultSet cursor = null;
 		try {
@@ -197,7 +202,7 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 	 * implemented.
 	 */
 	@Override
-	public synchronized EveItem searchItembyID(final int typeID) {
+	public synchronized EveItem searchItembyID ( final int typeID ) {
 		// Search the item on the cache.
 		EveItem hit = itemCache.get(typeID);
 		if (null == hit) {
@@ -240,12 +245,12 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 					}
 				}
 				if (!found) {
-					CCPDatabaseConnector.logger
-							.warning("W> AndroidDatabaseConnector.searchItembyID -- Item <" + typeID + "> not found.");
+					CCPDatabaseConnector.logger.warning("W> AndroidDatabaseConnector.searchItembyID -- Item <" + typeID
+									+ "> not found.");
 				}
 			} catch (Exception e) {
-				CCPDatabaseConnector.logger
-						.warning("W> AndroidDatabaseConnector.searchItembyID -- Item <" + typeID + "> not found.");
+				CCPDatabaseConnector.logger.warning("W> AndroidDatabaseConnector.searchItembyID -- Item <" + typeID
+								+ "> not found.");
 				return new EveItem();
 			} finally {
 				try {
@@ -279,7 +284,7 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 	 * Locations table at the application database.
 	 */
 	@Override
-	public EveLocation searchLocationbyID(final long locationID) {
+	public EveLocation searchLocationbyID ( final long locationID ) {
 		CCPDatabaseConnector.logger.info(">< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: " + locationID);
 		// First check if the location is already on the cache table.
 		EveLocation hit = locationsCache.get(locationID);
@@ -287,7 +292,7 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 			int access = CCPDatabaseConnector.locationsCacheStatistics.accountAccess(true);
 			int hits = CCPDatabaseConnector.locationsCacheStatistics.getHits();
 			CCPDatabaseConnector.logger.info(">< [CCPDatabaseConnector.searchLocationbyID]> [HIT-" + hits + "/" + access
-					+ "] Location " + locationID + " found at cache.");
+							+ "] Location " + locationID + " found at cache.");
 			return hit;
 		} else {
 			// Try to get that id from the cache tables
@@ -358,18 +363,18 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 							// Location found on CCP database.
 							int hits = CCPDatabaseConnector.locationsCacheStatistics.getHits();
 							CCPDatabaseConnector.logger.info(">< [CCPDatabaseConnector.searchLocationbyID]> [HIT-" + hits + "/"
-									+ access + "] Location " + locationID + " found at CCP Database.");
+											+ access + "] Location " + locationID + " found at CCP Database.");
 							locationsCache.put(hit.getID(), hit);
 						}
 						if (!detected) {
-							CCPDatabaseConnector.logger
-									.info("-- [searchLocationbyID]> Location: " + locationID + " not found on any Database - UNKNOWN-.");
+							CCPDatabaseConnector.logger.info("-- [searchLocationbyID]> Location: " + locationID
+											+ " not found on any Database - UNKNOWN-.");
 							hit.setSystem("ID>" + Long.valueOf(locationID).toString());
 						}
 					}
 				} catch (final Exception ex) {
-					CCPDatabaseConnector.logger.warning(
-							"W- [AndroidDatabaseConnector.searchLocationbyID]> Location <" + fixedLocationID + "> not found.");
+					CCPDatabaseConnector.logger.warning("W- [AndroidDatabaseConnector.searchLocationbyID]> Location <"
+									+ fixedLocationID + "> not found.");
 				} finally {
 					try {
 						cursor.close();
@@ -383,7 +388,7 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 				// Location found on the Application database.
 				int hits = CCPDatabaseConnector.locationsCacheStatistics.getHits();
 				CCPDatabaseConnector.logger.info(">< [CCPDatabaseConnector.searchLocationbyID]> [HIT-" + hits + "/" + access
-						+ "] Location " + locationID + " found at Application Database.");
+								+ "] Location " + locationID + " found at Application Database.");
 				EveLocation foundLoc = locationList.get(0);
 				locationsCache.put(foundLoc.getID(), foundLoc);
 				return locationList.get(0);
@@ -392,7 +397,7 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 	}
 
 	@Override
-	public EveLocation searchLocationBySystem(final String name) {
+	public EveLocation searchLocationBySystem ( final String name ) {
 		EveLocation hit = new EveLocation();
 		PreparedStatement prepStmt = null;
 		ResultSet cursor = null;
@@ -427,7 +432,7 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 	}
 
 	@Override
-	public int searchModule4Blueprint(final int bpitemID) {
+	public int searchModule4Blueprint ( final int bpitemID ) {
 		PreparedStatement prepStmt = null;
 		ResultSet cursor = null;
 		try {
@@ -457,7 +462,8 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 		return -1;
 	}
 
-	public int searchRawPlanetaryOutput(final int typeID) {
+	@Override
+	public int searchRawPlanetaryOutput ( final int typeID ) {
 		int outputResourceId = typeID;
 		PreparedStatement prepStmt = null;
 		ResultSet cursor = null;
@@ -485,7 +491,8 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 		return outputResourceId;
 	}
 
-	public Vector<Schematics> searchSchematics4Output(final int targetId) {
+	@Override
+	public Vector<Schematics> searchSchematics4Output ( final int targetId ) {
 		Vector<Schematics> scheList = new Vector<Schematics>();
 		PreparedStatement prepStmt = null;
 		ResultSet cursor = null;
@@ -520,7 +527,7 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 	 * @return
 	 */
 	@Override
-	public int searchStationType(final long stationID) {
+	public int searchStationType ( final long stationID ) {
 		int stationTypeID = 1529;
 		ModelAppConnector.getSingleton().startChrono();
 		PreparedStatement prepStmt = null;
@@ -533,8 +540,8 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 				stationTypeID = cursor.getInt(CCPDatabaseConnector.STATIONTYPEID_COLINDEX);
 			}
 		} catch (Exception ex) {
-			CCPDatabaseConnector.logger
-					.warning("W- [SpingDatabaseConnector.searchStationType]> Database exception: " + ex.getMessage());
+			CCPDatabaseConnector.logger.warning("W- [SpingDatabaseConnector.searchStationType]> Database exception: "
+							+ ex.getMessage());
 		} finally {
 			try {
 				if (cursor != null) {
@@ -555,7 +562,8 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 		return stationTypeID;
 	}
 
-	public String searchTech4Blueprint(final int blueprintID) {
+	@Override
+	public String searchTech4Blueprint ( final int blueprintID ) {
 		PreparedStatement prepStmt = null;
 		ResultSet cursor = null;
 		try {
@@ -585,7 +593,7 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 		return ModelWideConstants.eveglobal.TechI;
 	}
 
-	private Connection getCCPDatabase() {
+	private Connection getCCPDatabase () {
 		if (null == ccpDatabase) {
 			this.openCCPDataBase();
 		}
