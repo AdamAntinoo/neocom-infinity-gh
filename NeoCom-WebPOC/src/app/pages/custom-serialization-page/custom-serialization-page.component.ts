@@ -10,7 +10,7 @@ Then the User may be able to select one and then introduce the corresponding pas
 import { Component, OnInit } from '@angular/core';
 
 //--- SERVICES
-//import { AppModelStoreService } from '../../services/app-model-store.service';
+import { AppModelStoreService } from '../../services/app-model-store.service';
 //--- INTERFACES
 import { PageComponent } from '../../classes/PageComponent';
 import { EVariant } from '../../classes/EVariant.enumerated';
@@ -23,12 +23,13 @@ import { NeoComNode } from '../../models/NeoComNode.model';
   templateUrl: './custom-serialization-page.component.html',
   styleUrls: ['./custom-serialization-page.component.css']
 })
-export class CustomSerializationPageComponent implements OnInit {
+export class CustomSerializationPageComponent extends PageComponent implements OnInit {
   public loginViewList: NeoComNode[] = [];
   public downloading: boolean = true;
+  private totalValueCalculated:number;
+  private totalVolumeCalculated:number;
 
-  //  constructor(private appModelStore: AppModelStoreService) {
-  constructor() {
+  constructor(private appModelStore: AppModelStoreService) {
     super();
     this.setVariant(EVariant.LOGINLIST)
   }
@@ -72,8 +73,8 @@ export class CustomSerializationPageComponent implements OnInit {
       switch (node.jsonClass) {
         case "NeoComAsset":
           let asset = new NeoComAsset(node);
-          this.totalValueCalculated += asset.item.baseprice * asset.quantity;
-          this.totalVolumeCalculated += asset.item.volume * asset.quantity;
+          // this.totalValueCalculated += asset.item.baseprice * asset.quantity;
+          // this.totalVolumeCalculated += asset.item.volume * asset.quantity;
           results.push(asset);
           break;
         // case "SpaceContainer":

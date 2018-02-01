@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { JsonpModule } from '@angular/http';
 
+//--- SERVICES
+import { AppModelStoreService } from './services/app-model-store.service';
 //--- ROUTING
 import { AppRoutingModule } from './app-routing.module';
 //--- PAGES
@@ -32,7 +34,9 @@ import { HeaderComponent } from './components/neocom-header/header.component';
     JsonpModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    AppModelStoreService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

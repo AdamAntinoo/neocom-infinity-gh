@@ -17,7 +17,7 @@ import { NeoComNode } from '../models/NeoComNode.model';
 
 export class NeoComAsset extends NeoComNode {
   public name: string = "-ID-";
-  public characters: NeoComCharacter[] = null;
+//  public characters: NeoComCharacter[] = null;
 
   constructor(values: Object = {}) {
     super(values);
