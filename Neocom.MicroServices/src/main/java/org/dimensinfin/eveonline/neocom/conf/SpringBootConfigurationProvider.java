@@ -33,10 +33,13 @@ public class SpringBootConfigurationProvider implements IConfigurationProvider {
 
 	// - F I E L D - S E C T I O N ............................................................................
 	private Properties globalConfigurationProperties = new Properties();
+	private String configuredPropertiesFolder = DEFAULT_PROPERTIES_FOLDER;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
-	public SpringBootConfigurationProvider () {
+	public SpringBootConfigurationProvider (final String propertiesFolder) {
 		super();
+		if (null == propertiesFolder) configuredPropertiesFolder = DEFAULT_PROPERTIES_FOLDER;
+		else configuredPropertiesFolder = propertiesFolder;
 	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
@@ -72,23 +75,21 @@ public class SpringBootConfigurationProvider implements IConfigurationProvider {
 
 	private void readAllProperties () throws IOException {
 		// Read all .properties files under the predefined path on the /resources folder.
-		Path propertiesPath = FileSystems.getDefault().getPath(DEFAULT_PROPERTIES_FOLDER);
-		try (Stream<Path> paths = Files.walk(propertiesPath)) {
-			paths
-					.filter(Files::isRegularFile)
-					.filter(Files::isReadable)
-					.filter(path -> path.endsWith(".properties"))
-					.forEach((fileName) -> {
-						try {
-							Properties properties = new Properties();
-							properties.load(new FileInputStream(fileName.toString()));
-							// Copy poperties to globals.
-							globalConfigurationProperties.putAll(properties);
-						} catch (IOException ioe) {
-							ioe.printStackTrace();
-						}
-					});
-		}
+		Path propertiesPath = FileSystems.getDefault().getPath(configuredPropertiesFolder);
+		Stream<Path> paths = Files.walk(propertiesPath);
+		paths.filter(Files::isRegularFile)
+				.filter(Files::isReadable)
+				.filter(path -> path.toString().endsWith(".properties"))
+				.forEach((fileName) -> {
+					try {
+						Properties properties = new Properties();
+						properties.load(new FileInputStream(fileName.toString()));
+						// Copy poperties to globals.
+						globalConfigurationProperties.putAll(properties);
+					} catch (IOException ioe) {
+						ioe.printStackTrace();
+					}
+				});
 	}
 }
 // - UNUSED CODE ............................................................................................

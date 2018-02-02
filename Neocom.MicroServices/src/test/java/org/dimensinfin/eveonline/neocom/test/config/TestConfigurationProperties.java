@@ -21,9 +21,10 @@ private  SpringBootConfigurationProvider sbconfig=null;
 	// - M E T H O D - S E C T I O N ..........................................................................
 	@Test
 	public void testConfigurationInitialization () {
-		 sbconfig = new SpringBootConfigurationProvider();
+		 sbconfig = new SpringBootConfigurationProvider("src/test/resources/properties");
 		sbconfig.initialize();
 	}
+	@Test
 	public void testConfigurationReadString () {
 		testConfigurationInitialization();
 		final String target = sbconfig.getResourceString("R.string.defaultvalue", "MANUAL DEFAULT");

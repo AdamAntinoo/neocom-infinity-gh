@@ -8,7 +8,6 @@
 //               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom;
 
-import org.dimensinfin.eveonline.neocom.connector.MicroServicesCacheConnector;
 import org.dimensinfin.eveonline.neocom.conf.SpringBootConfigurationProvider;
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
@@ -57,7 +56,7 @@ public class NeocomMicroServiceApplication /*implements INeoComMSConnector*/ {
 	public static void main (final String[] args) {
 		// Instance and connect the Adaptors.
 // Connect the Configuration manager.
-		GlobalDataManager.connectConfigurationManager(new SpringBootConfigurationProvider());
+		GlobalDataManager.connectConfigurationManager(new SpringBootConfigurationProvider(null));
 		SpringApplication.run(NeocomMicroServiceApplication.class, args);
 		// Connect the NeoCom database.
 		try {
@@ -153,10 +152,10 @@ public class NeocomMicroServiceApplication /*implements INeoComMSConnector*/ {
 	 */
 	@PostConstruct
 	public void postConstruct () {
-		logger.info(">> [MarketDataServiceApplication.postConstruct]");
+		logger.info(">> [NeocomMicroServiceApplication.postConstruct]");
 		// Read back the cache contents
-		MicroServicesCacheConnector.readCacheFromStorage();
-		logger.info("<< [MarketDataServiceApplication.postConstruct]");
+		GlobalDataManager.readMarketDataCacheFromStorage();
+		logger.info("<< [NeocomMicroServiceApplication.postConstruct]");
 	}
 //
 //	public void startChrono () {

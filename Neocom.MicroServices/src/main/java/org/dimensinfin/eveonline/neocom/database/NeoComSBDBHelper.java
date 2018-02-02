@@ -17,16 +17,21 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
 import org.apache.commons.lang3.StringUtils;
+
+import org.dimensinfin.eveonline.neocom.database.entity.Colony;
+import org.dimensinfin.eveonline.neocom.database.entity.ColonySerialized;
 import org.dimensinfin.eveonline.neocom.database.entity.ColonyStorage;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.database.entity.TimeStamp;
 import org.dimensinfin.eveonline.neocom.model.ApiKey;
 import org.dimensinfin.eveonline.neocom.database.entity.DatabaseVersion;
 import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -35,6 +40,7 @@ import java.util.concurrent.TimeUnit;
  * version already uses the mySql database JDBC implementation instead the SQLite copied from the Android
  * platform.
  * The class will encapsulate all dao and connection access.
+ *
  * @author Adam Antinoo
  */
 
@@ -54,9 +60,12 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 	private JdbcPooledConnectionSource connectionSource = null;
 
 	private Dao<DatabaseVersion, String> versionDao = null;
+	private Dao<TimeStamp, String> timeStampDao = null;
 	private Dao<ApiKey, String> apiKeysDao = null;
 	private Dao<Credential, String> credentialDao = null;
+	private Dao<Colony, String> colonyDao = null;
 	private Dao<ColonyStorage, String> colonyStorageDao = null;
+	private Dao<ColonySerialized, String> colonySerializedDao = null;
 	private Dao<NeoComAsset, String> assetDao = null;
 
 	private DatabaseVersion storedVersion = null;
@@ -115,7 +124,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		return this;
 	}
 
-	public int getStoredVersion (){
+	public int getStoredVersion () {
 		if ( null == storedVersion ) {
 			// Access the version object persistent on the database.
 			try {
@@ -229,6 +238,14 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 	}
 
 	@Override
+	public Dao<TimeStamp, String> getTimeStampDao () throws SQLException {
+		if ( null == timeStampDao ) {
+			timeStampDao = DaoManager.createDao(this.getConnectionSource(), TimeStamp.class);
+		}
+		return timeStampDao;
+	}
+
+	@Override
 	public Dao<ApiKey, String> getApiKeysDao () throws SQLException {
 		if ( null == apiKeysDao ) {
 			apiKeysDao = DaoManager.createDao(this.getConnectionSource(), ApiKey.class);
@@ -245,12 +262,28 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 	}
 
 	@Override
+	public Dao<Colony, String> getColonyDao () throws SQLException {
+		if ( null == colonyDao ) {
+			colonyDao = DaoManager.createDao(this.getConnectionSource(), Colony.class);
+		}
+		return colonyDao;
+	}
+
+	@Override
 	public Dao<ColonyStorage, String> getColonyStorageDao () throws SQLException {
 		if ( null == colonyStorageDao ) {
 			colonyStorageDao = DaoManager.createDao(this.getConnectionSource(), ColonyStorage.class);
 		}
 		return colonyStorageDao;
 	}
+
+	public Dao<ColonySerialized, String> getColonySerializedDao () throws SQLException {
+		if ( null == colonySerializedDao ) {
+			colonySerializedDao = DaoManager.createDao(this.getConnectionSource(), ColonySerialized.class);
+		}
+		return colonySerializedDao;
+	}
+
 	public Dao<NeoComAsset, String> getAssetDao () throws SQLException {
 		if ( null == assetDao ) {
 			assetDao = DaoManager.createDao(this.getConnectionSource(), NeoComAsset.class);
