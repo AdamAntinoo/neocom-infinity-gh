@@ -8,17 +8,10 @@
 //               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom;
 
-import org.dimensinfin.eveonline.neocom.connector.AppModelStore;
-import org.dimensinfin.eveonline.neocom.connector.CCPDatabaseConnector;
-import org.dimensinfin.eveonline.neocom.connector.ICCPDatabaseConnector;
-import org.dimensinfin.eveonline.neocom.connector.ICacheConnector;
-import org.dimensinfin.eveonline.neocom.connector.INeoComMSConnector;
-import org.dimensinfin.eveonline.neocom.connector.INeoComModelDatabase;
 import org.dimensinfin.eveonline.neocom.connector.MicroServicesCacheConnector;
-import org.dimensinfin.eveonline.neocom.connector.NeoComMSConnector;
-import org.dimensinfin.eveonline.neocom.connector.SpringDatabaseConnector;
-import org.dimensinfin.eveonline.neocom.constant.R;
-import org.dimensinfin.eveonline.neocom.database.NeocomDBHelper;
+import org.dimensinfin.eveonline.neocom.conf.SpringBootConfigurationProvider;
+import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
+import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,13 +20,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import javax.annotation.PostConstruct;
+import java.sql.SQLException;
 
 // - CLASS IMPLEMENTATION ...................................................................................
+
 /**
  * This is the initial class and loader for the Spring Boot application. It will be used to integrate the
  * different modules and libraries, instantiate the adapters and serve as the base point to integrate the
  * different controllers. Most of the code will be imported and integrated from the depending libraries.
- * 
+ *
  * @author Adam Antinoo
  */
 //@EnableCaching
@@ -53,25 +48,42 @@ public class NeocomMicroServiceApplication /*implements INeoComMSConnector*/ {
 	//	}
 
 	// - M A I N   E N T R Y P O I N T ........................................................................
+
 	/**
 	 * Just create the Spring application and launch it to run.
-	 * 
+	 *
 	 * @param args
 	 */
-	public static void main ( final String[] args ) {
+	public static void main (final String[] args) {
 		// Instance and connect the Adaptors.
-		// Connect the NeoCom database.
-		GlobalDataManager.connectNeoComDBConnector(			 new NeoComDBHelper()
-				.setDatabaseHost("jdbc:mysql://localhost:3306")
-				.setDatabaseName("neocom")
-				.setDatabaseUser("NEOCOMTEST")
-				.setDatabasePassword("01.Alpha")
-				.setDatabaseVersion(1)
-				.build()
-		);
-)
-
+// Connect the Configuration manager.
+		GlobalDataManager.connectConfigurationManager(new SpringBootConfigurationProvider());
 		SpringApplication.run(NeocomMicroServiceApplication.class, args);
+		// Connect the NeoCom database.
+		try {
+			GlobalDataManager.connectNeoComDBConnector(new NeoComSBDBHelper()
+					.setDatabaseHost(GlobalDataManager
+							.getResourceString("R.database.neocom.databasehost", "jdbc:mysql://localhost:3306"))
+					.setDatabaseName("neocom")
+					.setDatabaseUser("NEOCOMTEST")
+					.setDatabasePassword("01.Alpha")
+					.setDatabaseVersion(1)
+					.build()
+			);
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+		// Connect the SDE database.
+		try {
+			GlobalDataManager.connectSDEDBConnector(new SDESBDBHelper()
+					.setDatabaseSchema("jdbc:sqlite")
+					.setDatabasePath("src/main/resources/")
+					.setDatabaseName("eve.db")
+					.build()
+			);
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
 	}
 
 	// - F I E L D - S E C T I O N ............................................................................
