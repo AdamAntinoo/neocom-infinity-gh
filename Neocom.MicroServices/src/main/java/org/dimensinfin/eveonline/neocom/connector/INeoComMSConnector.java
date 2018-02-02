@@ -6,8 +6,6 @@
 //								the SpringBoot+MicroServices+Angular unified web application.
 package org.dimensinfin.eveonline.neocom.connector;
 
-import org.dimensinfin.eveonline.neocom.interfaces.INeoComModelStore;
-
 // - CLASS IMPLEMENTATION ...................................................................................
 public interface INeoComMSConnector extends IModelAppConnector {
 	@Override
@@ -19,8 +17,8 @@ public interface INeoComMSConnector extends IModelAppConnector {
 	@Override
 	public INeoComModelDatabase getDBConnector ();
 
-	@Override
-	public INeoComModelStore getModelStore ();
+//	@Override
+//	public INeoComModelStore getModelStore ();
 
 	//	public void startChrono ();
 	//

@@ -1,9 +1,11 @@
-//	PROJECT:        NeoCom.Databases (NEOC.D)
-//	AUTHORS:        Adam Antinoo - adamantinoo.git@gmail.com
-//	COPYRIGHT:      (c) 2017 by Dimensinfin Industries, all rights reserved.
-//	ENVIRONMENT:		Java 1.8 Library.
-//	DESCRIPTION:		SQLite database access library. Isolates Neocom database access from any
-//									environment limits.
+//  PROJECT:     Neocom.Microservices (NEOC-MS)
+//  AUTHORS:     Adam Antinoo - adamantinoo.git@gmail.com
+//  COPYRIGHT:   (c) 2017-2018 by Dimensinfin Industries, all rights reserved.
+//  ENVIRONMENT: Java 1.8 / SpringBoot-1.3.5 / Angular 5.0
+//  DESCRIPTION: This is the SpringBoot MicroServices module to run the backend services to complete the web
+//               application based on Angular+SB. This is the web version for the NeoCom Android native
+//               application. Most of the source code is common to both platforms and this module includes
+//               the source for the specific functionalities for the backend services.
 package org.dimensinfin.eveonline.neocom.database;
 
 import java.sql.Connection;
@@ -11,32 +13,27 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Logger;
 
-import org.dimensinfin.eveonline.neocom.constant.R;
-import org.dimensinfin.eveonline.neocom.industry.Job;
-import org.dimensinfin.eveonline.neocom.market.NeoComMarketOrder;
-import org.dimensinfin.eveonline.neocom.model.ApiKey;
-import org.dimensinfin.eveonline.neocom.model.DatabaseVersion;
-import org.dimensinfin.eveonline.neocom.model.EveLocation;
-import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
-import org.dimensinfin.eveonline.neocom.model.NeoComBlueprint;
-import org.dimensinfin.eveonline.neocom.model.Property;
-import org.dimensinfin.eveonline.neocom.model.TimeStamp;
-import org.dimensinfin.eveonline.neocom.planetary.PlanetaryResource;
-import org.dimensinfin.eveonline.neocom.planetary.ResourceList;
-
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
-import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
+import org.dimensinfin.eveonline.neocom.constant.R;
+import org.dimensinfin.eveonline.neocom.database.entity.DatabaseVersion;
+import org.dimensinfin.eveonline.neocom.database.entity.TimeStamp;
+import org.dimensinfin.eveonline.neocom.model.ApiKey;
+import org.dimensinfin.eveonline.neocom.model.EveLocation;
+import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
+import org.dimensinfin.eveonline.neocom.model.NeoComBlueprint;
+import org.dimensinfin.eveonline.neocom.model.Property;
+import org.dimensinfin.eveonline.neocom.planetary.PlanetaryResource;
+import org.dimensinfin.eveonline.neocom.planetary.ResourceList;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 public class NeocomDBHelper {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger										logger									= Logger.getLogger("NeocomDBHelper");	//$NON-NLS-1$
-	//	private static final String								SELECT_VERSION_NUMBER		= "SELECT versionNumber from Version";
 	private static final long								MAX_CONNECTION_AGE			= 5 * 60 * 1000;
 	private static final long								CHECK_CONNECTION_EVERY	= 2 * 60 * 1000;
 	public static final String							RESOURCELISTID_FN				= "id";
@@ -50,7 +47,7 @@ public class NeocomDBHelper {
 	private final Connection								neocomDatabase					= null;
 	private JdbcConnectionSource						neocomDatasource				= null;
 
-	private Dao<DatabaseVersion, String>		versionDao							= null;
+	private Dao<DatabaseVersion, String> versionDao							= null;
 	private Dao<TimeStamp, String>					timeStampDao						= null;
 	private Dao<ApiKey, String>							apiKeysDao							= null;
 	private Dao<Property, String>						propertyDao							= null;
@@ -58,8 +55,8 @@ public class NeocomDBHelper {
 	private Dao<PlanetaryResource, String>	planetaryResourceDao		= null;
 	private Dao<NeoComAsset, String>				assetDao								= null;
 	private Dao<NeoComBlueprint, String>		blueprintDao						= null;
-	private Dao<Job, String>								jobDao									= null;
-	private Dao<NeoComMarketOrder, String>	marketOrderDao					= null;
+//	private Dao<Job, String>								jobDao									= null;
+//	private Dao<NeoComMarketOrder, String>	marketOrderDao					= null;
 	private Dao<EveLocation, String>				locationDao							= null;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................

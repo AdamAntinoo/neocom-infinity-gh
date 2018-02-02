@@ -46,28 +46,6 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
  */
 public class TestSerializationControl implements INeoComMSConnector {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	public static class ShipSerializer extends JsonSerializer<Ship> {
-
-		@Override
-		public void serialize ( final Ship value, final JsonGenerator jgen, final SerializerProvider provider )
-						throws IOException, JsonProcessingException {
-			jgen.writeStartObject();
-			jgen.writeStringField("jsonClass", value.getJsonClass());
-			jgen.writeNumberField("assetId", value.getAssetID());
-			jgen.writeNumberField("typeId", value.getTypeID());
-			jgen.writeNumberField("ownerId", value.getOwnerID());
-			jgen.writeStringField("name", value.getItemName());
-			jgen.writeStringField("category", value.getCategory());
-			jgen.writeStringField("groupName", value.getGroupName());
-			jgen.writeStringField("tech", value.getTech());
-			jgen.writeStringField("userLabel", value.getUserLabel());
-			jgen.writeNumberField("price", value.getItem().getPrice());
-			jgen.writeNumberField("highesBuyerPrice", value.getItem().getHighestBuyerPrice().getPrice());
-			jgen.writeNumberField("lowerSellerPrice", value.getItem().getLowestSellerPrice().getPrice());
-			jgen.writeObjectField("item", value.getItem());
-			jgen.writeEndObject();
-		}
-	}
 
 	private static Logger logger = LoggerFactory.getLogger("TestSerializationControl.java");
 	public static final String APPLICATION_NAME = "NeocomMicroServiceApplication";
@@ -141,13 +119,6 @@ public class TestSerializationControl implements INeoComMSConnector {
 
 			// Use my own serialization control to return the data to generate exactly what I want.
 			ObjectMapper mapper = new ObjectMapper();
-			mapper.enable(SerializationFeature.INDENT_OUTPUT);
-			// create a custom serializer module
-			SimpleModule customSerializerModule = new SimpleModule();
-			// add serializer for the Compensation class
-			customSerializerModule.addSerializer(Ship.class, new ShipSerializer());
-			// register the serializer module
-			mapper.registerModule(customSerializerModule);
 
 			final String contentsSerialized = mapper.writeValueAsString(contents);
 			logger.info(contentsSerialized);

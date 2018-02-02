@@ -9,3 +9,4 @@ Neocom.MicroServices/MarketDataService.store
 *.ttf
 *.otf
 Documentation/~$emiminaryNotes.odt
+NeoCom.MicroServices/.gradle/
