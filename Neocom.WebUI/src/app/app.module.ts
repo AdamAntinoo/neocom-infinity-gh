@@ -50,6 +50,7 @@ import { ExpandableComponent } from './components/expandable/expandable.componen
 import { CredentialsPageComponent } from './pages/credentials-page/credentials-page.component';
 import { BasePageComponent } from './components/core/base-page/base-page.component';
 import { ComponentFactoryComponent } from './components/factory/component-factory/component-factory.component';
+import { CredentialComponent } from './components/model/credential/credential.component';
 
 
 @NgModule({
@@ -87,6 +88,7 @@ import { ComponentFactoryComponent } from './components/factory/component-factor
     CredentialsPageComponent,
     BasePageComponent,
     ComponentFactoryComponent,
+    CredentialComponent,
   ],
   imports: [
     BrowserModule,

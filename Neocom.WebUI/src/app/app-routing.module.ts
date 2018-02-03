@@ -13,21 +13,21 @@ import { PlanetaryOptimizationPageComponent } from './pages/planetary-optimizati
 
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: '/login',
-    pathMatch: 'full'
-  },
-  { path: 'credentials', component: CredentialsPageComponent },
-  { path: 'login', component: LoginPageComponent },
-  { path: 'login/:loginid/pilot/:id', component: PilotDetailPageComponent },
-  { path: 'login/:loginid/pilot/:id/AssetsManager', component: AssetsManagerPageComponent },
-  { path: 'login/:loginid/pilot/:id/PlanetaryManager', component: PlanetaryManagerPageComponent },
-  { path: 'login/:loginid/pilot/:id/PlanetaryManager/location/:locationid/PlanetaryOptimization', component: PlanetaryOptimizationPageComponent },
+	{
+		path: '',
+		redirectTo: '/credentials',
+		pathMatch: 'full'
+	},
+	{ path: 'credentials', component: CredentialsPageComponent },
+	{ path: 'login', component: LoginPageComponent },
+	{ path: 'login/:loginid/pilot/:id', component: PilotDetailPageComponent },
+	{ path: 'login/:loginid/pilot/:id/AssetsManager', component: AssetsManagerPageComponent },
+	{ path: 'login/:loginid/pilot/:id/PlanetaryManager', component: PlanetaryManagerPageComponent },
+	{ path: 'login/:loginid/pilot/:id/PlanetaryManager/location/:locationid/PlanetaryOptimization', component: PlanetaryOptimizationPageComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule]
 })
 export class AppRoutingModule { }

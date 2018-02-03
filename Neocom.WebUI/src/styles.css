@@ -12,7 +12,7 @@ body {
 
 @font-face {
   font-family: "Conthrax";
-  src: url("./assets/fonts/conthrax-sb.ttf");
+  src: url("/assets/fonts/conthrax-sb.ttf");
 }
 
 .contrax-ff {
@@ -21,7 +21,7 @@ body {
 
 @font-face {
   font-family: "Tesla";
-  src: url("./assets/fonts/TESLA.ttf");
+  src: url("/assets/fonts/TESLA.ttf");
 }
 
 .tesla-ff {
@@ -32,7 +32,7 @@ body {
   font-family: "Elemental";
   font-style: normal;
   font-weight: normal;
-  src: url("./assets/fonts/Elemental End.ttf");
+  src: url("/assets/fonts/Elemental End.ttf") format('truetype');
 }
 
 .elemental-ff {
@@ -43,35 +43,35 @@ body {
   font-family: "Elemental";
   font-style: italic;
   font-weight: normal;
-  src: url("./assets/fonts/Elemental End Italic.ttf");
+  src: url("/assets/fonts/Elemental End Italic.ttf");
 }
 
 @font-face {
   font-family: 'Mons Olympia';
   font-style: italic;
   font-weight: bold;
-  src: url("./assets/fonts/Mons Olympia Bold Italic.otf");
+  src: url("/assets/fonts/Mons Olympia Bold Italic.otf");
 }
 
 @font-face {
   font-family: 'Mons Olympia';
   font-style: normal;
   font-weight: bold;
-  src: url("./assets/fonts/Mons Olympia Bold.otf");
+  src: url("/assets/fonts/Mons Olympia Bold.otf");
 }
 
 @font-face {
   font-family: 'Mons Olympia';
   font-style: italic;
   font-weight: normal;
-  src: url("./assets/fonts/Mons Olympia Italic.otf");
+  src: url("/assets/fonts/Mons Olympia Italic.otf");
 }
 
 @font-face {
   font-family: 'Mons Olympia';
   font-style: normal;
   font-weight: normal;
-  src: url("./assets/fonts/Mons Olympia.otf");
+  src: url("/assets/fonts/Mons Olympia.otf");
 }
 
 .mons-olympia-ff {
@@ -82,14 +82,14 @@ body {
   font-family: 'Imaki';
   font-style: normal;
   font-weight: normal;
-  src: url("./assets/fonts/Imaki.otf");
+  src: url("/assets/fonts/Imaki.otf");
 }
 
 @font-face {
   font-family: 'Imaki';
   font-style: normal;
   font-weight: bold;
-  src: url("./assets/fonts/Imaki Bold.otf");
+  src: url("/assets/fonts/Imaki Bold.otf");
 }
 
 .imaki-ff {

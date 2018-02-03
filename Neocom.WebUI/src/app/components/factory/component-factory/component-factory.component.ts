@@ -18,7 +18,7 @@ import { AppModelStoreService } from '../../../services/app-model-store.service'
 //--- INTERFACES
 import { PageComponent } from '../../../classes/PageComponent';
 import { EVariant } from '../../../classes/EVariant.enumerated';
-import { DataSource } from '../../../classes/DataSource';
+import { DataSource } from '../../../models/DataSource.model';
 import { NeoComError } from '../../../classes/NeoComError';
 //--- MODELS
 import { NeoComNode } from '../../../models/NeoComNode.model';
@@ -28,13 +28,18 @@ import { NeoComNode } from '../../../models/NeoComNode.model';
 	templateUrl: './component-factory.component.html',
 	styleUrls: ['./component-factory.component.css']
 })
-export class ComponentFactoryComponent implements OnInit {
+export class ComponentFactoryComponent extends PageComponent implements OnInit {
 	// This is the connection with the Page. This object will be able to genrate the list of nodes to be rendered.
 	@Input() dataSource: DataSource;
 
-	constructor() { }
+	constructor() {
+		super();
+	}
 
 	ngOnInit() {
+	}
+	public getViewer(): PageComponent {
+		return this;
 	}
 	/**
 	This is the connection method that will call the DataSource to get the list of nodes to render. This replicates the collaborate2View and getBodyParts functioanlities of the Android platform and will start the process to render the ui.

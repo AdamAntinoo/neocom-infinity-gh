@@ -80,6 +80,7 @@ export class AppModelStoreService {
 			return this.getBackendCredentialList()
 				.map(result => {
 					this._credentialList = result;
+					return this._credentialList;
 				});
 		} else
 			return new Observable(observer => {
