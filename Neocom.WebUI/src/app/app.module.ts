@@ -47,6 +47,9 @@ import { ContainerComponent } from './components/container/container.component';
 import { ShipComponent } from './components/ship/ship.component';
 import { ShipSlotGroupComponent } from './components/ship-slot-group/ship-slot-group.component';
 import { ExpandableComponent } from './components/expandable/expandable.component';
+import { CredentialsPageComponent } from './pages/credentials-page/credentials-page.component';
+import { BasePageComponent } from './components/core/base-page/base-page.component';
+import { ComponentFactoryComponent } from './components/factory/component-factory/component-factory.component';
 
 
 @NgModule({
@@ -81,6 +84,9 @@ import { ExpandableComponent } from './components/expandable/expandable.componen
     ShipComponent,
     ShipSlotGroupComponent,
     ExpandableComponent,
+    CredentialsPageComponent,
+    BasePageComponent,
+    ComponentFactoryComponent,
   ],
   imports: [
     BrowserModule,

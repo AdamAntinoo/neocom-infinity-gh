@@ -10,6 +10,7 @@ http://localhost:9000/api/v1/location/updatecitadels
 http://localhost:9000/api/v1/location/updateoutposts
 
 /api/v1/loginlist
+/api/v1/credentials
 
 TIP TOPHANE
 /api/v1//login/CapitanHaddock29/pilot/2113197470

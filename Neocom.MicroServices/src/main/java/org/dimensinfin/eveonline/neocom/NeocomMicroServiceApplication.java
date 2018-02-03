@@ -12,6 +12,7 @@ import org.dimensinfin.eveonline.neocom.conf.SpringBootConfigurationProvider;
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -54,11 +55,13 @@ public class NeocomMicroServiceApplication /*implements INeoComMSConnector*/ {
 	 * @param args
 	 */
 	public static void main (final String[] args) {
+		logger.info(">> [NeocomMicroServiceApplication.main]");
 		// Instance and connect the Adaptors.
-// Connect the Configuration manager.
+		// Connect the Configuration manager.
+		logger.info(">> [NeocomMicroServiceApplication.main]> Connecting the Configuration Manager...");
 		GlobalDataManager.connectConfigurationManager(new SpringBootConfigurationProvider(null));
-		SpringApplication.run(NeocomMicroServiceApplication.class, args);
 		// Connect the NeoCom database.
+		logger.info(">> [NeocomMicroServiceApplication.main]> Connecting NeoCom private database...");
 		try {
 			GlobalDataManager.connectNeoComDBConnector(new NeoComSBDBHelper()
 					.setDatabaseHost(GlobalDataManager
@@ -73,6 +76,7 @@ public class NeocomMicroServiceApplication /*implements INeoComMSConnector*/ {
 			sqle.printStackTrace();
 		}
 		// Connect the SDE database.
+		logger.info(">> [NeocomMicroServiceApplication.main]> Connecting SDE database...");
 		try {
 			GlobalDataManager.connectSDEDBConnector(new SDESBDBHelper()
 					.setDatabaseSchema("jdbc:sqlite")
@@ -83,6 +87,9 @@ public class NeocomMicroServiceApplication /*implements INeoComMSConnector*/ {
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		}
+		logger.info(">> [NeocomMicroServiceApplication.main]> Starting application instance...");
+		SpringApplication.run(NeocomMicroServiceApplication.class, args);
+		logger.info("<< [NeocomMicroServiceApplication.main]");
 	}
 
 	// - F I E L D - S E C T I O N ............................................................................

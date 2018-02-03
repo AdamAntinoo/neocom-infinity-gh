@@ -23,6 +23,7 @@ import org.dimensinfin.eveonline.neocom.database.entity.ColonySerialized;
 import org.dimensinfin.eveonline.neocom.database.entity.ColonyStorage;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.database.entity.TimeStamp;
+import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.model.ApiKey;
 import org.dimensinfin.eveonline.neocom.database.entity.DatabaseVersion;
 import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
@@ -171,7 +172,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 			logger.warn("SQL [NeoComSBDBHelper.onCreate]> SQL NeoComDatabase: {}", sqle.getMessage());
 		}
 		try {
-			TableUtils.createTableIfNotExists(databaseConnection, org.dimensinfin.eveonline.neocom.database.entity.ColonyStorage.class);
+			TableUtils.createTableIfNotExists(databaseConnection, ColonyStorage.class);
 		} catch (SQLException sqle) {
 			logger.warn("SQL [NeoComSBDBHelper.onCreate]> SQL NeoComDatabase: {}", sqle.getMessage());
 		}
@@ -207,18 +208,57 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		//			TableUtils.createTableIfNotExists(databaseConnection, EveLocation.class);
 		//		} catch (SQLException sqle) {
 		//		}
+		this.loadSeedData();
 		logger.info("<< [NeoComSBDBHelper.onCreate]");
 	}
 
 	public void onUpgrade (final ConnectionSource databaseConnection, final int oldVersion, final int newVersion) {
 		// Execute different actions depending on the new version.
-		if ( oldVersion < 1 ) {
+		if ( oldVersion < 109 ) {
 			try {
-				// Create the version table and insert the initial new version code.
-				TableUtils.createTableIfNotExists(databaseConnection, DatabaseVersion.class);
+				// Drop all the tables to force a new update from the latest SQLite version.
+				TableUtils.dropTable(databaseConnection, DatabaseVersion.class, true);
 				DatabaseVersion version = new DatabaseVersion(newVersion);
-				// Persist the version object to the database
-				getVersionDao().create(version);
+			} catch (RuntimeException rtex) {
+				logger.error("E> Error dropping table on Database new version.");
+				rtex.printStackTrace();
+			} catch (SQLException sqle) {
+				logger.error("E> Error dropping table on Database new version.");
+				sqle.printStackTrace();
+			}
+			try {
+				// Drop all the tables to force a new update from the latest SQLite version.
+				TableUtils.dropTable(databaseConnection, TimeStamp.class, true);
+			} catch (RuntimeException rtex) {
+				logger.error("E> Error dropping table on Database new version.");
+				rtex.printStackTrace();
+			} catch (SQLException sqle) {
+				logger.error("E> Error dropping table on Database new version.");
+				sqle.printStackTrace();
+			}
+			try {
+				// Drop all the tables to force a new update from the latest SQLite version.
+				TableUtils.dropTable(databaseConnection, ApiKey.class, true);
+			} catch (RuntimeException rtex) {
+				logger.error("E> Error dropping table on Database new version.");
+				rtex.printStackTrace();
+			} catch (SQLException sqle) {
+				logger.error("E> Error dropping table on Database new version.");
+				sqle.printStackTrace();
+			}
+			try {
+				// Drop all the tables to force a new update from the latest SQLite version.
+				TableUtils.dropTable(databaseConnection, Credential.class, true);
+			} catch (RuntimeException rtex) {
+				logger.error("E> Error dropping table on Database new version.");
+				rtex.printStackTrace();
+			} catch (SQLException sqle) {
+				logger.error("E> Error dropping table on Database new version.");
+				sqle.printStackTrace();
+			}
+			try {
+				// Drop all the tables to force a new update from the latest SQLite version.
+				TableUtils.dropTable(databaseConnection, NeoComAsset.class, true);
 			} catch (RuntimeException rtex) {
 				logger.error("E> Error dropping table on Database new version.");
 				rtex.printStackTrace();
@@ -227,6 +267,88 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 				sqle.printStackTrace();
 			}
 		}
+	}
+
+	/**
+	 * Checks if the key tables had been cleaned and then reinserts the seed data on them.
+	 */
+	public void loadSeedData () {
+		logger.info(">> [NeoComSBDBHelper.loadSeedData]");
+		// Add seed data to the new database is the tables are empty.
+		try {
+			//---  D A T A B A S E    V E R S I O N
+			logger.info("-- [NeoComSBDBHelper.loadSeedData]> Loading DatabaseVersion");
+			Dao<DatabaseVersion, String> version = this.getVersionDao();
+			QueryBuilder<DatabaseVersion, String> queryBuilder = version.queryBuilder();
+			queryBuilder.setCountOf(true);
+			// Check that at least one Version record exists on the database. It is a singleton.
+			long records = version.countOf(queryBuilder.prepare());
+			logger.info("-- [NeoComSBDBHelper.loadSeedData]> DatabaseVersion records: " + records);
+
+			// If the table is empty then insert the seeded Api Keys
+			if ( records < 1 ) {
+				DatabaseVersion key = new DatabaseVersion(GlobalDataManager.getResourceInt("R.database.neocom.databaseversion"));
+				logger.info("-- [NeoComSBDBHelper.loadSeedData]> Setting DatabaseVersion to: " + key.getVersionNumber());
+			}
+		} catch (SQLException sqle) {
+			logger.error("E [NeoComSBDBHelper.loadSeedData]> Error creating the initial table on the app database.");
+			sqle.printStackTrace();
+		}
+
+		//--- A P I   K E Y S
+		try {
+			Dao<ApiKey, String> apikey = this.getApiKeysDao();
+			QueryBuilder<ApiKey, String> queryBuilder = apikey.queryBuilder();
+			queryBuilder.setCountOf(true);
+			long records = apikey.countOf(queryBuilder.prepare());
+
+			// If the table is empty then insert the seeded Api Keys
+			if ( records < 1 ) {
+				//				ApiKey key = new ApiKey("Beth Ripley").setKeynumber(2889577)
+				//				                                      .setValidationcode("Mb6iDKR14m9Xjh9maGTQCGTkpjRHPjOgVUkvK6E9r6fhMtOWtipaqybp0qCzxuuw")
+				//				                                      .setActive(true);
+				//				key = new ApiKey("Perico").setKeynumber(3106761)
+				//				                          .setValidationcode("gltCmvVoZl5akrM8d6DbNKZn7Jm2SaukrmqjnSOyqKbvzz5CtNfknTEwdBe6IIFf").setActive(false);
+				//				ApiKey		key = new ApiKey("CapitanHaddock09").setKeynumber(924767)
+				//				                                    .setValidationcode("2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P").setActive(true);
+				//				key = new ApiKey("CapitanHaddock29").setKeynumber(6472981)
+				//				                                    .setValidationcode("pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z").setActive(true);
+				ApiKey key = new ApiKey("CapitanHaddock").setKeynumber(924767)
+						.setValidationcode("2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P").setActive(false);
+				key = new ApiKey("CapitanHaddock").setKeynumber(6472981)
+						.setValidationcode("pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z").setActive(false);
+			}
+		} catch (SQLException sqle) {
+			logger.error("E> Error creating the initial table on the app database.");
+			sqle.printStackTrace();
+		}
+
+		//--- C R E D E N T I A L S
+		try {
+			final long records = this.getCredentialDao().countOf();
+			// If the table is empty then insert the seeded Credentials
+			if ( records < 1 ) {
+				Credential credential = new Credential(91734031)
+						.setAccessToken("m58y5NBSK7T_1ki9jx4XsGgfu4laHIF9-3WRLeNqkABe-VKZ57tGFee8kpwFBO8RTtSIrHyz9UKtC17clitqsw2")
+						.setAccountName("Zach Zender")
+						.setRefreshToken("HB68Z3aeNjQxpA8ebcNijfMGv9wfkcn-dkcy5qchW88Pe0ackWDHCy2yr5RrY_ERE4aKNCsR-J2a_-V_tS2sV_21HMTYcIKQ-QJHhz6GugotFfrdRcl6nsVjEuxOay5c7t-0tFu2diGy-2cF9y4qYCJ53da5slsLjNBWiIvUTxP7PUOQIs0y23_LhMPku1O1AXZsKG383NOLYQTCFL6vrVjThKJKXX9xRqm2rsRoe7xA_hyV0PiSmxjclUl9XzY")
+						.store();
+				credential = new Credential(92223647)
+						.setAccessToken("Su9nYs3_qDQBHB2utYKQyZVfDy1l4ScMo81rtiDmDTDpRKV4yIln_cxfXDQaAR81wj1oBu8S1Hjxbf7VcJavaA2")
+						.setAccountName("Beth Ripley")
+						.setRefreshToken("NyjPkFKg1nr1nBK1e8bSaezKENbLZKtXOu0hkvnbK1LyghAHim-shdiXjMXZ8z8uQwCxUGPmow-BnSF5BX--zvbKI_bEQ5tGE6jiCZNKv0EoUrM205wRtq7QEWt-I0E51_YzMMHW05YWAG7ds4I72fsKJMtA0HZmfrtRQtf6q_tCoGErf0cpwuwHtNxeTg87UkEqEXicWHAdRRXTHONtDqrWiZbzOL48BQNXcgV3goL-hMzzi0V6sY1JolAxQ47")
+						.store();
+				credential = new Credential(93813310)
+						.setAccessToken("_WWshtZkjlNwXLRmvs3T0ZUaKAVo4QEl6JFwzIVIyNmdgjfqHhb41uY7ambYFDmjZsFZyLBjtH-90ONWu1E1sA2")
+						.setAccountName("Perico Tuerto")
+						.setRefreshToken("_rOthuCEPyRdKjNv6XyX84dguFmSkK4byrP3tTOj0Kv_3F_8GBvxsrUhrFZoRQPCjXXgzn5n0a5gdLeWA_hlS8Uv0LsK6upwKz2kfyG3mlANsAxfIDa2iGaGKq1pmFpe2w3lYuHl8cKGCItzL9uW4LL8gc8Uznqi9_jFNYC3Z-AXAPKNwN7hwQxcV7Znn2aprUC5BjaKrhBin-ptEPyVnNYvqBRBdXHYQcc-m4aaPu-4qD4lK4PXbcZanxrfDP_")
+						.store();
+			}
+		} catch (SQLException sqle) {
+			logger.error("E> Error creating the initial table on the app database.");
+			sqle.printStackTrace();
+		}
+		logger.info("<< [NeoComSBDBHelper.loadSeedData]");
 	}
 
 	@Override

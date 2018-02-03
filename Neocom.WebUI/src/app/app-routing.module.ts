@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
 //--- PAGES
 //import { PageSplashComponent } from './page/page-splash/page-splash.component';
+import { CredentialsPageComponent } from './pages/credentials-page/credentials-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 //import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roaster-page.component';
 import { PilotDetailPageComponent } from './pages/pilot-detail-page/pilot-detail-page.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
     redirectTo: '/login',
     pathMatch: 'full'
   },
+  { path: 'credentials', component: CredentialsPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'login/:loginid/pilot/:id', component: PilotDetailPageComponent },
   { path: 'login/:loginid/pilot/:id/AssetsManager', component: AssetsManagerPageComponent },

@@ -56,12 +56,8 @@ dependencies {
     implementation 'org.slf4j:slf4j-api:1.7.25'
     implementation 'com.j256.ormlite:ormlite-core:4.48'
     implementation 'com.j256.ormlite:ormlite-jdbc:4.48'
+    implementation 'org.xerial:sqlite-jdbc:3.16.1'
     implementation 'mysql:mysql-connector-java:5.1.45'
-
-    // T E S T I N G   N E O C O M . M O D E L
-//    implementation 'org.slf4j:slf4j-simple:1.7.25'
-//    implementation 'com.j256.ormlite:ormlite-jdbc:5.0'
-//    implementation 'mysql:mysql-connector-java:5.1.45'
 
     // P L A T F O R M    D E P E N D E N C I E S
 
