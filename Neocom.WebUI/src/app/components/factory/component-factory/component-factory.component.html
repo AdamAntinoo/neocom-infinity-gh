@@ -1,3 +1,10 @@
-<p>
-  component-factory works!
-</p>
+<neocom-spinner-central *ngIf="downloading" [configuration]="{title:'Downloading Login list',subtitle:''}"></neocom-spinner-central>
+<div class="neocom-panel-container">
+  <div *ngFor="let render of loginViewList">
+    <neocom-separator *ngIf="render.jsonClass == 'Separator'" [viewer]="getViewer()" [node]="render"></neocom-separator>
+    <neocom-login4-list *ngIf="render.jsonClass == 'Login'" [viewer]="getViewer()" [node]="render"></neocom-login4-list>
+    <neocom-pilot4-login *ngIf="render.jsonClass == 'NeoComCharacter'" [viewer]="getViewer()" [node]="render"></neocom-pilot4-login>
+    <neocom-pilot4-login *ngIf="render.jsonClass == 'Pilot'" [viewer]="getViewer()" [node]="render"></neocom-pilot4-login>
+    <neocom-pilot4-login *ngIf="render.jsonClass == 'Corporation'" [viewer]="getViewer()" [node]="render"></neocom-pilot4-login>
+  </div>
+</div>

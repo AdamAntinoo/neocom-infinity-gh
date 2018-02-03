@@ -25,6 +25,8 @@ import 'rxjs/add/operator/catch';
 //--- CLASSES
 //import { DataSourceLocator } from '../classes/DataSourceLocator';
 //--- MODELS
+import { Credential } from '../models/Credential.model';
+
 import { Login } from '../models/Login.model';
 import { Pilot } from '../models/Pilot.model';
 import { Corporation } from '../models/Corporation.model';
@@ -47,6 +49,8 @@ export class AppModelStoreService {
 	static APPLICATION_SERVICE_PORT = "9000";
 	static RESOURCE_SERVICE_URL: string = "http://localhost:" + AppModelStoreService.APPLICATION_SERVICE_PORT + "/api/v1";
 
+	private _credentialList: NeoComNode[] = null; // List of Credential data. It also includes the Pilotv1 information.
+
 	private _loginList: Login[] = null; // List of Login structures to be used to aggregate Keys
 	private _currentLogin: Login = null; // The current Login active.
 	private _currentCharacter: NeoComCharacter = null; // The current active character
@@ -62,7 +66,107 @@ export class AppModelStoreService {
 		return AppModelStoreService.APPLICATION_VERSION;
 	}
 
+	//--- S T O R E   F I E L D S    A C C E S S O R S
+	//--- L O G I N    S E C T I O N
+	/**
+	This gets the list of Credentials that are the first interaction with the user to select with what character we like to continue the rest of the intereactions. If the Credential list is empty we return a node with an activation button to add new credentials while we go to the backend to get an updated list of the database stored credentials.
+	*/
+	public accessCredentialList(): Observable<NeoComNode[]> {
+		console.log("><[AppModelStoreService.accessCredentialList]");
+		if (null == this._credentialList) {
+			// Initialize the list with the default "new credential" button.
+			//		this._credentialList.push(new )
+			// Get the list form the backend Database.
+			return this.getBackendCredentialList()
+				.map(result => {
+					this._credentialList = result;
+				});
+		} else
+			return new Observable(observer => {
+				setTimeout(() => {
+					observer.next(this._credentialList);
+				}, 500);
+				setTimeout(() => {
+					observer.complete();
+				}, 500);
+			});
+	}
+	/**
+	If the list is empty go to the backend and get a new list. Otherwise return the current list. The call to the backend and being the list owned by the same service gets updated with the returned result but this is not the common result of backend access operations.
+	*/
+	public accessLoginList(): Observable<Login[]> {
+		console.log("><[AppModelStoreService.accessLoginList]");
+		if (null == this._loginList) {
+			// Get the list form the backend Database.
+			return this.getBackendLoginList()
+				.map(result => {
+					this._loginList = result;
+					return result;
+				});
+		} else
+			return new Observable(observer => {
+				setTimeout(() => {
+					observer.next(this._loginList);
+				}, 500);
+				setTimeout(() => {
+					observer.complete();
+				}, 500);
+			});
+	}
+	public setLoginList(newlist: Login[]): Login[] {
+		this._loginList = newlist;
+		return this._loginList;
+	}
+
+
+
+
 	//--- B A C K E N D    C A L L S
+	/**
+	Go to the backend Database to retrieve the list of declared Credentials to let the user to select the one he/she wants for working. If the list is already downloaded then do not access again the Database and return the cached list.
+	*/
+	public getBackendCredentialList(): Observable<NeoComNode[]> {
+		console.log("><[AppModelStoreService.getBackendCredentialList]");
+		let request = AppModelStoreService.RESOURCE_SERVICE_URL + "/credentials";
+		return this.http.get(request)
+			.map(res => res.json())
+			.map(result => {
+				console.log("--[AppModelStoreService.getBackendCredentialList]> Processing response.");
+				// Process the result into a set of Logins or process the Error Message if so.
+				//	let constructionList: NeoComNode[] = [];
+				// Process the resulting hash array into a list of transformed nodes.
+				this._credentialList = this.transformRequestOutput(result);
+
+				//	this._loginList = constructionList
+				console.log("<<[AppModelStoreService.getBackendCredentialList]> Processed: " + this._credentialList.length);
+				return this._credentialList;
+			});
+	}
+	private transformRequestOutput(result): NeoComNode[] {
+		let results: NeoComNode[] = [];
+		for (let key in result) {
+			// Access the object into the spot.
+			let node = result[key];
+			// Check that we have an Action on the spot.
+			if (node.jsonClass == "Credential") {
+				let convertedCredential = new Credential(node);
+				console.log("--[AppModelStoreService.transformRequestOutput]> Credential node: " + convertedCredential.getAccountId());
+				results.push(convertedCredential);
+			}
+			if (node.jsonClass == "Login") {
+				let convertedLogin = new Login(node);
+				console.log("--[AppModelStoreService.transformRequestOutput]> Identified Login node: " + convertedLogin.getLoginId());
+				results.push(convertedLogin);
+			}
+		}
+		return results;
+	}
+
+
+
+
+
+
 	/**
 	Go to the backend Database to retrieve the list of declared Logins to let the user to select the one he/she wants for working. If the list is already downloaded then do not access again the Database and return the cached list.
 	*/
@@ -213,33 +317,6 @@ export class AppModelStoreService {
 	}
 
 
-	//--- L O G I N    S E C T I O N
-	/**
-	If the list is empty go to the backend and get a new list. Otherwise return the current list. The call to the backend and being the list owned by the same service gets updated with the returned result but this is not the common result of backend access operations.
-	*/
-	public accessLoginList(): Observable<Login[]> {
-		console.log("><[AppModelStoreService.accessLoginList]");
-		if (null == this._loginList) {
-			// Get the list form the backend Database.
-			return this.getBackendLoginList()
-				.map(result => {
-					this._loginList = result;
-					return result;
-				});
-		} else
-			return new Observable(observer => {
-				setTimeout(() => {
-					observer.next(this._loginList);
-				}, 500);
-				setTimeout(() => {
-					observer.complete();
-				}, 500);
-			});
-	}
-	public setLoginList(newlist: Login[]): Login[] {
-		this._loginList = newlist;
-		return this._loginList;
-	}
 	/**
 	This method was recursive and that seemed to generate some inconsistencies. Removed.
 	*/

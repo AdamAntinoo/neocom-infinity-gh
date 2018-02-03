@@ -7,28 +7,22 @@
 //               , the second is the java microservices that compose the web application backend made with
 //               SpringBoot technology and finally the web ui code maid in typescript within the Angular
 //               framework.
-//--- CORE
-import { Component, OnInit } from '@angular/core';
-
-//--- SERVICES
-import { AppModelStoreService } from '../../../services/app-model-store.service';
 //--- INTERFACES
-import { PageComponent } from '../../../classes/PageComponent';
-import { EVariant } from '../../../classes/EVariant.enumerated';
+//import { PageComponent } from '../../../classes/PageComponent';
+// import { EVariant } from '../../../classes/EVariant.enumerated';
+// import { DataSource } from '../../../classes/DataSource';
+import { NeoComError } from '../classes/NeoComError';
+//--- MODELS
+import { NeoComNode } from './NeoComNode.model';
+//--- INTERFACES
+import { IPage } from '../classes/IPage.interface';
+import { EVariant } from '../classes/EVariant.enumerated';
+import { PageComponent } from '../classes/PageComponent';
 
-@Component({
-	selector: 'neocom-base-page',
-	templateUrl: './base-page.component.html',
-	styleUrls: ['./base-page.component.css']
-})
-export class BasePageComponent extends PageComponent implements OnInit {
-	//  private _variant: EVariant = EVariant.DEFAULT;
+export class DataSource {
+	//	private activity: PageComponent;
 
-	constructor(protected appModelStore: AppModelStoreService) {
-		super();
+	public getBodyParts(): NeoComNode[] {
+		return [];
 	}
-
-	ngOnInit() {
-	}
-
 }
