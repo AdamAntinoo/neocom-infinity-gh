@@ -10,6 +10,7 @@ package org.dimensinfin.eveonline.neocom.database;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
+import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.jdbc.JdbcPooledConnectionSource;
 import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
@@ -32,7 +33,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
-import java.sql.Time;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -56,8 +56,9 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 	private String databaseName = "";
 	private String databaseUser = "";
 	private String databasePassword = "";
-	private int databaseCurrentVersion = 0;
+	private int databaseVersion = 0;
 	private boolean databaseValid = false;
+	private boolean isOpen = false;
 	private JdbcPooledConnectionSource connectionSource = null;
 
 	private Dao<DatabaseVersion, String> versionDao = null;
@@ -78,7 +79,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 
 	// - M E T H O D - S E C T I O N ..........................................................................
 	public int getDatabaseVersion () {
-		return databaseCurrentVersion;
+		return databaseVersion;
 	}
 
 	public ConnectionSource getConnectionSource () throws SQLException {
@@ -107,7 +108,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 	}
 
 	public INeoComDBHelper setDatabaseVersion (final int newVersion) {
-		this.databaseCurrentVersion = newVersion;
+		this.databaseVersion = newVersion;
 		return this;
 	}
 
@@ -121,7 +122,22 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		if ( StringUtils.isEmpty(databasePassword) )
 			throw new SQLException("Cannot create connection: 'databasePassword' is empty.");
 		databaseValid = true;
-		createConnectionSource();
+		if ( openNeoComDB() ) {
+			// Delay database initialization after the helper is assigned to the Global.
+			GlobalDataManager.submitJob2Generic(()->{
+				int currentVersion = readDatabaseVersion();
+				// During the current POC version force the creation of the tables and forget the version control.
+				// Read the version information from the database. If version mismatch upgrade the database.
+				if ( 0 == currentVersion ) {
+					onUpgrade(connectionSource, currentVersion, databaseVersion);
+				} else {
+					// Check if the version is equal to the current software version.
+					if ( currentVersion != databaseVersion ) onUpgrade(connectionSource, currentVersion, databaseVersion);
+				}
+				// Pass the creation tables routine even in case all tables are up to date.
+				onCreate(connectionSource);
+			});
+		}
 		return this;
 	}
 
@@ -139,10 +155,10 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 				} else
 					return 0;
 			} catch (SQLException sqle) {
-				logger.warn("W- [NeocomDBHelper.getStoredVersion]> Database exception: " + sqle.getMessage());
+				logger.warn("W- [NeoComSBDBHelper.getStoredVersion]> Database exception: " + sqle.getMessage());
 				return 0;
 			} catch (RuntimeException rtex) {
-				logger.warn("W- [NeocomDBHelper.getStoredVersion]> Database exception: " + rtex.getMessage());
+				logger.warn("W- [NeoComSBDBHelper.getStoredVersion]> Database exception: " + rtex.getMessage());
 				return 0;
 			}
 		} else return storedVersion.getVersionNumber();
@@ -211,14 +227,20 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		this.loadSeedData();
 		logger.info("<< [NeoComSBDBHelper.onCreate]");
 	}
-
 	public void onUpgrade (final ConnectionSource databaseConnection, final int oldVersion, final int newVersion) {
+		logger.info(">> [NeoComSBDBHelper.onUpgrade]");
 		// Execute different actions depending on the new version.
 		if ( oldVersion < 109 ) {
 			try {
 				// Drop all the tables to force a new update from the latest SQLite version.
 				TableUtils.dropTable(databaseConnection, DatabaseVersion.class, true);
-				DatabaseVersion version = new DatabaseVersion(newVersion);
+				try {
+					TableUtils.createTableIfNotExists(databaseConnection, DatabaseVersion.class);
+					DatabaseVersion version = new DatabaseVersion(newVersion)
+							.store();
+				} catch (SQLException sqle) {
+					logger.warn("SQL [NeoComSBDBHelper.onCreate]> SQL NeoComDatabase: {}", sqle.getMessage());
+				}
 			} catch (RuntimeException rtex) {
 				logger.error("E> Error dropping table on Database new version.");
 				rtex.printStackTrace();
@@ -267,6 +289,8 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 				sqle.printStackTrace();
 			}
 		}
+		this.onCreate(databaseConnection);
+		logger.info("<< [NeoComSBDBHelper.onUpgrade]");
 	}
 
 	/**
@@ -297,13 +321,13 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 
 		//--- A P I   K E Y S
 		try {
-			Dao<ApiKey, String> apikey = this.getApiKeysDao();
-			QueryBuilder<ApiKey, String> queryBuilder = apikey.queryBuilder();
-			queryBuilder.setCountOf(true);
-			long records = apikey.countOf(queryBuilder.prepare());
+//			Dao<ApiKey, String> apikey = this.getApiKeysDao();
+//			QueryBuilder<ApiKey, String> queryBuilder = apikey.queryBuilder();
+//			queryBuilder.setCountOf(true);
+//			long records = apikey.countOf(queryBuilder.prepare());
 
 			// If the table is empty then insert the seeded Api Keys
-			if ( records < 1 ) {
+//			if ( records < 1 ) {
 				//				ApiKey key = new ApiKey("Beth Ripley").setKeynumber(2889577)
 				//				                                      .setValidationcode("Mb6iDKR14m9Xjh9maGTQCGTkpjRHPjOgVUkvK6E9r6fhMtOWtipaqybp0qCzxuuw")
 				//				                                      .setActive(true);
@@ -313,21 +337,27 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 				//				                                    .setValidationcode("2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P").setActive(true);
 				//				key = new ApiKey("CapitanHaddock29").setKeynumber(6472981)
 				//				                                    .setValidationcode("pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z").setActive(true);
-				ApiKey key = new ApiKey("CapitanHaddock").setKeynumber(924767)
-						.setValidationcode("2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P").setActive(false);
-				key = new ApiKey("CapitanHaddock").setKeynumber(6472981)
-						.setValidationcode("pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z").setActive(false);
-			}
-		} catch (SQLException sqle) {
+				ApiKey key = new ApiKey("CapitanHaddock")
+						.setKeynumber(924767)
+						.setValidationcode("2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P")
+						.setActive(true)
+						.store();
+				key = new ApiKey("CapitanHaddock")
+						.setKeynumber(6472981)
+						.setValidationcode("pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z")
+						.setActive(true)
+						.store();
+	//		}
+		} catch (RuntimeException rtex) {
 			logger.error("E> Error creating the initial table on the app database.");
-			sqle.printStackTrace();
+			rtex.printStackTrace();
 		}
 
 		//--- C R E D E N T I A L S
 		try {
-			final long records = this.getCredentialDao().countOf();
-			// If the table is empty then insert the seeded Credentials
-			if ( records < 1 ) {
+//			final long records = this.getCredentialDao().countOf();
+//			// If the table is empty then insert the seeded Credentials
+//			if ( records < 1 ) {
 				Credential credential = new Credential(91734031)
 						.setAccessToken("m58y5NBSK7T_1ki9jx4XsGgfu4laHIF9-3WRLeNqkABe-VKZ57tGFee8kpwFBO8RTtSIrHyz9UKtC17clitqsw2")
 						.setAccountName("Zach Zender")
@@ -343,10 +373,10 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 						.setAccountName("Perico Tuerto")
 						.setRefreshToken("_rOthuCEPyRdKjNv6XyX84dguFmSkK4byrP3tTOj0Kv_3F_8GBvxsrUhrFZoRQPCjXXgzn5n0a5gdLeWA_hlS8Uv0LsK6upwKz2kfyG3mlANsAxfIDa2iGaGKq1pmFpe2w3lYuHl8cKGCItzL9uW4LL8gc8Uznqi9_jFNYC3Z-AXAPKNwN7hwQxcV7Znn2aprUC5BjaKrhBin-ptEPyVnNYvqBRBdXHYQcc-m4aaPu-4qD4lK4PXbcZanxrfDP_")
 						.store();
-			}
-		} catch (SQLException sqle) {
+	//		}
+		} catch (RuntimeException rtex) {
 			logger.error("E> Error creating the initial table on the app database.");
-			sqle.printStackTrace();
+			rtex.printStackTrace();
 		}
 		logger.info("<< [NeoComSBDBHelper.loadSeedData]");
 	}
@@ -413,8 +443,37 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		return assetDao;
 	}
 
+	/**
+	 * Open a new pooled JDBC datasource connection list and stores its reference for use of the whole set of
+	 * services. Being a pooled connection it can create as many connections as required to do requests in
+	 * parallel to the database instance. This only is effective for MySql databases.
+	 *
+	 * @return
+	 */
+	private boolean openNeoComDB () {
+		logger.info(">> [NeoComSBDBHelper.openNeoComDB]");
+		if ( !isOpen ) if ( null == connectionSource ) {
+			// Open and configure the connection datasource for DAO queries.
+			try {
+				final String localConnectionDescriptor = hostName + "/" + databaseName;
+				createConnectionSource();
+				logger.info("-- [NeoComSBDBHelper.openNeoComDB]> Opened database " + localConnectionDescriptor + " successfully with version "
+						+ databaseVersion + ".");
+				isOpen = true;
+			} catch (Exception sqle) {
+				logger.error("E> [NeoComSBDBHelper.openNeoComDB]> " + sqle.getClass().getName() + ": " + sqle.getMessage());
+			}
+		}
+		logger.info("<< [NeoComSBDBHelper.openNeoComDB]");
+		return isOpen;
+	}
+
+	/**
+	 * Creates and configures the connection datasource to the database.
+	 *
+	 * @throws SQLException
+	 */
 	private void createConnectionSource () throws SQLException {
-		//		try {
 		final String localConnectionDescriptor = hostName + "/" + databaseName + "?user=" + databaseUser + "&password=" + databasePassword;
 		if ( databaseValid ) connectionSource = new JdbcPooledConnectionSource(localConnectionDescriptor);
 		else connectionSource = new JdbcPooledConnectionSource(DEFAULT_CONNECTION_DESCRIPTOR);
@@ -425,9 +484,24 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		// for extra protection, enable the testing of connections
 		// right before they are handed to the user
 		connectionSource.setTestBeforeGet(true);
-		//		} catch (SQLException sqle) {
-		//			sqle.printStackTrace();
-		//		}
+	}
+
+	private int readDatabaseVersion () {
+		// Access the version object persistent on the database.
+		try {
+			Dao<DatabaseVersion, String> versionDao = this.getVersionDao();
+			QueryBuilder<DatabaseVersion, String> queryBuilder = versionDao.queryBuilder();
+			PreparedQuery<DatabaseVersion> preparedQuery = queryBuilder.prepare();
+			List<DatabaseVersion> versionList = versionDao.query(preparedQuery);
+			if ( versionList.size() > 0 ) {
+				DatabaseVersion version = versionList.get(0);
+				return version.getVersionNumber();
+			} else
+				return 0;
+		} catch (SQLException sqle) {
+			logger.warn("W- [NeoComSBDBHelper.readDatabaseVersion]> Database exception: " + sqle.getMessage());
+			return 0;
+		}
 	}
 
 	@Override

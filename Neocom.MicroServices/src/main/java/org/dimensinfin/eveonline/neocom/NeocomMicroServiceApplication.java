@@ -69,7 +69,7 @@ public class NeocomMicroServiceApplication /*implements INeoComMSConnector*/ {
 					.setDatabaseName("neocom")
 					.setDatabaseUser("NEOCOMTEST")
 					.setDatabasePassword("01.Alpha")
-					.setDatabaseVersion(1)
+					.setDatabaseVersion(GlobalDataManager.getResourceInt("R.database.neocom.databaseversion"))
 					.build()
 			);
 		} catch (SQLException sqle) {

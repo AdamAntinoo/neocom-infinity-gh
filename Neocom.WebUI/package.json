@@ -1,6 +1,6 @@
 {
-  "name": "neocom-web",
-  "version": "0.9.1",
+  "name": "neocom-ws",
+  "version": "0.10.9",
   "license": "MIT",
   "scripts": {
     "ng": "ng",

@@ -44,8 +44,8 @@ This service will store persistent application data and has the knowledge to get
 */
 @Injectable()
 export class AppModelStoreService {
-	static APPLICATION_NAME: string = "NeoCom";
-	static APPLICATION_VERSION: string = "v 0.2.0 - STABLE"
+	static APPLICATION_NAME: string = "NeoCom-MS";
+	static APPLICATION_VERSION: string = "v 0.10.9-experimental"
 	static APPLICATION_SERVICE_PORT = "9000";
 	static RESOURCE_SERVICE_URL: string = "http://localhost:" + AppModelStoreService.APPLICATION_SERVICE_PORT + "/api/v1";
 

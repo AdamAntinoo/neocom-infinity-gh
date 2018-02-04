@@ -79,12 +79,13 @@ export class CredentialsPageComponent extends BasePageComponent implements OnIni
 		// Generate the contents by collaborating to the view all the nodes.
 		for (let node of this.credentialList) {
 			let nodes = node.collaborate2View(this.appModelStore, this.getVariant());
-			console.log(">>[CredentialDataSource.getBodyParts]> Collaborating " + nodes.length + " nodes.");
+			console.log("--[CredentialDataSource.getBodyParts]> Collaborating " + nodes.length + " nodes.");
 			// Add the collaborated nodes to the list of nodes to return.
 			for (let childNode of nodes) {
 				nodeList.push(childNode);
 			}
 		}
+		console.log("<<[CredentialDataSource.getBodyParts]");
 		return nodeList;
 	}
 	/**
