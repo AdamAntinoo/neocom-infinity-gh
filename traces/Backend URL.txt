@@ -26,6 +26,7 @@ BETH RIPLEY
 /api/v1/login/Beth Ripley/pilot/92223647/planetarymanager
 /api/v1/login/Beth Ripley/pilot/92223647/planetarymanager/location/60014089/optimizeprocess
 /api/v1/login/Beth Ripley/pilot/92223647/assetsmanager/location/1023075604524/downloadcontents
+/api/v1/login/Beth%20Ripley/pilot/92223647/assetsmanager/location/60014089/downloadcontents
 
 
 PERICO TUERTO
