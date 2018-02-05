@@ -20,17 +20,22 @@ import { PageComponent } from '../../classes/PageComponent';
 import { DataSource } from '../../models/DataSource.model';
 import { NeoComNode } from '../../models/NeoComNode.model';
 import { Credential } from '../../models/Credential.model';
-//--- Components
+//--- COMPONENTS
 import { BasePageComponent } from '../../components/core/base-page/base-page.component';
 
+/**
+This is the Credentials page. I am using it as the test bed for the rest of the development until I have a clear view of how to implement the Dashboard and the new authentication login mechanism so I can use this on a Corporation environment.
+The work flow that is the flow to be followed by all other pages is that on the OnInit event I get the list of contents for the data model list (equivalence of _dataModelRoot on Android). With that list the UI component generator factory will be able to run the collaborate2View on the contents and render any node it finds.
+Pages on Angular are the equivalent functionality as Activity+Fragment+DataSource+Generator on Android.
+*/
 @Component({
 	selector: 'neocom-credentials-page',
 	templateUrl: './credentials-page.component.html',
 	styleUrls: ['./credentials-page.component.css']
 })
 export class CredentialsPageComponent extends BasePageComponent implements OnInit, DataSource {
-	public pageViewPort: NeoComNode[] = [];
-	private credentialList: NeoComNode[] = [];
+	//	public pageViewPort: NeoComNode[] = [];
+	//	private credentialList: NeoComNode[] = [];
 
 	// constructor() {
 	// //	super();
@@ -50,8 +55,8 @@ export class CredentialsPageComponent extends BasePageComponent implements OnIni
 		// Call the service to get the list of Logins.
 		this.appModelStore.accessCredentialList()
 			.subscribe(result => {
-				console.log("--[LoginPageComponent.ngOnInit.accessLoginList]>Loginlist.length: " + result.length);
-				this.credentialList = result;
+				console.log("--[LoginPageComponent.ngOnInit.accessLoginList]> Loginlist.length: " + result.length);
+				this.dataModelRoot = result;
 				// Sort the list of Logins before processing their collaborations.
 				//			let sortedLogins = this.sortLogins(result);
 				// Loop over all the returned items.
@@ -65,38 +70,10 @@ export class CredentialsPageComponent extends BasePageComponent implements OnIni
 				this.downloading = false;
 			});
 		console.log("<< [CredentialsPageComponent.ngOnInit]");
-
-
-
-
-		//		getBodyParts(this.pageViewPort, this.appModelStore.accessCredentialList())
-
-	}
-	//--- DATASOURCE INTERFACE
-	public getBodyParts(): NeoComNode[] {
-		console.log(">>[CredentialDataSource.getBodyParts]");
-		let nodeList: NeoComNode[] = [];
-		// Generate the contents by collaborating to the view all the nodes.
-		for (let node of this.credentialList) {
-			let nodes = node.collaborate2View(this.appModelStore, this.getVariant());
-			console.log("--[CredentialDataSource.getBodyParts]> Collaborating " + nodes.length + " nodes.");
-			// Add the collaborated nodes to the list of nodes to return.
-			for (let childNode of nodes) {
-				nodeList.push(childNode);
-			}
-		}
-		console.log("<<[CredentialDataSource.getBodyParts]");
-		return nodeList;
 	}
 	/**
-	Return the list of nodes to be rendered on the Page viewPort. This is an equivalent to the connection between the DataSource, the Adapter and the ListView on the Android platform.
-	*/
-	/**
-	The common component to render any node has an input that is the specific DataSource for this page. This is the method to connect the local internal and specific DataSource to the generic rendel component.
-	*/
-	public getDataSource(): DataSource {
-		return this;
-	}
+Return the list of nodes to be rendered on the Page viewPort. This is an equivalent to the connection between the DataSource, the Adapter and the ListView on the Android platform.
+*/
 }
 // export class CredentialDataSource extends DataSource {
 // 	constructor(private credentialList: NeoComNode[]) {

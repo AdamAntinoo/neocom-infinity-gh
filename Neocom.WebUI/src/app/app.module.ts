@@ -21,9 +21,16 @@ import { PilotDetailPageComponent } from './pages/pilot-detail-page/pilot-detail
 import { AssetsManagerPageComponent } from './pages/assets-manager-page/assets-manager-page.component';
 import { PlanetaryManagerPageComponent } from './pages/planetary-manager-page/planetary-manager-page.component';
 import { PlanetaryOptimizationPageComponent } from './pages/planetary-optimization-page/planetary-optimization-page.component';
-//--- COMPONENTS
+//--- COMPONENTS-CORE
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
+
+//--- COMPONENTS-UI
+import { HeaderComponent } from './components/ui/header/header.component';
+import { ComponentFactoryComponent } from './components/factory/component-factory/component-factory.component';
+import { DetailedContainerComponent } from './components/factory/detailed-container/detailed-container.component';
+
+//--- COMPONENTS-MODEL
+//--- COMPONENTS-DETAILED
 import { SpinnerCentralComponent } from './components/spinner-central/spinner-central.component';
 import { Pilot4RoasterComponent } from './components/pilot4-roaster/pilot4-roaster.component';
 import { Pilot4DetailComponent } from './components/pilot4-detail/pilot4-detail.component';
@@ -49,58 +56,58 @@ import { ShipSlotGroupComponent } from './components/ship-slot-group/ship-slot-g
 import { ExpandableComponent } from './components/expandable/expandable.component';
 import { CredentialsPageComponent } from './pages/credentials-page/credentials-page.component';
 import { BasePageComponent } from './components/core/base-page/base-page.component';
-import { ComponentFactoryComponent } from './components/factory/component-factory/component-factory.component';
 import { CredentialComponent } from './components/model/credential/credential.component';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ISKNoDecimalsPipe,
-    CapitalizeLetterPipe,
-    HeaderComponent,
-    SpinnerCentralComponent,
-    NavigationMenuComponent,
-    RegionComponent,
-    LocationComponent,
-    Pilot4RoasterComponent,
-    Pilot4DetailComponent,
-    PilotDetailPageComponent,
-    PilotManagerComponent,
-    PlanetaryManagerComponent,
-    LoginPageComponent,
-    Login4ListComponent,
-    AssetsManagerPageComponent,
-    PlanetaryManagerPageComponent,
-    AssetComponent,
-    SeparatorComponent,
-    AssetComponent,
-    PlanetaryOptimizationPageComponent,
-    ResourceComponent,
-    ProcessingActionComponent,
-    NodePanelComponent,
-    Pilot4LoginComponent,
-    ContainerComponent,
-    AssetsManagerComponent,
-    ShipComponent,
-    ShipSlotGroupComponent,
-    ExpandableComponent,
-    CredentialsPageComponent,
-    BasePageComponent,
-    ComponentFactoryComponent,
-    CredentialComponent,
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    JsonpModule,
-    CookieModule.forRoot(),
-    AppRoutingModule,
-  ],
-  providers: [
-    AppModelStoreService,
-  ],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		ISKNoDecimalsPipe,
+		CapitalizeLetterPipe,
+		HeaderComponent,
+		SpinnerCentralComponent,
+		NavigationMenuComponent,
+		RegionComponent,
+		LocationComponent,
+		Pilot4RoasterComponent,
+		Pilot4DetailComponent,
+		PilotDetailPageComponent,
+		PilotManagerComponent,
+		PlanetaryManagerComponent,
+		LoginPageComponent,
+		Login4ListComponent,
+		AssetsManagerPageComponent,
+		PlanetaryManagerPageComponent,
+		AssetComponent,
+		SeparatorComponent,
+		AssetComponent,
+		PlanetaryOptimizationPageComponent,
+		ResourceComponent,
+		ProcessingActionComponent,
+		NodePanelComponent,
+		Pilot4LoginComponent,
+		ContainerComponent,
+		AssetsManagerComponent,
+		ShipComponent,
+		ShipSlotGroupComponent,
+		ExpandableComponent,
+		CredentialsPageComponent,
+		BasePageComponent,
+		ComponentFactoryComponent,
+		CredentialComponent,
+		DetailedContainerComponent,
+	],
+	imports: [
+		BrowserModule,
+		FormsModule,
+		HttpModule,
+		JsonpModule,
+		CookieModule.forRoot(),
+		AppRoutingModule,
+	],
+	providers: [
+		AppModelStoreService,
+	],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

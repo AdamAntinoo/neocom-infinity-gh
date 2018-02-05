@@ -1,6 +1,6 @@
 <neocom-spinner-central *ngIf="downloading" [configuration]="{title:'Downloading Login list',subtitle:''}"></neocom-spinner-central>
 <div class="neocom-panel-container">
-  <div *ngFor="let render of getBodyParts()">
+  <div *ngFor="let render of getBodyComponents()">
     <neocom-separator *ngIf="render.jsonClass == 'Separator'" [viewer]="getViewer()" [node]="render"></neocom-separator>
     <neocom-credential *ngIf="render.jsonClass == 'Credential'" [viewer]="getViewer()" [node]="render"></neocom-credential>
     <neocom-login4-list *ngIf="render.jsonClass == 'Login'" [viewer]="getViewer()" [node]="render"></neocom-login4-list>
