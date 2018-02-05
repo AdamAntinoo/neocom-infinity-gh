@@ -5,8 +5,9 @@ import { Input } from '@angular/core';
 import { AppModelStoreService } from '../../services/app-model-store.service';
 //--- COMPONENTS
 import { PilotManagerComponent } from '../pilot-manager/pilot-manager.component';
+//--- CLASSES
+import { PageComponent } from '../../classes/PageComponent';
 //--- MODELS
-import { Render } from '../../models/Render.model';
 import { Region } from '../../models/Region.model';
 import { Location } from '../../models/Location.model';
 import { EVariant } from '../../classes/EVariant.enumerated';
@@ -19,12 +20,13 @@ import { NeoComCharacter } from '../../models/NeoComCharacter.model';
   templateUrl: './planetary-manager.component.html',
   styleUrls: ['./planetary-manager.component.css']
 })
-export class PlanetaryManagerComponent implements OnInit {
+export class PlanetaryManagerComponent extends PageComponent implements OnInit {
   @Input() pilot: NeoComCharacter;
   @Input() manager: Manager;
 
   constructor(private appModelStore: AppModelStoreService) {
-    //  super();
+    super();
+    this.setExpandable(true);
   }
 
   ngOnInit() {

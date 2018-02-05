@@ -1,25 +1,21 @@
-<div class="panel panel-default panel-manager" id="panel1">
-  <div class="panel-box">
-    <table class="panel-node" cellspacing="0" cellpadding="0">
-      <a class="no-underline" [routerLink]="['/login',getLoginId(),'pilot',pilot.getId(),manager.jsonClass]">
-        <tr>
-          <td><img class="neocom-icon-90" src="/assets/icons/{{manager.iconName}}"></td>
-          <td width="80% ">
-            <div class="panel-content-2col">
-              <span class="neocom-selectable-name">{{manager.orderingName}}</span><br>
-            </div>
-          </td>
-          <td class="left-box " align="right ">
-            <div class="big-label ">{{manager.iconName}}</div>
-            <div class="stack-counter ">{{manager.assetTotalCount}}</div>
-            <div class="topup-label small-label"><span>ASSETS</span></div>
-          </td>
-          <td class="arrow-box" (click)="onClickArrow()" [ngClass]="{expanded: expanded}">
-            <img class="neocom-arrow" *ngIf="!expanded " src="/assets/icons/arrowleft.png ">
-            <img class="neocom-arrow" *ngIf="expanded " src="/assets/icons/arrowright.png ">
-          </td>
-        </tr>
-      </a>
-    </table>
-  </div>
+<div class="neocom-panel" id="content">
+  <table class="neocom-panel-container" cellspacing="0" cellpadding="0" width="100%">
+    <a class="no-underline" [routerLink]="['/login',getLoginId(),'pilot',pilot.getId(),manager.jsonClass]">
+      <tr>
+        <td><img class="" id="iconsize-48" src="/assets/icons/{{manager.iconName}}"></td>
+        <td width="80%" class="neocom-panel-column">
+          <div class="neocom-selectable-name">{{manager.orderingName}}<br>
+          </div>
+        </td>
+        <td width="20%" class="neocom-panel-right-box" align="right">
+          <!-- <div class="big-label ">{{manager.iconName}}</div> -->
+          <div class="stack-counter lined-bottomline" style="color: white;">{{manager.assetTotalCount | number:'1.0-0'}}</div>
+          <div class="neocom-label"><span>RESOURCES</span></div>
+        </td>
+        <td width="5%" *ngIf="isExpandable()" class="neocom-arrow-box" (click)="clickArrow()">
+          <img class="neocom-arrow" [ngClass]="{'neocom-arrow-expanded': pilot.expanded}" src="/assets/icons/arrowright.png ">
+        </td>
+      </tr>
+    </a>
+  </table>
 </div>

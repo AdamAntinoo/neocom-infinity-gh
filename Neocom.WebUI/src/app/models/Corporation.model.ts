@@ -6,7 +6,6 @@
 
 //--- MODELS
 import { NeoComCharacter } from './NeoComCharacter.model';
-import { PilotAction } from './pilotaction';
 
 export class Corporation extends NeoComCharacter {
   public characterID: number = -1.0;
@@ -22,7 +21,7 @@ export class Corporation extends NeoComCharacter {
   constructor(values: Object = {}) {
     super();
     Object.assign(this, values);
-    this.jsonClass = "Corporation";
+    //    this.jsonClass = "Corporation";
   }
 
   public getId() {

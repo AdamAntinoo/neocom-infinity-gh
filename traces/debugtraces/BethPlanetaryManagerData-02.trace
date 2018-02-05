@@ -1,0 +1,301 @@
+2017-10-03 14:56:35.630  INFO 42816 --- [           main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@248e319b: startup date [Tue Oct 03 14:56:35 CEST 2017]; root of context hierarchy
+2017-10-03 14:56:36.601  INFO 42816 --- [           main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-10-03 14:56:36.791  INFO 42816 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'configurationPropertiesRebinderAutoConfiguration' of type [class org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$3f39b9a8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.3.5.RELEASE)
+
+2017-10-03 14:56:39.446  INFO 42816 --- [           main] o.d.e.n.NeocomMicroServiceApplication    : No active profile set, falling back to default profiles: default
+2017-10-03 14:56:39.615  INFO 42816 --- [           main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@4efcf8a: startup date [Tue Oct 03 14:56:39 CEST 2017]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@248e319b
+2017-10-03 14:56:44.285  INFO 42816 --- [           main] o.s.b.f.s.DefaultListableBeanFactory     : Overriding bean definition for bean 'hystrixFeature' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.cloud.netflix.hystrix.HystrixCircuitBreakerConfiguration$HystrixWebConfiguration; factoryMethodName=hystrixFeature; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/cloud/netflix/hystrix/HystrixCircuitBreakerConfiguration$HystrixWebConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.cloud.netflix.hystrix.HystrixCircuitBreakerConfiguration; factoryMethodName=hystrixFeature; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/cloud/netflix/hystrix/HystrixCircuitBreakerConfiguration.class]]
+2017-10-03 14:56:45.153  WARN 42816 --- [           main] o.s.c.a.ConfigurationClassPostProcessor  : Cannot enhance @Configuration bean definition 'refreshScope' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2017-10-03 14:56:45.930  INFO 42816 --- [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=c69b4877-9c21-3470-be6f-ea157f0549fa
+2017-10-03 14:56:45.958  INFO 42816 --- [           main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-10-03 14:56:46.965  INFO 42816 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [class org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$3f39b9a8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-10-03 14:56:47.013  INFO 42816 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.RefreshEndpointAutoConfiguration' of type [class org.springframework.cloud.autoconfigure.RefreshEndpointAutoConfiguration$$EnhancerBySpringCGLIB$$e898bb9e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-10-03 14:56:50.519  INFO 42816 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 9000 (http)
+2017-10-03 14:56:50.940  INFO 42816 --- [           main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2017-10-03 14:56:50.942  INFO 42816 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.0.33
+2017-10-03 14:56:52.044  INFO 42816 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-10-03 14:56:52.045  INFO 42816 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 12430 ms
+2017-10-03 14:56:54.079  INFO 42816 --- [ost-startStop-1] o.s.b.c.e.ServletRegistrationBean        : Mapping servlet: 'dispatcherServlet' to [/]
+2017-10-03 14:56:54.088  INFO 42816 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'metricFilter' to: [/*]
+2017-10-03 14:56:54.089  INFO 42816 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-10-03 14:56:54.090  INFO 42816 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-10-03 14:56:54.090  INFO 42816 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-10-03 14:56:54.090  INFO 42816 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'requestContextFilter' to: [/*]
+2017-10-03 14:56:54.091  INFO 42816 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'webRequestLoggingFilter' to: [/*]
+2017-10-03 14:56:54.091  INFO 42816 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'applicationContextIdFilter' to: [/*]
+2017-10-03 14:56:54.195  INFO 42816 --- [           main] NeocomMicroServiceApplication            : >> [NeocomMicroServiceApplication.<constructor>]
+2017-10-03 14:56:54.195  INFO 42816 --- [           main] NeocomMicroServiceApplication            : -- [NeocomMicroServiceApplication.<constructor>]> Instantiating the singleton.
+2017-10-03 14:56:54.196  INFO 42816 --- [           main] NeocomMicroServiceApplication            : << [NeocomMicroServiceApplication.<constructor>]
+2017-10-03 14:56:54.697  WARN 42816 --- [           main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2017-10-03 14:56:54.697  INFO 42816 --- [           main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2017-10-03 14:56:54.719  INFO 42816 --- [           main] c.netflix.config.DynamicPropertyFactory  : DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@6d67f5eb
+2017-10-03 14:56:56.104  INFO 42816 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@4efcf8a: startup date [Tue Oct 03 14:56:39 CEST 2017]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@248e319b
+2017-10-03 14:56:56.335  INFO 42816 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/v1/eveitem/{typeID}],methods=[GET],produces=[application/json]}" onto public org.dimensinfin.eveonline.neocom.model.EveItem org.dimensinfin.eveonline.neocom.controller.EveItemController.eveItem(java.lang.String)
+2017-10-03 14:56:56.335  INFO 42816 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/v1/location/updateoutposts],methods=[GET],produces=[application/json]}" onto public java.lang.String org.dimensinfin.eveonline.neocom.controller.LocationController.updateOutposts()
+2017-10-03 14:56:56.335  INFO 42816 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/v1/location/updatecitadels],methods=[GET],produces=[application/json]}" onto public java.lang.String org.dimensinfin.eveonline.neocom.controller.LocationController.updateCitadels()
+2017-10-03 14:56:56.351  INFO 42816 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/v1/loginlist],methods=[GET],produces=[application/json]}" onto public java.util.Hashtable<java.lang.String, org.dimensinfin.eveonline.neocom.model.Login> org.dimensinfin.eveonline.neocom.controller.LoginController.loginlistEntryPoint(java.lang.String)
+2017-10-03 14:56:56.351  INFO 42816 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/v1/login/{login}/pilot/{identifier}/planetarymanager],methods=[GET],produces=[application/json]}" onto public org.dimensinfin.eveonline.neocom.manager.AbstractManager org.dimensinfin.eveonline.neocom.controller.PilotDataController.pilotPlanetaryManager(java.lang.String,java.lang.String)
+2017-10-03 14:56:56.351  INFO 42816 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/v1/login/{login}/pilot/{identifier}/pilotmanagers],methods=[GET],produces=[application/json]}" onto public java.util.Vector<org.dimensinfin.eveonline.neocom.manager.AbstractManager> org.dimensinfin.eveonline.neocom.controller.PilotDataController.pilotManagers(java.lang.String,java.lang.String)
+2017-10-03 14:56:56.351  INFO 42816 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/v1/login/{login}/pilot/{identifier}],methods=[GET],produces=[application/json]}" onto public org.dimensinfin.eveonline.neocom.model.NeoComCharacter org.dimensinfin.eveonline.neocom.controller.PilotDataController.pilotDetailed(java.lang.String,java.lang.String)
+2017-10-03 14:56:56.351  INFO 42816 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/v1/login/{login}/pilot/{identifier}/planetarymanager/location/{locationid}/optimizeprocess],methods=[GET],produces=[application/json]}" onto public java.util.Vector<org.dimensinfin.eveonline.neocom.planetary.ProcessingAction> org.dimensinfin.eveonline.neocom.controller.PlanetaryManagerController.planetaryLocationOptimization(java.lang.String,java.lang.String,java.lang.String)
+2017-10-03 14:56:56.351  INFO 42816 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-10-03 14:56:56.351  INFO 42816 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-10-03 14:56:56.520  INFO 42816 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-10-03 14:56:56.520  INFO 42816 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-10-03 14:56:56.636  INFO 42816 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-10-03 14:56:59.379  INFO 42816 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/restart || /restart.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.restart.RestartMvcEndpoint.invoke()
+2017-10-03 14:56:59.408  INFO 42816 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/archaius || /archaius.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-10-03 14:56:59.410  INFO 42816 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/pause || /pause.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+2017-10-03 14:56:59.413  INFO 42816 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/refresh || /refresh.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+2017-10-03 14:56:59.422  INFO 42816 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/configprops || /configprops.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-10-03 14:56:59.438  INFO 42816 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/health || /health.json],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.HealthMvcEndpoint.invoke(java.security.Principal)
+2017-10-03 14:56:59.439  INFO 42816 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/trace || /trace.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-10-03 14:56:59.440  INFO 42816 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.value(java.util.Map<java.lang.String, java.lang.String>)
+2017-10-03 14:56:59.441  INFO 42816 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env/reset],methods=[POST]}" onto public java.util.Map<java.lang.String, java.lang.Object> org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.reset()
+2017-10-03 14:56:59.442  INFO 42816 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/resume || /resume.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+2017-10-03 14:56:59.443  INFO 42816 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/hystrix.stream/**]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.cloud.netflix.endpoint.ServletWrappingEndpoint.handle(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+2017-10-03 14:56:59.444  INFO 42816 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/dump || /dump.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-10-03 14:56:59.445  INFO 42816 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/mappings || /mappings.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-10-03 14:56:59.447  INFO 42816 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env/{name:.*}],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EnvironmentMvcEndpoint.value(java.lang.String)
+2017-10-03 14:56:59.447  INFO 42816 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env || /env.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-10-03 14:56:59.448  INFO 42816 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/beans || /beans.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-10-03 14:56:59.450  INFO 42816 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/features || /features.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-10-03 14:56:59.451  INFO 42816 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/metrics/{name:.*}],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.MetricsMvcEndpoint.value(java.lang.String)
+2017-10-03 14:56:59.451  INFO 42816 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/metrics || /metrics.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-10-03 14:56:59.452  INFO 42816 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/info || /info.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-10-03 14:56:59.453  INFO 42816 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/autoconfig || /autoconfig.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-10-03 14:56:59.731  WARN 42816 --- [           main] o.s.c.n.a.ArchaiusAutoConfiguration      : No spring.application.name found, defaulting to 'application'
+2017-10-03 14:56:59.732  WARN 42816 --- [           main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2017-10-03 14:56:59.732  INFO 42816 --- [           main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2017-10-03 14:57:00.179  INFO 42816 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-10-03 14:57:00.200  INFO 42816 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'refreshScope' has been autodetected for JMX exposure
+2017-10-03 14:57:00.201  INFO 42816 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'environmentManager' has been autodetected for JMX exposure
+2017-10-03 14:57:00.204  INFO 42816 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'configurationPropertiesRebinder' has been autodetected for JMX exposure
+2017-10-03 14:57:00.205  INFO 42816 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'refreshEndpoint' has been autodetected for JMX exposure
+2017-10-03 14:57:00.207  INFO 42816 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'restartEndpoint' has been autodetected for JMX exposure
+2017-10-03 14:57:00.213  INFO 42816 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'environmentManager': registering with JMX server as MBean [org.springframework.cloud.context.environment:name=environmentManager,type=EnvironmentManager]
+2017-10-03 14:57:00.297  INFO 42816 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'restartEndpoint': registering with JMX server as MBean [org.springframework.cloud.context.restart:name=restartEndpoint,type=RestartEndpoint]
+2017-10-03 14:57:00.332  INFO 42816 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'refreshScope': registering with JMX server as MBean [org.springframework.cloud.context.scope.refresh:name=refreshScope,type=RefreshScope]
+2017-10-03 14:57:00.351  INFO 42816 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'configurationPropertiesRebinder': registering with JMX server as MBean [org.springframework.cloud.context.properties:name=configurationPropertiesRebinder,context=4efcf8a,type=ConfigurationPropertiesRebinder]
+2017-10-03 14:57:00.374  INFO 42816 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'refreshEndpoint': registering with JMX server as MBean [org.springframework.cloud.endpoint:name=refreshEndpoint,type=RefreshEndpoint]
+2017-10-03 14:57:00.668  INFO 42816 --- [           main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 0
+2017-10-03 14:57:00.757  INFO 42816 --- [           main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2017-10-03 14:57:00.812  INFO 42816 --- [           main] ration$HystrixMetricsPollerConfiguration : Starting poller
+2017-10-03 14:57:01.102  INFO 42816 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 9000 (http)
+2017-10-03 14:57:01.110  INFO 42816 --- [           main] o.d.e.n.NeocomMicroServiceApplication    : Started NeocomMicroServiceApplication in 27.452 seconds (JVM running for 29.018)
+2017-10-03 14:57:02.404  INFO 42816 --- [nio-9000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2017-10-03 14:57:02.405  INFO 42816 --- [nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2017-10-03 14:57:02.454  INFO 42816 --- [nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 49 ms
+2017-10-03 14:57:12.660  INFO 42816 --- [nio-9000-exec-1] PilotRoasterController                   : >>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/login/{Beth Ripley}/pilot/{92223647}/planetarymanager
+2017-10-03 14:57:12.661  INFO 42816 --- [nio-9000-exec-1] PilotRoasterController                   : >> [PilotRoasterController.pilotPlanetaryManager]
+2017-10-03 14:57:12.665  INFO 42816 --- [nio-9000-exec-1] AppModelStore                            : >> [AppModelStore.initialize]
+2017-10-03 14:57:12.665  INFO 42816 --- [nio-9000-exec-1] AppModelStore                            : << [AppModelStore.initialize]
+2017-10-03 14:57:12.665  INFO 42816 --- [nio-9000-exec-1] AppModelStore                            : >< [AppModelStore.activateLoginIdentifier] loginTarget: Beth Ripley
+2017-10-03 14:57:12.736 ERROR 42816 --- [nio-9000-exec-1] com.j256.ormlite.db.SqliteDatabaseType   : WARNING: you seem to not be using the Xerial SQLite driver.  See ORMLite docs on SQLite: http://ormlite.com/docs/sqlite
+2017-10-03 14:57:12.758  INFO 42816 --- [nio-9000-exec-1] NeocomDBHelper                           : --[NeocomDBHelper.openNeocomDB]> Opened database jdbc:sqlite:src/main/resources/neocomdata.db successfully with version 20.
+2017-10-03 14:57:12.852  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating table 'Version'
+2017-10-03 14:57:13.634  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE TABLE IF NOT EXISTS `Version` (`versionNumber` INTEGER , PRIMARY KEY (`versionNumber`) ) 
+2017-10-03 14:57:13.636  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating table 'TimeStamp'
+2017-10-03 14:57:13.636  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE TABLE IF NOT EXISTS `TimeStamp` (`reference` VARCHAR , `timeStamp` BIGINT , `dateTimeUserReference` VARCHAR , PRIMARY KEY (`reference`) ) 
+2017-10-03 14:57:13.637  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating table 'ApiKey'
+2017-10-03 14:57:13.638  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE TABLE IF NOT EXISTS `ApiKey` (`id` INTEGER PRIMARY KEY AUTOINCREMENT , `login` VARCHAR , `keynumber` INTEGER , `validationcode` VARCHAR , `active` BOOLEAN ) 
+2017-10-03 14:57:13.640  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating table 'Properties'
+2017-10-03 14:57:13.640  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating index 'Properties_id_idx' for table 'Properties
+2017-10-03 14:57:13.640  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE TABLE IF NOT EXISTS `Properties` (`id` INTEGER PRIMARY KEY AUTOINCREMENT , `propertyType` VARCHAR , `stringValue` VARCHAR , `numericValue` DOUBLE PRECISION , `ownerID` BIGINT ) 
+2017-10-03 14:57:13.641  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE INDEX IF NOT EXISTS `Properties_id_idx` ON `Properties` ( `id` )
+2017-10-03 14:57:13.642  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating table 'ResourceList'
+2017-10-03 14:57:13.643  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE TABLE IF NOT EXISTS `ResourceList` (`id` INTEGER PRIMARY KEY AUTOINCREMENT , `name` VARCHAR ) 
+2017-10-03 14:57:13.644  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating table 'PlanetaryResource'
+2017-10-03 14:57:13.645  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE TABLE IF NOT EXISTS `PlanetaryResource` (`id` INTEGER PRIMARY KEY AUTOINCREMENT , `typeid` INTEGER , `quantity` DOUBLE PRECISION , `name` VARCHAR , `ownerList_id` INTEGER ) 
+2017-10-03 14:57:13.652  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating table 'Assets'
+2017-10-03 14:57:13.653  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating index 'Assets_locationID_idx' for table 'Assets
+2017-10-03 14:57:13.653  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating index 'Assets_groupName_idx' for table 'Assets
+2017-10-03 14:57:13.653  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating index 'Assets_typeID_idx' for table 'Assets
+2017-10-03 14:57:13.653  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating index 'Assets_category_idx' for table 'Assets
+2017-10-03 14:57:13.653  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating index 'Assets_assetID_idx' for table 'Assets
+2017-10-03 14:57:13.654  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE TABLE IF NOT EXISTS `Assets` (`id` INTEGER PRIMARY KEY AUTOINCREMENT , `assetID` BIGINT , `locationID` BIGINT , `typeID` INTEGER , `quantity` INTEGER , `flag` INTEGER , `singleton` BOOLEAN , `parentAssetID` BIGINT , `ownerID` BIGINT , `name` VARCHAR , `category` VARCHAR , `groupName` VARCHAR , `tech` VARCHAR , `blueprintFlag` BOOLEAN , `userLabel` VARCHAR , `shipFlag` BOOLEAN , `containerFlag` BOOLEAN , `iskValue` DOUBLE PRECISION ) 
+2017-10-03 14:57:13.654  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE INDEX IF NOT EXISTS `Assets_locationID_idx` ON `Assets` ( `locationID` )
+2017-10-03 14:57:13.655  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE INDEX IF NOT EXISTS `Assets_groupName_idx` ON `Assets` ( `groupName` )
+2017-10-03 14:57:13.655  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE INDEX IF NOT EXISTS `Assets_typeID_idx` ON `Assets` ( `typeID` )
+2017-10-03 14:57:13.656  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE INDEX IF NOT EXISTS `Assets_category_idx` ON `Assets` ( `category` )
+2017-10-03 14:57:13.656  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE INDEX IF NOT EXISTS `Assets_assetID_idx` ON `Assets` ( `assetID` )
+2017-10-03 14:57:13.661  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating table 'Blueprints'
+2017-10-03 14:57:13.661  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating index 'Blueprints_typeID_idx' for table 'Blueprints
+2017-10-03 14:57:13.662  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating index 'Blueprints_containerID_idx' for table 'Blueprints
+2017-10-03 14:57:13.662  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating index 'Blueprints_assetID_idx' for table 'Blueprints
+2017-10-03 14:57:13.662  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE TABLE IF NOT EXISTS `Blueprints` (`id` INTEGER PRIMARY KEY AUTOINCREMENT , `assetID` BIGINT , `containerID` BIGINT , `typeID` INTEGER , `typeName` VARCHAR , `flag` INTEGER , `quantity` INTEGER , `timeEfficiency` INTEGER , `materialEfficiency` INTEGER , `runs` INTEGER , `ownerID` BIGINT , `bpo` BOOLEAN , `packaged` BOOLEAN , `tech` VARCHAR , `moduleTypeID` INTEGER , `stackIDRefences` VARCHAR , `manufactureIndex` INTEGER , `inventionIndex` INTEGER , `jobProductionCost` DOUBLE PRECISION , `manufacturableCount` INTEGER ) 
+2017-10-03 14:57:13.663  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE INDEX IF NOT EXISTS `Blueprints_typeID_idx` ON `Blueprints` ( `typeID` )
+2017-10-03 14:57:13.664  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE INDEX IF NOT EXISTS `Blueprints_containerID_idx` ON `Blueprints` ( `containerID` )
+2017-10-03 14:57:13.664  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE INDEX IF NOT EXISTS `Blueprints_assetID_idx` ON `Blueprints` ( `assetID` )
+2017-10-03 14:57:13.668  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating table 'Jobs'
+2017-10-03 14:57:13.668  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating index 'Jobs_blueprintLocationID_idx' for table 'Jobs
+2017-10-03 14:57:13.668  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating index 'Jobs_blueprintID_idx' for table 'Jobs
+2017-10-03 14:57:13.669  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE TABLE IF NOT EXISTS `Jobs` (`jobID` BIGINT , `jobType` VARCHAR , `facilityID` BIGINT , `stationID` BIGINT , `activityID` INTEGER , `blueprintID` BIGINT , `blueprintTypeID` INTEGER , `blueprintLocationID` BIGINT , `runs` INTEGER , `cost` DOUBLE PRECISION , `licensedRuns` INTEGER , `productTypeID` INTEGER , `status` INTEGER , `timeInSeconds` INTEGER , `startDate` TIMESTAMP , `endDate` TIMESTAMP , `completedDate` TIMESTAMP , `completedCharacterID` BIGINT , `successfulRuns` INTEGER , `ownerID` BIGINT , PRIMARY KEY (`jobID`) ) 
+2017-10-03 14:57:13.669  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE INDEX IF NOT EXISTS `Jobs_blueprintLocationID_idx` ON `Jobs` ( `blueprintLocationID` )
+2017-10-03 14:57:13.670  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE INDEX IF NOT EXISTS `Jobs_blueprintID_idx` ON `Jobs` ( `blueprintID` )
+2017-10-03 14:57:13.673  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating table 'MarketOrders'
+2017-10-03 14:57:13.673  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE TABLE IF NOT EXISTS `MarketOrders` (`orderID` BIGINT , `ownerID` BIGINT , `stationID` BIGINT , `volEntered` INTEGER , `volRemaining` INTEGER , `minVolume` INTEGER , `orderState` INTEGER , `typeID` INTEGER , `range` INTEGER , `accountKey` INTEGER , `duration` INTEGER , `escrow` DOUBLE PRECISION , `price` DOUBLE PRECISION , `bid` BOOLEAN , `issuedDate` TIMESTAMP , PRIMARY KEY (`orderID`) ) 
+2017-10-03 14:57:13.679  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating table 'Locations'
+2017-10-03 14:57:13.679  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : creating index 'Locations_id_idx' for table 'Locations
+2017-10-03 14:57:13.679  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE TABLE IF NOT EXISTS `Locations` (`id` BIGINT , `stationID` BIGINT , `station` VARCHAR , `systemID` BIGINT , `system` VARCHAR , `constellationID` BIGINT , `constellation` VARCHAR , `regionID` BIGINT , `region` VARCHAR , `security` VARCHAR , `typeID` INTEGER , PRIMARY KEY (`id`) ) 
+2017-10-03 14:57:13.679  INFO 42816 --- [nio-9000-exec-1] com.j256.ormlite.table.TableUtils        : executed create table statement changed 0 rows: CREATE INDEX IF NOT EXISTS `Locations_id_idx` ON `Locations` ( `id` )
+2017-10-03 14:57:13.707  INFO 42816 --- [nio-9000-exec-1] NeoComApiKey                             : -- [NeoComApiKey.build]> Creating key: 2889577/Mb6iDKR14m9Xjh9maGTQCGTkpjRHPjOgVUkvK6E9r6fhMtOWtipaqybp0qCzxuuw
+2017-10-03 14:57:17.269  INFO 42816 --- [nio-9000-exec-1] Login                                    : -- [Login.addKey]> Adding Beth Ripley to the _characters
+2017-10-03 14:57:17.269  INFO 42816 --- [nio-9000-exec-1] NeoComApiKey                             : -- [NeoComApiKey.build]> Creating key: 924767/2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P
+2017-10-03 14:57:21.945  INFO 42816 --- [nio-9000-exec-1] Login                                    : -- [Login.addKey]> Adding Adam Antinoo to the _characters
+2017-10-03 14:57:21.946  INFO 42816 --- [nio-9000-exec-1] Login                                    : -- [Login.addKey]> Adding Beth Ripley to the _characters
+2017-10-03 14:57:21.946  INFO 42816 --- [nio-9000-exec-1] Login                                    : -- [Login.addKey]> Adding Perico Tuerto to the _characters
+2017-10-03 14:57:21.946  INFO 42816 --- [nio-9000-exec-1] AppModelStore                            : >< [AppModelStore.activatePilot]Id: 92223647
+2017-10-03 14:57:21.986  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]>>>>> Asset: NeoComAsset [#2270 - Noble Metals itemID:1024811329568 locationID:60014089 containerID:-1 ownerID:92223647 quantity:100000 ]
+
+2017-10-03 14:57:21.986  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Checking Location: 60014089
+2017-10-03 14:57:21.987  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Adding asset to Location
+2017-10-03 14:57:21.990  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: 60014089
+2017-10-03 14:57:22.007  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : -- [StringDatabaseConnector.openCCPDataBase]> Opened CCP database successfully.
+2017-10-03 14:57:22.031  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> [HIT-0/1] Location 60014089 found at CCP Database.
+2017-10-03 14:57:22.033  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]>>>>> Asset: NeoComAsset [#3775 - Viral Agent itemID:1024031198282 locationID:60014089 containerID:-1 ownerID:92223647 quantity:5855 ]
+
+2017-10-03 14:57:22.033  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Checking Location: 60014089
+2017-10-03 14:57:22.034  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Adding asset to Location
+2017-10-03 14:57:22.034  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]>>>>> Asset: NeoComAsset [#2319 - Test Cultures itemID:1024820237701 locationID:60014089 containerID:-1 ownerID:92223647 quantity:2540 ]
+
+2017-10-03 14:57:22.034  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Checking Location: 60014089
+2017-10-03 14:57:22.034  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Adding asset to Location
+2017-10-03 14:57:22.034  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]>>>>> Asset: NeoComAsset [#2268 - Aqueous Liquids itemID:1024820237700 locationID:60014089 containerID:-1 ownerID:92223647 quantity:200000 ]
+
+2017-10-03 14:57:22.035  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Checking Location: 60014089
+2017-10-03 14:57:22.035  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Adding asset to Location
+2017-10-03 14:57:22.035  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]>>>>> Asset: NeoComAsset [#9842 - Miniature Electronics itemID:1024334597836 locationID:60014089 containerID:-1 ownerID:92223647 quantity:11015 ]
+
+2017-10-03 14:57:22.035  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Checking Location: 60014089
+2017-10-03 14:57:22.035  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Adding asset to Location
+2017-10-03 14:57:22.036  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]>>>>> Asset: NeoComAsset [#2306 - Non-CS Crystals itemID:1023334420469 locationID:60003643 containerID:-1 ownerID:92223647 quantity:1 ]
+
+2017-10-03 14:57:22.036  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Checking Location: 60003643
+2017-10-03 14:57:22.036  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Adding asset to Location
+2017-10-03 14:57:22.036  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: 60003643
+2017-10-03 14:57:22.037  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> [HIT-0/2] Location 60003643 found at CCP Database.
+2017-10-03 14:57:22.037  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]>>>>> Asset: NeoComAsset [#2306 - Non-CS Crystals itemID:1024820217280 locationID:60014089 containerID:-1 ownerID:92223647 quantity:100000 ]
+
+2017-10-03 14:57:22.037  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Checking Location: 60014089
+2017-10-03 14:57:22.037  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Adding asset to Location
+2017-10-03 14:57:22.037  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]>>>>> Asset: NeoComAsset [#3691 - Synthetic Oil itemID:1024031194707 locationID:60014089 containerID:-1 ownerID:92223647 quantity:7680 ]
+
+2017-10-03 14:57:22.037  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Checking Location: 60014089
+2017-10-03 14:57:22.038  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Adding asset to Location
+2017-10-03 14:57:22.038  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]>>>>> Asset: NeoComAsset [#9840 - Transmitter itemID:1024031190330 locationID:60014089 containerID:-1 ownerID:92223647 quantity:8215 ]
+
+2017-10-03 14:57:22.038  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Checking Location: 60014089
+2017-10-03 14:57:22.038  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Adding asset to Location
+2017-10-03 14:57:22.038  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]>>>>> Asset: NeoComAsset [#2389 - Plasmoids itemID:1024406061063 locationID:-2 containerID:1024674208617 ownerID:92223647 quantity:14182 ]
+
+2017-10-03 14:57:22.039  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Detected parent
+2017-10-03 14:57:38.544  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Parent: NeoComAsset [#17366 - Station Container [00-Classify] itemID:1024674208617 locationID:60008494 containerID:-1 ownerID:92223647 quantity:1 ]
+
+2017-10-03 14:57:41.182  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]>>>>> Asset: NeoComAsset [#17366 - Station Container [00-Classify] itemID:1024674208617 locationID:60008494 containerID:-1 ownerID:92223647 quantity:1 ]
+
+2017-10-03 14:57:41.184  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Detected container
+2017-10-03 14:57:41.253  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Container added to Location
+2017-10-03 14:57:41.254  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: 60008494
+2017-10-03 14:57:41.256  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> [HIT-0/3] Location 60008494 found at CCP Database.
+2017-10-03 14:57:43.928  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]<<<<< Completed processing: 1024674208617
+2017-10-03 14:57:47.117  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Added asset: 1024406061063 to Container: 1024674208617
+2017-10-03 14:57:48.867  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]<<<<< Completed processing: 1024406061063
+2017-10-03 14:57:48.868  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]>>>>> Asset: NeoComAsset [#2463 - Nanites itemID:1024031186364 locationID:60014089 containerID:-1 ownerID:92223647 quantity:8265 ]
+
+2017-10-03 14:57:48.868  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Checking Location: 60014089
+2017-10-03 14:57:48.870  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Adding asset to Location
+2017-10-03 14:57:48.870  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]>>>>> Asset: NeoComAsset [#9832 - Coolant itemID:1024334599543 locationID:60014089 containerID:-1 ownerID:92223647 quantity:10835 ]
+
+2017-10-03 14:57:48.870  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Checking Location: 60014089
+2017-10-03 14:57:48.871  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Adding asset to Location
+2017-10-03 14:57:48.871  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]>>>>> Asset: NeoComAsset [#2268 - Aqueous Liquids itemID:1022482691766 locationID:60012928 containerID:-1 ownerID:92223647 quantity:1069226 ]
+
+2017-10-03 14:57:48.871  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Checking Location: 60012928
+2017-10-03 14:57:48.872  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Adding asset to Location
+2017-10-03 14:57:48.872  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: 60012928
+2017-10-03 14:57:48.873  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> [HIT-0/4] Location 60012928 found at CCP Database.
+2017-10-03 14:57:48.873  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]>>>>> Asset: NeoComAsset [#2309 - Ionic Solutions itemID:1022482691769 locationID:60012928 containerID:-1 ownerID:92223647 quantity:381205 ]
+
+2017-10-03 14:57:48.873  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Checking Location: 60012928
+2017-10-03 14:57:48.873  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Adding asset to Location
+2017-10-03 14:57:48.874  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]>>>>> Asset: NeoComAsset [#9838 - Superconductors itemID:1024406061064 locationID:-2 containerID:1024674208617 ownerID:92223647 quantity:2570 ]
+
+2017-10-03 14:57:48.874  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Detected parent
+2017-10-03 14:57:53.940  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Parent: NeoComAsset [#17366 - Station Container [00-Classify] itemID:1024674208617 locationID:60008494 containerID:-1 ownerID:92223647 quantity:1 ]
+
+2017-10-03 14:57:53.940  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]>>>>> Asset: NeoComAsset [#17366 - Station Container [00-Classify] itemID:1024674208617 locationID:60008494 containerID:-1 ownerID:92223647 quantity:1 ]
+
+2017-10-03 14:57:53.940  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Detected container
+2017-10-03 14:57:53.940  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Container added to Location
+2017-10-03 14:57:55.220  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]<<<<< Completed processing: 1024674208617
+2017-10-03 14:57:55.221  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Added asset: 1024406061064 to Container: 1024674208617
+2017-10-03 14:57:55.221  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]<<<<< Completed processing: 1024406061064
+2017-10-03 14:57:55.221  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]>>>>> Asset: NeoComAsset [#2073 - Microorganisms itemID:1024284871583 locationID:60014089 containerID:-1 ownerID:92223647 quantity:300000 ]
+
+2017-10-03 14:57:55.221  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Checking Location: 60014089
+2017-10-03 14:57:55.223  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Adding asset to Location
+2017-10-03 14:57:55.223  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]>>>>> Asset: NeoComAsset [#2308 - Suspended Plasma itemID:1024284880268 locationID:60014089 containerID:-1 ownerID:92223647 quantity:214000 ]
+
+2017-10-03 14:57:55.223  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Checking Location: 60014089
+2017-10-03 14:57:55.224  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Adding asset to Location
+2017-10-03 14:57:55.225  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]>>>>> Asset: NeoComAsset [#3689 - Mechanical Parts itemID:1024334598625 locationID:60014089 containerID:-1 ownerID:92223647 quantity:10755 ]
+
+2017-10-03 14:57:55.225  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Checking Location: 60014089
+2017-10-03 14:57:55.225  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : DD [PlanetaryManager.processElement]> Adding asset to Location
+2017-10-03 14:57:55.226  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : -- [AssetsManager.accessAllAssets]> No more assets to process
+2017-10-03 14:57:55.226  INFO 42816 --- [nio-9000-exec-1] PlanetaryManager                         : -- [AssetsManager.accessAllAssets]> Assets processed: 18
+2017-10-03 14:57:55.226  INFO 42816 --- [nio-9000-exec-1] PilotRoasterController                   : << [PilotRoasterController.pilotPlanetaryManager]
+2017-10-03 14:57:55.488  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: -2
+2017-10-03 14:57:55.489  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : -- [searchLocationbyID]> Location: -2 not found on any Database - UNKNOWN-.
+2017-10-03 14:57:55.497  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: 60008494
+2017-10-03 14:57:55.497  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> [HIT-1/6] Location 60008494 found at cache.
+2017-10-03 14:57:55.500  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: 60008494
+2017-10-03 14:57:55.500  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> [HIT-2/7] Location 60008494 found at cache.
+2017-10-03 14:57:55.512  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: -2
+2017-10-03 14:57:55.513  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : -- [searchLocationbyID]> Location: -2 not found on any Database - UNKNOWN-.
+2017-10-03 14:57:55.514  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: 60008494
+2017-10-03 14:57:55.514  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> [HIT-3/9] Location 60008494 found at cache.
+2017-10-03 14:57:55.518  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: 60014089
+2017-10-03 14:57:55.518  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> [HIT-4/10] Location 60014089 found at cache.
+2017-10-03 14:57:55.528  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: 60014089
+2017-10-03 14:57:55.529  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> [HIT-5/11] Location 60014089 found at cache.
+2017-10-03 14:57:55.530  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: 60014089
+2017-10-03 14:57:55.530  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> [HIT-6/12] Location 60014089 found at cache.
+2017-10-03 14:57:55.530  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: 60014089
+2017-10-03 14:57:55.530  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> [HIT-7/13] Location 60014089 found at cache.
+2017-10-03 14:57:55.531  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: 60014089
+2017-10-03 14:57:55.531  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> [HIT-8/14] Location 60014089 found at cache.
+2017-10-03 14:57:55.532  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: 60014089
+2017-10-03 14:57:55.532  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> [HIT-9/15] Location 60014089 found at cache.
+2017-10-03 14:57:55.533  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: 60014089
+2017-10-03 14:57:55.533  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> [HIT-10/16] Location 60014089 found at cache.
+2017-10-03 14:57:55.535  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: 60014089
+2017-10-03 14:57:55.535  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> [HIT-11/17] Location 60014089 found at cache.
+2017-10-03 14:57:55.535  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: 60014089
+2017-10-03 14:57:55.536  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> [HIT-12/18] Location 60014089 found at cache.
+2017-10-03 14:57:55.539  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: 60014089
+2017-10-03 14:57:55.540  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> [HIT-13/19] Location 60014089 found at cache.
+2017-10-03 14:57:55.566  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: 60014089
+2017-10-03 14:57:55.566  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> [HIT-14/20] Location 60014089 found at cache.
+2017-10-03 14:57:55.568  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: 60014089
+2017-10-03 14:57:55.568  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> [HIT-15/21] Location 60014089 found at cache.
+2017-10-03 14:57:55.569  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: 60014089
+2017-10-03 14:57:55.569  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> [HIT-16/22] Location 60014089 found at cache.
+2017-10-03 14:57:55.570  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: 60003643
+2017-10-03 14:57:55.570  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> [HIT-17/23] Location 60003643 found at cache.
+2017-10-03 14:57:55.571  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: 60012928
+2017-10-03 14:57:55.572  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> [HIT-18/24] Location 60012928 found at cache.
+2017-10-03 14:57:55.573  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: 60012928
+2017-10-03 14:57:55.573  INFO 42816 --- [nio-9000-exec-1] CCPDatabaseConnector.java                : >< [CCPDatabaseConnector.searchLocationbyID]> [HIT-19/25] Location 60012928 found at cache.
+2017-10-03 14:58:00.861  INFO 42816 --- [pool-2-thread-1] TimedCharacterUpdaterLauncher            : >> [TimedCharacterUpdaterLauncher.onTime]
+2017-10-03 14:58:00.864  INFO 42816 --- [pool-2-thread-1] TimedCharacterUpdaterLauncher            : -- [TimeTickReceiver.onTime] EDataBlock to update: Adam Antinoo - ASSETDATA
+2017-10-03 14:58:00.864  INFO 42816 --- [pool-2-thread-1] CharacterUpdaterService                  : -- [CharacterUpdaterService.onHandleIntent] EDataBlock to process: Adam Antinoo - ASSETDATA

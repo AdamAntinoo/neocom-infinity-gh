@@ -23,21 +23,38 @@
 
     <style>
       .loading {
+        font-size: 24px;
+        text-shadow: 0px 0px 6px white;
+        padding-right: 30px;
+        padding-left: 5px;
+        padding-top: 10px;
+      }
+
+      .loading-header {
+        padding-left: 5px;
+        margin-top: 10px;
+        padding-top: 10px;
         font-size: 40px;
         text-shadow: 0px 0px 6px white;
-        margin-left: 100%;
-        position: absolute;
-        margin-top: 50px;
-        /*padding-right: 30px;
-        padding-left: 30px;
-        width: 200px;*/
+      }
+
+      @font-face {
+        font-family: "Elemental";
+        font-style: normal;
+        font-weight: normal;
+        src: url("./assets/fonts/Elemental End.ttf");
+      }
+
+      .elemental-ff {
+        font-family: "Elemental"
       }
 
     </style>
   </head>
 
   <body>
-    <app-root><span class="loading elemental-ff">Loading...</span></app-root>
+    <app-root><span class="loading-header elemental-ff">NeoCom</span>
+      <span class="loading elemental-ff">&nbsp;&nbsp;&nbsp;&nbsp;Loading...</span></app-root>
   </body>
 
 </html>

@@ -1,0 +1,31 @@
+<div class="neocom-panel" id="panelborder-blue">
+  <div [ngClass]="{'panel-blue-expanded': node.expanded}">
+    <table class="neocom-panel-container" cellspacing="0" cellpadding="0" width="100%">
+      <tr>
+        <td style="padding-top: 2px;padding-bottom: 2px;">
+          <img class="neocom-icon" src="/assets/icons/{{node.getGroupIcon()}}" id="iconsize-32">
+        </td>
+        <td width="95%" class="neocom-panel-column">
+          <span class="neocom-name" style="padding-left: 5px;" id="neocom-ts20">{{node.title}}</span>
+        </td>
+        <!-- RIGHT BLOCK -->
+        <!-- MENU BLOCK -->
+        <td *ngIf="hasMenu()" width="5%" class="">
+          <div class="">
+            <!-- <a class="no-underline" [routerLink]="['/login',getLoginId(),'pilot',getCharacterId(),'PlanetaryManager','location',getLocationId(),'PlanetaryOptimization']"> -->
+            <img src="/assets/icons/menuicon.jpg" width="16px" height="16px" style="filter: invert(100%);">
+            <!-- </a> -->
+          </div>
+        </td>
+        <!-- RIGHT ARROW -->
+        <td width="5%" *ngIf="isExpandable()" class="neocom-arrow-box" (click)="clickArrow()">
+          <img class="neocom-arrow" [ngClass]="{'neocom-arrow-expanded': node.expanded}" src="/assets/icons/arrowright.png ">
+        </td>
+        <!-- SEPARATOR WHEN NO RIGHT ARROW -->
+        <td width="5%" *ngIf="!isExpandable()">
+          &nbsp;&nbsp;&nbsp;
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+ORDER OF EXECUTION OF THE DATASOURCE LIFECYCLE
+
+-CreatePartstask
+--collaborate2Model			-dataModelRoot
+--createContentHierarchy		-partModelRoot
+---setSorting
+---refreshChildren
+---collaborate2View
+--DataSourceAdapter
+---getBodyParts
+--getHeaderParts

@@ -6,7 +6,6 @@
 
 //--- MODELS
 import { NeoComNode } from './NeoComNode.model';
-import { PilotAction } from './pilotaction';
 
 export class Resource extends NeoComNode {
   public id: number = 2389;

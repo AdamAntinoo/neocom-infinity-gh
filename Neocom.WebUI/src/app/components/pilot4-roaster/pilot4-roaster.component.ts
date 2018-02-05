@@ -5,8 +5,10 @@ import { Input } from '@angular/core';
 
 //--- SERVICES
 import { AppModelStoreService } from '../../services/app-model-store.service';
+//--- COMPONENTS
+import { LoginPageComponent } from '../../pages/login-page/login-page.component';
 //--- MODELS
-import { Render } from '../../models/Render.model';
+import { NeoComCharacter } from '../../models/NeoComCharacter.model';
 import { Region } from '../../models/Region.model';
 import { Location } from '../../models/Location.model';
 import { EVariant } from '../../classes/EVariant.enumerated';
@@ -19,21 +21,29 @@ import { Login } from '../../models/Login.model';
   styleUrls: ['./pilot4-roaster.component.css']
 })
 export class Pilot4RoasterComponent implements OnInit {
-  @Input() node: Pilot;
+  @Input() viewer: LoginPageComponent;
+  @Input() node: NeoComCharacter;
   public expanded: boolean = false;
 
   constructor(private appModelStore: AppModelStoreService) { }
 
   ngOnInit() {
   }
-  public getCharacterClass(): string {
-    if (this.node.corporation == true) return "CORPORATION";
-    else return "PILOT";
+  public hasMenu(): boolean {
+    return false;
+  }
+  public isExpandable(): boolean {
+    return true;
   }
   public onClickArrow(): void {
     this.expanded = !this.expanded;
   }
+  public getCharacterClass(): string {
+    if (this.node.corporation == true) return "CORPORATION";
+    else return "PILOT";
+  }
   public getLoginId(): string {
-    return this.appModelStore.accessLogin().getLoginId();
+    //  return this.node.getLoginRefId();
+    return "";
   }
 }

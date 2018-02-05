@@ -1,16 +1,14 @@
-<p>
-  pilot-detail-page works!
-</p>
-<neocom-pilot4-detail *ngIf="completed" [pilot]="pilot"></neocom-pilot4-detail>
-<div width="60%" height="50px">
-  <span class="spinner"></span>
+<div class="title-box">
+  <div class="title">Pilot Details</div>
+  <div class="subtitle" *ngIf="!downloading">Selected: {{pilot.name}}</div>
 </div>
-<neocom-pilot4-detail [pilot]="pilot"></neocom-pilot4-detail>
-<div *ngIf="!downloading" class="panel-group">
-  view-adapter.component running...
+<neocom-pilot4-detail *ngIf="!downloading" [pilot]="pilot"></neocom-pilot4-detail>
+<neocom-separator [viewer]="getViewer()" [node]="headerSeparator"></neocom-separator>
+<neocom-spinner-central *ngIf="downloading" [configuration]="{title:'Downloading Capsuleer Managers',subtitle:''}"></neocom-spinner-central>
+<div class="neocom-panel-container">
   <div *ngFor="let render of adapterViewList">
-    <neocom-pilot-manager *ngIf="render.jsonClass == 'AssetsManager'" [pilot]="pilot" [manager]="render"></neocom-pilot-manager>
-    <neocom-pilot-manager *ngIf="render.jsonClass == 'Manager'" [pilot]="pilot" [manager]="render"></neocom-pilot-manager>
+    <neocom-separator *ngIf="render.jsonClass == 'Separator'" [viewer]="getViewer()" [node]="render"></neocom-separator>
+    <neocom-assets-manager *ngIf="render.jsonClass == 'AssetsManager'" [pilot]="pilot" [manager]="render"></neocom-assets-manager>
     <neocom-planetary-manager *ngIf="render.jsonClass == 'PlanetaryManager'" [pilot]="pilot" [manager]="render"></neocom-planetary-manager>
   </div>
 </div>

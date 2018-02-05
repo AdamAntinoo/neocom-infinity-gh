@@ -1,0 +1,36 @@
+<div class="neocom-panel" id="panelborder-yellow">
+  <div [ngClass]="{'panel-yellow-expanded': node.expanded}">
+    <table class="neocom-panel-container" cellspacing="0" cellpadding="0" width="100%">
+      <tr>
+        <td>
+          <img class="neocom-icon" src="http://image.eveonline.com/Type/{{node.typeID}}_64.png" id="iconsize-48">
+        </td>
+        <td class="neocom-panel-column" width="80%">
+          <div class="neocom-selectable-name">{{node.name}}
+            <span class="neocom.label">&nbsp;[{{node.assetID}}]</span>
+            <span class="neocom-data imaki-ff"> - {{node.groupName}}</span>
+          </div>
+          <div class="neocom-name" id="neocom-ts16">{{node.userLabel}}</div>
+        </td>
+        <td width="20%" class="neocom-panel-right-box" align="right ">
+          <div class="neocom-classname-white" id="neocom-ts14">{{node.groupName}}</div>
+          <div class="stack-counter lined-bottomline">{{node.iskValue | number:'1.0-0'}}</div>
+          <div class="neocom-label right-data">HULL VALUE</div>
+        </td>
+        <td *ngIf="hasMenu()" width="5%" class="">
+          <div class="">
+            <!-- <a class="no-underline" [routerLink]="['/login',getLoginId(),'pilot',getCharacterId(),'PlanetaryManager','location',getLocationId(),'PlanetaryOptimization']"> -->
+            <img src="/assets/icons/menuicon.jpg" width="16px" height="16px" style="filter: invert(100%);">
+            <!-- </a> -->
+          </div>
+        </td>
+        <td width="5%" *ngIf="!isExpandable()">
+          <span>&nbsp;&nbsp;</span>
+        </td>
+        <td width="5%" *ngIf="isExpandable()" class="neocom-arrow-box" (click)="clickArrow()">
+          <img class="neocom-arrow" [ngClass]="{'neocom-arrow-expanded': node.expanded}" src="/assets/icons/arrowright.png ">
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

@@ -15,18 +15,20 @@ import { AppModelStoreService } from './services/app-model-store.service';
 //--- PIPES
 import { CapitalizeLetterPipe } from './pipes/capitalize-letter.pipe';
 //--- PAGES
-import { PageSplashComponent } from './page/page-splash/page-splash.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
-import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roaster-page.component';
+//import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roaster-page.component';
 import { PilotDetailPageComponent } from './pages/pilot-detail-page/pilot-detail-page.component';
+import { AssetsManagerPageComponent } from './pages/assets-manager-page/assets-manager-page.component';
 import { PlanetaryManagerPageComponent } from './pages/planetary-manager-page/planetary-manager-page.component';
 import { PlanetaryOptimizationPageComponent } from './pages/planetary-optimization-page/planetary-optimization-page.component';
 //--- COMPONENTS
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
+import { SpinnerCentralComponent } from './components/spinner-central/spinner-central.component';
 import { Pilot4RoasterComponent } from './components/pilot4-roaster/pilot4-roaster.component';
 import { Pilot4DetailComponent } from './components/pilot4-detail/pilot4-detail.component';
 import { PilotManagerComponent } from './components/pilot-manager/pilot-manager.component';
+import { AssetsManagerComponent } from './components/assets-manager/assets-manager.component';
 import { PlanetaryManagerComponent } from './components/planetary-manager/planetary-manager.component';
 import { RegionComponent } from './components/region/region.component';
 import { LocationComponent } from './components/location/location.component';
@@ -35,16 +37,20 @@ import { ResourceComponent } from './components/resource/resource.component';
 import { ProcessingActionComponent } from './components/processing-action/processing-action.component';
 
 //--- REMOVABLES
-import { PageHomeComponent } from './page/page-home/page-home.component';
 import { NavigationMenuComponent } from './component/navigation-menu/navigation-menu.component';
 import { Login4ListComponent } from './components/login4-list/login4-list.component';
 import { SeparatorComponent } from './components/separator/separator.component';
-import { RenderComponent } from './components/render/render.component';
-import { PilotRoasterService } from './services/pilot-roaster.service';
-import { PilotListDataSourceService } from './services/pilot-list-data-source.service';
-import { PilotManagersDataSourceService } from './services/pilot-managers-data-source.service';
 import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
 import { NodePanelComponent } from './components/node-panel/node-panel.component';
+import { Pilot4LoginComponent } from './components/pilot4-login/pilot4-login.component';
+import { ContainerComponent } from './components/container/container.component';
+import { ShipComponent } from './components/ship/ship.component';
+import { ShipSlotGroupComponent } from './components/ship-slot-group/ship-slot-group.component';
+import { ExpandableComponent } from './components/expandable/expandable.component';
+import { CredentialsPageComponent } from './pages/credentials-page/credentials-page.component';
+import { BasePageComponent } from './components/core/base-page/base-page.component';
+import { ComponentFactoryComponent } from './components/factory/component-factory/component-factory.component';
+import { CredentialComponent } from './components/model/credential/credential.component';
 
 
 @NgModule({
@@ -53,10 +59,8 @@ import { NodePanelComponent } from './components/node-panel/node-panel.component
     ISKNoDecimalsPipe,
     CapitalizeLetterPipe,
     HeaderComponent,
+    SpinnerCentralComponent,
     NavigationMenuComponent,
-    PageSplashComponent,
-    PageHomeComponent,
-    PilotRoasterPageComponent,
     RegionComponent,
     LocationComponent,
     Pilot4RoasterComponent,
@@ -66,15 +70,25 @@ import { NodePanelComponent } from './components/node-panel/node-panel.component
     PlanetaryManagerComponent,
     LoginPageComponent,
     Login4ListComponent,
+    AssetsManagerPageComponent,
     PlanetaryManagerPageComponent,
     AssetComponent,
     SeparatorComponent,
-    RenderComponent,
     AssetComponent,
     PlanetaryOptimizationPageComponent,
     ResourceComponent,
     ProcessingActionComponent,
     NodePanelComponent,
+    Pilot4LoginComponent,
+    ContainerComponent,
+    AssetsManagerComponent,
+    ShipComponent,
+    ShipSlotGroupComponent,
+    ExpandableComponent,
+    CredentialsPageComponent,
+    BasePageComponent,
+    ComponentFactoryComponent,
+    CredentialComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,14 +96,10 @@ import { NodePanelComponent } from './components/node-panel/node-panel.component
     HttpModule,
     JsonpModule,
     CookieModule.forRoot(),
-    //    Ng2MenuModule,
     AppRoutingModule,
   ],
   providers: [
     AppModelStoreService,
-    PilotRoasterService,
-    PilotListDataSourceService,
-    PilotManagersDataSourceService,
   ],
   bootstrap: [AppComponent]
 })

@@ -4,3 +4,13 @@
 .recommenders/
 .metadata/
 *.db-journal
+Neocom.MarketDataService/MarketDataService.store
+Neocom.MicroServices/MarketDataService.store
+*.ttf
+*.otf
+Documentation/~$emiminaryNotes.odt
+NeoCom.MicroServices/.gradle/
+NeoCom.MicroServices/gradle/
+NeoCom.MicroServices/gradlew
+NeoCom.MicroServices/gradlew.bat
+NeoCom.MicroServices/out/
