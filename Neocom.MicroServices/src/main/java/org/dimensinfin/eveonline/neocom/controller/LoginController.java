@@ -63,8 +63,8 @@ public class LoginController {
 		try {
 			// If we receive a force command we should clear data before executing the request.
 			if ( force != null ) if ( force.equalsIgnoreCase("true") ) DataManagementModelStore.getSingleton().cleanModel();
-//			final List<Credential> credentials = DataManagementModelStore.getSingleton().coalesceCredentialList();
-			final List<Credential> credentials = DataManagementModelStore.accessCredentialList();
+			 List<Credential> credentials = DataManagementModelStore.getSingleton().coalesceCredentialList();
+			  credentials = DataManagementModelStore.accessCredentialList();
 			// Serialize the credentials as the Angular UI requires.
 			return GlobalDataManager.serializeCredentialList(credentials);
 		} catch (RuntimeException rtex) {

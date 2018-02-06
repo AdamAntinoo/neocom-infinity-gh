@@ -387,7 +387,7 @@ body {
   margin-bottom: 5px;
   opacity: 0.8;
   position: relative;
-  width: 60%;
+  /* width: 60%; */
 }
 
 #content:hover {
@@ -434,7 +434,7 @@ body {
   margin-bottom: 2px;
   opacity: 0.8;
   position: relative;
-  width: 60%;
+  /* width: 60%; */
   border-width: 1px 1px 1px 1px;
   border-color: #404040;
   border-style: solid;
@@ -484,7 +484,7 @@ body {
   margin-bottom: 5px;
   opacity: 0.8;
   position: relative;
-  width: 60%;
+  /* width: 60%; */
 }
 
 #panelborder-orange:hover {
@@ -531,7 +531,7 @@ body {
   margin-bottom: 5px;
   opacity: 0.8;
   position: relative;
-  width: 60%;
+  /* width: 60%; */
 }
 
 #panelborder-yellow:hover {
@@ -578,7 +578,7 @@ body {
   margin-bottom: 5px;
   opacity: 0.8;
   position: relative;
-  width: 60%;
+  /* width: 60%; */
 }
 
 #panelborder-blue:hover {

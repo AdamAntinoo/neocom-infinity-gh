@@ -67,7 +67,7 @@ public class NeocomMicroServiceApplication /*implements INeoComMSConnector*/ {
 					.setDatabaseHost(GlobalDataManager
 							.getResourceString("R.database.neocom.databasehost", "jdbc:mysql://localhost:3306"))
 					.setDatabaseName("neocom")
-					.setDatabaseUser("NEOCOMTEST")
+					.setDatabaseUser("NEOCOM")
 					.setDatabasePassword("01.Alpha")
 					.setDatabaseVersion(GlobalDataManager.getResourceInt("R.database.neocom.databaseversion"))
 					.build()
@@ -81,7 +81,7 @@ public class NeocomMicroServiceApplication /*implements INeoComMSConnector*/ {
 			GlobalDataManager.connectSDEDBConnector(new SDESBDBHelper()
 					.setDatabaseSchema("jdbc:sqlite")
 					.setDatabasePath("src/main/resources/")
-					.setDatabaseName("eve.db")
+					.setDatabaseName("sde.sqlite")
 					.build()
 			);
 		} catch (SQLException sqle) {

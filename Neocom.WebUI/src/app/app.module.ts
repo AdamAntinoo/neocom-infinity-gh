@@ -57,6 +57,7 @@ import { ExpandableComponent } from './components/expandable/expandable.componen
 import { CredentialsPageComponent } from './pages/credentials-page/credentials-page.component';
 import { BasePageComponent } from './components/core/base-page/base-page.component';
 import { CredentialComponent } from './components/model/credential/credential.component';
+import { ActionBarComponent } from './components/core/action-bar/action-bar.component';
 
 
 @NgModule({
@@ -96,6 +97,7 @@ import { CredentialComponent } from './components/model/credential/credential.co
 		ComponentFactoryComponent,
 		CredentialComponent,
 		DetailedContainerComponent,
+		ActionBarComponent,
 	],
 	imports: [
 		BrowserModule,
