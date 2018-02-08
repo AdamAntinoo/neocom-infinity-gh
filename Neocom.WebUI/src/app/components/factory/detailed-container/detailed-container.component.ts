@@ -42,6 +42,9 @@ export class DetailedContainerComponent implements OnInit {
 	Current version is deactivated.
 	*/
 	public getSelectedNodeClass(): string {
-		return "UNDEFNINED";
+		if (null != this.selectedNode) return this.selectedNode.jsonClass;
+	}
+	public getSelectedNode(): NeoComNode {
+		return this.selectedNode;
 	}
 }

@@ -44,12 +44,24 @@ export class ComponentFactoryComponent extends PageComponent implements OnInit {
 	/**
 	This is the connection method that will call the DataSource to get the list of nodes to render. This replicates the collaborate2View and getBodyParts functioanlities of the Android platform and will start the process to render the ui.
 	*/
-	public getBodyParts(): NeoComNode[] {
-		if (null != this.dataSource) return this.dataSource.getBodyParts();
+	public getBodyComponents(): NeoComNode[] {
+		if (null != this.dataSource) return this.dataSource.getBodyComponents();
 		else {
 			// Create a new list and add an exception node to report the message to the user.
 			let results = [];
 			results.push(new NeoComError({ "message": "WR [ComponentFactoryComponent]> DataSource is null. There is nothing to render." }));
 		}
+	}
+	/**
+	Received the mouseenter event and then it has to send it to the page container through the selected component. The page container is represented by the DataSource.
+	*/
+	public mouseEnter(target: NeoComNode) {
+		this.dataSource.enterSelected(target);
+	}
+	/**
+	Report the node selected to the parent age controller.
+	*/
+	public enterSelected(target: NeoComNode) {
+		this.dataSource.enterSelected(target);
 	}
 }

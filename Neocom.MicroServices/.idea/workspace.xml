@@ -78,8 +78,8 @@
       <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/dimensinfin/eveonline/neocom/controller/LoginController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+            <state relative-caret-position="59">
+              <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
               <folding>
                 <element signature="class#JsonExceptionInstance#0;class#LoginController#0" expanded="false" />
               </folding>
@@ -87,100 +87,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataManagementModelStore.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/storage/DataManagementModelStore.java">
+      <file leaf-file-name="NeoComMicroServiceApplication.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/dimensinfin/eveonline/neocom/NeoComMicroServiceApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="255" column="68" lean-forward="false" selection-start-line="255" selection-start-column="58" selection-end-line="255" selection-end-column="68" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SDESBDBHelper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/dimensinfin/eveonline/neocom/database/SDESBDBHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="95" column="34" lean-forward="false" selection-start-line="95" selection-start-column="2" selection-end-line="95" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NeoComSBDBHelper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/dimensinfin/eveonline/neocom/database/NeoComSBDBHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="447">
-              <caret line="217" column="0" lean-forward="false" selection-start-line="217" selection-start-column="0" selection-end-line="217" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SDEDatabaseManager.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/database/SDEDatabaseManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="239" column="0" lean-forward="false" selection-start-line="234" selection-start-column="0" selection-end-line="239" selection-end-column="0" />
+            <state relative-caret-position="213">
+              <caret line="230" column="0" lean-forward="true" selection-start-line="179" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
               <folding>
-                <element signature="class#RawStatement#0;class#SDEDatabaseManager#0" expanded="false" />
+                <element signature="class#CredentialSerializer#0;class#NeoComMicroServiceApplication#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LocationController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/dimensinfin/eveonline/neocom/controller/LocationController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="565">
-              <caret line="88" column="0" lean-forward="false" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#9325#0" expanded="true" />
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GlobalDataManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java-datamngmt/org/dimensinfin/eveonline/neocom/datamngmt/manager/GlobalDataManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="533" column="82" lean-forward="false" selection-start-line="533" selection-start-column="65" selection-end-line="533" selection-end-column="82" />
-              <folding>
-                <element signature="e#0#47579#0" expanded="true" />
-                <element signature="e#8934#8953#0" expanded="true" />
-                <element signature="e#10030#10031#0" expanded="true" />
-                <element signature="e#10064#10065#0" expanded="true" />
-                <element signature="e#10371#10372#0" expanded="true" />
-                <element signature="e#10395#10396#0" expanded="true" />
-                <element signature="e#13683#13684#0" expanded="true" />
-                <element signature="e#13726#13727#0" expanded="true" />
-                <element signature="e#13795#13796#0" expanded="true" />
-                <element signature="e#13838#13839#0" expanded="true" />
-                <element signature="class#ShipSerializer#0;class#GlobalDataManager#0" expanded="false" />
-                <element signature="class#CredentialSerializer#0;class#GlobalDataManager#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PilotV1.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/model/PilotV1.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="102" column="58" lean-forward="false" selection-start-line="102" selection-start-column="41" selection-end-line="102" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ThreadPoolExecutor.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_151/src.zip!/java/util/concurrent/ThreadPoolExecutor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="1148" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="2114" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -195,6 +109,12 @@
       </list>
     </option>
     <option name="SCHEME" value="Project" />
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>JsonIgnore</find>
+      <find>JsonInclude</find>
+    </findStrings>
   </component>
   <component name="GradleLocalSettings">
     <option name="myGradleHomes">
@@ -1338,18 +1258,15 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java-datamngmt/org/dimensinfin/eveonline/neocom/datamngmt/manager/SDEDatabaseManager.java" />
         <option value="$PROJECT_DIR$/src/main/java-removed/connector/CCPDatabaseConnector.java" />
         <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/database/INeoComDBHelper.java" />
         <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/connector/ICCPDatabaseConnector.java" />
-        <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/database/SDEDatabaseManager.java" />
         <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/database/entity/Colony.java" />
         <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/market/MarketDataSet.java" />
         <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/planetary/ColonyStructure.java" />
         <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java-datamngmt/org/dimensinfin/eveonline/neocom/manager/AssetsManager.java" />
         <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java-datamngmt/org/dimensinfin/eveonline/neocom/manager/BlueprintManager.java" />
         <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/model/NeoComBlueprint.java" />
-        <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/model/EveLocation.java" />
         <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/model/NeoComAsset.java" />
         <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java-datamngmt/org/dimensinfin/eveonline/neocom/manager/PlanetaryManager.java" />
         <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/model/PilotV1.java" />
@@ -1383,16 +1300,19 @@
         <option value="$PROJECT_DIR$/src/main/java/org/dimensinfin/eveonline/neocom/services/MarketDataServer.java" />
         <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/database/NeoComDBHelper.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/dimensinfin/eveonline/neocom/controller/LoginController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/dimensinfin/eveonline/neocom/NeoComMicroServiceApplication.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/dimensinfin/eveonline/neocom/database/NeoComSBDBHelper.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/dimensinfin/eveonline/neocom/controller/LocationController.java" />
         <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/storage/DataManagementModelStore.java" />
-        <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java-datamngmt/org/dimensinfin/eveonline/neocom/datamngmt/manager/GlobalDataManager.java" />
+        <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/database/entity/TimeStamp.java" />
+        <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/database/SDEDatabaseManager.java" />
         <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/database/ISDEDBHelper.java" />
+        <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java-datamngmt/org/dimensinfin/eveonline/neocom/datamngmt/manager/GlobalDataManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/dimensinfin/eveonline/neocom/NeoComMicroServiceApplication.java" />
+        <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/model/EveLocation.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="100" />
     <option name="y" value="20" />
     <option name="width" value="1400" />
@@ -1474,6 +1394,27 @@
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="neocom" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NeoCom.MicroServices" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NeoCom.Model" type="9c53a853:ProjectViewModuleGroupNode" />
+              <item name="NeoCom.Model" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="neocom" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NeoCom.MicroServices" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NeoCom.Model" type="9c53a853:ProjectViewModuleGroupNode" />
+              <item name="NeoCom.Model" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="neocom" type="462c0819:PsiDirectoryNode" />
               <item name="storage" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -1534,7 +1475,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Java" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/org/dimensinfin/eveonline/neocom" />
   </component>
   <component name="RecentsManager">
@@ -1694,7 +1635,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1705,11 +1646,11 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22879177" sideWeight="0.46169356" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22879177" sideWeight="0.46351352" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30405405" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25514138" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22879177" sideWeight="0.5383065" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22879177" sideWeight="0.5364865" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.4974293" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1727,159 +1668,17 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/dimensinfin/eveonline/neocom/controller/LoginController.java</url>
-          <line>67</line>
+          <url>file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/model/EveLocation.java</url>
+          <line>343</line>
           <properties />
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/dimensinfin/eveonline/neocom/NeoComMicroServiceApplication.java</url>
-          <line>168</line>
-          <properties />
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/database/SDEDatabaseManager.java</url>
-          <line>233</line>
-          <properties />
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/model/PilotV1.java</url>
-          <line>100</line>
-          <properties />
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java-datamngmt/org/dimensinfin/eveonline/neocom/datamngmt/manager/GlobalDataManager.java</url>
-          <line>526</line>
-          <properties />
-          <option name="timeStamp" value="14" />
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="15" />
+      <option name="time" value="19" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java-removed/connector/SpringDatabaseConnector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#32278#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/database/INeoComDBHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="80" column="45" lean-forward="false" selection-start-line="80" selection-start-column="45" selection-end-line="80" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/core/AccessStatistics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java-removed/connector/CCPDatabaseConnector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="39" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#24495#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/connector/ICCPDatabaseConnector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="49" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java-datamngmt/org/dimensinfin/eveonline/neocom/manager/AssetsManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="756" column="64" lean-forward="false" selection-start-line="756" selection-start-column="64" selection-end-line="756" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java-datamngmt/org/dimensinfin/eveonline/neocom/manager/BlueprintManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="111" column="36" lean-forward="true" selection-start-line="111" selection-start-column="36" selection-end-line="111" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/market/MarketDataSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="158" column="33" lean-forward="false" selection-start-line="158" selection-start-column="33" selection-end-line="158" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/planetary/ColonyStructure.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="96" column="64" lean-forward="false" selection-start-line="96" selection-start-column="64" selection-end-line="96" selection-end-column="64" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/database/entity/Colony.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="237" column="32" lean-forward="false" selection-start-line="237" selection-start-column="32" selection-end-line="237" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/model/NeoComBlueprint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="223" column="50" lean-forward="false" selection-start-line="223" selection-start-column="50" selection-end-line="223" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/model/EveLocation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="359" column="3" lean-forward="true" selection-start-line="359" selection-start-column="3" selection-end-line="359" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/model/NeoComAsset.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="207" column="56" lean-forward="true" selection-start-line="207" selection-start-column="56" selection-end-line="207" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/industry/Resource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="74" column="28" lean-forward="false" selection-start-line="74" selection-start-column="28" selection-end-line="74" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java-datamngmt/org/dimensinfin/eveonline/neocom/manager/PlanetaryManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="346">
@@ -2085,55 +1884,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/test/java/org/dimensinfin/eveonline/neocom/testblock/ModelTestConnectorProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="19" column="48" lean-forward="false" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/dimensinfin/eveonline/neocom/services/MarketDataServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="156" column="19" lean-forward="false" selection-start-line="156" selection-start-column="19" selection-end-line="156" selection-end-column="19" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/dimensinfin/eveonline/neocom/NeoComMicroServiceApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="168" column="0" lean-forward="false" selection-start-line="168" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
-          <folding>
-            <element signature="class#ShipSerializer#0;class#NeoComMicroServiceApplication#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/dimensinfin/eveonline/neocom/database/SDESBDBHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="95" column="34" lean-forward="false" selection-start-line="95" selection-start-column="2" selection-end-line="95" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/dimensinfin/eveonline/neocom/database/NeoComSBDBHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="217" column="0" lean-forward="false" selection-start-line="217" selection-start-column="0" selection-end-line="217" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/dimensinfin/eveonline/neocom/controller/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-          <folding>
-            <element signature="class#JsonExceptionInstance#0;class#LoginController#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2145,76 +1900,237 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/storage/DataManagementModelStore.java">
+    <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/database/ISDEDBHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="255" column="68" lean-forward="false" selection-start-line="255" selection-start-column="58" selection-end-line="255" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/connector/ModelAppConnector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-360">
-          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        <state relative-caret-position="432">
+          <caret line="53" column="55" lean-forward="false" selection-start-line="53" selection-start-column="55" selection-end-line="53" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/dimensinfin/eveonline/neocom/controller/LocationController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="565">
-          <caret line="88" column="0" lean-forward="false" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
+        <state relative-caret-position="239">
+          <caret line="191" column="43" lean-forward="false" selection-start-line="191" selection-start-column="32" selection-end-line="191" selection-end-column="43" />
           <folding>
-            <element signature="e#0#9325#0" expanded="true" />
-            <element signature="imports" expanded="true" />
+            <element signature="e#0#9325#0" expanded="false" />
+            <element signature="imports" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/connector/ModelAppConnector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="23" column="39" lean-forward="true" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/test/java/org/dimensinfin/eveonline/neocom/testblock/ModelTestConnectorProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="19" column="48" lean-forward="false" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/ESI.SwaggerApi/generated/src/main/java/org/dimensinfin/eveonline/neocom/esiswagger/model/GetCharactersCharacterIdClonesOkHomeLocation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+          <folding>
+            <element signature="e#2188#2189#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/1.1.7/6cfaf5c02fb50bfdf7ea5e563955d3c229d7e154/logback-classic-1.1.7-sources.jar!/ch/qos/logback/classic/Logger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="579" column="0" lean-forward="false" selection-start-line="579" selection-start-column="0" selection-end-line="579" selection-end-column="0" />
+          <folding>
+            <element signature="e#19833#19834#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/dimensinfin/eveonline/neocom/database/NeoComSBDBHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="401" column="0" lean-forward="false" selection-start-line="401" selection-start-column="0" selection-end-line="401" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.j256.ormlite/ormlite-core/4.48/be29c57c0e7b7c1137e27e6048d17bda9a1174db/ormlite-core-4.48-sources.jar!/com/j256/ormlite/dao/BaseDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="219" column="0" lean-forward="false" selection-start-line="219" selection-start-column="0" selection-end-line="219" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/database/entity/TimeStamp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-108">
+          <caret line="53" column="81" lean-forward="false" selection-start-line="53" selection-start-column="81" selection-end-line="53" selection-end-column="81" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/model/PilotV1.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="193">
-          <caret line="102" column="58" lean-forward="false" selection-start-line="102" selection-start-column="41" selection-end-line="102" selection-end-column="58" />
+          <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/database/ISDEDBHelper.java">
+    <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/storage/DataManagementModelStore.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="47" column="21" lean-forward="false" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
+        <state relative-caret-position="251">
+          <caret line="255" column="0" lean-forward="false" selection-start-line="255" selection-start-column="0" selection-end-line="255" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java-datamngmt/org/dimensinfin/eveonline/neocom/datamngmt/manager/GlobalDataManager.java">
+    <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/database/entity/Credential.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="533" column="82" lean-forward="false" selection-start-line="533" selection-start-column="65" selection-end-line="533" selection-end-column="82" />
+        <state relative-caret-position="139">
+          <caret line="129" column="0" lean-forward="false" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
           <folding>
-            <element signature="e#0#47579#0" expanded="true" />
-            <element signature="e#8934#8953#0" expanded="true" />
-            <element signature="e#10030#10031#0" expanded="true" />
-            <element signature="e#10064#10065#0" expanded="true" />
-            <element signature="e#10371#10372#0" expanded="true" />
-            <element signature="e#10395#10396#0" expanded="true" />
-            <element signature="e#13683#13684#0" expanded="true" />
-            <element signature="e#13726#13727#0" expanded="true" />
-            <element signature="e#13795#13796#0" expanded="true" />
-            <element signature="e#13838#13839#0" expanded="true" />
-            <element signature="class#ShipSerializer#0;class#GlobalDataManager#0" expanded="false" />
-            <element signature="class#CredentialSerializer#0;class#GlobalDataManager#0" expanded="false" />
+            <element signature="e#5337#5338#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/dimensinfin/eveonline/neocom/database/SDESBDBHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="643">
+          <caret line="154" column="0" lean-forward="false" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/database/SDEDatabaseManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="239" column="0" lean-forward="false" selection-start-line="234" selection-start-column="0" selection-end-line="239" selection-end-column="0" />
+        <state relative-caret-position="276">
+          <caret line="359" column="0" lean-forward="false" selection-start-line="359" selection-start-column="0" selection-end-line="359" selection-end-column="0" />
           <folding>
             <element signature="class#RawStatement#0;class#SDEDatabaseManager#0" expanded="false" />
+            <element signature="method#searchItem4Id#0;class#SDEDatabaseManager#0" expanded="false" />
+            <element signature="method#searchItemGroup4Id#0;class#SDEDatabaseManager#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java-datamngmt/org/dimensinfin/eveonline/neocom/datamngmt/manager/GlobalDataManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="565" column="0" lean-forward="false" selection-start-line="565" selection-start-column="0" selection-end-line="565" selection-end-column="0" />
+          <folding>
+            <element signature="e#25474#25475#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.8.6/b4fa0bfb592813e6753f25719501cf6f803a2bd1/jackson-databind-2.8.6-sources.jar!/com/fasterxml/jackson/databind/ser/BeanPropertyWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="703" column="0" lean-forward="false" selection-start-line="703" selection-start-column="0" selection-end-line="703" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.8.6/b4fa0bfb592813e6753f25719501cf6f803a2bd1/jackson-databind-2.8.6-sources.jar!/com/fasterxml/jackson/databind/ser/std/BeanSerializerBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="686" column="0" lean-forward="false" selection-start-line="686" selection-start-column="0" selection-end-line="686" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.8.6/b4fa0bfb592813e6753f25719501cf6f803a2bd1/jackson-databind-2.8.6-sources.jar!/com/fasterxml/jackson/databind/ser/BeanSerializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="156" column="0" lean-forward="false" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.8.6/36af810d532d0b79feb391519efddce81f0afa7/jackson-core-2.8.6-sources.jar!/com/fasterxml/jackson/core/base/GeneratorBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="378" column="0" lean-forward="false" selection-start-line="378" selection-start-column="0" selection-end-line="378" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.8.6/36af810d532d0b79feb391519efddce81f0afa7/jackson-core-2.8.6-sources.jar!/com/fasterxml/jackson/core/JsonGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="1662" column="0" lean-forward="false" selection-start-line="1662" selection-start-column="0" selection-end-line="1662" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.8.6/b4fa0bfb592813e6753f25719501cf6f803a2bd1/jackson-databind-2.8.6-sources.jar!/com/fasterxml/jackson/databind/ser/impl/IndexedListSerializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.8.6/b4fa0bfb592813e6753f25719501cf6f803a2bd1/jackson-databind-2.8.6-sources.jar!/com/fasterxml/jackson/databind/ser/DefaultSerializerProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="292" column="0" lean-forward="false" selection-start-line="292" selection-start-column="0" selection-end-line="292" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.8.6/b4fa0bfb592813e6753f25719501cf6f803a2bd1/jackson-databind-2.8.6-sources.jar!/com/fasterxml/jackson/databind/ObjectMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="3061" column="0" lean-forward="false" selection-start-line="3061" selection-start-column="0" selection-end-line="3061" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/dimensinfin/eveonline/neocom/controller/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59">
+          <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding>
+            <element signature="class#JsonExceptionInstance#0;class#LoginController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model/src/main/java/org/dimensinfin/eveonline/neocom/model/EveLocation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#10982#0" expanded="true" />
+            <element signature="e#6141#6142#0" expanded="true" />
+            <element signature="e#6231#6232#0" expanded="true" />
+            <element signature="e#7031#7032#0" expanded="true" />
+            <element signature="e#7074#7075#0" expanded="true" />
+            <element signature="e#8150#8151#0" expanded="true" />
+            <element signature="e#8174#8175#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/dimensinfin/eveonline/neocom/NeoComMicroServiceApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="230" column="0" lean-forward="true" selection-start-line="179" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
+          <folding>
+            <element signature="class#CredentialSerializer#0;class#NeoComMicroServiceApplication#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -8,6 +8,7 @@
 //               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
@@ -16,12 +17,16 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
+import com.j256.ormlite.field.DatabaseField;
+
 import org.dimensinfin.eveonline.neocom.conf.SpringBootConfigurationProvider;
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
 
+import org.dimensinfin.eveonline.neocom.enums.ELocationType;
+import org.dimensinfin.eveonline.neocom.model.EveLocation;
 import org.dimensinfin.eveonline.neocom.model.Ship;
 import org.dimensinfin.eveonline.neocom.services.MarketDataServer;
 import org.slf4j.Logger;
@@ -170,6 +175,59 @@ public class NeoComMicroServiceApplication {
 			jgen.writeEndObject();
 		}
 	}
+	// ........................................................................................................
+	// - CLASS IMPLEMENTATION ...................................................................................
+//	public static class LocationSerializer extends JsonSerializer<EveLocation> {
+//		// - F I E L D - S E C T I O N ............................................................................
+//
+//		// - M E T H O D - S E C T I O N ..........................................................................
+//		@Override
+//		public void serialize( final EveLocation value, final JsonGenerator jgen, final SerializerProvider provider )
+//				throws IOException, JsonProcessingException {
+//			jgen.writeStartObject();
+//			jgen.writeStringField("jsonClass", value.getJsonClass());
+//			jgen.writeNumberField("accountId", value.getAccountId());
+//			jgen.writeStringField("accountName", value.getAccountName());
+//			jgen.writeStringField("tokenType", value.getTokenType());
+//			jgen.writeBooleanField("isActive", value.isActive());
+//			jgen.writeBooleanField("isXML", value.isXMLCompatible());
+//			jgen.writeBooleanField("isESI", value.isESICompatible());
+//			jgen.writeObjectField("pilot", GlobalDataManager.getPilotV1(value.getAccountId()));
+//			jgen.writeEndObject();
+//
+//
+//
+//			@JsonIgnore
+//			@DatabaseField(id = true, index = true)
+//			protected long id = -2;
+//			@DatabaseField
+//			protected long stationID = -1;
+//			@DatabaseField
+//			private String station = "SPACE";
+//			@DatabaseField
+//			protected long systemID = -1;
+//			@DatabaseField
+//			private String system = "UNKNOWN";
+//			@DatabaseField
+//			protected long constellationID = -1;
+//			@DatabaseField
+//			private String constellation = "Echo Cluster";
+//			@DatabaseField
+//			protected long regionID = -1;
+//			@DatabaseField
+//			private String region = "-DEEP SPACE-";
+//			@DatabaseField
+//			private String security = "0.0";
+//			@DatabaseField
+//			protected String typeID = ELocationType.UNKNOWN.name();
+//			public String urlLocationIcon = null;
+//
+//
+//
+//
+//
+//		}
+//	}
 	// ........................................................................................................
 }
 // - UNUSED CODE ............................................................................................

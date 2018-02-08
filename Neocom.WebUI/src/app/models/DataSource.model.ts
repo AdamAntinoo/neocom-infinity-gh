@@ -20,9 +20,15 @@ import { EVariant } from '../classes/EVariant.enumerated';
 import { PageComponent } from '../classes/PageComponent';
 
 export class DataSource {
-	//	private activity: PageComponent;
+	public selectedNode: NeoComNode = null;
 
-	public getBodyParts(): NeoComNode[] {
+	public getBodyComponents(): NeoComNode[] {
 		return [];
+	}
+	/**
+	This item has the mouse over it. Signal that to the viewer to report the detailed.
+	*/
+	public enterSelected(selected: NeoComNode) {
+		this.selectedNode = selected;
 	}
 }

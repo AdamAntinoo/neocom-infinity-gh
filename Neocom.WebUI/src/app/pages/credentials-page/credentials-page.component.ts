@@ -72,21 +72,9 @@ export class CredentialsPageComponent extends BasePageComponent implements OnIni
 		console.log("<< [CredentialsPageComponent.ngOnInit]");
 	}
 	/**
-Return the list of nodes to be rendered on the Page viewPort. This is an equivalent to the connection between the DataSource, the Adapter and the ListView on the Android platform.
-*/
+	Returns the current node the cursor is hovering. The hovering function is the responsible to control the item selected.
+	*/
+	public getSelectedNode(): NeoComNode {
+		return this.selectedNode;
+	}
 }
-// export class CredentialDataSource extends DataSource {
-// 	constructor(private credentialList: NeoComNode[]) {
-// 		super();
-// 	}
-// 	// public getBodyParts(): NeoComNode[] {
-// 	// 	console.log(">>[CredentialDataSource.getBodyParts]");
-// 	// 	let nodeList: NeoComNode[] = [];
-// 	// 	// Generate the contents by collaborating to the view all the nodes.
-// 	// 	for (let node of this.credentialList) {
-// 	// 		let nodes = node.collaborate2View(appModelStore, variant);
-// 	// 		console.log(">>[CredentialDataSource.getBodyParts]> Collaborating "+nodes.length+" nodes.");
-// 	// 	}
-// 	// 	return nodeList;
-// 	// }
-// }

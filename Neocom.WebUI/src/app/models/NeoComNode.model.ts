@@ -20,7 +20,6 @@ export class NeoComNode implements INeoComNode {
 
   constructor(values: Object = {}) {
     Object.assign(this, values);
-    //  this.jsonClass = "Node";
   }
   public collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): NeoComNode[] {
     let collab: NeoComNode[] = [];
