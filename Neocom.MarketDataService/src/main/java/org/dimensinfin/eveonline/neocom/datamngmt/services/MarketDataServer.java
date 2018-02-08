@@ -1,9 +1,12 @@
-//	PROJECT:        POC (POC)
-//	AUTHORS:        Adam Antinoo - adamantinoo.git@gmail.com
-//	COPYRIGHT:      (c) 2017 by Dimensinfin Industries, all rights reserved.
-//	ENVIRONMENT:		Java 1.7.
-//	DESCRIPTION:		Projects for Proof Of Concept desings.
-package org.dimensinfin.eveonline.neocom.services;
+//  PROJECT:     NeoCom.Microservices (NEOC.MS)
+//  AUTHORS:     Adam Antinoo - adamantinoo.git@gmail.com
+//  COPYRIGHT:   (c) 2017-2018 by Dimensinfin Industries, all rights reserved.
+//  ENVIRONMENT: Java 1.8 / SpringBoot-1.3.5 / Angular 5.0
+//  DESCRIPTION: This is the SpringBoot MicroServices module to run the backend services to complete the web
+//               application based on Angular+SB. This is the web version for the NeoCom Android native
+//               application. Most of the source code is common to both platforms and this module includes
+//               the source for the specific functionality for the backend services.
+package org.dimensinfin.eveonline.neocom.datamngmt.services;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -20,13 +23,13 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.time.Instant;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Vector;
-import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.connector.ModelAppConnector;
-import org.dimensinfin.eveonline.neocom.connector.NeoComMSConnector;
 import org.dimensinfin.eveonline.neocom.constant.ModelWideConstants;
 import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
 import org.dimensinfin.eveonline.neocom.market.EVEMarketDataParser;
@@ -35,61 +38,57 @@ import org.dimensinfin.eveonline.neocom.market.MarketDataSet;
 import org.dimensinfin.eveonline.neocom.market.TrackEntry;
 import org.dimensinfin.eveonline.neocom.model.EveItem;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
-import org.joda.time.Instant;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 
-// - CLASS IMPLEMENTATION ...................................................................................
 /**
  * This class interfaces the downloading eve online market data services and serves as the integration layer
  * to the different platforms. Based on the Android Service pattern it will implement a core class that will
  * be usable on any environment.
- * 
+ *
  * @author Adam Antinoo
  */
+// - CLASS IMPLEMENTATION ...................................................................................
 @Service
-@CacheConfig(cacheNames = "MarketData")
+//@CacheConfig(cacheNames = "MarketData")
 public class MarketDataServer {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger														logger							= Logger.getLogger("MarketDataService");
-	private static final String											CACHESTORE_FILENAME	= "./MarketDataService.store";
-	public static Hashtable<Integer, MarketDataSet>	buyMarketDataCache	= new Hashtable<Integer, MarketDataSet>();
-	public static Hashtable<Integer, MarketDataSet>	sellMarketDataCache	= new Hashtable<Integer, MarketDataSet>();
+	private static Logger logger = LoggerFactory.getLogger(MarketDataServer.class);
+	private static HashMap<Integer, MarketDataSet> buyMarketDataCache = new HashMap<Integer, MarketDataSet>(1000);
+	private static HashMap<Integer, MarketDataSet> sellMarketDataCache = new HashMap<Integer, MarketDataSet>(1000);
 
-	@SuppressWarnings("unchecked")
-	public synchronized static void readCacheFromStorage() {
-		File modelStoreFile = new File(CACHESTORE_FILENAME);
+	public synchronized static void readMarketDataCacheFromStorage() {
+		File modelStoreFile = new File(getCacheStoreName());
 		try {
 			final BufferedInputStream buffer = new BufferedInputStream(new FileInputStream(modelStoreFile));
 			final ObjectInputStream input = new ObjectInputStream(buffer);
 			try {
 				//				this.getStore().setApiKeys((HashMap<Integer, NeoComApiKey>) input.readObject());
-				buyMarketDataCache = (Hashtable<Integer, MarketDataSet>) input.readObject();
-				logger.info("-- [MarketDataServer.readCacheFromStorage]> Restored cache BUY: " + buyMarketDataCache.size()
+				buyMarketDataCache = (HashMap<Integer, MarketDataSet>) input.readObject();
+				logger.info("-- [MarketDataServer.readMarketDataCacheFromStorage]> Restored cache BUY: " + buyMarketDataCache.size()
 						+ " entries.");
-				sellMarketDataCache = (Hashtable<Integer, MarketDataSet>) input.readObject();
-				logger.info("-- [MarketDataServer.readCacheFromStorage]> Restored cache SELL: " + sellMarketDataCache.size()
+				sellMarketDataCache = (HashMap<Integer, MarketDataSet>) input.readObject();
+				logger.info("-- [MarketDataServer.readMarketDataCacheFromStorage]> Restored cache SELL: " + sellMarketDataCache.size()
 						+ " entries.");
 			} finally {
 				input.close();
 				buffer.close();
 			}
 		} catch (final ClassNotFoundException ex) {
-			logger.warning("W> [MarketDataServer.readCacheFromStorage]>ClassNotFoundException."); //$NON-NLS-1$
+			logger.warn("W> [MarketDataServer.readMarketDataCacheFromStorage]>ClassNotFoundException."); //$NON-NLS-1$
 		} catch (final FileNotFoundException fnfe) {
-			logger.warning("W> [MarketDataServer.readCacheFromStorage]>FileNotFoundException."); //$NON-NLS-1$
+			logger.warn("W> [MarketDataServer.readMarketDataCacheFromStorage]>FileNotFoundException."); //$NON-NLS-1$
 		} catch (final IOException ex) {
-			logger.warning("W> [MarketDataServer.readCacheFromStorage]>IOException."); //$NON-NLS-1$
+			logger.warn("W> [MarketDataServer.readMarketDataCacheFromStorage]>IOException."); //$NON-NLS-1$
 		} catch (final RuntimeException rex) {
 			rex.printStackTrace();
 		}
 	}
 
 	public synchronized static void writeCacheToStorage() {
-		File modelStoreFile = new File(CACHESTORE_FILENAME);
+		File modelStoreFile = new File(getCacheStoreName());
 		try {
 			final BufferedOutputStream buffer = new BufferedOutputStream(new FileOutputStream(modelStoreFile));
 			final ObjectOutput output = new ObjectOutputStream(buffer);
@@ -106,9 +105,9 @@ public class MarketDataServer {
 				buffer.close();
 			}
 		} catch (final FileNotFoundException fnfe) {
-			logger.warning("W> [MarketDataServer.writeCacheToStorage]>FileNotFoundException."); //$NON-NLS-1$
+			logger.warn("W> [MarketDataServer.writeCacheToStorage]>FileNotFoundException."); //$NON-NLS-1$
 		} catch (final IOException ex) {
-			logger.warning("W> [MarketDataServer.writeCacheToStorage]>IOException."); //$NON-NLS-1$
+			logger.warn("W> [MarketDataServer.writeCacheToStorage]>IOException."); //$NON-NLS-1$
 		}
 	}
 
@@ -117,9 +116,9 @@ public class MarketDataServer {
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 
 	// - M E T H O D - S E C T I O N ..........................................................................
-	@CacheEvict(allEntries = true)
-	public void clearCache() {
-	}
+//	@CacheEvict(allEntries = true)
+//	public void clearCache() {
+//	}
 
 	/**
 	 * This should represent the service entry point. It will be called by the common implementation. It should
@@ -130,8 +129,8 @@ public class MarketDataServer {
 	 * time.
 	 */
 	//	@HystrixCommand(fallbackMethod = "downloadMarketDataFallback")
-	@Cacheable()
-	public MarketDataSet downloadMarketData(final int localizer, EMarketSide side) {
+//	@Cacheable()
+	public MarketDataSet downloadMarketData( final int localizer, EMarketSide side ) {
 		MarketDataServer.logger.info(">< [MarketDataService.downloadMarketData]");
 		ModelAppConnector.getSingleton().startChrono();
 		String itemName = "";
@@ -170,11 +169,11 @@ public class MarketDataServer {
 		}
 	}
 
-	public MarketDataSet downloadMarketDataFallback(final int localizer, EMarketSide side) {
+	public MarketDataSet downloadMarketDataFallback( final int localizer, EMarketSide side ) {
 		return new MarketDataSet(localizer, side);
 	}
 
-	public MarketDataSet marketDataServiceEntryPoint(final int localizer, EMarketSide side) {
+	public MarketDataSet marketDataServiceEntryPoint( final int localizer, EMarketSide side ) {
 		logger.info(
 				">< [MarketDataServer.marketDataServiceEntryPoint]>localizer: " + localizer + " side: " + side.toString());
 		// Cache interception performed by EHCache. If we reach this point that means we have not cached the data.
@@ -205,13 +204,13 @@ public class MarketDataServer {
 	/**
 	 * Check if the requested data is on the cache. Once the Spring cache is active we should not receive calls
 	 * to this place. If the data is not at the cache, port and update event and return the fail data message.
-	 * 
+	 *
 	 * @param localizer
 	 * @param itemName
 	 * @param side
 	 * @return
 	 */
-	public MarketDataSet marketDataServiceEntryPoint(final int localizer, String itemName, EMarketSide side) {
+	public MarketDataSet marketDataServiceEntryPoint( final int localizer, String itemName, EMarketSide side ) {
 		logger.info(
 				">> [MarketDataServer.marketDataServiceEntryPoint]> localizer: " + localizer + " side: " + side.toString());
 		// Cache interception performed by EHCache. If we reach this point that means we have not cached the data.
@@ -233,13 +232,12 @@ public class MarketDataServer {
 	 * implementation that will use real location data for the system to better classify and store the market
 	 * data information. It will also remove the current limit on the selected market hubs and will aggregate
 	 * all the systems found into the highsec and other sec categories.
-	 * 
+	 *
 	 * @param item
 	 * @param entries
 	 * @return
-	 * @return
 	 */
-	private Vector<MarketDataEntry> extractMarketData(final Vector<TrackEntry> entries) {
+	private Vector<MarketDataEntry> extractMarketData( final Vector<TrackEntry> entries ) {
 		final Hashtable<String, MarketDataEntry> stations = new Hashtable<String, MarketDataEntry>();
 		final Vector<String> stationList = getMarketHubs();
 		final Iterator<TrackEntry> meit = entries.iterator();
@@ -279,7 +277,7 @@ public class MarketDataServer {
 		return new Vector<MarketDataEntry>(stations.values());
 	}
 
-	private boolean filterStations(final TrackEntry entry, final Vector<String> stationList) {
+	private boolean filterStations( final TrackEntry entry, final Vector<String> stationList ) {
 		final Iterator<String> slit = stationList.iterator();
 		while (slit.hasNext()) {
 			final String stationNameMatch = slit.next();
@@ -289,7 +287,7 @@ public class MarketDataServer {
 		return false;
 	}
 
-	private EveLocation generateLocation(String hubName) {
+	private EveLocation generateLocation( String hubName ) {
 		// Extract system name from the station information.
 		final int pos = hubName.indexOf(" ");
 		final String hubSecurity = hubName.substring(0, pos);
@@ -330,14 +328,12 @@ public class MarketDataServer {
 
 	/**
 	 * Get the eve-marketdata link for a requested module and market side.
-	 * 
-	 * @param moduleName
-	 *          The module name to be used on the link.
-	 * @param opType
-	 *          if the set is from sell or buy orders.
+	 *
+	 * @param moduleName The module name to be used on the link.
+	 * @param opType     if the set is from sell or buy orders.
 	 * @return the URL to access the HTML page with the data.
 	 */
-	private String getModuleLink(final String moduleName, final String opType) {
+	private String getModuleLink( final String moduleName, final String opType ) {
 		// Adjust the module name to a URL suitable name.
 		String name = moduleName.replace(" ", "+");
 		return "http://eve-marketdata.com/price_check.php?type=" + opType.toLowerCase() + "&region_id=-1&type_name_header="
@@ -396,14 +392,14 @@ public class MarketDataServer {
 
 	/**
 	 * Processing of market data from eve-marketdata.com.
-	 * 
+	 *
 	 * @param itemName
 	 * @param opType
 	 * @return
 	 * @throws SAXException
 	 * @throws IOException
 	 */
-	private Vector<TrackEntry> parseMarketDataEMD(final String itemName, final EMarketSide opType)
+	private Vector<TrackEntry> parseMarketDataEMD( final String itemName, final EMarketSide opType )
 			throws SAXException, IOException {
 		MarketDataServer.logger.info(">> [MarketDataService.parseMarketData]");
 		Vector<TrackEntry> marketEntries = new Vector<TrackEntry>();
@@ -439,7 +435,7 @@ public class MarketDataServer {
 		return marketEntries;
 	}
 
-	private String readJsonData(final int typeid) {
+	private String readJsonData( final int typeid ) {
 		StringBuffer data = new StringBuffer();
 		try {
 			String str = "";

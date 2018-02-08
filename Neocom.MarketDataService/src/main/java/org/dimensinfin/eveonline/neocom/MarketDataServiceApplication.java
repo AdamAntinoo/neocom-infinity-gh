@@ -19,7 +19,7 @@ import org.dimensinfin.eveonline.neocom.connector.MDSCCPDatabaseConnector;
 import org.dimensinfin.eveonline.neocom.connector.MarketDataServiceCacheConnector;
 import org.dimensinfin.eveonline.neocom.connector.NeoComMSConnector;
 import org.dimensinfin.eveonline.neocom.interfaces.INeoComModelStore;
-import org.dimensinfin.eveonline.neocom.services.MarketDataServer;
+import org.dimensinfin.eveonline.neocom.datamngmt.services.MarketDataServer;
 import org.joda.time.Duration;
 import org.joda.time.Instant;
 import org.springframework.boot.SpringApplication;

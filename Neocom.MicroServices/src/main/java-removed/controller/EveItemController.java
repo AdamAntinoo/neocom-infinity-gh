@@ -53,7 +53,7 @@ public class EveItemController {
 
 	@SuppressWarnings("unused")
 	private void printCacheInfo() {
-		//		Cache cache = NeocomMicroServiceApplication.singleton.cacheManager.getCache("MarketData");
+		//		Cache cache = NeoComMicroServiceApplication.singleton.cacheManager.getCache("MarketData");
 		int dummy = 1;
 	}
 }

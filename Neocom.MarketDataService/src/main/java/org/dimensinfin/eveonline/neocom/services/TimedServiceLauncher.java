@@ -10,6 +10,7 @@ import java.util.concurrent.PriorityBlockingQueue;
 import java.util.logging.Logger;
 
 import org.dimensinfin.eveonline.neocom.connector.ModelAppConnector;
+import org.dimensinfin.eveonline.neocom.datamngmt.services.MarketDataServer;
 import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
 import org.dimensinfin.eveonline.neocom.enums.ERequestClass;
 import org.dimensinfin.eveonline.neocom.enums.ERequestState;
@@ -27,7 +28,7 @@ public class TimedServiceLauncher {
 
 	// - F I E L D - S E C T I O N ............................................................................
 	@Autowired
-	private MarketDataServer	marketDataService;
+	private MarketDataServer marketDataService;
 	private int								limit					= 0;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................

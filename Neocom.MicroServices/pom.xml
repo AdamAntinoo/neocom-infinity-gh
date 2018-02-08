@@ -170,7 +170,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>org.dimensinfin.eveonline.neocom.NeocomMicroServiceApplication</mainClass>
+							<mainClass>org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

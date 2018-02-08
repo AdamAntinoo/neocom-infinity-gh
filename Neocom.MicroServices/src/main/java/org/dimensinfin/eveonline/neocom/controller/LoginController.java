@@ -9,6 +9,8 @@ package org.dimensinfin.eveonline.neocom.controller;
 
 import java.util.List;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -31,7 +33,7 @@ public class LoginController {
 	// - F I E L D - S E C T I O N ............................................................................
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
-	public LoginController () {
+	public LoginController() {
 	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
@@ -56,17 +58,17 @@ public class LoginController {
 
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/credentials", method = RequestMethod.GET, produces = "application/json")
-	public String credentialsEntryPoint (@RequestParam(value = "force", required = false) final String force) {
+	public String credentialsEntryPoint( @RequestParam(value = "force", required = false) final String force ) {
 		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/credentials");
 		logger.info(">> [LoginController.credentialsEntryPoint]");
 		final Chrono totalElapsed = new Chrono();
 		try {
 			// If we receive a force command we should clear data before executing the request.
-			if ( force != null ) if ( force.equalsIgnoreCase("true") ) DataManagementModelStore.getSingleton().cleanModel();
-			 List<Credential> credentials = DataManagementModelStore.getSingleton().coalesceCredentialList();
-			  credentials = DataManagementModelStore.accessCredentialList();
+			if (force != null) if (force.equalsIgnoreCase("true")) DataManagementModelStore.getSingleton().cleanModel();
+			final List<Credential> credentials = DataManagementModelStore.getSingleton().coalesceCredentialList();
+//			credentials = DataManagementModelStore.accessCredentialList();
 			// Serialize the credentials as the Angular UI requires.
-			return GlobalDataManager.serializeCredentialList(credentials);
+			return serializeCredentialList(credentials);
 		} catch (RuntimeException rtex) {
 			return new JsonExceptionInstance(rtex.getMessage()).toJson();
 		} finally {
@@ -77,11 +79,11 @@ public class LoginController {
 	public static class JsonExceptionInstance {
 		private String errorMessage = "-NO MESSAGE-";
 
-		public JsonExceptionInstance (final String message) {
+		public JsonExceptionInstance( final String message ) {
 			errorMessage = message;
 		}
 
-		public String toJson () {
+		public String toJson() {
 			return new StringBuffer()
 					.append("{").append('\n')
 					.append(quote("jsonClass")).append(":").append(quote("JsonException")).append(",")
@@ -90,10 +92,22 @@ public class LoginController {
 					.toString();
 		}
 
-		private String quote (final String content) {
+		private String quote( final String content ) {
 			return String.format("\"%s\"", content);
 		}
 	}
+	private String serializeCredentialList( final List<Credential> credentials ) {
+		// Use my own serialization control to return the data to generate exactly what I want.
+		String contentsSerialized = "[jsonClass: \"Exception\"," +
+				"message: \"Unprocessed data. Possible JsonProcessingException exception.\"]";
+		try {
+			contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(credentials);
+		} catch (JsonProcessingException jpe) {
+			jpe.printStackTrace();
+		}
+		return contentsSerialized;
+	}
+
 }
 
 // - UNUSED CODE ............................................................................................

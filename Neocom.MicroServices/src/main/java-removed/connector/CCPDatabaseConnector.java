@@ -195,83 +195,83 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 		return -1;
 	}
 
-	/**
-	 * Search on the eve.db database for the attributes that describe an Item. Items are the lowest data
-	 * structure for EVE resources or modules. Everything on Eve is an Item. We detect blueprints that require a
-	 * different treatment and also we check for the availability of the item at the current cache if
-	 * implemented.
-	 */
-	@Override
-	public synchronized EveItem searchItembyID ( final int typeID ) {
-		// Search the item on the cache.
-		EveItem hit = itemCache.get(typeID);
-		if (null == hit) {
-			PreparedStatement prepStmt = null;
-			ResultSet cursor = null;
-			try {
-				hit = new EveItem();
-				//			final Cursor cursor = getCCPDatabase().rawQuery(SELECT_ITEM_BYID,
-				//					new String[] { Integer.valueOf(typeID).toString() });
-				//	      Statement stmt = getCCPDatabase().createStatement();
-				prepStmt = this.getCCPDatabase().prepareStatement(CCPDatabaseConnector.SELECT_ITEM_BYID);
-				prepStmt.setString(1, Integer.valueOf(typeID).toString());
-				cursor = prepStmt.executeQuery();
-				// The query can be run but now there are ids that do not return data.
-				boolean found = false;
-				while (cursor.next()) {
-					found = true;
-					hit.setTypeID(cursor.getInt(1));
-					hit.setName(cursor.getString(2));
-					hit.setGroupname(cursor.getString(3));
-					hit.setCategory(cursor.getString(4));
-					hit.setBasePrice(cursor.getDouble(5));
-					hit.setVolume(cursor.getDouble(6));
-					// Process the Tech field. The query marks blueprints
-					String tech = cursor.getString(7);
-					if (tech.equalsIgnoreCase("NOTECH")) {
-						// Double check it is a Blueprint
-						hit.setTech(ModelWideConstants.eveglobal.TechI);
-						if (hit.getName().contains(" II Blueprint")) {
-							hit.setBlueprint(true);
-							if (hit.getName().contains(" II Blueprint")) {
-								hit.setTech(ModelWideConstants.eveglobal.TechII);
-							}
-							if (hit.getName().contains(" III Blueprint")) {
-								hit.setTech(ModelWideConstants.eveglobal.TechIII);
-							}
-						}
-					} else {
-						hit.setTech(tech);
-					}
-				}
-				if (!found) {
-					CCPDatabaseConnector.logger.warning("W> AndroidDatabaseConnector.searchItembyID -- Item <" + typeID
-									+ "> not found.");
-				}
-			} catch (Exception e) {
-				CCPDatabaseConnector.logger.warning("W> AndroidDatabaseConnector.searchItembyID -- Item <" + typeID
-								+ "> not found.");
-				return new EveItem();
-			} finally {
-				try {
-					if (cursor != null) {
-						cursor.close();
-					}
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				try {
-					if (prepStmt != null) {
-						prepStmt.close();
-					}
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			itemCache.put(new Integer(typeID), hit);
-		}
-		return hit;
-	}
+//	/**
+//	 * Search on the eve.db database for the attributes that describe an Item. Items are the lowest data
+//	 * structure for EVE resources or modules. Everything on Eve is an Item. We detect blueprints that require a
+//	 * different treatment and also we check for the availability of the item at the current cache if
+//	 * implemented.
+//	 */
+//	@Override
+//	public synchronized EveItem searchItembyID ( final int typeID ) {
+//		// Search the item on the cache.
+//		EveItem hit = itemCache.get(typeID);
+//		if (null == hit) {
+//			PreparedStatement prepStmt = null;
+//			ResultSet cursor = null;
+//			try {
+//				hit = new EveItem();
+//				//			final Cursor cursor = getCCPDatabase().rawQuery(SELECT_ITEM_BYID,
+//				//					new String[] { Integer.valueOf(typeID).toString() });
+//				//	      Statement stmt = getCCPDatabase().createStatement();
+//				prepStmt = this.getCCPDatabase().prepareStatement(CCPDatabaseConnector.SELECT_ITEM_BYID);
+//				prepStmt.setString(1, Integer.valueOf(typeID).toString());
+//				cursor = prepStmt.executeQuery();
+//				// The query can be run but now there are ids that do not return data.
+//				boolean found = false;
+//				while (cursor.next()) {
+//					found = true;
+//					hit.setTypeID(cursor.getInt(1));
+//					hit.setName(cursor.getString(2));
+//					hit.setGroupname(cursor.getString(3));
+//					hit.setCategory(cursor.getString(4));
+//					hit.setBasePrice(cursor.getDouble(5));
+//					hit.setVolume(cursor.getDouble(6));
+//					// Process the Tech field. The query marks blueprints
+//					String tech = cursor.getString(7);
+//					if (tech.equalsIgnoreCase("NOTECH")) {
+//						// Double check it is a Blueprint
+//						hit.setTech(ModelWideConstants.eveglobal.TechI);
+//						if (hit.getName().contains(" II Blueprint")) {
+//							hit.setBlueprint(true);
+//							if (hit.getName().contains(" II Blueprint")) {
+//								hit.setTech(ModelWideConstants.eveglobal.TechII);
+//							}
+//							if (hit.getName().contains(" III Blueprint")) {
+//								hit.setTech(ModelWideConstants.eveglobal.TechIII);
+//							}
+//						}
+//					} else {
+//						hit.setTech(tech);
+//					}
+//				}
+//				if (!found) {
+//					CCPDatabaseConnector.logger.warning("W> AndroidDatabaseConnector.searchItembyID -- Item <" + typeID
+//									+ "> not found.");
+//				}
+//			} catch (Exception e) {
+//				CCPDatabaseConnector.logger.warning("W> AndroidDatabaseConnector.searchItembyID -- Item <" + typeID
+//								+ "> not found.");
+//				return new EveItem();
+//			} finally {
+//				try {
+//					if (cursor != null) {
+//						cursor.close();
+//					}
+//				} catch (SQLException e) {
+//					e.printStackTrace();
+//				}
+//				try {
+//					if (prepStmt != null) {
+//						prepStmt.close();
+//					}
+//				} catch (SQLException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//			itemCache.put(new Integer(typeID), hit);
+//		}
+//		return hit;
+//	}
 
 	/**
 	 * Search on the CCP Database or on the Application database for a new location ID that is not already on

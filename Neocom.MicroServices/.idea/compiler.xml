@@ -8,6 +8,8 @@
       <module name="CoreBaseLibrary_test" target="1.8" />
       <module name="ESI.SwaggerApi_main" target="1.7" />
       <module name="ESI.SwaggerApi_test" target="1.7" />
+      <module name="Neocom.MarketDataService_main" target="1.8" />
+      <module name="Neocom.MarketDataService_test" target="1.8" />
       <module name="NeoCom.MicroServices_main" target="1.8" />
       <module name="NeoCom.MicroServices_test" target="1.8" />
       <module name="NeoCom.Model_main" target="1.8" />

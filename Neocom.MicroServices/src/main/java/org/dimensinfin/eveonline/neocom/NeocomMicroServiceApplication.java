@@ -8,18 +8,29 @@
 //               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom;
 
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.datatype.joda.JodaModule;
 import org.dimensinfin.eveonline.neocom.conf.SpringBootConfigurationProvider;
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
+import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
 
+import org.dimensinfin.eveonline.neocom.model.Ship;
+import org.dimensinfin.eveonline.neocom.services.MarketDataServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import javax.annotation.PostConstruct;
+import java.io.IOException;
 import java.sql.SQLException;
 
 // - CLASS IMPLEMENTATION ...................................................................................
@@ -36,32 +47,35 @@ import java.sql.SQLException;
 @EnableScheduling
 //@EnableAsync
 @SpringBootApplication
-public class NeocomMicroServiceApplication /*implements INeoComMSConnector*/ {
+public class NeoComMicroServiceApplication {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger logger = LoggerFactory.getLogger("NeocomMicroServiceApplication");
-	public static final String APPLICATION_NAME = "NeocomMicroServiceApplication";
+	private static Logger logger = LoggerFactory.getLogger(NeoComMicroServiceApplication.class);
+	public static final ObjectMapper jsonMapper = new ObjectMapper();
 
-	//	public static NeocomMicroServiceApplication	singleton					= null;
-	//
-	//	public static INeoComMSConnector getSingleton() {
-	//		return singleton;
-	//	}
+	static {
+		jsonMapper.enable(SerializationFeature.INDENT_OUTPUT);
+		jsonMapper.registerModule(new JodaModule());
+		// Add our own serializers.
+		SimpleModule neocomSerializerModule = new SimpleModule();
+		neocomSerializerModule.addSerializer(Ship.class, new ShipSerializer());
+		neocomSerializerModule.addSerializer(Credential.class, new CredentialSerializer());
+		jsonMapper.registerModule(neocomSerializerModule);
+	}
 
 	// - M A I N   E N T R Y P O I N T ........................................................................
 
 	/**
-	 * Just create the Spring application and launch it to run.
-	 *
+	 * Create all the platform specific connectors and then launch it to run.
 	 * @param args
 	 */
-	public static void main (final String[] args) {
-		logger.info(">> [NeocomMicroServiceApplication.main]");
+	public static void main( final String[] args ) {
+		logger.info(">> [NeoComMicroServiceApplication.main]");
 		// Instance and connect the Adaptors.
 		// Connect the Configuration manager.
-		logger.info(">> [NeocomMicroServiceApplication.main]> Connecting the Configuration Manager...");
+		logger.info(">> [NeoComMicroServiceApplication.main]> Connecting the Configuration Manager...");
 		GlobalDataManager.connectConfigurationManager(new SpringBootConfigurationProvider(null));
 		// Connect the NeoCom database.
-		logger.info(">> [NeocomMicroServiceApplication.main]> Connecting NeoCom private database...");
+		logger.info(">> [NeoComMicroServiceApplication.main]> Connecting NeoCom private database...");
 		try {
 			GlobalDataManager.connectNeoComDBConnector(new NeoComSBDBHelper()
 					.setDatabaseHost(GlobalDataManager
@@ -72,55 +86,102 @@ public class NeocomMicroServiceApplication /*implements INeoComMSConnector*/ {
 					.setDatabaseVersion(GlobalDataManager.getResourceInt("R.database.neocom.databaseversion"))
 					.build()
 			);
-		} catch (SQLException sqle) {
-			sqle.printStackTrace();
-		}
-		// Connect the SDE database.
-		logger.info(">> [NeocomMicroServiceApplication.main]> Connecting SDE database...");
-		try {
+			// Connect the SDE database.
+			logger.info(">> [NeoComMicroServiceApplication.main]> Connecting SDE database...");
 			GlobalDataManager.connectSDEDBConnector(new SDESBDBHelper()
 					.setDatabaseSchema("jdbc:sqlite")
 					.setDatabasePath("src/main/resources/")
 					.setDatabaseName("sde.sqlite")
 					.build()
 			);
+			// Connect the MarketData service.
+			logger.info(">> [NeoComMicroServiceApplication.main]> Starting Market Data service...");
+			GlobalDataManager.setMarketDataManager(new MarketDataServer().start());
+			logger.info(">> [NeoComMicroServiceApplication.main]> Starting application instance...");
+			SpringApplication.run(NeoComMicroServiceApplication.class, args);
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		}
-		logger.info(">> [NeocomMicroServiceApplication.main]> Starting application instance...");
-		SpringApplication.run(NeocomMicroServiceApplication.class, args);
-		logger.info("<< [NeocomMicroServiceApplication.main]");
+		logger.info("<< [NeoComMicroServiceApplication.main]");
 	}
 
 	// - F I E L D - S E C T I O N ............................................................................
-//	private NeoComMSConnector _connector = null;
-//	private Instant chrono = null;
-
-//	private INeoComModelDatabase dbNeocomConnector = null;
-//	private ICCPDatabaseConnector dbCCPConnector = null;
-//	private ICacheConnector cacheConnector = null;
+//private final IMarketDataManagerService marketDataService = new MarketDataServer();
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
-//	public NeocomMicroServiceApplication () {
-//		logger.info(">> [NeocomMicroServiceApplication.<constructor>]");
-//		// Create and connect the adapters.
-//		//		if (null == singleton) {
-//		//			logger.info("-- [NeocomMicroServiceApplication.<constructor>]> Instantiating the singleton.");
-//		//			singleton = this;
-//		//		}
-//		_connector = new NeoComMSConnector(this);
-//		logger.info("<< [NeocomMicroServiceApplication.<constructor>]");
-//	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
-	//	@Override
-	//	public void addCharacterUpdateRequest(final long characterID) {
-	//		this.getCacheConnector().addCharacterUpdateRequest(characterID);
-	//	}
+//[01]
+//	/**
+//	 * Run this after the application is initialized. The contents are to read back from persistence storage the
+//	 * cache contents before starting the application.
+//	 */
+//	@PostConstruct
+//	public void postConstruct() {
+//		logger.info(">> [NeoComMicroServiceApplication.postConstruct]");
+//		// Read back the cache contents
+//		GlobalDataManager.getMarketDataManager().readMarketDataCacheFromStorage();
+//		logger.info("<< [NeoComMicroServiceApplication.postConstruct]");
+//	}
+	// - CLASS IMPLEMENTATION ...................................................................................
+	public static class ShipSerializer extends JsonSerializer<Ship> {
+		// - F I E L D - S E C T I O N ............................................................................
 
-	public String getAppName () {
-		return APPLICATION_NAME;
+		// - M E T H O D - S E C T I O N ..........................................................................
+		@Override
+		public void serialize( final Ship value, final JsonGenerator jgen, final SerializerProvider provider )
+				throws IOException, JsonProcessingException {
+			jgen.writeStartObject();
+			jgen.writeStringField("jsonClass", value.getJsonClass());
+			jgen.writeNumberField("assetId", value.getAssetId());
+			jgen.writeNumberField("typeId", value.getTypeId());
+			jgen.writeNumberField("ownerId", value.getOwnerID());
+			jgen.writeStringField("name", value.getItemName());
+			jgen.writeStringField("category", value.getCategory());
+			jgen.writeStringField("groupName", value.getGroupName());
+			jgen.writeStringField("tech", value.getTech());
+			jgen.writeStringField("userLabel", value.getUserLabel());
+			jgen.writeNumberField("price", value.getItem().getPrice());
+			jgen.writeNumberField("highesBuyerPrice", value.getItem().getHighestBuyerPrice().getPrice());
+			jgen.writeNumberField("lowerSellerPrice", value.getItem().getLowestSellerPrice().getPrice());
+			jgen.writeObjectField("item", value.getItem());
+			jgen.writeEndObject();
+		}
 	}
+	// ........................................................................................................
+
+	// - CLASS IMPLEMENTATION ...................................................................................
+	public static class CredentialSerializer extends JsonSerializer<Credential> {
+		// - F I E L D - S E C T I O N ............................................................................
+
+		// - M E T H O D - S E C T I O N ..........................................................................
+		@Override
+		public void serialize( final Credential value, final JsonGenerator jgen, final SerializerProvider provider )
+				throws IOException, JsonProcessingException {
+			jgen.writeStartObject();
+			jgen.writeStringField("jsonClass", value.getJsonClass());
+			jgen.writeNumberField("accountId", value.getAccountId());
+			jgen.writeStringField("accountName", value.getAccountName());
+			jgen.writeStringField("tokenType", value.getTokenType());
+			jgen.writeBooleanField("isActive", value.isActive());
+			jgen.writeBooleanField("isXML", value.isXMLCompatible());
+			jgen.writeBooleanField("isESI", value.isESICompatible());
+			jgen.writeObjectField("pilot", GlobalDataManager.getPilotV1(value.getAccountId()));
+			jgen.writeEndObject();
+		}
+	}
+	// ........................................................................................................
+}
+// - UNUSED CODE ............................................................................................
+//[01]
+//	@Override
+//	public void addCharacterUpdateRequest(final long characterID) {
+//		this.getCacheConnector().addCharacterUpdateRequest(characterID);
+//	}
+
+//	public String getAppName() {
+//		return APPLICATION_NAME;
+//	}
 
 //	@Override
 //	public ICacheConnector getCacheConnector () {
@@ -152,25 +213,3 @@ public class NeocomMicroServiceApplication /*implements INeoComMSConnector*/ {
 //	public INeoComModelStore getModelStore () {
 //		return AppModelStore.getSingleton();
 //	}
-
-	/**
-	 * Run this after the application is initialized. The contents are to read back from persistence storage the
-	 * cache contents before starting the application.
-	 */
-	@PostConstruct
-	public void postConstruct () {
-		logger.info(">> [NeocomMicroServiceApplication.postConstruct]");
-		// Read back the cache contents
-		GlobalDataManager.readMarketDataCacheFromStorage();
-		logger.info("<< [NeocomMicroServiceApplication.postConstruct]");
-	}
-//
-//	public void startChrono () {
-//		chrono = new Instant();
-//	}
-//
-//	public Duration timeLapse () {
-//		return new Duration(chrono, new Instant());
-//	}
-}
-// - UNUSED CODE ............................................................................................
