@@ -7,7 +7,7 @@ import { Input } from '@angular/core';
 import { AppModelStoreService } from '../../services/app-model-store.service';
 //--- COMPONENTS
 import { PageComponent } from '../../classes/PageComponent';
-import { PlanetaryManagerPageComponent } from '../../pages/planetary-manager-page/planetary-manager-page.component';
+// import { PlanetaryManagerPageComponent } from '../../pages/planetary-manager-page/planetary-manager-page.component';
 //--- MODELS
 import { Resource } from '../../models/Resource.model';
 
