@@ -30,7 +30,7 @@ import { AppComponent } from './app.component';
 import { BasePageComponent } from './components/core/base-page/base-page.component';
 //--- COMPONENTS-UI
 import { HeaderComponent } from './components/ui/header/header.component';
-import { ActionBarComponent } from './components/core/action-bar/action-bar.component';
+import { ActionBarComponent } from './components/ui/action-bar/action-bar.component';
 import { ComponentFactoryComponent } from './components/factory/component-factory/component-factory.component';
 import { DetailedContainerComponent } from './components/factory/detailed-container/detailed-container.component';
 //--- COMPONENTS-MODEL
@@ -59,12 +59,12 @@ import { ShipComponent } from './components/ship/ship.component';
 import { ShipSlotGroupComponent } from './components/ship-slot-group/ship-slot-group.component';
 import { ExpandableComponent } from './components/expandable/expandable.component';
 import { CredentialComponent } from './components/model/credential/credential.component';
-import { LoginPageComponent } from './pages/login-page/login-page.component';
-//import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roaster-page.component';
-import { PilotDetailPageComponent } from './pages/pilot-detail-page/pilot-detail-page.component';
-import { AssetsManagerPageComponent } from './pages/assets-manager-page/assets-manager-page.component';
-import { PlanetaryManagerPageComponent } from './pages/planetary-manager-page/planetary-manager-page.component';
-import { PlanetaryOptimizationPageComponent } from './pages/planetary-optimization-page/planetary-optimization-page.component';
+// import { LoginPageComponent } from './pages/login-page/login-page.component';
+// //import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roaster-page.component';
+// import { PilotDetailPageComponent } from './pages/pilot-detail-page/pilot-detail-page.component';
+// import { AssetsManagerPageComponent } from './pages/assets-manager-page/assets-manager-page.component';
+// import { PlanetaryManagerPageComponent } from './pages/planetary-manager-page/planetary-manager-page.component';
+// import { PlanetaryOptimizationPageComponent } from './pages/planetary-optimization-page/planetary-optimization-page.component';
 
 
 @NgModule({
@@ -85,17 +85,17 @@ import { PlanetaryOptimizationPageComponent } from './pages/planetary-optimizati
     LocationComponent,
     Pilot4RoasterComponent,
     Pilot4DetailComponent,
-    PilotDetailPageComponent,
+    // PilotDetailPageComponent,
     PilotManagerComponent,
     PlanetaryManagerComponent,
-    LoginPageComponent,
+    // LoginPageComponent,
     Login4ListComponent,
-    AssetsManagerPageComponent,
-    PlanetaryManagerPageComponent,
+    // AssetsManagerPageComponent,
+    // PlanetaryManagerPageComponent,
     AssetComponent,
     SeparatorComponent,
     AssetComponent,
-    PlanetaryOptimizationPageComponent,
+    // PlanetaryOptimizationPageComponent,
     ResourceComponent,
     ProcessingActionComponent,
     NodePanelComponent,

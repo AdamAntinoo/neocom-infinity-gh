@@ -12,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 //--- SERVICES
 import { AppModelStoreService } from '../../services/app-model-store.service';
 //--- INTERFACES
+import { IDetailedEnabledPage } from '../../classes/IDetailedEnabledPage.interface';
 import { EVariant } from '../../classes/EVariant.enumerated';
 import { PageComponent } from '../../classes/PageComponent';
 //--- MODELS
@@ -32,7 +33,7 @@ Pages on Angular are the equivalent functionality as Activity+Fragment+DataSourc
   templateUrl: './credentials-page.component.html',
   styleUrls: ['./credentials-page.component.css']
 })
-export class CredentialsPageComponent extends BasePageComponent implements OnInit, DataSource {
+export class CredentialsPageComponent extends BasePageComponent implements OnInit, DataSource, IDetailedEnabledPage {
 	/**
   This is the equivalent entry point for the onCreate for an Android Activity. So its functionality is to define the activity layout and insert the fragments that will compose the Activity UI.
 	The equivalence on Angular is that the .componet.html will define the layout so ther is no code required to set up that and that the fragments are already defined on the .html layout and being components on their own they will be initialized as this Page. So the functionality changes to load on the Activity/Page the model data required by the Fragments/Components to render the model structures.
@@ -42,28 +43,21 @@ export class CredentialsPageComponent extends BasePageComponent implements OnIni
     console.log(">> [CredentialsPageComponent.ngOnInit]");
     // Set the variant identifier for this Page. This is a Fragment property but can be generalized for pages.
     this.setVariant(EVariant.CREDENTIALLIST)
-    // Start the model-component transformation for the node elements returned by the Generator.
-    // Get the model elements from the Service.
+    // Start to show the spinner.
     this.downloading = true;
     // Call the service to get the list of Logins.
     this.appModelStore.accessCredentialList()
       .subscribe(result => {
         console.log("--[LoginPageComponent.ngOnInit.accessLoginList]> Loginlist.length: " + result.length);
+        // Angular automatic model change detection will kick in and will start to make the calls to update the UI.
         this.dataModelRoot = result;
-        // Sort the list of Logins before processing their collaborations.
-        //			let sortedLogins = this.sortLogins(result);
-        // Loop over all the returned items.
-        // 			for (let node of result) {
-        // 				// Add to the result only the Logins with at least one character.
-        // //				if (node.getKeyCount() > 0) {
-        // 					let theList = node.collaborate2View(this.appModelStore, this.getVariant());
-        // 					this.loginViewList = this.loginViewList.concat(theList);
-        // //				}
-        // 			}
+        // Hide the spinner.
         this.downloading = false;
       });
     console.log("<< [CredentialsPageComponent.ngOnInit]");
   }
+
+  // --- DETAILED ENABLED INTERFACE PAGE
 	/**
 	Returns the current node the cursor is hovering. The hovering function is the responsible to control the item selected.
 	*/
