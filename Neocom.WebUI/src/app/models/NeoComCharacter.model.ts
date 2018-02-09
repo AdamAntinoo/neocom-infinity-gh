@@ -31,7 +31,7 @@ export class NeoComCharacter extends NeoComNode {
   public active: boolean = true;
   public accountBalance: number = -1.0;
   public urlforAvatar: string = "http://image.eveonline.com/character/92223647_256.jpg";
-  public lastKnownLocation: string = "- HOME -";
+  // public lastKnownLocation: string = "- HOME -";
   public name: string = "<name>";
   public corporation: boolean = false;
   public loginParent: Login = null;

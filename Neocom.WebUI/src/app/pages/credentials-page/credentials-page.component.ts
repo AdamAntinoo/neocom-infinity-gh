@@ -9,6 +9,8 @@
 //               framework.
 //--- CORE
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import 'rxjs/add/operator/switchMap';
 //--- SERVICES
 import { AppModelStoreService } from '../../services/app-model-store.service';
 //--- INTERFACES

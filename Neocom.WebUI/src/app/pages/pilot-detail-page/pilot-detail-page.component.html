@@ -1,14 +1,16 @@
-<div class="title-box">
-  <div class="title">Pilot Details</div>
-  <div class="subtitle" *ngIf="!downloading">Selected: {{pilot.name}}</div>
-</div>
-<neocom-pilot4-detail *ngIf="!downloading" [pilot]="pilot"></neocom-pilot4-detail>
-<neocom-separator [viewer]="getViewer()" [node]="headerSeparator"></neocom-separator>
-<neocom-spinner-central *ngIf="downloading" [configuration]="{title:'Downloading Capsuleer Managers',subtitle:''}"></neocom-spinner-central>
-<div class="neocom-panel-container">
-  <div *ngFor="let render of adapterViewList">
-    <neocom-separator *ngIf="render.jsonClass == 'Separator'" [viewer]="getViewer()" [node]="render"></neocom-separator>
-    <neocom-assets-manager *ngIf="render.jsonClass == 'AssetsManager'" [pilot]="pilot" [manager]="render"></neocom-assets-manager>
-    <neocom-planetary-manager *ngIf="render.jsonClass == 'PlanetaryManager'" [pilot]="pilot" [manager]="render"></neocom-planetary-manager>
+<div style="width: 100%">
+  <div>
+    <neocom-action-bar></neocom-action-bar>
+  </div>
+  <div style="width: 60%; float:left">
+    <div class="title-box">
+      <div class="title">Pilot Details</div>
+      <div class="subtitle" *ngIf="!downloading">Selected: {{pilot.name}}</div>
+    </div>
+    <neocom-pilot4-detail *ngIf="!downloading" [pilot]="pilot"></neocom-pilot4-detail>
+    <neocom-separator [viewer]="getViewer()" [node]="headerSeparator"></neocom-separator>
+  </div>
+  <div style="width: 40%; float:right">
+    <neocom-detailed-container [selectedNode]="getSelectedNode()"></neocom-detailed-container>
   </div>
 </div>

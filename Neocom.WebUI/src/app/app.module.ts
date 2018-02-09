@@ -40,7 +40,7 @@ import { DetailedContainerComponent } from './components/factory/detailed-contai
 
 import { SpinnerCentralComponent } from './components/spinner-central/spinner-central.component';
 // import { Pilot4RoasterComponent } from './components/pilot4-roaster/pilot4-roaster.component';
-import { Pilot4DetailComponent } from './components/pilot4-detail/pilot4-detail.component';
+import { Pilot4DetailComponent } from './components/model/pilot4detail/pilot4detail.component';
 import { PilotManagerComponent } from './components/pilot-manager/pilot-manager.component';
 import { AssetsManagerComponent } from './components/assets-manager/assets-manager.component';
 import { PlanetaryManagerComponent } from './components/planetary-manager/planetary-manager.component';
