@@ -25,9 +25,11 @@ import { CapitalizeLetterPipe } from './pipes/capitalize-letter.pipe';
 import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
 //--- PAGES
 import { CredentialsPageComponent } from './pages/credentials-page/credentials-page.component';
+import { PilotDetailPageComponent } from './pages/pilot-detail-page/pilot-detail-page.component';
+//--- COMPONENTS-ABSTRACT
+import { BasePageComponent } from './components/core/base-page/base-page.component';
 //--- COMPONENTS-CORE
 import { AppComponent } from './app.component';
-import { BasePageComponent } from './components/core/base-page/base-page.component';
 //--- COMPONENTS-UI
 import { HeaderComponent } from './components/ui/header/header.component';
 import { ActionBarComponent } from './components/ui/action-bar/action-bar.component';
@@ -61,7 +63,6 @@ import { ExpandableComponent } from './components/expandable/expandable.componen
 import { CredentialComponent } from './components/model/credential/credential.component';
 // import { LoginPageComponent } from './pages/login-page/login-page.component';
 // //import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roaster-page.component';
-// import { PilotDetailPageComponent } from './pages/pilot-detail-page/pilot-detail-page.component';
 // import { AssetsManagerPageComponent } from './pages/assets-manager-page/assets-manager-page.component';
 // import { PlanetaryManagerPageComponent } from './pages/planetary-manager-page/planetary-manager-page.component';
 // import { PlanetaryOptimizationPageComponent } from './pages/planetary-optimization-page/planetary-optimization-page.component';
@@ -73,7 +74,7 @@ import { CredentialComponent } from './components/model/credential/credential.co
     ISKNoDecimalsPipe,
     CredentialsPageComponent,
     AppComponent,
-    BasePageComponent,
+    // BasePageComponent,
     HeaderComponent,
     ActionBarComponent,
     ComponentFactoryComponent,
@@ -85,7 +86,7 @@ import { CredentialComponent } from './components/model/credential/credential.co
     LocationComponent,
     // Pilot4RoasterComponent,
     Pilot4DetailComponent,
-    // PilotDetailPageComponent,
+    PilotDetailPageComponent,
     PilotManagerComponent,
     PlanetaryManagerComponent,
     // LoginPageComponent,

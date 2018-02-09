@@ -11,3 +11,4 @@ Neocom.MicroServices/MarketDataService.store
 Documentation/~$emiminaryNotes.odt
 *.sqlite
 Neocom.MicroServices/ESINetworkManager.cache.store/
+Neocom.MicroServices/.idea/workspace.xml

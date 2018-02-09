@@ -2,9 +2,9 @@
   <div *ngFor="let render of getBodyComponents()">
     <neocom-separator *ngIf="render.jsonClass == 'Separator'" [viewer]="getViewer()" [node]="render"></neocom-separator>
     <neocom-credential *ngIf="render.jsonClass == 'Credential'" [viewer]="getViewer()" [node]="render" (mouseenter)="mouseEnter(render)"></neocom-credential>
-    <neocom-login4-list *ngIf="render.jsonClass == 'Login'" [viewer]="getViewer()" [node]="render"></neocom-login4-list>
+    <!-- <neocom-login4-list *ngIf="render.jsonClass == 'Login'" [viewer]="getViewer()" [node]="render"></neocom-login4-list>
     <neocom-pilot4-login *ngIf="render.jsonClass == 'NeoComCharacter'" [viewer]="getViewer()" [node]="render"></neocom-pilot4-login>
     <neocom-pilot4-login *ngIf="render.jsonClass == 'Pilot'" [viewer]="getViewer()" [node]="render"></neocom-pilot4-login>
-    <neocom-pilot4-login *ngIf="render.jsonClass == 'Corporation'" [viewer]="getViewer()" [node]="render"></neocom-pilot4-login>
+    <neocom-pilot4-login *ngIf="render.jsonClass == 'Corporation'" [viewer]="getViewer()" [node]="render"></neocom-pilot4-login> -->
   </div>
 </div>

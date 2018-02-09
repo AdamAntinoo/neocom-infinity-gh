@@ -69,7 +69,8 @@ export abstract class BasePageComponent /*extends PageComponent implements OnIni
     console.log(">>[BasePageComponent.notifyDataChanged]");
     // Clear the current list while reprocessing the new nodes.
     // TODO This should be improved to change only the nodes that change (replaced, removed, added)
-    this.renderNodeList = [];
+    // this.renderNodeList = [];
+    let copyList = [];
     // Get the initial list by applying the policies defined at the page to the initial root node contents. Policies may be sorting or filtering actions.
     let initialList = this.applyPolicies(this.dataModelRoot);
     // Generate the contents by collaborating to the view all the nodes.
@@ -78,9 +79,10 @@ export abstract class BasePageComponent /*extends PageComponent implements OnIni
       console.log("--[BasePageComponent.notifyDataChanged]> Collaborating " + nodes.length + " nodes.");
       // Add the collaborated nodes to the list of nodes to return.
       for (let childNode of nodes) {
-        this.renderNodeList.push(childNode);
+        copyList.push(childNode);
       }
     }
+    this.renderNodeList = copyList;
     console.log("<<[BasePageComponent.notifyDataChanged]");
   }
   /** Just connects the list and returns a pointer to it before signaling an update. */
