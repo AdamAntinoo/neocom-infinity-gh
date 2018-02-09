@@ -1,4 +1,3 @@
-<neocom-spinner-central *ngIf="downloading" [configuration]="{title:'Downloading Login list',subtitle:''}"></neocom-spinner-central>
 <div class="neocom-panel-container">
   <div *ngFor="let render of getBodyComponents()">
     <neocom-separator *ngIf="render.jsonClass == 'Separator'" [viewer]="getViewer()" [node]="render"></neocom-separator>

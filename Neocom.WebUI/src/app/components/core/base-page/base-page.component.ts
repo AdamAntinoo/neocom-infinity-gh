@@ -12,10 +12,11 @@ import { Component, OnInit } from '@angular/core';
 //--- SERVICES
 import { AppModelStoreService } from '../../../services/app-model-store.service';
 //--- INTERFACES
-import { PageComponent } from '../../../classes/PageComponent';
+import { IDataSource } from '../../../classes/IDataSource.interface';
+// import { PageComponent } from '../../../classes/PageComponent';
 import { EVariant } from '../../../classes/EVariant.enumerated';
 //--- MODELS
-import { DataSource } from '../../../models/DataSource.model';
+// import { DataSource } from '../../../models/DataSource.model';
 import { NeoComNode } from '../../../models/NeoComNode.model';
 
 /**
@@ -26,8 +27,8 @@ This is the core code that is shared by all pages. Implements most of the code t
   templateUrl: './base-page.component.html',
   styleUrls: ['./base-page.component.css']
 })
-export class BasePageComponent /*extends PageComponent implements OnInit*/ extends DataSource {
-  /** This exportable property will be used by the UI to know when to draw the spinner. */
+export abstract class BasePageComponent /*extends PageComponent implements OnInit*/ implements IDataSource {
+  /** This exportable property will be used by the UI to know when to draw/hide the spinner. */
   public downloading: boolean = false;
 	/** This is the single pointer to the model data that is contained on this page. This is the first element than when processed with the collaborate2View process will generate the complete list of nodes to render and received by the factory from the getBodyComponents().
 	This variable is accessed directly (never been null) and it if shared with all descendans during the generation process. */
@@ -36,13 +37,9 @@ export class BasePageComponent /*extends PageComponent implements OnInit*/ exten
   public renderNodeList: NeoComNode[] = [];
   /** This defines the rendering variant that can be used when collaborating nodes. */
   private _variant: EVariant = EVariant.DEFAULT;
-  //	public expanded: boolean = false;
-  //	private _downloaded: boolean = false;
-  //	private _expandable: boolean = false;
-  //	private _hasMenu: boolean = false;
 
   constructor(protected appModelStore: AppModelStoreService) {
-    super();
+    // super();
   }
 
   // --- G E T T E R S   &   S E T T E R S
@@ -55,57 +52,41 @@ export class BasePageComponent /*extends PageComponent implements OnInit*/ exten
   public setVariant(variant: EVariant): void {
     this._variant = variant;
   }
+  /**
+  The common component to render any node has an input that is the specific DataSource for this page. This is the method to connect the local internal and specific DataSource to the generic rendel component.
+  */
+  public getDataSource(): IDataSource {
+    return this;
+  }
 
-  //--- DATASOURCE INTERFACE
-  public getBodyComponents(): NeoComNode[] {
-    console.log(">>[CredentialDataSource.getBodyComponents]");
+  //--- IDATASOURCE INTERFACE
+  public abstract applyPolicies(contents: NeoComNode[]): NeoComNode[];
+  public abstract enterSelected(target: NeoComNode);
+  /**
+  Reconstructs the list of nodes to be rendered from the current DataRoot and their collaborations to the view.
+  */
+  public notifyDataChanged(): void {
+    console.log(">>[BasePageComponent.notifyDataChanged]");
     // Clear the current list while reprocessing the new nodes.
     // TODO This should be improved to change only the nodes that change (replaced, removed, added)
     this.renderNodeList = [];
-    // get the initial list by applying the policies defined at the page to the initial root node contents.
+    // Get the initial list by applying the policies defined at the page to the initial root node contents. Policies may be sorting or filtering actions.
     let initialList = this.applyPolicies(this.dataModelRoot);
     // Generate the contents by collaborating to the view all the nodes.
     for (let node of this.dataModelRoot) {
       let nodes = node.collaborate2View(this.appModelStore, this.getVariant());
-      console.log("--[CredentialDataSource.getBodyComponents]> Collaborating " + nodes.length + " nodes.");
+      console.log("--[BasePageComponent.notifyDataChanged]> Collaborating " + nodes.length + " nodes.");
       // Add the collaborated nodes to the list of nodes to return.
       for (let childNode of nodes) {
         this.renderNodeList.push(childNode);
       }
     }
-    console.log("<<[CredentialDataSource.getBodyComponents]");
+    console.log("<<[BasePageComponent.notifyDataChanged]");
+  }
+  /** Just connects the list and returns a pointer to it before signaling an update. */
+  public getBodyComponents(): NeoComNode[] {
+    console.log("><[BasePageComponent.getBodyComponents]");
+    this.notifyDataChanged();
     return this.renderNodeList;
   }
-	/**
-	The common component to render any node has an input that is the specific DataSource for this page. This is the method to connect the local internal and specific DataSource to the generic rendel component.
-	*/
-  public getDataSource(): DataSource {
-    return this;
-  }
-  private applyPolicies(contents: NeoComNode[]): NeoComNode[] {
-    return contents;
-  }
-
-  // public isExpandable(): boolean {
-  // 	return this._expandable;
-  // }
-  // public hasMenu(): boolean {
-  // 	return this._hasMenu;
-  // }
-  // public setExpandable(flag: boolean): boolean {
-  // 	this._expandable = flag;
-  // 	return this._expandable;
-  // }
-
-  // --- A C T I O N S
-  // public onClickArrow(): void {
-  // 	this.expanded = !this.expanded;
-  // }
-  // 	// This is a method that should be implemented by all dependents.
-  // public refreshViewPort(): void {
-  // }
-  //
-  // ngOnInit() {
-  // }
-
 }

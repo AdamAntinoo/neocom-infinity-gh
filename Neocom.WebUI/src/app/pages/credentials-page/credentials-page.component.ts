@@ -12,12 +12,12 @@ import { Component, OnInit } from '@angular/core';
 //--- SERVICES
 import { AppModelStoreService } from '../../services/app-model-store.service';
 //--- INTERFACES
-import { IDetailedEnabledPage } from '../../classes/IDetailedEnabledPage.interface';
 import { EVariant } from '../../classes/EVariant.enumerated';
-import { PageComponent } from '../../classes/PageComponent';
+import { IDetailedEnabledPage } from '../../classes/IDetailedEnabledPage.interface';
+// import { PageComponent } from '../../classes/PageComponent';
 //--- MODELS
 //import { Login } from '../../models/Login.model';
-import { DataSource } from '../../models/DataSource.model';
+// import { DataSource } from '../../models/DataSource.model';
 import { NeoComNode } from '../../models/NeoComNode.model';
 import { Credential } from '../../models/Credential.model';
 //--- COMPONENTS
@@ -33,7 +33,10 @@ Pages on Angular are the equivalent functionality as Activity+Fragment+DataSourc
   templateUrl: './credentials-page.component.html',
   styleUrls: ['./credentials-page.component.css']
 })
-export class CredentialsPageComponent extends BasePageComponent implements OnInit, DataSource, IDetailedEnabledPage {
+export class CredentialsPageComponent extends BasePageComponent implements OnInit, IDetailedEnabledPage {
+  /** Node activated by hovering over it with the mouse cursor. May be null. */
+  private selectedNode: NeoComNode = null;
+
 	/**
   This is the equivalent entry point for the onCreate for an Android Activity. So its functionality is to define the activity layout and insert the fragments that will compose the Activity UI.
 	The equivalence on Angular is that the .componet.html will define the layout so ther is no code required to set up that and that the fragments are already defined on the .html layout and being components on their own they will be initialized as this Page. So the functionality changes to load on the Activity/Page the model data required by the Fragments/Components to render the model structures.
@@ -55,6 +58,25 @@ export class CredentialsPageComponent extends BasePageComponent implements OnIni
         this.downloading = false;
       });
     console.log("<< [CredentialsPageComponent.ngOnInit]");
+  }
+
+  //--- IDATASOURCE INTERFACE
+  public applyPolicies(contents: Credential[]): Credential[] {
+    // Sort the Credentials by name.
+    let sortedContents: Credential[] = contents.sort((n1, n2) => {
+      if (n1.getAccountName() > n2.getAccountName()) {
+        return 1;
+      }
+      if (n1.getAccountName() < n2.getAccountName()) {
+        return -1;
+      }
+      return 0;
+    });
+    return sortedContents;
+  }
+  /** Set the hovered and select node to be exported. */
+  public enterSelected(target: NeoComNode) {
+    this.selectedNode = target;
   }
 
   // --- DETAILED ENABLED INTERFACE PAGE

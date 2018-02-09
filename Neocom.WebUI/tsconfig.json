@@ -20,6 +20,6 @@
   "exclude": [
     "node_modules",
     "src/app/outbox",
-    "outbox",
+    "outbox"
   ]
 }

@@ -19,6 +19,6 @@
     "test.ts",
     "**/*.spec.ts",
     "src/app/outbox",
-    "outbox",
+    "outbox"
   ]
 }

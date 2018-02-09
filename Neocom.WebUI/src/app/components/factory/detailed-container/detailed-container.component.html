@@ -1,9 +1,5 @@
-<div id="panelborder-red">
-  <span>DETAILED INFORMATION SECTION {{getSelectedNodeClass()}}</span>
-  <neocom-separator *ngIf="getSelectedNodeClass() == 'Separator'" [node]="getSelectedNode()"></neocom-separator>
-  <neocom-credential *ngIf="getSelectedNodeClass() == 'Credential'" [node]="getSelectedNode()" [variant]="DETAIL"></neocom-credential>
-  <neocom-login4-list *ngIf="getSelectedNodeClass() == 'Login'"></neocom-login4-list>
-  <neocom-pilot4-login *ngIf="getSelectedNodeClass() == 'NeoComCharacter'"></neocom-pilot4-login>
-  <neocom-pilot4-login *ngIf="getSelectedNodeClass() == 'Pilot'"></neocom-pilot4-login>
-  <neocom-pilot4-login *ngIf="getSelectedNodeClass() == 'Corporation'"></neocom-pilot4-login>
+<div>
+  <span>DETAILED INFORMATION SECTION NodeClass: {{getSelectedNodeClass()}} - Test: {{getSelectedNodeClass() === 'Credential'}}</span><br>
+  <span>{{getSelectedNode()}}</span>
+  <neocom-credential *ngIf="getSelectedNodeClass() === 'Credential'" [node]="getSelectedNode()" [variant]="DETAIL"></neocom-credential>
 </div>
