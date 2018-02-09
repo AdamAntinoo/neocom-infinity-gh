@@ -8,7 +8,7 @@ import { AppModelStoreService } from '../../services/app-model-store.service';
 //--- COMPONENTS
 import { PageComponent } from '../../classes/PageComponent';
 //--- COMPONENTS
-import { PlanetaryManagerPageComponent } from '../../pages/planetary-manager-page/planetary-manager-page.component';
+//import { PlanetaryManagerPageComponent } from '../../pages/planetary-manager-page/planetary-manager-page.component';
 //--- MODELS
 import { NeoComAsset } from '../../models/NeoComAsset.model';
 
@@ -18,7 +18,7 @@ import { NeoComAsset } from '../../models/NeoComAsset.model';
   styleUrls: ['./asset.component.css']
 })
 export class AssetComponent implements OnInit {
-  @Input() viewer: PlanetaryManagerPageComponent;
+  @Input() viewer: PageComponent;
   @Input() node: NeoComAsset;
 
   constructor(private appModelStore: AppModelStoreService) {

@@ -9,7 +9,7 @@ import { AppModelStoreService } from '../../services/app-model-store.service';
 import { EVariant } from '../../classes/EVariant.enumerated';
 //--- COMPONENTS
 import { PageComponent } from '../../classes/PageComponent';
-import { PlanetaryManagerPageComponent } from '../../pages/planetary-manager-page/planetary-manager-page.component';
+//import { PlanetaryManagerPageComponent } from '../../pages/planetary-manager-page/planetary-manager-page.component';
 //--- MODELS
 import { Location } from '../../models/Location.model';
 
@@ -19,7 +19,7 @@ import { Location } from '../../models/Location.model';
   styleUrls: ['./location.component.css']
 })
 export class LocationComponent implements OnInit {
-  @Input() viewer: PlanetaryManagerPageComponent;
+  @Input() viewer: PageComponent;
   @Input() node: Location;
 
   constructor(private appModelStore: AppModelStoreService) {
@@ -60,9 +60,9 @@ export class LocationComponent implements OnInit {
   public getLoginId(): string {
     return this.appModelStore.accessLogin().getLoginId();
   }
-  public getCharacterId() {
-    return this.viewer.pilot.getId()
-  }
+  // public getCharacterId() {
+  //   return this.viewer.pilot.getId()
+  // }
   public getLocationId() {
     return this.node.getLocationId();
   }

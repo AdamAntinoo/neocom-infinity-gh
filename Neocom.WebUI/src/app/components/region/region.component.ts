@@ -5,7 +5,8 @@ import { Input } from '@angular/core';
 //--- SERVICES
 import { AppModelStoreService } from '../../services/app-model-store.service';
 //--- COMPONENTS
-import { PlanetaryManagerPageComponent } from '../../pages/planetary-manager-page/planetary-manager-page.component';
+import { PageComponent } from '../../classes/PageComponent';
+// import { PlanetaryManagerPageComponent } from '../../pages/planetary-manager-page/planetary-manager-page.component';
 //--- MODELS
 import { NeoComNode } from '../../models/NeoComNode.model';
 
@@ -15,7 +16,7 @@ import { NeoComNode } from '../../models/NeoComNode.model';
   styleUrls: ['./region.component.css']
 })
 export class RegionComponent implements OnInit {
-  @Input() viewer: PlanetaryManagerPageComponent;
+  @Input() viewer: PageComponent;
   @Input() node: NeoComNode;
 
   constructor(private appModelStore: AppModelStoreService) { }

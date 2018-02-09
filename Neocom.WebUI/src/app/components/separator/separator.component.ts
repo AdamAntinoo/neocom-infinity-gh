@@ -8,7 +8,8 @@ import { Input } from '@angular/core';
 //--- SERVICES
 import { AppModelStoreService } from '../../services/app-model-store.service';
 //--- COMPONENTS
-import { PlanetaryManagerPageComponent } from '../../pages/planetary-manager-page/planetary-manager-page.component';
+import { PageComponent } from '../../classes/PageComponent';
+// import { PlanetaryManagerPageComponent } from '../../pages/planetary-manager-page/planetary-manager-page.component';
 //--- INTERFACES
 import { ESeparator } from '../../classes/ESeparator.enumerated';
 
@@ -19,7 +20,7 @@ import { ESeparator } from '../../classes/ESeparator.enumerated';
 })
 export class SeparatorComponent implements OnInit {
   //  @Input() variation: ESeparator=ESeparator.ORANGE;
-  @Input() viewer: PlanetaryManagerPageComponent;
+  @Input() viewer: PageComponent;
   @Input() node: any;
 
   constructor(private appModelStore: AppModelStoreService) {

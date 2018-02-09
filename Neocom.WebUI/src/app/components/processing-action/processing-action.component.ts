@@ -7,7 +7,7 @@ import { Input } from '@angular/core';
 import { AppModelStoreService } from '../../services/app-model-store.service';
 //--- COMPONENTS
 import { PageComponent } from '../../classes/PageComponent';
-import { PlanetaryManagerPageComponent } from '../../pages/planetary-manager-page/planetary-manager-page.component';
+//import { PlanetaryManagerPageComponent } from '../../pages/planetary-manager-page/planetary-manager-page.component';
 //--- MODELS
 import { ProcessingAction } from '../../models/ProcessingAction.model';
 
@@ -17,7 +17,7 @@ import { ProcessingAction } from '../../models/ProcessingAction.model';
   styleUrls: ['./processing-action.component.css']
 })
 export class ProcessingActionComponent implements OnInit {
-  @Input() viewer: PlanetaryManagerPageComponent;
+  @Input() viewer: PageComponent;
   @Input() node: ProcessingAction;
 
   constructor(private appModelStore: AppModelStoreService) { }

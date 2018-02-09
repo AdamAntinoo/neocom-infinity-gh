@@ -37,7 +37,7 @@ import { DetailedContainerComponent } from './components/factory/detailed-contai
 //--- COMPONENTS-DETAILED
 
 import { SpinnerCentralComponent } from './components/spinner-central/spinner-central.component';
-import { Pilot4RoasterComponent } from './components/pilot4-roaster/pilot4-roaster.component';
+// import { Pilot4RoasterComponent } from './components/pilot4-roaster/pilot4-roaster.component';
 import { Pilot4DetailComponent } from './components/pilot4-detail/pilot4-detail.component';
 import { PilotManagerComponent } from './components/pilot-manager/pilot-manager.component';
 import { AssetsManagerComponent } from './components/assets-manager/assets-manager.component';
@@ -49,11 +49,11 @@ import { ResourceComponent } from './components/resource/resource.component';
 import { ProcessingActionComponent } from './components/processing-action/processing-action.component';
 
 //--- REMOVABLES
-import { NavigationMenuComponent } from './component/navigation-menu/navigation-menu.component';
-import { Login4ListComponent } from './components/login4-list/login4-list.component';
+// import { NavigationMenuComponent } from './component/navigation-menu/navigation-menu.component';
+// import { Login4ListComponent } from './components/login4-list/login4-list.component';
 import { SeparatorComponent } from './components/separator/separator.component';
 import { NodePanelComponent } from './components/node-panel/node-panel.component';
-import { Pilot4LoginComponent } from './components/pilot4-login/pilot4-login.component';
+// import { Pilot4LoginComponent } from './components/pilot4-login/pilot4-login.component';
 import { ContainerComponent } from './components/container/container.component';
 import { ShipComponent } from './components/ship/ship.component';
 import { ShipSlotGroupComponent } from './components/ship-slot-group/ship-slot-group.component';
@@ -80,16 +80,16 @@ import { CredentialComponent } from './components/model/credential/credential.co
     DetailedContainerComponent,
 
     SpinnerCentralComponent,
-    NavigationMenuComponent,
+    // NavigationMenuComponent,
     RegionComponent,
     LocationComponent,
-    Pilot4RoasterComponent,
+    // Pilot4RoasterComponent,
     Pilot4DetailComponent,
     // PilotDetailPageComponent,
     PilotManagerComponent,
     PlanetaryManagerComponent,
     // LoginPageComponent,
-    Login4ListComponent,
+    // Login4ListComponent,
     // AssetsManagerPageComponent,
     // PlanetaryManagerPageComponent,
     AssetComponent,
@@ -99,7 +99,7 @@ import { CredentialComponent } from './components/model/credential/credential.co
     ResourceComponent,
     ProcessingActionComponent,
     NodePanelComponent,
-    Pilot4LoginComponent,
+    // Pilot4LoginComponent,
     ContainerComponent,
     AssetsManagerComponent,
     ShipComponent,
