@@ -127,6 +127,8 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		if (openNeoComDB()) {
 			// Delay database initialization after the helper is assigned to the Global.
 			GlobalDataManager.submitJob2Generic(() -> {
+				// Wait for some time units.
+				GlobalDataManager.suspendThread(TimeUnit.SECONDS.toMillis(2));
 				int currentVersion = readDatabaseVersion();
 				// During the current POC version force the creation of the tables and forget the version control.
 				// Read the version information from the database. If version mismatch upgrade the database.

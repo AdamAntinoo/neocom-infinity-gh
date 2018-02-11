@@ -15,11 +15,13 @@
           <package name="javax" withSubpackages="true" static="false" />
           <package name="java" withSubpackages="true" static="false" />
           <emptyLine />
-          <package name="com" withSubpackages="true" static="false" />
-          <emptyLine />
           <package name="net" withSubpackages="true" static="false" />
           <emptyLine />
-          <package name="com.dimensinfin" withSubpackages="true" static="false" />
+          <package name="com" withSubpackages="true" static="false" />
+          <emptyLine />
+          <package name="org" withSubpackages="true" static="false" />
+          <emptyLine />
+          <package name="org.dimensinfin" withSubpackages="true" static="false" />
           <emptyLine />
           <package name="" withSubpackages="true" static="true" />
         </value>
