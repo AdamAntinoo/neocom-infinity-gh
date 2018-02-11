@@ -1,12 +1,12 @@
-<div style="width: 100%">
-  <div>
-    <neocom-action-bar></neocom-action-bar>
-  </div>
+<div>
+  <!-- <div> -->
+  <neocom-action-bar [title]="getTitleData()" [subtitle]="getSubtitleData()"></neocom-action-bar>
+  <!-- </div> -->
   <div style="width: 60%; float:left">
-    <div class="title-box">
+    <!-- <div class="title-box" id="panelborder-orange">
       <div class="title">Pilot Details</div>
       <div class="subtitle" *ngIf="!downloading">Selected: {{pilot.name}}</div>
-    </div>
+    </div> -->
     <neocom-pilot4-detail *ngIf="!downloading" [pilot]="pilot"></neocom-pilot4-detail>
     <neocom-separator [viewer]="getViewer()" [node]="headerSeparator"></neocom-separator>
   </div>

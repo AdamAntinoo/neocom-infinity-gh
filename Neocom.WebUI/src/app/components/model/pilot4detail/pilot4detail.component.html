@@ -1,15 +1,15 @@
-<div class="neocom-panel" id="content">
+<div class="neocom-panel" id="panelborder-orange">
   <table class="neocom-panel-container" cellspacing="0" cellpadding="0" width="100%">
     <tr>
       <td><img class="neocom-pilot-avatar" src="{{pilot.urlforAvatar}}" id="iconsize-90"></td>
       <td width="60% " class="neocom-panel-column">
         <div class="neocom-selectable-name">{{pilot.name}}</div>
-        <div class="neocom-marked-name" id="neocom-ts14">{{pilot.delegatedCharacter.corporationName}}</div>
+        <div class="neocom-marked-name" id="neocom-ts14">{{pilot.characterInfo.corporation}}</div>
         <div id="neocom-ts14">
-          <span class="">{{pilot.characterSheet.gender}}</span> -
-          <span class="neocom-pilot-data">{{pilot.characterSheet.race | lowercase | capitalizeLetter}}</span>          -
-          <span class="neocom-pilot-data">{{pilot.characterSheet.bloodLine | lowercase | capitalizeLetter}}</span>          -
-          <span class="neocom-pilot-data">{{pilot.characterSheet.ancestry | lowercase | capitalizeLetter}}</span>
+          <!-- <span class="">{{pilot.characterInfo.gender}}</span> - -->
+          <span class="neocom-pilot-data">{{pilot.characterInfo.race | lowercase | capitalizeLetter}}</span> -
+          <span class="neocom-pilot-data">{{pilot.characterInfo.bloodLine | lowercase | capitalizeLetter}}</span> -
+          <!-- <span class="neocom-pilot-data">{{pilot.characterInfo.ancestry | lowercase | capitalizeLetter}}</span> -->
         </div>
 
         <table cellspacing="0" cellpadding="0" width="100%">
@@ -29,6 +29,7 @@
               <div class="neocom-label">ASSETS</div>
             </td>
           </tr>
+
         </table>
 
         <span class="neocom-label">ACTIVE SHIP ► </span>
@@ -42,7 +43,7 @@
       <td width="40%" class="neocom-panel-right-box" align="right">
         <div class="neocom-account-class">{{getCharacterClass()}}</div>
         <div>
-          <span class="neocom-label">TOTAL SP ► </span>
+          <!-- <span class="neocom-label">TOTAL SP ► </span> -->
           <span class="neocom-pilot-data neocom-data-size-14 neocom-marked-name">{{pilot.characterInfo.skillPoints | number:'1.0-0'}}</span>
         </div>
         <div>

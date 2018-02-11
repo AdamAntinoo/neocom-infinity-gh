@@ -1,0 +1,83 @@
+#panelborder-orange, #panelborder-red {
+  line-height: 1;
+  background-color: #080808;
+  height: auto;
+  margin-bottom: 2px;
+  opacity: 0.8;
+  position: relative;
+  border-width: 1px 1px 1px 1px;
+  border-color: #404040;
+  border-style: solid;
+}
+
+#panelborder-red:hover {
+  opacity: 1;
+}
+
+#panelborder-red:before, #panelborder-red:after, #panelborder-red > :first-child:before, #panelborder-red > :first-child:after {
+  border: 1px red solid;
+  content: " ";
+  height: 6px;
+  position: absolute;
+  width: 6px;
+}
+
+#panelborder-red:before {
+  border-width: 1px 0 0 1px;
+  left: -1px;
+  top: -1px;
+}
+
+#panelborder-red:after {
+  border-width: 1px 1px 0 0;
+  right: -1px;
+  top: -1px;
+}
+
+#panelborder-red > :first-child:before {
+  border-width: 0 1px 1px 0;
+  bottom: -1px;
+  right: -1px;
+}
+
+#panelborder-red > :first-child:after {
+  border-width: 0 0 1px 1px;
+  bottom: -1px;
+  left: -1px;
+}
+
+#panelborder-orange:hover {
+  opacity: 1;
+}
+
+#panelborder-orange:before, #panelborder-orange:after, #panelborder-orange > :first-child:before, #panelborder-orange > :first-child:after {
+  border: 2px orange solid;
+  content: " ";
+  height: 6px;
+  position: absolute;
+  width: 6px;
+}
+
+#panelborder-orange:before {
+  border-width: 1px 0 0 1px;
+  left: -1px;
+  top: -1px;
+}
+
+#panelborder-orange:after {
+  border-width: 1px 1px 0 0;
+  right: -1px;
+  top: -1px;
+}
+
+#panelborder-orange > :first-child:before {
+  border-width: 0 1px 1px 0;
+  bottom: -1px;
+  right: -1px;
+}
+
+#panelborder-orange > :first-child:after {
+  border-width: 0 0 1px 1px;
+  bottom: -1px;
+  left: -1px;
+}

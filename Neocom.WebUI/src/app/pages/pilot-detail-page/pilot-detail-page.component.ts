@@ -102,7 +102,13 @@ export class PilotDetailPageComponent /*extends BasePageComponent*/ implements O
     // });
     console.log("<<[PilotDetailPageComponent.ngOnInit]");
   }
-
+  public getTitleData(): string {
+    return "Pilot Details";
+  }
+  public getSubtitleData(): string {
+    if (null != this.pilot) return this.pilot.getName();
+    else return "";
+  }
   // //--- IDATASOURCE INTERFACE
   // public applyPolicies(contents: Credential[]): Credential[] {
   //   return contents;
@@ -113,5 +119,12 @@ export class PilotDetailPageComponent /*extends BasePageComponent*/ implements O
   // }
   public getViewer(): PilotDetailPageComponent {
     return this;
+  }
+  // --- DETAILED ENABLED INTERFACE PAGE
+	/**
+	Returns the current node the cursor is hovering. The hovering function is the responsible to control the item selected.
+	*/
+  public getSelectedNode(): NeoComNode {
+    return this.selectedNode;
   }
 }
