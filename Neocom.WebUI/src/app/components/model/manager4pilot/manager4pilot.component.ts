@@ -22,25 +22,20 @@ import { AppModelStoreService } from '../../../services/app-model-store.service'
 //--- MODELS
 // import { Login } from '../../../models/Login.model';
 import { NeoComNode } from '../../../models/NeoComNode.model';
-import { Pilot } from '../../../models/Pilot.model';
 import { Manager } from '../../../models/Manager.model';
+// import { Pilot } from '../../../models/Pilot.model';
 
 @Component({
-  selector: 'neocom-pilot4-detail',
-  templateUrl: './pilot4detail.component.html',
-  styleUrls: ['./pilot4detail.component.css']
+  selector: 'neocom-manager4pilot',
+  templateUrl: './manager4pilot.component.html',
+  styleUrls: ['./manager4pilot.component.css']
 })
-export class Pilot4DetailComponent extends PageComponent implements OnInit {
-  @Input() pilot: Pilot;
+export class Manager4PilotComponent implements OnInit {
+  @Input() manager: Manager;
 
-  constructor() {
-    super();
-  }
+  constructor() { }
 
   ngOnInit() {
   }
-  public getCharacterClass(): string {
-    if (this.pilot.corporation == true) return "CORPORATION";
-    else return "PILOT";
-  }
+
 }

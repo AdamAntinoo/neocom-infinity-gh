@@ -127,4 +127,7 @@ export class PilotDetailPageComponent /*extends BasePageComponent*/ implements O
   public getSelectedNode(): NeoComNode {
     return this.selectedNode;
   }
+  public getFittingManager(): Manager {
+    return new Manager({ name: "Fitting Manager" });
+  }
 }

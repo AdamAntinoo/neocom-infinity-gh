@@ -1,16 +1,17 @@
-<div>
-  <!-- <div> -->
-  <neocom-action-bar [title]="getTitleData()" [subtitle]="getSubtitleData()"></neocom-action-bar>
-  <!-- </div> -->
-  <div style="width: 60%; float:left">
-    <!-- <div class="title-box" id="panelborder-orange">
+<!-- <div> -->
+<!-- <div> -->
+<neocom-action-bar [title]="getTitleData()" [subtitle]="getSubtitleData()"></neocom-action-bar>
+<!-- </div> -->
+<div style="width: 60%">
+  <!-- <div class="title-box" id="panelborder-orange">
       <div class="title">Pilot Details</div>
       <div class="subtitle" *ngIf="!downloading">Selected: {{pilot.name}}</div>
     </div> -->
-    <neocom-pilot4-detail *ngIf="!downloading" [pilot]="pilot"></neocom-pilot4-detail>
-    <neocom-separator [viewer]="getViewer()" [node]="headerSeparator"></neocom-separator>
-  </div>
-  <div style="width: 40%; float:right">
-    <neocom-detailed-container [selectedNode]="getSelectedNode()"></neocom-detailed-container>
-  </div>
+  <neocom-pilot4-detail *ngIf="!downloading" [pilot]="pilot"></neocom-pilot4-detail>
+  <!-- <neocom-separator [viewer]="getViewer()" [node]="headerSeparator"></neocom-separator> -->
+  <neocom-manager4pilot [manager]="getFittingManager()"></neocom-manager4pilot>
 </div>
+<!-- <div style="width: 40%; float:right"> -->
+<!-- <neocom-detailed-container [selectedNode]="getSelectedNode()"></neocom-detailed-container> -->
+<!-- </div> -->
+<!-- </div> -->
