@@ -37,5 +37,7 @@ export class Manager4PilotComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  public getAccountId(): number {
+    return this.manager.accountId;
+  }
 }

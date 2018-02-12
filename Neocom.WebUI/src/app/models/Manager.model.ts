@@ -24,6 +24,7 @@ import { Location } from '../models/Location.model';
 
 export class Manager extends NeoComNode {
   public name: string = "-MANAGER-";
+  public accountId: number = -1;
   public regions: Region[] = [];
   public locations: Location[] = [];
   public regionCount: number = 0;

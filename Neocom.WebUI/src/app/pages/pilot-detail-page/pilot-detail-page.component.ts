@@ -51,6 +51,7 @@ export class PilotDetailPageComponent /*extends BasePageComponent*/ implements O
   public headerSeparator: Separator = new Separator().setVariation(ESeparator.GREEN);
   // public downloading: boolean = true;
   // public selectedLogin: Login = null;
+  private characterid: number = -1;
   public pilot: Pilot = null;
 
   constructor(protected appModelStore: AppModelStoreService, private route: ActivatedRoute, private router: Router) {
@@ -82,8 +83,9 @@ export class PilotDetailPageComponent /*extends BasePageComponent*/ implements O
     this.appModelStore.accessCredentialList()
       .subscribe(result => {
         this.route.params.map(p => p.id)
-          .subscribe((characterid: number) => {
-            this.pilot = this.appModelStore.activatePilotById(Number(characterid));
+          .subscribe((cid: number) => {
+            this.characterid = cid;
+            this.pilot = this.appModelStore.activatePilotById(Number(this.characterid));
             this.downloading = false;
             // Download the managers.
             // this.pilot.accessPilotManagers(this.appModelStore)
@@ -128,6 +130,6 @@ export class PilotDetailPageComponent /*extends BasePageComponent*/ implements O
     return this.selectedNode;
   }
   public getFittingManager(): Manager {
-    return new Manager({ name: "Fitting Manager" });
+    return new Manager({ name: "Fitting Manager", accountId: this.characterid });
   }
 }

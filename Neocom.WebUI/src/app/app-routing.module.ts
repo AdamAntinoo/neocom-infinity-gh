@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
 //--- PAGES
 import { CredentialsPageComponent } from './pages/credentials-page/credentials-page.component';
 import { PilotDetailPageComponent } from './pages/pilot-detail-page/pilot-detail-page.component';
+import { FittingManagerPageComponent } from './pages/fitting-manager-page/fitting-manager-page.component';
 
 // import { LoginPageComponent } from './pages/login-page/login-page.component';
 // //import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roaster-page.component';
@@ -30,9 +31,10 @@ const routes: Routes = [
   },
   { path: 'credentials', component: CredentialsPageComponent },
   { path: 'pilot/:id', component: PilotDetailPageComponent },
+  { path: 'pilot/:id/fittingmanager', component: FittingManagerPageComponent },
 
   // { path: 'login', component: LoginPageComponent },
-  { path: 'login/:loginid/pilot/:id', component: PilotDetailPageComponent },
+  // { path: 'login/:loginid/pilot/:id', component: PilotDetailPageComponent },
   // { path: 'login/:loginid/pilot/:id/AssetsManager', component: AssetsManagerPageComponent },
   // { path: 'login/:loginid/pilot/:id/PlanetaryManager', component: PlanetaryManagerPageComponent },
   // { path: 'login/:loginid/pilot/:id/PlanetaryManager/location/:locationid/PlanetaryOptimization', component: PlanetaryOptimizationPageComponent },
