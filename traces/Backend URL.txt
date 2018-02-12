@@ -6,11 +6,11 @@ http://localhost:9000/api/v1/login/CapitanHaddock29/pilot/2113197470/assetsmanag
 http://localhost:4200/login/CapitanHaddock29/pilot/2113197470
 
 --NEW URLS VALID
-http://localhost:9000/api/v1/location/updatecitadels
-http://localhost:9000/api/v1/location/updateoutposts
-
-/api/v1/loginlist
+/api/v1/location/updatecitadels
+/api/v1/location/updateoutposts
 /api/v1/credentials
+
+# /api/v1/loginlist
 
 TIP TOPHANE
 /api/v1//login/CapitanHaddock29/pilot/2113197470
@@ -21,6 +21,8 @@ ADAM ANTINOO
 
 
 BETH RIPLEY
+/api/v1/pilot/92223647/fittingmanager/fittings
+
 /api/v1/login/Beth Ripley/pilot/92223647
 /api/v1/login/Beth Ripley/pilot/92223647/pilotmanagers
 /api/v1/login/Beth Ripley/pilot/92223647/planetarymanager

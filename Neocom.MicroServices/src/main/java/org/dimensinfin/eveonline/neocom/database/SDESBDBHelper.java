@@ -172,8 +172,7 @@ public class SDESBDBHelper extends SDEDatabaseManager implements ISDEDBHelper {
 		public SBRawStatement( final Connection privateConnection, final String query, final String[] parameters ) throws
 				SQLException {
 			if (null != privateConnection) {
-				prepStmt = null;
-				privateConnection.prepareStatement(query);
+				prepStmt =privateConnection.prepareStatement(query);
 				for (int i = 0; i < parameters.length; i++) {
 					prepStmt.setString(i + 1, parameters[i]);
 				}

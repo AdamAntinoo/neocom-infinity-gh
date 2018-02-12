@@ -65,12 +65,13 @@ public class SpringBootConfigurationProvider implements IConfigurationProvider {
 	 * to the list of application properties. Read order will replace same ids with new data so the developer
 	 * can use a naming convention to replace older values with new values without editing the older files.
 	 */
-	public void initialize () {
+	public IConfigurationProvider initialize () {
 		try {
 			readAllProperties();
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
+		return this;
 	}
 
 	private void readAllProperties () throws IOException {

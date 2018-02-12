@@ -1,0 +1,3596 @@
+[
+{
+fittingId: 44745698,
+name: "MI Elef LS1.0",
+description: "",
+items: [
+{
+jsonClass: "NeoComNode",
+typeId: 1319,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 12,
+flagName: "LoSlot1",
+flagText: "Low power slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 1319,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 13,
+flagName: "LoSlot2",
+flagText: "Low power slot 3",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 1319,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 14,
+flagName: "LoSlot3",
+flagText: "Low power slot 4",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 1319,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 15,
+flagName: "LoSlot4",
+flagText: "Low power slot 5",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 5973,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 19,
+flagName: "MedSlot0",
+flagText: "Medium power slot 1",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 8433,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 21,
+flagName: "MedSlot2",
+flagText: "Medium power slot 3",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 8433,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 22,
+flagName: "MedSlot3",
+flagText: "Medium power slot 4",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 9622,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 20,
+flagName: "MedSlot1",
+flagText: "Medium power slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 10998,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 11,
+flagName: "LoSlot0",
+flagText: "Low power slot 1",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 31754,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 92,
+flagName: "RigSlot0",
+flagText: "Rig power slot 1",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 31790,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 93,
+flagName: "RigSlot1",
+flagText: "Rig power slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 31790,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 94,
+flagName: "RigSlot2",
+flagText: "Rig power slot 3",
+orderID: 0
+}
+}
+]
+},
+{
+fittingId: 28101733,
+name: "Occator AntiGanking",
+description: "",
+items: [
+{
+jsonClass: "NeoComNode",
+typeId: 2048,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 11,
+flagName: "LoSlot0",
+flagText: "Low power slot 1",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 2281,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 20,
+flagName: "MedSlot1",
+flagText: "Medium power slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 2553,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 21,
+flagName: "MedSlot2",
+flagText: "Medium power slot 3",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 3178,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 27,
+flagName: "HiSlot0",
+flagText: "High power slot 1",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 3178,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 28,
+flagName: "HiSlot1",
+flagText: "High power slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 3841,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 19,
+flagName: "MedSlot0",
+flagText: "Medium power slot 1",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 5561,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 14,
+flagName: "LoSlot3",
+flagText: "Low power slot 4",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 5561,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 15,
+flagName: "LoSlot4",
+flagText: "Low power slot 5",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 11229,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 16,
+flagName: "LoSlot5",
+flagText: "Low power slot 6",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 11269,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 12,
+flagName: "LoSlot1",
+flagText: "Low power slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 11317,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 13,
+flagName: "LoSlot2",
+flagText: "Low power slot 3",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 31059,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 92,
+flagName: "RigSlot0",
+flagText: "Rig power slot 1",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 31059,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 93,
+flagName: "RigSlot1",
+flagText: "Rig power slot 2",
+orderID: 0
+}
+}
+]
+},
+{
+fittingId: 28101737,
+name: "Nereus AntiGanking",
+description: "",
+items: [
+{
+jsonClass: "NeoComNode",
+typeId: 2048,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 11,
+flagName: "LoSlot0",
+flagText: "Low power slot 1",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 2281,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 20,
+flagName: "MedSlot1",
+flagText: "Medium power slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 2456,
+quantity: 6,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 87,
+flagName: "DroneBay",
+flagText: "Drone Bay",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 2539,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 23,
+flagName: "MedSlot4",
+flagText: "Medium power slot 5",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 2553,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 19,
+flagName: "MedSlot0",
+flagText: "Medium power slot 1",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 3178,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 28,
+flagName: "HiSlot1",
+flagText: "High power slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 3831,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 21,
+flagName: "MedSlot2",
+flagText: "Medium power slot 3",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 3831,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 22,
+flagName: "MedSlot3",
+flagText: "Medium power slot 4",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 5561,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 14,
+flagName: "LoSlot3",
+flagText: "Low power slot 4",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 5561,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 15,
+flagName: "LoSlot4",
+flagText: "Low power slot 5",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 16311,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 12,
+flagName: "LoSlot1",
+flagText: "Low power slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 16407,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 13,
+flagName: "LoSlot2",
+flagText: "Low power slot 3",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 23527,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 27,
+flagName: "HiSlot0",
+flagText: "High power slot 1",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 31119,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 92,
+flagName: "RigSlot0",
+flagText: "Rig power slot 1",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 31119,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 93,
+flagName: "RigSlot1",
+flagText: "Rig power slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 31119,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 94,
+flagName: "RigSlot2",
+flagText: "Rig power slot 3",
+orderID: 0
+}
+}
+]
+},
+{
+fittingId: 35947306,
+name: "EI Oruga N2",
+description: "",
+items: [
+{
+jsonClass: "NeoComNode",
+typeId: 2539,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 22,
+flagName: "MedSlot3",
+flagText: "Medium power slot 4",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 2553,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 21,
+flagName: "MedSlot2",
+flagText: "Medium power slot 3",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 2605,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 13,
+flagName: "LoSlot2",
+flagText: "Low power slot 3",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 2605,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 14,
+flagName: "LoSlot3",
+flagText: "Low power slot 4",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 3831,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 20,
+flagName: "MedSlot1",
+flagText: "Medium power slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 5975,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 19,
+flagName: "MedSlot0",
+flagText: "Medium power slot 1",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 10998,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 11,
+flagName: "LoSlot0",
+flagText: "Low power slot 1",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 10998,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 12,
+flagName: "LoSlot1",
+flagText: "Low power slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 11577,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 27,
+flagName: "HiSlot0",
+flagText: "High power slot 1",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 31155,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 94,
+flagName: "RigSlot2",
+flagText: "Rig power slot 3",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 31179,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 93,
+flagName: "RigSlot1",
+flagText: "Rig power slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 31360,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 92,
+flagName: "RigSlot0",
+flagText: "Rig power slot 1",
+orderID: 0
+}
+}
+]
+},
+{
+fittingId: 35947314,
+name: "EI Oruga E2",
+description: "",
+items: [
+{
+jsonClass: "NeoComNode",
+typeId: 1335,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 13,
+flagName: "LoSlot2",
+flagText: "Low power slot 3",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 1335,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 14,
+flagName: "LoSlot3",
+flagText: "Low power slot 4",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 2539,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 22,
+flagName: "MedSlot3",
+flagText: "Medium power slot 4",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 2553,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 21,
+flagName: "MedSlot2",
+flagText: "Medium power slot 3",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 3831,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 20,
+flagName: "MedSlot1",
+flagText: "Medium power slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 3841,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 19,
+flagName: "MedSlot0",
+flagText: "Medium power slot 1",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 10998,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 11,
+flagName: "LoSlot0",
+flagText: "Low power slot 1",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 10998,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 12,
+flagName: "LoSlot1",
+flagText: "Low power slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 11370,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 27,
+flagName: "HiSlot0",
+flagText: "High power slot 1",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 31155,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 94,
+flagName: "RigSlot2",
+flagText: "Rig power slot 3",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 31179,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 93,
+flagName: "RigSlot1",
+flagText: "Rig power slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 31360,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 92,
+flagName: "RigSlot0",
+flagText: "Rig power slot 1",
+orderID: 0
+}
+}
+]
+},
+{
+fittingId: 44745364,
+name: "IIS Magno E1",
+description: "",
+items: [
+{
+jsonClass: "NeoComNode",
+typeId: 1319,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 13,
+flagName: "LoSlot2",
+flagText: "Low power slot 3",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 1319,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 14,
+flagName: "LoSlot3",
+flagText: "Low power slot 4",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 1319,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 15,
+flagName: "LoSlot4",
+flagText: "Low power slot 5",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 5839,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 11,
+flagName: "LoSlot0",
+flagText: "Low power slot 1",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 8433,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 20,
+flagName: "MedSlot1",
+flagText: "Medium power slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 8433,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 21,
+flagName: "MedSlot2",
+flagText: "Medium power slot 3",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 9622,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 22,
+flagName: "MedSlot3",
+flagText: "Medium power slot 4",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 10998,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 12,
+flagName: "LoSlot1",
+flagText: "Low power slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 31790,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 92,
+flagName: "RigSlot0",
+flagText: "Rig power slot 1",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 31790,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 93,
+flagName: "RigSlot1",
+flagText: "Rig power slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 31790,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 94,
+flagName: "RigSlot2",
+flagText: "Rig power slot 3",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 35656,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 19,
+flagName: "MedSlot0",
+flagText: "Medium power slot 1",
+orderID: 0
+}
+}
+]
+},
+{
+fittingId: 49342522,
+name: "ODST Odin B2",
+description: "",
+items: [
+{
+jsonClass: "NeoComNode",
+typeId: 1335,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 12,
+flagName: "LoSlot1",
+flagText: "Low power slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 1335,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 13,
+flagName: "LoSlot2",
+flagText: "Low power slot 3",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 1335,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 14,
+flagName: "LoSlot3",
+flagText: "Low power slot 4",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 1335,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 15,
+flagName: "LoSlot4",
+flagText: "Low power slot 5",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 1335,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 16,
+flagName: "LoSlot5",
+flagText: "Low power slot 6",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 2048,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 11,
+flagName: "LoSlot0",
+flagText: "Low power slot 1",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 10872,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 21,
+flagName: "MedSlot2",
+flagText: "Medium power slot 3",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 11370,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 27,
+flagName: "HiSlot0",
+flagText: "High power slot 1",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 33894,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 92,
+flagName: "RigSlot0",
+flagText: "Rig power slot 1",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 33894,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 93,
+flagName: "RigSlot1",
+flagText: "Rig power slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 33915,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 20,
+flagName: "MedSlot1",
+flagText: "Medium power slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 35656,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 19,
+flagName: "MedSlot0",
+flagText: "Medium power slot 1",
+orderID: 0
+}
+}
+]
+},
+{
+fittingId: 46753535,
+name: "LSC AAB Pierna 1.0",
+description: "",
+items: [
+{
+jsonClass: "NeoComNode",
+typeId: 1978,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 21,
+flagName: "MedSlot2",
+flagText: "Medium power slot 3",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 1978,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 22,
+flagName: "MedSlot3",
+flagText: "Medium power slot 4",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 2364,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 17,
+flagName: "LoSlot6",
+flagText: "Low power slot 7",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 3025,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 27,
+flagName: "HiSlot0",
+flagText: "High power slot 1",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 3025,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 28,
+flagName: "HiSlot1",
+flagText: "High power slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 3025,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 29,
+flagName: "HiSlot2",
+flagText: "High power slot 3",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 3025,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 30,
+flagName: "HiSlot3",
+flagText: "High power slot 4",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 3025,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 31,
+flagName: "HiSlot4",
+flagText: "High power slot 5",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 5302,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 20,
+flagName: "MedSlot1",
+flagText: "Medium power slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 11269,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 14,
+flagName: "LoSlot3",
+flagText: "Low power slot 4",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 11648,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 11,
+flagName: "LoSlot0",
+flagText: "Low power slot 1",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 11648,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 12,
+flagName: "LoSlot1",
+flagText: "Low power slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 12058,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 19,
+flagName: "MedSlot0",
+flagText: "Medium power slot 1",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 12822,
+quantity: 5,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 5,
+flagName: "Cargo",
+flagText: "Cargo",
+orderID: 3000
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 12826,
+quantity: 5,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 5,
+flagName: "Cargo",
+flagText: "Cargo",
+orderID: 3000
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 13970,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 15,
+flagName: "LoSlot4",
+flagText: "Low power slot 5",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 13978,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 16,
+flagName: "LoSlot5",
+flagText: "Low power slot 6",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 20353,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 13,
+flagName: "LoSlot2",
+flagText: "Low power slot 3",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 23089,
+quantity: 5,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 5,
+flagName: "Cargo",
+flagText: "Cargo",
+orderID: 3000
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 23095,
+quantity: 5,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 5,
+flagName: "Cargo",
+flagText: "Cargo",
+orderID: 3000
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 23097,
+quantity: 10,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 5,
+flagName: "Cargo",
+flagText: "Cargo",
+orderID: 3000
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 28999,
+quantity: 2,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 5,
+flagName: "Cargo",
+flagText: "Cargo",
+orderID: 3000
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 29001,
+quantity: 2,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 5,
+flagName: "Cargo",
+flagText: "Cargo",
+orderID: 3000
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 29013,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 5,
+flagName: "Cargo",
+flagText: "Cargo",
+orderID: 3000
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 29015,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 5,
+flagName: "Cargo",
+flagText: "Cargo",
+orderID: 3000
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 29966,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 126,
+flagName: "SubSystem1",
+flagText: "Sub system slot 1",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 30040,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 125,
+flagName: "SubSystem0",
+flagText: "Sub system slot 0",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 30078,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 129,
+flagName: "SubSystem4",
+flagText: "Sub system slot 4",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 30119,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 128,
+flagName: "SubSystem3",
+flagText: "Sub system slot 3",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 30173,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 127,
+flagName: "SubSystem2",
+flagText: "Sub system slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 31059,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 93,
+flagName: "RigSlot1",
+flagText: "Rig power slot 2",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 31059,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 94,
+flagName: "RigSlot2",
+flagText: "Rig power slot 3",
+orderID: 0
+}
+},
+{
+jsonClass: "NeoComNode",
+typeId: 31360,
+quantity: 1,
+itemDetails: {
+jsonClass: "EveItem",
+name: "<NAME>",
+category: "-CATEGORY-",
+baseprice: -1,
+defaultprice: -1,
+volume: 0,
+tech: "Tech I",
+industryGroup: "UNDEFINED",
+groupName: "-GROUP-",
+groupId: -1,
+itemID: 34,
+blueprint: false,
+typeID: 34,
+categoryId: -1,
+categoryName: "-CATEGORY-",
+itemId: 34
+},
+detailedFlag: {
+flagID: 92,
+flagName: "RigSlot0",
+flagText: "Rig power slot 1",
+orderID: 0
+}
+}
+]
+}
+]

@@ -77,10 +77,10 @@ public class NeoComMicroServiceApplication {
 		logger.info(">> [NeoComMicroServiceApplication.main]");
 		// Instance and connect the Adaptors.
 		// Connect the Configuration manager.
-		logger.info(">> [NeoComMicroServiceApplication.main]> Connecting the Configuration Manager...");
+		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the Configuration Manager...");
 		GlobalDataManager.connectConfigurationManager(new SpringBootConfigurationProvider(null));
 		// Connect the NeoCom database.
-		logger.info(">> [NeoComMicroServiceApplication.main]> Connecting NeoCom private database...");
+		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting NeoCom private database...");
 		try {
 			GlobalDataManager.connectNeoComDBConnector(new NeoComSBDBHelper()
 					.setDatabaseHost(GlobalDataManager
@@ -92,17 +92,17 @@ public class NeoComMicroServiceApplication {
 					.build()
 			);
 			// Connect the SDE database.
-			logger.info(">> [NeoComMicroServiceApplication.main]> Connecting SDE database...");
+			logger.info("-- [NeoComMicroServiceApplication.main]> Connecting SDE database...");
 			GlobalDataManager.connectSDEDBConnector(new SDESBDBHelper()
-					.setDatabaseSchema("jdbc:sqlite")
-					.setDatabasePath("src/main/resources/")
-					.setDatabaseName("sde.sqlite")
+					.setDatabaseSchema(GlobalDataManager.getResourceString("R.database.sdedatabase.databaseschema"))
+					.setDatabasePath(GlobalDataManager.getResourceString("R.database.sdedatabase.databasepath"))
+					.setDatabaseName(GlobalDataManager.getResourceString("R.database.sdedatabase.databasename"))
 					.build()
 			);
 			// Connect the MarketData service.
-			logger.info(">> [NeoComMicroServiceApplication.main]> Starting Market Data service...");
+			logger.info("-- [NeoComMicroServiceApplication.main]> Starting Market Data service...");
 			GlobalDataManager.setMarketDataManager(new MarketDataServer().start());
-			logger.info(">> [NeoComMicroServiceApplication.main]> Starting application instance...");
+			logger.info("-- [NeoComMicroServiceApplication.main]> Starting application instance...");
 			SpringApplication.run(NeoComMicroServiceApplication.class, args);
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();

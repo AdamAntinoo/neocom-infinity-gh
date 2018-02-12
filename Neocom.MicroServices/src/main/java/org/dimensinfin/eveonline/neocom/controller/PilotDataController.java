@@ -18,6 +18,7 @@ import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdFittings200Ok;
 import org.dimensinfin.eveonline.neocom.manager.AbstractManager;
 import org.dimensinfin.eveonline.neocom.manager.AssetsManager;
+import org.dimensinfin.eveonline.neocom.model.Fitting;
 import org.dimensinfin.eveonline.neocom.storage.DataManagementModelStore;
 
 import org.slf4j.Logger;
@@ -58,7 +59,7 @@ public class PilotDataController {
 			// Activate the list of credentials.
 			DataManagementModelStore.activateCredential(id);
 			// Get the list of fittings.
-			final List<GetCharactersCharacterIdFittings200Ok> fittings = GlobalDataManager.downloadFitting4Credential(id);
+			final List<Fitting> fittings = GlobalDataManager.downloadFitting4Credential(id);
 			final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(fittings);
 //			// Initialize the model data hierarchies.
 //			NeoComMSConnector.getSingleton().getModelStore().activateLoginIdentifier(login);

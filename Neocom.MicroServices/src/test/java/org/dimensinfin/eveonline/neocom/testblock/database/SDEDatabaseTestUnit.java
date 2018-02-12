@@ -32,68 +32,11 @@ import org.slf4j.LoggerFactory;
 public class SDEDatabaseTestUnit {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger logger = LoggerFactory.getLogger(SDEDatabaseTestUnit.class);
-//	public static final String APPLICATION_NAME = "NeoComMicroServiceApplication";
-//	//	private static NeoComMSConnector _connector = null;
-//	private static final int pilotid = 92223647;
-//	private static final long locationidnumber = 60014089;
-//
-//	private static ExtendedLocation newloc = null;
-
-//	@BeforeClass
-//	public static void setUpBeforeClass () throws Exception {
-//// Connect the Configuration manager.
-//		GlobalDataManager.connectConfigurationManager(new SpringBootConfigurationProvider("src/test/resources/properties"));
-//
-//		// Connect the NeoCom database.
-//		try {
-//			GlobalDataManager.connectNeoComDBConnector(new NeoComSBDBHelper()
-//					.setDatabaseHost(GlobalDataManager
-//							.getResourceString("R.database.neocom.databasehost", "jdbc:mysql://localhost:3306"))
-//					.setDatabaseName("neocom")
-//					.setDatabaseUser("NEOCOMTEST")
-//					.setDatabasePassword("01.Alpha")
-//					.setDatabaseVersion(1)
-//					.build()
-//			);
-//		} catch (SQLException sqle) {
-//			sqle.printStackTrace();
-//		}
-//
-//		// Connect the SDE database.
-//		try {
-//			GlobalDataManager.connectSDEDBConnector(new SDESBDBHelper()
-//					.setDatabaseSchema("jdbc:sqlite")
-//					.setDatabasePath("src/main/resources/")
-//					.setDatabaseName("sde.db")
-//					.build()
-//			);
-//		} catch (SQLException sqle) {
-//			sqle.printStackTrace();
-//		}
-////
-////
-////
-////
-////
-////		// Connect the code the the runtime librearies.
-////
-////		_connector = new NeoComMSConnector(new TestSerializationControl());
-////		EveLocation location = NeoComMSConnector.getSingleton().getCCPDBConnector().searchLocationbyID(locationidnumber);
-////		// Convert the Location to a new Extended Location with the new Contents Manager.
-////		newloc = new ExtendedLocation(pilotid, location);
-////		newloc.setContentManager(new DefaultAssetsContentManager(newloc));
-//	}
-
-	// - F I E L D - S E C T I O N ............................................................................
-	private ISDEDBHelper sdeHelper = null;
-
-	// - C O N S T R U C T O R - S E C T I O N ................................................................
-
-	// - M E T H O D - S E C T I O N ..........................................................................
+	private static ISDEDBHelper sdeHelper = null;
 	@BeforeClass
-	public void testOpenAndConnectDatabase() throws SQLException {
+	public static void testOpenAndConnectDatabase() throws SQLException {
 		// Connect the SDE database.
-		logger.info(">> [NeoComMicroServiceApplication.main]> Connecting SDE database...");
+		logger.info(">> [SDEDatabaseTestUnit.testOpenAndConnectDatabase]> Connecting SDE database...");
 		final String schema = GlobalDataManager.getResourceString("R.database.sdedatabase.databaseschema");
 		Assert.assertEquals(schema, "jdbc:sqlite");
 		final String dbpath = GlobalDataManager.getResourceString("R.database.sdedatabase.databasepath");
@@ -112,6 +55,11 @@ public class SDEDatabaseTestUnit {
 		Assert.assertTrue(sdeHelper.databaseIsValid());
 	}
 
+	// - F I E L D - S E C T I O N ............................................................................
+
+	// - C O N S T R U C T O R - S E C T I O N ................................................................
+
+	// - M E T H O D - S E C T I O N ..........................................................................
 	@Test
 	public void testGetItem4Id() throws SQLException {
 		Assert.assertNotNull(sdeHelper);
@@ -121,6 +69,7 @@ public class SDEDatabaseTestUnit {
 		final EveItem validItem = GlobalDataManager.searchItem4Id(34);
 		// Use the specific test for a know item to check the results.
 		Assert.assertEquals(validItem.getTypeID(), 34);
+		Assert.assertEquals(validItem.getName(), "Tritanium");
 	}
 }
 // - UNUSED CODE ............................................................................................
