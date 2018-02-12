@@ -12,6 +12,7 @@ import 'rxjs/add/operator/catch';
 //--- SERVICES
 import { AppModelStoreService } from '../services/app-model-store.service';
 //--- INTERFACES
+import { INeoComNode } from '../classes/INeoComNode.interface';
 import { EVariant } from '../classes/EVariant.enumerated';
 //--- MODELS
 import { NeoComNode } from './NeoComNode.model';
@@ -62,10 +63,10 @@ export class PlanetaryManager extends Manager {
   public getOptimizedScenario(locid: number, downloadService: AppModelStoreService): Observable<ProcessingAction[]> {
     return downloadService.getBackendPlanetaryOptimizedScenario(locid);
   }
-  public collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): NeoComNode[] {
+  public collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): INeoComNode[] {
     // Initialize the list to be output.
-    let collab: NeoComNode[] = [];
-    let rootlist: NeoComNode[] = [];
+    let collab: INeoComNode[] = [];
+    let rootlist: INeoComNode[] = [];
     // Check the variant and return the list depending on it.
     if (variant == EVariant.PLANETARYMANAGER) {
       // Check the size of the Region list and is small then use the list of Locations.

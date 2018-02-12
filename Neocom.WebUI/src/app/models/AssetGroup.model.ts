@@ -3,6 +3,7 @@ import { AppModelStoreService } from '../services/app-model-store.service';
 //--- INTERFACES
 import { EVariant } from '../classes/EVariant.enumerated';
 import { ESeparator } from '../classes/ESeparator.enumerated';
+import { INeoComNode } from '../classes/INeoComNode.interface';
 //--- MODELS
 import { Separator } from './Separator.model';
 import { NeoComNode } from '../models/NeoComNode.model';
@@ -35,8 +36,8 @@ export class AssetGroup extends NeoComAsset {
         return "filtericonrigslot.png";
     }
   }
-  public collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): NeoComNode[] {
-    let collab: NeoComNode[] = [];
+  public collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): INeoComNode[] {
+    let collab: INeoComNode[] = [];
     console.log(">>[Region.collaborate2View]> Collaborating: " + "Separator.BLUE");
     collab.push(new Separator().setVariation(ESeparator.BLUE));
     console.log(">>[Region.collaborate2View]> Collaborating: " + "AssetGroup");

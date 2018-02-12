@@ -13,6 +13,7 @@ import 'rxjs/add/operator/catch';
 //--- SERVICES
 import { AppModelStoreService } from '../services/app-model-store.service';
 //--- INTERFACES
+import { INeoComNode } from '../classes/INeoComNode.interface';
 import { EVariant } from '../classes/EVariant.enumerated';
 //--- MODELS
 import { NeoComNode } from './NeoComNode.model';
@@ -34,7 +35,7 @@ export class Manager extends NeoComNode {
     // Fill additional fields after the object is parsed.
     this.regionCount = Object.keys(this.regions).length;
   }
-  public collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): NeoComNode[] {
+  public collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): INeoComNode[] {
     let collab = [];
     // Add myself to the list and then if expanded add all my data depending on the Variant.
     collab.push(this);

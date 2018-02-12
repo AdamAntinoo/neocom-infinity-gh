@@ -15,11 +15,32 @@ import 'rxjs/add/operator/catch';
 //--- SERVICES
 import { AppModelStoreService } from '../services/app-model-store.service';
 //--- INTERFACES
-// import { INeoComNode } from '../classes/INeoComNode.interface';
+import { INeoComNode } from '../classes/INeoComNode.interface';
 import { EVariant } from '../classes/EVariant.enumerated';
+//--- MODELS
+import { NeoComNode } from '../models/NeoComNode.model';
 
-export interface INeoComNode {
-  //  collaborate2View(variant: EVariant): NeoComNode[];
-  collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): INeoComNode[];
-  //  toggleExpanded();
+export class EveItem extends NeoComNode {
+  private itemId: 652;
+  private name: string = "Mammoth";
+  private category: string = "Ship";
+  private baseprice: number = 0;
+  private defaultprice: number = -1;
+  private volume: number = 0;
+  private tech: string = "Tech I";
+  private industryGroup: string = "HULL";
+  private groupName: string = "Industrial";
+  private groupId: number = 28;
+  private categoryId: number = 6;
+  private blueprint: boolean = false;
+  private itemID: number = 652;
+  private categoryName: string = "Ship";
+
+  constructor(values: Object = {}) {
+    super(values);
+    Object.assign(this, values);
+    this.jsonClass = "EveItem";
+  }
+  // --- ICOLLABORATION INTERFACE
+  // --- GETTERS & SETTERS
 }

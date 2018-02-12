@@ -15,11 +15,19 @@ import 'rxjs/add/operator/catch';
 //--- SERVICES
 import { AppModelStoreService } from '../services/app-model-store.service';
 //--- INTERFACES
-// import { INeoComNode } from '../classes/INeoComNode.interface';
+import { INeoComNode } from '../classes/INeoComNode.interface';
 import { EVariant } from '../classes/EVariant.enumerated';
+//--- MODELS
+import { NeoComNode } from '../models/NeoComNode.model';
+import { Pilot } from '../models/Pilot.model';
 
-export interface INeoComNode {
-  //  collaborate2View(variant: EVariant): NeoComNode[];
-  collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): INeoComNode[];
-  //  toggleExpanded();
+export class FittingItem extends NeoComNode {
+
+  constructor(values: Object = {}) {
+    super(values);
+    Object.assign(this, values);
+    this.jsonClass = "FittingItem";
+  }
+  // --- ICOLLABORATION INTERFACE
+  // --- GETTERS & SETTERS
 }

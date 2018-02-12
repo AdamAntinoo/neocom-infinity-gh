@@ -19,7 +19,6 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "neocom",
       "styles": [
-        "styles.css",
         "neocom_styles.css"
       ],
       "scripts": [],
