@@ -48,4 +48,8 @@ export class Fitting extends NeoComNode {
   }
   // --- ICOLLABORATION INTERFACE
   // --- GETTERS & SETTERS
+  public getShipGroup(): string {
+    if (null != this.shipHullInfo) this.shipHullInfo.getGroupName();
+    else return "-SHIP-";
+  }
 }

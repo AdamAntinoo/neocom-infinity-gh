@@ -43,4 +43,7 @@ export class EveItem extends NeoComNode {
   }
   // --- ICOLLABORATION INTERFACE
   // --- GETTERS & SETTERS
+  public getGroupName(): string {
+    return this.groupName;
+  }
 }
