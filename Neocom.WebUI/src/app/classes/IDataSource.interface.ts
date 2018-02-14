@@ -7,12 +7,12 @@
 //               the second is the java microservices that compose the web application backend made with
 //               SpringBoot technology and finally the web ui code made in typescript within the Angular
 //               framework.
-//--- MODELS
-import { NeoComNode } from '../models/NeoComNode.model';
+//--- INTERFACES
+import { INeoComNode } from '../classes/INeoComNode.interface';
 
 export interface IDataSource {
   notifyDataChanged(): void;
-  getBodyComponents(): NeoComNode[];
-  applyPolicies(contents: NeoComNode[]): NeoComNode[];
-  enterSelected(target: NeoComNode);
+  getBodyComponents(): INeoComNode[];
+  applyPolicies(contents: INeoComNode[]): INeoComNode[];
+  enterSelected(target: INeoComNode);
 }

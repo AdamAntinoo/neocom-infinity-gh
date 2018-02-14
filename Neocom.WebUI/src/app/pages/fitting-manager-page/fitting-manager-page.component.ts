@@ -16,14 +16,18 @@ import { AppModelStoreService } from '../../services/app-model-store.service';
 //--- INTERFACES
 import { EVariant } from '../../classes/EVariant.enumerated';
 import { IDetailedEnabledPage } from '../../classes/IDetailedEnabledPage.interface';
-// import { PageComponent } from '../../classes/PageComponent';
+import { INeoComNode } from '../../classes/INeoComNode.interface';
 //--- MODELS
-//import { Login } from '../../models/Login.model';
-// import { DataSource } from '../../models/DataSource.model';
-import { NeoComNode } from '../../models/NeoComNode.model';
-import { Credential } from '../../models/Credential.model';
-import { Fitting } from '../../models/Fitting.model';
 import { PageDataSource } from '../../models/PageDataSource.model';
+import { NeoComNode } from '../../models/NeoComNode.model';
+import { Pilot } from '../../models/Pilot.model';
+import { GroupContainer } from '../../models/GroupContainer.model';
+import { Fitting } from '../../models/Fitting.model';
+import { AssetGroupIconReference } from '../../models/GroupContainer.model';
+import { URLGroupIconReference } from '../../models/GroupContainer.model';
+// import { Credential } from '../../models/Credential.model';
+// import { Fitting } from '../../models/Fitting.model';
+// import { PageDataSource } from '../../models/PageDataSource.model';
 //--- COMPONENTS
 // import { BasePageComponent } from '../../components/core/base-page/base-page.component';
 
@@ -37,7 +41,13 @@ This is the first example for a local transformation processing into a rendering
   styleUrls: ['./fitting-manager-page.component.css']
 })
 export class FittingManagerPageComponent extends PageDataSource implements OnInit, IDetailedEnabledPage {
-  private groupList: GroupContainer[] = [];
+  /** Node activated by hovering over it with the mouse cursor. May be null. */
+  private selectedNode: INeoComNode = null;
+
+  private characterid: number = -1;
+  private pilot: Pilot = null;
+  private groupList: Map<number, GroupContainer> = new Map<number, GroupContainer>();
+  private shipList: Map<number, GroupContainer> = new Map<number, GroupContainer>();
 
   constructor(protected appModelStore: AppModelStoreService, private route: ActivatedRoute, private router: Router) {
     super(appModelStore);
@@ -59,14 +69,36 @@ export class FittingManagerPageComponent extends PageDataSource implements OnIni
             // Download the list of fittings for tis Pilot.
             this.appModelStore.accessPilotFittings(this.characterid)
               .subscribe(result => {
-                console.log(">> [FittingManagerPageComponent.ngOnInit.accessPilotFittings]>Fitting number: " + result.lenght);
+                console.log(">> [FittingManagerPageComponent.ngOnInit.accessPilotFittings]>Fittings number: " + result.length);
                 let fittings: Fitting[] = result;
                 // Process the fittings and classify them into Ship categories, then ship type end then fitting.
                 for (let fit of fittings) {
-                  let group = fit.getShipGroup();
+                  // Search for this ship type on the list of ships.
+                  let hitShip = this.shipList.get(fit.getShipTypeId());
+                  if (null == hitShip) {
+                    // Create a new entry and also check the group.
+                    hitShip = new GroupContainer(fit.getShipTypeId(), fit.getShipName())
+                      .setGroupIcon(new URLGroupIconReference(fit.getShipTypeId()));
+                    this.shipList.set(fit.getShipTypeId(), hitShip);
+                    let groupId = fit.getShipGroupId();
+                    // Search for this group on the current list or create a new group.
+                    let hitGroup = this.groupList.get(groupId);
+                    if (null == hitGroup) {
+                      let group = fit.getShipGroup();
+                      hitGroup = new GroupContainer(groupId, group)
+                        .setGroupIcon(new AssetGroupIconReference(group));
+                      this.groupList.set(groupId, hitGroup);
+                      // Add the new group to the dta content root.
+                      this.dataModelRoot.push(hitGroup);
+                      // Add the Ship group to the category group.
+                      hitGroup.addContent(hitShip);
+                    }
+                  }
+                  // Add the fitting to the current Ship type group as the final step.
+                  hitShip.addContent(fit);
                 }
               });
-          })
+          });
       });
 
     // Hide the spinner.
@@ -74,4 +106,30 @@ export class FittingManagerPageComponent extends PageDataSource implements OnIni
     console.log("<< [FittingManagerPageComponent.ngOnInit]");
   }
 
+  // --- IDATASOURCE INTERFACE
+  public applyPolicies(contents: GroupContainer[]): GroupContainer[] {
+    // Sort the Credentials by name.
+    let sortedContents: GroupContainer[] = contents.sort((n1, n2) => {
+      if (n1.getGroupTitle() < n2.getGroupTitle()) {
+        return -1;
+      }
+      if (n1.getGroupTitle() > n2.getGroupTitle()) {
+        return -1;
+      }
+      return 0;
+    });
+    return sortedContents;
+  }
+  /** Set the hovered and select node to be exported. */
+  public enterSelected(target: INeoComNode) {
+    this.selectedNode = target;
+  }
+
+  // --- DETAILED ENABLED INTERFACE PAGE
+  /**
+  Returns the current node the cursor is hovering. The hovering function is the responsible to control the item selected.
+  */
+  public getSelectedNode(): INeoComNode {
+    return this.selectedNode;
+  }
 }

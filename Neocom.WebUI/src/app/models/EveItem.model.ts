@@ -21,8 +21,8 @@ import { EVariant } from '../classes/EVariant.enumerated';
 import { NeoComNode } from '../models/NeoComNode.model';
 
 export class EveItem extends NeoComNode {
-  private itemId: 652;
-  private name: string = "Mammoth";
+  public itemId: 652;
+  public name: string = "Mammoth";
   private category: string = "Ship";
   private baseprice: number = 0;
   private defaultprice: number = -1;
@@ -43,6 +43,9 @@ export class EveItem extends NeoComNode {
   }
   // --- ICOLLABORATION INTERFACE
   // --- GETTERS & SETTERS
+  public getGroupId(): number {
+    return this.groupId;
+  }
   public getGroupName(): string {
     return this.groupName;
   }

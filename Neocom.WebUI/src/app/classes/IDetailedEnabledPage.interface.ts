@@ -8,9 +8,7 @@
 //               SpringBoot technology and finally the web ui code made in typescript within the Angular
 //               framework.
 //--- INTERFACES
-//import { EVariant } from './EVariant.enumerated';
-//--- MODELS
-import { NeoComNode } from '../models/NeoComNode.model';
+import { INeoComNode } from '../classes/INeoComNode.interface';
 
 /**
 Defined the structure of methods that should be available when a page is able to export hovering detailed information to the Detailed Information Panel.
@@ -19,5 +17,5 @@ export interface IDetailedEnabledPage {
   /**
   Returns the last node hovered or null if there is not such node of the ability to export for the nodes themselves is not active. A null returned value should work as if do not apply while the existence of a node will render its component mapped by the neocom-detailed-container.
   */
-  getSelectedNode(): NeoComNode;
+  getSelectedNode(): INeoComNode;
 }

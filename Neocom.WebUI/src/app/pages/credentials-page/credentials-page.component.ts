@@ -16,6 +16,7 @@ import { AppModelStoreService } from '../../services/app-model-store.service';
 //--- INTERFACES
 import { EVariant } from '../../classes/EVariant.enumerated';
 import { IDetailedEnabledPage } from '../../classes/IDetailedEnabledPage.interface';
+import { INeoComNode } from '../../classes/INeoComNode.interface';
 // import { PageComponent } from '../../classes/PageComponent';
 //--- MODELS
 //import { Login } from '../../models/Login.model';
@@ -37,7 +38,7 @@ Pages on Angular are the equivalent functionality as Activity+Fragment+DataSourc
 })
 export class CredentialsPageComponent extends BasePageComponent implements OnInit, IDetailedEnabledPage {
   /** Node activated by hovering over it with the mouse cursor. May be null. */
-  private selectedNode: NeoComNode = null;
+  private selectedNode: INeoComNode = null;
 
 	/**
   This is the equivalent entry point for the onCreate for an Android Activity. So its functionality is to define the activity layout and insert the fragments that will compose the Activity UI.
@@ -77,7 +78,7 @@ export class CredentialsPageComponent extends BasePageComponent implements OnIni
     return sortedContents;
   }
   /** Set the hovered and select node to be exported. */
-  public enterSelected(target: NeoComNode) {
+  public enterSelected(target: INeoComNode) {
     this.selectedNode = target;
   }
 
@@ -85,7 +86,7 @@ export class CredentialsPageComponent extends BasePageComponent implements OnIni
 	/**
 	Returns the current node the cursor is hovering. The hovering function is the responsible to control the item selected.
 	*/
-  public getSelectedNode(): NeoComNode {
+  public getSelectedNode(): INeoComNode {
     return this.selectedNode;
   }
 }

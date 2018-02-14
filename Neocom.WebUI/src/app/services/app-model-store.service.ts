@@ -25,6 +25,7 @@ import { Credential } from '../models/Credential.model';
 import { NeoComNode } from '../models/NeoComNode.model';
 import { NeoComCharacter } from '../models/NeoComCharacter.model';
 import { Pilot } from '../models/Pilot.model';
+import { Fitting } from '../models/Fitting.model';
 
 import { Corporation } from '../models/Corporation.model';
 import { Manager } from '../models/Manager.model';
@@ -87,6 +88,27 @@ export class AppModelStoreService {
           observer.complete();
         }, 500);
       });
+  }
+  public accessPilotFittings(pilotId: number): Observable<Fitting[]> {
+    console.log("><[AppModelStoreService.accessPilotFittings]");
+    // if (null == this._credentialList) {
+    // Initialize the list with the default "new credential" button.
+    //		this._credentialList.push(new )
+    // Get the list form the backend Database.
+    return this.getBackendPilotFittings(pilotId)
+      .map(result => {
+        // this._credentialList = result;
+        return result;
+      });
+    // } else
+    //   return new Observable(observer => {
+    //     setTimeout(() => {
+    //       observer.next(this._credentialList);
+    //     }, 500);
+    //     setTimeout(() => {
+    //       observer.complete();
+    //     }, 500);
+    //   });
   }
 
   // --- P I L O T   S E C T I O N
@@ -164,6 +186,19 @@ export class AppModelStoreService {
         return this._credentialList;
       });
   }
+  /**
+  Get the list of fittings for the selected character. This list is not cached at the Application Model but is required should be cached at the Credential level and then control there is the backend service should be called.
+  */
+  public getBackendPilotFittings(pilotId: number): Observable<Fitting[]> {
+    console.log("><[AppModelStoreService.getBackendPilotFittings]");
+    let request = AppModelStoreService.RESOURCE_SERVICE_URL + "/pilot/" + pilotId + "/fittingmanager/fittings";
+    return this.http.get(request)
+      .map(res => res.json())
+      .map(result => {
+        console.log("<<[AppModelStoreService.getBackendPilotFittings]> Processed: " + this._credentialList.length);
+        return this.transformRequestOutput(result);
+      });
+  }
   private transformRequestOutput(result): any[] {
     let results: NeoComNode[] = [];
     for (let key in result) {
@@ -175,10 +210,10 @@ export class AppModelStoreService {
         console.log("--[AppModelStoreService.transformRequestOutput]> Credential node: " + convertedCredential.getAccountId());
         results.push(convertedCredential);
       }
-      if (node.jsonClass == "Login") {
-        let convertedLogin = new Login(node);
-        console.log("--[AppModelStoreService.transformRequestOutput]> Identified Login node: " + convertedLogin.getLoginId());
-        results.push(convertedLogin);
+      if (node.jsonClass == "Fitting") {
+        let convertedFitting = new Fitting(node);
+        console.log("--[AppModelStoreService.transformRequestOutput]> Identified Fitting node: " + convertedFitting.getShipName());
+        results.push(convertedFitting);
       }
     }
     return results;
