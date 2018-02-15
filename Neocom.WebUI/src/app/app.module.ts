@@ -63,6 +63,8 @@ import { ShipSlotGroupComponent } from './components/ship-slot-group/ship-slot-g
 import { ExpandableComponent } from './components/expandable/expandable.component';
 import { CredentialComponent } from './components/model/credential/credential.component';
 import { Manager4PilotComponent } from './components/model/manager4pilot/manager4pilot.component';
+import { GroupContainerComponent } from './components/model/group-container/group-container.component';
+import { ExpandableNodeComponent } from './components/model/expandable-node/expandable-node.component';
 // import { FittingManagerPageComponent } from './pages/fitting-manager-page/fitting-manager-page.component';
 // import { LoginPageComponent } from './pages/login-page/login-page.component';
 // //import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roaster-page.component';
@@ -112,6 +114,8 @@ import { Manager4PilotComponent } from './components/model/manager4pilot/manager
     CredentialComponent,
     Manager4PilotComponent,
     FittingManagerPageComponent,
+    GroupContainerComponent,
+    ExpandableNodeComponent,
   ],
   imports: [
     BrowserModule,

@@ -62,4 +62,7 @@ export class NeoComNode implements INeoComNode {
   public toggleExpanded() {
     this.expanded = !this.expanded;
   }
+  public getContentsCount(): number {
+    return -1;
+  }
 }

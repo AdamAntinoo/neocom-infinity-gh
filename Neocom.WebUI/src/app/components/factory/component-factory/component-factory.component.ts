@@ -16,6 +16,7 @@ import { Input } from '@angular/core';
 import { AppModelStoreService } from '../../../services/app-model-store.service';
 //--- INTERFACES
 import { IDataSource } from '../../../classes/IDataSource.interface';
+import { INeoComNode } from '../../../classes/INeoComNode.interface';
 import { PageComponent } from '../../../classes/PageComponent';
 import { EVariant } from '../../../classes/EVariant.enumerated';
 import { DataSource } from '../../../models/DataSource.model';
@@ -35,7 +36,7 @@ This component will connect to the DataSource to link to the list instance where
 export class ComponentFactoryComponent extends PageComponent /*implements OnInit*/ {
   // This is the connection with the Page. This object will be able to generate the list of nodes to be rendered.
   @Input() dataSource: IDataSource;
-  private nodes: NeoComNode[] = null;
+  private nodes: INeoComNode[] = null;
 
   /**
   Received the mouseenter event and then it has to send it to the page container through the selected component. The page container is represented by the DataSource.
@@ -53,26 +54,16 @@ export class ComponentFactoryComponent extends PageComponent /*implements OnInit
 	TODO: I have to test if this connection is necesary or if the UI detect automatically any generated event with keeping the connections in the code. The ruction is to reconstruct the list of nodes to be rendered and from that change update the UI.
 	*/
   public notifyDataChanged() {
+    this.nodes = null;
     this.dataSource.notifyDataChanged();
   }
 	/**
 	This is the connection method that will call the DataSource to get the list of nodes to render. This replicates the collaborate2View and getBodyParts functioanlities of the Android platform and will start the process to render the ui.
 	*/
-  public getBodyComponents(): NeoComNode[] {
+  public getBodyComponents(): INeoComNode[] {
     if (null == this.dataSource) return this.nodes;
     if (null == this.nodes) this.nodes = this.dataSource.getBodyComponents();
     if (this.nodes.length < 1) this.nodes = this.dataSource.getBodyComponents();
-    // } else {
-    //   // Create a new list and add an exception node to report the message to the user.
-    //   let results = [];
-    //   results.push(new NeoComError({ "message": "WR [ComponentFactoryComponent]> DataSource is null. There is nothing to render." }));
-    // }
     return this.nodes;
   }
-  //   /**
-  // Report the node selected to the parent age controller.
-  // */
-  //   public enterSelected(target: NeoComNode) {
-  //     this.dataSource.enterSelected(target);
-  //   }
 }

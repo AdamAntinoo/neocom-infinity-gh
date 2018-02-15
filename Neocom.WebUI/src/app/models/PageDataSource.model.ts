@@ -62,7 +62,7 @@ export abstract class PageDataSource implements IDataSource {
 	Reconstructs the list of nodes to be rendered from the current DataRoot and their collaborations to the view.
 	*/
   public notifyDataChanged(): void {
-    console.log(">>[BasePageComponent.notifyDataChanged]");
+    console.log(">>[PageDataSource.notifyDataChanged]");
     // Clear the current list while reprocessing the new nodes.
     // TODO This should be improved to change only the nodes that change (replaced, removed, added)
     // this.renderNodeList = [];
@@ -70,20 +70,20 @@ export abstract class PageDataSource implements IDataSource {
     // Get the initial list by applying the policies defined at the page to the initial root node contents. Policies may be sorting or filtering actions.
     let initialList = this.applyPolicies(this.dataModelRoot);
     // Generate the contents by collaborating to the view all the nodes.
-    for (let node of this.dataModelRoot) {
+    for (let node of initialList) {
       let nodes = node.collaborate2View(this.appModelStore, this.getVariant());
-      console.log("--[BasePageComponent.notifyDataChanged]> Collaborating " + nodes.length + " nodes.");
+      console.log("--[PageDataSource.notifyDataChanged]> Collaborating " + nodes.length + " nodes.");
       // Add the collaborated nodes to the list of nodes to return.
       for (let childNode of nodes) {
         copyList.push(childNode);
       }
     }
     this.renderNodeList = copyList;
-    console.log("<<[BasePageComponent.notifyDataChanged]");
+    console.log("<<[PageDataSource.notifyDataChanged]");
   }
   /** Just connects the list and returns a pointer to it before signaling an update. */
   public getBodyComponents(): NeoComNode[] {
-    console.log("><[BasePageComponent.getBodyComponents]");
+    console.log("><[PageDataSource.getBodyComponents]");
     this.notifyDataChanged();
     return this.renderNodeList;
   }

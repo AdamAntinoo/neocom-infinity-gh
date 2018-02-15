@@ -77,6 +77,7 @@ export class FittingManagerPageComponent extends PageDataSource implements OnIni
                   let hitShip = this.shipList.get(fit.getShipTypeId());
                   if (null == hitShip) {
                     // Create a new entry and also check the group.
+                    console.log(">> [FittingManagerPageComponent]>Creating Group: " + fit.getShipName());
                     hitShip = new GroupContainer(fit.getShipTypeId(), fit.getShipName())
                       .setGroupIcon(new URLGroupIconReference(fit.getShipTypeId()));
                     this.shipList.set(fit.getShipTypeId(), hitShip);
@@ -85,6 +86,7 @@ export class FittingManagerPageComponent extends PageDataSource implements OnIni
                     let hitGroup = this.groupList.get(groupId);
                     if (null == hitGroup) {
                       let group = fit.getShipGroup();
+                      console.log(">> [FittingManagerPageComponent]>Creating Group: " + group);
                       hitGroup = new GroupContainer(groupId, group)
                         .setGroupIcon(new AssetGroupIconReference(group));
                       this.groupList.set(groupId, hitGroup);
@@ -108,6 +110,7 @@ export class FittingManagerPageComponent extends PageDataSource implements OnIni
 
   // --- IDATASOURCE INTERFACE
   public applyPolicies(contents: GroupContainer[]): GroupContainer[] {
+    console.log("><[FittingManagerPageComponent.applyPolicies]");
     // Sort the Credentials by name.
     let sortedContents: GroupContainer[] = contents.sort((n1, n2) => {
       if (n1.getGroupTitle() < n2.getGroupTitle()) {

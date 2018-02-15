@@ -19,7 +19,7 @@ import { AppModelStoreService } from '../services/app-model-store.service';
 import { EVariant } from '../classes/EVariant.enumerated';
 
 export interface INeoComNode {
-  //  collaborate2View(variant: EVariant): NeoComNode[];
   collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): INeoComNode[];
-  //  toggleExpanded();
+  toggleExpanded();
+  getContentsCount(): number;
 }
