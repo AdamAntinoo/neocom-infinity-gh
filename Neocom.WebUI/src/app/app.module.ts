@@ -36,10 +36,16 @@ import { HeaderComponent } from './components/ui/header/header.component';
 import { ActionBarComponent } from './components/ui/action-bar/action-bar.component';
 import { ComponentFactoryComponent } from './components/factory/component-factory/component-factory.component';
 import { DetailedContainerComponent } from './components/factory/detailed-container/detailed-container.component';
+import { SpinnerCentralComponent } from './components/spinner-central/spinner-central.component';
 //--- COMPONENTS-MODEL
+import { SeparatorComponent } from './components/separator/separator.component';
+import { CredentialComponent } from './components/model/credential/credential.component';
+import { ExpandableNodeComponent } from './components/model/expandable-node/expandable-node.component';
+import { FittingComponent } from './components/model/fitting/fitting.component';
+import { GroupContainerComponent } from './components/model/group-container/group-container.component';
+import { Manager4PilotComponent } from './components/model/manager4pilot/manager4pilot.component';
 //--- COMPONENTS-DETAILED
 
-import { SpinnerCentralComponent } from './components/spinner-central/spinner-central.component';
 // import { Pilot4RoasterComponent } from './components/pilot4-roaster/pilot4-roaster.component';
 import { Pilot4DetailComponent } from './components/model/pilot4detail/pilot4detail.component';
 import { PilotManagerComponent } from './components/pilot-manager/pilot-manager.component';
@@ -54,23 +60,18 @@ import { ProcessingActionComponent } from './components/processing-action/proces
 //--- REMOVABLES
 // import { NavigationMenuComponent } from './component/navigation-menu/navigation-menu.component';
 // import { Login4ListComponent } from './components/login4-list/login4-list.component';
-import { SeparatorComponent } from './components/separator/separator.component';
 import { NodePanelComponent } from './components/node-panel/node-panel.component';
 // import { Pilot4LoginComponent } from './components/pilot4-login/pilot4-login.component';
 import { ContainerComponent } from './components/container/container.component';
 import { ShipComponent } from './components/ship/ship.component';
 import { ShipSlotGroupComponent } from './components/ship-slot-group/ship-slot-group.component';
-import { ExpandableComponent } from './components/expandable/expandable.component';
-import { CredentialComponent } from './components/model/credential/credential.component';
-import { Manager4PilotComponent } from './components/model/manager4pilot/manager4pilot.component';
-import { GroupContainerComponent } from './components/model/group-container/group-container.component';
-import { ExpandableNodeComponent } from './components/model/expandable-node/expandable-node.component';
 // import { FittingManagerPageComponent } from './pages/fitting-manager-page/fitting-manager-page.component';
 // import { LoginPageComponent } from './pages/login-page/login-page.component';
 // //import { PilotRoasterPageComponent } from './pages/pilot-roaster-page/pilot-roaster-page.component';
 // import { AssetsManagerPageComponent } from './pages/assets-manager-page/assets-manager-page.component';
 // import { PlanetaryManagerPageComponent } from './pages/planetary-manager-page/planetary-manager-page.component';
 // import { PlanetaryOptimizationPageComponent } from './pages/planetary-optimization-page/planetary-optimization-page.component';
+import { ExpandableComponent } from './components/expandable/expandable.component';
 
 
 @NgModule({
@@ -84,8 +85,14 @@ import { ExpandableNodeComponent } from './components/model/expandable-node/expa
     ActionBarComponent,
     ComponentFactoryComponent,
     DetailedContainerComponent,
-
     SpinnerCentralComponent,
+    SeparatorComponent,
+    CredentialComponent,
+    ExpandableNodeComponent,
+    FittingComponent,
+    GroupContainerComponent,
+    Manager4PilotComponent,
+
     // NavigationMenuComponent,
     RegionComponent,
     LocationComponent,
@@ -99,7 +106,6 @@ import { ExpandableNodeComponent } from './components/model/expandable-node/expa
     // AssetsManagerPageComponent,
     // PlanetaryManagerPageComponent,
     AssetComponent,
-    SeparatorComponent,
     AssetComponent,
     // PlanetaryOptimizationPageComponent,
     ResourceComponent,
@@ -111,11 +117,7 @@ import { ExpandableNodeComponent } from './components/model/expandable-node/expa
     ShipComponent,
     ShipSlotGroupComponent,
     ExpandableComponent,
-    CredentialComponent,
-    Manager4PilotComponent,
     FittingManagerPageComponent,
-    GroupContainerComponent,
-    ExpandableNodeComponent,
   ],
   imports: [
     BrowserModule,
