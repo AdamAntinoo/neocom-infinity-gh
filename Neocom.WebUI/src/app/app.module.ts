@@ -38,7 +38,7 @@ import { ComponentFactoryComponent } from './components/factory/component-factor
 import { DetailedContainerComponent } from './components/factory/detailed-container/detailed-container.component';
 import { SpinnerCentralComponent } from './components/spinner-central/spinner-central.component';
 //--- COMPONENTS-MODEL
-import { SeparatorComponent } from './components/separator/separator.component';
+import { SeparatorComponent } from './components/ui/separator/separator.component';
 import { CredentialComponent } from './components/model/credential/credential.component';
 import { ExpandableNodeComponent } from './components/model/expandable-node/expandable-node.component';
 import { FittingComponent } from './components/model/fitting/fitting.component';
@@ -60,7 +60,7 @@ import { ProcessingActionComponent } from './components/processing-action/proces
 //--- REMOVABLES
 // import { NavigationMenuComponent } from './component/navigation-menu/navigation-menu.component';
 // import { Login4ListComponent } from './components/login4-list/login4-list.component';
-import { NodePanelComponent } from './components/node-panel/node-panel.component';
+// import { NodePanelComponent } from './components/node-panel/node-panel.component';
 // import { Pilot4LoginComponent } from './components/pilot4-login/pilot4-login.component';
 import { ContainerComponent } from './components/container/container.component';
 import { ShipComponent } from './components/ship/ship.component';
@@ -110,7 +110,7 @@ import { ExpandableComponent } from './components/expandable/expandable.componen
     // PlanetaryOptimizationPageComponent,
     ResourceComponent,
     ProcessingActionComponent,
-    NodePanelComponent,
+    // NodePanelComponent,
     // Pilot4LoginComponent,
     ContainerComponent,
     AssetsManagerComponent,

@@ -6,12 +6,12 @@ import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 
 //--- SERVICES
-import { AppModelStoreService } from '../../services/app-model-store.service';
+import { AppModelStoreService } from '../../../services/app-model-store.service';
 //--- COMPONENTS
-import { PageComponent } from '../../classes/PageComponent';
+import { PageComponent } from '../../../classes/PageComponent';
 // import { PlanetaryManagerPageComponent } from '../../pages/planetary-manager-page/planetary-manager-page.component';
 //--- INTERFACES
-import { ESeparator } from '../../classes/ESeparator.enumerated';
+import { ESeparator } from '../../../classes/ESeparator.enumerated';
 
 @Component({
   selector: 'neocom-separator',
