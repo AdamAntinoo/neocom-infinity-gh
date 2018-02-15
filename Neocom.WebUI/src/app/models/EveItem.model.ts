@@ -35,6 +35,7 @@ export class EveItem extends NeoComNode {
   private blueprint: boolean = false;
   private itemID: number = 652;
   private categoryName: string = "Ship";
+  public hullGroup: string = "rookie";
 
   constructor(values: Object = {}) {
     super(values);

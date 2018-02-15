@@ -88,7 +88,7 @@ export class FittingManagerPageComponent extends PageDataSource implements OnIni
                       let group = fit.getShipGroup();
                       console.log(">> [FittingManagerPageComponent]>Creating Group: " + group);
                       hitGroup = new GroupContainer(groupId, group)
-                        .setGroupIcon(new AssetGroupIconReference(group));
+                        .setGroupIcon(new AssetGroupIconReference(fit.getHullGroup()));
                       this.groupList.set(groupId, hitGroup);
                       // Add the new group to the dta content root.
                       this.dataModelRoot.push(hitGroup);

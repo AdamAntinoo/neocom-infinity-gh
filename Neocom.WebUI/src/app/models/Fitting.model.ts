@@ -64,4 +64,8 @@ export class Fitting extends NeoComNode {
     if (null != this.shipHullInfo) return this.shipHullInfo.getGroupId();
     else return 0;
   }
+  public getHullGroup(): string {
+    if (null != this.shipHullInfo) return this.shipHullInfo.hullGroup;
+    else return "rookie";
+  }
 }
