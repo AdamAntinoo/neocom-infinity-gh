@@ -5,7 +5,7 @@
 //  DESCRIPTION: This is the SpringBoot MicroServices module to run the backend services to complete the web
 //               application based on Angular+SB. This is the web version for the NeoCom Android native
 //               application. Most of the source code is common to both platforms and this module includes
-//               the source for the specific functionalityfor the backend services.
+//               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom.testblock.database;
 
 import java.sql.SQLException;

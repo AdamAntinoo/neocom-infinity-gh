@@ -17,33 +17,29 @@ import java.util.MissingResourceException;
 import java.util.Properties;
 import java.util.stream.Stream;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.dimensinfin.eveonline.neocom.interfaces.IConfigurationProvider;
 
 public class SpringBootConfigurationProvider implements IConfigurationProvider {
 	// - S T A T I C - S E C T I O N ..........................................................................
-//	private static Logger logger = LoggerFactory.getLogger(NeoComSBDBHelper.class);
-//	private static final String BUNDLE_NAME = "org.dimensinfin.eveonline.neocom.constant.R";  //$NON-NLS-1$
-//	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
+	private static Logger logger = LoggerFactory.getLogger("SpringBootConfigurationProvider");
 	private static final String DEFAULT_PROPERTIES_FOLDER = "src/main/resources/properties";
-//	static{
-//		initialize();
-//	}
-
-// --- S T A T I C   P R I V A T E   M E T H O D S
 
 	// - F I E L D - S E C T I O N ............................................................................
 	private Properties globalConfigurationProperties = new Properties();
 	private String configuredPropertiesFolder = DEFAULT_PROPERTIES_FOLDER;
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
-	public SpringBootConfigurationProvider (final String propertiesFolder) {
+	public SpringBootConfigurationProvider( final String propertiesFolder ) {
 		super();
 		if (null == propertiesFolder) configuredPropertiesFolder = DEFAULT_PROPERTIES_FOLDER;
 		else configuredPropertiesFolder = propertiesFolder;
 	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
-	public String getResourceString (final String key) {
+	public String getResourceString( final String key ) {
 		try {
 			return globalConfigurationProperties.getProperty(key);
 		} catch (MissingResourceException mre) {
@@ -51,7 +47,7 @@ public class SpringBootConfigurationProvider implements IConfigurationProvider {
 		}
 	}
 
-	public String getResourceString (final String key, final String defaultValue) {
+	public String getResourceString( final String key, final String defaultValue ) {
 		try {
 			return globalConfigurationProperties.getProperty(key, defaultValue);
 		} catch (MissingResourceException mre) {
@@ -65,32 +61,44 @@ public class SpringBootConfigurationProvider implements IConfigurationProvider {
 	 * to the list of application properties. Read order will replace same ids with new data so the developer
 	 * can use a naming convention to replace older values with new values without editing the older files.
 	 */
-	public IConfigurationProvider initialize () {
+	public IConfigurationProvider initialize() {
 		try {
 			readAllProperties();
 		} catch (IOException ioe) {
+			logger.error("E [SpringBootConfigurationProvider.initialize]> Unprocessed exception: {}", ioe.getMessage());
 			ioe.printStackTrace();
 		}
 		return this;
 	}
 
-	private void readAllProperties () throws IOException {
+	public int contentCount() {
+		return globalConfigurationProperties.size();
+	}
+
+	private void readAllProperties() throws IOException {
+		logger.info(">> [SpringBootConfigurationProvider.readAllProperties]");
 		// Read all .properties files under the predefined path on the /resources folder.
 		Path propertiesPath = FileSystems.getDefault().getPath(configuredPropertiesFolder);
+//		final Enumeration<URL> resources = getClass().getClassLoader().getResources("properties/*.properties");
 		Stream<Path> paths = Files.walk(propertiesPath);
 		paths.filter(Files::isRegularFile)
 				.filter(Files::isReadable)
+				.sorted()
 				.filter(path -> path.toString().endsWith(".properties"))
-				.forEach((fileName) -> {
+				.forEach(( fileName ) -> {
+					logger.info("-- [SpringBootConfigurationProvider.readAllProperties]> Processing file: {}", fileName);
 					try {
 						Properties properties = new Properties();
 						properties.load(new FileInputStream(fileName.toString()));
-						// Copy poperties to globals.
+						// Copy properties to globals.
 						globalConfigurationProperties.putAll(properties);
 					} catch (IOException ioe) {
+						logger.error("E [SpringBootConfigurationProvider.readAllProperties]> Exception reading properties file {}. {}",
+								fileName, ioe.getMessage());
 						ioe.printStackTrace();
 					}
 				});
+		logger.info("<< [SpringBootConfigurationProvider.readAllProperties]> Total properties number: {}", contentCount());
 	}
 }
 // - UNUSED CODE ............................................................................................
