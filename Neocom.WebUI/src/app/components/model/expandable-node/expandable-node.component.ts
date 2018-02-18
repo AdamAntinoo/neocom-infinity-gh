@@ -17,20 +17,15 @@ import { INeoComNode } from '../../../classes/INeoComNode.interface';
 //--- SERVICES
 import { AppModelStoreService } from '../../../services/app-model-store.service';
 //--- COMPONENTS
-// import { LoginPageComponent } from '../../../pages/login-page/login-page.component';
-// import { ComponentFactoryComponent } from '../../factory/component-factory/component-factory.component';
 //--- MODELS
 import { PageDataSource } from '../../../models/PageDataSource.model';
-// import { NeoComNode } from '../../../models/NeoComNode.model';
-// import { Manager } from '../../../models/Manager.model';
-// import { Pilot } from '../../../models/Pilot.model';
 
 @Component({
   selector: 'neocom-expandable-node',
   templateUrl: './expandable-node.component.html',
   styleUrls: ['./expandable-node.component.css']
 })
-export class ExpandableNodeComponent /*implements OnInit*/ {
+export class ExpandableNodeComponent {
   @Input() viewer: PageDataSource;
   @Input() node: INeoComNode;
   private expandable: boolean = true;
@@ -60,5 +55,11 @@ export class ExpandableNodeComponent /*implements OnInit*/ {
   }
   public getContentCount(): number {
     if (null != this.node) return this.node.getContentsCount();
+  }
+  /**
+  Returnd the url for the matching eve icon from the images place. It ised the item type identifier to locate the eve icon.
+  */
+  public loadNodeIcon(): string {
+    return "http://image.eveonline.com/Type/" + this.node.getTypeId() + "_64.png";
   }
 }

@@ -72,6 +72,7 @@ import { ShipSlotGroupComponent } from './components/ship-slot-group/ship-slot-g
 // import { PlanetaryManagerPageComponent } from './pages/planetary-manager-page/planetary-manager-page.component';
 // import { PlanetaryOptimizationPageComponent } from './pages/planetary-optimization-page/planetary-optimization-page.component';
 import { ExpandableComponent } from './components/expandable/expandable.component';
+import { FittingItemComponent } from './components/model/fitting-item/fitting-item.component';
 
 
 @NgModule({
@@ -118,6 +119,7 @@ import { ExpandableComponent } from './components/expandable/expandable.componen
     ShipSlotGroupComponent,
     ExpandableComponent,
     FittingManagerPageComponent,
+    FittingItemComponent,
   ],
   imports: [
     BrowserModule,

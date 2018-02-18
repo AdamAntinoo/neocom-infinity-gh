@@ -1,3 +1,4 @@
+
 //  PROJECT:     NeoCom.WS (NEOC.WS)
 //  AUTHORS:     Adam Antinoo - adamantinoo.git@gmail.com
 //  COPYRIGHT:   (c) 2017-2018 by Dimensinfin Industries, all rights reserved.
@@ -15,11 +16,11 @@ import 'rxjs/add/operator/catch';
 //--- SERVICES
 import { AppModelStoreService } from '../services/app-model-store.service';
 //--- INTERFACES
-// import { INeoComNode } from '../classes/INeoComNode.interface';
+import { ICollaboration } from '../classes/ICollaboration.interface';
 import { EVariant } from '../classes/EVariant.enumerated';
 
-export interface INeoComNode {
-  collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): INeoComNode[];
+export interface INeoComNode extends ICollaboration {
   toggleExpanded();
   getContentsCount(): number;
+  getTypeId(): number;
 }

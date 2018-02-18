@@ -33,23 +33,7 @@ export class GroupContainer extends NeoComNode {
     this.jsonClass = "GroupContainer";
   }
 
-  // --- GETTERS & SETTERS
-  public getGroupTitle(): string {
-    return this.title;
-  }
-  public getGroupIconReference(): string {
-    return this.groupIcon.getReference();
-  }
-  public setGroupIcon(reference: IGroupIconReference): GroupContainer {
-    this.groupIcon = reference;
-    return this;
-  }
-
-  public addContent(newcontent: INeoComNode): GroupContainer {
-    this.contents.push(newcontent);
-    return this;
-  }
-  // --- INEOCOMNODE INTERFACE
+  // --- ICOLLABORATION INTERFACE
   public collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): INeoComNode[] {
     console.log(">>[GroupContainer.collaborate2View]");
     // Initialize the list to be output.
@@ -75,6 +59,26 @@ export class GroupContainer extends NeoComNode {
     }
     return collab;
   }
+  // --- INEOCOMNODE INTERFACE
+  public getTypeId(): number {
+    return this.id;
+  }
+  // --- GETTERS & SETTERS
+  public getGroupTitle(): string {
+    return this.title;
+  }
+  public getGroupIconReference(): string {
+    return this.groupIcon.getReference();
+  }
+  public setGroupIcon(reference: IGroupIconReference): GroupContainer {
+    this.groupIcon = reference;
+    return this;
+  }
+
+  public addContent(newcontent: INeoComNode): GroupContainer {
+    this.contents.push(newcontent);
+    return this;
+  }
   public getContentsCount(): number {
     return this.contents.length;
   }
@@ -95,6 +99,6 @@ export class AssetGroupIconReference implements IGroupIconReference {
 
   constructor(private iconName: string) { }
   public getReference(): string {
-    return AssetGroupIconReference.FITTING_SHIP_ASSET_LOCATION + this.iconName.toLowerCase() + "_64.png";
+    return AssetGroupIconReference.FITTING_SHIP_ASSET_LOCATION + this.iconName.toLowerCase() + ".png";
   }
 }

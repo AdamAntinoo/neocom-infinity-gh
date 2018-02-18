@@ -13,44 +13,37 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 //--- SERVICES
-import { AppModelStoreService } from '../services/app-model-store.service';
+// import { AppModelStoreService } from '../services/app-model-store.service';
 //--- INTERFACES
-import { INeoComNode } from '../classes/INeoComNode.interface';
-import { EVariant } from '../classes/EVariant.enumerated';
+// import { INeoComNode } from '../classes/INeoComNode.interface';
+// import { EVariant } from '../classes/EVariant.enumerated';
 //--- MODELS
 import { NeoComNode } from '../models/NeoComNode.model';
+// import { EveItem } from '../models/EveItem.model';
 
-export class EveItem extends NeoComNode {
-  public itemId: 652;
-  public name: string = "Mammoth";
-  private category: string = "Ship";
-  private baseprice: number = 0;
-  private defaultprice: number = -1;
-  private volume: number = 0;
-  private tech: string = "Tech I";
-  private industryGroup: string = "HULL";
-  private groupName: string = "Industrial";
-  private groupId: number = 28;
-  private categoryId: number = 6;
-  private blueprint: boolean = false;
-  private itemID: number = 652;
-  private categoryName: string = "Ship";
-  public hullGroup: string = "rookie";
+export enum ESlotGroup {
+  UNDEFINED, LOW, MED, HIGH, RIG
+}
+export class SlotLocation /*extends NeoComNode*/ {
+  private flagID: number = 12;
+  private flagName: string = "LoSlot1";
+  private flagText: string = "Low power slot 2";
+  private orderID: number = 0;
 
   constructor(values: Object = {}) {
-    super(values);
+    // super(values);
     Object.assign(this, values);
-    this.jsonClass = "EveItem";
+    // this.jsonClass = "SlotLocation";
+    // Transform the input abstract items into classes.
   }
   // --- ICOLLABORATION INTERFACE
+  // --- INEOCOMNODE INTERFACE
   // --- GETTERS & SETTERS
-  public getTypeId(): number {
-    return this.itemId;
-  }
-  public getGroupId(): number {
-    return this.groupId;
-  }
-  public getGroupName(): string {
-    return this.groupName;
+  public getSlotGroup(): ESlotGroup {
+    if (this.flagName.startsWith("LoSlot")) return ESlotGroup.LOW;
+    if (this.flagName.startsWith("MedSlot")) return ESlotGroup.MED;
+    if (this.flagName.startsWith("HiSlot")) return ESlotGroup.HIGH;
+    if (this.flagName.startsWith("RigSlot")) return ESlotGroup.RIG;
+    return ESlotGroup.UNDEFINED;
   }
 }

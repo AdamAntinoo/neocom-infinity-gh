@@ -24,7 +24,7 @@ import { EVariant } from '../classes/EVariant.enumerated';
 // import { Corporation } from '../models/Corporation.model';
 // import { Separator } from '../models/Separator.model';
 
-export class NeoComNode implements INeoComNode {
+export /*abstract*/ class NeoComNode implements INeoComNode {
   public jsonClass: string = "NeoComNode";
   public expanded: boolean = false;
   public downloaded: boolean = false;
@@ -34,6 +34,9 @@ export class NeoComNode implements INeoComNode {
   constructor(values: Object = {}) {
     Object.assign(this, values);
   }
+  // --- INEOCOMNODE INTERFACE
+  public /*abstract*/ getTypeId(): number { return 0; }
+
   // --- ICOLLABORATION INTERFACE
   public collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): INeoComNode[] {
     let collab: INeoComNode[] = [];

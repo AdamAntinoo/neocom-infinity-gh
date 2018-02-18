@@ -13,21 +13,32 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 //--- SERVICES
-import { AppModelStoreService } from '../services/app-model-store.service';
+// import { AppModelStoreService } from '../services/app-model-store.service';
 //--- INTERFACES
-import { INeoComNode } from '../classes/INeoComNode.interface';
-import { EVariant } from '../classes/EVariant.enumerated';
+// import { INeoComNode } from '../classes/INeoComNode.interface';
+// import { EVariant } from '../classes/EVariant.enumerated';
 //--- MODELS
 import { NeoComNode } from '../models/NeoComNode.model';
-import { Pilot } from '../models/Pilot.model';
+import { EveItem } from '../models/EveItem.model';
+import { SlotLocation } from '../models/SlotLocation.model';
 
 export class FittingItem extends NeoComNode {
+  private typeId: number = -1;
+  private itemDetails: EveItem = null;
+  public detailedFlag: SlotLocation = null;
 
   constructor(values: Object = {}) {
     super(values);
     Object.assign(this, values);
     this.jsonClass = "FittingItem";
+    // Transform the input abstract items into classes.
+    if (null != this.itemDetails) this.itemDetails = new EveItem(this.itemDetails);
+    if (null != this.detailedFlag) this.detailedFlag = new SlotLocation(this.detailedFlag);
   }
   // --- ICOLLABORATION INTERFACE
+  // --- INEOCOMNODE INTERFACE
+  public getTypeId(): number {
+    return this.typeId;
+  }
   // --- GETTERS & SETTERS
 }

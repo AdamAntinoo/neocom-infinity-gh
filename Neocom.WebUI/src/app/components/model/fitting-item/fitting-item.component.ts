@@ -24,11 +24,10 @@ import { ExpandableNodeComponent } from '../../model/expandable-node/expandable-
 import { NeoComNode } from '../../../models/NeoComNode.model';
 // import { Pilot } from '../../../models/Pilot.model';
 
-
 @Component({
-  selector: 'neocom-fitting',
-  templateUrl: './fitting.component.html',
-  styleUrls: ['./fitting.component.css']
+  selector: 'neocom-fitting-item',
+  templateUrl: './fitting-item.component.html',
+  styleUrls: ['./fitting-item.component.css']
 })
-export class FittingComponent extends ExpandableNodeComponent {
+export class FittingItemComponent extends ExpandableNodeComponent {
 }
