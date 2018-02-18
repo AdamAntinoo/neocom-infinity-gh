@@ -1,15 +1,15 @@
 apply plugin: 'java'
 
-buildscript {
-    repositories {
-        maven { url 'https://repo.spring.io/libs-snapshot' }
-    }
-
-    dependencies {
-        classpath 'org.springframework.boot:spring-boot-gradle-plugin:2.0.0.BUILD-SNAPSHOT'
-    }
-}
-apply plugin: 'org.springframework.boot'
+//buildscript {
+//    repositories {
+//        maven { url 'https://repo.spring.io/libs-snapshot' }
+//    }
+//
+//    dependencies {
+//        classpath 'org.springframework.boot:spring-boot-gradle-plugin:2.0.0.BUILD-SNAPSHOT'
+//    }
+//}
+//apply plugin: 'org.springframework.boot'
 
 group 'DimensinfinIndustries'
 version '0.11.0'
@@ -34,17 +34,21 @@ sourceSets {
 jar {
     enabled = true
 }
-jar {
-    manifest {
-        attributes("Implementation-Title": "Gradle",
-                "Implementation-Version": version)
-        writeTo("$buildDir/Manifest.mf")
-    }
-}
-bootJar {
-    manifest {
-        attributes 'Start-Class': 'org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication'
-    }
+//jar {
+//    manifest {
+//        attributes("Implementation-Title": "Gradle",
+//                "Implementation-Version": version)
+//        writeTo("$buildDir/Manifest.mf")
+//    }
+//}
+//bootJar {
+//    manifest {
+//        attributes 'Start-Class': 'org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication'
+//    }
+//}
+task copyResources(type: Copy, dependsOn: processResources) {
+    from project(':NeoCom.Model').file('src/main/resources/properties')
+    into file('src/main/resources/properties')
 }
 
 dependencies {

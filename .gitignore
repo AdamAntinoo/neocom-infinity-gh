@@ -12,3 +12,4 @@ Documentation/~$emiminaryNotes.odt
 *.sqlite
 Neocom.MicroServices/ESINetworkManager.cache.store/
 Neocom.MicroServices/.idea/workspace.xml
+Neocom.MicroServices/src/main/resources/properties/esiauthorization.properties

@@ -8,6 +8,9 @@
 //               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
@@ -17,22 +20,19 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 
-import org.dimensinfin.eveonline.neocom.conf.SpringBootConfigurationProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
+
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.manager.MarketDataServer;
 import org.dimensinfin.eveonline.neocom.model.Ship;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.scheduling.annotation.EnableScheduling;
-
-import java.io.IOException;
-import java.sql.SQLException;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 
@@ -52,6 +52,7 @@ public class NeoComMicroServiceApplication {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger logger = LoggerFactory.getLogger(NeoComMicroServiceApplication.class);
 	public static final ObjectMapper jsonMapper = new ObjectMapper();
+	public static MarketDataServer mdServer = null;
 
 	static {
 		jsonMapper.enable(SerializationFeature.INDENT_OUTPUT);
@@ -67,14 +68,15 @@ public class NeoComMicroServiceApplication {
 
 	/**
 	 * Create all the platform specific connectors and then launch it to run.
+	 *
 	 * @param args
 	 */
 	public static void main( final String[] args ) {
 		logger.info(">> [NeoComMicroServiceApplication.main]");
 		// Instance and connect the Adaptors.
 		// Connect the Configuration manager.
-		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the Configuration Manager...");
-		GlobalDataManager.connectConfigurationManager(new SpringBootConfigurationProvider(null));
+//		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the Configuration Manager...");
+//		GlobalDataManager.connectConfigurationManager(new GlobalConfigurationProvider(null));
 		// Connect the NeoCom database.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting NeoCom private database...");
 		try {
@@ -97,7 +99,8 @@ public class NeoComMicroServiceApplication {
 			);
 			// Connect the MarketData service.
 			logger.info("-- [NeoComMicroServiceApplication.main]> Starting Market Data service...");
-			GlobalDataManager.setMarketDataManager(new MarketDataServer().start());
+			mdServer = new MarketDataServer().start();
+			GlobalDataManager.setMarketDataManager(mdServer);
 			logger.info("-- [NeoComMicroServiceApplication.main]> Starting application instance...");
 			SpringApplication.run(NeoComMicroServiceApplication.class, args);
 		} catch (SQLException sqle) {
@@ -112,7 +115,12 @@ public class NeoComMicroServiceApplication {
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 
 	// - M E T H O D - S E C T I O N ..........................................................................
-//[01]
+	@Scheduled(initialDelay = 60000, fixedDelay = 120000)
+	private void writeMarketData() {
+		mdServer.writeMarketDataCacheToStorage();
+	}
+
+	//[01]
 //	/**
 //	 * Run this after the application is initialized. The contents are to read back from persistence storage the
 //	 * cache contents before starting the application.
