@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-873693216/ApplicationCloudAdapter.iml" filepath="$PROJECT_DIR$/.idea/modules/-873693216/ApplicationCloudAdapter.iml" group="ApplicationCloudAdapter" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-873693216/ApplicationCloudAdapter_main.iml" filepath="$PROJECT_DIR$/.idea/modules/-873693216/ApplicationCloudAdapter_main.iml" group="ApplicationCloudAdapter" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-873693216/ApplicationCloudAdapter_test.iml" filepath="$PROJECT_DIR$/.idea/modules/-873693216/ApplicationCloudAdapter_test.iml" group="ApplicationCloudAdapter" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1799755818/CoreBaseLibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/1799755818/CoreBaseLibrary.iml" group="CoreBaseLibrary" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1799755818/CoreBaseLibrary_main.iml" filepath="$PROJECT_DIR$/.idea/modules/1799755818/CoreBaseLibrary_main.iml" group="CoreBaseLibrary" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1799755818/CoreBaseLibrary_test.iml" filepath="$PROJECT_DIR$/.idea/modules/1799755818/CoreBaseLibrary_test.iml" group="CoreBaseLibrary" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-433730762/ESI.SwaggerApi.iml" filepath="$PROJECT_DIR$/.idea/modules/-433730762/ESI.SwaggerApi.iml" group="ESI.SwaggerApi" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-433730762/ESI.SwaggerApi_main.iml" filepath="$PROJECT_DIR$/.idea/modules/-433730762/ESI.SwaggerApi_main.iml" group="ESI.SwaggerApi" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-433730762/ESI.SwaggerApi_test.iml" filepath="$PROJECT_DIR$/.idea/modules/-433730762/ESI.SwaggerApi_test.iml" group="ESI.SwaggerApi" />

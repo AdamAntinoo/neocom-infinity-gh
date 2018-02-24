@@ -33,6 +33,7 @@ import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.manager.MarketDataServer;
 import org.dimensinfin.eveonline.neocom.model.Ship;
+import org.dimensinfin.eveonline.neocom.services.TimedUpdater;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 
@@ -53,6 +54,7 @@ public class NeoComMicroServiceApplication {
 	private static Logger logger = LoggerFactory.getLogger(NeoComMicroServiceApplication.class);
 	public static final ObjectMapper jsonMapper = new ObjectMapper();
 	public static MarketDataServer mdServer = null;
+	public static final TimedUpdater timedService = new TimedUpdater();
 
 	static {
 		jsonMapper.enable(SerializationFeature.INDENT_OUTPUT);
@@ -75,8 +77,22 @@ public class NeoComMicroServiceApplication {
 		logger.info(">> [NeoComMicroServiceApplication.main]");
 		// Instance and connect the Adaptors.
 		// Connect the Configuration manager.
+		// Not required. The default configuration manager already reads the properties folder.
 //		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the Configuration Manager...");
 //		GlobalDataManager.connectConfigurationManager(new GlobalConfigurationProvider(null));
+
+		// Connect the SDE database.
+		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting SDE database...");
+		try {
+			GlobalDataManager.connectSDEDBConnector(new SDESBDBHelper()
+					.setDatabaseSchema(GlobalDataManager.getResourceString("R.database.sdedatabase.databaseschema"))
+					.setDatabasePath(GlobalDataManager.getResourceString("R.database.sdedatabase.databasepath"))
+					.setDatabaseName(GlobalDataManager.getResourceString("R.database.sdedatabase.databasename"))
+					.build()
+			);
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
 		// Connect the NeoCom database.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting NeoCom private database...");
 		try {
@@ -89,49 +105,42 @@ public class NeoComMicroServiceApplication {
 					.setDatabaseVersion(GlobalDataManager.getResourceInt("R.database.neocom.databaseversion"))
 					.build()
 			);
-			// Connect the SDE database.
-			logger.info("-- [NeoComMicroServiceApplication.main]> Connecting SDE database...");
-			GlobalDataManager.connectSDEDBConnector(new SDESBDBHelper()
-					.setDatabaseSchema(GlobalDataManager.getResourceString("R.database.sdedatabase.databaseschema"))
-					.setDatabasePath(GlobalDataManager.getResourceString("R.database.sdedatabase.databasepath"))
-					.setDatabaseName(GlobalDataManager.getResourceString("R.database.sdedatabase.databasename"))
-					.build()
-			);
-			// Connect the MarketData service.
-			logger.info("-- [NeoComMicroServiceApplication.main]> Starting Market Data service...");
-			mdServer = new MarketDataServer().start();
-			GlobalDataManager.setMarketDataManager(mdServer);
-			logger.info("-- [NeoComMicroServiceApplication.main]> Starting application instance...");
-			SpringApplication.run(NeoComMicroServiceApplication.class, args);
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		}
+
+		// Connect the MarketData service.
+		logger.info("-- [NeoComMicroServiceApplication.main]> Starting Market Data service...");
+		mdServer = new MarketDataServer().start();
+		GlobalDataManager.setMarketDataManager(mdServer);
+//		// Connect the Timed Upgrade scan.
+//		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the background timed download scanner...");
+//		timedService = new TimedUpdater();
+
+		logger.info("-- [NeoComMicroServiceApplication.main]> Starting application instance...");
+		SpringApplication.run(NeoComMicroServiceApplication.class, args);
 		logger.info("<< [NeoComMicroServiceApplication.main]");
 	}
 
 	// - F I E L D - S E C T I O N ............................................................................
-//private final IMarketDataManagerService marketDataService = new MarketDataServer();
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 
 	// - M E T H O D - S E C T I O N ..........................................................................
-	@Scheduled(initialDelay = 60000, fixedDelay = 120000)
+	@Scheduled(initialDelay = 180000, fixedDelay = 120000)
 	private void writeMarketData() {
 		mdServer.writeMarketDataCacheToStorage();
 	}
 
-	//[01]
-//	/**
-//	 * Run this after the application is initialized. The contents are to read back from persistence storage the
-//	 * cache contents before starting the application.
-//	 */
-//	@PostConstruct
-//	public void postConstruct() {
-//		logger.info(">> [NeoComMicroServiceApplication.postConstruct]");
-//		// Read back the cache contents
-//		GlobalDataManager.getMarketDataManager().readMarketDataCacheFromStorage();
-//		logger.info("<< [NeoComMicroServiceApplication.postConstruct]");
-//	}
+	@Scheduled(initialDelay = 120000, fixedDelay = 30000)
+	private void onTime() {
+		// Fire another background update scan.
+		// Check if the configuration properties allow to run the updater.
+		if (GlobalDataManager.getResourceBoolean("R.updater.allowtimer",false)) {
+			timedService.timeTick();
+		}
+	}
+
 	// - CLASS IMPLEMENTATION ...................................................................................
 	public static class ShipSerializer extends JsonSerializer<Ship> {
 		// - F I E L D - S E C T I O N ............................................................................
@@ -235,43 +244,3 @@ public class NeoComMicroServiceApplication {
 	// ........................................................................................................
 }
 // - UNUSED CODE ............................................................................................
-//[01]
-//	@Override
-//	public void addCharacterUpdateRequest(final long characterID) {
-//		this.getCacheConnector().addCharacterUpdateRequest(characterID);
-//	}
-
-//	public String getAppName() {
-//		return APPLICATION_NAME;
-//	}
-
-//	@Override
-//	public ICacheConnector getCacheConnector () {
-//		if (null == cacheConnector) cacheConnector = new MicroServicesCacheConnector();
-//		return cacheConnector;
-//	}
-//
-//	@Override
-//	public ICCPDatabaseConnector getCCPDBConnector () {
-//		if (null == dbCCPConnector) {
-//			dbCCPConnector = new CCPDatabaseConnector();
-//		}
-//		return dbCCPConnector;
-//	}
-//
-//	@Override
-//	public INeoComModelDatabase getDBConnector () {
-//		if (null == dbNeocomConnector) {
-//			String dblocation = R.getResourceString("R.string.appdatabasepath");
-//			String dbname = R.getResourceString("R.string.appdatabasefilename");
-//			String dbversion = R.getResourceString("R.string.databaseversion");
-//			dbNeocomConnector = new SpringDatabaseConnector(dblocation, dbname, dbversion);
-//			dbNeocomConnector.loadSeedData();
-//		}
-//		return dbNeocomConnector;
-//	}
-//
-//	@Override
-//	public INeoComModelStore getModelStore () {
-//		return AppModelStore.getSingleton();
-//	}

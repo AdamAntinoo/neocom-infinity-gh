@@ -1,9 +1,9 @@
 rootProject.name = 'NeoCom.MicroServices'
 
-include ':CoreBaseLibrary'
-project(':CoreBaseLibrary').projectDir = new File('D:\\Development\\Libraries Base\\Corebase 2.0.x\\org.dimensinfin.core')
-include ':ApplicationCloudAdapter'
-project(':ApplicationCloudAdapter').projectDir = new File('D:\\Development\\POCProjects\\POCDataCloud\\ApplicationCloudAdapter')
+//include ':CoreBaseLibrary'
+//project(':CoreBaseLibrary').projectDir = new File('D:\\Development\\Libraries Base\\Corebase 2.0.x\\org.dimensinfin.core')
+//include ':ApplicationCloudAdapter'
+//project(':ApplicationCloudAdapter').projectDir = new File('D:\\Development\\POCProjects\\POCDataCloud\\ApplicationCloudAdapter')
 include ':NeoCom.Model'
 project(':NeoCom.Model').projectDir = new File('D:\\Development\\Libraries Base\\NeoCom-DM\\NeoCom-DataMngmt 0.10.x\\NeoCom.Model')
 include ':ESI.SwaggerApi'

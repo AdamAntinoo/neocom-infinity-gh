@@ -74,7 +74,7 @@ public class LoginController {
 		} catch (RuntimeException rtex) {
 			return new JsonExceptionInstance(rtex.getMessage()).toJson();
 		} finally {
-			logger.info("<< [LoginController.credentialsEntryPoint]> [TIMING] Processing Time: {}", totalElapsed.printElapsed(Chrono.ChonoOptions.SHOWMILLIS));
+			logger.info("<< [LoginController.credentialsEntryPoint]> [TIMING] Processing Time: {}", totalElapsed.printElapsed(Chrono.ChronoOptions.SHOWMILLIS));
 		}
 	}
 

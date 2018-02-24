@@ -6,14 +6,6 @@
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleHome" value="D:/Applications/gradle-4.5" />
-        <option name="gradleJvm" value="1.8" />
-        <option name="modules">
-          <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/ESI.SwaggerApi" />
-            <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt 0.10.x/NeoCom.Model" />
-          </set>
-        </option>
         <option name="useAutoImport" value="true" />
       </GradleProjectSettings>
     </option>

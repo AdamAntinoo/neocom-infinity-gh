@@ -68,7 +68,7 @@ public class LocationController {
 			return "<< [LocationController.updateCitadels]>[COUNTER]> Detected Exception: - " + rtex.getMessage();
 		} finally {
 			logger.info("<< [LocationController.updateCitadels]> [TIMING] Processing Time: {}",totalUpdateDuration.printElapsed
-					(Chrono.ChonoOptions.DEFAULT));
+					(Chrono.ChronoOptions.DEFAULT));
 		}
 	}
 
@@ -85,7 +85,7 @@ public class LocationController {
 			return "<< [LocationController.updateOutposts]>[COUNTER]> Detected Exception: - " + rtex.getMessage();
 		} finally {
 			logger.info("<< [LocationController.updateCitadels]> [TIMING] Processing Time: {}",totalUpdateDuration.printElapsed
-					(Chrono.ChonoOptions.DEFAULT));
+					(Chrono.ChronoOptions.DEFAULT));
 		}
 	}
 

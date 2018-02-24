@@ -1,4 +1,4 @@
-target/
+### MAVEN ###
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
@@ -11,6 +11,11 @@ target/
 *.iws
 *.iml
 *.ipr
+/.idea/libraries/
+/.gradle/
+/gradle/
+/build
+/out/
 
 ### NetBeans ###
 nbproject/private/
@@ -20,12 +25,6 @@ dist/
 nbdist/
 .nb-gradle/
 
+### NeoCom ###
 /classes/
 /target/
-
-/.gradle/
-/gradle/
-/gradlew
-/gradlew.bat
-/out/
-/.idea/libraries/
