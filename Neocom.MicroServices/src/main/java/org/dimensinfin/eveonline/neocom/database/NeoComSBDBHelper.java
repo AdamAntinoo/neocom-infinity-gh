@@ -10,19 +10,24 @@ package org.dimensinfin.eveonline.neocom.database;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcPooledConnectionSource;
+import com.j256.ormlite.misc.TransactionManager;
+import com.j256.ormlite.stmt.DeleteBuilder;
 import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.stmt.UpdateBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.sqlite.SQLiteException;
 
 import org.dimensinfin.eveonline.neocom.database.entity.Colony;
 import org.dimensinfin.eveonline.neocom.database.entity.ColonySerialized;
@@ -35,6 +40,7 @@ import org.dimensinfin.eveonline.neocom.enums.EPropertyTypes;
 import org.dimensinfin.eveonline.neocom.model.ApiKey;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
 import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
+import org.dimensinfin.eveonline.neocom.model.NeoComBlueprint;
 import org.dimensinfin.eveonline.neocom.model.Property;
 
 /**
@@ -72,6 +78,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 	private Dao<NeoComAsset, String> assetDao = null;
 	private Dao<EveLocation, String> locationDao = null;
 	private Dao<Property, String> propertyDao = null;
+	private Dao<NeoComBlueprint, String> blueprintDao = null;
 
 	private DatabaseVersion storedVersion = null;
 
@@ -85,6 +92,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		this.hostName = hostName;
 		return this;
 	}
+
 	public NeoComSBDBHelper setDatabaseName( final String instanceName ) {
 		this.databaseName = instanceName;
 		return this;
@@ -173,6 +181,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		if (null == connectionSource) createConnectionSource();
 		return connectionSource;
 	}
+
 	public void onCreate( final ConnectionSource databaseConnection ) {
 		logger.info(">> [NeoComSBDBHelper.onCreate]");
 		// Create the tables that do not exist
@@ -379,6 +388,11 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 						.setAccountName("Perico Tuerto")
 						.setRefreshToken("_rOthuCEPyRdKjNv6XyX84dguFmSkK4byrP3tTOj0Kv_3F_8GBvxsrUhrFZoRQPCjXXgzn5n0a5gdLeWA_hlS8Uv0LsK6upwKz2kfyG3mlANsAxfIDa2iGaGKq1pmFpe2w3lYuHl8cKGCItzL9uW4LL8gc8Uznqi9_jFNYC3Z-AXAPKNwN7hwQxcV7Znn2aprUC5BjaKrhBin-ptEPyVnNYvqBRBdXHYQcc-m4aaPu-4qD4lK4PXbcZanxrfDP_m2Tjd0EZNHMktlJgfVAwOMF7lBXxua6uXols7OKDYbJSadBeIa0Xrt9woLtbwQ7ZrKZMiXWOxbBH1QVbSbPkE-D5gNoR5Yl57D8ph4Q66w2CCWmYtQwdKR1Bx8hwPNtISfGQoTKHjrCIhtHL4ydBiRp_5V-4A1jJ2joJbc5rxfB2P9IRh-Qo42hO70BS5NCZMl1U3VMvmYkgauGGKSAKR_ckSbKDheE_Bv4yGKv2fW1HaLdNk59cD_PcHPX9Gb1DUA6BI_nUv9TG3SwcbEnqvKNnh3SzSD1tpn2IbxOzbwlyUz9rHcdqDbM9eh8oiXGxJCW3-FEPYwBnkI7I5DrARu0hthD-wtn6iKrPdeURCXGQ1")
 						.store();
+				credential = new Credential(92002067)
+						.setAccessToken("D8KEMVvY2zcbRXMh6B7ldShWWM2rnoqMomH-PbPegPZH00vfC9yeMXMWo-Nl94LBDQwcl76LOgoDdl2F3qQfZA2")
+						.setAccountName("Adam Antinoo")
+						.setRefreshToken("veGsthIl6AWifDZHEjqmZFBrxwu0ZGOEPgLtfrAnzKJxrbD9HEAploBalAS40AgJeM5siWM1oEQu-At790COHTSpSzITYLJoN_BFpe337bGEU3r9HPDFtka5_rKRvFlG1kF1GawXQOgL0pZ6lxC6CsDEscUGLwSaxe1KG9cJbWK1KDC024fyoTmYZeVyUZMnNV3AX064E4eak7jOfPiijEPc2jKMefI0zJwZl_g3nhE1pVzJA_Cexlb-YEnh1zl0xsiLhPCfjdLs3blFoX-Y1IeVLV9iordxd_llrc54z2-Rvz2R8atpM1tN2NI7GIuKX21HEp2fVP6m4TRy854oFz1Bw1StaLzS2XprLEzPjIc1gHTlaC5GysdQROxY57VHyyEQqCtxsBDzbJZ3k4WaaO-QuWEE-by3V_N_I0vX6LdxFwfhw15eSUbHE2Zm2uOvgdJrwotks7kXmKWL9erOGxcBK1Q7W-ckpRgYCY3yClGG9ptEq9fTEhvDupcgbaff70yTtYX_VAqysbD35KKdpFpnVu76EuVkrdyqWD1CAJbZgUhbZe_CYk5lbBQfjziQ6GYRSdt_6AVjrxN08_oTqbXdzH8f5Vtn6BRUKr0DtVw1")
+						.store();
 			}
 		} catch (SQLException sqle) {
 			logger.error("E [NeoComSBDBHelper.loadSeedData]> Error creating the initial table on the app database.");
@@ -484,6 +498,97 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 			propertyDao = DaoManager.createDao(this.getConnectionSource(), Property.class);
 		}
 		return propertyDao;
+	}
+	public Dao<NeoComBlueprint, String> getBlueprintDao() throws SQLException {
+		if (null == blueprintDao) {
+			blueprintDao = DaoManager.createDao(this.getConnectionSource(), NeoComBlueprint.class);
+		}
+		return blueprintDao;
+	}
+
+	// --- PUBLIC CONNECTION SPECIFIC ACTIONS
+
+	/**
+	 * removes from the application database any asset and blueprint that contains the special -1 code as the
+	 * owner identifier. Those records are from older downloads and have to be removed to avoid merging with the
+	 * new download.
+	 */
+	public synchronized void clearInvalidRecords( final long pilotid ) {
+		logger.info(">> [NeoComSBDBHelper.clearInvalidRecords]> pilotid", pilotid);
+		synchronized (connectionSource) {
+			try {
+				TransactionManager.callInTransaction(connectionSource, new Callable<Void>() {
+					public Void call() throws Exception {
+						// Remove all assets that do not have a valid owner.
+						final DeleteBuilder<NeoComAsset, String> deleteBuilder = getAssetDao().deleteBuilder();
+						deleteBuilder.where().eq("ownerID", (pilotid * -1));
+						int count = deleteBuilder.delete();
+						logger.info("-- [NeoComSBDBHelper.clearInvalidAssets]> Invalid assets cleared for owner {}: {}", (pilotid * -1), count);
+
+//						// Remove all blueprints that do not have a valid owner.
+//						final DeleteBuilder<NeoComBlueprint, String> deleteBuilderBlueprint = getBlueprintDao().deleteBuilder();
+//						deleteBuilderBlueprint.where().eq("ownerID", (pilotid * -1));
+//						count = deleteBuilderBlueprint.delete();
+//						logger.info("-- [NeoComSBDBHelper.clearInvalidAssets]> Invalid blueprints cleared for owner {}: {}", (pilotid * -1),
+//								count);
+						return null;
+					}
+				});
+			} catch (final SQLException ex) {
+				logger.warn("W> [NeoComSBDBHelper.clearInvalidAssets]> Problem clearing invalid records. " + ex.getMessage());
+			} finally {
+				logger.info("<< [NeoComSBDBHelper.clearInvalidRecords]");
+			}
+		}
+	}
+	/**
+	 * Changes the owner id for all records from a new download with the id of the current character. This
+	 * completes the download and the assignment of the resources to the character without interrupting the
+	 * processing of data by the application.
+	 */
+	public synchronized void replaceAssets (final long pilotid) {
+		logger.info(">> [NeoComSBDBHelper.clearInvalidRecords]> pilotid", pilotid);
+		synchronized (connectionSource) {
+			try {
+				TransactionManager.callInTransaction(connectionSource, new Callable<Void>() {
+					public Void call() throws Exception {
+						// Remove all assets that do not have a valid owner.
+						final UpdateBuilder<NeoComAsset, String> updateBuilder = getAssetDao().updateBuilder();
+						updateBuilder.updateColumnValue( "ownerID", pilotid)
+								.where().eq("ownerID", (pilotid * -1));
+						int count = updateBuilder.update();
+						logger.info("-- [NeoComSBDBHelper.replaceAssets]> Replace owner {} for assets: {}", pilotid, count);
+						return null;
+					}
+				});
+			} catch (final SQLException ex) {
+				logger.warn("W> [NeoComSBDBHelper.replaceAssets]> Problem replacing records. " + ex.getMessage());
+			} finally {
+				logger.info("<< [NeoComSBDBHelper.replaceAssets]");
+			}
+		}
+	}
+	public synchronized void replaceBlueprints (final long pilotid) {
+		logger.info(">> [NeoComSBDBHelper.replaceBlueprints]> pilotid", pilotid);
+//		synchronized (connectionSource) {
+//			try {
+//				TransactionManager.callInTransaction(connectionSource, new Callable<Void>() {
+//					public Void call() throws Exception {
+//						// Remove all assets that do not have a valid owner.
+//						final UpdateBuilder<NeoComBlueprint, String> updateBuilder = getBlueprintDao().updateBuilder();
+//						updateBuilder.updateColumnValue( "ownerID", pilotid)
+//								.where().eq("ownerID", (pilotid * -1));
+//						int count = updateBuilder.update();
+//						logger.info("-- [NeoComSBDBHelper.replaceBlueprints]> Replace owner {} for assets: {}", pilotid, count);
+//						return null;
+//					}
+//				});
+//			} catch (final SQLException ex) {
+//				logger.warn("W> [NeoComSBDBHelper.replaceBlueprints]> Problem replacing records. " + ex.getMessage());
+//			} finally {
+//				logger.info("<< [NeoComSBDBHelper.replaceBlueprints]");
+//			}
+//		}
 	}
 
 	/**

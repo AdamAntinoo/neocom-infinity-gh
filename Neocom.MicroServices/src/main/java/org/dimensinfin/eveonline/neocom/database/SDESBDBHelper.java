@@ -8,18 +8,10 @@
 //               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom.database;
 
-import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.stmt.PreparedQuery;
-import com.j256.ormlite.stmt.QueryBuilder;
-import com.j256.ormlite.stmt.Where;
-import org.apache.commons.lang3.StringUtils;
-import org.dimensinfin.eveonline.neocom.connector.ModelAppConnector;
-import org.dimensinfin.eveonline.neocom.constant.ModelWideConstants;
-import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
-import org.dimensinfin.eveonline.neocom.enums.ELocationType;
 import org.dimensinfin.eveonline.neocom.model.EveItem;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
-import org.dimensinfin.eveonline.neocom.model.ItemGroup;
+
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -111,7 +103,6 @@ public class SDESBDBHelper extends SDEDatabaseManager implements ISDEDBHelper {
 		if (!isOpen) if (null == connectionSource) {
 			// Open and configure the connection datasource for hand written SQL queries.
 			try {
-//				final String localConnectionDescriptor = schema + ":" + databasePath + databaseName;
 				createConnectionSource();
 				logger.info("-- [SDESBDBHelper.openSDEDB]> Opened database {} successfully with version {}.",getConnectionDescriptor(),
 						databaseVersion);

@@ -35,10 +35,13 @@ sourceSets {
 //        attributes 'Start-Class': 'org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication'
 //    }
 //}
-task copyResources(type: Copy, dependsOn: processResources) {
+task copyResources(type: Copy) {
     from project(':NeoCom.Model').file('src/main/resources/properties')
     into file('src/main/resources/properties')
 }
+assemble.dependsOn copyResources
+build.dependsOn copyResources
+
 
 dependencies {
     // P R O J E C T    D E P E N D E N C I E S

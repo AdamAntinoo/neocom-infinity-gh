@@ -30,6 +30,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
+import org.dimensinfin.eveonline.neocom.datamngmt.manager.ESINetworkManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.manager.MarketDataServer;
 import org.dimensinfin.eveonline.neocom.model.Ship;
@@ -51,7 +52,7 @@ import org.dimensinfin.eveonline.neocom.services.TimedUpdater;
 @SpringBootApplication
 public class NeoComMicroServiceApplication {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger logger = LoggerFactory.getLogger(NeoComMicroServiceApplication.class);
+	private static Logger logger = LoggerFactory.getLogger("NeoComMicroServiceApplication");
 	public static final ObjectMapper jsonMapper = new ObjectMapper();
 	public static MarketDataServer mdServer = null;
 	public static final TimedUpdater timedService = new TimedUpdater();
@@ -80,6 +81,9 @@ public class NeoComMicroServiceApplication {
 		// Not required. The default configuration manager already reads the properties folder.
 //		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the Configuration Manager...");
 //		GlobalDataManager.connectConfigurationManager(new GlobalConfigurationProvider(null));
+
+		// Initializing the ESI api network controller.
+//		ESINetworkManager.initialize();
 
 		// Connect the SDE database.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting SDE database...");
@@ -113,6 +117,7 @@ public class NeoComMicroServiceApplication {
 		logger.info("-- [NeoComMicroServiceApplication.main]> Starting Market Data service...");
 		mdServer = new MarketDataServer().start();
 		GlobalDataManager.setMarketDataManager(mdServer);
+
 //		// Connect the Timed Upgrade scan.
 //		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the background timed download scanner...");
 //		timedService = new TimedUpdater();
