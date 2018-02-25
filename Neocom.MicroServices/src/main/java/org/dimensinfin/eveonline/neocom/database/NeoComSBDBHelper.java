@@ -8,9 +8,12 @@
 //               the source for the specific functionalities for the backend services.
 package org.dimensinfin.eveonline.neocom.database;
 
+import java.sql.SQLException;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
-import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.jdbc.JdbcPooledConnectionSource;
 import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
@@ -18,24 +21,21 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.dimensinfin.eveonline.neocom.database.entity.Colony;
 import org.dimensinfin.eveonline.neocom.database.entity.ColonySerialized;
 import org.dimensinfin.eveonline.neocom.database.entity.ColonyStorage;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
+import org.dimensinfin.eveonline.neocom.database.entity.DatabaseVersion;
 import org.dimensinfin.eveonline.neocom.database.entity.TimeStamp;
 import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.enums.EPropertyTypes;
 import org.dimensinfin.eveonline.neocom.model.ApiKey;
-import org.dimensinfin.eveonline.neocom.database.entity.DatabaseVersion;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
 import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.sql.SQLException;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
+import org.dimensinfin.eveonline.neocom.model.Property;
 
 /**
  * NeoCom private database connector that will have the same api as the connector to be used on Android. This
@@ -71,6 +71,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 	private Dao<ColonySerialized, String> colonySerializedDao = null;
 	private Dao<NeoComAsset, String> assetDao = null;
 	private Dao<EveLocation, String> locationDao = null;
+	private Dao<Property, String> propertyDao = null;
 
 	private DatabaseVersion storedVersion = null;
 
@@ -80,41 +81,31 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
-	public int getDatabaseVersion() {
-		return databaseVersion;
-	}
-
-	public ConnectionSource getConnectionSource() throws SQLException {
-		if (null == connectionSource) createConnectionSource();
-		return connectionSource;
-	}
-
-	public INeoComDBHelper setDatabaseHost( final String hostName ) {
+	public NeoComSBDBHelper setDatabaseHost( final String hostName ) {
 		this.hostName = hostName;
 		return this;
 	}
-
-	public INeoComDBHelper setDatabaseName( final String instanceName ) {
+	public NeoComSBDBHelper setDatabaseName( final String instanceName ) {
 		this.databaseName = instanceName;
 		return this;
 	}
 
-	public INeoComDBHelper setDatabaseUser( final String user ) {
+	public NeoComSBDBHelper setDatabaseUser( final String user ) {
 		this.databaseUser = user;
 		return this;
 	}
 
-	public INeoComDBHelper setDatabasePassword( final String password ) {
+	public NeoComSBDBHelper setDatabasePassword( final String password ) {
 		this.databasePassword = password;
 		return this;
 	}
 
-	public INeoComDBHelper setDatabaseVersion( final int newVersion ) {
+	public NeoComSBDBHelper setDatabaseVersion( final int newVersion ) {
 		this.databaseVersion = newVersion;
 		return this;
 	}
 
-	public INeoComDBHelper build() throws SQLException {
+	public NeoComSBDBHelper build() throws SQLException {
 		if (StringUtils.isEmpty(hostName))
 			throw new SQLException("Cannot create connection: 'hostName' is empty.");
 		if (StringUtils.isEmpty(databaseName))
@@ -145,14 +136,24 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		return this;
 	}
 
+	// --- INEOCOMDBHELPER INTERFACE
+	public boolean isDatabaseValid() {
+		return databaseValid;
+	}
+
+	public boolean isOpen() {
+		return isOpen;
+	}
+
+	public int getDatabaseVersion() {
+		return databaseVersion;
+	}
+
 	public int getStoredVersion() {
 		if (null == storedVersion) {
 			// Access the version object persistent on the database.
 			try {
-				//			Dao<DatabaseVersion, String> versionDao = this.getVersionDao();
-				QueryBuilder<DatabaseVersion, String> queryBuilder = getVersionDao().queryBuilder();
-				PreparedQuery<DatabaseVersion> preparedQuery = queryBuilder.prepare();
-				List<DatabaseVersion> versionList = versionDao.query(preparedQuery);
+				List<DatabaseVersion> versionList = GlobalDataManager.getNeocomDBHelper().getVersionDao().queryForAll();
 				if (versionList.size() > 0) {
 					storedVersion = versionList.get(0);
 					return storedVersion.getVersionNumber();
@@ -168,6 +169,10 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		} else return storedVersion.getVersionNumber();
 	}
 
+	public ConnectionSource getConnectionSource() throws SQLException {
+		if (null == connectionSource) createConnectionSource();
+		return connectionSource;
+	}
 	public void onCreate( final ConnectionSource databaseConnection ) {
 		logger.info(">> [NeoComSBDBHelper.onCreate]");
 		// Create the tables that do not exist
@@ -196,18 +201,6 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		} catch (SQLException sqle) {
 			logger.warn("SQL [NeoComSBDBHelper.onCreate]> SQL NeoComDatabase: {}", sqle.getMessage());
 		}
-		//		try {
-		//			TableUtils.createTableIfNotExists(databaseConnection, Property.class);
-		//		} catch (SQLException sqle) {
-		//		}
-		//		try {
-		//			TableUtils.createTableIfNotExists(databaseConnection, ResourceList.class);
-		//		} catch (SQLException sqle) {
-		//		}
-		//		try {
-		//			TableUtils.createTableIfNotExists(databaseConnection, PlanetaryResource.class);
-		//		} catch (SQLException sqle) {
-		//		}
 		try {
 			TableUtils.createTableIfNotExists(databaseConnection, NeoComAsset.class);
 		} catch (SQLException sqle) {
@@ -218,6 +211,19 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		} catch (SQLException sqle) {
 			logger.warn("SQL [NeoComSBDBHelper.onCreate]> SQL NeoComDatabase: {}", sqle.getMessage());
 		}
+		try {
+			TableUtils.createTableIfNotExists(databaseConnection, Property.class);
+		} catch (SQLException sqle) {
+			logger.warn("SQL [NeoComSBDBHelper.onCreate]> SQL NeoComDatabase: {}", sqle.getMessage());
+		}
+		//		try {
+		//			TableUtils.createTableIfNotExists(databaseConnection, ResourceList.class);
+		//		} catch (SQLException sqle) {
+		//		}
+		//		try {
+		//			TableUtils.createTableIfNotExists(databaseConnection, PlanetaryResource.class);
+		//		} catch (SQLException sqle) {
+		//		}
 		//		try {
 		//			TableUtils.createTableIfNotExists(databaseConnection, NeoComBlueprint.class);
 		//		} catch (SQLException sqle) {
@@ -326,63 +332,79 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 			sqle.printStackTrace();
 		}
 
-		//--- A P I   K E Y S
 		try {
-//			Dao<ApiKey, String> apikey = this.getApiKeysDao();
-//			QueryBuilder<ApiKey, String> queryBuilder = apikey.queryBuilder();
-//			queryBuilder.setCountOf(true);
-//			long records = apikey.countOf(queryBuilder.prepare());
-
+			//--- A P I   K E Y S
+			logger.info("-- [NeoComSBDBHelper.loadSeedData]> Loading ApiKeys");
+			long records = GlobalDataManager.getNeocomDBHelper().getApiKeysDao().countOf();
 			// If the table is empty then insert the seeded Api Keys
-//			if ( records < 1 ) {
-			//				ApiKey key = new ApiKey("Beth Ripley").setKeynumber(2889577)
-			//				                                      .setValidationcode("Mb6iDKR14m9Xjh9maGTQCGTkpjRHPjOgVUkvK6E9r6fhMtOWtipaqybp0qCzxuuw")
-			//				                                      .setActive(true);
-			//				key = new ApiKey("Perico").setKeynumber(3106761)
-			//				                          .setValidationcode("gltCmvVoZl5akrM8d6DbNKZn7Jm2SaukrmqjnSOyqKbvzz5CtNfknTEwdBe6IIFf").setActive(false);
-			//				ApiKey		key = new ApiKey("CapitanHaddock09").setKeynumber(924767)
-			//				                                    .setValidationcode("2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P").setActive(true);
-			//				key = new ApiKey("CapitanHaddock29").setKeynumber(6472981)
-			//				                                    .setValidationcode("pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z").setActive(true);
-			ApiKey key = new ApiKey("CapitanHaddock")
-					.setKeynumber(924767)
-					.setValidationcode("2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P")
-					.setActive(true)
-					.store();
-			key = new ApiKey("CapitanHaddock")
-					.setKeynumber(6472981)
-					.setValidationcode("pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z")
-					.setActive(true)
-					.store();
-			//		}
+			if (records < 1) {
+				//[01]
+				ApiKey key = new ApiKey("CapitanHaddock")
+						.setKeynumber(924767)
+						.setValidationcode("2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P")
+						.setActive(true)
+						.store();
+				key = new ApiKey("CapitanHaddock")
+						.setKeynumber(6472981)
+						.setValidationcode("pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z")
+						.setActive(true)
+						.store();
+			}
+		} catch (SQLException sqle) {
+			logger.error("E [NeoComSBDBHelper.loadSeedData]> Error creating the initial table on the app database.");
+			sqle.printStackTrace();
 		} catch (RuntimeException rtex) {
-			logger.error("E> Error creating the initial table on the app database.");
+			logger.error("E [NeoComSBDBHelper.loadSeedData]> Error creating the initial table on the app database.");
 			rtex.printStackTrace();
 		}
 
-		//--- C R E D E N T I A L S
 		try {
-//			final long records = this.getCredentialDao().countOf();
-//			// If the table is empty then insert the seeded Credentials
-//			if ( records < 1 ) {
-			Credential credential = new Credential(91734031)
-					.setAccessToken("m58y5NBSK7T_1ki9jx4XsGgfu4laHIF9-3WRLeNqkABe-VKZ57tGFee8kpwFBO8RTtSIrHyz9UKtC17clitqsw2")
-					.setAccountName("Zach Zender")
-					.setRefreshToken("HB68Z3aeNjQxpA8ebcNijfMGv9wfkcn-dkcy5qchW88Pe0ackWDHCy2yr5RrY_ERE4aKNCsR-J2a_-V_tS2sV_21HMTYcIKQ-QJHhz6GugotFfrdRcl6nsVjEuxOay5c7t-0tFu2diGy-2cF9y4qYCJ53da5slsLjNBWiIvUTxP7PUOQIs0y23_LhMPku1O1AXZsKG383NOLYQTCFL6vrVjThKJKXX9xRqm2rsRoe7xA_hyV0PiSmxjclUl9XzYULQEpVi_yl65jw8Xhn88bADOcsjeh4dAIyW2U5_b5GOf7KfKTLf2JzpIWP6jtcJreMD6L228hYYGrG-F0tQxPp1pEhQjVwS0KepHSJV-o4s9-tEfDRfhTd5FtvJm_pNwbbyVEdtzoU81L834jZz9c5U3gxhRMvTfT5dp8ZiF8TbqLTAYnyL6QICqOU7uSSVV59hFtZF7lbZOFnWpis-2_4YsUXMzdgfW-dMFAjPlE-bGCvEF3tteFPhbSWj24JJQ1sfbVCdXQ6WEEsM5DJoeo_hdW-_nsORIaI3Q3hjOWC_Wb9ucF3465IqzuFFJEhL2m3zpX_V4gk0_9ARU8XaT7GTrkCpbq-Ds-q0bTmz5zh1w1")
-					.store();
-			credential = new Credential(92223647)
-					.setAccessToken("Su9nYs3_qDQBHB2utYKQyZVfDy1l4ScMo81rtiDmDTDpRKV4yIln_cxfXDQaAR81wj1oBu8S1Hjxbf7VcJavaA2")
-					.setAccountName("Beth Ripley")
-					.setRefreshToken("NyjPkFKg1nr1nBK1e8bSaezKENbLZKtXOu0hkvnbK1LyghAHim-shdiXjMXZ8z8uQwCxUGPmow-BnSF5BX--zvbKI_bEQ5tGE6jiCZNKv0EoUrM205wRtq7QEWt-I0E51_YzMMHW05YWAG7ds4I72fsKJMtA0HZmfrtRQtf6q_tCoGErf0cpwuwHtNxeTg87UkEqEXicWHAdRRXTHONtDqrWiZbzOL48BQNXcgV3goL-hMzzi0V6sY1JolAxQ47MDKzJf6Fri7Zk2am4qwv2dZioVsGQ4j-U-COZhiyPphWyBUVWVpmuMqhwlYVrxah0n503rl3-dUEn05agnumHRu-KA22M8z6CHwtGx3ta2v_p63iy6n4DGjXjXI9efFKPEa3h-gmT9qRF4QQUNQ8tvJGB62a6YvkHCAsFy7FeVX7c7Bgb73w88ToGo5AH5kn4aBhx-kOnBQEyW11hi1xc1uZIHZOX4jn5OmrOYnJcYhYSnSBKtkpFgsgqiYrcO4zcRK__5XhoX1Owb2d0yj3B_y0m4FZ2-fYmgNlSGyQjbB-o1l_Fy7056bxoC28JLGkGPa-3c2jTfAhx7kltvW6q4oqGHqX7i2YXUulamfIe7I81")
-					.store();
-			credential = new Credential(93813310)
-					.setAccessToken("_WWshtZkjlNwXLRmvs3T0ZUaKAVo4QEl6JFwzIVIyNmdgjfqHhb41uY7ambYFDmjZsFZyLBjtH-90ONWu1E1sA2")
-					.setAccountName("Perico Tuerto")
-					.setRefreshToken("_rOthuCEPyRdKjNv6XyX84dguFmSkK4byrP3tTOj0Kv_3F_8GBvxsrUhrFZoRQPCjXXgzn5n0a5gdLeWA_hlS8Uv0LsK6upwKz2kfyG3mlANsAxfIDa2iGaGKq1pmFpe2w3lYuHl8cKGCItzL9uW4LL8gc8Uznqi9_jFNYC3Z-AXAPKNwN7hwQxcV7Znn2aprUC5BjaKrhBin-ptEPyVnNYvqBRBdXHYQcc-m4aaPu-4qD4lK4PXbcZanxrfDP_m2Tjd0EZNHMktlJgfVAwOMF7lBXxua6uXols7OKDYbJSadBeIa0Xrt9woLtbwQ7ZrKZMiXWOxbBH1QVbSbPkE-D5gNoR5Yl57D8ph4Q66w2CCWmYtQwdKR1Bx8hwPNtISfGQoTKHjrCIhtHL4ydBiRp_5V-4A1jJ2joJbc5rxfB2P9IRh-Qo42hO70BS5NCZMl1U3VMvmYkgauGGKSAKR_ckSbKDheE_Bv4yGKv2fW1HaLdNk59cD_PcHPX9Gb1DUA6BI_nUv9TG3SwcbEnqvKNnh3SzSD1tpn2IbxOzbwlyUz9rHcdqDbM9eh8oiXGxJCW3-FEPYwBnkI7I5DrARu0hthD-wtn6iKrPdeURCXGQ1")
-					.store();
-			//		}
+			//--- C R E D E N T I A L S
+			logger.info("-- [NeoComSBDBHelper.loadSeedData]> Loading Credentials");
+			final long records = this.getCredentialDao().countOf();
+			// If the table is empty then insert the seeded Credentials
+			if (records < 1) {
+				Credential credential = new Credential(91734031)
+						.setAccessToken("m58y5NBSK7T_1ki9jx4XsGgfu4laHIF9-3WRLeNqkABe-VKZ57tGFee8kpwFBO8RTtSIrHyz9UKtC17clitqsw2")
+						.setAccountName("Zach Zender")
+						.setRefreshToken("HB68Z3aeNjQxpA8ebcNijfMGv9wfkcn-dkcy5qchW88Pe0ackWDHCy2yr5RrY_ERE4aKNCsR-J2a_-V_tS2sV_21HMTYcIKQ-QJHhz6GugotFfrdRcl6nsVjEuxOay5c7t-0tFu2diGy-2cF9y4qYCJ53da5slsLjNBWiIvUTxP7PUOQIs0y23_LhMPku1O1AXZsKG383NOLYQTCFL6vrVjThKJKXX9xRqm2rsRoe7xA_hyV0PiSmxjclUl9XzYULQEpVi_yl65jw8Xhn88bADOcsjeh4dAIyW2U5_b5GOf7KfKTLf2JzpIWP6jtcJreMD6L228hYYGrG-F0tQxPp1pEhQjVwS0KepHSJV-o4s9-tEfDRfhTd5FtvJm_pNwbbyVEdtzoU81L834jZz9c5U3gxhRMvTfT5dp8ZiF8TbqLTAYnyL6QICqOU7uSSVV59hFtZF7lbZOFnWpis-2_4YsUXMzdgfW-dMFAjPlE-bGCvEF3tteFPhbSWj24JJQ1sfbVCdXQ6WEEsM5DJoeo_hdW-_nsORIaI3Q3hjOWC_Wb9ucF3465IqzuFFJEhL2m3zpX_V4gk0_9ARU8XaT7GTrkCpbq-Ds-q0bTmz5zh1w1")
+						.store();
+				credential = new Credential(92223647)
+						.setAccessToken("Su9nYs3_qDQBHB2utYKQyZVfDy1l4ScMo81rtiDmDTDpRKV4yIln_cxfXDQaAR81wj1oBu8S1Hjxbf7VcJavaA2")
+						.setAccountName("Beth Ripley")
+						.setRefreshToken("NyjPkFKg1nr1nBK1e8bSaezKENbLZKtXOu0hkvnbK1LyghAHim-shdiXjMXZ8z8uQwCxUGPmow-BnSF5BX--zvbKI_bEQ5tGE6jiCZNKv0EoUrM205wRtq7QEWt-I0E51_YzMMHW05YWAG7ds4I72fsKJMtA0HZmfrtRQtf6q_tCoGErf0cpwuwHtNxeTg87UkEqEXicWHAdRRXTHONtDqrWiZbzOL48BQNXcgV3goL-hMzzi0V6sY1JolAxQ47MDKzJf6Fri7Zk2am4qwv2dZioVsGQ4j-U-COZhiyPphWyBUVWVpmuMqhwlYVrxah0n503rl3-dUEn05agnumHRu-KA22M8z6CHwtGx3ta2v_p63iy6n4DGjXjXI9efFKPEa3h-gmT9qRF4QQUNQ8tvJGB62a6YvkHCAsFy7FeVX7c7Bgb73w88ToGo5AH5kn4aBhx-kOnBQEyW11hi1xc1uZIHZOX4jn5OmrOYnJcYhYSnSBKtkpFgsgqiYrcO4zcRK__5XhoX1Owb2d0yj3B_y0m4FZ2-fYmgNlSGyQjbB-o1l_Fy7056bxoC28JLGkGPa-3c2jTfAhx7kltvW6q4oqGHqX7i2YXUulamfIe7I81")
+						.store();
+				credential = new Credential(93813310)
+						.setAccessToken("_WWshtZkjlNwXLRmvs3T0ZUaKAVo4QEl6JFwzIVIyNmdgjfqHhb41uY7ambYFDmjZsFZyLBjtH-90ONWu1E1sA2")
+						.setAccountName("Perico Tuerto")
+						.setRefreshToken("_rOthuCEPyRdKjNv6XyX84dguFmSkK4byrP3tTOj0Kv_3F_8GBvxsrUhrFZoRQPCjXXgzn5n0a5gdLeWA_hlS8Uv0LsK6upwKz2kfyG3mlANsAxfIDa2iGaGKq1pmFpe2w3lYuHl8cKGCItzL9uW4LL8gc8Uznqi9_jFNYC3Z-AXAPKNwN7hwQxcV7Znn2aprUC5BjaKrhBin-ptEPyVnNYvqBRBdXHYQcc-m4aaPu-4qD4lK4PXbcZanxrfDP_m2Tjd0EZNHMktlJgfVAwOMF7lBXxua6uXols7OKDYbJSadBeIa0Xrt9woLtbwQ7ZrKZMiXWOxbBH1QVbSbPkE-D5gNoR5Yl57D8ph4Q66w2CCWmYtQwdKR1Bx8hwPNtISfGQoTKHjrCIhtHL4ydBiRp_5V-4A1jJ2joJbc5rxfB2P9IRh-Qo42hO70BS5NCZMl1U3VMvmYkgauGGKSAKR_ckSbKDheE_Bv4yGKv2fW1HaLdNk59cD_PcHPX9Gb1DUA6BI_nUv9TG3SwcbEnqvKNnh3SzSD1tpn2IbxOzbwlyUz9rHcdqDbM9eh8oiXGxJCW3-FEPYwBnkI7I5DrARu0hthD-wtn6iKrPdeURCXGQ1")
+						.store();
+			}
+		} catch (SQLException sqle) {
+			logger.error("E [NeoComSBDBHelper.loadSeedData]> Error creating the initial table on the app database.");
+			sqle.printStackTrace();
 		} catch (RuntimeException rtex) {
-			logger.error("E> Error creating the initial table on the app database.");
+			logger.error("E [NeoComSBDBHelper.loadSeedData]> Error creating the initial table on the app database.");
+			rtex.printStackTrace();
+		}
+
+		try {
+			//--- P R O P E R T I E S
+			logger.info("-- [NeoComSBDBHelper.loadSeedData]> Loading Properties");
+			final long records = this.getPropertyDao().countOf();
+			// If the table is empty then insert the seeded Properties
+			if (records < 1) {
+				Property property = new Property(EPropertyTypes.LOCATIONROLE)
+						.setOwnerId(92223647)
+						.setStringValue("MANUFACTURE")
+						.setNumericValue(60006526)
+						.store();
+			}
+		} catch (SQLException sqle) {
+			logger.error("E [NeoComSBDBHelper.loadSeedData]> Error creating the initial table on the app database.");
+			sqle.printStackTrace();
+		} catch (RuntimeException rtex) {
+			logger.error("E [NeoComSBDBHelper.loadSeedData]> Error creating the initial table on the app database.");
 			rtex.printStackTrace();
 		}
 		logger.info("<< [NeoComSBDBHelper.loadSeedData]");
@@ -455,6 +477,13 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 			locationDao = DaoManager.createDao(this.getConnectionSource(), EveLocation.class);
 		}
 		return locationDao;
+	}
+
+	public Dao<Property, String> getPropertyDao() throws SQLException {
+		if (null == propertyDao) {
+			propertyDao = DaoManager.createDao(this.getConnectionSource(), Property.class);
+		}
+		return propertyDao;
 	}
 
 	/**
@@ -530,3 +559,12 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 }
 // - UNUSED CODE ............................................................................................
 //[01]
+//				ApiKey key = new ApiKey("Beth Ripley").setKeynumber(2889577)
+//				                                      .setValidationcode("Mb6iDKR14m9Xjh9maGTQCGTkpjRHPjOgVUkvK6E9r6fhMtOWtipaqybp0qCzxuuw")
+//				                                      .setActive(true);
+//				key = new ApiKey("Perico").setKeynumber(3106761)
+//				                          .setValidationcode("gltCmvVoZl5akrM8d6DbNKZn7Jm2SaukrmqjnSOyqKbvzz5CtNfknTEwdBe6IIFf").setActive(false);
+//				ApiKey		key = new ApiKey("CapitanHaddock09").setKeynumber(924767)
+//				                                    .setValidationcode("2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P").setActive(true);
+//				key = new ApiKey("CapitanHaddock29").setKeynumber(6472981)
+//				                                    .setValidationcode("pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z").setActive(true);

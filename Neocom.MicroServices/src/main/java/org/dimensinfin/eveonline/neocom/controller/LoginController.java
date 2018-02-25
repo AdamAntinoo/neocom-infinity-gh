@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.dimensinfin.core.util.Chrono;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
 import org.dimensinfin.eveonline.neocom.storage.DataManagementModelStore;
 
 // - CLASS IMPLEMENTATION ...................................................................................
@@ -78,26 +79,6 @@ public class LoginController {
 		}
 	}
 
-	public static class JsonExceptionInstance {
-		private String errorMessage = "-NO MESSAGE-";
-
-		public JsonExceptionInstance( final String message ) {
-			errorMessage = message;
-		}
-
-		public String toJson() {
-			return new StringBuffer()
-					.append("{").append('\n')
-					.append(quote("jsonClass")).append(":").append(quote("JsonException")).append(",")
-					.append(quote("message")).append(":").append(quote(errorMessage)).append(" ")
-					.append("}")
-					.toString();
-		}
-
-		private String quote( final String content ) {
-			return String.format("\"%s\"", content);
-		}
-	}
 	private String serializeCredentialList( final List<Credential> credentials ) {
 		// Use my own serialization control to return the data to generate exactly what I want.
 		String contentsSerialized = "[jsonClass: \"Exception\"," +

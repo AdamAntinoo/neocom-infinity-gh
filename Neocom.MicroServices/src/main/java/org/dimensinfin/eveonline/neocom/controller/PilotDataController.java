@@ -8,18 +8,10 @@
 //               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom.controller;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Vector;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-
-import org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication;
-import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
-import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdFittings200Ok;
-import org.dimensinfin.eveonline.neocom.manager.AbstractManager;
-import org.dimensinfin.eveonline.neocom.manager.AssetsManager;
-import org.dimensinfin.eveonline.neocom.model.Fitting;
-import org.dimensinfin.eveonline.neocom.storage.DataManagementModelStore;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,11 +21,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication;
+import org.dimensinfin.eveonline.neocom.database.entity.Credential;
+import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
+import org.dimensinfin.eveonline.neocom.industry.Action;
+import org.dimensinfin.eveonline.neocom.industry.FittingProcessor;
+import org.dimensinfin.eveonline.neocom.model.Fitting;
+import org.dimensinfin.eveonline.neocom.storage.DataManagementModelStore;
+
 // - CLASS IMPLEMENTATION ...................................................................................
 @RestController
 public class PilotDataController {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger logger = LoggerFactory.getLogger("PilotDataController");
+	private static final HashMap<Integer, Fitting> fittingsCache = new HashMap<>();
 
 	// - F I E L D - S E C T I O N ............................................................................
 
@@ -74,19 +76,83 @@ public class PilotDataController {
 		} catch (NumberFormatException nfe) {
 			logger.error("EX [PilotDataController.pilotFittingManagerFittings]> identifier received cannot be translated to number - " +
 					"{}", nfe.getMessage());
-			return new LoginController.JsonExceptionInstance("Identifier received cannot be translated to number - " + nfe.getMessage()
+			return new JsonExceptionInstance("Identifier received cannot be translated to number - " + nfe.getMessage()
 			).toJson();
 		} catch (JsonProcessingException jpe) {
 			jpe.printStackTrace();
-			return new LoginController.JsonExceptionInstance(jpe.getMessage()).toJson();
+			return new JsonExceptionInstance(jpe.getMessage()).toJson();
 		} catch (RuntimeException rtx) {
 			rtx.printStackTrace();
-			return new LoginController.JsonExceptionInstance(rtx.getMessage()).toJson();
+			return new JsonExceptionInstance(rtx.getMessage()).toJson();
 		} finally {
 			logger.info("<< [PilotDataController.pilotFittingManagerFittings]");
 		}
 	}
 
+	/**
+	 * Returns the list of fittings that are accesible to this Pilot identifier. This data will be processed at the Angular side
+	 * to generate any UI structures required for a proper presentation.
+	 *
+	 * @param identifier identifier for the selected Pilot.
+	 * @return list of OK class fittings serialized to Json.
+	 */
+	@CrossOrigin()
+	@RequestMapping(value = "/api/v1/pilot/{identifier}/fittingmanager/processfitting/{fittingidentifier}/copies/{copies}"
+			, method = RequestMethod.GET
+			, produces = "application/json")
+	public String pilotFittingManagerProcessFitting( @PathVariable final int identifier
+			, @PathVariable final int fittingidentifier
+			, @PathVariable final int copies ) {
+		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/pilot/{}/fittingmanager/processfitting/{}/copies/{}"
+				, identifier, fittingidentifier, copies);
+		logger.info(">> [PilotDataController.pilotFittingManagerProcessFitting]");
+		try {
+			// Activate the list of credentials.
+			final Credential credential = DataManagementModelStore.activateCredential(identifier);
+			// Get the list of fittings.
+			final List<Fitting> fittings = GlobalDataManager.downloadFitting4Credential(identifier);
+			addFittings2Cache(fittings);
+			// Search for the fitting
+			final Fitting target = fittingsCache.get(identifier);
+			final FittingProcessor processor = new FittingProcessor();
+			final List<Action> actions = processor.processFitting(identifier, target, copies);
+
+			// Searialize the results.
+			final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(actions);
+			return contentsSerialized;
+		} catch (NumberFormatException nfe) {
+			logger.error("EX [PilotDataController.pilotFittingManagerFittings]> identifier received cannot be translated to number - " +
+					"{}", nfe.getMessage());
+			return new JsonExceptionInstance("Identifier received cannot be translated to number - " + nfe.getMessage()
+			).toJson();
+		} catch (JsonProcessingException jpe) {
+			jpe.printStackTrace();
+			return new JsonExceptionInstance(jpe.getMessage()).toJson();
+		} catch (RuntimeException rtx) {
+			rtx.printStackTrace();
+			return new JsonExceptionInstance(rtx.getMessage()).toJson();
+		} finally {
+			logger.info("<< [PilotDataController.pilotFittingManagerProcessFitting]");
+		}
+	}
+
+	protected void addFittings2Cache( final List<Fitting> newfittings ) {
+		logger.info(">> [PilotDataController.addFittings2Cache]");
+		for (Fitting fit : newfittings) {
+			fittingsCache.put(fit.getFittingId(), fit);
+		}
+		logger.info("<< [PilotDataController.addFittings2Cache]");
+	}
+//	protected Fitting searchFitting(final int identifier){
+////		logger.info(">> [PilotDataController.searchFitting]");
+//		return
+////		logger.info("<< [PilotDataController.searchFitting]");
+//	}
+//[01]
+}
+
+// - UNUSED CODE ............................................................................................
+//[01]
 //	@CrossOrigin()
 //	@RequestMapping(value = "/api/v1/login/{login}/pilot/{identifier}", method = RequestMethod.GET, produces = "application/json")
 //	public NeoComCharacter pilotDetailed( @PathVariable final String login, @PathVariable final String identifier ) {
@@ -150,6 +216,3 @@ public class PilotDataController {
 //			logger.info("<< [PilotRoasterController.pilotPlanetaryManager]");
 //		}
 //	}
-}
-
-// - UNUSED CODE ............................................................................................

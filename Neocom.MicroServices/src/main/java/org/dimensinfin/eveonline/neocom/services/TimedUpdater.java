@@ -134,7 +134,7 @@ public class TimedUpdater {
 				}
 			}
 			logger.info("<< [TimedUpdater.timeTick]");
-		}
+		}}
 		@Override
 		public String toString () {
 			return new StringBuffer("TimedUpdater[")
