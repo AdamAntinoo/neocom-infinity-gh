@@ -109,7 +109,7 @@ import org.dimensinfin.eveonline.neocom.storage.DataManagementModelStore;
 			// Activate the list of credentials.
 			DataManagementModelStore.activateCredential(id);
 			// Download the list of fittings.
-			Credential credential = DataManagementModelStore.getCredential4Id(id);
+			Credential credential = DataManagementModelStore.activateCredential(id);
 			// Get to the Network and download the data from the ESI api.
 			final List<GetCharactersCharacterIdFittings200Ok> fittings = ESINetworkManager.getCharactersCharacterIdFittings(id, credential.getRefreshToken(), "tranquility");
 			final GetCharactersCharacterIdFittings200Ok fit = fittings.get(0);

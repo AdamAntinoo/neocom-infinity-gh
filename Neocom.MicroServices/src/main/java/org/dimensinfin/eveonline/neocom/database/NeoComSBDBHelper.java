@@ -54,7 +54,7 @@ import org.dimensinfin.eveonline.neocom.model.Property;
 // - CLASS IMPLEMENTATION ...................................................................................
 public class NeoComSBDBHelper implements INeoComDBHelper {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger logger = LoggerFactory.getLogger(NeoComSBDBHelper.class);
+	private static Logger logger = LoggerFactory.getLogger("NeoComSBDBHelper");
 	private static String DEFAULT_CONNECTION_DESCRIPTOR = "jdbc:mysql://localhost:3306/neocom?user=NEOCOMTEST&password=01.Alpha";
 
 	// - F I E L D - S E C T I O N ............................................................................
@@ -558,11 +558,17 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 			try {
 				TransactionManager.callInTransaction(connectionSource, new Callable<Void>() {
 					public Void call() throws Exception {
-						// Remove all assets that do not have a valid owner.
+						// Remove all assets from this owner before adding the new set.
+						final DeleteBuilder<NeoComAsset, String> deleteBuilder = getAssetDao().deleteBuilder();
+						deleteBuilder.where().eq("ownerID", pilotid);
+						int count = deleteBuilder.delete();
+						logger.info("-- [NeoComSBDBHelper.clearInvalidAssets]> Invalid assets cleared for owner {}: {}", pilotid, count);
+
+						// Replace the owner to vake the assets valid.
 						final UpdateBuilder<NeoComAsset, String> updateBuilder = getAssetDao().updateBuilder();
 						updateBuilder.updateColumnValue("ownerID", pilotid)
 								.where().eq("ownerID", (pilotid * -1));
-						int count = updateBuilder.update();
+						count = updateBuilder.update();
 						logger.info("-- [NeoComSBDBHelper.replaceAssets]> Replace owner {} for assets: {}", pilotid, count);
 						return null;
 					}

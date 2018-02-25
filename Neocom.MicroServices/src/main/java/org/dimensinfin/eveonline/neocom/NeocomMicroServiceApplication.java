@@ -30,9 +30,10 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
-import org.dimensinfin.eveonline.neocom.datamngmt.manager.ESINetworkManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.manager.MarketDataServer;
+import org.dimensinfin.eveonline.neocom.industry.Action;
+import org.dimensinfin.eveonline.neocom.industry.EveTask;
 import org.dimensinfin.eveonline.neocom.model.Ship;
 import org.dimensinfin.eveonline.neocom.services.TimedUpdater;
 
@@ -64,6 +65,8 @@ public class NeoComMicroServiceApplication {
 		SimpleModule neocomSerializerModule = new SimpleModule();
 		neocomSerializerModule.addSerializer(Ship.class, new ShipSerializer());
 		neocomSerializerModule.addSerializer(Credential.class, new CredentialSerializer());
+		neocomSerializerModule.addSerializer(Action.class, new ActionSerializer());
+		neocomSerializerModule.addSerializer(EveTask.class, new ProcessingTaskSerializer());
 		jsonMapper.registerModule(neocomSerializerModule);
 	}
 
@@ -171,7 +174,7 @@ public class NeoComMicroServiceApplication {
 			jgen.writeEndObject();
 		}
 	}
-	// ........................................................................................................
+	// ..........................................................................................................
 
 	// - CLASS IMPLEMENTATION ...................................................................................
 	public static class CredentialSerializer extends JsonSerializer<Credential> {
@@ -193,7 +196,50 @@ public class NeoComMicroServiceApplication {
 			jgen.writeEndObject();
 		}
 	}
-	// ........................................................................................................
+	// ..........................................................................................................
+	// - CLASS IMPLEMENTATION ...................................................................................
+	public static class ActionSerializer extends JsonSerializer<Action> {
+		// - F I E L D - S E C T I O N ............................................................................
+
+		// - M E T H O D - S E C T I O N ..........................................................................
+		@Override
+		public void serialize( final Action value, final JsonGenerator jgen, final SerializerProvider provider )
+				throws IOException, JsonProcessingException {
+			jgen.writeStartObject();
+			jgen.writeStringField("jsonClass", value.getJsonClass());
+			jgen.writeNumberField("typeId", value.getTypeId());
+			jgen.writeStringField("itemName", value.getItemName());
+			jgen.writeNumberField("requestQty", value.getRequestQty());
+			jgen.writeNumberField("completedQty", value.getCompletedQty());
+			jgen.writeStringField("category", value.getCategory());
+			jgen.writeStringField("group", value.getGroupName());
+			jgen.writeStringField("itemIndustryGroup", value.getItemIndustryGroup().name());
+			jgen.writeObjectField("resource", value.getResource());
+			jgen.writeObjectField("tasks", value.getTasks());
+			jgen.writeEndObject();
+		}
+	}
+	// ..........................................................................................................
+	// - CLASS IMPLEMENTATION ...................................................................................
+	public static class ProcessingTaskSerializer extends JsonSerializer<EveTask> {
+		// - F I E L D - S E C T I O N ............................................................................
+
+		// - M E T H O D - S E C T I O N ..........................................................................
+		@Override
+		public void serialize( final EveTask value, final JsonGenerator jgen, final SerializerProvider provider )
+				throws IOException, JsonProcessingException {
+			jgen.writeStartObject();
+			jgen.writeStringField("jsonClass", value.getJsonClass());
+			jgen.writeStringField("taskType", value.getTaskType().name());
+			jgen.writeObjectField("referencedAsset", value.getReferencedAsset());
+			jgen.writeNumberField("quantity", value.getQty());
+			jgen.writeObjectField("sourceLocation", value.getLocation());
+			jgen.writeObjectField("destination", value.getDestination());
+			jgen.writeEndObject();
+		}
+	}
+	// ..........................................................................................................
+
 	// - CLASS IMPLEMENTATION ...................................................................................
 //	public static class LocationSerializer extends JsonSerializer<EveLocation> {
 //		// - F I E L D - S E C T I O N ............................................................................

@@ -64,7 +64,7 @@ public class MarketDataTestUnit extends MarketDataServer {
 //		final EveItem item = GlobalDataManager.searchItem4Id(34);
 //		Vector<TrackEntry> marketEntries = downloadManager.parseMarketDataEMD(item.getName(), EMarketSide.SELLER);
 //		if (marketEntries.size() < 1) {
-//			marketEntries = downloadManager.parseMarketDataEC(item.getTypeID(), EMarketSide.SELLER);
+//			marketEntries = downloadManager.parseMarketDataEC(item.getTypeId(), EMarketSide.SELLER);
 //		}
 //		logger.info("<< [MarketDataTestUnit.testEMDParsing]");
 //	}

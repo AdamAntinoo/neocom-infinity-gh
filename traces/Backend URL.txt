@@ -17,7 +17,7 @@ TIP TOPHANE
 
 ADAM ANTINOO
 /api/v1/pilot/92002067/fittingmanager/fittings
-/api/v1/pilot/92002067/fittingmanager/processfitting/--/copies/1
+/api/v1/pilot/92002067/fittingmanager/processfitting/10042893/copies/1
 
 /api/v1/login/CapitanHaddock09/pilot/92002067/planetarymanager
 /api/v1/login/CapitanHaddock09/pilot/92002067/planetarymanager/location/1004843697743/optimizeprocess
