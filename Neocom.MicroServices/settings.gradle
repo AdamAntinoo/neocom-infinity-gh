@@ -5,8 +5,8 @@ rootProject.name = 'NeoCom.MicroServices'
 //include ':ApplicationCloudAdapter'
 //project(':ApplicationCloudAdapter').projectDir = new File('D:\\Development\\POCProjects\\POCDataCloud\\ApplicationCloudAdapter')
 include ':NeoCom.Model'
-project(':NeoCom.Model').projectDir = new File('D:\\Development\\Libraries Base\\NeoCom-DM\\NeoCom-DataMngmt 0.10.x\\NeoCom.Model')
+project(':NeoCom.Model').projectDir = new File('D:\\Development\\Libraries Base\\NeoCom-DM\\NeoCom-DataMngmt 0.11.x\\NeoCom.Model')
 include ':ESI.SwaggerApi'
-project(':ESI.SwaggerApi').projectDir = new File('D:\\Development\\Libraries Base\\NeoCom-DM\\NeoCom-DataMngmt 0.10.x\\ESI.SwaggerApi')
+project(':ESI.SwaggerApi').projectDir = new File('D:\\Development\\Libraries Base\\NeoCom-DM\\NeoCom-DataMngmt 0.11.x\\ESI.SwaggerApi')
 //include ':Neocom.MarketDataService'
 //project(':Neocom.MarketDataService').projectDir = new File('D:\\Development\\IntelliJProjects\\NeoCom WebUI\\NeoCom WebUI 0.11.x\\Neocom.MarketDataService')
