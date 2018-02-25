@@ -27,7 +27,6 @@ import com.j256.ormlite.table.TableUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.sqlite.SQLiteException;
 
 import org.dimensinfin.eveonline.neocom.database.entity.Colony;
 import org.dimensinfin.eveonline.neocom.database.entity.ColonySerialized;
@@ -409,6 +408,11 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 			// If the table is empty then insert the seeded Properties
 			if (records < 1) {
 				Property property = new Property(EPropertyTypes.LOCATIONROLE)
+						.setOwnerId(92002067)
+						.setStringValue("MANUFACTURE")
+						.setNumericValue(60006526)
+						.store();
+				property = new Property(EPropertyTypes.LOCATIONROLE)
 						.setOwnerId(92223647)
 						.setStringValue("MANUFACTURE")
 						.setNumericValue(60006526)
@@ -499,6 +503,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		}
 		return propertyDao;
 	}
+
 	public Dao<NeoComBlueprint, String> getBlueprintDao() throws SQLException {
 		if (null == blueprintDao) {
 			blueprintDao = DaoManager.createDao(this.getConnectionSource(), NeoComBlueprint.class);
@@ -541,12 +546,13 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 			}
 		}
 	}
+
 	/**
 	 * Changes the owner id for all records from a new download with the id of the current character. This
 	 * completes the download and the assignment of the resources to the character without interrupting the
 	 * processing of data by the application.
 	 */
-	public synchronized void replaceAssets (final long pilotid) {
+	public synchronized void replaceAssets( final long pilotid ) {
 		logger.info(">> [NeoComSBDBHelper.clearInvalidRecords]> pilotid", pilotid);
 		synchronized (connectionSource) {
 			try {
@@ -554,7 +560,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 					public Void call() throws Exception {
 						// Remove all assets that do not have a valid owner.
 						final UpdateBuilder<NeoComAsset, String> updateBuilder = getAssetDao().updateBuilder();
-						updateBuilder.updateColumnValue( "ownerID", pilotid)
+						updateBuilder.updateColumnValue("ownerID", pilotid)
 								.where().eq("ownerID", (pilotid * -1));
 						int count = updateBuilder.update();
 						logger.info("-- [NeoComSBDBHelper.replaceAssets]> Replace owner {} for assets: {}", pilotid, count);
@@ -568,7 +574,8 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 			}
 		}
 	}
-	public synchronized void replaceBlueprints (final long pilotid) {
+
+	public synchronized void replaceBlueprints( final long pilotid ) {
 		logger.info(">> [NeoComSBDBHelper.replaceBlueprints]> pilotid", pilotid);
 //		synchronized (connectionSource) {
 //			try {

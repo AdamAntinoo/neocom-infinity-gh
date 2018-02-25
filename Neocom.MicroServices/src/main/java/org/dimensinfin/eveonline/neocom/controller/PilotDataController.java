@@ -113,7 +113,7 @@ public class PilotDataController {
 			final List<Fitting> fittings = GlobalDataManager.downloadFitting4Credential(identifier);
 			addFittings2Cache(fittings);
 			// Search for the fitting
-			final Fitting target = fittingsCache.get(identifier);
+			final Fitting target = fittingsCache.get(fittingidentifier);
 			final FittingProcessor processor = new FittingProcessor();
 			final List<Action> actions = processor.processFitting(identifier, target, copies);
 
@@ -130,7 +130,11 @@ public class PilotDataController {
 			return new JsonExceptionInstance(jpe.getMessage()).toJson();
 		} catch (RuntimeException rtx) {
 			rtx.printStackTrace();
-			return new JsonExceptionInstance(rtx.getMessage()).toJson();
+			try {
+				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new JsonExceptionInstance(rtx.getMessage()));
+			} catch (JsonProcessingException e) {
+				return new JsonExceptionInstance(rtx.getMessage()).toJson();
+			}
 		} finally {
 			logger.info("<< [PilotDataController.pilotFittingManagerProcessFitting]");
 		}

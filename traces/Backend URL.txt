@@ -16,12 +16,16 @@ TIP TOPHANE
 /api/v1//login/CapitanHaddock29/pilot/2113197470
 
 ADAM ANTINOO
+/api/v1/pilot/92002067/fittingmanager/fittings
+/api/v1/pilot/92002067/fittingmanager/processfitting/--/copies/1
+
 /api/v1/login/CapitanHaddock09/pilot/92002067/planetarymanager
 /api/v1/login/CapitanHaddock09/pilot/92002067/planetarymanager/location/1004843697743/optimizeprocess
 
 
 BETH RIPLEY
 /api/v1/pilot/92223647/fittingmanager/fittings
+/api/v1/pilot/92223647/fittingmanager/processfitting/--/copies/1
 
 /api/v1/login/Beth Ripley/pilot/92223647
 /api/v1/login/Beth Ripley/pilot/92223647/pilotmanagers

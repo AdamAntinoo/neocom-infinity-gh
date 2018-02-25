@@ -137,7 +137,7 @@ public class NeoComMicroServiceApplication {
 		mdServer.writeMarketDataCacheToStorage();
 	}
 
-	@Scheduled(initialDelay = 120000, fixedDelay = 30000)
+	@Scheduled(initialDelay = 120000, fixedDelay = 900000)
 	private void onTime() {
 		// Fire another background update scan.
 		// Check if the configuration properties allow to run the updater.
