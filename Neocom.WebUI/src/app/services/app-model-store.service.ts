@@ -20,27 +20,28 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 //--- INTERFACES
+import { PageComponent } from 'src/app/classes/PageComponent';
+import { AppModelStoreMockService } from 'src/app/modules/app-modelstore/services/app-modelstore-mock.service';
 //--- MODELS
-import { Credential } from '../models/Credential.model';
-import { NeoComNode } from '../models/NeoComNode.model';
-import { NeoComCharacter } from '../models/NeoComCharacter.model';
-import { Pilot } from '../models/Pilot.model';
-import { Fitting } from '../models/Fitting.model';
+import { Credential } from 'src/app/models/Credential.model';
+import { NeoComNode } from 'src/app/models/NeoComNode.model';
+import { NeoComCharacter } from 'src/app/models/NeoComCharacter.model';
+import { Pilot } from 'src/app/models/Pilot.model';
+import { Fitting } from 'src/app/models/Fitting.model';
 
-import { Corporation } from '../models/Corporation.model';
-import { Manager } from '../models/Manager.model';
-import { AssetsManager } from '../models/AssetsManager.model';
-import { PlanetaryManager } from '../models/PlanetaryManager.model';
-import { ProcessingAction } from '../models/ProcessingAction.model';
-import { Separator } from '../models/Separator.model';
-import { PageComponent } from '../classes/PageComponent';
-import { Login } from '../models/Login.model';
+import { Corporation } from 'src/app/models/Corporation.model';
+import { Manager } from 'src/app/models/Manager.model';
+import { AssetsManager } from 'src/app/models/AssetsManager.model';
+import { PlanetaryManager } from 'src/app/models/PlanetaryManager.model';
+import { ProcessingAction } from 'src/app/models/ProcessingAction.model';
+import { Separator } from 'src/app/models/Separator.model';
+import { Login } from 'src/app/models/Login.model';
 
 /**
 This service will store persistent application data and has the knowledge to get to the backend to retrieve any data it is requested to render on the view.
 */
 @Injectable()
-export class AppModelStoreService {
+export class AppModelStoreService extends AppModelStoreMockService {
   static APPLICATION_NAME: string = "NeoCom-MS";
   static APPLICATION_VERSION: string = "v 0.11.0"
   static APPLICATION_SERVICE_PORT = "9000";
@@ -53,7 +54,9 @@ export class AppModelStoreService {
   private _currentLogin: Login = null; // The current Login active.
   private _lastViewer: PageComponent = null;
 
-  constructor(private http: Http, private router: Router) { }
+  constructor(private http: Http, private router: Router) {
+    super();
+  }
 
   //--- C O M M O N    C A L L S
   public getApplicationName(): string {

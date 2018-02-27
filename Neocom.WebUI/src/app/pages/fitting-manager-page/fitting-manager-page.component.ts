@@ -76,8 +76,8 @@ export class FittingManagerPageComponent extends PageDataSource implements OnIni
                   // Search for this ship type on the list of ships.
                   let hitShip = this.shipList.get(fit.getShipTypeId());
                   if (null == hitShip) {
-                    // Create a new entry and also check the group.
-                    console.log(">> [FittingManagerPageComponent]>Creating Group: " + fit.getShipName());
+                    // Create a new ship class entry and also check the group.
+                    console.log(">> [FittingManagerPageComponent]>Creating Ship Group: " + fit.getShipName());
                     hitShip = new GroupContainer(fit.getShipTypeId(), fit.getShipName())
                       .setGroupIcon(new URLGroupIconReference(fit.getShipTypeId()));
                     this.shipList.set(fit.getShipTypeId(), hitShip);
@@ -85,6 +85,7 @@ export class FittingManagerPageComponent extends PageDataSource implements OnIni
                     // Search for this group on the current list or create a new group.
                     let hitGroup = this.groupList.get(groupId);
                     if (null == hitGroup) {
+                      // Create a new group and add the current ship class to it.
                       let group = fit.getShipGroup();
                       console.log(">> [FittingManagerPageComponent]>Creating Group: " + group);
                       hitGroup = new GroupContainer(groupId, group)
@@ -110,14 +111,14 @@ export class FittingManagerPageComponent extends PageDataSource implements OnIni
 
   // --- IDATASOURCE INTERFACE
   public applyPolicies(contents: GroupContainer[]): GroupContainer[] {
-    console.log("><[FittingManagerPageComponent.applyPolicies]");
+    console.log("><[FittingManagerPageComponent.applyPolicies]>Sort groups alphabetically");
     // Sort the Credentials by name.
     let sortedContents: GroupContainer[] = contents.sort((n1, n2) => {
       if (n1.getGroupTitle() < n2.getGroupTitle()) {
         return -1;
       }
       if (n1.getGroupTitle() > n2.getGroupTitle()) {
-        return -1;
+        return 1;
       }
       return 0;
     });

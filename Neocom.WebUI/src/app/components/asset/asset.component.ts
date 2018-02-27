@@ -46,11 +46,11 @@ export class AssetComponent implements OnInit {
     this.viewer.refreshViewPort();
   }
   public totalValueIsk(): number {
-    let value = this.node.item.baseprice * this.node.quantity;
+    let value = this.node.getPrice() * this.node.getQuantity();
     return value;
   }
   public totalVolume(): number {
-    let value = this.node.item.volume * this.node.quantity;
+    let value = this.node.getVolume() * this.node.getQuantity();
     return value;
   }
 }

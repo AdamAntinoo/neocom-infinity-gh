@@ -25,8 +25,10 @@ export class EveItem extends NeoComNode {
   public name: string = "Mammoth";
   private category: string = "Ship";
   private baseprice: number = 0;
+  private price: number = 0;
   private defaultprice: number = -1;
   private volume: number = 0;
+  private quantity: number = 1;
   private tech: string = "Tech I";
   private industryGroup: string = "HULL";
   private groupName: string = "Industrial";
@@ -44,6 +46,18 @@ export class EveItem extends NeoComNode {
   }
   // --- ICOLLABORATION INTERFACE
   // --- GETTERS & SETTERS
+  public getQuantity(): number {
+    if (null == this.quantity) return 1;
+    else return this.quantity;
+  }
+  public getPrice(): number {
+    if (null == this.price) return 0.0;
+    else return this.price;
+  }
+  public getVolume(): number {
+    if (null == this.volume) return 0.01;
+    else return this.volume;
+  }
   public getTypeId(): number {
     return this.itemId;
   }

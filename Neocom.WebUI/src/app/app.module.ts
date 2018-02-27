@@ -19,7 +19,7 @@ import { CookieModule } from 'ngx-cookie';
 import { AppRoutingModule } from './app-routing.module';
 //--- DIRECTIVES
 //--- SERVICES
-import { AppModelStoreService } from './services/app-model-store.service';
+import { AppModelStoreService } from 'src/app/modules/app-modelstore/services/app-model-store.service';
 //--- PIPES
 import { CapitalizeLetterPipe } from './pipes/capitalize-letter.pipe';
 import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';

@@ -32,6 +32,8 @@ export class NeoComAsset extends NeoComNode {
   public blueprint: boolean = false;
   public ship: boolean = false;
   public item = null;
+  public price: number = 0.0;
+  public volume: number = 0.0;
 
   constructor(values: Object = {}) {
     super(values);
@@ -44,8 +46,21 @@ export class NeoComAsset extends NeoComNode {
   public canBeExpanded(): boolean {
     return false;
   }
+  // --- GETTERS & SETTERS
   public getName(): string {
     return this.name;
+  }
+  public getQuantity(): number {
+    if (null == this.quantity) return 1;
+    else return this.quantity;
+  }
+  public getPrice(): number {
+    if (null == this.price) return 0.0;
+    else return this.price;
+  }
+  public getVolume(): number {
+    if (null == this.volume) return 0.01;
+    else return this.volume;
   }
   // public collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): NeoComNode[] {
   //   let collab = [];
