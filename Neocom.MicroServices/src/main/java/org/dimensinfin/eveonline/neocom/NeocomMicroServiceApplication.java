@@ -20,6 +20,8 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.config.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -27,6 +29,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import org.dimensinfin.eveonline.neocom.conf.GlobalConfigurationProvider;
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
@@ -34,6 +37,7 @@ import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.manager.MarketDataServer;
 import org.dimensinfin.eveonline.neocom.industry.Action;
 import org.dimensinfin.eveonline.neocom.industry.EveTask;
+import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
 import org.dimensinfin.eveonline.neocom.model.Ship;
 import org.dimensinfin.eveonline.neocom.services.TimedUpdater;
 
@@ -54,10 +58,10 @@ import org.dimensinfin.eveonline.neocom.services.TimedUpdater;
 public class NeoComMicroServiceApplication {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger logger = LoggerFactory.getLogger("NeoComMicroServiceApplication");
-	public static final ObjectMapper jsonMapper = new ObjectMapper();
 	public static MarketDataServer mdServer = null;
 	public static final TimedUpdater timedService = new TimedUpdater();
 
+	public static final ObjectMapper jsonMapper = new ObjectMapper();
 	static {
 		jsonMapper.enable(SerializationFeature.INDENT_OUTPUT);
 		jsonMapper.registerModule(new JodaModule());
@@ -67,7 +71,18 @@ public class NeoComMicroServiceApplication {
 		neocomSerializerModule.addSerializer(Credential.class, new CredentialSerializer());
 		neocomSerializerModule.addSerializer(Action.class, new ActionSerializer());
 		neocomSerializerModule.addSerializer(EveTask.class, new ProcessingTaskSerializer());
+		neocomSerializerModule.addSerializer(NeoComAsset.class, new NeoComAssetSerializer());
 		jsonMapper.registerModule(neocomSerializerModule);
+	}
+	/**
+	 * Instance for the mapping of OK instances to the MVC compatible classes.
+	 */
+	public static final ModelMapper modelMapper = new ModelMapper();
+
+	static {
+		modelMapper.getConfiguration()
+				.setFieldMatchingEnabled(true)
+				.setMethodAccessLevel(Configuration.AccessLevel.PRIVATE);
 	}
 
 	// - M A I N   E N T R Y P O I N T ........................................................................
@@ -82,8 +97,8 @@ public class NeoComMicroServiceApplication {
 		// Instance and connect the Adaptors.
 		// Connect the Configuration manager.
 		// Not required. The default configuration manager already reads the properties folder.
-//		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the Configuration Manager...");
-//		GlobalDataManager.connectConfigurationManager(new GlobalConfigurationProvider(null));
+		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the Configuration Manager...");
+		GlobalDataManager.connectConfigurationManager(new GlobalConfigurationProvider(null));
 
 		// Initializing the ESI api network controller.
 //		ESINetworkManager.initialize();
@@ -121,6 +136,10 @@ public class NeoComMicroServiceApplication {
 		mdServer = new MarketDataServer().start();
 		GlobalDataManager.setMarketDataManager(mdServer);
 
+		// Load the Locations cache to speed up the Citadel and Outpost search.
+		logger.info("-- [NeoComMicroServiceApplication.main]> Read Locations data cache...");
+		GlobalDataManager.readLocationsDataCache();
+
 //		// Connect the Timed Upgrade scan.
 //		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the background timed download scanner...");
 //		timedService = new TimedUpdater();
@@ -140,11 +159,17 @@ public class NeoComMicroServiceApplication {
 		mdServer.writeMarketDataCacheToStorage();
 	}
 
+	@Scheduled(initialDelay = 180000, fixedDelay = 180000)
+	private void writeLocationData() {
+		if (GlobalDataManager.getResourceBoolean("R.cache.locationscache.activestate", true))
+			GlobalDataManager.writeLocationsDatacache();
+	}
+
 	@Scheduled(initialDelay = 120000, fixedDelay = 900000)
 	private void onTime() {
 		// Fire another background update scan.
 		// Check if the configuration properties allow to run the updater.
-		if (GlobalDataManager.getResourceBoolean("R.updater.allowtimer",false)) {
+		if (GlobalDataManager.getResourceBoolean("R.updater.allowtimer", false)) {
 			timedService.timeTick();
 		}
 	}
@@ -196,6 +221,7 @@ public class NeoComMicroServiceApplication {
 			jgen.writeEndObject();
 		}
 	}
+
 	// ..........................................................................................................
 	// - CLASS IMPLEMENTATION ...................................................................................
 	public static class ActionSerializer extends JsonSerializer<Action> {
@@ -219,6 +245,7 @@ public class NeoComMicroServiceApplication {
 			jgen.writeEndObject();
 		}
 	}
+
 	// ..........................................................................................................
 	// - CLASS IMPLEMENTATION ...................................................................................
 	public static class ProcessingTaskSerializer extends JsonSerializer<EveTask> {
@@ -235,6 +262,37 @@ public class NeoComMicroServiceApplication {
 			jgen.writeNumberField("quantity", value.getQty());
 			jgen.writeObjectField("sourceLocation", value.getLocation());
 			jgen.writeObjectField("destination", value.getDestination());
+			jgen.writeEndObject();
+		}
+	}
+	// ..........................................................................................................
+	// - CLASS IMPLEMENTATION ...................................................................................
+	public static class NeoComAssetSerializer extends JsonSerializer<NeoComAsset> {
+		// - F I E L D - S E C T I O N ............................................................................
+
+		// - M E T H O D - S E C T I O N ..........................................................................
+		@Override
+		public void serialize( final NeoComAsset value, final JsonGenerator jgen, final SerializerProvider provider )
+				throws IOException, JsonProcessingException {
+			jgen.writeStartObject();
+			jgen.writeStringField("jsonClass", value.getJsonClass());
+			jgen.writeNumberField("assetId", value.getAssetId());
+			jgen.writeObjectField("typeId", value.getTypeId());
+			jgen.writeNumberField("quantity", value.getQuantity());
+			jgen.writeNumberField("locationId", value.getLocationId());
+			jgen.writeStringField("locationType", value.getLocationType().name());
+			jgen.writeStringField("locationFlag", value.getFlag().name());
+			jgen.writeStringField("name", value.getName());
+			jgen.writeNumberField("ownerId", value.getOwnerID());
+			jgen.writeStringField("name", value.getName());
+			jgen.writeStringField("categoryName", value.getCategory());
+			jgen.writeStringField("groupName", value.getGroupName());
+			jgen.writeStringField("tech", value.getTech());
+			jgen.writeStringField("userLabel", value.getUserLabel());
+			jgen.writeNumberField("price", value.getPrice());
+			jgen.writeNumberField("parentContainerId", value.getParentContainerId());
+			jgen.writeObjectField("item", value.getItem());
+			jgen.writeObjectField("location", value.getLocation());
 			jgen.writeEndObject();
 		}
 	}

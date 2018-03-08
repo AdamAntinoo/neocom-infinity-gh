@@ -18,6 +18,7 @@ public class JsonExceptionInstance {
 
 	// - F I E L D - S E C T I O N ............................................................................
 	private String errorMessage = "-NO MESSAGE-";
+	private String jsonClass = "Exception";
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 	public JsonExceptionInstance( final String message ) {
@@ -36,6 +37,10 @@ public class JsonExceptionInstance {
 
 	private String quote( final String content ) {
 		return String.format("\"%s\"", content);
+	}
+
+	public String getJsonClass() {
+		return jsonClass;
 	}
 
 	@Override

@@ -24,6 +24,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import org.dimensinfin.core.util.Chrono;
+import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,6 +68,7 @@ public class LocationController {
 		} catch (RuntimeException rtex) {
 			return "<< [LocationController.updateCitadels]>[COUNTER]> Detected Exception: - " + rtex.getMessage();
 		} finally {
+			GlobalDataManager.writeLocationsDatacache();
 			logger.info("<< [LocationController.updateCitadels]> [TIMING] Processing Time: {}",totalUpdateDuration.printElapsed
 					(Chrono.ChronoOptions.DEFAULT));
 		}
@@ -84,6 +86,7 @@ public class LocationController {
 		} catch (RuntimeException rtex) {
 			return "<< [LocationController.updateOutposts]>[COUNTER]> Detected Exception: - " + rtex.getMessage();
 		} finally {
+			GlobalDataManager.writeLocationsDatacache();
 			logger.info("<< [LocationController.updateCitadels]> [TIMING] Processing Time: {}",totalUpdateDuration.printElapsed
 					(Chrono.ChronoOptions.DEFAULT));
 		}

@@ -8,6 +8,11 @@
 //               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom.controller;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,12 +27,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication;
+import org.dimensinfin.eveonline.neocom.database.entity.Colony;
+import org.dimensinfin.eveonline.neocom.database.entity.ColonyStorage;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdIndustryJobs200Ok;
 import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
 import org.dimensinfin.eveonline.neocom.industry.Action;
 import org.dimensinfin.eveonline.neocom.industry.FittingProcessor;
+import org.dimensinfin.eveonline.neocom.industry.Job;
+import org.dimensinfin.eveonline.neocom.manager.AssetsManager;
 import org.dimensinfin.eveonline.neocom.model.Fitting;
+import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
 import org.dimensinfin.eveonline.neocom.storage.DataManagementModelStore;
 
 // - CLASS IMPLEMENTATION ...................................................................................
@@ -44,7 +55,158 @@ public class PilotDataController {
 	// - M E T H O D - S E C T I O N ..........................................................................
 
 	/**
-	 * Returns the list of fittings that are accesible to this Pilot identifier. This data will be processed at the Angular side
+	 * Reads all the Pilots assets. Assrt grouping and processing is performed at the UI level so most of the AssetsManager
+	 * original code can be stripped out since the list of assets is returned as a plain and single level list of NeoComAsset
+	 * instances serialized.
+	 * Instead of issuing Region-Location-Conainer-Asset we download the complete and processed list of assets. The only
+	 * exception should be the Container and Ships that will be returned empty. Only when the user selectes to open their
+	 * contents the request should get the list of assets inside that container.
+	 * Locations and Regions are extracted from the list data and any item not located on space or an station on a Citadel will
+	 * not be processed because it is expected to be read when the specific container it belongs is open.
+	 *
+	 * @param identifier
+	 * @return
+	 */
+	@CrossOrigin()
+	@RequestMapping(value = "/api/v1/pilot/{identifier}/assets", method = RequestMethod.GET, produces =
+			"application/json")
+	public String pilotAssets( @PathVariable final Integer identifier ) {
+		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/pilot/{}/assets", identifier);
+		logger.info(">> [PilotDataController.pilotAssets]");
+		try {
+			// Activate the list of credentials.
+			final Credential credential = DataManagementModelStore.activateCredential(identifier);
+			final AssetsManager assetsManager = GlobalDataManager.getAssetsManager(credential);
+
+			// Get the list of assets and serialize them back to the front end.
+			final List<NeoComAsset> assets = assetsManager.getAllAssets();
+			final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(assets);
+			return contentsSerialized;
+		} catch (NumberFormatException nfe) {
+			logger.error("EX [PilotDataController.pilotAssets]> identifier received cannot be translated to number - " +
+					"{}", nfe.getMessage());
+			return new JsonExceptionInstance("Identifier received cannot be translated to number - " + nfe.getMessage()
+			).toJson();
+		} catch (JsonProcessingException jpe) {
+			jpe.printStackTrace();
+			return new JsonExceptionInstance(jpe.getMessage()).toJson();
+		} catch (RuntimeException rtx) {
+			rtx.printStackTrace();
+			return new JsonExceptionInstance(rtx.getMessage()).toJson();
+		} finally {
+			logger.info("<< [PilotDataController.pilotAssets]");
+		}
+	}
+
+	/**
+	 * This is a mock methos to return samples manually constructed from json data that should be converted to OK instances and
+	 * then to the MVC instances that are then being returned to the front end.
+	 *
+	 * @param identifier
+	 * @return
+	 */
+	@CrossOrigin()
+	@RequestMapping(value = "/api/v1/pilot/{identifier}/industryjobs", method = RequestMethod.GET, produces =
+			"application/json")
+	public String pilotIndustryJobs( @PathVariable final Integer identifier ) {
+		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/pilot/{}/industryjobs", identifier);
+		logger.info(">> [PilotDataController.pilotIndustryJobs]");
+		try {
+			// Construct the list of jobs manually from code. The deserialization of original ESI data did not work.
+			final ArrayList<Job> resultJobList = new ArrayList<Job>();
+job = new Job();
+
+
+
+
+			// Read the json file to a local string.
+			final String jsonData = readJsonMockData(GlobalDataManager.getResourceString("R.mock.path")
+					+ GlobalDataManager.getResourceString("R.mock.industryjobs"));
+			// Convert first to OK then to MVC.
+			final List<GetCharactersCharacterIdIndustryJobs200Ok> jobsOK = Arrays.asList(NeoComMicroServiceApplication.jsonMapper
+					.readValue(jsonData
+							, GetCharactersCharacterIdIndustryJobs200Ok[].class));
+			for (GetCharactersCharacterIdIndustryJobs200Ok jobOK : jobsOK) {
+				final Job job = NeoComMicroServiceApplication.modelMapper.map(jobOK, Job.class);
+				resultJobList.add(job);
+			}
+			final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(resultJobList);
+			return contentsSerialized;
+		} catch (NumberFormatException nfe) {
+			logger.error("EX [PilotDataController.pilotIndustryJobs]> identifier received cannot be translated to number - " +
+					"{}", nfe.getMessage());
+			return new JsonExceptionInstance("Identifier received cannot be translated to number - " + nfe.getMessage()
+			).toJson();
+		} catch (JsonProcessingException jpe) {
+			jpe.printStackTrace();
+			return new JsonExceptionInstance(jpe.getMessage()).toJson();
+		} catch (RuntimeException rtx) {
+			rtx.printStackTrace();
+			return new JsonExceptionInstance(rtx.getMessage()).toJson();
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+			return new JsonExceptionInstance(ioe.getMessage()).toJson();
+		} finally {
+			logger.info("<< [PilotDataController.pilotIndustryJobs]");
+		}
+	}
+	public String pilotIndustryJobsold( @PathVariable final Integer identifier ) {
+		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/pilot/{}/industryjobs", identifier);
+		logger.info(">> [PilotDataController.pilotIndustryJobs]");
+		try {
+			// Read the json file to a local string.
+			final String jsonData = readJsonMockData(GlobalDataManager.getResourceString("R.mock.path")
+					+ GlobalDataManager.getResourceString("R.mock.industryjobs"));
+			// Convert first to OK then to MVC.
+			final List<GetCharactersCharacterIdIndustryJobs200Ok> jobsOK = Arrays.asList(NeoComMicroServiceApplication.jsonMapper
+					.readValue(jsonData
+							, GetCharactersCharacterIdIndustryJobs200Ok[].class));
+			final ArrayList<Job> resultJobList = new ArrayList<Job>();
+			for (GetCharactersCharacterIdIndustryJobs200Ok jobOK : jobsOK) {
+				final Job job = NeoComMicroServiceApplication.modelMapper.map(jobOK, Job.class);
+				resultJobList.add(job);
+			}
+			final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(resultJobList);
+			return contentsSerialized;
+		} catch (NumberFormatException nfe) {
+			logger.error("EX [PilotDataController.pilotIndustryJobs]> identifier received cannot be translated to number - " +
+					"{}", nfe.getMessage());
+			return new JsonExceptionInstance("Identifier received cannot be translated to number - " + nfe.getMessage()
+			).toJson();
+		} catch (JsonProcessingException jpe) {
+			jpe.printStackTrace();
+			return new JsonExceptionInstance(jpe.getMessage()).toJson();
+		} catch (RuntimeException rtx) {
+			rtx.printStackTrace();
+			return new JsonExceptionInstance(rtx.getMessage()).toJson();
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+			return new JsonExceptionInstance(ioe.getMessage()).toJson();
+		} finally {
+			logger.info("<< [PilotDataController.pilotIndustryJobs]");
+		}
+	}
+
+	private String readJsonMockData( final String filePath ) throws IOException {
+		BufferedReader reader = new BufferedReader(new FileReader(filePath));
+		String line = null;
+		StringBuilder stringBuilder = new StringBuilder();
+		String ls = System.getProperty("line.separator");
+
+		try {
+			while ((line = reader.readLine()) != null) {
+				stringBuilder.append(line);
+//				stringBuilder.append(ls);
+			}
+
+			return stringBuilder.toString();
+		} finally {
+			reader.close();
+		}
+	}
+
+	/**
+	 * Returns the list of fittings that are accessible to this Pilot identifier. This data will be processed at the Angular side
 	 * to generate any UI structures required for a proper presentation.
 	 *
 	 * @param identifier identifier for the selected Pilot.

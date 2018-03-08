@@ -8,21 +8,43 @@
 //               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom.controller;
 
+import okhttp3.CertificatePinner;
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.jackson.JacksonConverterFactory;
+import retrofit2.http.Body;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.POST;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication;
+
+import org.joda.time.Instant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.core.util.Chrono;
+import org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication;
+import org.dimensinfin.eveonline.neocom.auth.NeoComOAuth20;
+import org.dimensinfin.eveonline.neocom.auth.TokenRequestBody;
+import org.dimensinfin.eveonline.neocom.auth.TokenTranslationResponse;
+import org.dimensinfin.eveonline.neocom.auth.VerifyCharacterResponse;
+import org.dimensinfin.eveonline.neocom.core.NeoComException;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
+import org.dimensinfin.eveonline.neocom.datamngmt.manager.ESINetworkManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
 import org.dimensinfin.eveonline.neocom.storage.DataManagementModelStore;
@@ -79,6 +101,139 @@ public class LoginController {
 		}
 	}
 
+	@CrossOrigin()
+	@RequestMapping(value = "/api/v1/getauthorizationurl", method = RequestMethod.GET, produces = "application/json")
+	public String getAuthorizationURLRequestEntryPoint() {
+		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/getauthorizationurl");
+		logger.info(">> [LoginController.getAuthorizationURLRequestEntryPoint]");
+		final Chrono totalElapsed = new Chrono();
+		try {
+			final NeoComOAuth20 service = new NeoComOAuth20(GlobalDataManager.getResourceString("R.esi.authorization.clientid")
+					, GlobalDataManager.getResourceString("R.esi.authorization.secretkey")
+					, GlobalDataManager.getResourceString("R.esi.authorization.callback")
+					, GlobalDataManager.getResourceString("R.esi.authorization.agent")
+					,  NeoComOAuth20.ESIStore.DEFAULT
+					, ESINetworkManager.constructScopes());
+			return service.getAuthorizationUrl();
+		} catch (RuntimeException rtex) {
+			return new JsonExceptionInstance(rtex.getMessage()).toJson();
+		} finally {
+			logger.info("<< [LoginController.getAuthorizationURLRequestEntryPoint]> [TIMING] Processing Time: {}", totalElapsed.printElapsed(Chrono.ChronoOptions.SHOWMILLIS));
+		}
+	}
+
+	@CrossOrigin()
+	@RequestMapping(value = "/api/v1/exchangeauthorization/{code}", method = RequestMethod.GET, produces = "application/json")
+	public String exchangeAuthorizationEntryPoint( @PathVariable final String code ) {
+		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/exchangeauthorization/{}", code);
+		logger.info(">> [LoginController.exchangeAuthorizationEntryPoint]");
+		final Chrono totalElapsed = new Chrono();
+		try {
+			//
+		return	exchangeAuthorization(code);
+//			return code;
+		} catch (RuntimeException rtex) {
+			return new JsonExceptionInstance(rtex.getMessage()).toJson();
+		} finally {
+			logger.info("<< [LoginController.exchangeAuthorizationEntryPoint]> [TIMING] Processing Time: {}", totalElapsed.printElapsed(Chrono.ChronoOptions.SHOWMILLIS));
+		}
+	}
+
+	private String exchangeAuthorization( final String authCode ) {
+		// Create the conversion call by coding.
+		logger.info("-- [LoginController.exchangeAuthorization]> Preparing Verification HTTP request.");
+		logger.info("-- [LoginController.exchangeAuthorization]> Creating access token request.");
+		try {
+			// Create a Retrofit request service to encapsulate the call.
+			final GetAccessToken serviceGetAccessToken = new Retrofit.Builder()
+					.baseUrl("https://login.eveonline.com")
+					.addConverterFactory(JacksonConverterFactory.create())
+					.build()
+					.create(GetAccessToken.class);
+			logger.info("-- [LoginController.exchangeAuthorization]> Creating request body.");
+			final TokenRequestBody tokenRequestBody = new TokenRequestBody()
+					.setCode(authCode);
+			logger.info("-- [LoginController.exchangeAuthorization]> Creating request call.");
+			final String peckString = GlobalDataManager.getResourceString("R.esi.authorization.clientid")
+					+ ":"
+					+ GlobalDataManager.getResourceString("R.esi.authorization.secretkey");
+			final String peck = Base64.getEncoder().encodeToString(peckString.getBytes());
+			final Call<TokenTranslationResponse> request = serviceGetAccessToken.getAccessToken("Basic " + peck
+					, GlobalDataManager.getResourceString("R.esi.authorization.contenttype")
+					, tokenRequestBody);
+			// Getting the request response to be stored if valid.
+			final Response<TokenTranslationResponse> response = request.execute();
+			if (response.isSuccessful()) {
+				logger.info("-- [LoginController.exchangeAuthorization]> Response is 200 OK.");
+				final TokenTranslationResponse token = response.body();
+				// Create a security verification instance.
+				OkHttpClient.Builder verifyClient =
+						new OkHttpClient.Builder()
+								.certificatePinner(
+										new CertificatePinner.Builder()
+												.add("login.eveonline.com", "sha256/5UeWOuDyX7IUmcKnsVdx+vLMkxEGAtzfaOUQT/caUBE=")
+												.add("login.eveonline.com", "sha256/980Ionqp3wkYtN9SZVgMzuWQzJta1nfxNPwTem1X0uc=")
+												.add("login.eveonline.com", "sha256/du6FkDdMcVQ3u8prumAo6t3i3G27uMP2EOhR8R0at/U=")
+												.build())
+								.addInterceptor(chain -> chain.proceed(
+										chain.request()
+												.newBuilder()
+												.addHeader("User-Agent", "org.dimensinfin")
+												.build()));
+				// Verify the character authenticated and create the Credential.
+				logger.info("-- [LoginController.exchangeAuthorization]> Creating character verification.");
+				final VerifyCharacter verificationService = new Retrofit.Builder()
+						.baseUrl("https://login.eveonline.com")
+						.addConverterFactory(JacksonConverterFactory.create())
+						.client(verifyClient.build())
+						.build()
+						.create(VerifyCharacter.class);
+				final String accessToken = token.getAccessToken();
+				final Response<VerifyCharacterResponse> verificationResponse = verificationService.getVerification("Bearer " + accessToken).execute();
+				if (verificationResponse.isSuccessful()) {
+					logger.info("-- [LoginController.exchangeAuthorization]> Character verification OK.");
+					// Create the credential and store it.
+					final int newAccountIdentifier = Long.valueOf(verificationResponse.body().getCharacterID()).intValue();
+					final Credential credential = new Credential(newAccountIdentifier);
+					credential.setAccountName(verificationResponse.body().getCharacterName())
+							.setAccessToken(token.getAccessToken())
+							.setTokenType(token.getTokenType())
+							.setExpires(Instant.now().plus(TimeUnit.SECONDS.toMillis(token.getExpires())).getMillis())
+							.setRefreshToken(token.getRefreshToken())
+							.store();
+					// Update the Pilot information.
+					GlobalDataManager.getPilotV1(credential.getAccountId());
+					return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(credential);
+				} else
+					return exceptionSerialization(new NeoComException("NE [LoginController.exchangeAuthorization]> the VerifyCharacterResponse response is invalid. "
+							+ verificationResponse.message()));
+			} else
+				return exceptionSerialization(new NeoComException("NE [LoginController.exchangeAuthorization]> the TokenTranslationResponse response is invalid. "
+						+ response.message()));
+		} catch (IOException ioe) {
+			logger.error("ER [LoginController.exchangeAuthorization]> IO Exception on authorization request call. " + ioe
+					.getMessage());
+			return exceptionSerialization(ioe);
+//		} catch (JsonProcessingException jpe) {
+//			jpe.printStackTrace();
+//			return exceptionSerialization(jpe);
+		} finally {
+			// All went perfect. signal the end of the process
+			logger.info("<< [LoginController.exchangeAuthorization]");
+		}
+	}
+
+	private String exceptionSerialization( final Exception exc ) {
+		String serializedException = null;
+		try {
+			serializedException = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(exc);
+		} catch (JsonProcessingException jpe) {
+			jpe.printStackTrace();
+			serializedException = new JsonExceptionInstance(jpe.getMessage()).toJson();
+		}
+		return serializedException;
+	}
+
 	private String serializeCredentialList( final List<Credential> credentials ) {
 		// Use my own serialization control to return the data to generate exactly what I want.
 		String contentsSerialized = "[jsonClass: \"Exception\"," +
@@ -87,11 +242,23 @@ public class LoginController {
 			contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(credentials);
 		} catch (JsonProcessingException jpe) {
 			jpe.printStackTrace();
-			contentsSerialized=new JsonExceptionInstance(jpe.getMessage()).toJson();
+			contentsSerialized = new JsonExceptionInstance(jpe.getMessage()).toJson();
 		}
 		return contentsSerialized;
 	}
 
+	public interface VerifyCharacter {
+		@GET("/oauth/verify")
+		Call<VerifyCharacterResponse> getVerification( @Header("Authorization") String token );
+	}
+
+	public interface GetAccessToken {
+		//		@POST("/persistPerson")
+		@POST("/oauth/token")
+		Call<TokenTranslationResponse> getAccessToken( @Header("Authorization") String token
+				, @Header("Content-Type") String contentType
+				, @Body TokenRequestBody body );
+	}
 }
 
 // - UNUSED CODE ............................................................................................
