@@ -15,9 +15,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -114,22 +116,25 @@ public class PilotDataController {
 		try {
 			// Construct the list of jobs manually from code. The deserialization of original ESI data did not work.
 			final ArrayList<Job> resultJobList = new ArrayList<Job>();
-job = new Job();
+			final Job job = new Job(229136101)
+					.setInstallerID(92002067)
+					.setFacilityId(60006526)
+					.setStationId(60006526)
+					.setActivityId(1)
+					.setBlueprintId(1022904992459L)
+					.setBlueprintTypeId(12744)
+					.setBlueprintLocationId(60006526)
+					.setOutputLocationId(1018763120134L)
+					.setRuns(1)
+					.setCost(185.12)
+					.setLicensedRuns(1)
+					.setStatus(GetCharactersCharacterIdIndustryJobs200Ok.StatusEnum.ACTIVE)
+					.setDuration(548)
+					.setStartDate( DateTime.now());
+			job.setEndDate(job.getStartDate().plus(TimeUnit.SECONDS.toMillis(job.getDuration())))
+					.store();
+			resultJobList.add(job);
 
-
-
-
-			// Read the json file to a local string.
-			final String jsonData = readJsonMockData(GlobalDataManager.getResourceString("R.mock.path")
-					+ GlobalDataManager.getResourceString("R.mock.industryjobs"));
-			// Convert first to OK then to MVC.
-			final List<GetCharactersCharacterIdIndustryJobs200Ok> jobsOK = Arrays.asList(NeoComMicroServiceApplication.jsonMapper
-					.readValue(jsonData
-							, GetCharactersCharacterIdIndustryJobs200Ok[].class));
-			for (GetCharactersCharacterIdIndustryJobs200Ok jobOK : jobsOK) {
-				final Job job = NeoComMicroServiceApplication.modelMapper.map(jobOK, Job.class);
-				resultJobList.add(job);
-			}
 			final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(resultJobList);
 			return contentsSerialized;
 		} catch (NumberFormatException nfe) {
