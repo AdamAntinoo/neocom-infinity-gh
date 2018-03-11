@@ -1,0 +1,68 @@
+/* C O M M O N    S T Y L E S */
+
+.neocom-name {
+  color: white;
+}
+
+.neocom-data {
+  color    : white;
+  font-size: 12px;
+}
+/* I C O N S */
+
+.left-data {
+  float: left;
+}
+
+.right-data {
+  float: right;
+}
+
+.neocom-marked-glow {
+  color      : orange;
+  font-weight: 600;
+  text-shadow: 0 0 2px orange;
+}
+
+.no-underline {
+  font-style     : normal;
+  font-variant   : normal;
+  text-decoration: none !important;
+}
+
+.lined-topupline {
+  border-top: white 1px solid;
+}
+
+.lined-bottomline {
+  border-bottom: white 1px solid;
+  padding-top  : 2px;
+}
+
+.stack-counter {
+  color      : white;
+  font-size  : 22px;
+  font-weight: 600;
+  padding-top: 2px;
+}
+/* P A N E L    T I T L I N G */
+
+.title {
+  color      : orange;
+  font-family: "Elemental";
+  font-size  : 30px;
+  text-shadow: 0 0 6px orange;
+}
+
+.subtitle {
+  color      : white;
+  font-family: "Elemental";
+  font-size  : 24px;
+  text-shadow: 0 0 6px white;
+}
+
+.title-box {
+  border-bottom: #A0A0F0 2px solid;
+  box-shadow   : 0 0 4px 1px rgba(255, 255, 255, 0.73);
+  padding      : 5px;
+}
