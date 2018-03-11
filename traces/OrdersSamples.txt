@@ -1,0 +1,87 @@
+INDUSTRY JOB
+{
+  "application/json": [
+    {
+      "job_id": 229136101,
+      "installer_id": 498338451,
+      "facility_id": 60006382,
+      "location_id": 60006382,
+      "activity_id": 1,
+      "blueprint_id": 1015116533326,
+      "blueprint_type_id": 2047,
+      "blueprint_location_id": 60006382,
+      "output_location_id": 60006382,
+      "runs": 1,
+      "cost": 118.01,
+      "licensed_runs": 200,
+      "status": "active",
+      "duration": 548,
+      "start_date": "2014-07-19T15:47:06Z",
+      "end_date": "2014-07-19T15:56:14Z"
+    }
+  ]
+}
+
+MARKET ORDER
+{
+  "application/json": [
+    {
+      "order_id": 123,
+      "type_id": 456,
+      "region_id": 123,
+      "location_id": 456,
+      "range": "station",
+      "is_buy_order": true,
+      "price": 33.3,
+      "volume_total": 123456,
+      "volume_remain": 4422,
+      "issued": "2016-09-03T05:12:25Z",
+      "state": "open",
+      "min_volume": 1,
+      "account_id": 1000,
+      "duration": 30,
+      "is_corp": false,
+      "escrow": 45.6
+    }
+  ]
+}
+
+CONTRACTS
+{
+  "application/json": [
+    {
+      "contract_id": 1,
+      "issuer_id": 123,
+      "issuer_corporation_id": 456,
+      "assignee_id": 0,
+      "acceptor_id": 0,
+      "type": "auction",
+      "status": "outstanding",
+      "for_corporation": true,
+      "availability": "public",
+      "date_issued": "2017-06-06T13:12:32Z",
+      "date_expired": "2017-06-13T13:12:32Z",
+      "start_location_id": 60014719,
+      "end_location_id": 60014719,
+      "date_accepted": "2017-06-06T13:12:32Z",
+      "days_to_complete": 0,
+      "date_completed": "2017-06-06T13:12:32Z",
+      "price": 1000000.01,
+      "reward": 0.01,
+      "buyout": 10000000000.01,
+      "volume": 0.01
+    }
+  ]
+}
+CONTRACTS ITEMS
+{
+  "application/json": [
+    {
+      "record_id": 123456,
+      "type_id": 587,
+      "quantity": 1,
+      "is_singleton": false,
+      "is_included": true
+    }
+  ]
+}

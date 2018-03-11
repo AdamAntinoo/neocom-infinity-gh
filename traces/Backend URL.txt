@@ -10,14 +10,22 @@ http://localhost:4200/login/CapitanHaddock29/pilot/2113197470
 /api/v1/location/updateoutposts
 /api/v1/credentials
 
+
 # /api/v1/loginlist
 
 TIP TOPHANE
 /api/v1//login/CapitanHaddock29/pilot/2113197470
 
 ADAM ANTINOO
+/api/v1/pilot/92002067/publicdata
+/api/v1/pilot/92002067/assets
+/api/v1/pilot/92002067/industryjobs
+/api/v1/pilot/92002067/contracts
+/api/v1/pilot/92002067/orders
 /api/v1/pilot/92002067/fittingmanager/fittings
+/api/v1/pilot/92002067/fittingmanager/fittingrequests
 /api/v1/pilot/92002067/fittingmanager/processfitting/10042893/copies/1
+/api/v1/pilot/92002067/fittingmanager/processfitting/48137848/copies/1                    -- Nightmare NB Pesadilla 1.0
 
 /api/v1/login/CapitanHaddock09/pilot/92002067/planetarymanager
 /api/v1/login/CapitanHaddock09/pilot/92002067/planetarymanager/location/1004843697743/optimizeprocess
@@ -43,3 +51,14 @@ PERICO TUERTO
 /api/v1/login/CapitanHaddock09/pilot/93813310/planetarymanager
 /api/v1/login/CapitanHaddock09/pilot/93813310/assetsmanager/location/60014089/downloadcontents
 /api/v1/login/CapitanHaddock09/pilot/93813310/assetsmanager/container/1019123153786/downloadcontents
+
+
+PLANET EXPRESS
+/api/v1/corporations/1427661573/publicdata
+/api/v1/corporations/1427661573/personeel
+/api/v1/corporations/1427661573/members
+/api/v1/corporations/1427661573/roles
+/api/v1/corporations/1427661573/facilities
+
+SILENT INFINITY
+/api/v1/alliances/117383987/publicdata

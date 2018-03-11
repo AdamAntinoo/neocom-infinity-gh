@@ -29,8 +29,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication;
-import org.dimensinfin.eveonline.neocom.database.entity.Colony;
-import org.dimensinfin.eveonline.neocom.database.entity.ColonyStorage;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdIndustryJobs200Ok;
@@ -55,6 +53,37 @@ public class PilotDataController {
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 
 	// - M E T H O D - S E C T I O N ..........................................................................
+	@CrossOrigin()
+	@RequestMapping(value = "/api/v1/pilot/{identifier}/publicdata", method = RequestMethod.GET, produces =
+			"application/json")
+	public String pilotPublicData( @PathVariable final Integer identifier ) {
+		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/pilot/{}/publicdata", identifier);
+		logger.info(">> [PilotDataController.pilotPublicData]");
+		try {
+			// Activate the list of credentials.
+			final Credential credential = DataManagementModelStore.activateCredential(identifier);
+			// Get an instance of the v2 version with all the expanded public data that includes corporation information.
+//		final PilotV2	pilotv2=GlobalDataManager.getPilotV2(identifier);
+			String pilotv2="to be replaced by the pilot v2 information";
+			final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(pilotv2);
+			return contentsSerialized;
+		} catch (NumberFormatException nfe) {
+			logger.error("EX [PilotDataController.pilotPublicData]> identifier received cannot be translated to number - " +
+					"{}", nfe.getMessage());
+			return new JsonExceptionInstance("Identifier received cannot be translated to number - " + nfe.getMessage()
+			).toJson();
+		} catch (JsonProcessingException jpe) {
+			logger.error("EX [PilotDataController.pilotPublicData]> Exception processing json: {}", jpe.getMessage());
+			jpe.printStackTrace();
+			return new JsonExceptionInstance(jpe.getMessage()).toJson();
+		} catch (RuntimeException rtx) {
+			logger.error("EX [PilotDataController.pilotPublicData]> Unexpected Exception: {}", rtx.getMessage());
+			rtx.printStackTrace();
+			return new JsonExceptionInstance(rtx.getMessage()).toJson();
+		} finally {
+			logger.info("<< [PilotDataController.pilotPublicData]");
+		}
+	}
 
 	/**
 	 * Reads all the Pilots assets. Assrt grouping and processing is performed at the UI level so most of the AssetsManager
@@ -130,7 +159,7 @@ public class PilotDataController {
 					.setLicensedRuns(1)
 					.setStatus(GetCharactersCharacterIdIndustryJobs200Ok.StatusEnum.ACTIVE)
 					.setDuration(548)
-					.setStartDate( DateTime.now());
+					.setStartDate(DateTime.now());
 			job.setEndDate(job.getStartDate().plus(TimeUnit.SECONDS.toMillis(job.getDuration())))
 					.store();
 			resultJobList.add(job);
@@ -155,6 +184,7 @@ public class PilotDataController {
 			logger.info("<< [PilotDataController.pilotIndustryJobs]");
 		}
 	}
+
 	public String pilotIndustryJobsold( @PathVariable final Integer identifier ) {
 		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/pilot/{}/industryjobs", identifier);
 		logger.info(">> [PilotDataController.pilotIndustryJobs]");

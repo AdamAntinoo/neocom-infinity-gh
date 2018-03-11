@@ -90,8 +90,7 @@ public class LoginController {
 		try {
 			// If we receive a force command we should clear data before executing the request.
 			if (force != null) if (force.equalsIgnoreCase("true")) DataManagementModelStore.getSingleton().cleanModel();
-			final List<Credential> credentials = DataManagementModelStore.getSingleton().coalesceCredentialList();
-//			credentials = DataManagementModelStore.accessCredentialList();
+			final List<Credential> credentials = DataManagementModelStore.accessCredentialList();
 			// Serialize the credentials as the Angular UI requires.
 			return serializeCredentialList(credentials);
 		} catch (RuntimeException rtex) {
@@ -112,7 +111,7 @@ public class LoginController {
 					, GlobalDataManager.getResourceString("R.esi.authorization.secretkey")
 					, GlobalDataManager.getResourceString("R.esi.authorization.callback")
 					, GlobalDataManager.getResourceString("R.esi.authorization.agent")
-					,  NeoComOAuth20.ESIStore.DEFAULT
+					, NeoComOAuth20.ESIStore.DEFAULT
 					, ESINetworkManager.constructScopes());
 			return service.getAuthorizationUrl();
 		} catch (RuntimeException rtex) {
@@ -130,7 +129,7 @@ public class LoginController {
 		final Chrono totalElapsed = new Chrono();
 		try {
 			//
-		return	exchangeAuthorization(code);
+			return exchangeAuthorization(code);
 //			return code;
 		} catch (RuntimeException rtex) {
 			return new JsonExceptionInstance(rtex.getMessage()).toJson();
@@ -201,6 +200,8 @@ public class LoginController {
 							.setExpires(Instant.now().plus(TimeUnit.SECONDS.toMillis(token.getExpires())).getMillis())
 							.setRefreshToken(token.getRefreshToken())
 							.store();
+					// Clean up the list of credential to force a reload on next access.
+					DataManagementModelStore.getSingleton().cleanModel();
 					// Update the Pilot information.
 					GlobalDataManager.getPilotV1(credential.getAccountId());
 					return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(credential);
