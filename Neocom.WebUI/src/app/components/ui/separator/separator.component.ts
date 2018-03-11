@@ -8,7 +8,7 @@ import { Input } from '@angular/core';
 //--- SERVICES
 import { AppModelStoreService } from '../../../services/app-model-store.service';
 //--- COMPONENTS
-import { PageComponent } from '../../../classes/PageComponent';
+import { IViewer } from '../../../interfaces/iviewer.interface';
 // import { PlanetaryManagerPageComponent } from '../../pages/planetary-manager-page/planetary-manager-page.component';
 //--- INTERFACES
 import { ESeparator } from '../../../classes/ESeparator.enumerated';
@@ -16,11 +16,11 @@ import { ESeparator } from '../../../classes/ESeparator.enumerated';
 @Component({
   selector: 'neocom-separator',
   templateUrl: './separator.component.html',
-  styleUrls: ['./separator.component.css']
+  styleUrls: ['./separator.component.scss']
 })
 export class SeparatorComponent implements OnInit {
   //  @Input() variation: ESeparator=ESeparator.ORANGE;
-  @Input() viewer: PageComponent;
+  @Input() viewer: IViewer;
   @Input() node: any;
 
   constructor(private appModelStore: AppModelStoreService) {
@@ -55,6 +55,10 @@ export class SeparatorComponent implements OnInit {
   }
   public isBlue(): boolean {
     if (this.node.variation == ESeparator.BLUE) return true;
+    else return false;
+  }
+  public isWhite(): boolean {
+    if (this.node.variation == ESeparator.WHITE) return true;
     else return false;
   }
   public isEmpty(): boolean {

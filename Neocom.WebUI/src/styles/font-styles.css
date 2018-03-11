@@ -33,17 +33,17 @@
   font-weight: normal;
   src: url("/assets/fonts/Elemental End.ttf") format('truetype');
 }
-
-.elemental-ff {
-  font-family: "Elemental";
-}
-
 @font-face {
   font-family: "Elemental";
   font-style: italic;
   font-weight: normal;
   src: url("/assets/fonts/Elemental End Italic.ttf");
 }
+
+.elemental-ff {
+  font-family: "Elemental";
+}
+
 
 @font-face {
   font-family: 'Mons Olympia';

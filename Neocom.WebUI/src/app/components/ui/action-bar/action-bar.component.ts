@@ -9,19 +9,19 @@
 //               framework.
 //--- CORE
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import 'rxjs/add/operator/switchMap';
+// import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+// import 'rxjs/add/operator/switchMap';
 import { Input } from '@angular/core';
 //--- INTERFACES
-import { PageComponent } from '../../../classes/PageComponent';
+// import { PageComponent } from '../../../classes/PageComponent';
 //--- SERVICES
-import { AppModelStoreService } from '../../../services/app-model-store.service';
+// import { AppModelStoreService } from '../../../services/app-model-store.service';
 //--- COMPONENTS
 // import { LoginPageComponent } from '../../../pages/login-page/login-page.component';
 // import { ComponentFactoryComponent } from '../../factory/component-factory/component-factory.component';
 //--- MODELS
 // import { Login } from '../../../models/Login.model';
-import { NeoComNode } from '../../../models/NeoComNode.model';
+// import { NeoComNode } from '../../../models/NeoComNode.model';
 // import { Pilot } from '../../../models/Pilot.model';
 
 @Component({
