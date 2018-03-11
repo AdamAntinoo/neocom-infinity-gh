@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Routes } from '@angular/router';
 //--- PAGES
+import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 // import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
 // import { EsiAuthorizationPageComponent } from './pages/esi-authorization-page/esi-authorization-page.component';
 // import { ProcessingRenderPageComponent } from './pages/processing-render-page/processing-render-page.component';
@@ -31,7 +32,7 @@ const routes: Routes = [
     redirectTo: '/welcome',
     pathMatch: 'full'
   },
-  // { path: 'dashboard', component: DashboardPageComponent },
+  { path: 'welcome', component: WelcomePageComponent },
   // { path: 'esiauthorization', component: EsiAuthorizationPageComponent },
   // { path: 'testprocessing/:id', component: ProcessingRenderPageComponent },
   // { path: 'authorizationprogress', component: AuthorizationProgressPageComponent },

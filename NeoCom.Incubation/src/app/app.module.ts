@@ -35,10 +35,10 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { AppRoutingModule } from './app-routing.module';
 // import { OAuthService } from 'angular2-oauth2/oauth-service';
 //--- APPLICATION MODULES
-// import { NeoComModelsModule } from './modules/neocom-models/neocom-models.module';
+import { UIModule } from './modules/ui/ui.module';
 // import { IncubationModule } from './modules/incubation/incubation.module';
 //--- SERVICES
-// import { AppModelStoreService } from './services/app-model-store.service';
+import { AppModelStoreService } from './services/app-model-store.service';
 //--- COMPONENTS-CORE
 import { AppComponent } from './app.component';
 // import { ViewContainerRef } from '@angular/core';
@@ -47,6 +47,7 @@ import { AppComponent } from './app.component';
 import { CapitalizeLetterPipe } from './pipes/capitalize-letter.pipe';
 import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
 //--- PAGES
+import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 // import { BasePageComponent } from './pages/base-page.component';
 // import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
 // import { EsiAuthorizationPageComponent } from './pages/esi-authorization-page/esi-authorization-page.component';
@@ -93,7 +94,9 @@ import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
     //--- ANIMATIONS
     BrowserAnimationsModule,
     //--- ROUTING
-    AppRoutingModule
+    AppRoutingModule,
+    //--- APPLICATION MODULES
+    UIModule
   ],
   declarations: [
     //--- COMPONENTS-CORE
@@ -101,10 +104,11 @@ import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
     //--- PIPES
     CapitalizeLetterPipe,
     ISKNoDecimalsPipe,
-
+    //--- PAGES
+    WelcomePageComponent,
   ],
   providers: [
-    // AppModelStoreService
+    AppModelStoreService
   ],
   bootstrap: [AppComponent]
 })

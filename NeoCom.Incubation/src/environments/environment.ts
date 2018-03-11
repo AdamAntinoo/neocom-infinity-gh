@@ -6,6 +6,6 @@
 export const environment = {
   production: false,
   mockactive: false,
-  name: require('../../package.json').name,
-  version: require('../../package.json').version
+  name: require('../../.angular-cli.json').project.name,
+  version: require('../../.angular-cli.json').project.version
 };
