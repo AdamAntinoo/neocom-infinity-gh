@@ -7,15 +7,28 @@
 //               the second is the java microservices that compose the web application backend made with
 //               SpringBoot technology and finally the web ui code made in typescript within the Angular
 //               framework.
+//--- CORE
 import { Component } from '@angular/core';
-import { environment } from '../environments/environment';
+import { Input } from '@angular/core';
+//--- INTERFACES
+import { IViewer } from '../../../interfaces/IViewer.interface';
+import { INeoComNode } from '../../../interfaces/INeoComNode.interface';
+//--- MODELS
+import { NeoComNode } from '../../../models/NeoComNode.model';
 
+/**
+This class represents the requirements requestd by the simplest node to be rendered on node containers.
+*/
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'notused-expandable',
+  templateUrl: './notused.html'
 })
-export class AppComponent {
-  public applicationname: string = environment.name;
-  public version: string = environment.version;
+export class NeoComNodeComponent {
+  @Input() viewer: IViewer;
+  // @Input() node: NeoComNode;
+
+  //--- GETTERS & SETTERS
+  public isExpandable(): boolean {
+    return false;
+  }
 }

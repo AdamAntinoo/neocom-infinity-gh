@@ -21,7 +21,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 //--- INTERFACES
 import { PageComponent } from 'src/app/classes/PageComponent';
-import { AppModelStoreMockService } from 'src/app/modules/app-modelstore/services/app-modelstore-mock.service';
+// import { AppModelStoreMockService } from 'src/app/modules/app-modelstore/services/app-modelstore-mock.service';
 //--- MODELS
 import { Credential } from 'src/app/models/Credential.model';
 import { NeoComNode } from 'src/app/models/NeoComNode.model';
@@ -41,7 +41,7 @@ import { Login } from 'src/app/models/Login.model';
 This service will store persistent application data and has the knowledge to get to the backend to retrieve any data it is requested to render on the view.
 */
 @Injectable()
-export class AppModelStoreService extends AppModelStoreMockService {
+export class AppModelStoreService /*extends AppModelStoreMockService*/ {
   static APPLICATION_NAME: string = "NeoCom-MS";
   static APPLICATION_VERSION: string = "v 0.11.0"
   static APPLICATION_SERVICE_PORT = "9000";
@@ -54,8 +54,8 @@ export class AppModelStoreService extends AppModelStoreMockService {
   private _currentLogin: Login = null; // The current Login active.
   private _lastViewer: PageComponent = null;
 
-  constructor(private http: Http, private router: Router) {
-    super();
+  constructor(protected http: Http, protected router: Router) {
+    // super();
   }
 
   //--- C O M M O N    C A L L S

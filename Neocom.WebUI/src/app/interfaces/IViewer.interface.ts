@@ -7,15 +7,11 @@
 //               the second is the java microservices that compose the web application backend made with
 //               SpringBoot technology and finally the web ui code made in typescript within the Angular
 //               framework.
-import { Component } from '@angular/core';
-import { environment } from '../environments/environment';
+//--- INTERFACES
+import { IDataSource } from '../interfaces/IDataSource.interface';
+import { INeoComNode } from '../interfaces/INeoComNode.interface';
 
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
-})
-export class AppComponent {
-  public applicationname: string = environment.name;
-  public version: string = environment.version;
+export interface IViewer {
+  getViewer(): IViewer;
+  notifyDataChanged(): void;
 }

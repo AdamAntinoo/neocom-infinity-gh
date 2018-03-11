@@ -7,15 +7,17 @@
 //               the second is the java microservices that compose the web application backend made with
 //               SpringBoot technology and finally the web ui code made in typescript within the Angular
 //               framework.
-import { Component } from '@angular/core';
-import { environment } from '../environments/environment';
+//--- CORE
+// import { Observable } from 'rxjs/Rx';
+// // Import RxJs required methods
+// import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/catch';
+//--- SERVICES
+import { AppModelStoreService } from '../services/app-model-store.service';
+//--- INTERFACES
+import { INeoComNode } from '../interfaces/INeoComNode.interface';
+import { EVariant } from '../interfaces/EVariant.enumerated';
 
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
-})
-export class AppComponent {
-  public applicationname: string = environment.name;
-  public version: string = environment.version;
+export interface ICollaboration {
+  collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): INeoComNode[];
 }
