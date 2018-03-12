@@ -33,6 +33,7 @@ import { ISKNoDecimalsPipe } from '../../pipes/iskno-decimals.pipe';
 //--- COMPONENTS-ABSTRACT
 //--- COMPONENTS-UI
 import { HeaderComponent } from './header/header.component';
+import { ActionBarComponent } from './action-bar/action-bar.component';
 //--- COMPONENTS-MODEL
 //--- COMPONENTS-DETAILED
 //--- MODELS
@@ -55,10 +56,12 @@ import { HeaderComponent } from './header/header.component';
     //--- OAUTH2
   ],
   declarations: [
-    HeaderComponent
+    HeaderComponent,
+    ActionBarComponent
   ],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    ActionBarComponent
   ]
 })
 export class UIModule { }

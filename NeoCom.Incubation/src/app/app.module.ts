@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 //--- ADDITIONAL MODULES
 import { ReactiveFormsModule } from '@angular/forms';
 import { InlineEditorModule } from 'ng2-inline-editor';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 // import { } from 'ng2-inline-editor';
 //--- ANIMATIONS
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgDragDropModule } from 'ng-drag-drop';
 //--- OAUTH2
 import { OAuthModule } from 'angular-oauth2-oidc';
+import { OAuthService } from 'angular-oauth2-oidc';
 //--- TOAST NOTIFICATIONS
 // import { ToastModule } from 'ng2-toastr/ng2-toastr';
 // import { ToastsManager } from 'ng2-toastr/ng2-toastr';
@@ -48,6 +50,7 @@ import { CapitalizeLetterPipe } from './pipes/capitalize-letter.pipe';
 import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
 //--- PAGES
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
+import { ValidateAuthorizationPageComponent } from './pages/validate-authorization-page//validate-authorization-page.component';
 // import { BasePageComponent } from './pages/base-page.component';
 // import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
 // import { EsiAuthorizationPageComponent } from './pages/esi-authorization-page/esi-authorization-page.component';
@@ -91,8 +94,16 @@ import { WelcomePageComponent } from './pages/welcome-page/welcome-page.componen
     //--- ADDITIONAL MODULES
     ReactiveFormsModule,
     InlineEditorModule,
+    AngularFontAwesomeModule,
     //--- ANIMATIONS
     BrowserAnimationsModule,
+    //--- HTTP CLIENT
+    HttpModule,
+    HttpClientModule,
+    //--- DRAG AND DROP
+    NgDragDropModule,
+    //--- OAUTH2
+    OAuthModule.forRoot(),
     //--- ROUTING
     AppRoutingModule,
     //--- APPLICATION MODULES
@@ -106,8 +117,10 @@ import { WelcomePageComponent } from './pages/welcome-page/welcome-page.componen
     ISKNoDecimalsPipe,
     //--- PAGES
     WelcomePageComponent,
+    ValidateAuthorizationPageComponent
   ],
   providers: [
+    // OAuthService,
     AppModelStoreService
   ],
   bootstrap: [AppComponent]
