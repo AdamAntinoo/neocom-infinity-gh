@@ -203,7 +203,7 @@ public class LoginController {
 					// Clean up the list of credential to force a reload on next access.
 					DataManagementModelStore.getSingleton().cleanModel();
 					// Update the Pilot information.
-					GlobalDataManager.getPilotV1(credential.getAccountId());
+					GlobalDataManager.getPilotV2(credential.getAccountId());
 					return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(credential);
 				} else
 					return exceptionSerialization(new NeoComException("NE [LoginController.exchangeAuthorization]> the VerifyCharacterResponse response is invalid. "

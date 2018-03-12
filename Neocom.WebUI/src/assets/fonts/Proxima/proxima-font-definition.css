@@ -32,7 +32,7 @@
     font-family: 'Proxima Nova';
     src: url('/assets/fonts/Proxima/Mark Simonson - Proxima Nova Alt Regular-webfont.eot');
     src: url('/assets/fonts/Proxima/Mark Simonson - Proxima Nova Alt Regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/assets/fonts/Proxima/Mark Simonson - Proxima Nova Alt Regular-webfont.woff2') format('woff2'),
+         /* url('/assets/fonts/Proxima/Mark Simonson - Proxima Nova Alt Regular-webfont.woff2') format('woff2'), */
          url('/assets/fonts/Proxima/Mark Simonson - Proxima Nova Alt Regular-webfont.woff') format('woff'),
          url('/assets/fonts/Proxima/Mark Simonson - Proxima Nova Alt Regular-webfont.ttf') format('truetype'),
          url('/assets/fonts/Proxima/Mark Simonson - Proxima Nova Alt Regular-webfont.svg#proxima_nova_altregular') format('svg');

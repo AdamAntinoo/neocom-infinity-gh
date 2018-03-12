@@ -217,7 +217,7 @@ public class NeoComMicroServiceApplication {
 			jgen.writeBooleanField("isActive", value.isActive());
 			jgen.writeBooleanField("isXML", value.isXMLCompatible());
 			jgen.writeBooleanField("isESI", value.isESICompatible());
-			jgen.writeObjectField("pilot", GlobalDataManager.getPilotV1(value.getAccountId()));
+			jgen.writeObjectField("pilot", GlobalDataManager.getPilotV2(value.getAccountId()));
 			jgen.writeEndObject();
 		}
 	}
@@ -314,7 +314,7 @@ public class NeoComMicroServiceApplication {
 //			jgen.writeBooleanField("isActive", value.isActive());
 //			jgen.writeBooleanField("isXML", value.isXMLCompatible());
 //			jgen.writeBooleanField("isESI", value.isESICompatible());
-//			jgen.writeObjectField("pilot", GlobalDataManager.getPilotV1(value.getAccountId()));
+//			jgen.writeObjectField("pilot", GlobalDataManager.getPilotV2(value.getAccountId()));
 //			jgen.writeEndObject();
 //
 //

@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 // - CLASS IMPLEMENTATION ...................................................................................
 public class SDEDatabaseTestUnit {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger logger = LoggerFactory.getLogger(SDEDatabaseTestUnit.class);
+	private static Logger logger = LoggerFactory.getLogger("SDEDatabaseTestUnit");
 	private static ISDEDBHelper sdeHelper = null;
 	@BeforeClass
 	public static void testOpenAndConnectDatabase() throws SQLException {
