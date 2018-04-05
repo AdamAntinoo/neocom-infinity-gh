@@ -36,7 +36,7 @@ public class ${NAME}{
 	// --- D E L E G A T E D   M E T H O D S
 	@Override
 	public String toString () {
-		return new StringBuffer("${NAME}[")
+		return new StringBuffer("${NAME} [")
 		.append("field:").append().append(" ")
 		.append("]")
 				.append("->").append(super.toString())
