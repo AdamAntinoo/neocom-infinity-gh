@@ -8,15 +8,10 @@
 //               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 
@@ -32,14 +27,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.dimensinfin.eveonline.neocom.conf.GlobalConfigurationProvider;
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
-import org.dimensinfin.eveonline.neocom.database.entity.Credential;
-import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
-import org.dimensinfin.eveonline.neocom.datamngmt.manager.MarketDataServer;
-import org.dimensinfin.eveonline.neocom.industry.Action;
-import org.dimensinfin.eveonline.neocom.industry.EveTask;
-import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
-import org.dimensinfin.eveonline.neocom.model.Ship;
-import org.dimensinfin.eveonline.neocom.services.TimedUpdater;
+import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 
@@ -58,22 +46,24 @@ import org.dimensinfin.eveonline.neocom.services.TimedUpdater;
 public class NeoComMicroServiceApplication {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger logger = LoggerFactory.getLogger("NeoComMicroServiceApplication");
-	public static MarketDataServer mdServer = null;
-	public static final TimedUpdater timedService = new TimedUpdater();
+	public static org.dimensinfin.eveonline.neocom.datamngmt.manager.MarketDataServer mdServer = null;
+//	public static final TimedUpdater timedService = new TimedUpdater();
 
 	public static final ObjectMapper jsonMapper = new ObjectMapper();
+
 	static {
 		jsonMapper.enable(SerializationFeature.INDENT_OUTPUT);
 		jsonMapper.registerModule(new JodaModule());
 		// Add our own serializers.
 		SimpleModule neocomSerializerModule = new SimpleModule();
-		neocomSerializerModule.addSerializer(Ship.class, new ShipSerializer());
-		neocomSerializerModule.addSerializer(Credential.class, new CredentialSerializer());
-		neocomSerializerModule.addSerializer(Action.class, new ActionSerializer());
-		neocomSerializerModule.addSerializer(EveTask.class, new ProcessingTaskSerializer());
-		neocomSerializerModule.addSerializer(NeoComAsset.class, new NeoComAssetSerializer());
+//		neocomSerializerModule.addSerializer(Ship.class, new ShipSerializer());
+//		neocomSerializerModule.addSerializer(Credential.class, new CredentialSerializer());
+//		neocomSerializerModule.addSerializer(Action.class, new ActionSerializer());
+//		neocomSerializerModule.addSerializer(EveTask.class, new ProcessingTaskSerializer());
+//		neocomSerializerModule.addSerializer(NeoComAsset.class, new NeoComAssetSerializer());
 		jsonMapper.registerModule(neocomSerializerModule);
 	}
+
 	/**
 	 * Instance for the mapping of OK instances to the MVC compatible classes.
 	 */
@@ -133,7 +123,7 @@ public class NeoComMicroServiceApplication {
 
 		// Connect the MarketData service.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Starting Market Data service...");
-		mdServer = new MarketDataServer().start();
+		mdServer = new org.dimensinfin.eveonline.neocom.datamngmt.manager.MarketDataServer().start();
 		GlobalDataManager.setMarketDataManager(mdServer);
 
 		// Load the Locations cache to speed up the Citadel and Outpost search.
@@ -165,138 +155,139 @@ public class NeoComMicroServiceApplication {
 			GlobalDataManager.writeLocationsDatacache();
 	}
 
-	@Scheduled(initialDelay = 120000, fixedDelay = 900000)
-	private void onTime() {
-		// Fire another background update scan.
-		// Check if the configuration properties allow to run the updater.
-		if (GlobalDataManager.getResourceBoolean("R.updater.allowtimer", false)) {
-			timedService.timeTick();
-		}
-	}
+//	@Scheduled(initialDelay = 120000, fixedDelay = 900000)
+//	private void onTime() {
+//		// Fire another background update scan.
+//		// Check if the configuration properties allow to run the updater.
+//		if (GlobalDataManager.getResourceBoolean("R.updater.allowtimer", false)) {
+//			timedService.timeTick();
+//		}
+//	}
 
-	// - CLASS IMPLEMENTATION ...................................................................................
-	public static class ShipSerializer extends JsonSerializer<Ship> {
-		// - F I E L D - S E C T I O N ............................................................................
+//	// - CLASS IMPLEMENTATION ...................................................................................
+//	public static class ShipSerializer extends JsonSerializer<Ship> {
+//		// - F I E L D - S E C T I O N ............................................................................
+//
+//		// - M E T H O D - S E C T I O N ..........................................................................
+//		@Override
+//		public void serialize( final Ship value, final JsonGenerator jgen, final SerializerProvider provider )
+//				throws IOException, JsonProcessingException {
+//			jgen.writeStartObject();
+//			jgen.writeStringField("jsonClass", value.getJsonClass());
+//			jgen.writeNumberField("assetId", value.getAssetId());
+//			jgen.writeNumberField("typeId", value.getTypeId());
+//			jgen.writeNumberField("ownerId", value.getOwnerID());
+//			jgen.writeStringField("name", value.getItemName());
+//			jgen.writeStringField("category", value.getCategory());
+//			jgen.writeStringField("groupName", value.getGroupName());
+//			jgen.writeStringField("tech", value.getTech());
+//			jgen.writeStringField("userLabel", value.getUserLabel());
+//			jgen.writeNumberField("price", value.getItem().getPrice());
+//			jgen.writeNumberField("highesBuyerPrice", value.getItem().getHighestBuyerPrice().getPrice());
+//			jgen.writeNumberField("lowerSellerPrice", value.getItem().getLowestSellerPrice().getPrice());
+//			jgen.writeObjectField("item", value.getItem());
+//			jgen.writeEndObject();
+//		}
+//	}
+//	// ..........................................................................................................
 
-		// - M E T H O D - S E C T I O N ..........................................................................
-		@Override
-		public void serialize( final Ship value, final JsonGenerator jgen, final SerializerProvider provider )
-				throws IOException, JsonProcessingException {
-			jgen.writeStartObject();
-			jgen.writeStringField("jsonClass", value.getJsonClass());
-			jgen.writeNumberField("assetId", value.getAssetId());
-			jgen.writeNumberField("typeId", value.getTypeId());
-			jgen.writeNumberField("ownerId", value.getOwnerID());
-			jgen.writeStringField("name", value.getItemName());
-			jgen.writeStringField("category", value.getCategory());
-			jgen.writeStringField("groupName", value.getGroupName());
-			jgen.writeStringField("tech", value.getTech());
-			jgen.writeStringField("userLabel", value.getUserLabel());
-			jgen.writeNumberField("price", value.getItem().getPrice());
-			jgen.writeNumberField("highesBuyerPrice", value.getItem().getHighestBuyerPrice().getPrice());
-			jgen.writeNumberField("lowerSellerPrice", value.getItem().getLowestSellerPrice().getPrice());
-			jgen.writeObjectField("item", value.getItem());
-			jgen.writeEndObject();
-		}
-	}
-	// ..........................................................................................................
+//	// - CLASS IMPLEMENTATION ...................................................................................
+//	public static class CredentialSerializer extends JsonSerializer<Credential> {
+//		// - F I E L D - S E C T I O N ............................................................................
+//
+//		// - M E T H O D - S E C T I O N ..........................................................................
+//		@Override
+//		public void serialize( final Credential value, final JsonGenerator jgen, final SerializerProvider provider )
+//				throws IOException, JsonProcessingException {
+//			jgen.writeStartObject();
+//			jgen.writeStringField("jsonClass", value.getJsonClass());
+//			jgen.writeNumberField("accountId", value.getAccountId());
+//			jgen.writeStringField("accountName", value.getAccountName());
+//			jgen.writeStringField("tokenType", value.getTokenType());
+//			jgen.writeBooleanField("isActive", value.isActive());
+//			jgen.writeBooleanField("isXML", value.isXMLCompatible());
+//			jgen.writeBooleanField("isESI", value.isESICompatible());
+//			jgen.writeObjectField("pilot", GlobalDataManager.getPilotV2(value.getAccountId()));
+//			jgen.writeEndObject();
+//		}
+//	}
+//	// ..........................................................................................................
 
-	// - CLASS IMPLEMENTATION ...................................................................................
-	public static class CredentialSerializer extends JsonSerializer<Credential> {
-		// - F I E L D - S E C T I O N ............................................................................
+//	// - CLASS IMPLEMENTATION ...................................................................................
+//	public static class ActionSerializer extends JsonSerializer<Action> {
+//		// - F I E L D - S E C T I O N ............................................................................
+//
+//		// - M E T H O D - S E C T I O N ..........................................................................
+//		@Override
+//		public void serialize( final Action value, final JsonGenerator jgen, final SerializerProvider provider )
+//				throws IOException, JsonProcessingException {
+//			jgen.writeStartObject();
+//			jgen.writeStringField("jsonClass", value.getJsonClass());
+//			jgen.writeNumberField("typeId", value.getTypeId());
+//			jgen.writeStringField("itemName", value.getItemName());
+//			jgen.writeNumberField("requestQty", value.getRequestQty());
+//			jgen.writeNumberField("completedQty", value.getCompletedQty());
+//			jgen.writeStringField("category", value.getCategory());
+//			jgen.writeStringField("group", value.getGroupName());
+//			jgen.writeStringField("itemIndustryGroup", value.getItemIndustryGroup().name());
+//			jgen.writeObjectField("resource", value.getResource());
+//			jgen.writeObjectField("tasks", value.getTasks());
+//			jgen.writeEndObject();
+//		}
+//	}
+//	// ..........................................................................................................
 
-		// - M E T H O D - S E C T I O N ..........................................................................
-		@Override
-		public void serialize( final Credential value, final JsonGenerator jgen, final SerializerProvider provider )
-				throws IOException, JsonProcessingException {
-			jgen.writeStartObject();
-			jgen.writeStringField("jsonClass", value.getJsonClass());
-			jgen.writeNumberField("accountId", value.getAccountId());
-			jgen.writeStringField("accountName", value.getAccountName());
-			jgen.writeStringField("tokenType", value.getTokenType());
-			jgen.writeBooleanField("isActive", value.isActive());
-			jgen.writeBooleanField("isXML", value.isXMLCompatible());
-			jgen.writeBooleanField("isESI", value.isESICompatible());
-			jgen.writeObjectField("pilot", GlobalDataManager.getPilotV2(value.getAccountId()));
-			jgen.writeEndObject();
-		}
-	}
+//	// - CLASS IMPLEMENTATION ...................................................................................
+//	public static class ProcessingTaskSerializer extends JsonSerializer<EveTask> {
+//		// - F I E L D - S E C T I O N ............................................................................
+//
+//		// - M E T H O D - S E C T I O N ..........................................................................
+//		@Override
+//		public void serialize( final EveTask value, final JsonGenerator jgen, final SerializerProvider provider )
+//				throws IOException, JsonProcessingException {
+//			jgen.writeStartObject();
+//			jgen.writeStringField("jsonClass", value.getJsonClass());
+//			jgen.writeStringField("taskType", value.getTaskType().name());
+//			jgen.writeObjectField("referencedAsset", value.getReferencedAsset());
+//			jgen.writeNumberField("quantity", value.getQty());
+//			jgen.writeObjectField("sourceLocation", value.getLocation());
+//			jgen.writeObjectField("destination", value.getDestination());
+//			jgen.writeEndObject();
+//		}
+//	}
+//	// ..........................................................................................................
 
-	// ..........................................................................................................
-	// - CLASS IMPLEMENTATION ...................................................................................
-	public static class ActionSerializer extends JsonSerializer<Action> {
-		// - F I E L D - S E C T I O N ............................................................................
-
-		// - M E T H O D - S E C T I O N ..........................................................................
-		@Override
-		public void serialize( final Action value, final JsonGenerator jgen, final SerializerProvider provider )
-				throws IOException, JsonProcessingException {
-			jgen.writeStartObject();
-			jgen.writeStringField("jsonClass", value.getJsonClass());
-			jgen.writeNumberField("typeId", value.getTypeId());
-			jgen.writeStringField("itemName", value.getItemName());
-			jgen.writeNumberField("requestQty", value.getRequestQty());
-			jgen.writeNumberField("completedQty", value.getCompletedQty());
-			jgen.writeStringField("category", value.getCategory());
-			jgen.writeStringField("group", value.getGroupName());
-			jgen.writeStringField("itemIndustryGroup", value.getItemIndustryGroup().name());
-			jgen.writeObjectField("resource", value.getResource());
-			jgen.writeObjectField("tasks", value.getTasks());
-			jgen.writeEndObject();
-		}
-	}
-
-	// ..........................................................................................................
-	// - CLASS IMPLEMENTATION ...................................................................................
-	public static class ProcessingTaskSerializer extends JsonSerializer<EveTask> {
-		// - F I E L D - S E C T I O N ............................................................................
-
-		// - M E T H O D - S E C T I O N ..........................................................................
-		@Override
-		public void serialize( final EveTask value, final JsonGenerator jgen, final SerializerProvider provider )
-				throws IOException, JsonProcessingException {
-			jgen.writeStartObject();
-			jgen.writeStringField("jsonClass", value.getJsonClass());
-			jgen.writeStringField("taskType", value.getTaskType().name());
-			jgen.writeObjectField("referencedAsset", value.getReferencedAsset());
-			jgen.writeNumberField("quantity", value.getQty());
-			jgen.writeObjectField("sourceLocation", value.getLocation());
-			jgen.writeObjectField("destination", value.getDestination());
-			jgen.writeEndObject();
-		}
-	}
-	// ..........................................................................................................
-	// - CLASS IMPLEMENTATION ...................................................................................
-	public static class NeoComAssetSerializer extends JsonSerializer<NeoComAsset> {
-		// - F I E L D - S E C T I O N ............................................................................
-
-		// - M E T H O D - S E C T I O N ..........................................................................
-		@Override
-		public void serialize( final NeoComAsset value, final JsonGenerator jgen, final SerializerProvider provider )
-				throws IOException, JsonProcessingException {
-			jgen.writeStartObject();
-			jgen.writeStringField("jsonClass", value.getJsonClass());
-			jgen.writeNumberField("assetId", value.getAssetId());
-			jgen.writeObjectField("typeId", value.getTypeId());
-			jgen.writeNumberField("quantity", value.getQuantity());
-			jgen.writeNumberField("locationId", value.getLocationId());
-			jgen.writeStringField("locationType", value.getLocationType().name());
-			jgen.writeStringField("locationFlag", value.getFlag().name());
-			jgen.writeStringField("name", value.getName());
-			jgen.writeNumberField("ownerId", value.getOwnerID());
-			jgen.writeStringField("name", value.getName());
-			jgen.writeStringField("categoryName", value.getCategory());
-			jgen.writeStringField("groupName", value.getGroupName());
-			jgen.writeStringField("tech", value.getTech());
-			jgen.writeStringField("userLabel", value.getUserLabel());
-			jgen.writeNumberField("price", value.getPrice());
-			jgen.writeNumberField("parentContainerId", value.getParentContainerId());
-			jgen.writeObjectField("item", value.getItem());
-			jgen.writeObjectField("location", value.getLocation());
-			jgen.writeEndObject();
-		}
-	}
-	// ..........................................................................................................
+//	// - CLASS IMPLEMENTATION ...................................................................................
+//	public static class NeoComAssetSerializer extends JsonSerializer<NeoComAsset> {
+//		// - F I E L D - S E C T I O N ............................................................................
+//
+//		// - M E T H O D - S E C T I O N ..........................................................................
+//		@Override
+//		public void serialize( final NeoComAsset value, final JsonGenerator jgen, final SerializerProvider provider )
+//				throws IOException, JsonProcessingException {
+//			jgen.writeStartObject();
+//			jgen.writeStringField("jsonClass", value.getJsonClass());
+//			jgen.writeNumberField("assetId", value.getAssetId());
+//			jgen.writeObjectField("typeId", value.getTypeId());
+//			jgen.writeNumberField("quantity", value.getQuantity());
+//			jgen.writeNumberField("locationId", value.getLocationId());
+//			jgen.writeStringField("locationType", value.getLocationType().name());
+//			jgen.writeStringField("locationFlag", value.getFlag().name());
+//			jgen.writeStringField("name", value.getName());
+//			jgen.writeNumberField("ownerId", value.getOwnerID());
+//			jgen.writeStringField("name", value.getName());
+//			jgen.writeStringField("categoryName", value.getCategory());
+//			jgen.writeStringField("groupName", value.getGroupName());
+//			jgen.writeStringField("tech", value.getTech());
+//			jgen.writeStringField("userLabel", value.getUserLabel());
+//			jgen.writeNumberField("price", value.getPrice());
+//			jgen.writeNumberField("parentContainerId", value.getParentContainerId());
+//			jgen.writeObjectField("item", value.getItem());
+//			jgen.writeObjectField("location", value.getLocation());
+//			jgen.writeEndObject();
+//		}
+//	}
+//	// ..........................................................................................................
 
 	// - CLASS IMPLEMENTATION ...................................................................................
 //	public static class LocationSerializer extends JsonSerializer<EveLocation> {

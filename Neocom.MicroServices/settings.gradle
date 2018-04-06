@@ -1,7 +1,10 @@
 rootProject.name = 'NeoCom.MicroServices'
 
+include ':ESI.SwaggerApi'
+project(':ESI.SwaggerApi').projectDir = new File('D:\\Development\\Libraries Base\\NeoCom-DM\\NeoCom-DataMngmt Infinity\\ESI.SwaggerApi')
 include ':NeoCom.Model'
 project(':NeoCom.Model').projectDir = new File('D:\\Development\\Libraries Base\\NeoCom-DM\\NeoCom-DataMngmt Infinity\\NeoCom' +
         '.Model')
-include ':ESI.SwaggerApi'
-project(':ESI.SwaggerApi').projectDir = new File('D:\\Development\\Libraries Base\\NeoCom-DM\\NeoCom-DataMngmt Infinity\\ESI.SwaggerApi')
+include ':NeoCom.DataManagement'
+project(':NeoCom.DataManagement').projectDir = new File('D:\\Development\\Libraries Base\\NeoCom-DM\\NeoCom-DataMngmt ' +
+        'Infinity\\NeoCom.DataManagement')

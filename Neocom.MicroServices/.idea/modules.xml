@@ -3,14 +3,17 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/119254933/ESI.SwaggerApi.iml" filepath="$PROJECT_DIR$/.idea/modules/119254933/ESI.SwaggerApi.iml" group="ESI.SwaggerApi" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/119254933/NeoCom-DataMngmt Infinity-ESI.SwaggerApi_main.iml" filepath="$PROJECT_DIR$/.idea/modules/119254933/NeoCom-DataMngmt Infinity-ESI.SwaggerApi_main.iml" group="ESI.SwaggerApi" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/119254933/NeoCom-DataMngmt Infinity-ESI.SwaggerApi_test.iml" filepath="$PROJECT_DIR$/.idea/modules/119254933/NeoCom-DataMngmt Infinity-ESI.SwaggerApi_test.iml" group="ESI.SwaggerApi" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1291975850/NeoCom-DataMngmt Infinity-NeoCom.Model_main.iml" filepath="$PROJECT_DIR$/.idea/modules/-1291975850/NeoCom-DataMngmt Infinity-NeoCom.Model_main.iml" group="NeoCom.Model" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1291975850/NeoCom-DataMngmt Infinity-NeoCom.Model_test.iml" filepath="$PROJECT_DIR$/.idea/modules/-1291975850/NeoCom-DataMngmt Infinity-NeoCom.Model_test.iml" group="NeoCom.Model" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/119254933/ESI.SwaggerApi_main.iml" filepath="$PROJECT_DIR$/.idea/modules/119254933/ESI.SwaggerApi_main.iml" group="ESI.SwaggerApi" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/119254933/ESI.SwaggerApi_test.iml" filepath="$PROJECT_DIR$/.idea/modules/119254933/ESI.SwaggerApi_test.iml" group="ESI.SwaggerApi" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1762473440/NeoCom.DataManagement.iml" filepath="$PROJECT_DIR$/.idea/modules/1762473440/NeoCom.DataManagement.iml" group="NeoCom.DataManagement" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1762473440/NeoCom.DataManagement_main.iml" filepath="$PROJECT_DIR$/.idea/modules/1762473440/NeoCom.DataManagement_main.iml" group="NeoCom.DataManagement" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1762473440/NeoCom.DataManagement_test.iml" filepath="$PROJECT_DIR$/.idea/modules/1762473440/NeoCom.DataManagement_test.iml" group="NeoCom.DataManagement" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/NeoCom.MicroServices.iml" filepath="$PROJECT_DIR$/.idea/modules/NeoCom.MicroServices.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/NeoCom.MicroServices_main.iml" filepath="$PROJECT_DIR$/.idea/modules/NeoCom.MicroServices_main.iml" group="NeoCom.MicroServices" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/NeoCom.MicroServices_test.iml" filepath="$PROJECT_DIR$/.idea/modules/NeoCom.MicroServices_test.iml" group="NeoCom.MicroServices" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1291975850/NeoCom.Model.iml" filepath="$PROJECT_DIR$/.idea/modules/-1291975850/NeoCom.Model.iml" group="NeoCom.Model" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1291975850/NeoCom.Model_main.iml" filepath="$PROJECT_DIR$/.idea/modules/-1291975850/NeoCom.Model_main.iml" group="NeoCom.Model" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1291975850/NeoCom.Model_test.iml" filepath="$PROJECT_DIR$/.idea/modules/-1291975850/NeoCom.Model_test.iml" group="NeoCom.Model" />
     </modules>
   </component>
 </project>
