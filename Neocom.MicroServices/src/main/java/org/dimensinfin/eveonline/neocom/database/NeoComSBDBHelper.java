@@ -29,18 +29,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.dimensinfin.eveonline.neocom.database.entity.Colony;
-import org.dimensinfin.eveonline.neocom.database.entity.ColonySerialized;
-import org.dimensinfin.eveonline.neocom.database.entity.ColonyStorage;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.database.entity.DatabaseVersion;
 import org.dimensinfin.eveonline.neocom.database.entity.TimeStamp;
-import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.enums.EPropertyTypes;
-import org.dimensinfin.eveonline.neocom.model.ApiKey;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
 import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
-import org.dimensinfin.eveonline.neocom.model.NeoComBlueprint;
-import org.dimensinfin.eveonline.neocom.model.Property;
 
 /**
  * NeoCom private database connector that will have the same api as the connector to be used on Android. This
@@ -69,15 +64,15 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 
 	private Dao<DatabaseVersion, String> versionDao = null;
 	private Dao<TimeStamp, String> timeStampDao = null;
-	private Dao<ApiKey, String> apiKeysDao = null;
+//	private Dao<ApiKey, String> apiKeysDao = null;
 	private Dao<Credential, String> credentialDao = null;
 	private Dao<Colony, String> colonyDao = null;
-	private Dao<ColonyStorage, String> colonyStorageDao = null;
-	private Dao<ColonySerialized, String> colonySerializedDao = null;
+//	private Dao<ColonyStorage, String> colonyStorageDao = null;
+//	private Dao<ColonySerialized, String> colonySerializedDao = null;
 	private Dao<NeoComAsset, String> assetDao = null;
 	private Dao<EveLocation, String> locationDao = null;
-	private Dao<Property, String> propertyDao = null;
-	private Dao<NeoComBlueprint, String> blueprintDao = null;
+//	private Dao<Property, String> propertyDao = null;
+//	private Dao<NeoComBlueprint, String> blueprintDao = null;
 
 	private DatabaseVersion storedVersion = null;
 
@@ -194,21 +189,21 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		} catch (SQLException sqle) {
 			logger.warn("SQL [NeoComSBDBHelper.onCreate]> SQL NeoComDatabase: {}", sqle.getMessage());
 		}
-		try {
-			TableUtils.createTableIfNotExists(databaseConnection, ApiKey.class);
-		} catch (SQLException sqle) {
-			logger.warn("SQL [NeoComSBDBHelper.onCreate]> SQL NeoComDatabase: {}", sqle.getMessage());
-		}
+//		try {
+//			TableUtils.createTableIfNotExists(databaseConnection, ApiKey.class);
+//		} catch (SQLException sqle) {
+//			logger.warn("SQL [NeoComSBDBHelper.onCreate]> SQL NeoComDatabase: {}", sqle.getMessage());
+//		}
 		try {
 			TableUtils.createTableIfNotExists(databaseConnection, Credential.class);
 		} catch (SQLException sqle) {
 			logger.warn("SQL [NeoComSBDBHelper.onCreate]> SQL NeoComDatabase: {}", sqle.getMessage());
 		}
-		try {
-			TableUtils.createTableIfNotExists(databaseConnection, ColonyStorage.class);
-		} catch (SQLException sqle) {
-			logger.warn("SQL [NeoComSBDBHelper.onCreate]> SQL NeoComDatabase: {}", sqle.getMessage());
-		}
+//		try {
+//			TableUtils.createTableIfNotExists(databaseConnection, ColonyStorage.class);
+//		} catch (SQLException sqle) {
+//			logger.warn("SQL [NeoComSBDBHelper.onCreate]> SQL NeoComDatabase: {}", sqle.getMessage());
+//		}
 		try {
 			TableUtils.createTableIfNotExists(databaseConnection, NeoComAsset.class);
 		} catch (SQLException sqle) {
@@ -219,11 +214,11 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		} catch (SQLException sqle) {
 			logger.warn("SQL [NeoComSBDBHelper.onCreate]> SQL NeoComDatabase: {}", sqle.getMessage());
 		}
-		try {
-			TableUtils.createTableIfNotExists(databaseConnection, Property.class);
-		} catch (SQLException sqle) {
-			logger.warn("SQL [NeoComSBDBHelper.onCreate]> SQL NeoComDatabase: {}", sqle.getMessage());
-		}
+//		try {
+//			TableUtils.createTableIfNotExists(databaseConnection, Property.class);
+//		} catch (SQLException sqle) {
+//			logger.warn("SQL [NeoComSBDBHelper.onCreate]> SQL NeoComDatabase: {}", sqle.getMessage());
+//		}
 		//		try {
 		//			TableUtils.createTableIfNotExists(databaseConnection, ResourceList.class);
 		//		} catch (SQLException sqle) {
@@ -279,16 +274,16 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 				logger.error("E> Error dropping table on Database new version.");
 				sqle.printStackTrace();
 			}
-			try {
-				// Drop all the tables to force a new update from the latest SQLite version.
-				TableUtils.dropTable(databaseConnection, ApiKey.class, true);
-			} catch (RuntimeException rtex) {
-				logger.error("E> Error dropping table on Database new version.");
-				rtex.printStackTrace();
-			} catch (SQLException sqle) {
-				logger.error("E> Error dropping table on Database new version.");
-				sqle.printStackTrace();
-			}
+//			try {
+//				// Drop all the tables to force a new update from the latest SQLite version.
+//				TableUtils.dropTable(databaseConnection, ApiKey.class, true);
+//			} catch (RuntimeException rtex) {
+//				logger.error("E> Error dropping table on Database new version.");
+//				rtex.printStackTrace();
+//			} catch (SQLException sqle) {
+//				logger.error("E> Error dropping table on Database new version.");
+//				sqle.printStackTrace();
+//			}
 			try {
 				// Drop all the tables to force a new update from the latest SQLite version.
 				TableUtils.dropTable(databaseConnection, Credential.class, true);
@@ -340,31 +335,31 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 			sqle.printStackTrace();
 		}
 
-		try {
-			//--- A P I   K E Y S
-			logger.info("-- [NeoComSBDBHelper.loadSeedData]> Loading ApiKeys");
-			long records = GlobalDataManager.getNeocomDBHelper().getApiKeysDao().countOf();
-			// If the table is empty then insert the seeded Api Keys
-			if (records < 1) {
-				//[01]
-				ApiKey key = new ApiKey("CapitanHaddock")
-						.setKeynumber(924767)
-						.setValidationcode("2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P")
-						.setActive(true)
-						.store();
-				key = new ApiKey("CapitanHaddock")
-						.setKeynumber(6472981)
-						.setValidationcode("pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z")
-						.setActive(true)
-						.store();
-			}
-		} catch (SQLException sqle) {
-			logger.error("E [NeoComSBDBHelper.loadSeedData]> Error creating the initial table on the app database.");
-			sqle.printStackTrace();
-		} catch (RuntimeException rtex) {
-			logger.error("E [NeoComSBDBHelper.loadSeedData]> Error creating the initial table on the app database.");
-			rtex.printStackTrace();
-		}
+//		try {
+//			//--- A P I   K E Y S
+//			logger.info("-- [NeoComSBDBHelper.loadSeedData]> Loading ApiKeys");
+//			long records = GlobalDataManager.getNeocomDBHelper().getApiKeysDao().countOf();
+//			// If the table is empty then insert the seeded Api Keys
+//			if (records < 1) {
+//				//[01]
+//				ApiKey key = new ApiKey("CapitanHaddock")
+//						.setKeynumber(924767)
+//						.setValidationcode("2qBKUY6I9ozYhKxYUBPnSIix0fHFCqveD1UEAv0GbYqLenLLTIfkkIWeOBejKX5P")
+//						.setActive(true)
+//						.store();
+//				key = new ApiKey("CapitanHaddock")
+//						.setKeynumber(6472981)
+//						.setValidationcode("pj1NJKKb0pNO8LTp0qN2yJSxZoZUO0UYYq8qLtOeFXNsNBRpiz7orcqVAu7UGF7z")
+//						.setActive(true)
+//						.store();
+//			}
+//		} catch (SQLException sqle) {
+//			logger.error("E [NeoComSBDBHelper.loadSeedData]> Error creating the initial table on the app database.");
+//			sqle.printStackTrace();
+//		} catch (RuntimeException rtex) {
+//			logger.error("E [NeoComSBDBHelper.loadSeedData]> Error creating the initial table on the app database.");
+//			rtex.printStackTrace();
+//		}
 
 		try {
 			//--- C R E D E N T I A L S
@@ -401,30 +396,30 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 			rtex.printStackTrace();
 		}
 
-		try {
-			//--- P R O P E R T I E S
-			logger.info("-- [NeoComSBDBHelper.loadSeedData]> Loading Properties");
-			final long records = this.getPropertyDao().countOf();
-			// If the table is empty then insert the seeded Properties
-			if (records < 1) {
-				Property property = new Property(EPropertyTypes.LOCATIONROLE)
-						.setOwnerId(92002067)
-						.setStringValue("MANUFACTURE")
-						.setNumericValue(60006526)
-						.store();
-				property = new Property(EPropertyTypes.LOCATIONROLE)
-						.setOwnerId(92223647)
-						.setStringValue("MANUFACTURE")
-						.setNumericValue(60006526)
-						.store();
-			}
-		} catch (SQLException sqle) {
-			logger.error("E [NeoComSBDBHelper.loadSeedData]> Error creating the initial table on the app database.");
-			sqle.printStackTrace();
-		} catch (RuntimeException rtex) {
-			logger.error("E [NeoComSBDBHelper.loadSeedData]> Error creating the initial table on the app database.");
-			rtex.printStackTrace();
-		}
+//		try {
+//			//--- P R O P E R T I E S
+//			logger.info("-- [NeoComSBDBHelper.loadSeedData]> Loading Properties");
+//			final long records = this.getPropertyDao().countOf();
+//			// If the table is empty then insert the seeded Properties
+//			if (records < 1) {
+//				Property property = new Property(EPropertyTypes.LOCATIONROLE)
+//						.setOwnerId(92002067)
+//						.setStringValue("MANUFACTURE")
+//						.setNumericValue(60006526)
+//						.store();
+//				property = new Property(EPropertyTypes.LOCATIONROLE)
+//						.setOwnerId(92223647)
+//						.setStringValue("MANUFACTURE")
+//						.setNumericValue(60006526)
+//						.store();
+//			}
+//		} catch (SQLException sqle) {
+//			logger.error("E [NeoComSBDBHelper.loadSeedData]> Error creating the initial table on the app database.");
+//			sqle.printStackTrace();
+//		} catch (RuntimeException rtex) {
+//			logger.error("E [NeoComSBDBHelper.loadSeedData]> Error creating the initial table on the app database.");
+//			rtex.printStackTrace();
+//		}
 		logger.info("<< [NeoComSBDBHelper.loadSeedData]");
 	}
 
@@ -444,13 +439,13 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		return timeStampDao;
 	}
 
-	@Override
-	public Dao<ApiKey, String> getApiKeysDao() throws SQLException {
-		if (null == apiKeysDao) {
-			apiKeysDao = DaoManager.createDao(this.getConnectionSource(), ApiKey.class);
-		}
-		return apiKeysDao;
-	}
+//	@Override
+//	public Dao<ApiKey, String> getApiKeysDao() throws SQLException {
+//		if (null == apiKeysDao) {
+//			apiKeysDao = DaoManager.createDao(this.getConnectionSource(), ApiKey.class);
+//		}
+//		return apiKeysDao;
+//	}
 
 	@Override
 	public Dao<Credential, String> getCredentialDao() throws SQLException {
@@ -468,20 +463,20 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		return colonyDao;
 	}
 
-	@Override
-	public Dao<ColonyStorage, String> getColonyStorageDao() throws SQLException {
-		if (null == colonyStorageDao) {
-			colonyStorageDao = DaoManager.createDao(this.getConnectionSource(), ColonyStorage.class);
-		}
-		return colonyStorageDao;
-	}
-
-	public Dao<ColonySerialized, String> getColonySerializedDao() throws SQLException {
-		if (null == colonySerializedDao) {
-			colonySerializedDao = DaoManager.createDao(this.getConnectionSource(), ColonySerialized.class);
-		}
-		return colonySerializedDao;
-	}
+//	@Override
+//	public Dao<ColonyStorage, String> getColonyStorageDao() throws SQLException {
+//		if (null == colonyStorageDao) {
+//			colonyStorageDao = DaoManager.createDao(this.getConnectionSource(), ColonyStorage.class);
+//		}
+//		return colonyStorageDao;
+//	}
+//
+//	public Dao<ColonySerialized, String> getColonySerializedDao() throws SQLException {
+//		if (null == colonySerializedDao) {
+//			colonySerializedDao = DaoManager.createDao(this.getConnectionSource(), ColonySerialized.class);
+//		}
+//		return colonySerializedDao;
+//	}
 
 	public Dao<NeoComAsset, String> getAssetDao() throws SQLException {
 		if (null == assetDao) {
@@ -497,19 +492,19 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		return locationDao;
 	}
 
-	public Dao<Property, String> getPropertyDao() throws SQLException {
-		if (null == propertyDao) {
-			propertyDao = DaoManager.createDao(this.getConnectionSource(), Property.class);
-		}
-		return propertyDao;
-	}
-
-	public Dao<NeoComBlueprint, String> getBlueprintDao() throws SQLException {
-		if (null == blueprintDao) {
-			blueprintDao = DaoManager.createDao(this.getConnectionSource(), NeoComBlueprint.class);
-		}
-		return blueprintDao;
-	}
+//	public Dao<Property, String> getPropertyDao() throws SQLException {
+//		if (null == propertyDao) {
+//			propertyDao = DaoManager.createDao(this.getConnectionSource(), Property.class);
+//		}
+//		return propertyDao;
+//	}
+//
+//	public Dao<NeoComBlueprint, String> getBlueprintDao() throws SQLException {
+//		if (null == blueprintDao) {
+//			blueprintDao = DaoManager.createDao(this.getConnectionSource(), NeoComBlueprint.class);
+//		}
+//		return blueprintDao;
+//	}
 
 	// --- PUBLIC CONNECTION SPECIFIC ACTIONS
 

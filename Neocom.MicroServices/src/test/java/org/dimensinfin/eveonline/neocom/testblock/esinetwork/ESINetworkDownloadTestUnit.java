@@ -28,9 +28,8 @@ import org.slf4j.LoggerFactory;
 
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
-import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.model.AllianceV1;
-import org.dimensinfin.eveonline.neocom.model.CorporationV1;
 
 /**
  * @author Adam Antinoo

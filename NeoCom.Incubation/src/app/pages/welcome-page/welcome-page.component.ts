@@ -38,7 +38,7 @@ import { AppModelStoreService } from '../../services/app-model-store.service';
 //--- COMPONENTS
 // import { BasePageComponent } from '../../components/core/base-page/base-page.component';
 //--- MODELS
-// import { NeoComNode } from '../../models/NeoComNode.model';
+import { ESIConfiguration } from '../../models/ESI.Singularity';
 // import { Credential } from '../../models/Credential.model';
 // import { authConfig } from './auth.config';
 
@@ -48,16 +48,16 @@ import { AppModelStoreService } from '../../services/app-model-store.service';
   styleUrls: ['./welcome-page.component.scss']
 })
 export class WelcomePageComponent {
-  //--- SINGULARITY CREDENTIALS
-  public static AUTHORIZATION_SERVER = "https://login.eveonline.com/";
-  public static CLIENT_ID = "ef68298d582c4dfebb67886e30d088a8";
-  public static SECRET_KEY = "zgPfxO63QPR2eH11rNpgPAL0J2mB6fZJ7HQCri0q";
-  public static CALLBACK = "http://localhost:4200/validateauthorization";
-  public static CONTENT_TYPE = "application/json";
-  public static PECK = "ZWY2ODI5OGQ1ODJjNGRmZWJiNjc4ODZlMzBkMDg4YTg6emdQZnhPNjNRUFIyZUgxMXJOcGdQQUwwSjJtQjZmWko3SFFDcmkwcQ==";
-  public static SCOPE = "publicData characterStatsRead characterFittingsRead characterLocationRead characterWalletRead characterAssetsRead characterIndustryJobsRead characterMarketOrdersRead characterNotificationsRead characterResearchRead characterSkillsRead characterAccountRead characterClonesRead corporationWalletRead corporationAssetsRead corporationIndustryJobsRead corporationMarketOrdersRead corporationStructuresRead corporationContractsRead esi-location.read_location.v1 esi-location.read_ship_type.v1 esi-skills.read_skills.v1 esi-skills.read_skillqueue.v1 esi-wallet.read_character_wallet.v1 esi-wallet.read_corporation_wallet.v1 esi-search.search_structures.v1 esi-clones.read_clones.v1 esi-universe.read_structures.v1 esi-assets.read_assets.v1 esi-planets.manage_planets.v1 esi-fittings.read_fittings.v1 esi-markets.structure_markets.v1 esi-corporations.read_structures.v1 esi-markets.read_character_orders.v1 esi-characters.read_blueprints.v1 esi-characters.read_corporation_roles.v1 esi-contracts.read_character_contracts.v1 esi-clones.read_implants.v1 esi-wallet.read_corporation_wallets.v1 esi-characters.read_notifications.v1 esi-corporations.read_divisions.v1 esi-assets.read_corporation_assets.v1 esi-corporations.read_blueprints.v1 esi-contracts.read_corporation_contracts.v1 esi-corporations.read_starbases.v1 esi-industry.read_corporation_jobs.v1 esi-markets.read_corporation_orders.v1 esi-corporations.read_container_logs.v1 esi-industry.read_character_mining.v1 esi-industry.read_corporation_mining.v1 esi-planets.read_customs_offices.v1 esi-corporations.read_facilities.v1 esi-corporations.read_outposts.v1 esi-characterstats.read.v1";
-  public static AUTHORIZE_URL = WelcomePageComponent.AUTHORIZATION_SERVER + "oauth/authorize";
-  public static ACCESS_TOKEN_RESOURCE = WelcomePageComponent.AUTHORIZATION_SERVER + "oauth/token";
+  // //--- SINGULARITY CREDENTIALS
+  // public static AUTHORIZATION_SERVER = "https://sisilogin.testeveonline.com/";
+  // public static CLIENT_ID = "ddfafe24dcdb43e3ae964bf580636172";
+  // public static SECRET_KEY = "kKWgfyzBVs2ra0wn8Hcwto0llWoeUgWz1P1FkPlb";
+  // public static CALLBACK = "http://localhost:4200/validateauthorization";
+  // public static CONTENT_TYPE = "application/json";
+  // public static PECK = "ZWY2ODI5OGQ1ODJjNGRmZWJiNjc4ODZlMzBkMDg4YTg6emdQZnhPNjNRUFIyZUgxMXJOcGdQQUwwSjJtQjZmWko3SFFDcmkwcQ==";
+  // public static SCOPE = "publicData esi-location.read_location.v1 esi-location.read_ship_type.v1 esi-mail.organize_mail.v1 esi-skills.read_skills.v1 esi-skills.read_skillqueue.v1 esi-wallet.read_character_wallet.v1 esi-characters.read_contacts.v1 esi-search.search_structures.v1 esi-clones.read_clones.v1 esi-universe.read_structures.v1 esi-killmails.read_killmails.v1 esi-assets.read_assets.v1 esi-planets.manage_planets.v1 esi-markets.structure_markets.v1 esi-characters.read_corporation_roles.v1 esi-location.read_online.v1 esi-fleets.read_fleet.v1 esi-ui.open_window.v1 esi-ui.write_waypoint.v1 esi-fittings.read_fittings.v1  esi-characters.read_standings.v1 esi-industry.read_character_jobs.v1 esi-markets.read_character_orders.v1 esi-characters.read_blueprints.v1 esi-contracts.read_character_contracts.v1 esi-clones.read_implants.v1 esi-characters.read_fatigue.v1 esi-characters.read_notifications.v1 esi-industry.read_character_mining.v1 esi-characters.read_fw_stats.v1";
+  // public static AUTHORIZE_URL = WelcomePageComponent.AUTHORIZATION_SERVER + "oauth/authorize";
+  // public static ACCESS_TOKEN_RESOURCE = WelcomePageComponent.AUTHORIZATION_SERVER + "oauth/token";
 
   public working: boolean = false;
   public code: string;
@@ -69,15 +69,15 @@ export class WelcomePageComponent {
     // this.oauthService.userResponseType = 'code';
     this.oauthService.requestAccessToken = true;
     // Login-Url
-    this.oauthService.loginUrl = WelcomePageComponent.AUTHORIZE_URL; //Id-Provider?
+    this.oauthService.loginUrl = ESIConfiguration.AUTHORIZE_URL; //Id-Provider?
     // URL of the SPA to redirect the user to after login
-    this.oauthService.redirectUri = WelcomePageComponent.CALLBACK;
+    this.oauthService.redirectUri = ESIConfiguration.CALLBACK;
     // The SPA's id. Register SPA with this id at the auth-server
-    this.oauthService.clientId = WelcomePageComponent.CLIENT_ID;
+    this.oauthService.clientId = ESIConfiguration.CLIENT_ID;
     // The name of the auth-server that has to be mentioned within the token
-    this.oauthService.issuer = WelcomePageComponent.AUTHORIZE_URL;
+    this.oauthService.issuer = ESIConfiguration.AUTHORIZE_URL;
     // set the scope for the permissions the client should request
-    this.oauthService.scope = WelcomePageComponent.SCOPE;
+    this.oauthService.scope = ESIConfiguration.SCOPE;
     // set to true, to receive also an id_token via OpenId Connect (OIDC) in addition to the
     // OAuth2-based access_token
     this.oauthService.oidc = false;
@@ -85,7 +85,7 @@ export class WelcomePageComponent {
     // instead of localStorage
     this.oauthService.setStorage(sessionStorage);
     // To also enable single-sign-out set the url for your auth-server's logout-endpoint here
-    this.oauthService.logoutUrl = WelcomePageComponent.AUTHORIZATION_SERVER + "account/logoff";
+    this.oauthService.logoutUrl = ESIConfiguration.AUTHORIZATION_SERVER + "account/logoff";
   }
 
   public getDescription(): string {

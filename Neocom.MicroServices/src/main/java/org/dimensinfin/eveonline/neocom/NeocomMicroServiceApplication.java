@@ -28,6 +28,7 @@ import org.dimensinfin.eveonline.neocom.conf.GlobalConfigurationProvider;
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.MarketDataServer;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 
@@ -46,7 +47,7 @@ import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 public class NeoComMicroServiceApplication {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger logger = LoggerFactory.getLogger("NeoComMicroServiceApplication");
-	public static org.dimensinfin.eveonline.neocom.datamngmt.manager.MarketDataServer mdServer = null;
+	public static MarketDataServer mdServer = null;
 //	public static final TimedUpdater timedService = new TimedUpdater();
 
 	public static final ObjectMapper jsonMapper = new ObjectMapper();
@@ -123,7 +124,7 @@ public class NeoComMicroServiceApplication {
 
 		// Connect the MarketData service.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Starting Market Data service...");
-		mdServer = new org.dimensinfin.eveonline.neocom.datamngmt.manager.MarketDataServer().start();
+		mdServer = new MarketDataServer().start();
 		GlobalDataManager.setMarketDataManager(mdServer);
 
 		// Load the Locations cache to speed up the Citadel and Outpost search.

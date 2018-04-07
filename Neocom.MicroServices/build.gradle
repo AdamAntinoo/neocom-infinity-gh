@@ -35,12 +35,15 @@ sourceSets {
 //        attributes 'Start-Class': 'org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication'
 //    }
 //}
+
+//--- T A S K S
 task copyResources(type: Copy) {
-    from project(':NeoCom.Model').file('src/main/resources/properties')
-    into file('src/main/resources/properties')
+    from project(':NeoCom.Model').fileTree('src/main/resources/properties')
+    into file('src/main/resources/properties/')
+//    from project(':NeoCom.Model').file('src/main/resources/*.txt')
+//    into file('src/main/resources')
 }
-assemble.dependsOn copyResources
-build.dependsOn copyResources
+classes.dependsOn(copyResources)
 
 
 dependencies {
@@ -54,6 +57,7 @@ dependencies {
     // M O D U L E    D E P E N D E N C I E S
     // S P R I N G B O O T
     implementation 'org.springframework.boot:spring-boot-starter-web:1.3.5.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-security:1.3.5.RELEASE'
 //    implementation 'org.springframework.boot:spring-boot-starter-actuator:1.3.5.RELEASE'
 //    implementation 'org.springframework.boot:spring-boot-starter-cache:1.3.5.RELEASE'
 

@@ -19,8 +19,15 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 
+import javax.crypto.Cipher;
 import java.io.IOException;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
+import java.security.PublicKey;
 import java.util.Base64;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -33,7 +40,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.core.util.Chrono;
@@ -44,16 +50,16 @@ import org.dimensinfin.eveonline.neocom.auth.TokenTranslationResponse;
 import org.dimensinfin.eveonline.neocom.auth.VerifyCharacterResponse;
 import org.dimensinfin.eveonline.neocom.core.NeoComException;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
-import org.dimensinfin.eveonline.neocom.datamngmt.manager.ESINetworkManager;
-import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
-import org.dimensinfin.eveonline.neocom.storage.DataManagementModelStore;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 @RestController
 public class LoginController {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger logger = LoggerFactory.getLogger("LoginController");
+	private static Hashtable<String, NeoComSession> sessionStore = new Hashtable();
 
 	// - F I E L D - S E C T I O N ............................................................................
 
@@ -62,6 +68,7 @@ public class LoginController {
 	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
+	// TODO Code commented out until reactivation of functionality required.
 //	@CrossOrigin()
 //	@RequestMapping(value = "/api/v1/loginlist", method = RequestMethod.GET, produces = "application/json")
 //	public Hashtable<String, Login> loginlistEntryPoint (
@@ -81,24 +88,25 @@ public class LoginController {
 //		}
 //	}
 
-	@CrossOrigin()
-	@RequestMapping(value = "/api/v1/credentials", method = RequestMethod.GET, produces = "application/json")
-	public String credentialsEntryPoint( @RequestParam(value = "force", required = false) final String force ) {
-		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/credentials");
-		logger.info(">> [LoginController.credentialsEntryPoint]");
-		final Chrono totalElapsed = new Chrono();
-		try {
-			// If we receive a force command we should clear data before executing the request.
-			if (force != null) if (force.equalsIgnoreCase("true")) DataManagementModelStore.getSingleton().cleanModel();
-			final List<Credential> credentials = DataManagementModelStore.accessCredentialList();
-			// Serialize the credentials as the Angular UI requires.
-			return serializeCredentialList(credentials);
-		} catch (RuntimeException rtex) {
-			return new JsonExceptionInstance(rtex.getMessage()).toJson();
-		} finally {
-			logger.info("<< [LoginController.credentialsEntryPoint]> [TIMING] Processing Time: {}", totalElapsed.printElapsed(Chrono.ChronoOptions.SHOWMILLIS));
-		}
-	}
+	// TODO Code commented out until reactivation of functionality required.
+//	@CrossOrigin()
+//	@RequestMapping(value = "/api/v1/credentials", method = RequestMethod.GET, produces = "application/json")
+//	public String credentialsEntryPoint( @RequestParam(value = "force", required = false) final String force ) {
+//		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/credentials");
+//		logger.info(">> [LoginController.credentialsEntryPoint]");
+//		final Chrono totalElapsed = new Chrono();
+//		try {
+//			// If we receive a force command we should clear data before executing the request.
+//			if (force != null) if (force.equalsIgnoreCase("true")) DataManagementModelStore.getSingleton().cleanModel();
+//			final List<Credential> credentials = DataManagementModelStore.accessCredentialList();
+//			// Serialize the credentials as the Angular UI requires.
+//			return serializeCredentialList(credentials);
+//		} catch (RuntimeException rtex) {
+//			return new JsonExceptionInstance(rtex.getMessage()).toJson();
+//		} finally {
+//			logger.info("<< [LoginController.credentialsEntryPoint]> [TIMING] Processing Time: {}", totalElapsed.printElapsed(Chrono.ChronoOptions.SHOWMILLIS));
+//		}
+//	}
 
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/getauthorizationurl", method = RequestMethod.GET, produces = "application/json")
@@ -122,30 +130,30 @@ public class LoginController {
 	}
 
 	@CrossOrigin()
-	@RequestMapping(value = "/api/v1/exchangeauthorization/{code}", method = RequestMethod.GET, produces = "application/json")
-	public String exchangeAuthorizationEntryPoint( @PathVariable final String code ) {
-		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/exchangeauthorization/{}", code);
+	@RequestMapping(value = "/api/v1/exchangeauthorization/{code}/publickey/{publickey}"
+			, method = RequestMethod.GET, produces = "application/json")
+	public String exchangeAuthorizationEntryPoint( @PathVariable final String code, @PathVariable final String publickey ) {
+		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/exchangeauthorization/{}/publickey/{}", code, publickey);
 		logger.info(">> [LoginController.exchangeAuthorizationEntryPoint]");
 		final Chrono totalElapsed = new Chrono();
 		try {
-			//
-			return exchangeAuthorization(code);
-//			return code;
+			return exchangeAuthorization(code, publickey);
 		} catch (RuntimeException rtex) {
 			return new JsonExceptionInstance(rtex.getMessage()).toJson();
 		} finally {
-			logger.info("<< [LoginController.exchangeAuthorizationEntryPoint]> [TIMING] Processing Time: {}", totalElapsed.printElapsed(Chrono.ChronoOptions.SHOWMILLIS));
+			logger.info("<< [LoginController.exchangeAuthorizationEntryPoint]> [TIMING] Processing Time: {}"
+					, totalElapsed.printElapsed(Chrono.ChronoOptions.SHOWMILLIS));
 		}
 	}
 
-	private String exchangeAuthorization( final String authCode ) {
+	private String exchangeAuthorization( final String authCode, final String publickey ) {
 		// Create the conversion call by coding.
 		logger.info("-- [LoginController.exchangeAuthorization]> Preparing Verification HTTP request.");
 		logger.info("-- [LoginController.exchangeAuthorization]> Creating access token request.");
 		try {
 			// Create a Retrofit request service to encapsulate the call.
 			final GetAccessToken serviceGetAccessToken = new Retrofit.Builder()
-					.baseUrl("https://login.eveonline.com")
+					.baseUrl(GlobalDataManager.getResourceString("R.esi.authorization.authorizationserver"))
 					.addConverterFactory(JacksonConverterFactory.create())
 					.build()
 					.create(GetAccessToken.class);
@@ -182,7 +190,7 @@ public class LoginController {
 				// Verify the character authenticated and create the Credential.
 				logger.info("-- [LoginController.exchangeAuthorization]> Creating character verification.");
 				final VerifyCharacter verificationService = new Retrofit.Builder()
-						.baseUrl("https://login.eveonline.com")
+						.baseUrl(GlobalDataManager.getResourceString("R.esi.authorization.authorizationserver"))
 						.addConverterFactory(JacksonConverterFactory.create())
 						.client(verifyClient.build())
 						.build()
@@ -191,20 +199,28 @@ public class LoginController {
 				final Response<VerifyCharacterResponse> verificationResponse = verificationService.getVerification("Bearer " + accessToken).execute();
 				if (verificationResponse.isSuccessful()) {
 					logger.info("-- [LoginController.exchangeAuthorization]> Character verification OK.");
-					// Create the credential and store it.
+
+					// TODO Create a new session store to keep the session data.
+					// Create the credential and store it on a new encrypted session.
 					final int newAccountIdentifier = Long.valueOf(verificationResponse.body().getCharacterID()).intValue();
 					final Credential credential = new Credential(newAccountIdentifier);
 					credential.setAccountName(verificationResponse.body().getCharacterName())
 							.setAccessToken(token.getAccessToken())
 							.setTokenType(token.getTokenType())
 							.setExpires(Instant.now().plus(TimeUnit.SECONDS.toMillis(token.getExpires())).getMillis())
-							.setRefreshToken(token.getRefreshToken())
-							.store();
+							.setRefreshToken(token.getRefreshToken());
+//							.store();
+					final NeoComSession session = new NeoComSession()
+							.setCredential(credential)
+							.setPublicKey(publickey);
+					sessionStore.put(session.getSessionId(), session);
 					// Clean up the list of credential to force a reload on next access.
-					DataManagementModelStore.getSingleton().cleanModel();
-					// Update the Pilot information.
-					GlobalDataManager.getPilotV2(credential.getAccountId());
-					return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(credential);
+					// TODO This is a new code flow to store credentials only on the session and this on the database.
+
+//					DataManagementModelStore.getSingleton().cleanModel();
+//					// Update the Pilot information.
+//					GlobalDataManager.getPilotV2(credential.getAccountId());
+					return "{ \"sessionId\": \""+session.identifier+"\" }";
 				} else
 					return exceptionSerialization(new NeoComException("NE [LoginController.exchangeAuthorization]> the VerifyCharacterResponse response is invalid. "
 							+ verificationResponse.message()));
@@ -215,9 +231,14 @@ public class LoginController {
 			logger.error("ER [LoginController.exchangeAuthorization]> IO Exception on authorization request call. " + ioe
 					.getMessage());
 			return exceptionSerialization(ioe);
-//		} catch (JsonProcessingException jpe) {
-//			jpe.printStackTrace();
-//			return exceptionSerialization(jpe);
+		} catch (NoSuchAlgorithmException nsae) {
+			logger.error("ER [LoginController.exchangeAuthorization]> IO Exception on authorization request call. " + nsae
+					.getMessage());
+			return exceptionSerialization(nsae);
+		} catch (Exception ge) {
+			logger.error("ER [LoginController.exchangeAuthorization]> IO Exception on authorization request call. " + ge
+					.getMessage());
+			return exceptionSerialization(ge);
 		} finally {
 			// All went perfect. signal the end of the process
 			logger.info("<< [LoginController.exchangeAuthorization]");
@@ -262,4 +283,46 @@ public class LoginController {
 	}
 }
 
+final class NeoComSession {
+	private PublicKey pubKey = null;
+	private PrivateKey privateKey = null;
+	public byte[] identifier = null;
+	private Credential credential = null;
+	private String publicKey = null;
+
+	public NeoComSession() throws NoSuchAlgorithmException {
+		KeyPair keyPair = buildKeyPair();
+		pubKey = keyPair.getPublic();
+		privateKey = keyPair.getPrivate();
+	}
+
+	public KeyPair buildKeyPair() throws NoSuchAlgorithmException {
+		final int keySize = 2048;
+		KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+		keyPairGenerator.initialize(keySize);
+		return keyPairGenerator.genKeyPair();
+	}
+
+	public NeoComSession setCredential( final Credential credential ) throws Exception {
+		this.credential = credential;
+		identifier = encrypt(privateKey, credential.getValidationCode());
+		return this;
+	}
+
+	public NeoComSession setPublicKey( final String publicKey ) {
+		this.publicKey = publicKey;
+		return this;
+	}
+
+	public String getSessionId() {
+		return credential.getValidationCode();
+	}
+
+	public static byte[] encrypt( PrivateKey privateKey, String message ) throws Exception {
+		Cipher cipher = Cipher.getInstance("RSA");
+		cipher.init(Cipher.ENCRYPT_MODE, privateKey);
+
+		return cipher.doFinal(message.getBytes());
+	}
+}
 // - UNUSED CODE ............................................................................................
