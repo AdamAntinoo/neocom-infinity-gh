@@ -1,10 +1,19 @@
+<div fxLayout="row">
+  <div style="width: 60%; display: inline-block;">
+    <neocom-header></neocom-header>
+  </div>
+  <div style="width: 40%; float: right;">
+    <div class="neocom-panel header-box" id="panelborder-white">
+      <span class="proxima-black-ff" style="padding: 2px;">SERVER DATA BLOCK</span>
+    </div>
+  </div>
+</div>
+<neocom-action-bar [title]="'VALIDATION'" [subtitle]="'Verification credential generation'"></neocom-action-bar>
 <div class="neocom-panel neocom-panel-container" id="panelborder-white">
   <div class="neocom-selectable-name" id="neocom-ts18">{{code}}</div>
 </div>
 <div class="neocom-panel" id="panelborder-white">
-  <!-- <div class="panel-decorator-collapsed" [ngClass]="{'panel-decorator-expanded-red': node.expanded}"> -->
   <table class="neocom-panel-container" cellspacing="0" cellpadding="0" width="100%">
-    <!-- <a class="no-underline" style="color: white;" [routerLink]="['/authorizationprogress']"> -->
     <tr>
       <td><img class="" src="/assets/res-window/drawable/defaulticonplaceholder.png" id="iconsize-36"></td>
       <td width="80% " class="neocom-panel-column">
@@ -21,7 +30,5 @@
         &nbsp;
       </td> -->
     </tr>
-    <!-- </a> -->
   </table>
-  <!-- </div> -->
 </div>

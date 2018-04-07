@@ -47,6 +47,8 @@ export class AppModelStoreService {
   private _credentialList: Credential[] = null; // List of Credential data. It also includes the Pilotv1 information.
   private _rsaKey = null;
   private _publicKey = null;
+  private _sessionIdentifier: string = null;
+  private _pilotIdentifier: number = -1;
   // private _currentCharacter: Pilot = null; // The current active character
   //
   // private _loginList: Login[] = null; // List of Login structures to be used to aggregate Keys
@@ -73,6 +75,12 @@ export class AppModelStoreService {
   }
   public setPublicKey(key: CryptoKey) {
     this._publicKey = key;
+  }
+  public setSessionIdentifier(sessionId: string): void {
+    this._sessionIdentifier = sessionId;
+  }
+  public setPilotIdentifier(pilotid: number): void {
+    this._pilotIdentifier = pilotid;
   }
   //--- C R E D E N T I A L    S E C T I O N
 
@@ -104,8 +112,29 @@ export class AppModelStoreService {
             this._credentialList = null;
             return result;
           })
-          .subscribe(result => {
-            console.log("--[AppModelStoreService.backendExchangeAuthorization]> Processing response." + JSON.stringify(result));
+          .subscribe(neocomSessionIdentifier => {
+            console.log("--[AppModelStoreService.backendExchangeAuthorization]> Processing response." + JSON.stringify(neocomSessionIdentifier));
+            // If the response is a valid session identifier then store the uniue identifier for the session
+            // and the pilot for later use when requesting back end data.
+            this.setSessionIdentifier(neocomSessionIdentifier["sessionIdentifier"]);
+            this.setPilotIdentifier(neocomSessionIdentifier["pilotId"]);
+
+            // Decript the pilot identifier to check of we can trust the encrytion.
+            let pilotidencrypted = neocomSessionIdentifier["pilotIdentifier"];
+            let decryptPromise = window.crypto.subtle.decrypt(
+              {
+                name: "RSA-OAEP",
+                //label: Uint8Array([...]) //optional
+              },
+              this._rsaKey, //from generateKey or importKey above
+              pilotidencrypted //ArrayBuffer of the data
+            );
+            decryptPromise.then((decrypted) => {
+              //returns an ArrayBuffer containing the decrypted data
+              console.log(new Uint8Array(decrypted));
+              let pilotiddecrypted = decrypted;
+            });
+
             // Redirect to the credential list to reload again the list of credentials.
             this.router.navigate(['dashboard']);
           });

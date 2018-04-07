@@ -19,13 +19,19 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 
+import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 import java.util.Hashtable;
 import java.util.List;
@@ -49,6 +55,7 @@ import org.dimensinfin.eveonline.neocom.auth.TokenRequestBody;
 import org.dimensinfin.eveonline.neocom.auth.TokenTranslationResponse;
 import org.dimensinfin.eveonline.neocom.auth.VerifyCharacterResponse;
 import org.dimensinfin.eveonline.neocom.core.NeoComException;
+import org.dimensinfin.eveonline.neocom.core.NeocomRuntimeException;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
@@ -137,16 +144,72 @@ public class LoginController {
 		logger.info(">> [LoginController.exchangeAuthorizationEntryPoint]");
 		final Chrono totalElapsed = new Chrono();
 		try {
-			return exchangeAuthorization(code, publickey);
+			// Convert any object instance retirned to a Json serialized string.
+			return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(exchangeAuthorization(code, publickey));
 		} catch (RuntimeException rtex) {
-			return new JsonExceptionInstance(rtex.getMessage()).toJson();
+			try {
+				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeocomRuntimeException(rtex.getMessage()));
+			} catch (JsonProcessingException jpe) {
+				return new JsonExceptionInstance(jpe.getMessage() + '\n' + rtex.getMessage()).toJson();
+			}
+		} catch (JsonProcessingException jpe) {
+			return new JsonExceptionInstance(jpe.getMessage()).toJson();
+		} catch (NeoComException neoe) {
+			try {
+				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(neoe.getMessage()));
+			} catch (JsonProcessingException jpe) {
+				return new JsonExceptionInstance(jpe.getMessage() + '\n' + neoe.getMessage()).toJson();
+			}
+		} catch (IOException ioe) {
+			try {
+				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(ioe.getMessage()));
+			} catch (JsonProcessingException jpe) {
+				return new JsonExceptionInstance(jpe.getMessage() + '\n' + ioe.getMessage()).toJson();
+			}
+		} catch (NoSuchAlgorithmException nsae) {
+			try {
+				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(nsae.getMessage()));
+			} catch (JsonProcessingException jpe) {
+				return new JsonExceptionInstance(jpe.getMessage() + '\n' + nsae.getMessage()).toJson();
+			}
+		} catch (NoSuchPaddingException nspe) {
+			try {
+				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(nspe.getMessage()));
+			} catch (JsonProcessingException jpe) {
+				return new JsonExceptionInstance(jpe.getMessage() + '\n' + nspe.getMessage()).toJson();
+			}
+		} catch (BadPaddingException bpe) {
+			try {
+				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(bpe.getMessage()));
+			} catch (JsonProcessingException jpe) {
+				return new JsonExceptionInstance(jpe.getMessage() + '\n' + bpe.getMessage()).toJson();
+			}
+		} catch (IllegalBlockSizeException ibse) {
+			try {
+				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(ibse.getMessage()));
+			} catch (JsonProcessingException jpe) {
+				return new JsonExceptionInstance(jpe.getMessage() + '\n' + ibse.getMessage()).toJson();
+			}
+		} catch (InvalidKeyException ike) {
+			try {
+				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(ike.getMessage()));
+			} catch (JsonProcessingException jpe) {
+				return new JsonExceptionInstance(jpe.getMessage() + '\n' + ike.getMessage()).toJson();
+			}
+		} catch (InvalidKeySpecException ikse) {
+			try {
+				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(ikse.getMessage()));
+			} catch (JsonProcessingException jpe) {
+				return new JsonExceptionInstance(jpe.getMessage() + '\n' + ikse.getMessage()).toJson();
+			}
 		} finally {
 			logger.info("<< [LoginController.exchangeAuthorizationEntryPoint]> [TIMING] Processing Time: {}"
 					, totalElapsed.printElapsed(Chrono.ChronoOptions.SHOWMILLIS));
 		}
 	}
 
-	private String exchangeAuthorization( final String authCode, final String publickey ) {
+	private NeoComSessionIdentifier exchangeAuthorization( final String authCode, final String publickey ) throws NeoComException,
+			IOException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidKeySpecException, InvalidKeyException {
 		// Create the conversion call by coding.
 		logger.info("-- [LoginController.exchangeAuthorization]> Preparing Verification HTTP request.");
 		logger.info("-- [LoginController.exchangeAuthorization]> Creating access token request.");
@@ -220,25 +283,27 @@ public class LoginController {
 //					DataManagementModelStore.getSingleton().cleanModel();
 //					// Update the Pilot information.
 //					GlobalDataManager.getPilotV2(credential.getAccountId());
-					return "{ \"sessionId\": \""+session.identifier+"\" }";
+					return new NeoComSessionIdentifier(session);
 				} else
-					return exceptionSerialization(new NeoComException("NE [LoginController.exchangeAuthorization]> the VerifyCharacterResponse response is invalid. "
-							+ verificationResponse.message()));
+					throw new NeoComException("NEO [LoginController.exchangeAuthorization]> the VerifyCharacterResponse response is " +
+							"invalid. "
+							+ verificationResponse.message());
 			} else
-				return exceptionSerialization(new NeoComException("NE [LoginController.exchangeAuthorization]> the TokenTranslationResponse response is invalid. "
-						+ response.message()));
-		} catch (IOException ioe) {
-			logger.error("ER [LoginController.exchangeAuthorization]> IO Exception on authorization request call. " + ioe
-					.getMessage());
-			return exceptionSerialization(ioe);
-		} catch (NoSuchAlgorithmException nsae) {
-			logger.error("ER [LoginController.exchangeAuthorization]> IO Exception on authorization request call. " + nsae
-					.getMessage());
-			return exceptionSerialization(nsae);
-		} catch (Exception ge) {
-			logger.error("ER [LoginController.exchangeAuthorization]> IO Exception on authorization request call. " + ge
-					.getMessage());
-			return exceptionSerialization(ge);
+				throw new NeoComException("NEO [LoginController.exchangeAuthorization]> the TokenTranslationResponse response is " +
+						"invalid. "
+						+ response.message());
+//		} catch (IOException ioe) {
+//			logger.error("ER [LoginController.exchangeAuthorization]> IO Exception on authorization request call. " + ioe
+//					.getMessage());
+//			return exceptionSerialization(ioe);
+//		} catch (NoSuchAlgorithmException nsae) {
+//			logger.error("ER [LoginController.exchangeAuthorization]> IO Exception on authorization request call. " + nsae
+//					.getMessage());
+//			return exceptionSerialization(nsae);
+//		} catch (Exception ge) {
+//			logger.error("ER [LoginController.exchangeAuthorization]> IO Exception on authorization request call. " + ge
+//					.getMessage());
+//			return exceptionSerialization(ge);
 		} finally {
 			// All went perfect. signal the end of the process
 			logger.info("<< [LoginController.exchangeAuthorization]");
@@ -284,16 +349,24 @@ public class LoginController {
 }
 
 final class NeoComSession {
-	private PublicKey pubKey = null;
-	private PrivateKey privateKey = null;
-	public byte[] identifier = null;
+	//	private PublicKey pubKey = null;
+//	private PrivateKey privateKey = null;
+//	public byte[] identifier = null;
 	private Credential credential = null;
 	private String publicKey = null;
 
-	public NeoComSession() throws NoSuchAlgorithmException {
-		KeyPair keyPair = buildKeyPair();
-		pubKey = keyPair.getPublic();
-		privateKey = keyPair.getPrivate();
+//	public NeoComSession() throws NoSuchAlgorithmException {
+//		KeyPair keyPair = buildKeyPair();
+//		pubKey = keyPair.getPublic();
+//		privateKey = keyPair.getPrivate();
+//	}
+
+	public String getPublicKey() {
+		return publicKey;
+	}
+
+	public int getPilotIdentifier() {
+		return credential.getAccountId();
 	}
 
 	public KeyPair buildKeyPair() throws NoSuchAlgorithmException {
@@ -303,9 +376,9 @@ final class NeoComSession {
 		return keyPairGenerator.genKeyPair();
 	}
 
-	public NeoComSession setCredential( final Credential credential ) throws Exception {
+	public NeoComSession setCredential( final Credential credential ) {
 		this.credential = credential;
-		identifier = encrypt(privateKey, credential.getValidationCode());
+//		identifier = encrypt(privateKey, credential.getValidationCode());
 		return this;
 	}
 
@@ -315,14 +388,34 @@ final class NeoComSession {
 	}
 
 	public String getSessionId() {
-		return credential.getValidationCode();
+		return credential.getAccessToken();
 	}
 
-	public static byte[] encrypt( PrivateKey privateKey, String message ) throws Exception {
-		Cipher cipher = Cipher.getInstance("RSA");
-		cipher.init(Cipher.ENCRYPT_MODE, privateKey);
+//	public byte[] encrypt( PrivateKey privateKey, String message ) throws Exception {
+//		Cipher cipher = Cipher.getInstance("RSA");
+////		cipher.init(Cipher.ENCRYPT_MODE, privateKey);
+//		cipher.init(Cipher.ENCRYPT_MODE, pubKey);
+//
+//		return cipher.doFinal(message.getBytes());
+//	}
+}
 
-		return cipher.doFinal(message.getBytes());
+final class NeoComSessionIdentifier {
+	public String jsonClass="NeoComSessionIdentifier";
+	public String sessionIdentifier = "-NOT VALID-";
+	// TODO REMOVE ONCE THE encryption works.
+	public int pilotId=0;
+	public byte[] pilotIdentifier = "-EMPTY-".getBytes();
+
+	public NeoComSessionIdentifier( final NeoComSession session ) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, InvalidKeySpecException, BadPaddingException, IllegalBlockSizeException {
+		sessionIdentifier=session.getSessionId();
+//		X509EncodedKeySpec publicSpec = new X509EncodedKeySpec(session.getPublicKey().getBytes());
+//		KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+//		final PublicKey publicRemoteKey = keyFactory.generatePublic(publicSpec);
+//		Cipher cipher = Cipher.getInstance("RSA");
+//		cipher.init(Cipher.ENCRYPT_MODE, publicRemoteKey);
+		pilotId=session.getPilotIdentifier();
+//		pilotIdentifier = cipher.doFinal(Integer.valueOf(session.getPilotIdentifier()).toString().getBytes());
 	}
 }
 // - UNUSED CODE ............................................................................................

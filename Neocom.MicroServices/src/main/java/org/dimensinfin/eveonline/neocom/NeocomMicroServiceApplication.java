@@ -8,10 +8,15 @@
 //               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 
@@ -29,6 +34,7 @@ import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.MarketDataServer;
+import org.dimensinfin.eveonline.neocom.industry.EveTask;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 
@@ -165,6 +171,27 @@ public class NeoComMicroServiceApplication {
 //			timedService.timeTick();
 //		}
 //	}
+
+
+		// - CLASS IMPLEMENTATION ...................................................................................
+	public static class ExceptionSerializer extends JsonSerializer<Exception> {
+		// - F I E L D - S E C T I O N ............................................................................
+
+		// - M E T H O D - S E C T I O N ..........................................................................
+		@Override
+		public void serialize( final Exception value, final JsonGenerator jgen, final SerializerProvider provider )
+				throws IOException, JsonProcessingException {
+			jgen.writeStartObject();
+			jgen.writeStringField("exceptionClass", value.getClass().getSimpleName());
+			jgen.writeStringField("message", value.getMessage());
+			jgen.writeObjectField("stackTrace", value.getStackTrace());
+			jgen.writeEndObject();
+		}
+	}
+	// ..........................................................................................................
+
+
+
 
 //	// - CLASS IMPLEMENTATION ...................................................................................
 //	public static class ShipSerializer extends JsonSerializer<Ship> {
