@@ -52,13 +52,33 @@ export class ValidateAuthorizationPageComponent implements OnInit {
     this.route.queryParams
       .subscribe(params => {
         this.code = params['code'];
-        // Call the backend to exchange the token and store the resulting credential.
-        this.appModelStore.backendExchangeAuthorization(this.code)
-          .subscribe(result => {
-            console.log("--[AppModelStoreService.backendExchangeAuthorization]> Processing response." + JSON.stringify(result));
-            // Redirect to the credential list to reload again the list of credentials.
-            this.router.navigate(['dashboard']);
-          })
+        // Generate the RSA key to be used on the authorization interchange flow from the front to the back end.
+        let generateKeyPromise = window.crypto.subtle.generateKey(
+          {
+            name: "RSA-PSS",
+            modulusLength: 2048, //can be 1024, 2048, or 4096
+            publicExponent: new Uint8Array([0x01, 0x00, 0x01]),
+            hash: { name: "SHA-256" }, //can be "SHA-1", "SHA-256", "SHA-384", or "SHA-512"
+          },
+          false, //whether the key is extractable (i.e. can be used in exportKey)
+          ["sign", "verify"] //can be any combination of "sign" and "verify"
+        );
+        generateKeyPromise.then((key) => {
+          this.appModelStore.setRSAKey(key);
+          this.appModelStore.setPublicKey(key.publicKey);
+          //returns a keypair object
+          console.log(key);
+          console.log(key.publicKey);
+          console.log(key.privateKey);
+
+          // Call the backend to exchange the token and store the resulting credential.
+          this.appModelStore.backendExchangeAuthorization(this.code);
+          // .subscribe(result => {
+          //   console.log("--[AppModelStoreService.backendExchangeAuthorization]> Processing response." + JSON.stringify(result));
+          //   // Redirect to the credential list to reload again the list of credentials.
+          //   this.router.navigate(['dashboard']);
+          // })
+        });
       });
   }
 }

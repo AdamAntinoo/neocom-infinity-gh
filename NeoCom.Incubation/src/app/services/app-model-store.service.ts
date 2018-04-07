@@ -45,6 +45,8 @@ export class AppModelStoreService {
   //
   //--- STORE FIELDS
   private _credentialList: Credential[] = null; // List of Credential data. It also includes the Pilotv1 information.
+  private _rsaKey = null;
+  private _publicKey = null;
   // private _currentCharacter: Pilot = null; // The current active character
   //
   // private _loginList: Login[] = null; // List of Login structures to be used to aggregate Keys
@@ -63,6 +65,15 @@ export class AppModelStoreService {
   }
 
   //--- S T O R E   F I E L D S    A C C E S S O R S
+  public getPublicKey(): CryptoKey {
+    return this._publicKey;
+  }
+  public setRSAKey(key) {
+    this._rsaKey = key;
+  }
+  public setPublicKey(key: CryptoKey) {
+    this._publicKey = key;
+  }
   //--- C R E D E N T I A L    S E C T I O N
 
 
@@ -72,19 +83,32 @@ export class AppModelStoreService {
   /**
   Go to the backend and use the ESI api to exchange the authorization code by the refresh token. Then also store the new credential on the database and clear the list of credentials to force a new reload the next time we need them.
   This call is not mocked up so requires the backend server to be up.
+
+  Add to the information to sent to the backend the PublicKey to be used on this session encryption.
   */
-  public backendExchangeAuthorization(code: string): Observable<any> {
+  public backendExchangeAuthorization(code: string): void {
     console.log("><[AppModelStoreService.backendExchangeAuthorization]");
-    let request = AppModelStoreService.RESOURCE_SERVICE_URL + "/exchangeauthorization/" + code;
-    return this.http.get(request)
-      .map(res => res.json())
-      .map(result => {
-        console.log("><[AppModelStoreService.backendExchangeAuthorization]>Response interception.");
-        // Check if the result is an exception. If so show it on the Notifications.
-        // if (null != result.jsonClass) this.toastr.error(result.mesage, 'Backend Exception!');
-        // Clear the list of credentials to force their reload.
-        this._credentialList = null;
-        return result;
+    // Convert the public key into an string to be sent to the back end.
+    window.crypto.subtle.exportKey("jwk", this.getPublicKey())
+      .then((jsonKey) => {
+        let stringedPublicKey = JSON.stringify(jsonKey);
+        let request = AppModelStoreService.RESOURCE_SERVICE_URL + "/exchangeauthorization/" + code
+          + "/publickey/" + jsonKey.n;
+        return this.http.get(request)
+          .map(res => res.json())
+          .map(result => {
+            console.log("><[AppModelStoreService.backendExchangeAuthorization]>Response interception.");
+            // Check if the result is an exception. If so show it on the Notifications.
+            // if (null != result.jsonClass) this.toastr.error(result.mesage, 'Backend Exception!');
+            // Clear the list of credentials to force their reload.
+            this._credentialList = null;
+            return result;
+          })
+          .subscribe(result => {
+            console.log("--[AppModelStoreService.backendExchangeAuthorization]> Processing response." + JSON.stringify(result));
+            // Redirect to the credential list to reload again the list of credentials.
+            this.router.navigate(['dashboard']);
+          });
       });
   }
 

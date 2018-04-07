@@ -42,12 +42,23 @@ import { ESIConfiguration } from '../../models/ESI.Singularity';
 // import { Credential } from '../../models/Credential.model';
 // import { authConfig } from './auth.config';
 
+// import cryptico from 'node_modules/cryptico/lib/cryptico.js'
+// import cryptico from 'cryptico';
+// import * as cryptico from "cryptico";
+// import { crypto } from 'crypto';
+
+/**
+The Execution flow for this page is to show some Application information and then await for the user login through as ESI authorization. Because once the authorization is create some data is stored on the backend server we should create a unique client session data so nobody is able to access the authorized data.
+
+We use RSA public key encryption to adjoin to the token so the server backend can create a unique encrypted session that is only able to be decoed by the particular client that initiated it because the key is just created on every login.
+*/
 @Component({
   selector: 'neocom-welcome-page',
   templateUrl: './welcome-page.component.html',
   styleUrls: ['./welcome-page.component.scss']
 })
 export class WelcomePageComponent {
+  //
   // //--- SINGULARITY CREDENTIALS
   // public static AUTHORIZATION_SERVER = "https://sisilogin.testeveonline.com/";
   // public static CLIENT_ID = "ddfafe24dcdb43e3ae964bf580636172";
@@ -81,6 +92,7 @@ export class WelcomePageComponent {
     // set to true, to receive also an id_token via OpenId Connect (OIDC) in addition to the
     // OAuth2-based access_token
     this.oauthService.oidc = false;
+    // this.oauthService.requestAccessToken = false;
     // Use setStorage to use sessionStorage or another implementation of the TS-type Storage
     // instead of localStorage
     this.oauthService.setStorage(sessionStorage);
@@ -95,8 +107,84 @@ export class WelcomePageComponent {
     console.log(">> [WelcomePageComponent.launchLogin]");
     // Show the validation spinning while we get the authorization credentials.
     this.working = true;
+
+    // var crypto = require('crypto');
+    // Generate the Public key only for tis session.
+    // let crypting = new Cryptico()
+    // let c = cryptico;
+    // let j=cryptico.prototype;
+    // let d = new cryptico();
+
+    // let rsakey = cryptico.generateRSAKey(ESIConfiguration.passphrase, 2048);
+    // let publicKey = cryptico.publicKeyString(rsakey);
+    // this.appModelStore.setRSAKey(rsakey);
+    // this.appModelStore.setPublicKey(publicKey);
+    // this.generateRSAKey();
+
+    // let generateKeyPromise = window.crypto.subtle.generateKey(
+    //   {
+    //     name: "RSA-PSS",
+    //     modulusLength: 2048, //can be 1024, 2048, or 4096
+    //     publicExponent: new Uint8Array([0x01, 0x00, 0x01]),
+    //     hash: { name: "SHA-256" }, //can be "SHA-1", "SHA-256", "SHA-384", or "SHA-512"
+    //   },
+    //   false, //whether the key is extractable (i.e. can be used in exportKey)
+    //   ["sign", "verify"] //can be any combination of "sign" and "verify"
+    // );
+    // generateKeyPromise.then((key) => {
+    //   this.appModelStore.setRSAKey(key);
+    //   this.appModelStore.setPublicKey(key.publicKey);
+    //   //returns a keypair object
+    //   console.log(key);
+    //   console.log(key.publicKey);
+    //   console.log(key.privateKey);
+    //
     // Start the OAuth flow.
+    console.log(">< [WelcomePageComponent.initImplicitFlow]");
     this.oauthService.initImplicitFlow();
+    // });
     console.log("<< [WelcomePageComponent.launchLogin]");
   }
+  // private generateRSAKey() {
+  //   let generateKeyPromise = window.crypto.subtle.generateKey(
+  //     {
+  //       name: "RSA-PSS",
+  //       modulusLength: 2048, //can be 1024, 2048, or 4096
+  //       publicExponent: new Uint8Array([0x01, 0x00, 0x01]),
+  //       hash: { name: "SHA-256" }, //can be "SHA-1", "SHA-256", "SHA-384", or "SHA-512"
+  //     },
+  //     false, //whether the key is extractable (i.e. can be used in exportKey)
+  //     ["sign", "verify"] //can be any combination of "sign" and "verify"
+  //   );
+  //   generateKeyPromise.then((key) => {
+  //     this.appModelStore.setRSAKey(key);
+  //     this.appModelStore.setPublicKey(key.publicKey);
+  //     //returns a keypair object
+  //     console.log(key);
+  //     console.log(key.publicKey);
+  //     console.log(key.privateKey);
+  //   });
+  //
+  //   window.crypto.subtle.generateKey(
+  //     {
+  //       name: "RSA-PSS",
+  //       modulusLength: 2048, //can be 1024, 2048, or 4096
+  //       publicExponent: new Uint8Array([0x01, 0x00, 0x01]),
+  //       hash: { name: "SHA-256" }, //can be "SHA-1", "SHA-256", "SHA-384", or "SHA-512"
+  //     },
+  //     false, //whether the key is extractable (i.e. can be used in exportKey)
+  //     ["sign", "verify"] //can be any combination of "sign" and "verify"
+  //   )
+  //     .then((key) => {
+  //       this.appModelStore.setRSAKey(key);
+  //       this.appModelStore.setPublicKey(key.publicKey);
+  //       //returns a keypair object
+  //       console.log(key);
+  //       console.log(key.publicKey);
+  //       console.log(key.privateKey);
+  //     });
+  //   // .catch(function(err) {
+  //   //   console.error(err);
+  //   // });
+  // }
 }

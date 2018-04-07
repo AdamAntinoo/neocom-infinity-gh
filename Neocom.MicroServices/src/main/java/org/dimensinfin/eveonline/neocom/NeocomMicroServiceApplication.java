@@ -110,11 +110,12 @@ public class NeoComMicroServiceApplication {
 		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting NeoCom private database...");
 		try {
 			GlobalDataManager.connectNeoComDBConnector(new NeoComSBDBHelper()
-					.setDatabaseHost(GlobalDataManager
-							.getResourceString("R.database.neocom.databasehost", "jdbc:mysql://localhost:3306"))
+					.setDatabaseHost(GlobalDataManager.getResourceString("R.database.neocom.databasehost"
+							, "jdbc:mysql://localhost:3306"))
 					.setDatabaseName("neocom")
-					.setDatabaseUser("NEOCOM")
-					.setDatabasePassword("01.Alpha")
+					.setDatabaseUser(GlobalDataManager.getResourceString("R.database.neocom.databaseuser"
+					,"NEOCOM"))
+					.setDatabasePassword(GlobalDataManager.getResourceString("R.database.neocom.databasepassword"))
 					.setDatabaseVersion(GlobalDataManager.getResourceInt("R.database.neocom.databaseversion"))
 					.build()
 			);
@@ -145,16 +146,16 @@ public class NeoComMicroServiceApplication {
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 
 	// - M E T H O D - S E C T I O N ..........................................................................
-	@Scheduled(initialDelay = 180000, fixedDelay = 120000)
-	private void writeMarketData() {
-		mdServer.writeMarketDataCacheToStorage();
-	}
-
-	@Scheduled(initialDelay = 180000, fixedDelay = 180000)
-	private void writeLocationData() {
-		if (GlobalDataManager.getResourceBoolean("R.cache.locationscache.activestate", true))
-			GlobalDataManager.writeLocationsDatacache();
-	}
+//	@Scheduled(initialDelay = 180000, fixedDelay = 120000)
+//	private void writeMarketData() {
+//		mdServer.writeMarketDataCacheToStorage();
+//	}
+//
+//	@Scheduled(initialDelay = 180000, fixedDelay = 180000)
+//	private void writeLocationData() {
+//		if (GlobalDataManager.getResourceBoolean("R.cache.locationscache.activestate", true))
+//			GlobalDataManager.writeLocationsDatacache();
+//	}
 
 //	@Scheduled(initialDelay = 120000, fixedDelay = 900000)
 //	private void onTime() {

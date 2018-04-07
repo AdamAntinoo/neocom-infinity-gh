@@ -26,6 +26,15 @@ import { NgDragDropModule } from 'ng-drag-drop';
 //--- OAUTH2
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { OAuthService } from 'angular-oauth2-oidc';
+// import { CRYPT_CONFIG_PROVIDER, CryptConfigProvider, EncryptionService } from 'angular-encryption-service';
+// import { EncryptionServiceModule } from 'angular-encryption-service';
+// const AppCryptConfigProvider: CryptConfigProvider = {
+//   getSalt(): Promise<string> {
+//     // TODO: implement providing a salt, which should be unique per user and
+//     // base64-encoded.
+//     return Promise.resolve('saltsalt');
+//   }
+// };
 //--- TOAST NOTIFICATIONS
 // import { ToastModule } from 'ng2-toastr/ng2-toastr';
 // import { ToastsManager } from 'ng2-toastr/ng2-toastr';
@@ -104,6 +113,7 @@ import { ValidateAuthorizationPageComponent } from './pages/validate-authorizati
     NgDragDropModule,
     //--- OAUTH2
     OAuthModule.forRoot(),
+    // EncryptionServiceModule.forRoot(),
     //--- ROUTING
     AppRoutingModule,
     //--- APPLICATION MODULES
@@ -121,7 +131,8 @@ import { ValidateAuthorizationPageComponent } from './pages/validate-authorizati
   ],
   providers: [
     // OAuthService,
-    AppModelStoreService
+    AppModelStoreService,
+    // { provide: CRYPT_CONFIG_PROVIDER, useValue: AppCryptConfigProvider }
   ],
   bootstrap: [AppComponent]
 })
