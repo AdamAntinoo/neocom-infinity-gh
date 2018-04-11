@@ -19,6 +19,7 @@ import { WelcomePageComponent } from './pages/welcome-page/welcome-page.componen
 // import { ProcessingRenderPageComponent } from './pages/processing-render-page/processing-render-page.component';
 // import { AuthorizationProgressPageComponent } from './pages/authorization-progress-page/authorization-progress-page.component';
 import { ValidateAuthorizationPageComponent } from './pages/validate-authorization-page//validate-authorization-page.component';
+import { PilotDashboardPageComponent } from './pages/pilot-dashboard-page/pilot-dashboard-page.component';
 // import { DragDropPageComponent } from './pages/drag-drop-page/drag-drop-page.component';
 // import { ActionrenderingPageComponent } from './pages/actionrendering-page/actionrendering-page.component';
 // import { ActionsbyClassPageComponent } from './pages/actionsby-class-page/actionsby-class-page.component';
@@ -37,6 +38,7 @@ const routes: Routes = [
   // { path: 'testprocessing/:id', component: ProcessingRenderPageComponent },
   // { path: 'authorizationprogress', component: AuthorizationProgressPageComponent },
   { path: 'validateauthorization', component: ValidateAuthorizationPageComponent },
+  { path: 'dashboard', component: PilotDashboardPageComponent },
   // { path: 'dragdrop', component: DragDropPageComponent },
   // { path: 'actionsbyclass', component: ActionsbyClassPageComponent },
   // { path: 'fittingprocessing/:fittingid', component: FittingProcessingPageComponent },

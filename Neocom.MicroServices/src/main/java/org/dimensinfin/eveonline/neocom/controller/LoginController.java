@@ -8,6 +8,7 @@
 //               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom.controller;
 
+import jdk.nashorn.internal.objects.Global;
 import okhttp3.CertificatePinner;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -50,6 +51,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.core.util.Chrono;
 import org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication;
+import org.dimensinfin.eveonline.neocom.NeoComSession;
 import org.dimensinfin.eveonline.neocom.auth.NeoComOAuth20;
 import org.dimensinfin.eveonline.neocom.auth.TokenRequestBody;
 import org.dimensinfin.eveonline.neocom.auth.TokenTranslationResponse;
@@ -59,6 +61,7 @@ import org.dimensinfin.eveonline.neocom.core.NeocomRuntimeException;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
 import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
 
 // - CLASS IMPLEMENTATION ...................................................................................
@@ -66,7 +69,6 @@ import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
 public class LoginController {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger logger = LoggerFactory.getLogger("LoginController");
-	private static Hashtable<String, NeoComSession> sessionStore = new Hashtable();
 
 	// - F I E L D - S E C T I O N ............................................................................
 
@@ -208,7 +210,7 @@ public class LoginController {
 		}
 	}
 
-	private NeoComSessionIdentifier exchangeAuthorization( final String authCode, final String publickey ) throws NeoComException,
+	private NeoComMicroServiceApplication.NeoComSessionIdentifier exchangeAuthorization( final String authCode, final String publickey ) throws NeoComException,
 			IOException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidKeySpecException, InvalidKeyException {
 		// Create the conversion call by coding.
 		logger.info("-- [LoginController.exchangeAuthorization]> Preparing Verification HTTP request.");
@@ -271,19 +273,23 @@ public class LoginController {
 							.setAccessToken(token.getAccessToken())
 							.setTokenType(token.getTokenType())
 							.setExpires(Instant.now().plus(TimeUnit.SECONDS.toMillis(token.getExpires())).getMillis())
-							.setRefreshToken(token.getRefreshToken());
-//							.store();
+							.setRefreshToken(token.getRefreshToken())
+							.setDataSource(GlobalDataManager.SERVER_DATASOURCE)
+							.store();
 					final NeoComSession session = new NeoComSession()
 							.setCredential(credential)
 							.setPublicKey(publickey);
-					sessionStore.put(session.getSessionId(), session);
+					NeoComMicroServiceApplication.sessionStore.put(session.getSessionId(), session);
+					// TODO - Store an additional copy of the session under a predefined session identifier.
+					NeoComMicroServiceApplication.sessionStore.put("-MOCK-SESSION-LOCATOR-", session);
+
 					// Clean up the list of credential to force a reload on next access.
 					// TODO This is a new code flow to store credentials only on the session and this on the database.
 
 //					DataManagementModelStore.getSingleton().cleanModel();
 //					// Update the Pilot information.
-//					GlobalDataManager.getPilotV2(credential.getAccountId());
-					return new NeoComSessionIdentifier(session);
+					InfinityGlobalDataManager.requestPilotV2(credential);
+					return new NeoComMicroServiceApplication.NeoComSessionIdentifier(session);
 				} else
 					throw new NeoComException("NEO [LoginController.exchangeAuthorization]> the VerifyCharacterResponse response is " +
 							"invalid. "
@@ -345,77 +351,6 @@ public class LoginController {
 		Call<TokenTranslationResponse> getAccessToken( @Header("Authorization") String token
 				, @Header("Content-Type") String contentType
 				, @Body TokenRequestBody body );
-	}
-}
-
-final class NeoComSession {
-	//	private PublicKey pubKey = null;
-//	private PrivateKey privateKey = null;
-//	public byte[] identifier = null;
-	private Credential credential = null;
-	private String publicKey = null;
-
-//	public NeoComSession() throws NoSuchAlgorithmException {
-//		KeyPair keyPair = buildKeyPair();
-//		pubKey = keyPair.getPublic();
-//		privateKey = keyPair.getPrivate();
-//	}
-
-	public String getPublicKey() {
-		return publicKey;
-	}
-
-	public int getPilotIdentifier() {
-		return credential.getAccountId();
-	}
-
-	public KeyPair buildKeyPair() throws NoSuchAlgorithmException {
-		final int keySize = 2048;
-		KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
-		keyPairGenerator.initialize(keySize);
-		return keyPairGenerator.genKeyPair();
-	}
-
-	public NeoComSession setCredential( final Credential credential ) {
-		this.credential = credential;
-//		identifier = encrypt(privateKey, credential.getValidationCode());
-		return this;
-	}
-
-	public NeoComSession setPublicKey( final String publicKey ) {
-		this.publicKey = publicKey;
-		return this;
-	}
-
-	public String getSessionId() {
-		return credential.getAccessToken();
-	}
-
-//	public byte[] encrypt( PrivateKey privateKey, String message ) throws Exception {
-//		Cipher cipher = Cipher.getInstance("RSA");
-////		cipher.init(Cipher.ENCRYPT_MODE, privateKey);
-//		cipher.init(Cipher.ENCRYPT_MODE, pubKey);
-//
-//		return cipher.doFinal(message.getBytes());
-//	}
-}
-
-final class NeoComSessionIdentifier {
-	public String jsonClass="NeoComSessionIdentifier";
-	public String sessionIdentifier = "-NOT VALID-";
-	// TODO REMOVE ONCE THE encryption works.
-	public int pilotId=0;
-	public byte[] pilotIdentifier = "-EMPTY-".getBytes();
-
-	public NeoComSessionIdentifier( final NeoComSession session ) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, InvalidKeySpecException, BadPaddingException, IllegalBlockSizeException {
-		sessionIdentifier=session.getSessionId();
-//		X509EncodedKeySpec publicSpec = new X509EncodedKeySpec(session.getPublicKey().getBytes());
-//		KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-//		final PublicKey publicRemoteKey = keyFactory.generatePublic(publicSpec);
-//		Cipher cipher = Cipher.getInstance("RSA");
-//		cipher.init(Cipher.ENCRYPT_MODE, publicRemoteKey);
-		pilotId=session.getPilotIdentifier();
-//		pilotIdentifier = cipher.doFinal(Integer.valueOf(session.getPilotIdentifier()).toString().getBytes());
 	}
 }
 // - UNUSED CODE ............................................................................................

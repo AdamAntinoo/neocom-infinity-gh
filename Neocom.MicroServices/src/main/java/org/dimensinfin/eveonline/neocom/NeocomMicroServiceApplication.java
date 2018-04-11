@@ -8,8 +8,16 @@
 //               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.SQLException;
+import java.util.Hashtable;
+import java.util.concurrent.TimeUnit;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -20,6 +28,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 
+import org.joda.time.Instant;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.config.Configuration;
 import org.slf4j.Logger;
@@ -27,14 +36,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 
 import org.dimensinfin.eveonline.neocom.conf.GlobalConfigurationProvider;
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.MarketDataServer;
-import org.dimensinfin.eveonline.neocom.industry.EveTask;
+import org.dimensinfin.eveonline.neocom.model.ANeoComEntity;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 
@@ -53,6 +61,8 @@ import org.dimensinfin.eveonline.neocom.industry.EveTask;
 public class NeoComMicroServiceApplication {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger logger = LoggerFactory.getLogger("NeoComMicroServiceApplication");
+	public static final boolean MOCK_UP=true;
+
 	public static MarketDataServer mdServer = null;
 //	public static final TimedUpdater timedService = new TimedUpdater();
 
@@ -82,6 +92,40 @@ public class NeoComMicroServiceApplication {
 				.setMethodAccessLevel(Configuration.AccessLevel.PRIVATE);
 	}
 
+	public static Hashtable<String, NeoComSession> sessionStore = new Hashtable();
+
+	public static boolean validatePilotIdentifierMatch( final String sessionLocator, final Integer identifier ) {
+		logger.info(">> [NeoComMicroServiceApplication.validatePilotIdentifierMatch]");
+		try {
+			// Convert the locator to an instance.
+			SessionLocator locator = NeoComMicroServiceApplication.modelMapper.map(sessionLocator, SessionLocator.class);
+			locator = new SessionLocator()
+					.setSessionLocator("-MANUALLY-CREATED-LOCATOR-")
+					.setTimeValid(Instant.now().getMillis());
+			if (null == locator) return false;
+			final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(locator);
+
+			// First check the time span validity.
+			final long now = Instant.now().getMillis();
+//			final long nowPlus15 = Instant.now().plus(TimeUnit.MINUTES.toMillis(15)).toInstant().getMillis();
+			final long timeLimit = new Instant(locator.getTimeValid()).plus(TimeUnit.MINUTES.toMillis(15)).toInstant().getMillis();
+			if (timeLimit <= now) return false;
+
+			// Then check if the identifiers match.
+			final NeoComSession hit = sessionStore.get(locator.getSessionLocator());
+			if (null == hit) return false;
+			if (hit.getPilotIdentifier() != identifier) return false;
+
+			// All was validated. We can access the data
+			return true;
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			logger.info("<< [NeoComMicroServiceApplication.validatePilotIdentifierMatch]");
+		}
+//		return true;
+	}
 	// - M A I N   E N T R Y P O I N T ........................................................................
 
 	/**
@@ -96,6 +140,10 @@ public class NeoComMicroServiceApplication {
 		// Not required. The default configuration manager already reads the properties folder.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the Configuration Manager...");
 		GlobalDataManager.connectConfigurationManager(new GlobalConfigurationProvider(null));
+
+		// Initialize the Model with the current global instance.
+		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting Global to Model...");
+		ANeoComEntity.connectGlobal(new GlobalDataManager());
 
 		// Initializing the ESI api network controller.
 //		ESINetworkManager.initialize();
@@ -120,7 +168,7 @@ public class NeoComMicroServiceApplication {
 							, "jdbc:mysql://localhost:3306"))
 					.setDatabaseName("neocom")
 					.setDatabaseUser(GlobalDataManager.getResourceString("R.database.neocom.databaseuser"
-					,"NEOCOM"))
+							, "NEOCOM"))
 					.setDatabasePassword(GlobalDataManager.getResourceString("R.database.neocom.databasepassword"))
 					.setDatabaseVersion(GlobalDataManager.getResourceInt("R.database.neocom.databaseversion"))
 					.build()
@@ -173,7 +221,7 @@ public class NeoComMicroServiceApplication {
 //	}
 
 
-		// - CLASS IMPLEMENTATION ...................................................................................
+	// - CLASS IMPLEMENTATION ...................................................................................
 	public static class ExceptionSerializer extends JsonSerializer<Exception> {
 		// - F I E L D - S E C T I O N ............................................................................
 
@@ -189,8 +237,6 @@ public class NeoComMicroServiceApplication {
 		}
 	}
 	// ..........................................................................................................
-
-
 
 
 //	// - CLASS IMPLEMENTATION ...................................................................................
@@ -370,6 +416,48 @@ public class NeoComMicroServiceApplication {
 //
 //		}
 //	}
+	public static class SessionLocator {
+		public String sessionLocator = null;
+		public long timeValid = -1;
+
+		public String getSessionLocator() {
+			return sessionLocator;
+		}
+
+		public long getTimeValid() {
+			return timeValid;
+		}
+
+		public SessionLocator setSessionLocator( final String sessionLocator ) {
+			this.sessionLocator = sessionLocator;
+			return this;
+		}
+
+		public SessionLocator setTimeValid( final long timeValid ) {
+			this.timeValid = timeValid;
+			return this;
+		}
+	}
+
+	public static class NeoComSessionIdentifier {
+		public String jsonClass = "NeoComSessionIdentifier";
+		public String sessionIdentifier = "-NOT VALID-";
+		// TODO REMOVE ONCE THE encryption works.
+		public int pilotId = 0;
+		public byte[] pilotIdentifier = "-EMPTY-".getBytes();
+
+		public NeoComSessionIdentifier( final NeoComSession session ) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, InvalidKeySpecException, BadPaddingException, IllegalBlockSizeException {
+			sessionIdentifier = session.getSessionId();
+//		X509EncodedKeySpec publicSpec = new X509EncodedKeySpec(session.getPublicKey().getBytes());
+//		KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+//		final PublicKey publicRemoteKey = keyFactory.generatePublic(publicSpec);
+//		Cipher cipher = Cipher.getInstance("RSA");
+//		cipher.init(Cipher.ENCRYPT_MODE, publicRemoteKey);
+			pilotId = session.getPilotIdentifier();
+//		pilotIdentifier = cipher.doFinal(Integer.valueOf(session.getPilotIdentifier()).toString().getBytes());
+		}
+	}
+
 	// ........................................................................................................
 }
 // - UNUSED CODE ............................................................................................

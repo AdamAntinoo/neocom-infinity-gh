@@ -7,8 +7,9 @@
     "types": ["node"],
     "baseUrl": "./",
     "paths": {
-      "src/*": ["./src/*"],
-      "modules/*": ["./src/modules/*"]
+      "src/*": ["src/*"],
+      "app/*": ["src/app/*"],
+      "modules/*": ["src/modules/*"]
     }
   },
   "exclude": [

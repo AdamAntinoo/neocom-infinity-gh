@@ -1,5 +1,6 @@
 {
   "characterId": 90475644,
+  "jsonClass": "Pilot",
   "name": "Lady Risotto",
   "corporation": {
     "corporationId": 1427661573,
@@ -88,5 +89,41 @@
   },
   "securityStatus": 5.385395353729599,
   "accountBalance": 64639631.87,
-  "urlforAvatar": "http://image.eveonline.com/character/90475644_256.jpg"
+  "urlforAvatar": "http://image.eveonline.com/character/90475644_256.jpg",
+  "characterInfo": {
+    "version": 2,
+    "currentTime": 1519844765000,
+    "cachedUntil": 1519848185000,
+    "error": null,
+    "characterID": 91734031,
+    "characterName": "Zach Zender",
+    "race": "GALLENTE",
+    "bloodline": "GALLENTE",
+    "accountBalance": 2.3037590582E8,
+    "skillPoints": 8404419,
+    "shipName": "ZZ V",
+    "shipTypeID": 32880,
+    "shipTypeName": "Venture",
+    "corporationID": 1427661573,
+    "corporation": "Planet - Express",
+    "corporationDate": 1471298400000,
+    "allianceID": 117383987,
+    "alliance": "Silent Infinity",
+    "allianceDate": 1417817880000,
+    "lastKnownLocation": "H-GKI6 VI - Another 0ne Bites The Dust",
+    "securityStatus": 3.11001338860112,
+    "employmentHistory": [{
+      "corporationID": 1427661573,
+      "startDate": 1471298400000
+    }, {
+      "corporationID": 1000107,
+      "startDate": 1341334020000
+    }, {
+      "corporationID": 1616950898,
+      "startDate": 1335389280000
+    }, {
+      "corporationID": 1000169,
+      "startDate": 1330545120000
+    }]
+  }
 }

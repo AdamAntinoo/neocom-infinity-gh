@@ -60,6 +60,7 @@ import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
 //--- PAGES
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 import { ValidateAuthorizationPageComponent } from './pages/validate-authorization-page//validate-authorization-page.component';
+import { PilotDashboardPageComponent } from './pages/pilot-dashboard-page/pilot-dashboard-page.component';
 // import { BasePageComponent } from './pages/base-page.component';
 // import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
 // import { EsiAuthorizationPageComponent } from './pages/esi-authorization-page/esi-authorization-page.component';
@@ -127,7 +128,9 @@ import { ValidateAuthorizationPageComponent } from './pages/validate-authorizati
     ISKNoDecimalsPipe,
     //--- PAGES
     WelcomePageComponent,
-    ValidateAuthorizationPageComponent
+    ValidateAuthorizationPageComponent,
+    PilotDashboardComponent,
+    PilotDashboardPageComponent
   ],
   providers: [
     // OAuthService,
