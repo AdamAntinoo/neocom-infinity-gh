@@ -73,8 +73,8 @@ public class LoginController {
 	// - F I E L D - S E C T I O N ............................................................................
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
-	public LoginController() {
-	}
+//	public LoginController() {
+//	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
 	// TODO Code commented out until reactivation of functionality required.
@@ -148,12 +148,6 @@ public class LoginController {
 		try {
 			// Convert any object instance retirned to a Json serialized string.
 			return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(exchangeAuthorization(code, publickey));
-		} catch (RuntimeException rtex) {
-			try {
-				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeocomRuntimeException(rtex.getMessage()));
-			} catch (JsonProcessingException jpe) {
-				return new JsonExceptionInstance(jpe.getMessage() + '\n' + rtex.getMessage()).toJson();
-			}
 		} catch (JsonProcessingException jpe) {
 			return new JsonExceptionInstance(jpe.getMessage()).toJson();
 		} catch (NeoComException neoe) {
@@ -203,6 +197,12 @@ public class LoginController {
 				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(ikse.getMessage()));
 			} catch (JsonProcessingException jpe) {
 				return new JsonExceptionInstance(jpe.getMessage() + '\n' + ikse.getMessage()).toJson();
+			}
+		} catch (RuntimeException rte) {
+			try {
+				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(rte.getMessage()));
+			} catch (JsonProcessingException jpe) {
+				return new JsonExceptionInstance(jpe.getMessage() + '\n' + rte.getMessage()).toJson();
 			}
 		} finally {
 			logger.info("<< [LoginController.exchangeAuthorizationEntryPoint]> [TIMING] Processing Time: {}"

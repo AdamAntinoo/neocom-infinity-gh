@@ -28,7 +28,10 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 
+import org.joda.time.DateTime;
 import org.joda.time.Instant;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.config.Configuration;
 import org.slf4j.Logger;
@@ -43,6 +46,8 @@ import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.MarketDataServer;
 import org.dimensinfin.eveonline.neocom.model.ANeoComEntity;
+import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
+import org.dimensinfin.eveonline.neocom.model.PilotV2;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 
@@ -73,7 +78,7 @@ public class NeoComMicroServiceApplication {
 		jsonMapper.registerModule(new JodaModule());
 		// Add our own serializers.
 		SimpleModule neocomSerializerModule = new SimpleModule();
-//		neocomSerializerModule.addSerializer(Ship.class, new ShipSerializer());
+		neocomSerializerModule.addSerializer(PilotV2.class, new PilotV2Serializer());
 //		neocomSerializerModule.addSerializer(Credential.class, new CredentialSerializer());
 //		neocomSerializerModule.addSerializer(Action.class, new ActionSerializer());
 //		neocomSerializerModule.addSerializer(EveTask.class, new ProcessingTaskSerializer());
@@ -238,6 +243,50 @@ public class NeoComMicroServiceApplication {
 	}
 	// ..........................................................................................................
 
+	// - CLASS IMPLEMENTATION ...................................................................................
+	public static class PilotV2Serializer extends JsonSerializer<PilotV2> {
+		// - F I E L D - S E C T I O N ............................................................................
+
+		// - M E T H O D - S E C T I O N ..........................................................................
+		@Override
+		public void serialize( final PilotV2 value, final JsonGenerator jgen, final SerializerProvider provider )
+				throws IOException, JsonProcessingException {
+			jgen.writeStartObject();
+			jgen.writeStringField("jsonClass", value.getJsonClass());
+			jgen.writeNumberField("characterId", value.getCharacterId());
+			jgen.writeStringField("name", value.getName());
+//			jgen.writeObjectField("publicData", value.getPublicData());
+			jgen.writeObjectField("corporation", value.getCorporation());
+			jgen.writeObjectField("alliance", value.getAlliance());
+			jgen.writeObjectField("race", value.getRace());
+			jgen.writeObjectField("bloodline", value.getBloodline());
+			jgen.writeObjectField("ancestry", value.getAncestry());
+
+			// Transform the birthday time to a dete string.
+			DateTime dt = new DateTime(value.getBirthday());
+			DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MMMM-ddTHH:mm:ssZ");
+			jgen.writeStringField("birthday", fmt.print(dt));
+			jgen.writeStringField("gender", value.getGender());
+			jgen.writeNumberField("securityStatus", value.getSecurityStatus());
+
+			jgen.writeNumberField("accountBalance", value.getAccountBalance());
+			jgen.writeStringField("urlforAvatar", value.getUrlforAvatar());
+
+//			jgen.writeStringField("name", value.getName());
+//			jgen.writeNumberField("ownerId", value.getOwnerID());
+//			jgen.writeStringField("name", value.getName());
+//			jgen.writeStringField("categoryName", value.getCategory());
+//			jgen.writeStringField("groupName", value.getGroupName());
+//			jgen.writeStringField("tech", value.getTech());
+//			jgen.writeStringField("userLabel", value.getUserLabel());
+//			jgen.writeNumberField("price", value.getPrice());
+//			jgen.writeNumberField("parentContainerId", value.getParentContainerId());
+//			jgen.writeObjectField("item", value.getItem());
+//			jgen.writeObjectField("location", value.getLocation());
+			jgen.writeEndObject();
+		}
+	}
+	// ..........................................................................................................
 
 //	// - CLASS IMPLEMENTATION ...................................................................................
 //	public static class ShipSerializer extends JsonSerializer<Ship> {

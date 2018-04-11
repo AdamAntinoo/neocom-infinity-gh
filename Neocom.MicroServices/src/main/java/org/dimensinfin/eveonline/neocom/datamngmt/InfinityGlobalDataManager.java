@@ -35,7 +35,7 @@ public class InfinityGlobalDataManager extends GlobalDataManager {
 	// --- M O D E L - S T O R E   I N T E R F A C E
 	//--- ALLIANCE
 //	public static AllianceV1 reachAllianceV1( final int identifier, final SessionContext context ) {
-		public static AllianceV1 reachAllianceV1( final Credential credential ) {
+		public static AllianceV1 requestAllianceV1( final int allianceIdentifier,final Credential credential ) {
 		logger.info(">> [InfinityGlobalDataManager.reachAllianceV1]> Identifier: {}", credential.getAccountId());
 		try {
 //			// Check if this request is already available on the cache.
@@ -49,7 +49,8 @@ public class InfinityGlobalDataManager extends GlobalDataManager {
 
 				// Corporation information.
 				logger.info("-- [InfinityGlobalDataManager.reachAllianceV1]> ESI Compatible. Download corporation information.");
-				final GetAlliancesAllianceIdOk publicData = ESINetworkManager.getAlliancesAllianceId(Long.valueOf(credential.getAccountId()).intValue()
+				final GetAlliancesAllianceIdOk publicData = ESINetworkManager.getAlliancesAllianceId(Long.valueOf(allianceIdentifier)
+								.intValue()
 						, credential.getRefreshToken()
 						, SERVER_DATASOURCE);
 				newalliance.setPublicData(publicData);
@@ -65,7 +66,7 @@ public class InfinityGlobalDataManager extends GlobalDataManager {
 
 	//--- CORPORATION
 //	public static CorporationV1 reachCorporationV1( final int identifier, final SessionContext context ) {
-		public static CorporationV1 reachCorporationV1( Credential credential ) {
+		public static CorporationV1 requestCorporationV1(   final int corpIdentifier , final Credential credential) {
 		logger.info(">> [InfinityGlobalDataManager.reachCorporationV1]> Identifier: {}", credential.getAccountId());
 		try {
 			// Check if this request is already available on the cache.
@@ -73,17 +74,15 @@ public class InfinityGlobalDataManager extends GlobalDataManager {
 //			if (null == hit) {
 //				logger.info("-- [InfinityGlobalDataManager.reachCorporationV1]> Instance not found at cache. Downloading Corporation <{}> info.",identifier);
 				final CorporationV1 newcorp = new CorporationV1();
-				// Get the credential from the Session.
-//				final Credential credential = context.getCredential();
-
 				// Corporation information.
 				logger.info("-- [InfinityGlobalDataManager.reachCorporationV1]> ESI Compatible. Download corporation information.");
-				final GetCorporationsCorporationIdOk publicData = ESINetworkManager.getCorporationsCorporationId(Long.valueOf(credential.getAccountId()).intValue()
+				final GetCorporationsCorporationIdOk publicData = ESINetworkManager.getCorporationsCorporationId(Long.valueOf(corpIdentifier)
+								.intValue()
 						, credential.getRefreshToken()
 						, SERVER_DATASOURCE);
 				newcorp.setPublicData(publicData);
 				// Process the public data and get the referenced instances for the Corporation, race, etc.
-				newcorp.setAlliance(InfinityGlobalDataManager.reachAllianceV1(credential));
+				newcorp.setAlliance(InfinityGlobalDataManager.reachAllianceV1(10,credential));
 
 				return newcorp;
 //			} else {
@@ -125,15 +124,16 @@ public class InfinityGlobalDataManager extends GlobalDataManager {
 					final GetCharactersCharacterIdOk publicData = ESINetworkManager.getCharactersCharacterId(credential.getAccountId()
 							, credential.getRefreshToken()
 							, SERVER_DATASOURCE);
-					newchar.setPublicData(publicData);
+					newchar.setCharacterId(credential.getAccountId())
+							.setPublicData(publicData);
 					// TODO First checkpoint --------------------------------------
-//					// Process the public data and get the referenced instances for the Corporation, race, etc.
-//					newchar.setCorporation ( InfinityGlobalDataManager.reachCorporationV1(publicData.getCorporationId(),context))
-//							.setAlliance (InfinityGlobalDataManager.reachAllianceV1(publicData.getAllianceId(),context))
-//							.setRace (GlobalDataManager.searchSDERace(publicData.getRaceId(),context))
-//							.setBloodline (GlobalDataManager.searchSDEBloodline(publicData.getBloodlineId(),context))
-//							.setAncestry (GlobalDataManager.searchSDEAncestry(publicData.getAncestryId(),context));
-//
+					// Process the public data and get the referenced instances for the Corporation, race, etc.
+					newchar.setCorporation ( InfinityGlobalDataManager.requestCorporationV1(publicData.getCorporationId(),credential))
+							.setAlliance (InfinityGlobalDataManager.requestAllianceV1(publicData.getAllianceId(),credential))
+							.setRace (GlobalDataManager.searchSDERace(publicData.getRaceId()))
+							.setBloodline (GlobalDataManager.searchSDEBloodline(publicData.getBloodlineId()))
+							.setAncestry (GlobalDataManager.searchSDEAncestry(publicData.getAncestryId()));
+
 //					// Clone data
 //					logger.info("-- [InfinityGlobalDataManager.reachPilotV2]> ESI Compatible. Download clone information.");
 //					final GetCharactersCharacterIdClonesOk cloneInformation = ESINetworkManager.getCharactersCharacterIdClones(Long.valueOf(identifier).intValue(), credential.getRefreshToken(), "tranquility");

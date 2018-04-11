@@ -49,6 +49,7 @@
   },
   "birthday": "2011-02-26T17:46:00Z",
   "gender": "female",
+  "securityStatus": 5.385395353729599,
   "race": {
     "race_id": 1,
     "name": "Caldari",
@@ -87,7 +88,6 @@
     "short_description": "Seers of the hidden mysteries before our very eyes.",
     "icon_id": 3026
   },
-  "securityStatus": 5.385395353729599,
   "accountBalance": 64639631.87,
   "urlforAvatar": "http://image.eveonline.com/character/90475644_256.jpg",
   "characterInfo": {

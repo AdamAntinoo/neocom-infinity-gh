@@ -38,10 +38,21 @@ sourceSets {
 
 //--- T A S K S
 task copyResources(type: Copy) {
+    // NeoCom.Model Properties
     from project(':NeoCom.Model').fileTree('src/main/resources/properties')
     into file('src/main/resources/properties/')
-//    from project(':NeoCom.Model').file('src/main/resources/*.txt')
-//    into file('src/main/resources')
+    // NeoCom.Model Files
+    from project(':NeoCom.Model').file('src/main/resources/ESINetworkScopes.Singularity.txt')
+    into file('src/main/resources/ESINetworkScopes.Singularity.txt')
+
+    // NeoCom.DataManagement Properties
+    from project(':NeoCom.DataManagement').fileTree('src/main/resources/properties')
+    into file('src/main/resources/properties/')
+    // NeoCom.DataManagement SDE files
+    from project(':NeoCom.DataManagement').fileTree('src/main/resources/sdecontents')
+    into file('src/main/resources/sdecontents/')
+    from project(':NeoCom.DataManagement').fileTree('src/main/resources/yaml')
+    into file('src/main/resources/yaml/')
 }
 classes.dependsOn(copyResources)
 
