@@ -1,0 +1,87 @@
+{
+  "jsonClass": "Pilot",
+  "characterId": 92002067,
+  "name": "Adam Antinoo",
+  "corporation": {
+    "jsonClass": "Corporation",
+    "corporationId": 1427661573,
+    "name": "Planet - Express",
+    "ticker": "PLAM",
+    "memberCount": 44,
+    "alliance": {
+      "jsonClass": "Alliance",
+      "allianceId": 117383987,
+      "name": "Silent Infinity",
+      "ticker": "AFK",
+      "dateFounded": 1285879620000,
+      "url4Icon": "http://image.eveonline.com/Alliance/117383987_128.png"
+    },
+    "description": "<font size=\"12\" color=\"#bfffffff\"></font><font size=\"18\" color=\"#ff00ff00\">N</font><font size=\"18\" color=\"#ffff0000\">R</font><font size=\"18\" color=\"#ff00ff00\">DS<br><br></font><font size=\"12\" color=\"#ffffff00\">Our crew is replaceable. Your package not!<br>The pizza will be great, just a few more minutes ... and it will be delivered.<br><br><br></font><font size=\"12\" color=\"#ffffa600\"><a href=\"http://www.silentinfinity.com/posterart/\">AFK POSTER ART</a></font><font size=\"12\" color=\"#ffffff00\"> </font>",
+    "taxRate": 0.0,
+    "dateFounded": 1244885100000,
+    "homeStation": {
+      "jsonClass": "EveLocation",
+      "id": -1,
+      "stationID": -1,
+      "station": "SPACE",
+      "systemID": -1,
+      "system": "UNKNOWN",
+      "constellationID": -1,
+      "constellation": "Echo Cluster",
+      "regionID": -1,
+      "region": "-DEEP SPACE-",
+      "security": "0.0",
+      "typeID": "UNKNOWN",
+      "urlLocationIcon": "http://image.eveonline.com/Render/1529_64.png",
+      "name": "UNKNOWN - SPACE",
+      "fullLocation": "[0.0] SPACE - -DEEP SPACE- > UNKNOWN",
+      "securityValue": 0.0,
+      "citadel": false,
+      "realId": -2,
+      "unknown": true
+    },
+    "url4Icon": "http://image.eveonline.com/Corporation/1427661573_128.png",
+    "allianceId": 117383987
+  },
+  "alliance": {
+    "jsonClass": "Alliance",
+    "allianceId": 117383987,
+    "name": "Silent Infinity",
+    "ticker": "AFK",
+    "dateFounded": 1285879620000,
+    "url4Icon": "http://image.eveonline.com/Alliance/117383987_128.png"
+  },
+  "race": {
+    "raceId": 2,
+    "name": "Minmatar",
+    "description": "Once a thriving tribal civilization, the Minmatar were enslaved by the Amarr Empire for more than 700 years until a massive rebellion freed most, but not all, of those held in servitude. The Minmatar people today are resilient, ingenious, and hard-working. Many of them believe that democracy, though it has served them well for a long time, can never restore what was taken from them so long ago. For this reason they have formed a government truly reflective of their tribal roots. They will forever resent the Amarrians, and yearn for the days before the Empire's accursed ships ever reached their home skies.",
+    "allianceId": 500002
+  },
+  "bloodline": {
+    "bloodlineId": 3,
+    "name": "Sebiestor",
+    "description": "Widely respected as some of the cluster's most innovative thinkers, the Sebiestor are an ingenious people with a natural fondness for engineering. For the last millennium they have pioneered advances in applied sciences, despite laboring under chronic material shortages. Masters of deriving solutions from impossible circumstances, Sebiestor engineers believe they can build anything, with anything, out of anything.",
+    "raceId": 2,
+    "shipTypeId": 588,
+    "corporationId": 1000046,
+    "perception": 5,
+    "willpower": 6,
+    "charisma": 6,
+    "memory": 6,
+    "intelligence": 7
+  },
+  "ancestry": {
+    "id": 20,
+    "name": "Traders",
+    "bloodlineId": 3,
+    "description": "Many Sebiestor traders live as nomads and travel the cluster in search of quick profit. They rarely settle down to exploit a prosperous trade route, and instead prefer to keep moving in search of the big payoff—the one that will instantly make them rich beyond their wildest dreams.",
+    "shortDescription": "Nomadic merchants looking to strike it rich.",
+    "iconId": 1660
+  },
+  "birthday": "2012-May-09T21:45:27+0200",
+  "birthdayNumber": 1336592727000,
+  "gender": "male",
+  "securityStatus": 5.00203275680542,
+  "accountBalance": -1.0,
+  "urlforAvatar": "http://image.eveonline.com/character/92002067_256.jpg"
+}

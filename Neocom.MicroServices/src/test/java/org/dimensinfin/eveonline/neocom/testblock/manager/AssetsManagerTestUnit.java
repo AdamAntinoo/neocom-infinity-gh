@@ -23,10 +23,8 @@ import org.slf4j.LoggerFactory;
 
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
-import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
-import org.dimensinfin.eveonline.neocom.manager.AssetsManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
-import org.dimensinfin.eveonline.neocom.storage.DataManagementModelStore;
 
 /**
  * @author Adam Antinoo
@@ -60,11 +58,11 @@ public class AssetsManagerTestUnit {
 		);
 		// Check the connection descriptor.
 		Assert.assertEquals("-> Validating the database is valid..."
-				, GlobalDataManager.getNeocomDBHelper().isDatabaseValid()
+				, new GlobalDataManager().getNeocomDBHelper().isDatabaseValid()
 				, true);
 		// Check the database is open and has a valid connection.
 		Assert.assertEquals("-> Validating the database is open..."
-				, GlobalDataManager.getNeocomDBHelper().isOpen()
+				, new GlobalDataManager().getNeocomDBHelper().isOpen()
 				, true);
 		logger.info("<< [NeoComDatabaseTestUnit.testOpenAndConnectDatabase]");
 	}

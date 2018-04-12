@@ -29,15 +29,12 @@ import org.dimensinfin.eveonline.neocom.conf.GlobalConfigurationProvider;
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
-import org.dimensinfin.eveonline.neocom.datamngmt.manager.ESINetworkManager;
-import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
-import org.dimensinfin.eveonline.neocom.datamngmt.manager.SDEExternalDataManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.SDEExternalDataManager;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdFittings200Ok;
-import org.dimensinfin.eveonline.neocom.model.Fitting;
-import org.dimensinfin.eveonline.neocom.model.Ship;
-import org.dimensinfin.eveonline.neocom.storage.DataManagementModelStore;
 
-	// - CLASS IMPLEMENTATION ...................................................................................
+// - CLASS IMPLEMENTATION ...................................................................................
 	public class PilotControllerTestUnit {
 		// - S T A T I C - S E C T I O N ..........................................................................
 		private static Logger logger = LoggerFactory.getLogger("PilotControllerTestUnit");
@@ -47,8 +44,8 @@ import org.dimensinfin.eveonline.neocom.storage.DataManagementModelStore;
 			jsonMapper.registerModule(new JodaModule());
 			// Add our own serializers.
 			SimpleModule neocomSerializerModule = new SimpleModule();
-			neocomSerializerModule.addSerializer(Ship.class, new NeoComMicroServiceApplication.ShipSerializer());
-			neocomSerializerModule.addSerializer(Credential.class, new NeoComMicroServiceApplication.CredentialSerializer());
+//			neocomSerializerModule.addSerializer(Ship.class, new NeoComMicroServiceApplication.ShipSerializer());
+//			neocomSerializerModule.addSerializer(Credential.class, new NeoComMicroServiceApplication.CredentialSerializer());
 			jsonMapper.registerModule(neocomSerializerModule);
 		}
 		private static final ModelMapper modelMapper = new ModelMapper();
@@ -102,21 +99,21 @@ import org.dimensinfin.eveonline.neocom.storage.DataManagementModelStore;
 		public void testFlagDetailSearch(){
 			final SDEExternalDataManager.InventoryFlag detailedFlag = SDEExternalDataManager.searchFlag4Id(15);
 		}
-		@Test
-	public void testFittingDownload( ) throws JsonProcessingException {
-		logger.info(">> [PilotControllerTestUnit.testFittingDownload]");
-			final Integer id = 92223647;
-			// Activate the list of credentials.
-			DataManagementModelStore.activateCredential(id);
-			// Download the list of fittings.
-			Credential credential = DataManagementModelStore.activateCredential(id);
-			// Get to the Network and download the data from the ESI api.
-			final List<GetCharactersCharacterIdFittings200Ok> fittings = ESINetworkManager.getCharactersCharacterIdFittings(id, credential.getRefreshToken(), "tranquility");
-			final GetCharactersCharacterIdFittings200Ok fit = fittings.get(0);
-			final Fitting newfitting = modelMapper.map(fit, Fitting.class);
-			 String contentsSerialized = jsonMapper.writeValueAsString(fittings);
-			contentsSerialized=jsonMapper.writeValueAsString(newfitting);
-			logger.info("<< [PilotControllerTestUnit.testFittingDownload]");
-	}
+//		@Test
+//	public void testFittingDownload( ) throws JsonProcessingException {
+//		logger.info(">> [PilotControllerTestUnit.testFittingDownload]");
+//			final Integer id = 92223647;
+//			// Activate the list of credentials.
+//			DataManagementModelStore.activateCredential(id);
+//			// Download the list of fittings.
+//			Credential credential = DataManagementModelStore.activateCredential(id);
+//			// Get to the Network and download the data from the ESI api.
+//			final List<GetCharactersCharacterIdFittings200Ok> fittings = ESINetworkManager.getCharactersCharacterIdFittings(id, credential.getRefreshToken(), "tranquility");
+//			final GetCharactersCharacterIdFittings200Ok fit = fittings.get(0);
+//			final Fitting newfitting = modelMapper.map(fit, Fitting.class);
+//			 String contentsSerialized = jsonMapper.writeValueAsString(fittings);
+//			contentsSerialized=jsonMapper.writeValueAsString(newfitting);
+//			logger.info("<< [PilotControllerTestUnit.testFittingDownload]");
+//	}
 
 }

@@ -1,4 +1,4 @@
-//  PROJECT:     Neocom.Microservices (NEOC-MS)
+//  PROJECT:     NeoCom.Microservices (NEOC.MS)
 //  AUTHORS:     Adam Antinoo - adamantinoo.git@gmail.com
 //  COPYRIGHT:   (c) 2017-2018 by Dimensinfin Industries, all rights reserved.
 //  ENVIRONMENT: Java 1.8 / SpringBoot-1.3.5 / Angular 5.0

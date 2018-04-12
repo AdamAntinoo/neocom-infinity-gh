@@ -46,7 +46,6 @@ import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.MarketDataServer;
 import org.dimensinfin.eveonline.neocom.model.ANeoComEntity;
-import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
 import org.dimensinfin.eveonline.neocom.model.PilotV2;
 
 // - CLASS IMPLEMENTATION ...................................................................................
@@ -66,7 +65,7 @@ import org.dimensinfin.eveonline.neocom.model.PilotV2;
 public class NeoComMicroServiceApplication {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger logger = LoggerFactory.getLogger("NeoComMicroServiceApplication");
-	public static final boolean MOCK_UP=true;
+	public static final boolean MOCK_UP = true;
 
 	public static MarketDataServer mdServer = null;
 //	public static final TimedUpdater timedService = new TimedUpdater();
@@ -264,8 +263,9 @@ public class NeoComMicroServiceApplication {
 
 			// Transform the birthday time to a dete string.
 			DateTime dt = new DateTime(value.getBirthday());
-			DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MMMM-ddTHH:mm:ssZ");
+			DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MMMM-dd'T'HH:mm:ssZ");
 			jgen.writeStringField("birthday", fmt.print(dt));
+			jgen.writeNumberField("birthdayNumber", value.getBirthday());
 			jgen.writeStringField("gender", value.getGender());
 			jgen.writeNumberField("securityStatus", value.getSecurityStatus());
 

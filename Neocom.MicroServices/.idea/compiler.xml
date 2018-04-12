@@ -2,20 +2,12 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.8">
-      <module name="CoreBaseLibrary_main" target="1.7" />
-      <module name="CoreBaseLibrary_test" target="1.7" />
       <module name="ESI.SwaggerApi_main" target="1.7" />
       <module name="ESI.SwaggerApi_test" target="1.7" />
-      <module name="NeoCom-DataMngmt Infinity-ESI.SwaggerApi_main" target="1.7" />
-      <module name="NeoCom-DataMngmt Infinity-ESI.SwaggerApi_test" target="1.7" />
-      <module name="NeoCom-DataMngmt Infinity-NeoCom.Model_main" target="1.8" />
-      <module name="NeoCom-DataMngmt Infinity-NeoCom.Model_test" target="1.8" />
       <module name="NeoCom.DataManagement_main" target="1.8" />
       <module name="NeoCom.DataManagement_test" target="1.8" />
       <module name="NeoCom.MicroServices_main" target="1.8" />
-      <module name="Neocom.MicroServices_main" target="1.8" />
       <module name="NeoCom.MicroServices_test" target="1.8" />
-      <module name="Neocom.MicroServices_test" target="1.8" />
       <module name="NeoCom.Model_main" target="1.8" />
       <module name="NeoCom.Model_test" target="1.8" />
     </bytecodeTargetLevel>

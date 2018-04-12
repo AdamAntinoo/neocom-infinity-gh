@@ -37,25 +37,27 @@ sourceSets {
 //}
 
 //--- T A S K S
-task copyResources(type: Copy) {
-    // NeoCom.Model Properties
-    from project(':NeoCom.Model').fileTree('src/main/resources/properties')
-    into file('src/main/resources/properties/')
-    // NeoCom.Model Files
-    from project(':NeoCom.Model').file('src/main/resources/ESINetworkScopes.Singularity.txt')
-    into file('src/main/resources/ESINetworkScopes.Singularity.txt')
-
-    // NeoCom.DataManagement Properties
-    from project(':NeoCom.DataManagement').fileTree('src/main/resources/properties')
-    into file('src/main/resources/properties/')
-    // NeoCom.DataManagement SDE files
-    from project(':NeoCom.DataManagement').fileTree('src/main/resources/sdecontents')
-    into file('src/main/resources/sdecontents/')
-    from project(':NeoCom.DataManagement').fileTree('src/main/resources/yaml')
-    into file('src/main/resources/yaml/')
+task cleanUpResources(type: Delete) {
+    delete 'src/main/resources/sdecontents'
+    delete 'src/main/resources/yaml'
 }
-classes.dependsOn(copyResources)
-
+task copyResources(type: Copy) {
+    copy {
+        // NeoCom.Model Properties
+        from project(':NeoCom.Model').file('src/main/resources')
+        into file('src/main/resources')
+        include 'properties/**'
+//        include 'ESINetworkScopes.Singularity.txt'
+    }
+    copy {
+        from project(':NeoCom.DataManagement').file('src/main/resources')
+        into file('src/main/resources')
+        include 'properties/**'
+        include 'sdecontents/**'
+        include 'yaml/**'
+    }
+}
+//copyResources.dependsOn(cleanUpResources)
 
 dependencies {
     // P R O J E C T    D E P E N D E N C I E S

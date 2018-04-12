@@ -35,66 +35,68 @@ public class InfinityGlobalDataManager extends GlobalDataManager {
 	// --- M O D E L - S T O R E   I N T E R F A C E
 	//--- ALLIANCE
 //	public static AllianceV1 reachAllianceV1( final int identifier, final SessionContext context ) {
-		public static AllianceV1 requestAllianceV1( final int allianceIdentifier,final Credential credential ) {
-		logger.info(">> [InfinityGlobalDataManager.reachAllianceV1]> Identifier: {}", credential.getAccountId());
+	public static AllianceV1 requestAllianceV1( final int allianceIdentifier, final Credential credential ) {
+		logger.info(">> [InfinityGlobalDataManager.requestAllianceV1]> Identifier: {}", credential.getAccountId());
 		try {
 //			// Check if this request is already available on the cache.
 //			final ICollaboration hit = modelCache.access(EModelVariants.ALLIANCEV1, identifier);
 //			if (null == hit) {
 //				logger.info("-- [InfinityGlobalDataManager.reachAllianceV1]> Instance not found at cache. Downloading Alliance <{}> info.",
 //						identifier);
-				final AllianceV1 newalliance = new AllianceV1();
-				// Get the credential from the Store.
+			final AllianceV1 newalliance = new AllianceV1();
+			// Get the credential from the Store.
 //				final Credential credential = context.getCredential();
 
-				// Corporation information.
-				logger.info("-- [InfinityGlobalDataManager.reachAllianceV1]> ESI Compatible. Download corporation information.");
-				final GetAlliancesAllianceIdOk publicData = ESINetworkManager.getAlliancesAllianceId(Long.valueOf(allianceIdentifier)
-								.intValue()
-						, credential.getRefreshToken()
-						, SERVER_DATASOURCE);
-				newalliance.setPublicData(publicData);
-				return newalliance;
+			// Corporation information.
+			logger.info("-- [InfinityGlobalDataManager.requestAllianceV1]> ESI Compatible. Download corporation information.");
+			final GetAlliancesAllianceIdOk publicData = ESINetworkManager.getAlliancesAllianceId(Long.valueOf(allianceIdentifier)
+							.intValue()
+					, credential.getRefreshToken()
+					, SERVER_DATASOURCE);
+			newalliance.setAllianceId(allianceIdentifier)
+					.setPublicData(publicData);
+//					.setExecutorCorporation(InfinityGlobalDataManager.requestCorporationV1(publicData.getExecutorCorporationId(), credential));
+			return newalliance;
 //			} else {
-//				logger.info("-- [InfinityGlobalDataManager.reachAllianceV1]> Alliance <{}> found at cache.", identifier);
+//				logger.info("-- [InfinityGlobalDataManager.requestAllianceV1]> Alliance <{}> found at cache.", identifier);
 //				return (AllianceV1) hit;
 //			}
 		} finally {
-			logger.info("<< [InfinityGlobalDataManager.reachAllianceV1]");
+			logger.info("<< [InfinityGlobalDataManager.requestAllianceV1]");
 		}
 	}
 
 	//--- CORPORATION
 //	public static CorporationV1 reachCorporationV1( final int identifier, final SessionContext context ) {
-		public static CorporationV1 requestCorporationV1(   final int corpIdentifier , final Credential credential) {
-		logger.info(">> [InfinityGlobalDataManager.reachCorporationV1]> Identifier: {}", credential.getAccountId());
+	public static CorporationV1 requestCorporationV1( final int corpIdentifier, final Credential credential ) {
+		logger.info(">> [InfinityGlobalDataManager.requestCorporationV1]> Identifier: {}", credential.getAccountId());
 		try {
 			// Check if this request is already available on the cache.
 //			final ICollaboration hit = modelCache.access(EModelVariants.CORPORATIONV1, identifier);
 //			if (null == hit) {
 //				logger.info("-- [InfinityGlobalDataManager.reachCorporationV1]> Instance not found at cache. Downloading Corporation <{}> info.",identifier);
-				final CorporationV1 newcorp = new CorporationV1();
-				// Corporation information.
-				logger.info("-- [InfinityGlobalDataManager.reachCorporationV1]> ESI Compatible. Download corporation information.");
-				final GetCorporationsCorporationIdOk publicData = ESINetworkManager.getCorporationsCorporationId(Long.valueOf(corpIdentifier)
-								.intValue()
-						, credential.getRefreshToken()
-						, SERVER_DATASOURCE);
-				newcorp.setPublicData(publicData);
-				// Process the public data and get the referenced instances for the Corporation, race, etc.
-				newcorp.setAlliance(InfinityGlobalDataManager.reachAllianceV1(10,credential));
+			final CorporationV1 newcorp = new CorporationV1();
+			// Corporation information.
+			logger.info("-- [InfinityGlobalDataManager.requestCorporationV1]> ESI Compatible. Download corporation information.");
+			final GetCorporationsCorporationIdOk publicData = ESINetworkManager.getCorporationsCorporationId(corpIdentifier
+					, credential.getRefreshToken()
+					, SERVER_DATASOURCE);
+			newcorp.setCorporationId(corpIdentifier)
+					.setPublicData(publicData)
+					.setAlliance(InfinityGlobalDataManager.requestAllianceV1(publicData.getAllianceId(), credential));
 
-				return newcorp;
+			return newcorp;
 //			} else {
-//				logger.info("-- [InfinityGlobalDataManager.useCorporationV1]> Corporation <{}> found at cache.", identifier);
+//				logger.info("-- [InfinityGlobalDataManager.requestCorporationV1]> Corporation <{}> found at cache.", identifier);
 //				return (CorporationV1) hit;
 //			}
 		} finally {
-			logger.info("<< [InfinityGlobalDataManager.reachCorporationV1]");
+			logger.info("<< [InfinityGlobalDataManager.requestCorporationV1]");
 		}
 	}
 
 	//--- PILOT
+
 	/**
 	 * Construct a minimal implementation of a Pilot from the XML api. This will get deprecated soon but during
 	 * some time It will be compatible and I will have a better view of what variants are being used.
@@ -113,29 +115,31 @@ public class InfinityGlobalDataManager extends GlobalDataManager {
 //			final ICollaboration hit = modelCache.access(EModelVariants.PILOTV2, identifier);
 //			if (null == hit) {
 //				logger.info("-- [GlobalDataManager.getPilotV2]> Instance not found at cache. Downloading pilot <{}> info.", identifier);
-				final PilotV2 newchar = new PilotV2();
-				// Get the credential from the Store and check if this identifier has access to the XML api.
+			final PilotV2 newchar = new PilotV2();
+			// Get the credential from the Store and check if this identifier has access to the XML api.
 //				final Credential credential = context.getCredential();
 //				if (null != credential) {
-					logger.info("-- [InfinityGlobalDataManager.reachPilotV2]> Processing data with Credential <{}>.", credential.getAccountName());
+			logger.info("-- [InfinityGlobalDataManager.requestPilotV2]> Processing data with Credential <{}>.", credential.getAccountName());
 
-					// Public information.
-					logger.info("-- [InfinityGlobalDataManager.reachPilotV2]> ESI Compatible. Download public data information.");
-					final GetCharactersCharacterIdOk publicData = ESINetworkManager.getCharactersCharacterId(credential.getAccountId()
-							, credential.getRefreshToken()
-							, SERVER_DATASOURCE);
-					newchar.setCharacterId(credential.getAccountId())
-							.setPublicData(publicData);
-					// TODO First checkpoint --------------------------------------
-					// Process the public data and get the referenced instances for the Corporation, race, etc.
-					newchar.setCorporation ( InfinityGlobalDataManager.requestCorporationV1(publicData.getCorporationId(),credential))
-							.setAlliance (InfinityGlobalDataManager.requestAllianceV1(publicData.getAllianceId(),credential))
-							.setRace (GlobalDataManager.searchSDERace(publicData.getRaceId()))
-							.setBloodline (GlobalDataManager.searchSDEBloodline(publicData.getBloodlineId()))
-							.setAncestry (GlobalDataManager.searchSDEAncestry(publicData.getAncestryId()));
+			// Public information.
+			logger.info("-- [InfinityGlobalDataManager.requestPilotV2]> ESI Compatible. Download public data information.");
+			final GetCharactersCharacterIdOk publicData = ESINetworkManager.getCharactersCharacterId(credential.getAccountId()
+					, credential.getRefreshToken()
+					, SERVER_DATASOURCE);
+			newchar.setCharacterId(credential.getAccountId())
+					.setPublicData(publicData);
+			// TODO First checkpoint --------------------------------------
+			// Process the public data and get the referenced instances for the Corporation, race, etc.
+			newchar.setCorporation(InfinityGlobalDataManager.requestCorporationV1(publicData.getCorporationId(), credential))
+					.setAlliance(InfinityGlobalDataManager.requestAllianceV1(publicData.getAllianceId(), credential))
+					.setRace(GlobalDataManager.searchSDERace(publicData.getRaceId()))
+					.setBloodline(GlobalDataManager.searchSDEBloodline(publicData.getBloodlineId()))
+					.setAncestry(GlobalDataManager.searchSDEAncestry(publicData.getAncestryId()));
 
+			// Wallet status
+//			walletAmount = ESINetworkManager.get
 //					// Clone data
-//					logger.info("-- [InfinityGlobalDataManager.reachPilotV2]> ESI Compatible. Download clone information.");
+//					logger.info("-- [InfinityGlobalDataManager.requestPilotV2]> ESI Compatible. Download clone information.");
 //					final GetCharactersCharacterIdClonesOk cloneInformation = ESINetworkManager.getCharactersCharacterIdClones(Long.valueOf(identifier).intValue(), credential.getRefreshToken(), "tranquility");
 //					if (null != cloneInformation) {
 //						newchar.setCloneInformation(cloneInformation);
@@ -159,15 +163,15 @@ public class InfinityGlobalDataManager extends GlobalDataManager {
 //					} catch (SQLException sqle) {
 //						sqle.printStackTrace();
 //					}
-					// TODO End checkpoint --------------------------------------------
+			// TODO End checkpoint --------------------------------------------
 //				}
-				return newchar;
+			return newchar;
 //			} else {
-//				logger.info("-- [InfinityGlobalDataManager.getPilotV2]> Pilot <{}> found at cache.", identifier);
+//				logger.info("-- [InfinityGlobalDataManager.requestPilotV2]> Pilot <{}> found at cache.", identifier);
 //				return (PilotV2) hit;
 //			}
 		} finally {
-			logger.info("<< [InfinityGlobalDataManager.reachPilotV2]");
+			logger.info("<< [InfinityGlobalDataManager.requestPilotV2]");
 		}
 	}
 

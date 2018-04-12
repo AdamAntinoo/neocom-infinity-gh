@@ -25,8 +25,8 @@ import org.slf4j.LoggerFactory;
 
 import org.dimensinfin.eveonline.neocom.conf.GlobalConfigurationProvider;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
-import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
-import org.dimensinfin.eveonline.neocom.datamngmt.manager.MarketDataServer;
+import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.MarketDataServer;
 import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
 import org.dimensinfin.eveonline.neocom.market.MarketDataEntry;
 import org.dimensinfin.eveonline.neocom.market.MarketDataSet;
@@ -133,7 +133,7 @@ public class MarketDownloaderTestUnit extends MarketDataServer.MarketDataJobDown
 	@Test
 	public void test04ParseMarketDataEMD() {
 		logger.info(">> [MarketDownloaderTestUnit.test04ParseMarketDataEMD]");
-		final EveItem item = GlobalDataManager.searchItem4Id(34);
+		final EveItem item = new GlobalDataManager().searchItem4Id(34);
 		List<TrackEntry> marketEntries = parseMarketDataEMD(item.getName(), EMarketSide.SELLER);
 		Assert.assertTrue("-> Validating the market entries exist.", marketEntries.size() > 0);
 		marketEntries = parseMarketDataEMD(item.getName(), EMarketSide.BUYER);
