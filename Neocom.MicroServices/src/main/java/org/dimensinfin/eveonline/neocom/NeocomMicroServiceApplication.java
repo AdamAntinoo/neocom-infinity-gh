@@ -39,6 +39,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import org.dimensinfin.eveonline.neocom.conf.GlobalConfigurationProvider;
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
@@ -47,6 +48,7 @@ import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.MarketDataServer;
 import org.dimensinfin.eveonline.neocom.model.ANeoComEntity;
 import org.dimensinfin.eveonline.neocom.model.PilotV2;
+import org.dimensinfin.eveonline.neocom.services.TimedUpdater;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 
@@ -68,7 +70,7 @@ public class NeoComMicroServiceApplication {
 	public static final boolean MOCK_UP = true;
 
 	public static MarketDataServer mdServer = null;
-//	public static final TimedUpdater timedService = new TimedUpdater();
+	public static final TimedUpdater timedService = new TimedUpdater();
 
 	public static final ObjectMapper jsonMapper = new ObjectMapper();
 
@@ -215,14 +217,14 @@ public class NeoComMicroServiceApplication {
 //			GlobalDataManager.writeLocationsDatacache();
 //	}
 
-//	@Scheduled(initialDelay = 120000, fixedDelay = 900000)
-//	private void onTime() {
-//		// Fire another background update scan.
-//		// Check if the configuration properties allow to run the updater.
-//		if (GlobalDataManager.getResourceBoolean("R.updater.allowtimer", false)) {
-//			timedService.timeTick();
-//		}
-//	}
+	@Scheduled(initialDelay = 120000, fixedDelay = 900000)
+	private void onTime() {
+		// Fire another background update scan.
+		// Check if the configuration properties allow to run the updater.
+		if (GlobalDataManager.getResourceBoolean("R.updater.allowtimer", false)) {
+			timedService.timeTick();
+		}
+	}
 
 
 	// - CLASS IMPLEMENTATION ...................................................................................

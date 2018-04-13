@@ -24,6 +24,7 @@ import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.database.entity.TimeStamp;
 import org.dimensinfin.eveonline.neocom.datamngmt.DownloadManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManagerCache;
 import org.dimensinfin.eveonline.neocom.enums.PreferenceKeys;
 
 /**
@@ -230,6 +231,32 @@ public class TimedUpdater {
 						// Update the timer for this download at the database.
 						final Instant validUntil = Instant.now()
 								.plus(GlobalDataManager.getCacheTime4Type(GlobalDataManager.ECacheTimes.ASSETS_ASSETS));
+						final TimeStamp ts = new TimeStamp(transferredCurrentrequestReference, validUntil)
+								.setCredentialId(credential.getAccountId())
+								.store();
+					});
+			UpdateJobManager.submit(newJob);
+			return;
+		}
+
+		// Search for INDUSTRYJOBS job request.
+		currentrequestReference = ServiceJob.constructReference(GlobalDataManager.EDataUpdateJobs.INDUSTRYJOBS
+				, credential.getAccountId());
+		// Check that the request is a INDUSTRYJOBS update request.
+		if (dataIdentifier.getReference().equalsIgnoreCase(currentrequestReference)) {
+			// Submit the job to the manager
+			final String transferredCurrentrequestReference = currentrequestReference;
+			final ServiceJob newJob = new ServiceJob(dataIdentifier)
+					.setCredentialIdentifier(credential.getAccountId())
+					.setJobClass(GlobalDataManager.EDataUpdateJobs.INDUSTRYJOBS)
+					.setTask(() -> {
+						logger.info("-- [ServiceJob.INDUSTRYJOBS]> Downloading Industry Jobs for: [{}]", credential.getAccountName());
+						final DownloadManager downloader = new DownloadManager(credential);
+						downloader.downloadPilotJobsESI();
+
+						// Update the timer for this download at the database.
+						final Instant validUntil = Instant.now()
+								.plus(GlobalDataManager.getCacheTime4Type(GlobalDataManager.ECacheTimes.INDUSTRY_JOBS));
 						final TimeStamp ts = new TimeStamp(transferredCurrentrequestReference, validUntil)
 								.setCredentialId(credential.getAccountId())
 								.store();
