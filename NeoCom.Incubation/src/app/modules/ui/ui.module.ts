@@ -34,6 +34,7 @@ import { ISKNoDecimalsPipe } from '../../pipes/iskno-decimals.pipe';
 //--- COMPONENTS-UI
 import { HeaderComponent } from './header/header.component';
 import { ActionBarComponent } from './action-bar/action-bar.component';
+import { SeparatorComponent } from './separator/separator.component';
 //--- COMPONENTS-MODEL
 //--- COMPONENTS-DETAILED
 //--- MODELS
@@ -57,11 +58,13 @@ import { ActionBarComponent } from './action-bar/action-bar.component';
   ],
   declarations: [
     HeaderComponent,
-    ActionBarComponent
+    ActionBarComponent,
+    SeparatorComponent
   ],
   exports: [
     HeaderComponent,
-    ActionBarComponent
+    ActionBarComponent,
+    SeparatorComponent
   ]
 })
 export class UIModule { }

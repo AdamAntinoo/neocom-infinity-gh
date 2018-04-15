@@ -33,6 +33,7 @@
   font-weight: normal;
   src: url("/assets/fonts/Elemental End.ttf") format('truetype');
 }
+
 @font-face {
   font-family: "Elemental";
   font-style: italic;
@@ -43,7 +44,6 @@
 .elemental-ff {
   font-family: "Elemental";
 }
-
 
 @font-face {
   font-family: 'Mons Olympia';
@@ -141,6 +141,10 @@
 
 #neocom-ts12 {
   font-size: 12px;
+}
+
+#neocom-ts11 {
+  font-size: 11px;
 }
 
 #neocom-ts10 {

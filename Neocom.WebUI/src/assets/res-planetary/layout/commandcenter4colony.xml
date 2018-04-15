@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/nodeContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/uipanelborderred">
+
+        <include layout="@layout/nodebase4expandnew" />
+
+        <org.dimensinfin.android.mvc.fonts.Din1451BoldTextView
+            android:id="@+id/structureType"
+            style="@style/AppTheme.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/nodeIconBlock"
+            android:text="Command Center"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:id="@+id/spaceUsageBlock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/structureType"
+            android:layout_toLeftOf="@+id/rightBlock"
+            android:layout_toRightOf="@+id/nodeIconBlock">
+
+            <org.dimensinfin.android.mvc.fonts.MonsOlympiaTextView
+                android:id="@+id/fillLevelLabel"
+                style="@style/AppTheme.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginRight="@dimen/uirighttextmargin"
+                android:text="Capacity used: 35.00%"
+                android:visibility="visible" />
+
+            <ProgressBar
+                android:id="@+id/storageUsedProgress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/nodeIconBlock"
+                android:layout_toRightOf="@+id/fillLevelLabel"
+                android:backgroundTint="@color/uipanelborder"
+                android:max="100"
+                android:min="0"
+                android:progress="35"
+                android:progressTint="@color/appblue" />
+
+            <org.dimensinfin.android.mvc.fonts.MonsOlympiaTextView
+                android:id="@+id/fillLevelNumbers"
+                style="@style/AppTheme.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/fillLevelLabel"
+                android:text="499.5/500.0"
+                android:visibility="visible" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/commandCenterInfoBlock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spaceUsageBlock"
+            android:layout_toLeftOf="@+id/rightBlock"
+            android:layout_toRightOf="@+id/nodeIconBlock"
+            android:weightSum="100">
+
+            <LinearLayout
+                android:id="@+id/cpuContentsBlock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="2dp"
+                android:layout_weight="50"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/cpuLevel"
+                    style="@style/AppTheme.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/uirighttextmargin"
+                    android:text="CPU: 37%"
+                    android:visibility="visible" />
+
+                <ProgressBar
+                    android:id="@+id/cpuProgress"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/fillLevelNumber"
+                    android:layout_toRightOf="@+id/fillLevelLabel"
+                    android:backgroundTint="@color/uipanelborder"
+                    android:max="100"
+                    android:min="0"
+                    android:progress="35"
+                    android:progressTint="@color/appbluelight"
+                    android:secondaryProgress="35" />
+
+                <TextView
+                    android:id="@+id/cpuLevelData"
+                    style="@style/AppTheme.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/uirighttextmargin"
+                    android:text="7.934/21.315 tf"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/powerContentsBlock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="2dp"
+                android:layout_weight="50"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/powerLevel"
+                    style="@style/AppTheme.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/uirighttextmargin"
+                    android:text="Power: 96.01%"
+                    android:visibility="visible" />
+
+                <ProgressBar
+                    android:id="@+id/powerProgress"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/fillLevelNumber"
+                    android:layout_toRightOf="@+id/fillLevelLabel"
+                    android:backgroundTint="@color/uipanelborder"
+                    android:max="100"
+                    android:min="0"
+                    android:progress="35"
+                    android:progressTint="@color/appred"
+                    android:secondaryProgress="35" />
+
+                <TextView
+                    android:id="@+id/powerLevelData"
+                    style="@style/AppTheme.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/uirighttextmargin"
+                    android:text="16,321/117,000 M"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/installationsLabel"
+            style="@style/AppTheme.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/structureType"
+            android:layout_marginRight="2dp"
+            android:layout_toRightOf="@+id/nodeIconBlock"
+            android:text="Number of Structures:"
+            android:textSize="10sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/installationsNumber"
+            style="@style/AppTheme.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/rightBlock"
+            android:gravity="right"
+            android:text="11"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+    </RelativeLayout>
+</LinearLayout>

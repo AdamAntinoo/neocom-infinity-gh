@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/nodeContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/uipanelborderyellow">
+
+        <include layout="@layout/nodebase4expandnew" />
+
+        <org.dimensinfin.android.mvc.fonts.Din1451BoldTextView
+            android:id="@+id/structureType"
+            style="@style/AppTheme.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/nodeIconBlock"
+            android:text="Basic Industry Facility"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/inputsBlock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/structureType"
+            android:layout_toRightOf="@+id/nodeIconBlock"
+            android:background="@drawable/uipanelborderblue"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/input1Block"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <org.dimensinfin.android.mvc.fonts.Din1451TextView
+                    android:id="@+id/input1Name"
+                    style="@style/AppTheme.TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:text="Precious Metals"
+                    android:textSize="12sp"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/input1Icon"
+                    android:layout_width="@dimen/halfnodeiconsize"
+                    android:layout_height="@dimen/halfnodeiconsize"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/input1Name"
+                    android:src="@drawable/planetary_96_64_10" />
+
+                <org.dimensinfin.android.mvc.fonts.MonsOlympiaTextView
+                    android:id="@+id/input1PctFill"
+                    style="@style/AppTheme.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/input1Name"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/input1Icon"
+                    android:text="98%"
+                    android:textSize="11sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/input2Block"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <org.dimensinfin.android.mvc.fonts.Din1451TextView
+                    android:id="@+id/input2Name"
+                    style="@style/AppTheme.TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:text="Precious Metals"
+                    android:textSize="12sp"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/input2Icon"
+                    android:layout_width="@dimen/halfnodeiconsize"
+                    android:layout_height="@dimen/halfnodeiconsize"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/input2Name"
+                    android:src="@drawable/planetary_96_64_10" />
+
+                <org.dimensinfin.android.mvc.fonts.MonsOlympiaTextView
+                    android:id="@+id/input2PctFill"
+                    style="@style/AppTheme.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/input2Name"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/input2Icon"
+                    android:text="98%"
+                    android:textSize="11sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/input3Block"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <org.dimensinfin.android.mvc.fonts.Din1451TextView
+                    android:id="@+id/input3Name"
+                    style="@style/AppTheme.TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:text="Precious Metals"
+                    android:textSize="12sp"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/input3Icon"
+                    android:layout_width="@dimen/halfnodeiconsize"
+                    android:layout_height="@dimen/halfnodeiconsize"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/input3Name"
+                    android:src="@drawable/planetary_96_64_10" />
+
+                <org.dimensinfin.android.mvc.fonts.MonsOlympiaTextView
+                    android:id="@+id/input3PctFill"
+                    style="@style/AppTheme.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/input3Name"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/input3Icon"
+                    android:text="98%"
+                    android:textSize="11sp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/arrowImage"
+            android:layout_width="@dimen/arrowsize"
+            android:layout_height="45dp"
+            android:layout_below="@id/structureType"
+            android:layout_marginTop="0dp"
+            android:layout_toRightOf="@+id/inputsBlock"
+            android:scaleX="0.8"
+            android:scaleY="2.0"
+            android:src="@drawable/arrowright" />
+
+        <LinearLayout
+            android:id="@+id/producingBlock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/structureType"
+            android:layout_toRightOf="@+id/arrowImage"
+            android:background="@drawable/uipanelbordergreen"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/productImage"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/defaulticonplaceholder" />
+
+            <LinearLayout
+                android:id="@+id/producingQuantityBlock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/structureType"
+                android:layout_marginLeft="@dimen/uilefttextmargin"
+                android:layout_toRightOf="@+id/arrowImage"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <org.dimensinfin.android.mvc.fonts.Din1451TextView
+                    android:id="@+id/productName"
+                    style="@style/AppTheme.TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mechanical Parts"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/outputLabel"
+                    style="@style/AppTheme.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Output Per Cycle"
+                    android:visibility="visible" />
+
+                <org.dimensinfin.android.mvc.fonts.MonsOlympiaTextView
+                    android:id="@+id/outputData"
+                    style="@style/AppTheme.TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5 units"
+                    android:visibility="visible" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/processingProgressBlock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/producingBlock"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/rightBlock"
+            android:layout_toRightOf="@+id/arrowImage"
+            android:background="@drawable/uipanelborderred"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <org.dimensinfin.android.mvc.fonts.Din1451BoldTextView
+                android:id="@+id/factoryStatus"
+                style="@style/AppTheme.TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:text="In Production"
+                android:visibility="visible" />
+
+            <ProgressBar
+                android:id="@+id/cycleTimeProgress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="2dp"
+                android:layout_height="8dp"
+                android:layout_marginRight="5dp"
+                android:backgroundTint="@color/uipanelborder"
+                android:max="60"
+                android:min="0"
+                android:progress="39"
+                android:progressTint="@color/appblue" />
+
+            <org.dimensinfin.android.mvc.fonts.MonsOlympiaTextView
+                android:id="@+id/cycleTimeData"
+                style="@style/AppTheme.Label"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_height="wrap_content"
+                android:text="00:39:30/01:00:00"
+                android:visibility="visible" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

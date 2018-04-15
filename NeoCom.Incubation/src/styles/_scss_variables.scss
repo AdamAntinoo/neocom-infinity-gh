@@ -8,7 +8,15 @@
 //               SpringBoot technology and finally the web ui code made in typescript within the Angular
 //               framework.
 // --- APPLICATION FONT VARIABLES
-$neocom-line-height    : 1.0; //--- APPLICATION COLOR TABLES
+$neocom-line-height    : 1.0;
+
+//--- APPLICATION COLOR TABLES
+// - APPLICATION COLORS
+$app-red-70: #FF6666; // Red 70%
+$app-red-30: #990000; // Red 30%
+$app-pale-red-color: $app-red-30;
+
+// - BACKGROUND COLORS
 $panel-background-color: #080808;
 $background-tint-red   : #250000;
 $background-tint-orange: #301000;
@@ -16,6 +24,7 @@ $background-tint-yellow: #303000;
 $background-tint-blue  : #080825;
 $background-tint-green : #052406;
 $background-tint-white : #252525;
+
 $selectable-name-color : orange;
 $marked-name-color     : #50B71D; //--- FONT CHARACTERISTICS
 $default-text-size     : 14px; // $bold-weight           : 500;

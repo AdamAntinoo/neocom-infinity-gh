@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="uipanelcornerwhite">#FFFFFFFF</color>
+    <color name="uipanelcornerdarkgrey">#FF333333</color>
+    <color name="uipanelcornergrey">#FF808080</color>
+    <color name="uipanelcornerred">#FFF62217</color>
+    <color name="uipanelcornerorange">#FFF2540C</color>
+    <color name="uipanelcorneryellow">#FFFFFF33</color>
+    <color name="uipanelcornergreen">#FF6CC417</color>
+    <color name="uipanelcornerblue">#FF676096</color>
+    <color name="uipanelcornerrose">#FFFF4DFF</color>
+
+    <color name="uipanelbackground">#FF080808</color>
+    <color name="uipaneldataareabackground">#FF151515</color>
+    <color name="uipanelrowselectedbackground">#FF2A2A2A</color>
+    <color name="uipanelborder">#FF505050</color>
+    <!--<color name="uipanelborder">#FF252525</color>-->
+    <color name="uititlebarbackground">#FF000000</color>
+    <color name="uipanelcorner">#FFFFFFFF</color>
+
+    <color name="panelbackground">#FF303030</color>
+    <color name="panelmainborder">#FF505050</color>
+    <color name="panelcorner">#FFFFFFFF</color>
+</resources>
