@@ -24,7 +24,6 @@ import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.database.entity.TimeStamp;
 import org.dimensinfin.eveonline.neocom.datamngmt.DownloadManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
-import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManagerCache;
 import org.dimensinfin.eveonline.neocom.enums.PreferenceKeys;
 
 /**
@@ -83,7 +82,7 @@ public class TimedUpdater {
 				, credentialList.size());
 		for (Credential cred : credentialList) {
 			logger.info("-- [TimedUpdater.timeTick]> Processing Credential: {}-{}"
-					,cred.getAccountId(),cred.getAccountName());
+					, cred.getAccountId(), cred.getAccountName());
 			// Set up the complete list depending on the Preferences selected.
 			boolean blockDownloads = GlobalDataManager.getDefaultSharedPreferences()
 					.getBoolean(PreferenceKeys.prefkey_BlockDownloads.name(), false);
@@ -115,7 +114,7 @@ public class TimedUpdater {
 			}
 
 			// Now process all job classes contained on the list . If the TS is found check it. If not fire an update.
-			logger.info("-- [TimedUpdater.timeTick]> Jobs to process: {}",joblist);
+			logger.info("-- [TimedUpdater.timeTick]> Jobs to process: {}", joblist);
 			for (GlobalDataManager.EDataUpdateJobs jobName : joblist) {
 				try {
 					final String reference = ServiceJob.constructReference(jobName, cred.getAccountId());

@@ -14,25 +14,37 @@ package org.dimensinfin.eveonline.neocom.exception;
 // - CLASS IMPLEMENTATION ...................................................................................
 public class JsonExceptionInstance {
 	// - S T A T I C - S E C T I O N ..........................................................................
-//	private static Logger logger = LoggerFactory.getLogger("JsonExceptionInstance");
 
 	// - F I E L D - S E C T I O N ............................................................................
-	private String errorMessage = "-NO MESSAGE-";
+//	private String errorMessage = "-NO MESSAGE-";
+	private Exception target = null;
 	private String jsonClass = "Exception";
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 	public JsonExceptionInstance( final String message ) {
-		errorMessage = message;
+		target = new NeoComRegisteredException(NEOE.NOT_CLASSIFIED, message);
+	}
+	public JsonExceptionInstance( final Exception exc ) {
+		target = exc;
 	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
 	public String toJson() {
-		return new StringBuffer()
-				.append("{").append('\n')
-				.append(quote("jsonClass")).append(":").append(quote("JsonException")).append(",")
-				.append(quote("message")).append(":").append(quote(errorMessage)).append(" ")
-				.append("}")
-				.toString();
+		if (target instanceof NeoComRegisteredException) {
+			return new StringBuffer()
+					.append("[{").append('\n')
+					.append(quote("jsonClass")).append(" : ").append(quote(((NeoComRegisteredException) target).getJsonClass())).append(",")
+					.append(quote("code")).append(" : ").append(quote(((NeoComRegisteredException) target).getCode().name())).append(" ")
+					.append(quote("message")).append(" : ").append(quote(target.getMessage())).append(" ")
+					.append("}]")
+					.toString();
+		} else
+			return new StringBuffer()
+					.append("[{").append('\n')
+					.append(quote("jsonClass")).append(" : ").append(quote(jsonClass)).append(",")
+					.append(quote("message")).append(" : ").append(quote(target.getMessage())).append(" ")
+					.append("}]")
+					.toString();
 	}
 
 	private String quote( final String content ) {
@@ -45,11 +57,13 @@ public class JsonExceptionInstance {
 
 	@Override
 	public String toString() {
-		return new StringBuffer("JsonExceptionInstance[")
-				.append("message:").append(errorMessage).append(" ")
-				.append("]")
+		if (null != target)
+			return new StringBuffer("JsonExceptionInstance[")
+					.append("message:").append(target.getMessage()).append(" ")
+					.append("]")
 //				.append("->").append(super.toString())
-				.toString();
+					.toString();
+		else return new StringBuffer("JsonExceptionInstance []").toString();
 	}
 }
 

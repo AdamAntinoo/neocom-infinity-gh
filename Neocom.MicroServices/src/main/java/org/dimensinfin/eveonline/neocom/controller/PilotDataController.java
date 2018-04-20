@@ -32,13 +32,14 @@ import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
 import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
+import org.dimensinfin.eveonline.neocom.exception.NeoComRegisteredException;
 import org.dimensinfin.eveonline.neocom.model.PilotV2;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 
 /**
- * This controller will be the entry point for all the actions related to the data stored or available from an Eve Online Pilot
- * . When accessing a pilot credential we should also be able to get to its parent Corporation and from there to the Alliance
+ * This controller will be the entry point for all the actions related to the data stored or available from an Eve Online Pilot.
+ * When accessing a pilot credential we should also be able to get to its parent Corporation and from there to the Alliance
  * the corporation belongs. Also we should be able to download the assets, the market trade actions, the industry operations
  * and many more other data that allows to collaborate on the industrial manufacturing activities.
  *
@@ -48,7 +49,6 @@ import org.dimensinfin.eveonline.neocom.model.PilotV2;
 public class PilotDataController {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger logger = LoggerFactory.getLogger("PilotDataController");
-//	private static final HashMap<Integer, Fitting> fittingsCache = new HashMap<>();
 
 	// - F I E L D - S E C T I O N ............................................................................
 
@@ -118,9 +118,14 @@ public class PilotDataController {
 				return contentsSerialized;
 			} else return "Not Access.";
 		} catch (JsonProcessingException jspe) {
-			return new JsonExceptionInstance(jspe.getMessage()).toJson();
-//		} catch (InvocationTargetException ite) {
-//			return new JsonExceptionInstance(ite.getMessage()).toJson();
+			return new JsonExceptionInstance(jspe).toJson();
+		} catch (NeoComRegisteredException neore) {
+			neore.printStackTrace();
+			return InfinityGlobalDataManager.serializedException(neore);
+		} catch (RuntimeException rtx) {
+			logger.error("EX [PilotDataController.pilotPublicData]> Unexpected Exception: {}", rtx.getMessage());
+			rtx.printStackTrace();
+			return InfinityGlobalDataManager.serializedException(rtx);
 		} finally {
 			logger.info("<< [PilotDataController.pilotPublicData]");
 		}
@@ -328,7 +333,7 @@ public class PilotDataController {
 		}
 	}
 
-	// TODO Code commented aout until the session is implemented and tested.
+	// TODO Code commented out until the session is implemented and tested.
 //	/**
 //	 * Returns the list of fittings that are accessible to this Pilot identifier. This data will be processed at the Angular side
 //	 * to generate any UI structures required for a proper presentation.
@@ -375,64 +380,7 @@ public class PilotDataController {
 //		}
 //	}
 //
-//	/**
-//	 * Returns the list of fittings that are accesible to this Pilot identifier. This data will be processed at the Angular side
-//	 * to generate any UI structures required for a proper presentation.
-//	 *
-//	 * @param identifier identifier for the selected Pilot.
-//	 * @return list of OK class fittings serialized to Json.
-//	 */
-//	@CrossOrigin()
-//	@RequestMapping(value = "/api/v1/pilot/{identifier}/fittingmanager/processfitting/{fittingidentifier}/copies/{copies}"
-//			, method = RequestMethod.GET
-//			, produces = "application/json")
-//	public String pilotFittingManagerProcessFitting( @PathVariable final int identifier
-//			, @PathVariable final int fittingidentifier
-//			, @PathVariable final int copies ) {
-//		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/pilot/{}/fittingmanager/processfitting/{}/copies/{}"
-//				, identifier, fittingidentifier, copies);
-//		logger.info(">> [PilotDataController.pilotFittingManagerProcessFitting]");
-//		try {
-//			// Activate the list of credentials.
-//			final Credential credential = DataManagementModelStore.activateCredential(identifier);
-//			// Get the list of fittings.
-//			final List<Fitting> fittings = GlobalDataManager.downloadFitting4Credential(identifier);
-//			addFittings2Cache(fittings);
-//			// Search for the fitting
-//			final Fitting target = fittingsCache.get(fittingidentifier);
-//			final FittingProcessor processor = new FittingProcessor();
-//			final List<Action> actions = processor.processFitting(identifier, target, copies);
-//
-//			// Searialize the results.
-//			final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(actions);
-//			return contentsSerialized;
-//		} catch (NumberFormatException nfe) {
-//			logger.error("EX [PilotDataController.pilotFittingManagerFittings]> identifier received cannot be translated to number - " +
-//					"{}", nfe.getMessage());
-//			return new JsonExceptionInstance("Identifier received cannot be translated to number - " + nfe.getMessage()
-//			).toJson();
-//		} catch (JsonProcessingException jpe) {
-//			jpe.printStackTrace();
-//			return new JsonExceptionInstance(jpe.getMessage()).toJson();
-//		} catch (RuntimeException rtx) {
-//			rtx.printStackTrace();
-//			try {
-//				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new JsonExceptionInstance(rtx.getMessage()));
-//			} catch (JsonProcessingException e) {
-//				return new JsonExceptionInstance(rtx.getMessage()).toJson();
-//			}
-//		} finally {
-//			logger.info("<< [PilotDataController.pilotFittingManagerProcessFitting]");
-//		}
-//	}
 
-//	protected void addFittings2Cache( final List<Fitting> newfittings ) {
-//		logger.info(">> [PilotDataController.addFittings2Cache]");
-//		for (Fitting fit : newfittings) {
-//			fittingsCache.put(fit.getFittingId(), fit);
-//		}
-//		logger.info("<< [PilotDataController.addFittings2Cache]");
-//	}
 //	protected Fitting searchFitting(final int identifier){
 ////		logger.info(">> [PilotDataController.searchFitting]");
 //		return

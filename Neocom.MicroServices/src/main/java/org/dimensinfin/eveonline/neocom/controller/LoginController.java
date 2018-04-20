@@ -117,26 +117,26 @@ public class LoginController {
 //		}
 //	}
 
-	@CrossOrigin()
-	@RequestMapping(value = "/api/v1/getauthorizationurl", method = RequestMethod.GET, produces = "application/json")
-	public String getAuthorizationURLRequestEntryPoint() {
-		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/getauthorizationurl");
-		logger.info(">> [LoginController.getAuthorizationURLRequestEntryPoint]");
-		final Chrono totalElapsed = new Chrono();
-		try {
-			final NeoComOAuth20 service = new NeoComOAuth20(GlobalDataManager.getResourceString("R.esi.authorization.clientid")
-					, GlobalDataManager.getResourceString("R.esi.authorization.secretkey")
-					, GlobalDataManager.getResourceString("R.esi.authorization.callback")
-					, GlobalDataManager.getResourceString("R.esi.authorization.agent")
-					, NeoComOAuth20.ESIStore.DEFAULT
-					, ESINetworkManager.constructScopes());
-			return service.getAuthorizationUrl();
-		} catch (RuntimeException rtex) {
-			return new JsonExceptionInstance(rtex.getMessage()).toJson();
-		} finally {
-			logger.info("<< [LoginController.getAuthorizationURLRequestEntryPoint]> [TIMING] Processing Time: {}", totalElapsed.printElapsed(Chrono.ChronoOptions.SHOWMILLIS));
-		}
-	}
+//	@CrossOrigin()
+//	@RequestMapping(value = "/api/v1/getauthorizationurl", method = RequestMethod.GET, produces = "application/json")
+//	public String getAuthorizationURLRequestEntryPoint() {
+//		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/getauthorizationurl");
+//		logger.info(">> [LoginController.getAuthorizationURLRequestEntryPoint]");
+//		final Chrono totalElapsed = new Chrono();
+//		try {
+//			final NeoComOAuth20 service = new NeoComOAuth20(GlobalDataManager.getResourceString("R.esi.authorization.clientid")
+//					, GlobalDataManager.getResourceString("R.esi.authorization.secretkey")
+//					, GlobalDataManager.getResourceString("R.esi.authorization.callback")
+//					, GlobalDataManager.getResourceString("R.esi.authorization.agent")
+//					, NeoComOAuth20.ESIStore.DEFAULT
+//					, ESINetworkManager.constructScopes());
+//			return service.getAuthorizationUrl();
+//		} catch (RuntimeException rtex) {
+//			return new JsonExceptionInstance(rtex.getMessage()).toJson();
+//		} finally {
+//			logger.info("<< [LoginController.getAuthorizationURLRequestEntryPoint]> [TIMING] Processing Time: {}", totalElapsed.printElapsed(Chrono.ChronoOptions.SHOWMILLIS));
+//		}
+//	}
 
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/exchangeauthorization/{code}/publickey/{publickey}"
@@ -146,8 +146,10 @@ public class LoginController {
 		logger.info(">> [LoginController.exchangeAuthorizationEntryPoint]");
 		final Chrono totalElapsed = new Chrono();
 		try {
-			// Convert any object instance retirned to a Json serialized string.
-			return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(exchangeAuthorization(code, publickey));
+			// With the 'code' complete the authorization flow and generate a new session.
+			final NeoComSession session = exchangeAuthorization(code, publickey);
+			// Convert any object instance returned to a Json serialized string.
+			return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(session);
 		} catch (JsonProcessingException jpe) {
 			return new JsonExceptionInstance(jpe.getMessage()).toJson();
 		} catch (NeoComException neoe) {
@@ -210,7 +212,7 @@ public class LoginController {
 		}
 	}
 
-	private NeoComMicroServiceApplication.NeoComSessionIdentifier exchangeAuthorization( final String authCode, final String publickey ) throws NeoComException,
+	private NeoComSession exchangeAuthorization( final String authCode, final String publickey ) throws NeoComException,
 			IOException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidKeySpecException, InvalidKeyException {
 		// Create the conversion call by coding.
 		logger.info("-- [LoginController.exchangeAuthorization]> Preparing Verification HTTP request.");
@@ -289,7 +291,8 @@ public class LoginController {
 //					DataManagementModelStore.getSingleton().cleanModel();
 //					// Update the Pilot information.
 					InfinityGlobalDataManager.requestPilotV2(credential);
-					return new NeoComMicroServiceApplication.NeoComSessionIdentifier(session);
+					return session;
+//					return new NeoComMicroServiceApplication.NeoComSessionIdentifier(session);
 				} else
 					throw new NeoComException("NEO [LoginController.exchangeAuthorization]> the VerifyCharacterResponse response is " +
 							"invalid. "

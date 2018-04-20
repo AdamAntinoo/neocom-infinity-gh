@@ -217,7 +217,8 @@ public class NeoComMicroServiceApplication {
 //			GlobalDataManager.writeLocationsDatacache();
 //	}
 
-	@Scheduled(initialDelay = 120000, fixedDelay = 900000)
+//	@Scheduled(initialDelay = 120000, fixedDelay = 900000)
+	@Scheduled(initialDelay = 120000, fixedDelay = 120000)
 	private void onTime() {
 		// Fire another background update scan.
 		// Check if the configuration properties allow to run the updater.

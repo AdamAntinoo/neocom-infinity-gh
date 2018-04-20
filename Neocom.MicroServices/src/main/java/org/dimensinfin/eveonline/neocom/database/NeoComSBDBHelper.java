@@ -33,9 +33,9 @@ import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.database.entity.DatabaseVersion;
 import org.dimensinfin.eveonline.neocom.database.entity.TimeStamp;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
-import org.dimensinfin.eveonline.neocom.enums.EPropertyTypes;
 import org.dimensinfin.eveonline.neocom.industry.Job;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
+import org.dimensinfin.eveonline.neocom.database.entity.FittingRequest;
 import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
 
 /**
@@ -58,7 +58,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 	private String databaseName = "";
 	private String databaseUser = "";
 	private String databasePassword = "";
-	private String databaseOptions="&verifyServerCertificate=false&useSSL=true";
+	private String databaseOptions = "&verifyServerCertificate=false&useSSL=true";
 	private int databaseVersion = 0;
 	private boolean databaseValid = false;
 	private boolean isOpen = false;
@@ -68,13 +68,14 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 	private Dao<TimeStamp, String> timeStampDao = null;
 	private Dao<Credential, String> credentialDao = null;
 	private Dao<Colony, String> colonyDao = null;
-//	private Dao<ColonyStorage, String> colonyStorageDao = null;
+	//	private Dao<ColonyStorage, String> colonyStorageDao = null;
 //	private Dao<ColonySerialized, String> colonySerializedDao = null;
 	private Dao<NeoComAsset, String> assetDao = null;
 	private Dao<EveLocation, String> locationDao = null;
-//	private Dao<Property, String> propertyDao = null;
+	//	private Dao<Property, String> propertyDao = null;
 //	private Dao<NeoComBlueprint, String> blueprintDao = null;
-private Dao<Job, String> jobDao = null;
+	private Dao<Job, String> jobDao = null;
+	private Dao<FittingRequest, String> fittingRequestDao = null;
 
 	private DatabaseVersion storedVersion = null;
 
@@ -119,7 +120,7 @@ private Dao<Job, String> jobDao = null;
 			throw new SQLException("Cannot create connection: 'databaseUser' is empty.");
 		if (StringUtils.isEmpty(databasePassword))
 			throw new SQLException("Cannot create connection: 'databasePassword' is empty.");
-		databaseOptions=GlobalDataManager.getResourceString("R.database.neocom.databaseoptions");
+		databaseOptions = GlobalDataManager.getResourceString("R.database.neocom.databaseoptions");
 		databaseValid = true;
 		if (openNeoComDB()) {
 			// Delay database initialization after the helper is assigned to the Global.
@@ -220,6 +221,11 @@ private Dao<Job, String> jobDao = null;
 		}
 		try {
 			TableUtils.createTableIfNotExists(databaseConnection, Job.class);
+		} catch (SQLException sqle) {
+			logger.warn("SQL [NeoComSBDBHelper.onCreate]> SQL NeoComDatabase: {}", sqle.getMessage());
+		}
+		try {
+			TableUtils.createTableIfNotExists(databaseConnection, FittingRequest.class);
 		} catch (SQLException sqle) {
 			logger.warn("SQL [NeoComSBDBHelper.onCreate]> SQL NeoComDatabase: {}", sqle.getMessage());
 		}
@@ -422,6 +428,7 @@ private Dao<Job, String> jobDao = null;
 		}
 		return timeStampDao;
 	}
+
 	@Override
 	public Dao<Credential, String> getCredentialDao() throws SQLException {
 		if (null == credentialDao) {
@@ -467,7 +474,7 @@ private Dao<Job, String> jobDao = null;
 		return locationDao;
 	}
 
-//	public Dao<Property, String> getPropertyDao() throws SQLException {
+	//	public Dao<Property, String> getPropertyDao() throws SQLException {
 //		if (null == propertyDao) {
 //			propertyDao = DaoManager.createDao(this.getConnectionSource(), Property.class);
 //		}
@@ -480,12 +487,19 @@ private Dao<Job, String> jobDao = null;
 //		}
 //		return blueprintDao;
 //	}
-public Dao<Job, String> getJobDao() throws SQLException {
-	if (null == jobDao) {
-		jobDao = DaoManager.createDao(this.getConnectionSource(), Job.class);
+	public Dao<Job, String> getJobDao() throws SQLException {
+		if (null == jobDao) {
+			jobDao = DaoManager.createDao(this.getConnectionSource(), Job.class);
+		}
+		return jobDao;
 	}
-	return jobDao;
-}
+
+	public Dao<FittingRequest, String> getFittingRequestDao() throws SQLException {
+		if (null == fittingRequestDao) {
+			fittingRequestDao = DaoManager.createDao(this.getConnectionSource(), FittingRequest.class);
+		}
+		return fittingRequestDao;
+	}
 
 	// --- PUBLIC CONNECTION SPECIFIC ACTIONS
 
@@ -612,7 +626,7 @@ public Dao<Job, String> getJobDao() throws SQLException {
 	 */
 	private void createConnectionSource() throws SQLException {
 		final String localConnectionDescriptor = hostName + "/" + databaseName + "?user=" + databaseUser
-				+ "&password=" + databasePassword+databaseOptions;
+				+ "&password=" + databasePassword + databaseOptions;
 		if (databaseValid) connectionSource = new JdbcPooledConnectionSource(localConnectionDescriptor);
 		else connectionSource = new JdbcPooledConnectionSource(DEFAULT_CONNECTION_DESCRIPTOR);
 		// only keep the connections open for 5 minutes

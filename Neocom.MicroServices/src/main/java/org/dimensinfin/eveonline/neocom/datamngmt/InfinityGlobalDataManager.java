@@ -8,15 +8,27 @@
 //               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom.datamngmt;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication;
+import org.dimensinfin.eveonline.neocom.core.NeoComException;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetAlliancesAllianceIdOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCorporationsCorporationIdOk;
+import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
+import org.dimensinfin.eveonline.neocom.exception.NEOE;
+import org.dimensinfin.eveonline.neocom.exception.NeoComRegisteredException;
 import org.dimensinfin.eveonline.neocom.model.AllianceV1;
 import org.dimensinfin.eveonline.neocom.model.CorporationV1;
+import org.dimensinfin.eveonline.neocom.database.entity.FittingRequest;
 import org.dimensinfin.eveonline.neocom.model.PilotV2;
 
 /**
@@ -108,7 +120,7 @@ public class InfinityGlobalDataManager extends GlobalDataManager {
 	 * @return an instance of a PilotV2 class that has some of the required information to be shown on the ui at this
 	 * point.
 	 */
-	public static PilotV2 requestPilotV2( final Credential credential ) {
+	public static PilotV2 requestPilotV2( final Credential credential ) throws NeoComRegisteredException {
 		logger.info(">> [InfinityGlobalDataManager.requestPilotV2]> Identifier: {}", credential.getAccountId());
 		try {
 //			// Check if this request is already available on the cache.
@@ -126,6 +138,8 @@ public class InfinityGlobalDataManager extends GlobalDataManager {
 			final GetCharactersCharacterIdOk publicData = ESINetworkManager.getCharactersCharacterId(credential.getAccountId()
 					, credential.getRefreshToken()
 					, SERVER_DATASOURCE);
+			// Public data can be null if there are problems accessing the server.
+			if(null==publicData)throw new NeoComRegisteredException(NEOE.ESIDATA_NULL);
 			newchar.setCharacterId(credential.getAccountId())
 					.setPublicData(publicData);
 			// TODO First checkpoint --------------------------------------
@@ -175,6 +189,25 @@ public class InfinityGlobalDataManager extends GlobalDataManager {
 		}
 	}
 
+	public static List<FittingRequest> accessCorporationFittingRequests( final int corporationId ) {
+		logger.info(">> [InfinityGlobalDataManager.accessCorporationFittingRequests]> Corporation: {}", corporationId);
+		try {
+			return new GlobalDataManager().getNeocomDBHelper().getFittingRequestDao().queryForEq("corporationId", corporationId);
+		} catch (SQLException sqle) {
+			return new ArrayList<>();
+		} finally {
+			logger.info("<< [InfinityGlobalDataManager.accessCorporationFittingRequests]");
+		}
+	}
+	public static String serializedException(final Exception exc){
+		try {
+			final String serialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(exc);
+			return serialized;
+		} catch (JsonProcessingException jpe) {
+			// Do manual serialization for the exception.
+			return new JsonExceptionInstance(exc).toJson();
+		}
+	}
 	// - F I E L D - S E C T I O N ............................................................................
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
