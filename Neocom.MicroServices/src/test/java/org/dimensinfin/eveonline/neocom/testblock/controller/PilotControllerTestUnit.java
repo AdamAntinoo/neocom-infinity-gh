@@ -33,6 +33,7 @@ import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.SDEExternalDataManager;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdFittings200Ok;
+import org.dimensinfin.eveonline.neocom.industry.InventoryFlag;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 	public class PilotControllerTestUnit {
@@ -97,7 +98,7 @@ import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterI
 		// - M E T H O D - S E C T I O N ..........................................................................
 		@Test
 		public void testFlagDetailSearch(){
-			final SDEExternalDataManager.InventoryFlag detailedFlag = SDEExternalDataManager.searchFlag4Id(15);
+			final InventoryFlag detailedFlag = new GlobalDataManager().searchFlag4Id(15);
 		}
 //		@Test
 //	public void testFittingDownload( ) throws JsonProcessingException {

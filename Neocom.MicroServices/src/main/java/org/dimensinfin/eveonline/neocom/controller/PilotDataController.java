@@ -129,53 +129,6 @@ public class PilotDataController {
 		} finally {
 			logger.info("<< [PilotDataController.pilotPublicData]");
 		}
-
-		// Using session information to get access to the latest Pilot state information.
-//		Collection<? extends Session> usersSessions = this.sessions
-//				.findByIndexNameAndIndexValue(
-//						FindByIndexNameSessionRepository.PRINCIPAL_NAME_INDEX_NAME,
-//						principal.getName())
-//				.values();
-//
-////		String username = "username";
-//		this.session.setAttribute(
-//				FindByIndexNameSessionRepository.PRINCIPAL_NAME_INDEX_NAME, identifier.toString());
-// End of Session sample code -------------------------------
-
-//		try {
-////			// Create the session context to be used on this request.
-////			final GlobalDataManager.SessionContext context = new GlobalDataManager.SessionContext();
-////			// Set the credential being used on this context.
-////			context.setCredential(GlobalDataManager.searchCredential4Id(identifier));
-////
-////			// Activate the list of credentials.
-//////			final Credential credential = DataManagementModelStore.activateCredential(identifier);
-////
-////			// Get an instance of the v2 version with all the expanded public data that includes corporation information.
-////			final PilotV2 pilotv2 = GlobalDataManager.getPilotV2(identifier, context);
-////			String pilotv2 = "to be replaced by the pilot v2 information";
-//			final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(pilotv2);
-//			return contentsSerialized;
-//		} catch (NumberFormatException nfe) {
-//			logger.error("EX [PilotDataController.pilotPublicData]> identifier received cannot be translated to number - " +
-//					"{}", nfe.getMessage());
-//			return new JsonExceptionInstance("Identifier received cannot be translated to number - " + nfe.getMessage()
-//			).toJson();
-//		} catch (JsonProcessingException jpe) {
-//			logger.error("EX [PilotDataController.pilotPublicData]> Exception processing json: {}", jpe.getMessage());
-//			jpe.printStackTrace();
-//			return new JsonExceptionInstance(jpe.getMessage()).toJson();
-//		} catch (RuntimeException rtx) {
-//			logger.error("EX [PilotDataController.pilotPublicData]> Unexpected Exception: {}", rtx.getMessage());
-//			rtx.printStackTrace();
-//			return new JsonExceptionInstance(rtx.getMessage()).toJson();
-//		} catch (NeoComException neoe) {
-//			logger.error("EX [PilotDataController.pilotPublicData]> Unexpected Exception: {}", neoe.getMessage());
-//			neoe.printStackTrace();
-//			return new JsonExceptionInstance(neoe.getMessage()).toJson();
-//		} finally {
-//			logger.info("<< [PilotDataController.pilotPublicData]");
-//		}
 	}
 
 //	/**
@@ -334,51 +287,6 @@ public class PilotDataController {
 	}
 
 	// TODO Code commented out until the session is implemented and tested.
-//	/**
-//	 * Returns the list of fittings that are accessible to this Pilot identifier. This data will be processed at the Angular side
-//	 * to generate any UI structures required for a proper presentation.
-//	 *
-//	 * @param identifier identifier for the selected Pilot.
-//	 * @return list of OK class fittings serialized to Json.
-//	 */
-//	@CrossOrigin()
-//	@RequestMapping(value = "/api/v1/pilot/{identifier}/fittingmanager/fittings", method = RequestMethod.GET, produces =
-//			"application/json")
-//	public String pilotFittingManagerFittings( @PathVariable final String identifier ) {
-//		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/pilot/{}/fittingmanager/fittings", identifier);
-//		logger.info(">> [PilotDataController.pilotFittingManagerFittings]");
-//		try {
-//			final Integer id = Integer.valueOf(identifier);
-//			// Activate the list of credentials.
-//			DataManagementModelStore.activateCredential(id);
-//			// Get the list of fittings.
-//			final List<Fitting> fittings = GlobalDataManager.downloadFitting4Credential(id);
-//			final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(fittings);
-////			// Initialize the model data hierarchies.
-////			NeoComMSConnector.getSingleton().getModelStore().activateLoginIdentifier(login);
-////			NeoComCharacter pilot = NeoComMSConnector.getSingleton().getModelStore().activatePilot(Long.valueOf(identifier));
-////			AssetsManager assetsMan = pilot.getAssetsManager().initialize();
-//			//			// Download the contents for all locations.
-//			//			Hashtable<Long, ExtendedLocation> locs = assetsMan.getLocations();
-//			//			for (Long key : locs.keySet()) {
-//			//				locs.get(key).getContents();
-//			//			}
-//			return contentsSerialized;
-//		} catch (NumberFormatException nfe) {
-//			logger.error("EX [PilotDataController.pilotFittingManagerFittings]> identifier received cannot be translated to number - " +
-//					"{}", nfe.getMessage());
-//			return new JsonExceptionInstance("Identifier received cannot be translated to number - " + nfe.getMessage()
-//			).toJson();
-//		} catch (JsonProcessingException jpe) {
-//			jpe.printStackTrace();
-//			return new JsonExceptionInstance(jpe.getMessage()).toJson();
-//		} catch (RuntimeException rtx) {
-//			rtx.printStackTrace();
-//			return new JsonExceptionInstance(rtx.getMessage()).toJson();
-//		} finally {
-//			logger.info("<< [PilotDataController.pilotFittingManagerFittings]");
-//		}
-//	}
 //
 
 //	protected Fitting searchFitting(final int identifier){

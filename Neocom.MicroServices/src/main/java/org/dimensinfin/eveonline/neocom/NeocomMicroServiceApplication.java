@@ -44,6 +44,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.dimensinfin.eveonline.neocom.conf.GlobalConfigurationProvider;
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
+import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.MarketDataServer;
 import org.dimensinfin.eveonline.neocom.model.ANeoComEntity;
@@ -141,7 +142,6 @@ public class NeoComMicroServiceApplication {
 	 */
 	public static void main( final String[] args ) {
 		logger.info(">> [NeoComMicroServiceApplication.main]");
-		// Instance and connect the Adaptors.
 		// Connect the Configuration manager.
 		// Not required. The default configuration manager already reads the properties folder.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the Configuration Manager...");
@@ -152,7 +152,7 @@ public class NeoComMicroServiceApplication {
 		ANeoComEntity.connectGlobal(new GlobalDataManager());
 
 		// Initializing the ESI api network controller.
-//		ESINetworkManager.initialize();
+		ESINetworkManager.initialize();
 
 		// Connect the SDE database.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting SDE database...");
@@ -218,7 +218,7 @@ public class NeoComMicroServiceApplication {
 //	}
 
 //	@Scheduled(initialDelay = 120000, fixedDelay = 900000)
-	@Scheduled(initialDelay = 120000, fixedDelay = 120000)
+//	@Scheduled(initialDelay = 120000, fixedDelay = 120000)
 	private void onTime() {
 		// Fire another background update scan.
 		// Check if the configuration properties allow to run the updater.

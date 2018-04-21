@@ -277,6 +277,7 @@ public class LoginController {
 							.setExpires(Instant.now().plus(TimeUnit.SECONDS.toMillis(token.getExpires())).getMillis())
 							.setRefreshToken(token.getRefreshToken())
 							.setDataSource(GlobalDataManager.SERVER_DATASOURCE)
+							.setScope(ESINetworkManager.getStringScopes())
 							.store();
 					final NeoComSession session = new NeoComSession()
 							.setCredential(credential)
