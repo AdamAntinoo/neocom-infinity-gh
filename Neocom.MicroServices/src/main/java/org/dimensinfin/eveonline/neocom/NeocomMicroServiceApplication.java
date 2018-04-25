@@ -47,6 +47,7 @@ import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.MarketDataServer;
+import org.dimensinfin.eveonline.neocom.industry.EveTask;
 import org.dimensinfin.eveonline.neocom.model.ANeoComEntity;
 import org.dimensinfin.eveonline.neocom.model.PilotV2;
 import org.dimensinfin.eveonline.neocom.services.TimedUpdater;
@@ -83,7 +84,7 @@ public class NeoComMicroServiceApplication {
 		neocomSerializerModule.addSerializer(PilotV2.class, new PilotV2Serializer());
 //		neocomSerializerModule.addSerializer(Credential.class, new CredentialSerializer());
 //		neocomSerializerModule.addSerializer(Action.class, new ActionSerializer());
-//		neocomSerializerModule.addSerializer(EveTask.class, new ProcessingTaskSerializer());
+		neocomSerializerModule.addSerializer(EveTask.class, new ProcessingTaskSerializer());
 //		neocomSerializerModule.addSerializer(NeoComAsset.class, new NeoComAssetSerializer());
 		jsonMapper.registerModule(neocomSerializerModule);
 	}
@@ -166,6 +167,8 @@ public class NeoComMicroServiceApplication {
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		}
+		ANeoComEntity.connectSDEHelper(new GlobalDataManager().getSDEDBHelper());
+
 		// Connect the NeoCom database.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting NeoCom private database...");
 		try {
@@ -206,10 +209,14 @@ public class NeoComMicroServiceApplication {
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 
 	// - M E T H O D - S E C T I O N ..........................................................................
-//	@Scheduled(initialDelay = 180000, fixedDelay = 120000)
-//	private void writeMarketData() {
-//		mdServer.writeMarketDataCacheToStorage();
-//	}
+	@Scheduled(initialDelay = 180000, fixedDelay = 120000)
+	private void writeMarketData() {
+		mdServer.writeMarketDataCacheToStorage();
+	}
+	@Scheduled(initialDelay = 180000, fixedDelay = 120000)
+	private void writeMarketDataDownloadReport() {
+		mdServer.reportMarketDataJobs();
+	}
 //
 //	@Scheduled(initialDelay = 180000, fixedDelay = 180000)
 //	private void writeLocationData() {
@@ -218,7 +225,7 @@ public class NeoComMicroServiceApplication {
 //	}
 
 //	@Scheduled(initialDelay = 120000, fixedDelay = 900000)
-//	@Scheduled(initialDelay = 120000, fixedDelay = 120000)
+	@Scheduled(initialDelay = 120000, fixedDelay = 120000)
 	private void onTime() {
 		// Fire another background update scan.
 		// Check if the configuration properties allow to run the updater.
@@ -364,25 +371,30 @@ public class NeoComMicroServiceApplication {
 //	}
 //	// ..........................................................................................................
 
-//	// - CLASS IMPLEMENTATION ...................................................................................
-//	public static class ProcessingTaskSerializer extends JsonSerializer<EveTask> {
-//		// - F I E L D - S E C T I O N ............................................................................
-//
-//		// - M E T H O D - S E C T I O N ..........................................................................
-//		@Override
-//		public void serialize( final EveTask value, final JsonGenerator jgen, final SerializerProvider provider )
-//				throws IOException, JsonProcessingException {
-//			jgen.writeStartObject();
-//			jgen.writeStringField("jsonClass", value.getJsonClass());
-//			jgen.writeStringField("taskType", value.getTaskType().name());
-//			jgen.writeObjectField("referencedAsset", value.getReferencedAsset());
-//			jgen.writeNumberField("quantity", value.getQty());
-//			jgen.writeObjectField("sourceLocation", value.getLocation());
-//			jgen.writeObjectField("destination", value.getDestination());
-//			jgen.writeEndObject();
-//		}
-//	}
-//	// ..........................................................................................................
+	// - CLASS IMPLEMENTATION ...................................................................................
+	public static class ProcessingTaskSerializer extends JsonSerializer<EveTask> {
+		// - F I E L D - S E C T I O N ............................................................................
+
+		// - M E T H O D - S E C T I O N ..........................................................................
+		@Override
+		public void serialize( final EveTask value, final JsonGenerator jgen, final SerializerProvider provider )
+				throws IOException, JsonProcessingException {
+			jgen.writeStartObject();
+			jgen.writeStringField("jsonClass", value.getJsonClass());
+			jgen.writeStringField("taskType", value.getTaskType().name());
+			jgen.writeNumberField("typeId", value.getTypeId());
+			jgen.writeStringField("itemName", value.getItemName());
+			jgen.writeNumberField("price", value.getPrice());
+			jgen.writeNumberField("basePrice", value.getItem().getBaseprice());
+			jgen.writeNumberField("quantity", value.getQty());
+			jgen.writeObjectField("item", value.getItem());
+			jgen.writeObjectField("sourceLocation", value.getLocation());
+			jgen.writeObjectField("destination", value.getDestination());
+			jgen.writeObjectField("referencedAsset", value.getReferencedAsset());
+			jgen.writeEndObject();
+		}
+	}
+	// ..........................................................................................................
 
 //	// - CLASS IMPLEMENTATION ...................................................................................
 //	public static class NeoComAssetSerializer extends JsonSerializer<NeoComAsset> {

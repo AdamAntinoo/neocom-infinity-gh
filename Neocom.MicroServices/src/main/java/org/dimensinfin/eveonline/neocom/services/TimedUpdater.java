@@ -24,6 +24,8 @@ import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.database.entity.TimeStamp;
 import org.dimensinfin.eveonline.neocom.datamngmt.DownloadManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManagerCache;
+import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManagerConfiguration;
 import org.dimensinfin.eveonline.neocom.enums.PreferenceKeys;
 
 /**
@@ -256,6 +258,32 @@ public class TimedUpdater {
 						// Update the timer for this download at the database.
 						final Instant validUntil = Instant.now()
 								.plus(GlobalDataManager.getCacheTime4Type(GlobalDataManager.ECacheTimes.INDUSTRY_JOBS));
+						final TimeStamp ts = new TimeStamp(transferredCurrentrequestReference, validUntil)
+								.setCredentialId(credential.getAccountId())
+								.store();
+					});
+			UpdateJobManager.submit(newJob);
+			return;
+		}
+
+		// Search for MARKETORDERS job request.
+		currentrequestReference = ServiceJob.constructReference(GlobalDataManager.EDataUpdateJobs.MARKETORDERS
+				, credential.getAccountId());
+		// Check that the request is a MARKETORDERS update request.
+		if (dataIdentifier.getReference().equalsIgnoreCase(currentrequestReference)) {
+			// Submit the job to the manager
+			final String transferredCurrentrequestReference = currentrequestReference;
+			final ServiceJob newJob = new ServiceJob(dataIdentifier)
+					.setCredentialIdentifier(credential.getAccountId())
+					.setJobClass(GlobalDataManager.EDataUpdateJobs.MARKETORDERS)
+					.setTask(() -> {
+						logger.info("-- [ServiceJob.MARKETORDERS]> Downloading Market Orders for: [{}]", credential.getAccountName());
+						final DownloadManager downloader = new DownloadManager(credential);
+						downloader.downloadPilotMarketOrdersESI();
+
+						// Update the timer for this download at the database.
+						final Instant validUntil = Instant.now()
+								.plus(GlobalDataManager.getCacheTime4Type(GlobalDataManager.ECacheTimes.MARKET_ORDERS));
 						final TimeStamp ts = new TimeStamp(transferredCurrentrequestReference, validUntil)
 								.setCredentialId(credential.getAccountId())
 								.store();

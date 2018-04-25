@@ -34,6 +34,8 @@ ADAM ANTINOO
 
 "http://localhost:9000/api/v1/pilot/92002067/fittingrequests"
 
+"https://esi.tech.ccp.is/latest/route/30000142/30002964/?datasource=tranquility&flag=shortest"
+
 
 
 BETH RIPLEY
