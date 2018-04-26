@@ -16,8 +16,6 @@ repositories {
 
 sourceSets {
 //    main.java.srcDirs += 'src/main/java-datamngmt'
-//    main.java.srcDirs += 'src/main/java-incubation'
-//    main.java.srcDirs += 'src/main/java-android'
 }
 
 //jar {
@@ -83,7 +81,7 @@ dependencies {
     // N E O C O M . M O D E L
     implementation 'org.slf4j:slf4j-api:1.7.25'
     implementation 'joda-time:joda-time:2.3'
-//    implementation 'com.beimin:eveapi:6.0.6'
+    implementation 'com.beimin:eveapi:6.0.6'
 //    implementation 'org.htmlparser:htmlparser:2.1'
 //    implementation 'com.github.scribejava:scribejava-core:5.4.0'
     implementation 'com.squareup.retrofit2:converter-jackson:2.4.0'

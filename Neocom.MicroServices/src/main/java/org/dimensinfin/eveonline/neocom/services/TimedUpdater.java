@@ -98,7 +98,10 @@ public class TimedUpdater {
 				// Check Assets
 				boolean blockAssets = GlobalDataManager.getDefaultSharedPreferences()
 						.getBoolean(PreferenceKeys.prefkey_BlockAssetsUpdate.name(), false);
-				if (!blockAssets) joblist.add(GlobalDataManager.EDataUpdateJobs.ASSETDATA);
+				if (!blockAssets) {
+					joblist.add(GlobalDataManager.EDataUpdateJobs.ASSETDATA);
+					joblist.add(GlobalDataManager.EDataUpdateJobs.BLUEPRINTDATA);
+				}
 
 				// Check Colony data
 				boolean blockColony = GlobalDataManager.getDefaultSharedPreferences()
@@ -110,9 +113,13 @@ public class TimedUpdater {
 						.getBoolean(PreferenceKeys.prefkey_BlockSkillsUpdate.name(), false);
 				if (!blockSkills) joblist.add(GlobalDataManager.EDataUpdateJobs.SKILL_DATA);
 
-				joblist.add(GlobalDataManager.EDataUpdateJobs.BLUEPRINTDATA);
-				joblist.add(GlobalDataManager.EDataUpdateJobs.INDUSTRYJOBS);
-				joblist.add(GlobalDataManager.EDataUpdateJobs.MARKETORDERS);
+				// Check Industry downloads
+				boolean blockIndustry = GlobalDataManager.getDefaultSharedPreferences()
+						.getBoolean(PreferenceKeys.prefkey_BlockIndustryUpdate.name(), false);
+				if (!blockIndustry) {
+					joblist.add(GlobalDataManager.EDataUpdateJobs.INDUSTRYJOBS);
+					joblist.add(GlobalDataManager.EDataUpdateJobs.MARKETORDERS);
+				}
 			}
 
 			// Now process all job classes contained on the list . If the TS is found check it. If not fire an update.

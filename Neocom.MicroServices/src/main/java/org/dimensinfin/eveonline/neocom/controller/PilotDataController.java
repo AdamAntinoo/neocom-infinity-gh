@@ -11,7 +11,9 @@ package org.dimensinfin.eveonline.neocom.controller;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -29,8 +31,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication;
 import org.dimensinfin.eveonline.neocom.NeoComSession;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
+import org.dimensinfin.eveonline.neocom.database.entity.Job;
+import org.dimensinfin.eveonline.neocom.database.entity.MarketOrder;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
+import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdIndustryJobs200Ok;
 import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
 import org.dimensinfin.eveonline.neocom.exception.NeoComRegisteredException;
 import org.dimensinfin.eveonline.neocom.model.PilotV2;
@@ -128,6 +133,110 @@ public class PilotDataController {
 			return InfinityGlobalDataManager.serializedException(rtx);
 		} finally {
 			logger.info("<< [PilotDataController.pilotPublicData]");
+		}
+	}
+	@CrossOrigin()
+	@RequestMapping(value = "/api/v1/pilot/{identifier}/industryjobs", method = RequestMethod.GET, produces =
+			"application/json")
+	public String pilotIndustryJobs( @RequestHeader(value = "xNeocom-Session-Locator", required = false) String sessionLocator
+			, @PathVariable final Integer identifier ) {
+		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/pilot/{}/industryjobs", identifier);
+		logger.info(">> [PilotDataController.pilotIndustryJobs]");
+		logger.info(">> [PilotDataController.pilotIndustryJobs]> sessionLocator: {}", sessionLocator);
+
+		try {
+			// Validate the session locator. Only if this test passes we are authorized to access the Pilot information.
+//			if (NeoComMicroServiceApplication.validatePilotIdentifierMatch(sessionLocator, identifier)) {
+			NeoComSession session = null;
+			if (true) {
+				final NeoComMicroServiceApplication.SessionLocator locator = new NeoComMicroServiceApplication.SessionLocator()
+						.setSessionLocator("-MOCK-LOCATOR-IDENTIFIER-" + identifier + "-")
+						.setTimeValid(Instant.now().getMillis());
+
+				if (NeoComMicroServiceApplication.MOCK_UP) {
+					// Read all the Credentials from the database and store the one with the pilot identifier on the store.
+					final List<Credential> credentials = GlobalDataManager.accessAllCredentials();
+					locator.setSessionLocator("-MOCK-LOCATOR-IDENTIFIER-" + identifier + "-");
+					for (Credential cred : credentials) {
+						if (cred.getAccountId() == identifier) {
+							session = new NeoComSession()
+									.setCredential(cred)
+									.setPublicKey("-INVALID-PUBLIC-KEY-");
+							NeoComMicroServiceApplication.sessionStore.put(locator.getSessionLocator(), session);
+						}
+					}
+				}
+				// Validate the location against the session store.
+				session = NeoComMicroServiceApplication.sessionStore.get(locator.getSessionLocator());
+			} else return "Not Access.";
+
+			// Get all the jobs from the database. Filtering will be performed later.
+			final List<Job> jobs = GlobalDataManager.accessIndustryJobs4Credential(session.getCredential());
+			final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(jobs);
+			return contentsSerialized;
+		} catch (JsonProcessingException jspe) {
+			return new JsonExceptionInstance(jspe).toJson();
+		} catch (RuntimeException rtx) {
+			logger.error("EX [FittingManagerController.fittingProcessFitting]> Unexpected Exception: {}", rtx.getMessage());
+			rtx.printStackTrace();
+			return InfinityGlobalDataManager.serializedException(rtx);
+		} catch (SQLException sqle) {
+			logger.error("EX [FittingManagerController.fittingProcessFitting]> Database query failed: {}", sqle.getMessage());
+			return InfinityGlobalDataManager.serializedException(sqle);
+		} finally {
+			logger.info("<< [FittingManagerController.fittingProcessFitting]");
+		}
+	}
+	@CrossOrigin()
+	@RequestMapping(value = "/api/v1/pilot/{identifier}/marketorders", method = RequestMethod.GET, produces =
+			"application/json")
+	public String pilotMarketOrders( @RequestHeader(value = "xNeocom-Session-Locator", required = false) String sessionLocator
+			, @PathVariable final Integer identifier ) {
+		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/pilot/{}/marketorders", identifier);
+		logger.info(">> [PilotDataController.pilotMarketOrders]");
+		logger.info(">> [PilotDataController.pilotMarketOrders]> sessionLocator: {}", sessionLocator);
+
+		try {
+			// Validate the session locator. Only if this test passes we are authorized to access the Pilot information.
+//			if (NeoComMicroServiceApplication.validatePilotIdentifierMatch(sessionLocator, identifier)) {
+			NeoComSession session = null;
+			if (true) {
+				final NeoComMicroServiceApplication.SessionLocator locator = new NeoComMicroServiceApplication.SessionLocator()
+						.setSessionLocator("-MOCK-LOCATOR-IDENTIFIER-" + identifier + "-")
+						.setTimeValid(Instant.now().getMillis());
+
+				if (NeoComMicroServiceApplication.MOCK_UP) {
+					// Read all the Credentials from the database and store the one with the pilot identifier on the store.
+					final List<Credential> credentials = GlobalDataManager.accessAllCredentials();
+					locator.setSessionLocator("-MOCK-LOCATOR-IDENTIFIER-" + identifier + "-");
+					for (Credential cred : credentials) {
+						if (cred.getAccountId() == identifier) {
+							session = new NeoComSession()
+									.setCredential(cred)
+									.setPublicKey("-INVALID-PUBLIC-KEY-");
+							NeoComMicroServiceApplication.sessionStore.put(locator.getSessionLocator(), session);
+						}
+					}
+				}
+				// Validate the location against the session store.
+				session = NeoComMicroServiceApplication.sessionStore.get(locator.getSessionLocator());
+			} else return "Not Access.";
+
+			// Get all the jobs from the database. Filtering will be performed later.
+			final List<MarketOrder> orders = GlobalDataManager.accessMarketOrders4Credential(session.getCredential());
+			final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(orders);
+			return contentsSerialized;
+		} catch (JsonProcessingException jspe) {
+			return new JsonExceptionInstance(jspe).toJson();
+		} catch (RuntimeException rtx) {
+			logger.error("EX [FittingManagerController.pilotMarketOrders]> Unexpected Exception: {}", rtx.getMessage());
+			rtx.printStackTrace();
+			return InfinityGlobalDataManager.serializedException(rtx);
+		} catch (SQLException sqle) {
+			logger.error("EX [FittingManagerController.pilotMarketOrders]> Database query failed: {}", sqle.getMessage());
+			return InfinityGlobalDataManager.serializedException(sqle);
+		} finally {
+			logger.info("<< [FittingManagerController.pilotMarketOrders]");
 		}
 	}
 
@@ -231,42 +340,8 @@ public class PilotDataController {
 //		}
 //	}
 //
-//	public String pilotIndustryJobsold( @PathVariable final Integer identifier ) {
-//		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/pilot/{}/industryjobs", identifier);
-//		logger.info(">> [PilotDataController.pilotIndustryJobs]");
-//		try {
-//			// Read the json file to a local string.
-//			final String jsonData = readJsonMockData(GlobalDataManager.getResourceString("R.mock.path")
-//					+ GlobalDataManager.getResourceString("R.mock.industryjobs"));
-//			// Convert first to OK then to MVC.
-//			final List<GetCharactersCharacterIdIndustryJobs200Ok> jobsOK = Arrays.asList(NeoComMicroServiceApplication.jsonMapper
-//					.readValue(jsonData
-//							, GetCharactersCharacterIdIndustryJobs200Ok[].class));
-//			final ArrayList<Job> resultJobList = new ArrayList<Job>();
-//			for (GetCharactersCharacterIdIndustryJobs200Ok jobOK : jobsOK) {
-//				final Job job = NeoComMicroServiceApplication.modelMapper.map(jobOK, Job.class);
-//				resultJobList.add(job);
-//			}
-//			final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(resultJobList);
-//			return contentsSerialized;
-//		} catch (NumberFormatException nfe) {
-//			logger.error("EX [PilotDataController.pilotIndustryJobs]> identifier received cannot be translated to number - " +
-//					"{}", nfe.getMessage());
-//			return new JsonExceptionInstance("Identifier received cannot be translated to number - " + nfe.getMessage()
-//			).toJson();
-//		} catch (JsonProcessingException jpe) {
-//			jpe.printStackTrace();
-//			return new JsonExceptionInstance(jpe.getMessage()).toJson();
-//		} catch (RuntimeException rtx) {
-//			rtx.printStackTrace();
-//			return new JsonExceptionInstance(rtx.getMessage()).toJson();
-//		} catch (IOException ioe) {
-//			ioe.printStackTrace();
-//			return new JsonExceptionInstance(ioe.getMessage()).toJson();
-//		} finally {
-//			logger.info("<< [PilotDataController.pilotIndustryJobs]");
-//		}
-//	}
+
+
 
 	private String readJsonMockData( final String filePath ) throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader(filePath));

@@ -8,6 +8,12 @@
 //               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom.controller;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -16,22 +22,7 @@ import java.security.cert.X509Certificate;
 import java.util.Map;
 import java.util.zip.GZIPInputStream;
 
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-
-import org.dimensinfin.core.util.Chrono;
-import org.dimensinfin.eveonline.neocom.datamngmt.manager.GlobalDataManager;
-import org.dimensinfin.eveonline.neocom.model.EveLocation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import net.nikr.eve.jeveasset.data.Citadel;
 
 import com.beimin.eveapi.exception.ApiException;
 import com.beimin.eveapi.model.eve.Station;
@@ -41,13 +32,22 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import net.nikr.eve.jeveasset.data.Citadel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import org.dimensinfin.core.util.Chrono;
+import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.model.EveLocation;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 @RestController
 public class LocationController {
 	// - S T A T I C - S E C T I O N ..........................................................................
-	private static Logger logger	= LoggerFactory.getLogger("LocationController");
+	private static Logger logger = LoggerFactory.getLogger("LocationController");
 
 	// - F I E L D - S E C T I O N ............................................................................
 
@@ -63,13 +63,13 @@ public class LocationController {
 		logger.info(">> [LocationController.updateCitadels]");
 		Chrono totalUpdateDuration = new Chrono();
 		try {
-			return "<< [LocationController.updateCitadels]>[COUNTER]> Citadels Processed: - "
+			return "<< [LocationController.updateCitadels]>[COUNTER]> Citadels Processed: "
 					+ updateCitadelsProcess().size();
 		} catch (RuntimeException rtex) {
 			return "<< [LocationController.updateCitadels]>[COUNTER]> Detected Exception: - " + rtex.getMessage();
 		} finally {
 			GlobalDataManager.writeLocationsDatacache();
-			logger.info("<< [LocationController.updateCitadels]> [TIMING] Processing Time: {}",totalUpdateDuration.printElapsed
+			logger.info("<< [LocationController.updateCitadels]> [TIMING] Processing Time: {}", totalUpdateDuration.printElapsed
 					(Chrono.ChronoOptions.DEFAULT));
 		}
 	}
@@ -81,13 +81,13 @@ public class LocationController {
 		logger.info(">> [LocationController.updateOutposts]");
 		Chrono totalUpdateDuration = new Chrono();
 		try {
-			return "<< [LocationController.updateOutposts]>[COUNTER]> Outposts Processed: - "
+			return "<< [LocationController.updateOutposts]>[COUNTER]> Outposts Processed: "
 					+ updateOutpostsProcess().getStations().size();
 		} catch (RuntimeException rtex) {
 			return "<< [LocationController.updateOutposts]>[COUNTER]> Detected Exception: - " + rtex.getMessage();
 		} finally {
 			GlobalDataManager.writeLocationsDatacache();
-			logger.info("<< [LocationController.updateCitadels]> [TIMING] Processing Time: {}",totalUpdateDuration.printElapsed
+			logger.info("<< [LocationController.updateCitadels]> [TIMING] Processing Time: {}", totalUpdateDuration.printElapsed
 					(Chrono.ChronoOptions.DEFAULT));
 		}
 	}
@@ -105,20 +105,20 @@ public class LocationController {
 		logger.info(">> [LocationController.updateCitadelsProcess]");
 		String destination = "https://stop.hammerti.me.uk/api/citadel/all";
 		// Create a trust manager that does not validate certificate chains
-		TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
+		TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
 			@Override
-			public void checkClientTrusted(final X509Certificate[] certs, final String authType) {
+			public void checkClientTrusted( final X509Certificate[] certs, final String authType ) {
 			}
 
 			@Override
-			public void checkServerTrusted(final X509Certificate[] certs, final String authType) {
+			public void checkServerTrusted( final X509Certificate[] certs, final String authType ) {
 			}
 
 			@Override
 			public java.security.cert.X509Certificate[] getAcceptedIssuers() {
 				return null;
 			}
-		} };
+		}};
 		// Install the all-trusting trust manager
 		SSLContext sc;
 		InputStream in = null;
@@ -210,7 +210,7 @@ public class LocationController {
 
 final class Verifier implements HostnameVerifier {
 	@Override
-	public boolean verify(final String hostname, final SSLSession session) {
+	public boolean verify( final String hostname, final SSLSession session ) {
 		return true;
 	}
 }
