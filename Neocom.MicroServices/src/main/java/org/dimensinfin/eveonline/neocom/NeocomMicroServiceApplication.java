@@ -283,7 +283,7 @@ public class NeoComMicroServiceApplication {
 			jgen.writeStringField("urlforAvatar", value.getUrlforAvatar());
 
 //			jgen.writeStringField("name", value.getName());
-//			jgen.writeNumberField("ownerId", value.getOwnerID());
+//			jgen.writeNumberField("ownerId", value.getOwnerId());
 //			jgen.writeStringField("name", value.getName());
 //			jgen.writeStringField("categoryName", value.getCategory());
 //			jgen.writeStringField("groupName", value.getGroupName());
@@ -310,7 +310,7 @@ public class NeoComMicroServiceApplication {
 //			jgen.writeStringField("jsonClass", value.getJsonClass());
 //			jgen.writeNumberField("assetId", value.getAssetId());
 //			jgen.writeNumberField("typeId", value.getTypeId());
-//			jgen.writeNumberField("ownerId", value.getOwnerID());
+//			jgen.writeNumberField("ownerId", value.getOwnerId());
 //			jgen.writeStringField("name", value.getItemName());
 //			jgen.writeStringField("category", value.getCategory());
 //			jgen.writeStringField("groupName", value.getGroupName());
@@ -413,7 +413,7 @@ public class NeoComMicroServiceApplication {
 //			jgen.writeStringField("locationType", value.getLocationType().name());
 //			jgen.writeStringField("locationFlag", value.getFlag().name());
 //			jgen.writeStringField("name", value.getName());
-//			jgen.writeNumberField("ownerId", value.getOwnerID());
+//			jgen.writeNumberField("ownerId", value.getOwnerId());
 //			jgen.writeStringField("name", value.getName());
 //			jgen.writeStringField("categoryName", value.getCategory());
 //			jgen.writeStringField("groupName", value.getGroupName());
@@ -453,25 +453,25 @@ public class NeoComMicroServiceApplication {
 //			@DatabaseField(id = true, index = true)
 //			protected long id = -2;
 //			@DatabaseField
-//			protected long stationID = -1;
+//			protected long stationId = -1;
 //			@DatabaseField
 //			private String station = "SPACE";
 //			@DatabaseField
-//			protected long systemID = -1;
+//			protected long systemId = -1;
 //			@DatabaseField
 //			private String system = "UNKNOWN";
 //			@DatabaseField
-//			protected long constellationID = -1;
+//			protected long constellationId = -1;
 //			@DatabaseField
 //			private String constellation = "Echo Cluster";
 //			@DatabaseField
-//			protected long regionID = -1;
+//			protected long regionId = -1;
 //			@DatabaseField
 //			private String region = "-DEEP SPACE-";
 //			@DatabaseField
 //			private String security = "0.0";
 //			@DatabaseField
-//			protected String typeID = ELocationType.UNKNOWN.name();
+//			protected String typeId = ELocationType.UNKNOWN.name();
 //			public String urlLocationIcon = null;
 //
 //

@@ -54,59 +54,59 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 	private static final String CCPDATABASE_URL = "jdbc:sqlite:src/main/resources/eve.db";
 	//
 	private static final String SELECT_TIER2_INPUTS = "SELECT pstmt.TYPEid, pstmt.quantity"
-					+ " FROM  planetSchematicsTypeMap pstms, planetSchematicsTypeMap pstmt" + " WHERE pstms.typeID = ?"
+					+ " FROM  planetSchematicsTypeMap pstms, planetSchematicsTypeMap pstmt" + " WHERE pstms.typeId = ?"
 					+ " AND   pstms.isInput = 0" + " AND   pstmt.schematicID = pstms.schematicID" + " AND   pstmT.isInput = 1";
 
 	//private static final String							DATABASE_URL							= "jdbc:sqlite:D:\\Development\\WorkStage\\ProjectsAngular\\NeoCom\\src\\main\\resources\\eve.db";
 	//private static final String							DATABASE_URL							= "jdbc:sqlite:D:\\Development\\ProjectsAngular\\NeoCom\\src\\main\\resources\\eve.db";
-	private static final String SELECT_ITEM_BYID = "SELECT it.typeID AS typeID, it.typeName AS typeName"
+	private static final String SELECT_ITEM_BYID = "SELECT it.typeId AS typeId, it.typeName AS typeName"
 					+ " , ig.groupName AS groupName" + " , ic.categoryName AS categoryName" + " , it.basePrice AS basePrice"
 					+ " , it.volume AS volume" + " , IFNULL(img.metaGroupName, " + '"' + "NOTECH" + '"' + ") AS Tech"
 					+ " FROM invTypes it" + " LEFT OUTER JOIN invGroups ig ON ig.groupID = it.groupID"
 					+ " LEFT OUTER JOIN invCategories ic ON ic.categoryID = ig.categoryID"
-					+ " LEFT OUTER JOIN invMetaTypes imt ON imt.typeID = it.typeID"
-					+ " LEFT OUTER JOIN invMetaGroups img ON img.metaGroupID = imt.metaGroupID" + " WHERE it.typeID = ?";
+					+ " LEFT OUTER JOIN invMetaTypes imt ON imt.typeId = it.typeId"
+					+ " LEFT OUTER JOIN invMetaGroups img ON img.metaGroupID = imt.metaGroupID" + " WHERE it.typeId = ?";
 
-	//	private static final String									SELECT_LOCATIONBYID				= "SELECT md.itemID AS locationID, md.typeID AS typeID, md.itemName AS locationName, md.security AS security"
-	//			+ " , IFNULL(md.solarSystemID, -1) AS systemID, ms.solarSystemName AS system"
-	//			+ " , IFNULL(md.constellationID, -1) AS constellationID, mc.constellationName AS constellation"
-	//			+ " , IFNULL(md.regionID, -1) AS regionID, mr.regionName AS region" + " FROM mapDenormalize md"
-	//			+ " LEFT OUTER JOIN mapRegions mr ON mr.regionID = md.regionID"
-	//			+ " LEFT OUTER JOIN mapConstellations mc ON mc.constellationID = md.constellationID"
+	//	private static final String									SELECT_LOCATIONBYID				= "SELECT md.itemID AS locationID, md.typeId AS typeId, md.itemName AS locationName, md.security AS security"
+	//			+ " , IFNULL(md.solarSystemID, -1) AS systemId, ms.solarSystemName AS system"
+	//			+ " , IFNULL(md.constellationId, -1) AS constellationId, mc.constellationName AS constellation"
+	//			+ " , IFNULL(md.regionId, -1) AS regionId, mr.regionName AS region" + " FROM mapDenormalize md"
+	//			+ " LEFT OUTER JOIN mapRegions mr ON mr.regionId = md.regionId"
+	//			+ " LEFT OUTER JOIN mapConstellations mc ON mc.constellationId = md.constellationId"
 	//			+ " LEFT OUTER JOIN mapSolarSystems ms ON ms.solarSystemID = md.solarSystemID" + " WHERE itemID = ?";
 	//	private static final String									SELECT_LOCATIONBYSYSTEM		= "SELECT solarSystemID from mapSolarSystems WHERE solarSystemName = ?";
 	//
-	//	private static final String									LOM4BLUEPRINT							= "SELECT iam.typeID, itb.typeName, iam.materialTypeID, it.typeName, ig.groupName, ic.categoryName, iam.quantity, iam.consume"
+	//	private static final String									LOM4BLUEPRINT							= "SELECT iam.typeId, itb.typeName, iam.materialTypeID, it.typeName, ig.groupName, ic.categoryName, iam.quantity, iam.consume"
 	//			+ " FROM industryActivityMaterials iam, invTypes itb, invTypes it, invGroups ig, invCategories ic"
-	//			+ " WHERE iam.typeID = ?" + " AND iam.activityID = 1" + " AND itb.typeID = iam.typeID"
-	//			+ " AND it.typeID = iam.materialTypeID" + " AND ig.groupID = it.groupID" + " AND ic.categoryID = ig.categoryID";
+	//			+ " WHERE iam.typeId = ?" + " AND iam.activityID = 1" + " AND itb.typeId = iam.typeId"
+	//			+ " AND it.typeId = iam.materialTypeID" + " AND ig.groupID = it.groupID" + " AND ic.categoryID = ig.categoryID";
 	//
-	//	private static final String									TECH4BLUEPRINT						= "SELECT iap.typeID, it.typeName, imt.metaGroupID, img.metaGroupName"
-	//			+ " FROM industryActivityProducts iap, invTypes it, invMetaTypes imt, invMetaGroups img" + " WHERE it.typeID =?"
-	//			+ " AND iap.typeID = it.typeID" + " AND imt.typeID = productTypeID" + " AND img.metaGroupID = imt.metaGroupID"
+	//	private static final String									TECH4BLUEPRINT						= "SELECT iap.typeId, it.typeName, imt.metaGroupID, img.metaGroupName"
+	//			+ " FROM industryActivityProducts iap, invTypes it, invMetaTypes imt, invMetaGroups img" + " WHERE it.typeId =?"
+	//			+ " AND iap.typeId = it.typeId" + " AND imt.typeId = productTypeID" + " AND img.metaGroupID = imt.metaGroupID"
 	//			+ " AND iap.activityID = 1";
 	//
 	//	private static final String									REFINING_ASTEROID					= "SELECT itm.materialTypeID AS materialTypeID, itm.quantity AS qty"
 	//			+ " , it.typeName AS materialName" + " , ito.portionSize AS portionSize"
-	//			+ " FROM invTypeMaterials itm, invTypes it, invTypes ito" + " WHERE itm.typeID = ?"
-	//			+ " AND it.typeID = itm.materialTypeID" + " AND ito.typeID = itm.typeID" + " ORDER BY itm.materialTypeID";
+	//			+ " FROM invTypeMaterials itm, invTypes it, invTypes ito" + " WHERE itm.typeId = ?"
+	//			+ " AND it.typeId = itm.materialTypeID" + " AND ito.typeId = itm.typeId" + " ORDER BY itm.materialTypeID";
 	//
-	//	private static final String									INDUSTRYACTIVITYMATERIALS	= "SELECT materialTypeID, quantity, consume FROM industryActivityMaterials WHERE typeID = ? AND activityID = 8";
-	private static final String STATIONTYPE = "SELECT stationTypeID FROM staStations WHERE stationID = ?";
-	//	private static final String									JOB_COMPLETION_TIME				= "SELECT typeID, time FROM industryActivity WHERE typeID = ? AND activityID = ?";
+	//	private static final String									INDUSTRYACTIVITYMATERIALS	= "SELECT materialTypeID, quantity, consume FROM industryActivityMaterials WHERE typeId = ? AND activityID = 8";
+	private static final String STATIONTYPE = "SELECT stationTypeID FROM staStations WHERE stationId = ?";
+	//	private static final String									JOB_COMPLETION_TIME				= "SELECT typeId, time FROM industryActivity WHERE typeId = ? AND activityID = ?";
 	//	private static final String									CHECK_INVENTION						= "SELECT count(*) AS counter"
-	//			+ " FROM industryActivityProducts iap" + " WHERE iap.typeID = ?" + " AND iap.activityID = 8";
-	//	private static final String									INVENTION_PRODUCT					= "SELECT productTypeID FROM industryActivityProducts WHERE typeID = ? AND activityID = 8";
+	//			+ " FROM industryActivityProducts iap" + " WHERE iap.typeId = ?" + " AND iap.activityID = 8";
+	//	private static final String									INVENTION_PRODUCT					= "SELECT productTypeID FROM industryActivityProducts WHERE typeId = ? AND activityID = 8";
 	//	private static final String									CHECK_MANUFACTURABLE			= "SELECT count(*) AS counter FROM industryActivityProducts iap WHERE iap.productTypeID = ? AND iap.activityID = 1";
 	//	private static final String									CHECK_REACTIONABLE				= "SELECT count(*) AS counter FROM industryActivityProducts iap WHERE iap.productTypeID = ? AND iap.activityID = 1";
 	//	private static final String									CHECK_PLANETARYPRODUCED		= "SELECT count(*) AS counter FROM industryActivityProducts iap WHERE iap.productTypeID = ? AND iap.activityID = 1";
 	//	private static final String									REACTION_COMPONENTS				= "SELECT"
-	//			+ "   invTypeReactions.reactionTypeID" + " , invTypes.typeID, invTypes.typeName" + " , invTypeReactions.input"
+	//			+ "   invTypeReactions.reactionTypeID" + " , invTypes.typeId, invTypes.typeName" + " , invTypeReactions.input"
 	//			+ " , COALESCE(dgmTypeAttributes.valueInt, dgmTypeAttributes.valueFloat) * invTypeReactions.quantity AS quantity"
 	//			+ " FROM invTypeReactions, dgmTypeAttributes, invTypes" + " WHERE"
-	//			+ " invTypes.typeId = invTypeReactions.typeID AND" + " invTypeReactions.reactionTypeID IN ("
-	//			+ "    SELECT reactionTypeID" + "    FROM invTypeReactions" + "    WHERE typeID = ? ) AND"
-	//			+ " dgmTypeAttributes.typeID = invTypeReactions.typeID";
+	//			+ " invTypes.typeId = invTypeReactions.typeId AND" + " invTypeReactions.reactionTypeID IN ("
+	//			+ "    SELECT reactionTypeID" + "    FROM invTypeReactions" + "    WHERE typeId = ? ) AND"
+	//			+ " dgmTypeAttributes.typeId = invTypeReactions.typeId";
 
 	// - F I E L D - S E C T I O N ............................................................................
 	private String databaseLink = "jdbc:sqlite:src/main/resourcesneocomdata.db";
@@ -156,7 +156,7 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 	//		}
 	//		return data.toString();
 	//	}
-	//	public boolean checkInvention(final int typeID) {
+	//	public boolean checkInvention(final int typeId) {
 	//		throw new RuntimeException(
 	//				"Application connector not defined. Functionality 'checkExpiration' disabled. Call intercepted by abstract class 'AbstractDatabaseConnector'.");
 	//	}
@@ -473,7 +473,7 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 	//	 * Gets the list of assets of a select Category
 	//	 * 
 	//	 * @param characterID
-	//	 * @param typeID
+	//	 * @param typeId
 	//	 * @return
 	//	 */
 	//	public ArrayList<NeoComAsset> searchAsset4Category(final long characterID, final String categoryName) {
@@ -504,7 +504,7 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 			Where<NeoComAsset, String> where = queryBuilder.where();
 			where.eq("ownerID", characterID);
 			where.and();
-			where.eq("typeID", typeID);
+			where.eq("typeId", typeID);
 			PreparedQuery<NeoComAsset> preparedQuery = queryBuilder.prepare();
 			assetList = assetDao.query(preparedQuery);
 		} catch (java.sql.SQLException sqle) {
@@ -613,7 +613,7 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 			try {
 				hit = new EveItem();
 				//			final Cursor cursor = getCCPDatabase().rawQuery(SELECT_ITEM_BYID,
-				//					new String[] { Integer.valueOf(typeID).toString() });
+				//					new String[] { Integer.valueOf(typeId).toString() });
 				//	      Statement stmt = getCCPDatabase().createStatement();
 				prepStmt = getCCPDatabase().prepareStatement(SELECT_ITEM_BYID);
 				prepStmt.setString(1, Integer.valueOf(typeID).toString());

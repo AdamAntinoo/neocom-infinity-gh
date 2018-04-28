@@ -58,45 +58,45 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 	private static int BLUEPRINT4MODULE_TYPEID_COLINDEX = 1;
 
 	// - S Q L   C O M M A N D S
-	private static final String SELECT_ITEM_BYID = "SELECT it.typeID AS typeID, it.typeName AS typeName"
+	private static final String SELECT_ITEM_BYID = "SELECT it.typeId AS typeId, it.typeName AS typeName"
 					+ " , ig.groupName AS groupName" + " , ic.categoryName AS categoryName" + " , it.basePrice AS basePrice"
 					+ " , it.volume AS volume" + " , IFNULL(img.metaGroupName, " + '"' + "NOTECH" + '"' + ") AS Tech"
 					+ " FROM invTypes it" + " LEFT OUTER JOIN invGroups ig ON ig.groupID = it.groupID"
 					+ " LEFT OUTER JOIN invCategories ic ON ic.categoryID = ig.categoryID"
-					+ " LEFT OUTER JOIN invMetaTypes imt ON imt.typeID = it.typeID"
-					+ " LEFT OUTER JOIN invMetaGroups img ON img.metaGroupID = imt.metaGroupID" + " WHERE it.typeID = ?";
-	private static final String SELECT_LOCATIONBYID = "SELECT md.itemID AS locationID, md.typeID AS typeID, md.itemName AS locationName, md.security AS security"
-					+ " , IFNULL(md.solarSystemID, -1) AS systemID, ms.solarSystemName AS system"
-					+ " , IFNULL(md.constellationID, -1) AS constellationID, mc.constellationName AS constellation"
-					+ " , IFNULL(md.regionID, -1) AS regionID, mr.regionName AS region"
+					+ " LEFT OUTER JOIN invMetaTypes imt ON imt.typeId = it.typeId"
+					+ " LEFT OUTER JOIN invMetaGroups img ON img.metaGroupID = imt.metaGroupID" + " WHERE it.typeId = ?";
+	private static final String SELECT_LOCATIONBYID = "SELECT md.itemID AS locationID, md.typeId AS typeId, md.itemName AS locationName, md.security AS security"
+					+ " , IFNULL(md.solarSystemID, -1) AS systemId, ms.solarSystemName AS system"
+					+ " , IFNULL(md.constellationId, -1) AS constellationId, mc.constellationName AS constellation"
+					+ " , IFNULL(md.regionId, -1) AS regionId, mr.regionName AS region"
 					+ " FROM mapDenormalize md"
-					+ " LEFT OUTER JOIN mapRegions mr ON mr.regionID = md.regionID"
-					+ " LEFT OUTER JOIN mapConstellations mc ON mc.constellationID = md.constellationID"
+					+ " LEFT OUTER JOIN mapRegions mr ON mr.regionId = md.regionId"
+					+ " LEFT OUTER JOIN mapConstellations mc ON mc.constellationId = md.constellationId"
 					+ " LEFT OUTER JOIN mapSolarSystems ms ON ms.solarSystemID = md.solarSystemID" + " WHERE itemID = ?";
 	private static final String SELECT_LOCATIONBYSYSTEM = "SELECT solarSystemID FROM mapSolarSystems"
 					+ " WHERE solarSystemName = ?";
-	private static final String SELECT_STATIONTYPE = "SELECT stationTypeID FROM staStations WHERE stationID = ?";
+	private static final String SELECT_STATIONTYPE = "SELECT stationTypeID FROM staStations WHERE stationId = ?";
 	private static final String SELECT_MODULE4BLUEPRINT = "SELECT productTypeID FROM industryActivityProducts BT"
-					+ " WHERE typeID = ? AND activityID = 1";
-	private static final String SELECT_TECH4BLUEPRINT = "SELECT iap.typeID, it.typeName, imt.metaGroupID, img.metaGroupName"
+					+ " WHERE typeId = ? AND activityID = 1";
+	private static final String SELECT_TECH4BLUEPRINT = "SELECT iap.typeId, it.typeName, imt.metaGroupID, img.metaGroupName"
 					+ " FROM industryActivityProducts iap, invTypes it, invMetaTypes imt, invMetaGroups img"
-					+ " WHERE it.typeID =?"
-					+ " AND iap.typeID = it.typeID"
-					+ " AND imt.typeID = productTypeID"
+					+ " WHERE it.typeId =?"
+					+ " AND iap.typeId = it.typeId"
+					+ " AND imt.typeId = productTypeID"
 					+ " AND img.metaGroupID = imt.metaGroupID" + " AND iap.activityID = 1";
 	private static final String SELECT_REFININGASTEROID = "SELECT itm.materialTypeID AS materialTypeID, itm.quantity AS qty"
 					+ " , it.typeName AS materialName"
 					+ " , ito.portionSize AS portionSize"
 					+ " FROM invTypeMaterials itm, invTypes it, invTypes ito"
-					+ " WHERE itm.typeID = ?"
-					+ " AND it.typeID = itm.materialTypeID" + " AND ito.typeID = itm.typeID" + " ORDER BY itm.materialTypeID";
-	private static final String SELECT_BLUEPRINT4MODULE = "SELECT typeID FROM industryActivityProducts BT"
+					+ " WHERE itm.typeId = ?"
+					+ " AND it.typeId = itm.materialTypeID" + " AND ito.typeId = itm.typeId" + " ORDER BY itm.materialTypeID";
+	private static final String SELECT_BLUEPRINT4MODULE = "SELECT typeId FROM industryActivityProducts BT"
 					+ " WHERE productTypeID = ? AND activityID = 1";
-	private static final String SELECT_RAW_PRODUCTRESULT = "SELECT pstmo.typeID, pstmo.quantity, pstmo.schematicID"
-					+ " FROM   planetSchematicsTypeMap pstmi, planetSchematicsTypeMap pstmo" + " WHERE  pstmi.typeID = ?"
+	private static final String SELECT_RAW_PRODUCTRESULT = "SELECT pstmo.typeId, pstmo.quantity, pstmo.schematicID"
+					+ " FROM   planetSchematicsTypeMap pstmi, planetSchematicsTypeMap pstmo" + " WHERE  pstmi.typeId = ?"
 					+ " AND    pstmo.schematicID = pstmi.schematicID" + " AND    pstmo.isInput = 0";
-	private static final String SELECT_SCHEMATICS4OUTPUT = "SELECT pstms.typeID, pstms.quantity, pstms.isInput"
-					+ " FROM   planetSchematicsTypeMap pstmt, planetSchematicsTypeMap pstms" + " WHERE  pstmt.typeID = ?"
+	private static final String SELECT_SCHEMATICS4OUTPUT = "SELECT pstms.typeId, pstms.quantity, pstms.isInput"
+					+ " FROM   planetSchematicsTypeMap pstmt, planetSchematicsTypeMap pstms" + " WHERE  pstmt.typeId = ?"
 					+ " AND    pstmt.isInput = 0" + " AND    pstms.schematicID = pstmt.schematicID";
 
 	// - F I E L D - S E C T I O N ............................................................................
@@ -202,25 +202,25 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 //	 * implemented.
 //	 */
 //	@Override
-//	public synchronized EveItem searchItembyID ( final int typeID ) {
+//	public synchronized EveItem searchItembyID ( final int typeId ) {
 //		// Search the item on the cache.
-//		EveItem hit = itemCache.get(typeID);
+//		EveItem hit = itemCache.get(typeId);
 //		if (null == hit) {
 //			PreparedStatement prepStmt = null;
 //			ResultSet cursor = null;
 //			try {
 //				hit = new EveItem();
 //				//			final Cursor cursor = getCCPDatabase().rawQuery(SELECT_ITEM_BYID,
-//				//					new String[] { Integer.valueOf(typeID).toString() });
+//				//					new String[] { Integer.valueOf(typeId).toString() });
 //				//	      Statement stmt = getCCPDatabase().createStatement();
 //				prepStmt = this.getCCPDatabase().prepareStatement(CCPDatabaseConnector.SELECT_ITEM_BYID);
-//				prepStmt.setString(1, Integer.valueOf(typeID).toString());
+//				prepStmt.setString(1, Integer.valueOf(typeId).toString());
 //				cursor = prepStmt.executeQuery();
 //				// The query can be run but now there are ids that do not return data.
 //				boolean found = false;
 //				while (cursor.next()) {
 //					found = true;
-//					hit.setTypeID(cursor.getInt(1));
+//					hit.setTypeId(cursor.getInt(1));
 //					hit.setName(cursor.getString(2));
 //					hit.setGroupname(cursor.getString(3));
 //					hit.setCategory(cursor.getString(4));
@@ -245,11 +245,11 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 //					}
 //				}
 //				if (!found) {
-//					CCPDatabaseConnector.logger.warning("W> AndroidDatabaseConnector.searchItembyID -- Item <" + typeID
+//					CCPDatabaseConnector.logger.warning("W> AndroidDatabaseConnector.searchItembyID -- Item <" + typeId
 //									+ "> not found.");
 //				}
 //			} catch (Exception e) {
-//				CCPDatabaseConnector.logger.warning("W> AndroidDatabaseConnector.searchItembyID -- Item <" + typeID
+//				CCPDatabaseConnector.logger.warning("W> AndroidDatabaseConnector.searchItembyID -- Item <" + typeId
 //								+ "> not found.");
 //				return new EveItem();
 //			} finally {
@@ -268,7 +268,7 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 //					e.printStackTrace();
 //				}
 //			}
-//			itemCache.put(new Integer(typeID), hit);
+//			itemCache.put(new Integer(typeId), hit);
 //		}
 //		return hit;
 //	}
@@ -558,7 +558,7 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 				ex.printStackTrace();
 			}
 		}
-		//	logger.info("~~ Time lapse for [SELECT STATIONTYPEID " + stationID + "] " + AppConnector.timeLapse());
+		//	logger.info("~~ Time lapse for [SELECT STATIONTYPEID " + stationId + "] " + AppConnector.timeLapse());
 		return stationTypeID;
 	}
 

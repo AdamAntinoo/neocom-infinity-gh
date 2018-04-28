@@ -8,15 +8,15 @@ ADAM ANTINOO
 /api/v1/pilot/92002067/publicdata
 /api/v1/pilot/92002067/industryjobs
 /api/v1/pilot/92002067/marketorders
-
-
-/api/v1/pilot/92002067/assets
-/api/v1/pilot/92002067/contracts
 /api/v1/pilot/92002067/fittingmanager/fittings
 /api/v1/pilot/92002067/fittingmanager/fittingrequests
 /api/v1/pilot/92002067/fittingmanager/processfitting/10042893/copies/1
 /api/v1/pilot/92002067/fittingmanager/processfitting/48137848/copies/1                    -- Nightmare NB Pesadilla 1.0
 /api/v1/pilot/92002067/fittingmanager/processfitting/47773679/copies/1			-- ODST Odin N2
+
+
+/api/v1/pilot/92002067/assets
+/api/v1/pilot/92002067/contracts
 
 /api/v1/login/CapitanHaddock09/pilot/92002067/planetarymanager
 /api/v1/login/CapitanHaddock09/pilot/92002067/planetarymanager/location/1004843697743/optimizeprocess

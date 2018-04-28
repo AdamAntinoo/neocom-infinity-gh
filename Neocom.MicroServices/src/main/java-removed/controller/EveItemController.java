@@ -36,10 +36,10 @@ public class EveItemController {
 	 * @return json information of the type from the CCP item database.
 	 */
 	@CrossOrigin()
-	@RequestMapping(value = "/api/v1/eveitem/{typeID}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/api/v1/eveitem/{typeId}", method = RequestMethod.GET, produces = "application/json")
 	public EveItem eveItem(@PathVariable final String typeID/* , @PathVariable final String debug */) {
 		logger.info(">> [NeoComApplication.eveItem]");
-		logger.info("-- [NeoComApplication.eveItem]> typeID: " + typeID);
+		logger.info("-- [NeoComApplication.eveItem]> typeId: " + typeID);
 		// Connect to the eve database and generate an output for the query related to the eve item received as parameter.
 		EveItem item = NeoComMSConnector.getSingleton().getCCPDBConnector().searchItembyID(Integer.parseInt(typeID));
 		// Initialize the market data from start because this is a requirements on serialization.

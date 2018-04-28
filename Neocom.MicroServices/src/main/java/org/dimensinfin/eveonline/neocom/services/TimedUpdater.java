@@ -132,7 +132,7 @@ public class TimedUpdater {
 					if (null == ts) {
 						logger.info("-- [TimedUpdater.timeTick]> Generating job request for {}.", reference);
 						final TimeStamp newts = new TimeStamp(reference, Instant.now())
-								.setCredentialId(cred.getAccountId());
+								.setCredentialId(cred.getAccountId()).store();
 						doProcessJob(newts, cred);
 					} else {
 						// Check if time point has already happened.
@@ -234,7 +234,7 @@ public class TimedUpdater {
 					.setTask(() -> {
 						logger.info("-- [ServiceJob.ASSETDATA]> Downloading asset list for: [{}]", credential.getAccountName());
 						final DownloadManager downloader = new DownloadManager(credential);
-						downloader.downloadPilotAssetsESI();
+					final boolean allWentOk=	downloader.downloadPilotAssetsESI();
 
 						// Update the timer for this download at the database.
 						final Instant validUntil = Instant.now()
