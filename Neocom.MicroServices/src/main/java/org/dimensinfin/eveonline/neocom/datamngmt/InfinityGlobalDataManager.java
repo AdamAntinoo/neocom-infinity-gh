@@ -18,9 +18,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication;
-import org.dimensinfin.eveonline.neocom.core.NeoComException;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
+import org.dimensinfin.eveonline.neocom.database.entity.FittingRequest;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetAlliancesAllianceIdOk;
+import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdClonesOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCorporationsCorporationIdOk;
 import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
@@ -28,8 +29,8 @@ import org.dimensinfin.eveonline.neocom.exception.NEOE;
 import org.dimensinfin.eveonline.neocom.exception.NeoComRegisteredException;
 import org.dimensinfin.eveonline.neocom.model.AllianceV1;
 import org.dimensinfin.eveonline.neocom.model.CorporationV1;
-import org.dimensinfin.eveonline.neocom.database.entity.FittingRequest;
 import org.dimensinfin.eveonline.neocom.model.PilotV2;
+import org.dimensinfin.eveonline.neocom.model.Property;
 
 /**
  * This is the Infinity special extension to get .
@@ -123,45 +124,50 @@ public class InfinityGlobalDataManager extends GlobalDataManager {
 	public static PilotV2 requestPilotV2( final Credential credential ) throws NeoComRegisteredException {
 		logger.info(">> [InfinityGlobalDataManager.requestPilotV2]> Identifier: {}", credential.getAccountId());
 		try {
-//			// Check if this request is already available on the cache.
-//			final ICollaboration hit = modelCache.access(EModelVariants.PILOTV2, identifier);
-//			if (null == hit) {
-//				logger.info("-- [GlobalDataManager.getPilotV2]> Instance not found at cache. Downloading pilot <{}> info.", identifier);
 			final PilotV2 newchar = new PilotV2();
-			// Get the credential from the Store and check if this identifier has access to the XML api.
-//				final Credential credential = context.getCredential();
-//				if (null != credential) {
 			logger.info("-- [InfinityGlobalDataManager.requestPilotV2]> Processing data with Credential <{}>.", credential.getAccountName());
 
 			// Public information.
-			logger.info("-- [InfinityGlobalDataManager.requestPilotV2]> ESI Compatible. Download public data information.");
+			logger.info("-- [InfinityGlobalDataManager.requestPilotV2]> Download public data information.");
 			final GetCharactersCharacterIdOk publicData = ESINetworkManager.getCharactersCharacterId(credential.getAccountId()
 					, credential.getRefreshToken()
 					, SERVER_DATASOURCE);
 			// Public data can be null if there are problems accessing the server.
-			if(null==publicData)throw new NeoComRegisteredException(NEOE.ESIDATA_NULL);
+			if (null == publicData) throw new NeoComRegisteredException(NEOE.ESIDATA_NULL);
 			newchar.setCharacterId(credential.getAccountId())
 					.setPublicData(publicData);
-			// TODO First checkpoint --------------------------------------
 			// Process the public data and get the referenced instances for the Corporation, race, etc.
-			newchar.setCorporation(InfinityGlobalDataManager.requestCorporationV1(publicData.getCorporationId(), credential))
+			newchar
+					.setCorporation(InfinityGlobalDataManager.requestCorporationV1(publicData.getCorporationId(), credential))
 					.setAlliance(InfinityGlobalDataManager.requestAllianceV1(publicData.getAllianceId(), credential))
 					.setRace(GlobalDataManager.searchSDERace(publicData.getRaceId()))
 					.setBloodline(GlobalDataManager.searchSDEBloodline(publicData.getBloodlineId()))
 					.setAncestry(GlobalDataManager.searchSDEAncestry(publicData.getAncestryId()));
 
 			// Wallet status
-//			walletAmount = ESINetworkManager.get
-//					// Clone data
-//					logger.info("-- [InfinityGlobalDataManager.requestPilotV2]> ESI Compatible. Download clone information.");
-//					final GetCharactersCharacterIdClonesOk cloneInformation = ESINetworkManager.getCharactersCharacterIdClones(Long.valueOf(identifier).intValue(), credential.getRefreshToken(), "tranquility");
-//					if (null != cloneInformation) {
-//						newchar.setCloneInformation(cloneInformation);
-//						newchar.setHomeLocation(cloneInformation.getHomeLocation());
-//					}
+			logger.info("-- [InfinityGlobalDataManager.requestPilotV2]> Download Wallet amount.");
+			final Double walletAmount = ESINetworkManager.getCharactersCharacterIdWallet(credential.getAccountId()
+					, credential.getRefreshToken()
+					, SERVER_DATASOURCE);
+			newchar.setAccountBalance(walletAmount);
+			// Properties
+			logger.info("-- [InfinityGlobalDataManager.requestPilotV2]> Download Pilot Properties.");
+			try {
+				final List<Property> properties = new GlobalDataManager().getNeocomDBHelper().getPropertyDao().queryForEq("ownerId"
+						, credential.getAccountId());
+				newchar.setProperties(properties);
+			} catch (SQLException sqle) {
+			}
+			// Clone data
+			logger.info("-- [InfinityGlobalDataManager.requestPilotV2]> Download clone information.");
+			final GetCharactersCharacterIdClonesOk cloneInformation = ESINetworkManager.getCharactersCharacterIdClones(credential.getAccountId()
+					, credential.getRefreshToken()
+					, SERVER_DATASOURCE);
+			if (null != cloneInformation) {
+				newchar.setCloneInformation(cloneInformation);
+				newchar.setHomeLocation(cloneInformation.getHomeLocation());
+			}
 //
-//					// Roles
-//					// TODO To be implemented
 //					// Register instance into the cache. Expiration time is about 3600 seconds.
 //					try {
 //						final Instant expirationTime = Instant.now().plus(TimeUnit.SECONDS.toMillis(3600));
@@ -184,6 +190,7 @@ public class InfinityGlobalDataManager extends GlobalDataManager {
 //				logger.info("-- [InfinityGlobalDataManager.requestPilotV2]> Pilot <{}> found at cache.", identifier);
 //				return (PilotV2) hit;
 //			}
+
 		} finally {
 			logger.info("<< [InfinityGlobalDataManager.requestPilotV2]");
 		}
@@ -199,7 +206,8 @@ public class InfinityGlobalDataManager extends GlobalDataManager {
 			logger.info("<< [InfinityGlobalDataManager.accessCorporationFittingRequests]");
 		}
 	}
-	public static String serializedException(final Exception exc){
+
+	public static String serializedException( final Exception exc ) {
 		try {
 			final String serialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(exc);
 			return serialized;

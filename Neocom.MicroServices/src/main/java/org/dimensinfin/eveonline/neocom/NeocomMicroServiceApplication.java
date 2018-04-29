@@ -261,38 +261,29 @@ public class NeoComMicroServiceApplication {
 		public void serialize( final PilotV2 value, final JsonGenerator jgen, final SerializerProvider provider )
 				throws IOException, JsonProcessingException {
 			jgen.writeStartObject();
+
 			jgen.writeStringField("jsonClass", value.getJsonClass());
 			jgen.writeNumberField("characterId", value.getCharacterId());
 			jgen.writeStringField("name", value.getName());
-//			jgen.writeObjectField("publicData", value.getPublicData());
 			jgen.writeObjectField("corporation", value.getCorporation());
 			jgen.writeObjectField("alliance", value.getAlliance());
 			jgen.writeObjectField("race", value.getRace());
 			jgen.writeObjectField("bloodline", value.getBloodline());
 			jgen.writeObjectField("ancestry", value.getAncestry());
 
-			// Transform the birthday time to a dete string.
+			// Transform the birthday time to a date string.
 			DateTime dt = new DateTime(value.getBirthday());
 			DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MMMM-dd'T'HH:mm:ssZ");
 			jgen.writeStringField("birthday", fmt.print(dt));
 			jgen.writeNumberField("birthdayNumber", value.getBirthday());
 			jgen.writeStringField("gender", value.getGender());
 			jgen.writeNumberField("securityStatus", value.getSecurityStatus());
-
 			jgen.writeNumberField("accountBalance", value.getAccountBalance());
 			jgen.writeStringField("urlforAvatar", value.getUrlforAvatar());
+			jgen.writeObjectField("lastKnownLocation", value.getLastKnownLocation());
+			jgen.writeObjectField("locationRoles", value.getLocationRoles());
+			jgen.writeObjectField("actions4Pilot", value.getActions4Pilot());
 
-//			jgen.writeStringField("name", value.getName());
-//			jgen.writeNumberField("ownerId", value.getOwnerId());
-//			jgen.writeStringField("name", value.getName());
-//			jgen.writeStringField("categoryName", value.getCategory());
-//			jgen.writeStringField("groupName", value.getGroupName());
-//			jgen.writeStringField("tech", value.getTech());
-//			jgen.writeStringField("userLabel", value.getUserLabel());
-//			jgen.writeNumberField("price", value.getPrice());
-//			jgen.writeNumberField("parentContainerId", value.getParentContainerId());
-//			jgen.writeObjectField("item", value.getItem());
-//			jgen.writeObjectField("location", value.getLocation());
 			jgen.writeEndObject();
 		}
 	}
