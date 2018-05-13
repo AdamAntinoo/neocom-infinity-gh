@@ -26,6 +26,7 @@ import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
 import org.dimensinfin.eveonline.neocom.conf.GlobalConfigurationProvider;
+import org.dimensinfin.eveonline.neocom.conf.GlobalSBConfigurationProvider;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.MarketDataServer;
@@ -46,7 +47,7 @@ public class MarketDownloaderTestUnit extends MarketDataServer.MarketDataJobDown
 	public static void testOpenAndConnectDatabase() throws SQLException {
 		logger.info(">> [MarketDownloaderTestUnit.testOpenAndConnectDatabase]");
 		logger.info("-- [MarketDownloaderTestUnit.testOpenAndConnectDatabase]> Connecting the Configuration Manager...");
-		GlobalDataManager.connectConfigurationManager(new GlobalConfigurationProvider("src/test/resources/properties"));
+		GlobalDataManager.connectConfigurationManager(new GlobalSBConfigurationProvider("src/test/resources/properties"));
 		// Connect the NeoCom database.
 //		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting NeoCom private database...");
 //		try {

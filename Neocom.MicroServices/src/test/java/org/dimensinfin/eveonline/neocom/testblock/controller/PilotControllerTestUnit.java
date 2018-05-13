@@ -26,6 +26,7 @@ import org.slf4j.LoggerFactory;
 
 import org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication;
 import org.dimensinfin.eveonline.neocom.conf.GlobalConfigurationProvider;
+import org.dimensinfin.eveonline.neocom.conf.GlobalSBConfigurationProvider;
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
@@ -61,7 +62,7 @@ import org.dimensinfin.eveonline.neocom.industry.InventoryFlag;
 			// Connect the SDE database.
 			logger.info(">> [PilotControllerTestUnit.testOpenAndConnectGlobal]> Connecting SDE database...");
 			logger.info("-- [PilotControllerTestUnit.testOpenAndConnectGlobal]> Connecting the Configuration Manager...");
-			GlobalDataManager.connectConfigurationManager(new GlobalConfigurationProvider(null));
+			GlobalDataManager.connectConfigurationManager(new GlobalSBConfigurationProvider(null));
 			// Connect the NeoCom database.
 			logger.info("-- [NeoComMicroServiceApplication.main]> Connecting NeoCom private database...");
 				GlobalDataManager.connectNeoComDBConnector(new NeoComSBDBHelper()
