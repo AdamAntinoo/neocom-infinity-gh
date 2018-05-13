@@ -1,0 +1,83 @@
+//  PROJECT:     NeoCom.WS (NEOC.WS)
+//  AUTHORS:     Adam Antinoo - adamantinoo.git@gmail.com
+//  COPYRIGHT:   (c) 2017-2018 by Dimensinfin Industries, all rights reserved.
+//  ENVIRONMENT: Angular 5.2.0
+//  DESCRIPTION: Angular source code to run on a web server almost the same code as on the Android platform.
+//               The project has 3 clear parts. One is the Java libraries that are common for all platforms,
+//               the second is the java microservices that compose the web application backend made with
+//               SpringBoot technology and finally the web ui code made in typescript within the Angular
+//               framework.
+
+//--- APPLICATION GLOBAL DEFINITION STYLES
+//--- I C O N   S E C T I O N
+/* This is the default style for any item icon. There is a default size but it can be changed usind an ID from a list of most common used sizes. This default style has a glowing border. There is another style with no glowing. */
+.neocom-icon {
+  border    : white 1px solid;
+  box-shadow: inset 0 0 4px 1px rgba(255, 255, 255, 0.73), 0 0 4px 1px rgba(255, 255, 255, 0.73);
+  margin    : 2px;
+}
+.neocom-icon-noglow {
+  border    : white 1px solid;
+  // box-shadow: inset 0 0 4px 1px rgba(255, 255, 255, 0.73), 0 0 4px 1px rgba(255, 255, 255, 0.73);
+  margin    : 2px;
+}
+
+//--- T E X T   S P A N S   S E C T I O N
+/* Used for the number that represents asset stack or resource quantities. It is rendered on a big bold font on the font face selected with the id tag. */
+.stack-counter {
+  color      : white;
+  font-size  : 22px;
+  font-weight: 600;
+  padding-top: 2px;
+}
+
+
+//--- R I G H T   A R R O W   S E C T I O N
+/* Defines the cursor and aligment for the arrow container. Used mostly for the cursor. */
+.neocom-arrow-box {
+  cursor        : pointer;
+  vertical-align: middle;
+}
+/* Effect style to blur the arrow and remove artifacts. Applied ever to the arror image. */
+.neocom-arrow {
+  filter: blur(1px);
+}
+/* Transformation to change the arrow when expansion is active. */
+.neocom-arrow-expanded {
+  transform: rotate(90deg);
+}
+/* Draws the class for the panel underneath. Specific type in a differentiated color. Or use te white variant. */
+.neocom-classname {
+  color      : $classname-color;
+  font-family: 'Elemental', sans-serif;
+  font-size  : $classname-size;
+  font-weight: $classname-bold;
+  text-shadow: 0 0 2px $classname-color;
+}
+.neocom-classname-white {
+  color      : white;
+  font-family: 'Elemental', sans-serif;
+  font-size  : $classname-size;
+  font-weight: $classname-bold;
+}
+/* This is the style for small uppercase labels under some fields. */
+.neocom-label {
+  color      : white;
+  font-family: "Roboto",sans-serif,'Proxima Nova';
+  font-size  : $label-size;
+  font-weight: normal;
+  line-height: 1.0;
+  text-transform: uppercase;
+}
+/* Specific font for ISK values and most numeric values. This font has nice reading numbers. */
+.isk-data {
+  font-family: 'Prototype';
+}
+/* Use this style on items that can be expanded. This is a little redundant since expandable items have the right arrow and should not have other visual enhancements. */
+.neocom-expandable-name {
+  @extend %neocom-special-name;
+  color      : $expandable-name-color;
+}
+.neocom-expandable-name:hover {
+  text-shadow: 0 0 2px $expandable-name-color;
+}

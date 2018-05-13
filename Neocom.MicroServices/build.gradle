@@ -1,6 +1,10 @@
+plugins {
+    id 'java'
+}
+
 apply plugin: 'java'
 
-group 'org.dimensinfin'
+group 'Dimensinfin Industries'
 version '0.12.0'
 archivesBaseName = 'NeoCom.MicroServices'
 
@@ -64,6 +68,7 @@ dependencies {
     implementation project(path: ':NeoCom.DataManagement')
 
     // L O C A L    L I B R A R I E S
+    compileOnly files('libs/CoreBase.core-2.0.3.jar')
 
     // M O D U L E    D E P E N D E N C I E S
     // S P R I N G B O O T
@@ -104,7 +109,7 @@ dependencies {
 
     // T E S T I N G
     // P R O J E C T    D E P E N D E N C I E S
-    testImplementation project(path: ':NeoCom.Model')
+//    testImplementation project(path: ':NeoCom.Model')
 
     testImplementation 'junit:junit:4.12'
 //    testImplementation 'org.slf4j:slf4j-simple:1.7.25'
