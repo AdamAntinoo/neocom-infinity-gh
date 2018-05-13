@@ -42,6 +42,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import org.dimensinfin.eveonline.neocom.conf.GlobalConfigurationProvider;
+import org.dimensinfin.eveonline.neocom.conf.GlobalSBConfigurationProvider;
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
@@ -146,7 +147,7 @@ public class NeoComMicroServiceApplication {
 		// Connect the Configuration manager.
 		// Not required. The default configuration manager already reads the properties folder.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the Configuration Manager...");
-		GlobalDataManager.connectConfigurationManager(new GlobalConfigurationProvider(null));
+		GlobalDataManager.connectConfigurationManager(new GlobalSBConfigurationProvider("properties"));
 
 		// Initialize the Model with the current global instance.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting Global to Model...");
