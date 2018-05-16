@@ -16,3 +16,5 @@ Neocom.MicroServices/src/main/resources/properties/esiauthorization.properties
 Neocom.MicroServices/src/main/resources/cache/
 Neocom.MicroServices/privatelibs/
 Neocom.MicroServices/libs/
+Neocom.MicroServices/NeoCom.Infinity/
+Neocom.MicroServices/NeoComCache/

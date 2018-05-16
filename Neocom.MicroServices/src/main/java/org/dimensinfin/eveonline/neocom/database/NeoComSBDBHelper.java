@@ -32,11 +32,11 @@ import org.dimensinfin.eveonline.neocom.database.entity.Colony;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.database.entity.DatabaseVersion;
 import org.dimensinfin.eveonline.neocom.database.entity.FittingRequest;
+import org.dimensinfin.eveonline.neocom.database.entity.Job;
+import org.dimensinfin.eveonline.neocom.database.entity.MarketOrder;
 import org.dimensinfin.eveonline.neocom.database.entity.TimeStamp;
 import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
-import org.dimensinfin.eveonline.neocom.database.entity.Job;
-import org.dimensinfin.eveonline.neocom.database.entity.MarketOrder;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
 import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
 import org.dimensinfin.eveonline.neocom.model.Property;
@@ -396,6 +396,29 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		} catch (RuntimeException rtex) {
 			logger.error("E [NeoComSBDBHelper.loadSeedData]> Error creating the initial table on the app database.");
 			rtex.printStackTrace();
+		}
+
+		try {
+			//--- F I T T I N G   R E Q U E S T
+			logger.info("-- [NeoComSBDBHelper.loadSeedData]> Loading seed data for FittingRequest");
+			// Check that at least one FittingRequest record exists on the database.
+			long records = this.getFittingRequestDao().countOf();
+			logger.info("-- [NeoComSBDBHelper.loadSeedData]> FittingRequest records: " + records);
+
+			// If the table is empty then insert the seeded FittingRequests.
+			if (records < 1) {
+				FittingRequest key = new FittingRequest()
+						.setCorporationId(1427661573)
+						.setTargetFitting(47773679)
+						.store();
+				 key = new FittingRequest()
+						.setCorporationId(92002067)
+						.setTargetFitting(48137848)
+						.store();
+			}
+		} catch (SQLException sqle) {
+			logger.error("E [NeoComSBDBHelper.loadSeedData]> Error creating the initial table on the app database.");
+			sqle.printStackTrace();
 		}
 
 //		try {

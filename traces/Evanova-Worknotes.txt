@@ -1,0 +1,26 @@
+EveContent - has all global structures like database, mapper and sde
+Accesible at te CharacterUseCase that receives the messages to
+store or retrieve the data for example when openning an Activity hrough
+a backtask
+Use case has also the access to the EveJobs
+
+EveContent - has also the method to read the model data from the storage system
+so this is the place we obtain the ESIPlanetary. This data is the data
+stred at the database.
+
+Stream - sequence of filters that will call the ViewMapper to convert some
+intances to others.
+
+ViewMapper - Using the mapper thansforms the code from the source ESI class
+to any desired destination class. Is like my manual constructions of
+wrappers. This view mapper changes the instances to the View classes that
+in reality are models. Then the injectos to the view should transform
+that into Views.
+
+RecyclerView - instead of having views on the adapter it has the View
+class instances that get converted to ViewHolder that is the equivalence
+for the View on the other ListViews.
+
+
+Then this data et into the Adapter that reinstalls the views and
+does the notificationn.

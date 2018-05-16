@@ -41,15 +41,20 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import org.dimensinfin.eveonline.neocom.conf.GlobalSBConfigurationProvider;
+import org.dimensinfin.eveonline.neocom.database.entity.Credential;
+import org.dimensinfin.eveonline.neocom.datamngmt.FileSystemSBImplementation;
+import org.dimensinfin.eveonline.neocom.datamngmt.GlobalSBConfigurationProvider;
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.MarketDataServer;
 import org.dimensinfin.eveonline.neocom.industry.EveTask;
 import org.dimensinfin.eveonline.neocom.model.ANeoComEntity;
+import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
 import org.dimensinfin.eveonline.neocom.model.PilotV2;
+import org.dimensinfin.eveonline.neocom.model.Property;
 import org.dimensinfin.eveonline.neocom.services.TimedUpdater;
 
 // - CLASS IMPLEMENTATION ...................................................................................
@@ -82,10 +87,9 @@ public class NeoComMicroServiceApplication {
 		// Add our own serializers.
 		SimpleModule neocomSerializerModule = new SimpleModule();
 		neocomSerializerModule.addSerializer(PilotV2.class, new PilotV2Serializer());
-//		neocomSerializerModule.addSerializer(Credential.class, new CredentialSerializer());
-//		neocomSerializerModule.addSerializer(Action.class, new ActionSerializer());
+		neocomSerializerModule.addSerializer(Property.class, new PropertySerializer());
 		neocomSerializerModule.addSerializer(EveTask.class, new ProcessingTaskSerializer());
-//		neocomSerializerModule.addSerializer(NeoComAsset.class, new NeoComAssetSerializer());
+		neocomSerializerModule.addSerializer(Exception.class, new ExceptionSerializer());
 		jsonMapper.registerModule(neocomSerializerModule);
 	}
 
@@ -143,14 +147,19 @@ public class NeoComMicroServiceApplication {
 	 */
 	public static void main( final String[] args ) {
 		logger.info(">> [NeoComMicroServiceApplication.main]");
+		// Connect the file system to be able to read the assets and other application resources stored externally.
+		logger.info("-- [NeoComApp.onCreate]> Connecting the File System to Global...");
+		InfinityGlobalDataManager.installFileSystem(new FileSystemSBImplementation(
+				System.getenv("appname"))
+		);
+
 		// Connect the Configuration manager.
-		// Not required. The default configuration manager already reads the properties folder.
-		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the Configuration Manager...");
-		GlobalDataManager.connectConfigurationManager(new GlobalSBConfigurationProvider("properties"));
+			logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the Configuration Manager...");
+		InfinityGlobalDataManager.connectConfigurationManager(new GlobalSBConfigurationProvider("properties"));
 
 		// Initialize the Model with the current global instance.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting Global to Model...");
-		ANeoComEntity.connectGlobal(new GlobalDataManager());
+		ANeoComEntity.connectGlobal(new InfinityGlobalDataManager());
 
 		// Initializing the ESI api network controller.
 		ESINetworkManager.initialize();
@@ -158,7 +167,7 @@ public class NeoComMicroServiceApplication {
 		// Connect the SDE database.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting SDE database...");
 		try {
-			GlobalDataManager.connectSDEDBConnector(new SDESBDBHelper()
+			InfinityGlobalDataManager.connectSDEDBConnector(new SDESBDBHelper()
 					.setDatabaseSchema(GlobalDataManager.getResourceString("R.database.sdedatabase.databaseschema"))
 					.setDatabasePath(GlobalDataManager.getResourceString("R.database.sdedatabase.databasepath"))
 					.setDatabaseName(GlobalDataManager.getResourceString("R.database.sdedatabase.databasename"))
@@ -172,7 +181,7 @@ public class NeoComMicroServiceApplication {
 		// Connect the NeoCom database.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting NeoCom private database...");
 		try {
-			GlobalDataManager.connectNeoComDBConnector(new NeoComSBDBHelper()
+			InfinityGlobalDataManager.connectNeoComDBConnector(new NeoComSBDBHelper()
 					.setDatabaseHost(GlobalDataManager.getResourceString("R.database.neocom.databasehost"
 							, "jdbc:mysql://localhost:3306"))
 					.setDatabaseName("neocom")
@@ -189,11 +198,11 @@ public class NeoComMicroServiceApplication {
 		// Connect the MarketData service.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Starting Market Data service...");
 		mdServer = new MarketDataServer().start();
-		GlobalDataManager.setMarketDataManager(mdServer);
+		InfinityGlobalDataManager.setMarketDataManager(mdServer);
 
 		// Load the Locations cache to speed up the Citadel and Outpost search.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Read Locations data cache...");
-		GlobalDataManager.readLocationsDataCache();
+		InfinityGlobalDataManager.readLocationsDataCache();
 
 //		// Connect the Timed Upgrade scan.
 //		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the background timed download scanner...");
@@ -284,6 +293,24 @@ public class NeoComMicroServiceApplication {
 			jgen.writeObjectField("locationRoles", value.getLocationRoles());
 			jgen.writeObjectField("actions4Pilot", value.getActions4Pilot());
 
+			jgen.writeEndObject();
+		}
+	}
+	// ..........................................................................................................
+	// - CLASS IMPLEMENTATION ...................................................................................
+	public static class PropertySerializer extends JsonSerializer<Property> {
+		// - F I E L D - S E C T I O N ............................................................................
+
+		// - M E T H O D - S E C T I O N ..........................................................................
+		@Override
+		public void serialize( final Property value, final JsonGenerator jgen, final SerializerProvider provider )
+				throws IOException, JsonProcessingException {
+			jgen.writeStartObject();
+			jgen.writeNumberField("id", value.getId());
+			jgen.writeStringField("propertyType", value.getPropertyType().name());
+			jgen.writeStringField("stringValue", value.getStringValue());
+			jgen.writeNumberField("numericValue", value.getNumericValue());
+			jgen.writeNumberField("ownerId", value.getOwnerId());
 			jgen.writeEndObject();
 		}
 	}

@@ -6,7 +6,7 @@
 //               application based on Angular+SB. This is the web version for the NeoCom Android native
 //               application. Most of the source code is common to both platforms and this module includes
 //               the source for the specific functionality for the backend services.
-package org.dimensinfin.eveonline.neocom.conf;
+package org.dimensinfin.eveonline.neocom.datamngmt;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -18,10 +18,13 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import java.util.stream.Stream;
+
+import com.annimon.stream.Stream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import org.dimensinfin.eveonline.neocom.conf.GlobalConfigurationProvider;
 
 /**
  * @author Adam Antinoo

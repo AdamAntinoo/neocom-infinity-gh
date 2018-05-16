@@ -105,6 +105,18 @@
     "fullLocation": "[0.780999431634625] Isikemi VI - Moon 5 - Caldari Navy Logistic Support - Lonetrek > Isikemi",
     "citadel": false
   },
-  "locationRoles": [],
+  "locationRoles": [{
+    "id": 1,
+    "propertyType": "LOCATIONROLE",
+    "stringValue": "REFINING",
+    "numericValue": 6.0006526E7,
+    "ownerId": 92002067
+  }, {
+    "id": 2,
+    "propertyType": "LOCATIONROLE",
+    "stringValue": "MANUFACTURE",
+    "numericValue": 6.0006526E7,
+    "ownerId": 92002067
+  }],
   "actions4Pilot": {}
 }

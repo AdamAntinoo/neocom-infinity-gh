@@ -8,7 +8,6 @@
 //               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom.controller;
 
-import java.util.HashMap;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -25,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication;
 import org.dimensinfin.eveonline.neocom.NeoComSession;
+import org.dimensinfin.eveonline.neocom.core.NeoComException;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.database.entity.FittingRequest;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
@@ -52,7 +52,7 @@ import org.dimensinfin.eveonline.neocom.processor.FittingProcessor;
 public class FittingManagerController {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger logger = LoggerFactory.getLogger("FittingManagerController");
-	private static final HashMap<Integer, Fitting> fittingsCache = new HashMap<>();
+//	private static final HashMap<Integer, Fitting> fittingsCache = new HashMap<>();
 
 	// - F I E L D - S E C T I O N ............................................................................
 
@@ -101,8 +101,9 @@ public class FittingManagerController {
 				session = NeoComMicroServiceApplication.sessionStore.get(locator.getSessionLocator());
 			} else return "Not Access.";
 
-			final List<Fitting> fittings = GlobalDataManager.downloadFittings4Credential(session.getCredential());
-			addFittings2Cache(fittings);
+			// --- C O N T R O L L E R   B O D Y
+			// Access the Fittings. Download them and store on cache.
+			final List<Fitting> fittings = InfinityGlobalDataManager.accessFittings4Credential(session.getCredential());
 			final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(fittings);
 			return contentsSerialized;
 		} catch (JsonProcessingException jspe) {
@@ -231,13 +232,16 @@ public class FittingManagerController {
 
 			// Go to the service and process the fitting to return the result to the front end.
 			final FittingProcessor processor = new FittingProcessor();
-			final List<Fitting> fittings = GlobalDataManager.downloadFittings4Credential(session.getCredential());
-			addFittings2Cache(fittings);
+			InfinityGlobalDataManager.accessFittings4Credential(session.getCredential());
 			// Search for the fitting
-			final Fitting target = fittingsCache.get(fittingidentifier);
-			final List<Action> actions = processor.processFitting(session.getCredential(), target, copies);
-			final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(actions);
-			return contentsSerialized;
+			final Fitting target = InfinityGlobalDataManager.searchFitting4Id(fittingidentifier);
+			if (null != target) {
+				final List<Action> actions = processor.processFitting(session.getCredential(), target, copies);
+				final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(actions);
+				return contentsSerialized;
+			} else {
+				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException("Fitting id " + fittingidentifier + " not found."));
+			}
 		} catch (JsonProcessingException jspe) {
 			return new JsonExceptionInstance(jspe).toJson();
 //		} catch (NeoComRegisteredException neore) {
@@ -252,13 +256,6 @@ public class FittingManagerController {
 		}
 	}
 
-	protected void addFittings2Cache( final List<Fitting> newfittings ) {
-		logger.info(">> [PilotDataController.addFittings2Cache]");
-		for (Fitting fit : newfittings) {
-			fittingsCache.put(fit.getFittingId(), fit);
-		}
-		logger.info("<< [PilotDataController.addFittings2Cache]");
-	}
 }
 
 // - UNUSED CODE ............................................................................................

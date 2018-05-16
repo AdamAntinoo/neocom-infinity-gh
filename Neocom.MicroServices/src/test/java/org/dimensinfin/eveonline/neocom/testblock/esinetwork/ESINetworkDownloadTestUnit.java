@@ -29,6 +29,7 @@ import org.slf4j.LoggerFactory;
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
 import org.dimensinfin.eveonline.neocom.model.AllianceV1;
 
 /**
@@ -84,7 +85,7 @@ public class ESINetworkDownloadTestUnit {
 		// Get an alliance by id.
 		int allianceId=117383987;
 		logger.info("-- [ESINetworkDownloadTestUnit.test01UseAllianceV1]> Validating the access to alliance {}",allianceId);
-		final AllianceV1 alliance = GlobalDataManager.useAllianceV1(allianceId);
+		final AllianceV1 alliance = InfinityGlobalDataManager.requestAllianceV1(allianceId,credential);
 		Assert.assertNotNull("-> Validating the alliance is found..."
 				, alliance);
 		logger.info("<< [NeoComDatabaseTestUnit.test01UseAllianceV1]");

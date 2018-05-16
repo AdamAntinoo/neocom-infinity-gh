@@ -8,19 +8,20 @@
 //               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom.database;
 
-import org.dimensinfin.eveonline.neocom.model.EveItem;
-import org.dimensinfin.eveonline.neocom.model.EveLocation;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Hashtable;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.ResultSet;
-import java.util.Hashtable;
+import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
+import org.dimensinfin.eveonline.neocom.model.EveItem;
+import org.dimensinfin.eveonline.neocom.model.EveLocation;
 
 /**
  * @author Adam Antinoo
@@ -56,7 +57,7 @@ public class SDESBDBHelper extends SDEDatabaseManager implements ISDEDBHelper {
 	}
 
 	public ISDEDBHelper setDatabasePath( final String newpath ) {
-		this.databasePath = newpath;
+		this.databasePath = InfinityGlobalDataManager.accessAssetPath() + newpath;
 		return this;
 	}
 
@@ -82,15 +83,17 @@ public class SDESBDBHelper extends SDEDatabaseManager implements ISDEDBHelper {
 		return this;
 	}
 
-	public String getConnectionDescriptor(){
+	public String getConnectionDescriptor() {
 		return schema + ":" + databasePath + databaseName;
 	}
-	public boolean databaseIsValid(){
-		if(isOpen)
-			if(databaseValid)
-				if(null!=connectionSource)return true;
+
+	public boolean databaseIsValid() {
+		if (isOpen)
+			if (databaseValid)
+				if (null != connectionSource) return true;
 		return false;
 	}
+
 	/**
 	 * Open a new pooled JDBC datasource connection list and stores its reference for use of the whole set of
 	 * services. Being a pooled connection it can create as many connections as required to do requests in
@@ -104,7 +107,7 @@ public class SDESBDBHelper extends SDEDatabaseManager implements ISDEDBHelper {
 			// Open and configure the connection datasource for hand written SQL queries.
 			try {
 				createConnectionSource();
-				logger.info("-- [SDESBDBHelper.openSDEDB]> Opened database {} successfully with version {}.",getConnectionDescriptor(),
+				logger.info("-- [SDESBDBHelper.openSDEDB]> Opened database {} successfully with version {}.", getConnectionDescriptor(),
 						databaseVersion);
 				isOpen = true;
 			} catch (Exception sqle) {
@@ -163,7 +166,7 @@ public class SDESBDBHelper extends SDEDatabaseManager implements ISDEDBHelper {
 		public SBRawStatement( final Connection privateConnection, final String query, final String[] parameters ) throws
 				SQLException {
 			if (null != privateConnection) {
-				prepStmt =privateConnection.prepareStatement(query);
+				prepStmt = privateConnection.prepareStatement(query);
 				for (int i = 0; i < parameters.length; i++) {
 					prepStmt.setString(i + 1, parameters[i]);
 				}

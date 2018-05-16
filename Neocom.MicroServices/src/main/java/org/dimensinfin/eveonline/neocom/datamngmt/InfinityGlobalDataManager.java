@@ -10,6 +10,7 @@ package org.dimensinfin.eveonline.neocom.datamngmt;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -27,6 +28,7 @@ import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCorporationsCorporat
 import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
 import org.dimensinfin.eveonline.neocom.exception.NEOE;
 import org.dimensinfin.eveonline.neocom.exception.NeoComRegisteredException;
+import org.dimensinfin.eveonline.neocom.industry.Fitting;
 import org.dimensinfin.eveonline.neocom.model.AllianceV1;
 import org.dimensinfin.eveonline.neocom.model.CorporationV1;
 import org.dimensinfin.eveonline.neocom.model.PilotV2;
@@ -196,6 +198,35 @@ public class InfinityGlobalDataManager extends GlobalDataManager {
 		}
 	}
 
+	//--- F I T T I N G S
+	private static final HashMap<Integer, Fitting> fittingsCache = new HashMap<>();
+
+	public static List<Fitting> accessFittings4Credential( final Credential credential ) {
+		List<Fitting> fittings = null;
+		try {
+			logger.info(">> [InfinityGlobalDataManager.accessFittings4Credential]> Credential: {}", credential.getAccountName());
+			// Get the list of Fittings for the specified credential and update them on the cache for easy search.
+			fittings = GlobalDataManager.downloadFittings4Credential(credential);
+			addFittings2Cache(fittings);
+			return fittings;
+		} finally {
+			logger.info("<< [InfinityGlobalDataManager.accessFittings4Credential]> Fittings found: {}", fittings.size());
+		}
+	}
+
+	public static Fitting searchFitting4Id( final int fittingIdentifier ) {
+		logger.info(">< [InfinityGlobalDataManager.searchFitting4Id]> fittingIdentifier: {}", fittingIdentifier);
+		return fittingsCache.get(fittingIdentifier);
+	}
+
+	protected static void addFittings2Cache( final List<Fitting> newfittings ) {
+		logger.info(">> [InfinityGlobalDataManager.addFittings2Cache]");
+		for (Fitting fit : newfittings) {
+			fittingsCache.put(fit.getFittingId(), fit);
+		}
+		logger.info("<< [InfinityGlobalDataManager.addFittings2Cache]");
+	}
+
 	public static List<FittingRequest> accessCorporationFittingRequests( final int corporationId ) {
 		logger.info(">> [InfinityGlobalDataManager.accessCorporationFittingRequests]> Corporation: {}", corporationId);
 		try {
@@ -204,6 +235,17 @@ public class InfinityGlobalDataManager extends GlobalDataManager {
 			return new ArrayList<>();
 		} finally {
 			logger.info("<< [InfinityGlobalDataManager.accessCorporationFittingRequests]");
+		}
+	}
+
+	public static List<FittingRequest> accessPilotFittingRequests( final int pilotId ) {
+		logger.info(">> [InfinityGlobalDataManager.accessPilotFittingRequests]> Pilot: {}", pilotId);
+		try {
+			return new GlobalDataManager().getNeocomDBHelper().getFittingRequestDao().queryForEq("corporationId", pilotId);
+		} catch (SQLException sqle) {
+			return new ArrayList<>();
+		} finally {
+			logger.info("<< [InfinityGlobalDataManager.accessPilotFittingRequests]");
 		}
 	}
 
