@@ -125,8 +125,8 @@ public class ManufactureResourcesController {
 						// Locate the matching blueprint for the Item.
 						final int bpid = new InfinityGlobalDataManager().searchBlueprint4Module(hull.getTypeId());
 						// Get the type of Blueprint. Tech > 1 will not use so many mineral resources but a Tech 1 null. Discard them.
-						final EveItem blueprint = new InfinityGlobalDataManager().searchItem4Id(bpid);
-						if (blueprint.getTech().equalsIgnoreCase(ModelWideConstants.eveglobal.TechI)) {
+//						final EveItem blueprint = new InfinityGlobalDataManager().searchItem4Id(bpid);
+						if (hull.getTech().equalsIgnoreCase(ModelWideConstants.eveglobal.TechI)) {
 							// Generate the LOM for the blueprint and the number of copies.
 							final List<Resource> lom = InfinityGlobalDataManager.searchListOfMaterials4Blueprint(bpid);
 

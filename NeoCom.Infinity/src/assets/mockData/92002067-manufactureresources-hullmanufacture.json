@@ -1,4 +1,5 @@
 [{
+  "jsonClass": "ManufactureResourcesRequest",
   "jobBlueprintId": 12746,
   "jobBlueprint": {
     "jsonClass": "EveItem",
