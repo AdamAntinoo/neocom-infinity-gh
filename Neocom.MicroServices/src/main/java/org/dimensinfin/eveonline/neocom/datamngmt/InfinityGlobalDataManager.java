@@ -32,7 +32,7 @@ import org.dimensinfin.eveonline.neocom.industry.Fitting;
 import org.dimensinfin.eveonline.neocom.model.AllianceV1;
 import org.dimensinfin.eveonline.neocom.model.CorporationV1;
 import org.dimensinfin.eveonline.neocom.model.PilotV2;
-import org.dimensinfin.eveonline.neocom.model.Property;
+import org.dimensinfin.eveonline.neocom.database.entity.Property;
 
 /**
  * This is the Infinity special extension to get .

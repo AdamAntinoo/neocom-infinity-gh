@@ -8,8 +8,11 @@
 //               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom.controller;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -29,14 +32,18 @@ import org.dimensinfin.eveonline.neocom.constant.ModelWideConstants;
 import org.dimensinfin.eveonline.neocom.core.NeocomRuntimeException;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.database.entity.FittingRequest;
+import org.dimensinfin.eveonline.neocom.database.entity.Property;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
 import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
 import org.dimensinfin.eveonline.neocom.exception.NeoComRegisteredException;
 import org.dimensinfin.eveonline.neocom.industry.Fitting;
 import org.dimensinfin.eveonline.neocom.industry.Resource;
+import org.dimensinfin.eveonline.neocom.model.ANeoComEntity;
 import org.dimensinfin.eveonline.neocom.model.EveItem;
+import org.dimensinfin.eveonline.neocom.model.EveLocation;
 import org.dimensinfin.eveonline.neocom.model.ManufactureResourcesRequest;
+import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
 import org.dimensinfin.eveonline.neocom.model.PilotV2;
 
 /**
@@ -148,14 +155,271 @@ public class ManufactureResourcesController {
 			neore.printStackTrace();
 			return InfinityGlobalDataManager.serializedException(neore);
 		} catch (RuntimeException rtx) {
-			logger.error("EX [RoleController.locationAddRole]> Unexpected Exception: {}", rtx.getMessage());
+			logger.error("EX [ManufactureResourcesController.manufactureResourcesHullManufacture]> Unexpected Exception: {}", rtx.getMessage());
 			rtx.printStackTrace();
 			return InfinityGlobalDataManager.serializedException(rtx);
 		} finally {
-			logger.info("<< [RoleController.locationAddRole]");
+			logger.info("<< [ManufactureResourcesController.manufactureResourcesHullManufacture]");
+		}
+	}
+
+	/**
+	 * This entry point will search for all Pilot/Corporation Fitting Requests and extract their most mineral resource consuming
+	 * items like the Hulls. With that information we should locate the matching blueprint and get the List Of Materials required
+	 * for their construction including cost data.
+	 *
+	 * @param sessionLocator the session to locate the credentials and the rest of the session cached information.
+	 * @param identifier     the Pilot unique identifier.
+	 * @return a list of Manufacture Jobs with their blueprint and LOM for their construction.
+	 */
+	@CrossOrigin()
+	@RequestMapping(value = "/api/v1/pilot/{identifier}/manufactureresources/structuremanufacture"
+			, method = RequestMethod.GET, produces = "application/json")
+	public String manufactureResourcesStructureManufacture( @RequestHeader(value = "xNeocom-Session-Locator", required = false) String sessionLocator
+			, @PathVariable final Integer identifier ) {
+		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/pilot/{}/manufactureresources/structuremanufacture"
+				, identifier);
+		logger.info(">> [ManufactureResourcesController.manufactureResourcesStructureManufacture]");
+		logger.info(">> [ManufactureResourcesController.manufactureResourcesStructureManufacture]> sessionLocator: {}", sessionLocator);
+
+		try {
+			// Validate the session locator. Only if this test passes we are authorized to access the Pilot information.
+//			if (NeoComMicroServiceApplication.validatePilotIdentifierMatch(sessionLocator, identifier)) {
+			if (true) {
+				// Set the credential being used on this context.
+				// Convert the locator to an instance.
+				final NeoComMicroServiceApplication.SessionLocator locator = new NeoComMicroServiceApplication.SessionLocator()
+						.setSessionLocator("-MOCK-LOCATOR-IDENTIFIER-" + identifier + "-")
+						.setTimeValid(Instant.now().getMillis());
+
+				if (NeoComMicroServiceApplication.MOCK_UP) {
+					// Read all the Credentials from the database and store the one with the pilot identifier on the store.
+					final List<Credential> credentials = GlobalDataManager.accessAllCredentials();
+					locator.setSessionLocator("-MOCK-LOCATOR-IDENTIFIER-" + identifier + "-");
+					for (Credential cred : credentials) {
+						if (cred.getAccountId() == identifier) {
+							final NeoComSession session = new NeoComSession()
+									.setCredential(cred)
+									.setPublicKey("-INVALID-PUBLIC-KEY-");
+							NeoComMicroServiceApplication.sessionStore.put(locator.getSessionLocator(), session);
+						}
+					}
+				}
+				final NeoComSession session = NeoComMicroServiceApplication.sessionStore.get(locator.getSessionLocator());
+
+				// --- C O N T R O L L E R   B O D Y
+				// Get the list of assets of Mineral type.
+				HashMap<String, Object> where = new HashMap<String, Object>();
+				where.put("ownerId", session.getCredential().getAccountId());
+				where.put("category", "Material");
+				where.put("groupName", "Mineral");
+				final List<NeoComAsset> manufactureResources = new InfinityGlobalDataManager().getNeocomDBHelper().getAssetDao()
+						.queryForFieldValues(where);
+
+				// Get the list of assets of Ore type.
+				where = new HashMap<String, Object>();
+				where.put("ownerId", session.getCredential().getAccountId());
+				where.put("category", "Asteroid");
+				manufactureResources.addAll(new InfinityGlobalDataManager().getNeocomDBHelper().getAssetDao()
+						.queryForFieldValues(where));
+
+				// Classify them into System type Locations but only for Systems with REFINING role.
+				where = new HashMap<String, Object>();
+				where.put("ownerId", session.getCredential().getAccountId());
+				where.put("propertyType", "LOCATIONROLE");
+				where.put("stringValue", "REFINING");
+				final List<Property> roles = new InfinityGlobalDataManager().getNeocomDBHelper().getPropertyDao()
+						.queryForFieldValues(where);
+				final List<Long> stations = new ArrayList<>();
+				for (Property role : roles) {
+					stations.add(Double.valueOf(role.getNumericValue()).longValue());
+				}
+
+				// Create the Processor where ot store and refine the resources and classify them into the final Locations.
+				final MineralResourceProcessor processor = new MineralResourceProcessor();
+				for (NeoComAsset resource : manufactureResources) {
+					// Check the location against the list of valid locations.
+					if (stations.contains(resource.getLocationId())) {
+						// Add the resource to the processor for storage or for refining.
+						processor.addResource(resource);
+					}
+				}
+
+
+				final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(processor);
+				return contentsSerialized;
+			} else throw new NeocomRuntimeException("Not access.");
+		} catch (JsonProcessingException jspe) {
+			return new JsonExceptionInstance(jspe).toJson();
+//		} catch (NeoComRegisteredException neore) {
+//			neore.printStackTrace();
+//			return InfinityGlobalDataManager.serializedException(neore);
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+			return InfinityGlobalDataManager.serializedException(sqle);
+		} catch (RuntimeException rtx) {
+			logger.error("EX [ManufactureResourcesController.manufactureResourcesStructureManufacture]> Unexpected Exception: {}", rtx.getMessage());
+			rtx.printStackTrace();
+			return InfinityGlobalDataManager.serializedException(rtx);
+		} finally {
+			logger.info("<< [ManufactureResourcesController.manufactureResourcesStructureManufacture]");
 		}
 	}
 }
 
 // - UNUSED CODE ............................................................................................
 //[01]
+final class MineralResourceProcessor {
+	private Map<Long, FacetedAssetContainer<EveLocation>> _storageLocations = new HashMap<>();
+
+	/**
+	 * Add the resource depending on the type. For Mineral resources they are added automatically to the matching Location
+	 * Storage. For Ore resources they are wrapped into a refining processor that is then added to the target location.
+	 *
+	 * @param resource
+	 */
+	public void addResource( final NeoComAsset resource ) {
+		if (resource.getCategoryName().equalsIgnoreCase("Asteroid")) {
+			// Wrap into a RefiningProcess before adding it to the location.
+			RefiningProcess refiner = new RefiningProcess(resource);
+			add2Location(refiner, resource.getLocation());
+		} else {
+			add2Location(resource, resource.getLocation());
+		}
+	}
+
+	private void add2Location( final RefiningProcess refiner, final EveLocation location ) {
+		FacetedAssetContainer<EveLocation> hit = _storageLocations.get(location.getSystemId());
+		if (null == hit) {
+			// Add this new location to the list.
+			hit = new FacetedAssetContainer(location);
+			_storageLocations.put(location.getSystemId(), hit);
+		}
+		hit.addResource(refiner);
+	}
+
+	private void add2Location( final NeoComAsset asset, final EveLocation location ) {
+		FacetedAssetContainer<EveLocation> hit = _storageLocations.get(location.getSystemId());
+		if (null == hit) {
+			// Add this new location to the list.
+			hit = new FacetedAssetContainer(location);
+			_storageLocations.put(location.getSystemId(), hit);
+		}
+		hit.addResource(new Resource(asset.getTypeId(), asset.getQuantity()));
+	}
+
+	public Map<Long, FacetedAssetContainer<EveLocation>> get_storageLocations() {
+		return _storageLocations;
+	}
+
+	public MineralResourceProcessor set_storageLocations( final Map<Long, FacetedAssetContainer<EveLocation>> _storageLocations ) {
+		this._storageLocations = _storageLocations;
+		return this;
+	}
+}
+
+final class RefiningProcess extends Resource {
+	private RefiningFacility facility = null;
+
+	public RefiningProcess( final int typeId ) {
+		super(typeId);
+	}
+
+	public RefiningProcess( final int typeId, final int newQty ) {
+		super(typeId, newQty);
+	}
+
+	public RefiningProcess( final NeoComAsset resource ) {
+		super(resource.getTypeId(), resource.getQuantity());
+		// Create the refining station where to do the job.
+		this.facility = new RefiningFacility(resource.getLocation());
+	}
+
+	public Map<Integer, Resource> refine() {
+		Map<Integer, Resource> refineResults = new HashMap<>();
+		// Perform the refining of the resource with the facility yield.
+		final List<Resource> refineParameters = accessGlobal().getSDEDBHelper().refineOre(getTypeId());
+		for (final Resource rc : refineParameters) {
+			final double mineral = Math.floor(Math.floor(getQuantity() / rc.getStackSize())
+					* (rc.getBaseQuantity() * facility.getYield()));
+			refineResults.put(rc.getTypeId(), new Resource(rc.getTypeId(), Double.valueOf(mineral).intValue()));
+		}
+		return refineResults;
+	}
+}
+
+final class FacetedAssetContainer<T> implements IResourceContainer {
+	private Map<Integer, Resource> _contents = new HashMap<>();
+	private T _facet;
+
+	public FacetedAssetContainer( final T facet ) {
+		this._facet = facet;
+	}
+
+	@Override
+	public int addResource( final Resource resource ) {
+		// Before setting the contents check if there already a resource with this id. If exists then add the resources.
+		final Resource hit = _contents.get(resource.getTypeId());
+		if (null == hit)
+			_contents.put(resource.getTypeId(), resource);
+		else
+			hit.setQuantity(hit.getQuantity() + resource.getQuantity());
+		return _contents.size();
+	}
+
+	public Map<Integer, Resource> get_contents() {
+		return _contents;
+	}
+
+	public FacetedAssetContainer<T> set_contents( final Map<Integer, Resource> _contents ) {
+		this._contents = _contents;
+		return this;
+	}
+
+	public T get_facet() {
+		return _facet;
+	}
+
+	public FacetedAssetContainer<T> set_facet( final T _facet ) {
+		this._facet = _facet;
+		return this;
+	}
+//	@Override
+//	public List<NeoComAsset> getAssets() {
+//		return (List<NeoComAsset>) _contents.values();
+//	}
+}
+
+interface IResourceContainer {
+	public int addResource( final Resource resource );
+}
+
+final class RefiningFacility extends ANeoComEntity {
+	private EveLocation location = null;
+	private double yield = 0.6;
+
+	public RefiningFacility( final EveLocation facilityLocation ) {
+		this.location = facilityLocation;
+		List<Property> yieldList = new ArrayList();
+		try {
+			// Get the refining yield percentage from the Properties or set the default.
+			HashMap<String, Object> where = new HashMap<String, Object>();
+//		where.put("ownerId", session.getCredential().getAccountId());
+			where.put("propertyType", "LOCATIONPROPERTY");
+			where.put("stringValue", "REFININGYIELD");
+			where.put("targetId", this.location.getSystemId());
+			yieldList = accessGlobal().getNeocomDBHelper().getPropertyDao()
+					.queryForFieldValues(where);
+		} catch (SQLException sqle) {
+		}
+		if (yieldList.size() > 0) {
+			for (Property yieldValue : yieldList) {
+				this.yield = Math.max(this.yield, yieldValue.getNumericValue());
+			}
+		}
+	}
+
+	public double getYield() {
+		return this.yield;
+	}
+}

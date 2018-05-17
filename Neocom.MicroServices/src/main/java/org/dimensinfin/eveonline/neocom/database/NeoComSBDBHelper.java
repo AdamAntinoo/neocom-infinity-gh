@@ -37,9 +37,10 @@ import org.dimensinfin.eveonline.neocom.database.entity.MarketOrder;
 import org.dimensinfin.eveonline.neocom.database.entity.TimeStamp;
 import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.enums.EPropertyTypes;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
 import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
-import org.dimensinfin.eveonline.neocom.model.Property;
+import org.dimensinfin.eveonline.neocom.database.entity.Property;
 
 /**
  * NeoCom private database connector that will have the same api as the connector to be used on Android. This
@@ -421,30 +422,30 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 			sqle.printStackTrace();
 		}
 
-//		try {
-//			//--- P R O P E R T I E S
-//			logger.info("-- [NeoComSBDBHelper.loadSeedData]> Loading Properties");
-//			final long records = this.getPropertyDao().countOf();
-//			// If the table is empty then insert the seeded Properties
-//			if (records < 1) {
-//				Property property = new Property(EPropertyTypes.LOCATIONROLE)
-//						.setOwnerId(92002067)
-//						.setStringValue("MANUFACTURE")
-//						.setNumericValue(60006526)
-//						.store();
-//				property = new Property(EPropertyTypes.LOCATIONROLE)
-//						.setOwnerId(92223647)
-//						.setStringValue("MANUFACTURE")
-//						.setNumericValue(60006526)
-//						.store();
-//			}
-//		} catch (SQLException sqle) {
-//			logger.error("E [NeoComSBDBHelper.loadSeedData]> Error creating the initial table on the app database.");
-//			sqle.printStackTrace();
-//		} catch (RuntimeException rtex) {
-//			logger.error("E [NeoComSBDBHelper.loadSeedData]> Error creating the initial table on the app database.");
-//			rtex.printStackTrace();
-//		}
+		try {
+			//--- P R O P E R T I E S
+			logger.info("-- [NeoComSBDBHelper.loadSeedData]> Loading Properties");
+			final long records = this.getPropertyDao().countOf();
+			// If the table is empty then insert the seeded Properties
+			if (records < 1) {
+				Property property = new Property(EPropertyTypes.LOCATIONROLE)
+						.setOwnerId(92002067)
+						.setStringValue("MANUFACTURE")
+						.setNumericValue(60006526)
+						.store();
+				property = new Property(EPropertyTypes.LOCATIONROLE)
+						.setOwnerId(92223647)
+						.setStringValue("MANUFACTURE")
+						.setNumericValue(60006526)
+						.store();
+			}
+		} catch (SQLException sqle) {
+			logger.error("E [NeoComSBDBHelper.loadSeedData]> Error creating the initial table on the app database.");
+			sqle.printStackTrace();
+		} catch (RuntimeException rtex) {
+			logger.error("E [NeoComSBDBHelper.loadSeedData]> Error creating the initial table on the app database.");
+			rtex.printStackTrace();
+		}
 		logger.info("<< [NeoComSBDBHelper.loadSeedData]");
 	}
 

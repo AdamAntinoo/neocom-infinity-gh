@@ -41,7 +41,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.datamngmt.FileSystemSBImplementation;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalSBConfigurationProvider;
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
@@ -52,9 +51,9 @@ import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.MarketDataServer;
 import org.dimensinfin.eveonline.neocom.industry.EveTask;
 import org.dimensinfin.eveonline.neocom.model.ANeoComEntity;
-import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
+import org.dimensinfin.eveonline.neocom.model.EveLocation;
 import org.dimensinfin.eveonline.neocom.model.PilotV2;
-import org.dimensinfin.eveonline.neocom.model.Property;
+import org.dimensinfin.eveonline.neocom.database.entity.Property;
 import org.dimensinfin.eveonline.neocom.services.TimedUpdater;
 
 // - CLASS IMPLEMENTATION ...................................................................................
@@ -90,6 +89,8 @@ public class NeoComMicroServiceApplication {
 		neocomSerializerModule.addSerializer(Property.class, new PropertySerializer());
 		neocomSerializerModule.addSerializer(EveTask.class, new ProcessingTaskSerializer());
 		neocomSerializerModule.addSerializer(Exception.class, new ExceptionSerializer());
+		neocomSerializerModule.addSerializer(EveLocation.class, new LocationSerializer());
+		neocomSerializerModule.addSerializer(EveTask.class, new ProcessingTaskSerializer());
 		jsonMapper.registerModule(neocomSerializerModule);
 	}
 
@@ -145,7 +146,7 @@ public class NeoComMicroServiceApplication {
 	 *
 	 * @param args
 	 */
-	public static void main( final String[] args ) {
+	public static void main( final String[] args ) throws IOException {
 		logger.info(">> [NeoComMicroServiceApplication.main]");
 		// Connect the file system to be able to read the assets and other application resources stored externally.
 		logger.info("-- [NeoComApp.onCreate]> Connecting the File System to Global...");
@@ -315,6 +316,33 @@ public class NeoComMicroServiceApplication {
 		}
 	}
 	// ..........................................................................................................
+	// - CLASS IMPLEMENTATION ...................................................................................
+	public static class LocationSerializer extends JsonSerializer<EveLocation> {
+		// - F I E L D - S E C T I O N ............................................................................
+
+		// - M E T H O D - S E C T I O N ..........................................................................
+		@Override
+		public void serialize( final EveLocation value, final JsonGenerator jgen, final SerializerProvider provider )
+				throws IOException, JsonProcessingException {
+			jgen.writeStartObject();
+			jgen.writeNumberField("recordid", value.getRealId());
+			jgen.writeNumberField("id", value.getID());
+			jgen.writeNumberField("stationId", value.getStationId());
+			jgen.writeStringField("station", value.getStation());
+			jgen.writeNumberField("systemId", value.getSystemId());
+			jgen.writeStringField("system", value.getSystem());
+			jgen.writeNumberField("constellationId", value.getConstellationId());
+			jgen.writeStringField("constellation", value.getConstellation());
+			jgen.writeNumberField("regionId", value.getRegionId());
+			jgen.writeStringField("region", value.getRegion());
+			jgen.writeNumberField("security", value.getSecurityValue());
+			jgen.writeStringField("typeId", value.getTypeId().name());
+			jgen.writeStringField("urlLocationIcon", value.getUrlLocationIcon());
+			jgen.writeEndObject();
+		}
+	}
+	// ..........................................................................................................
+
 
 //	// - CLASS IMPLEMENTATION ...................................................................................
 //	public static class ShipSerializer extends JsonSerializer<Ship> {

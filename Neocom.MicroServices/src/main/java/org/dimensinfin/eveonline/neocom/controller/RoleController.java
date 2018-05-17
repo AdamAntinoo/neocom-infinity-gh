@@ -31,7 +31,7 @@ import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
 import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
 import org.dimensinfin.eveonline.neocom.exception.NeoComRegisteredException;
 import org.dimensinfin.eveonline.neocom.model.PilotV2;
-import org.dimensinfin.eveonline.neocom.model.Property;
+import org.dimensinfin.eveonline.neocom.database.entity.Property;
 
 /**
  * This controller manages the Location role assignments and their operation. Location can have more than one role and all that
