@@ -41,19 +41,22 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import org.dimensinfin.eveonline.neocom.datamngmt.FileSystemSBImplementation;
-import org.dimensinfin.eveonline.neocom.datamngmt.GlobalSBConfigurationProvider;
+import org.dimensinfin.eveonline.neocom.controller.ManufactureResourcesController;
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
+import org.dimensinfin.eveonline.neocom.database.entity.Property;
 import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.FileSystemSBImplementation;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.GlobalSBConfigurationProvider;
 import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.MarketDataServer;
 import org.dimensinfin.eveonline.neocom.industry.EveTask;
+import org.dimensinfin.eveonline.neocom.industry.FacetedAssetContainer;
+import org.dimensinfin.eveonline.neocom.industry.Resource;
 import org.dimensinfin.eveonline.neocom.model.ANeoComEntity;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
 import org.dimensinfin.eveonline.neocom.model.PilotV2;
-import org.dimensinfin.eveonline.neocom.database.entity.Property;
 import org.dimensinfin.eveonline.neocom.services.TimedUpdater;
 
 // - CLASS IMPLEMENTATION ...................................................................................
@@ -91,6 +94,9 @@ public class NeoComMicroServiceApplication {
 		neocomSerializerModule.addSerializer(Exception.class, new ExceptionSerializer());
 		neocomSerializerModule.addSerializer(EveLocation.class, new LocationSerializer());
 		neocomSerializerModule.addSerializer(EveTask.class, new ProcessingTaskSerializer());
+		neocomSerializerModule.addSerializer(Resource.class, new ResourceSerializer());
+		neocomSerializerModule.addSerializer(ManufactureResourcesController.RefiningProcess.class, new RefiningProcessSerializer());
+		neocomSerializerModule.addSerializer(FacetedAssetContainer.class, new FacetedAssetContainerSerializer());
 		jsonMapper.registerModule(neocomSerializerModule);
 	}
 
@@ -155,7 +161,7 @@ public class NeoComMicroServiceApplication {
 		);
 
 		// Connect the Configuration manager.
-			logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the Configuration Manager...");
+		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the Configuration Manager...");
 		InfinityGlobalDataManager.connectConfigurationManager(new GlobalSBConfigurationProvider("properties"));
 
 		// Initialize the Model with the current global instance.
@@ -223,6 +229,7 @@ public class NeoComMicroServiceApplication {
 	private void writeMarketData() {
 		mdServer.writeMarketDataCacheToStorage();
 	}
+
 	@Scheduled(initialDelay = 180000, fixedDelay = 120000)
 	private void writeMarketDataDownloadReport() {
 		mdServer.reportMarketDataJobs();
@@ -234,7 +241,7 @@ public class NeoComMicroServiceApplication {
 //			GlobalDataManager.writeLocationsDatacache();
 //	}
 
-//	@Scheduled(initialDelay = 120000, fixedDelay = 900000)
+	//	@Scheduled(initialDelay = 120000, fixedDelay = 900000)
 	@Scheduled(initialDelay = 120000, fixedDelay = 120000)
 	private void onTime() {
 		// Fire another background update scan.
@@ -244,7 +251,49 @@ public class NeoComMicroServiceApplication {
 		}
 	}
 
+	public static class SessionLocator {
+		public String sessionLocator = null;
+		public long timeValid = -1;
 
+		public String getSessionLocator() {
+			return sessionLocator;
+		}
+
+		public long getTimeValid() {
+			return timeValid;
+		}
+
+		public SessionLocator setSessionLocator( final String sessionLocator ) {
+			this.sessionLocator = sessionLocator;
+			return this;
+		}
+
+		public SessionLocator setTimeValid( final long timeValid ) {
+			this.timeValid = timeValid;
+			return this;
+		}
+	}
+
+	public static class NeoComSessionIdentifier {
+		public String jsonClass = "NeoComSessionIdentifier";
+		public String sessionIdentifier = "-NOT VALID-";
+		// TODO REMOVE ONCE THE encryption works.
+		public int pilotId = 0;
+		public byte[] pilotIdentifier = "-EMPTY-".getBytes();
+
+		public NeoComSessionIdentifier( final NeoComSession session ) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, InvalidKeySpecException, BadPaddingException, IllegalBlockSizeException {
+			sessionIdentifier = session.getSessionId();
+//		X509EncodedKeySpec publicSpec = new X509EncodedKeySpec(session.getPublicKey().getBytes());
+//		KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+//		final PublicKey publicRemoteKey = keyFactory.generatePublic(publicSpec);
+//		Cipher cipher = Cipher.getInstance("RSA");
+//		cipher.init(Cipher.ENCRYPT_MODE, publicRemoteKey);
+			pilotId = session.getPilotIdentifier();
+//		pilotIdentifier = cipher.doFinal(Integer.valueOf(session.getPilotIdentifier()).toString().getBytes());
+		}
+	}
+
+	// --- S E R I A L I Z E R   S E C T I O N
 	// - CLASS IMPLEMENTATION ...................................................................................
 	public static class ExceptionSerializer extends JsonSerializer<Exception> {
 		// - F I E L D - S E C T I O N ............................................................................
@@ -297,7 +346,9 @@ public class NeoComMicroServiceApplication {
 			jgen.writeEndObject();
 		}
 	}
+
 	// ..........................................................................................................
+
 	// - CLASS IMPLEMENTATION ...................................................................................
 	public static class PropertySerializer extends JsonSerializer<Property> {
 		// - F I E L D - S E C T I O N ............................................................................
@@ -316,6 +367,7 @@ public class NeoComMicroServiceApplication {
 		}
 	}
 	// ..........................................................................................................
+
 	// - CLASS IMPLEMENTATION ...................................................................................
 	public static class LocationSerializer extends JsonSerializer<EveLocation> {
 		// - F I E L D - S E C T I O N ............................................................................
@@ -338,6 +390,95 @@ public class NeoComMicroServiceApplication {
 			jgen.writeNumberField("security", value.getSecurityValue());
 			jgen.writeStringField("typeId", value.getTypeId().name());
 			jgen.writeStringField("urlLocationIcon", value.getUrlLocationIcon());
+			jgen.writeEndObject();
+		}
+	}
+	// ..........................................................................................................
+
+	// - CLASS IMPLEMENTATION ...................................................................................
+	public static class ResourceSerializer extends JsonSerializer<Resource> {
+		// - F I E L D - S E C T I O N ............................................................................
+
+		// - M E T H O D - S E C T I O N ..........................................................................
+		@Override
+		public void serialize( final Resource value, final JsonGenerator jgen, final SerializerProvider provider )
+				throws IOException, JsonProcessingException {
+			jgen.writeStartObject();
+			jgen.writeStringField("jsonClass", value.getJsonClass());
+			jgen.writeNumberField("typeId", value.getTypeId());
+			jgen.writeStringField("name", value.getName());
+			jgen.writeStringField("category", value.getCategory());
+			jgen.writeStringField("groupName", value.getGroupName());
+			jgen.writeNumberField("quantity", value.getQuantity());
+			jgen.writeNumberField("baseQuantity", value.getBaseQuantity());
+			jgen.writeNumberField("stackSize", value.getStackSize());
+			jgen.writeObjectField("item", value.getItem());
+			jgen.writeEndObject();
+		}
+	}
+	// ..........................................................................................................
+
+	// - CLASS IMPLEMENTATION ...................................................................................
+	public static class FacetedAssetContainerSerializer extends JsonSerializer<FacetedAssetContainer> {
+		// - F I E L D - S E C T I O N ............................................................................
+
+		// - M E T H O D - S E C T I O N ..........................................................................
+		@Override
+		public void serialize( final FacetedAssetContainer value, final JsonGenerator jgen, final SerializerProvider provider )
+				throws IOException, JsonProcessingException {
+			jgen.writeStartObject();
+			jgen.writeStringField("jsonClass", "FacetedResourceContainer");
+			jgen.writeObjectField("facet", value.getFacet());
+			jgen.writeObjectField("contents", value.getContents().values());
+			jgen.writeEndObject();
+		}
+	}
+	// ..........................................................................................................
+
+	// - CLASS IMPLEMENTATION ...................................................................................
+	public static class ProcessingTaskSerializer extends JsonSerializer<EveTask> {
+		// - F I E L D - S E C T I O N ............................................................................
+
+		// - M E T H O D - S E C T I O N ..........................................................................
+		@Override
+		public void serialize( final EveTask value, final JsonGenerator jgen, final SerializerProvider provider )
+				throws IOException, JsonProcessingException {
+			jgen.writeStartObject();
+			jgen.writeStringField("jsonClass", value.getJsonClass());
+			jgen.writeStringField("taskType", value.getTaskType().name());
+			jgen.writeNumberField("typeId", value.getTypeId());
+			jgen.writeStringField("itemName", value.getItemName());
+			jgen.writeNumberField("price", value.getPrice());
+			jgen.writeNumberField("basePrice", value.getItem().getBaseprice());
+			jgen.writeNumberField("quantity", value.getQty());
+			jgen.writeObjectField("item", value.getItem());
+			jgen.writeObjectField("sourceLocation", value.getLocation());
+			jgen.writeObjectField("destination", value.getDestination());
+			jgen.writeObjectField("referencedAsset", value.getReferencedAsset());
+			jgen.writeEndObject();
+		}
+	}
+
+	// ..........................................................................................................
+	// - CLASS IMPLEMENTATION ...................................................................................
+	public static class RefiningProcessSerializer extends JsonSerializer<ManufactureResourcesController.RefiningProcess> {
+		// - F I E L D - S E C T I O N ............................................................................
+
+		// - M E T H O D - S E C T I O N ..........................................................................
+		@Override
+		public void serialize( final ManufactureResourcesController.RefiningProcess value, final JsonGenerator jgen, final SerializerProvider provider )
+				throws IOException, JsonProcessingException {
+			jgen.writeStartObject();
+			jgen.writeStringField("jsonClass", "RefiningProcess");
+			jgen.writeNumberField("typeId", value.getTypeId());
+			jgen.writeStringField("name", value.getName());
+			jgen.writeStringField("category", value.getCategory());
+			jgen.writeStringField("groupName", value.getGroupName());
+			jgen.writeNumberField("quantity", value.getQuantity());
+			jgen.writeNumberField("baseQuantity", value.getBaseQuantity());
+			jgen.writeNumberField("stackSize", value.getStackSize());
+			jgen.writeObjectField("item", value.getItem());
+			jgen.writeObjectField("refineResults", value.refine().values());
 			jgen.writeEndObject();
 		}
 	}
@@ -417,30 +558,6 @@ public class NeoComMicroServiceApplication {
 //	}
 //	// ..........................................................................................................
 
-	// - CLASS IMPLEMENTATION ...................................................................................
-	public static class ProcessingTaskSerializer extends JsonSerializer<EveTask> {
-		// - F I E L D - S E C T I O N ............................................................................
-
-		// - M E T H O D - S E C T I O N ..........................................................................
-		@Override
-		public void serialize( final EveTask value, final JsonGenerator jgen, final SerializerProvider provider )
-				throws IOException, JsonProcessingException {
-			jgen.writeStartObject();
-			jgen.writeStringField("jsonClass", value.getJsonClass());
-			jgen.writeStringField("taskType", value.getTaskType().name());
-			jgen.writeNumberField("typeId", value.getTypeId());
-			jgen.writeStringField("itemName", value.getItemName());
-			jgen.writeNumberField("price", value.getPrice());
-			jgen.writeNumberField("basePrice", value.getItem().getBaseprice());
-			jgen.writeNumberField("quantity", value.getQty());
-			jgen.writeObjectField("item", value.getItem());
-			jgen.writeObjectField("sourceLocation", value.getLocation());
-			jgen.writeObjectField("destination", value.getDestination());
-			jgen.writeObjectField("referencedAsset", value.getReferencedAsset());
-			jgen.writeEndObject();
-		}
-	}
-	// ..........................................................................................................
 
 //	// - CLASS IMPLEMENTATION ...................................................................................
 //	public static class NeoComAssetSerializer extends JsonSerializer<NeoComAsset> {
@@ -526,48 +643,6 @@ public class NeoComMicroServiceApplication {
 //
 //		}
 //	}
-	public static class SessionLocator {
-		public String sessionLocator = null;
-		public long timeValid = -1;
-
-		public String getSessionLocator() {
-			return sessionLocator;
-		}
-
-		public long getTimeValid() {
-			return timeValid;
-		}
-
-		public SessionLocator setSessionLocator( final String sessionLocator ) {
-			this.sessionLocator = sessionLocator;
-			return this;
-		}
-
-		public SessionLocator setTimeValid( final long timeValid ) {
-			this.timeValid = timeValid;
-			return this;
-		}
-	}
-
-	public static class NeoComSessionIdentifier {
-		public String jsonClass = "NeoComSessionIdentifier";
-		public String sessionIdentifier = "-NOT VALID-";
-		// TODO REMOVE ONCE THE encryption works.
-		public int pilotId = 0;
-		public byte[] pilotIdentifier = "-EMPTY-".getBytes();
-
-		public NeoComSessionIdentifier( final NeoComSession session ) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, InvalidKeySpecException, BadPaddingException, IllegalBlockSizeException {
-			sessionIdentifier = session.getSessionId();
-//		X509EncodedKeySpec publicSpec = new X509EncodedKeySpec(session.getPublicKey().getBytes());
-//		KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-//		final PublicKey publicRemoteKey = keyFactory.generatePublic(publicSpec);
-//		Cipher cipher = Cipher.getInstance("RSA");
-//		cipher.init(Cipher.ENCRYPT_MODE, publicRemoteKey);
-			pilotId = session.getPilotIdentifier();
-//		pilotIdentifier = cipher.doFinal(Integer.valueOf(session.getPilotIdentifier()).toString().getBytes());
-		}
-	}
-
 	// ........................................................................................................
 }
 // - UNUSED CODE ............................................................................................

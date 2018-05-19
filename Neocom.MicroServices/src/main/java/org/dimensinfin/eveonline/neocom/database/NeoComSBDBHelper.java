@@ -34,13 +34,13 @@ import org.dimensinfin.eveonline.neocom.database.entity.DatabaseVersion;
 import org.dimensinfin.eveonline.neocom.database.entity.FittingRequest;
 import org.dimensinfin.eveonline.neocom.database.entity.Job;
 import org.dimensinfin.eveonline.neocom.database.entity.MarketOrder;
+import org.dimensinfin.eveonline.neocom.database.entity.Property;
 import org.dimensinfin.eveonline.neocom.database.entity.TimeStamp;
 import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.enums.EPropertyTypes;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
 import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
-import org.dimensinfin.eveonline.neocom.database.entity.Property;
 
 /**
  * NeoCom private database connector that will have the same api as the connector to be used on Android. This
@@ -412,7 +412,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 						.setCorporationId(1427661573)
 						.setTargetFitting(47773679)
 						.store();
-				 key = new FittingRequest()
+				key = new FittingRequest()
 						.setCorporationId(92002067)
 						.setTargetFitting(48137848)
 						.store();
