@@ -19,6 +19,9 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.security.cert.X509Certificate;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.zip.GZIPInputStream;
 
@@ -28,6 +31,7 @@ import com.beimin.eveapi.exception.ApiException;
 import com.beimin.eveapi.model.eve.Station;
 import com.beimin.eveapi.parser.eve.ConquerableStationListParser;
 import com.beimin.eveapi.response.eve.StationListResponse;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -35,13 +39,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.core.util.Chrono;
+import org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
+import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
+import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 @RestController
@@ -56,6 +65,33 @@ public class LocationController {
 	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
+	@CrossOrigin()
+	@RequestMapping(value = "/api/v1/location/{locationid}", method = RequestMethod.GET, produces = "application/json")
+	public String locationData(@PathVariable final Integer locationid) {
+		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/location/{}",locationid);
+		logger.info(">> [LocationController.locationData]");
+		try {
+			// --- C O N T R O L L E R   B O D Y
+			// Search the location and eturn the serializaed JSON.
+			final EveLocation location = new InfinityGlobalDataManager().searchLocation4Id(locationid);
+				final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(location);
+			return contentsSerialized;
+		} catch (JsonProcessingException jspe) {
+			return new JsonExceptionInstance(jspe).toJson();
+//		} catch (NeoComRegisteredException neore) {
+//			neore.printStackTrace();
+//			return InfinityGlobalDataManager.serializedException(neore);
+//		} catch (SQLException sqle) {
+//			sqle.printStackTrace();
+//			return InfinityGlobalDataManager.serializedException(sqle);
+		} catch (RuntimeException rtx) {
+			logger.error("EX [LocationController.locationData]> Unexpected Exception: {}", rtx.getMessage());
+			rtx.printStackTrace();
+			return InfinityGlobalDataManager.serializedException(rtx);
+		} finally {
+			logger.info("<< [LocationController.locationData]");
+		}
+	}
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/location/updatecitadels", method = RequestMethod.GET, produces = "application/json")
 	public String updateCitadels() {

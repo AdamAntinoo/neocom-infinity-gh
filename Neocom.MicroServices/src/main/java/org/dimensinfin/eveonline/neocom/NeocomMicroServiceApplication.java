@@ -27,6 +27,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
+import com.j256.ormlite.field.DataType;
+import com.j256.ormlite.field.DatabaseField;
 
 import org.joda.time.DateTime;
 import org.joda.time.Instant;
@@ -51,11 +53,14 @@ import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalSBConfigurationProvider;
 import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.MarketDataServer;
+import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdAssets200Ok;
 import org.dimensinfin.eveonline.neocom.industry.EveTask;
 import org.dimensinfin.eveonline.neocom.industry.FacetedAssetContainer;
 import org.dimensinfin.eveonline.neocom.industry.Resource;
 import org.dimensinfin.eveonline.neocom.model.ANeoComEntity;
+import org.dimensinfin.eveonline.neocom.model.EveItem;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
+import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
 import org.dimensinfin.eveonline.neocom.model.PilotV2;
 import org.dimensinfin.eveonline.neocom.services.TimedUpdater;
 
@@ -90,6 +95,7 @@ public class NeoComMicroServiceApplication {
 		SimpleModule neocomSerializerModule = new SimpleModule();
 		neocomSerializerModule.addSerializer(PilotV2.class, new PilotV2Serializer());
 		neocomSerializerModule.addSerializer(Property.class, new PropertySerializer());
+		neocomSerializerModule.addSerializer(NeoComAsset.class, new NeoComAssetSerializer());
 		neocomSerializerModule.addSerializer(EveTask.class, new ProcessingTaskSerializer());
 		neocomSerializerModule.addSerializer(Exception.class, new ExceptionSerializer());
 		neocomSerializerModule.addSerializer(EveLocation.class, new LocationSerializer());
@@ -358,11 +364,50 @@ public class NeoComMicroServiceApplication {
 		public void serialize( final Property value, final JsonGenerator jgen, final SerializerProvider provider )
 				throws IOException, JsonProcessingException {
 			jgen.writeStartObject();
+			jgen.writeStringField("jsonClass", "Property");
 			jgen.writeNumberField("id", value.getId());
 			jgen.writeStringField("propertyType", value.getPropertyType().name());
 			jgen.writeStringField("stringValue", value.getStringValue());
 			jgen.writeNumberField("numericValue", value.getNumericValue());
 			jgen.writeNumberField("ownerId", value.getOwnerId());
+			jgen.writeEndObject();
+		}
+	}
+	// ..........................................................................................................
+
+	// - CLASS IMPLEMENTATION ...................................................................................
+	public static class NeoComAssetSerializer extends JsonSerializer<NeoComAsset> {
+		// - F I E L D - S E C T I O N ............................................................................
+
+		// - M E T H O D - S E C T I O N ..........................................................................
+		@Override
+		public void serialize( final NeoComAsset value, final JsonGenerator jgen, final SerializerProvider provider )
+				throws IOException, JsonProcessingException {
+			jgen.writeStartObject();
+			jgen.writeStringField("jsonClass", value.getJsonClass());
+			jgen.writeNumberField("id", value.getDAOID());
+			jgen.writeNumberField("assetId", value.getAssetId());
+			jgen.writeNumberField("typeId", value.getTypeId());
+			jgen.writeNumberField("quantity", value.getQuantity());
+			jgen.writeNumberField("locationId", value.getLocationId());
+			jgen.writeObjectField("location", value.getLocation());
+			jgen.writeStringField("locationType", value.getLocationType().name());
+			jgen.writeStringField("locationFlag", value.getFlag().name());
+			jgen.writeStringField("isPackaged", Boolean.valueOf(value.isPackaged()).toString());
+			jgen.writeNumberField("parentAssetId", value.getParentContainerId());
+			jgen.writeNumberField("ownerId", value.getOwnerId());
+			jgen.writeStringField("name", value.getName());
+			jgen.writeStringField("categoryName", value.getCategoryName());
+			jgen.writeStringField("groupName", value.getGroupName());
+			jgen.writeStringField("tech", value.getTech());
+			jgen.writeBooleanField("blueprintFlag", value.isBlueprint());
+			jgen.writeBooleanField("shipFlag", value.isShip());
+			jgen.writeBooleanField("containerFlag", value.isContainer());
+			jgen.writeStringField("userLabel", value.getUserLabel());
+			jgen.writeNumberField("iskValue", value.getIskValue());
+			jgen.writeNumberField("price", value.getItem().getPrice());
+			jgen.writeNumberField("volume", value.getItem().getVolume());
+			jgen.writeObjectField("item", value.getItem());
 			jgen.writeEndObject();
 		}
 	}
@@ -377,7 +422,7 @@ public class NeoComMicroServiceApplication {
 		public void serialize( final EveLocation value, final JsonGenerator jgen, final SerializerProvider provider )
 				throws IOException, JsonProcessingException {
 			jgen.writeStartObject();
-			jgen.writeNumberField("recordid", value.getRealId());
+//			jgen.writeNumberField("recordid", value.getRealId());
 			jgen.writeNumberField("id", value.getID());
 			jgen.writeNumberField("stationId", value.getStationId());
 			jgen.writeStringField("station", value.getStation());
