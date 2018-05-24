@@ -51,10 +51,12 @@ springBoot {
             group = group
             name = archivesBaseName
         }
-    }}
-//jar {
-//    enabled = true
-//}
+    }
+}
+// Generate also the normal archive in addition to the executable.
+jar {
+    enabled = true
+}
 //jar {
 //    manifest {
 //        attributes("Implementation-Title": "Gradle",

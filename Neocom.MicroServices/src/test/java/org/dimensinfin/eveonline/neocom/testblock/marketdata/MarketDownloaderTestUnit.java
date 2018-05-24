@@ -25,6 +25,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
+import org.dimensinfin.eveonline.neocom.NeoComMicroServicesApplicationTestUnit;
+import org.dimensinfin.eveonline.neocom.NeoComMicroServicesCoreTestUnit;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalSBConfigurationProvider;
@@ -43,41 +45,11 @@ public class MarketDownloaderTestUnit extends MarketDataServer.MarketDataJobDown
 	private static MarketDataServer server = null;
 
 	@BeforeClass
-	public static void testOpenAndConnectDatabase() throws SQLException {
+	public static void testOpenAndConnectDatabase() throws SQLException, IOException {
 		logger.info(">> [MarketDownloaderTestUnit.testOpenAndConnectDatabase]");
-		logger.info("-- [MarketDownloaderTestUnit.testOpenAndConnectDatabase]> Connecting the Configuration Manager...");
-		GlobalDataManager.connectConfigurationManager(new GlobalSBConfigurationProvider("src/test/resources/properties"));
-		// Connect the NeoCom database.
-//		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting NeoCom private database...");
-//		try {
-//			GlobalDataManager.connectNeoComDBConnector(new NeoComSBDBHelper()
-//					.setDatabaseHost(GlobalDataManager.getResourceString("R.database.neocom.databasehost", "jdbc:mysql://localhost:3306"))
-//					.setDatabaseName(GlobalDataManager.getResourceString("R.database.neocom.databasename","neocom"))
-//					.setDatabaseUser("NEOCOM")
-//					.setDatabasePassword("01.Alpha")
-//					.setDatabaseVersion(GlobalDataManager.getResourceInt("R.database.neocom.databaseversion"))
-//					.build()
-//			);
-		// Connect the SDE database.
-		logger.info("-- [MarketDownloaderTestUnit.testOpenAndConnectDatabase]> Connecting SDE database...");
-		GlobalDataManager.connectSDEDBConnector(new SDESBDBHelper()
-				.setDatabaseSchema(GlobalDataManager.getResourceString("R.database.sdedatabase.databaseschema"))
-				.setDatabasePath(GlobalDataManager.getResourceString("R.database.sdedatabase.databasepath"))
-				.setDatabaseName(GlobalDataManager.getResourceString("R.database.sdedatabase.databasename"))
-				.build()
-		);
-		// Connect the MarketData service.
-		logger.info("-- [NeoComMicroServiceApplication.main]> Starting Market Data service...");
-		server = new MarketDataServer().start();
-		GlobalDataManager.setMarketDataManager(server);
-//		} catch (SQLException sqle) {
-//			sqle.printStackTrace();
-//		}
 
-		// Check the initialization counting the jobs to zero.
-//		Assert.assertEquals(testServer., schema + ":" + dbpath + dbname);
-		// Check the database is open and has a valid connection.
-//		Assert.assertTrue(sdeHelper.databaseIsValid());
+		NeoComMicroServicesCoreTestUnit.before01CreateApplicationEnvironment();
+
 		logger.info("<< [MarketDownloaderTestUnit.testOpenAndConnectDatabase]");
 	}
 
@@ -132,7 +104,7 @@ public class MarketDownloaderTestUnit extends MarketDataServer.MarketDataJobDown
 		logger.info("<< [MarketDownloaderTestUnit.test03ParseMarketDataEC]");
 	}
 
-	@Test
+//	@Test
 	public void test04ParseMarketDataEMD() throws IOException, SAXException {
 		logger.info(">> [MarketDownloaderTestUnit.test04ParseMarketDataEMD]");
 		final EveItem item = new GlobalDataManager().searchItem4Id(34);
@@ -159,7 +131,7 @@ public class MarketDownloaderTestUnit extends MarketDataServer.MarketDataJobDown
 				.setPrice("100.0")
 				.setQty("10.0")
 				.setSecurity("1.0")
-				.setStationName("0.7 Kador - Romi");
+				.setStationName("0.9 The Forge - Jita");
 		final boolean found = filterStations(entry, markets);
 		Assert.assertEquals("-> Validating the found on the Station List...", true, found);
 		entry = new TrackEntry()

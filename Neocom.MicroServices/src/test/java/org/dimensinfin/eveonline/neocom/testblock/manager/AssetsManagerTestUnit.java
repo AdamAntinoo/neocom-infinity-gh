@@ -34,7 +34,7 @@ public class AssetsManagerTestUnit {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger logger = LoggerFactory.getLogger("AssetsManagerTestUnit");
 
-	@BeforeClass
+//	@BeforeClass
 	public static void testOpenAndConnectDatabase() throws SQLException {
 		logger.info(">> [NeoComDatabaseTestUnit.testOpenAndConnectDatabase]");
 		// Connect the SDE database.
@@ -72,7 +72,7 @@ public class AssetsManagerTestUnit {
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 
 	// - M E T H O D - S E C T I O N ..........................................................................
-	@Test
+//	@Test
 	public void test01GetAssets4Type() {
 //		logger.info(">> [AssetsManagerTestUnit.test01GetAssets4Type]");
 //		// Get the list of character assets.
