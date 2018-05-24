@@ -85,7 +85,6 @@ public class MicroServicesCacheConnector extends CoreCacheConnector implements I
 
 	@Override
 	public Vector<PendingRequestEntry> getAndroidPendingRequests() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

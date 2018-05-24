@@ -25,10 +25,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
-import org.dimensinfin.eveonline.neocom.conf.GlobalConfigurationProvider;
-import org.dimensinfin.eveonline.neocom.conf.GlobalSBConfigurationProvider;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.GlobalSBConfigurationProvider;
 import org.dimensinfin.eveonline.neocom.datamngmt.MarketDataServer;
 import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
 import org.dimensinfin.eveonline.neocom.market.MarketDataEntry;

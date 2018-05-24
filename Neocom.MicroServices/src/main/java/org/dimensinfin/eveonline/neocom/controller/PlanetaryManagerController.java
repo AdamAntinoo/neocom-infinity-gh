@@ -8,13 +8,19 @@
 //               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.sun.org.apache.xpath.internal.operations.Gt;
 
 import org.joda.time.Instant;
 import org.slf4j.Logger;
@@ -33,7 +39,7 @@ import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
 import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
-import org.dimensinfin.eveonline.neocom.exception.NeoComRegisteredException;
+import org.dimensinfin.eveonline.neocom.industry.Resource;
 import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
 import org.dimensinfin.eveonline.neocom.planetary.PlanetaryProcessor;
 import org.dimensinfin.eveonline.neocom.planetary.PlanetaryScenery;
@@ -54,9 +60,9 @@ public class PlanetaryManagerController {
 	@RequestMapping(value = "/api/v1/pilot/{identifier}/planetarymanager/planetaryresources"
 			, method = RequestMethod.GET, produces = "application/json")
 	public String planetaryResources( @RequestHeader(value = "xNeocom-Session-Locator", required = false) String
-			                                                    sessionLocator
+			                                  sessionLocator
 			, @PathVariable final Integer identifier ) {
-		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/pilot/{}/manufactureresources/structuremanufacture"
+		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/pilot/{}/planetarymanager/planetaryresources"
 				, identifier);
 		logger.info(">> [PlanetaryManagerController.planetaryResources]");
 		logger.info(">> [PlanetaryManagerController.planetaryResources]> sessionLocator: {}", sessionLocator);
@@ -98,10 +104,10 @@ public class PlanetaryManagerController {
 				where = new HashMap<String, Object>();
 				where.put("ownerId", session.getCredential().getAccountId());
 				where.put("category", "Planetary Commodities");
-				planetaryResources.addAll( new InfinityGlobalDataManager().getNeocomDBHelper().getAssetDao()
+				planetaryResources.addAll(new InfinityGlobalDataManager().getNeocomDBHelper().getAssetDao()
 						.queryForFieldValues(where));
 
-				processed=planetaryResources.size();
+				processed = planetaryResources.size();
 				final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(planetaryResources);
 				return contentsSerialized;
 			} else throw new NeocomRuntimeException("Not access.");
@@ -123,44 +129,115 @@ public class PlanetaryManagerController {
 		}
 	}
 
-//	@CrossOrigin()
-//	@RequestMapping(value = "/api/v1/login/{login}/pilot/{identifier}/planetarymanager/location/{locationid}/optimizeprocess", method = RequestMethod.GET, produces = "application/json")
-//	public Vector<ProcessingAction> planetaryLocationOptimization( @PathVariable final String login,
-//	                                                               @PathVariable final String identifier, @PathVariable final String locationid ) {
-//		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: "
-//				+ "/api/v1/login/{login}/pilot/{identifier}/planetarymanager/location/{locationid}/optimizeprocess");
-//		logger.info(">> [PilotRoasterController.planetaryLocationOptimization]>login: " + login);
-//		logger.info(">> [PilotRoasterController.planetaryLocationOptimization]>identifier: " + identifier);
-//		logger.info(">> [PilotRoasterController.planetaryLocationOptimization]>locationid: " + locationid);
-//		Vector<ProcessingAction> bestScenario = new Vector<ProcessingAction>();
-//		try {
-//			// Initialize the model data hierarchies.
-//			NeoComMSConnector.getSingleton().getModelStore().activateLoginIdentifier(login);
-//			NeoComMSConnector.getSingleton().getModelStore().activatePilot(Long.valueOf(identifier));
-//			// Get the Planetary Manager for this Character. Make sure it is initialized and then get the resources
-//			// at the indicated location and optimize processing them.
-//			PlanetaryManager planetary = NeoComMSConnector.getSingleton().getModelStore().getActiveCharacter()
-//					.getPlanetaryManager();
-//			planetary.initialize();
-//			Vector<Resource> resources = planetary.getLocationContents(locationid);
-//
-//			// The Planetary Advisor requires a list of Planetary Resources to be stocked to start the profit calculations.
-//			PlanetaryScenery scenery = new PlanetaryScenery();
-//			scenery.stock(resources);
-//			// Create the initial processing point and start the optimization recursively.
-//			PlanetaryProcessor proc = new PlanetaryProcessor(scenery);
-//			// Start running the best profit search.
-//			bestScenario = proc.startProfitSearch(null);
-//
-//			// Get the results back to the UI. Format them to tho expected data structure.
-//			return bestScenario;
-//		} catch (RuntimeException rtx) {
-//			rtx.printStackTrace();
-//			return new Vector<ProcessingAction>();
-//		} finally {
-//			logger.info("<< [PilotRoasterController.planetaryLocationOptimization]");
-//		}
-//	}
+	@CrossOrigin()
+	@RequestMapping(value = "/api/v1/pilot/{identifier}/planetarymanager/optimizeprocess/system/{system}"
+			, method = RequestMethod.GET, produces = "application/json")
+	public String planetarySystemOptimization( @RequestHeader(value = "xNeocom-Session-Locator", required = false) String
+			                                           sessionLocator
+			, @PathVariable final Integer identifier
+			, @PathVariable final Long system ) {
+		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/pilot/{}/planetarymanager/optimizeprocess/system/{}"
+				, identifier, system);
+		logger.info(">> [PlanetaryManagerController.planetarySystemOptimization]");
+		logger.info(">> [PlanetaryManagerController.planetarySystemOptimization]> sessionLocator: {}", sessionLocator);
+
+		try {
+			// Validate the session locator. Only if this test passes we are authorized to access the Pilot information.
+//			if (NeoComMicroServiceApplication.validatePilotIdentifierMatch(sessionLocator, identifier)) {
+			if (true) {
+				// Set the credential being used on this context.
+				// Convert the locator to an instance.
+				final NeoComMicroServiceApplication.SessionLocator locator = new NeoComMicroServiceApplication.SessionLocator()
+						.setSessionLocator("-MOCK-LOCATOR-IDENTIFIER-" + identifier + "-")
+						.setTimeValid(Instant.now().getMillis());
+
+				if (NeoComMicroServiceApplication.MOCK_UP) {
+					// Read all the Credentials from the database and store the one with the pilot identifier on the store.
+					final List<Credential> credentials = GlobalDataManager.accessAllCredentials();
+					locator.setSessionLocator("-MOCK-LOCATOR-IDENTIFIER-" + identifier + "-");
+					for (Credential cred : credentials) {
+						if (cred.getAccountId() == identifier) {
+							final NeoComSession session = new NeoComSession()
+									.setCredential(cred)
+									.setPublicKey("-INVALID-PUBLIC-KEY-");
+							NeoComMicroServiceApplication.sessionStore.put(locator.getSessionLocator(), session);
+						}
+					}
+				}
+				final NeoComSession session = NeoComMicroServiceApplication.sessionStore.get(locator.getSessionLocator());
+
+				// --- C O N T R O L L E R   B O D Y
+				// Access the Planetary Resources and filter out the oner belonging to the target system.
+				HashMap<String, Object> where = new HashMap<String, Object>();
+				where.put("ownerId", session.getCredential().getAccountId());
+				where.put("category", "Planetary Resources");
+				final List<NeoComAsset> planetaryResources = new InfinityGlobalDataManager().getNeocomDBHelper().getAssetDao()
+						.queryForFieldValues(where);
+				where = new HashMap<String, Object>();
+				where.put("ownerId", session.getCredential().getAccountId());
+				where.put("category", "Planetary Commodities");
+				planetaryResources.addAll(new InfinityGlobalDataManager().getNeocomDBHelper().getAssetDao()
+						.queryForFieldValues(where));
+
+				List<Resource> resources = new Vector();
+				List<ProcessingAction> bestScenario = new Vector<ProcessingAction>();
+				for (NeoComAsset resource : planetaryResources) {
+					if (resource.getLocation().getSystemId() == system) {
+						resources.add(new Resource(resource.getTypeId(), resource.getQuantity()));
+					}
+				}
+				// Write down the real data to generate the mock data.
+				if (GlobalDataManager.getResourceBoolean("R.runtime.mockdata")) {
+					// Write down the credential list ot be used as mock data.
+					final File outFile = new File(new InfinityGlobalDataManager().accessAssetPath(
+							GlobalDataManager.getResourceString("R.runtime.mockdata.location")
+									+ "PlanetaryResources430003752system.data"));
+					try {
+						final BufferedOutputStream buffer = new BufferedOutputStream(new FileOutputStream(outFile));
+						final ObjectOutput output = new ObjectOutputStream(buffer);
+						try {
+							output.writeObject(resources);
+							logger.info(
+									"-- [PlanetaryManagerController.planetarySystemOptimization]> Wrote asset list: {} entries."
+									, resources.size());
+						} finally {
+							output.flush();
+							output.close();
+							buffer.close();
+						}
+					} catch (final FileNotFoundException fnfe) {
+						logger.warn("W> [PlanetaryManagerController.planetarySystemOptimization]> FileNotFoundException."); //$NON-NLS-1$
+					} catch (final IOException ex) {
+						logger.warn("W> [PlanetaryManagerController.planetarySystemOptimization]> IOException."); //$NON-NLS-1$
+					}
+				}
+				// The Planetary Advisor requires a list of Planetary Resources to be stocked to start the profit calculations.
+				PlanetaryScenery scenery = new PlanetaryScenery();
+				scenery.stock(resources);
+				// Create the initial processing point and start the optimization recursively.
+				PlanetaryProcessor proc = new PlanetaryProcessor(scenery);
+				// Start running the best profit search.
+				bestScenario = proc.startProfitSearch();
+
+				final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(bestScenario);
+				return contentsSerialized;
+			} else throw new NeocomRuntimeException("Not access.");
+		} catch (JsonProcessingException jspe) {
+			return new JsonExceptionInstance(jspe).toJson();
+//		} catch (NeoComRegisteredException neore) {
+//			neore.printStackTrace();
+//			return InfinityGlobalDataManager.serializedException(neore);
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+			return InfinityGlobalDataManager.serializedException(sqle);
+		} catch (RuntimeException rtx) {
+			logger.error("EX [PlanetaryManagerController.planetarySystemOptimization]> Unexpected Exception: {}", rtx.getMessage());
+			rtx.printStackTrace();
+			return InfinityGlobalDataManager.serializedException(rtx);
+		} finally {
+			logger.info("<< [PlanetaryManagerController.planetarySystemOptimization]");
+		}
+	}
 }
 
 // - UNUSED CODE ............................................................................................

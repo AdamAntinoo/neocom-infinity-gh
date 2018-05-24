@@ -24,14 +24,12 @@ import org.modelmapper.config.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication;
-import org.dimensinfin.eveonline.neocom.conf.GlobalConfigurationProvider;
-import org.dimensinfin.eveonline.neocom.conf.GlobalSBConfigurationProvider;
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.GlobalSBConfigurationProvider;
 import org.dimensinfin.eveonline.neocom.datamngmt.SDEExternalDataManager;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdFittings200Ok;
 import org.dimensinfin.eveonline.neocom.industry.InventoryFlag;

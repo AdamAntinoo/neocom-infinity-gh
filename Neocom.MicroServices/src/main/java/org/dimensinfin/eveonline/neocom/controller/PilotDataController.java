@@ -102,7 +102,7 @@ public class PilotDataController {
 						.setTimeValid(Instant.now().getMillis());
 
 				if (NeoComMicroServiceApplication.MOCK_UP) {
-// Read all the Credentials from the database and store the one with the pilot identifier on the store.
+	// Read all the Credentials from the database and store the one with the pilot identifier on the store.
 					final List<Credential> credentials = GlobalDataManager.accessAllCredentials();
 					locator.setSessionLocator("-MOCK-LOCATOR-IDENTIFIER-" + identifier + "-");
 					for (Credential cred : credentials) {

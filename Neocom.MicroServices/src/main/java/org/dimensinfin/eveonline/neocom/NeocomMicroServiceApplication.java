@@ -191,6 +191,11 @@ public class NeoComMicroServiceApplication {
 		}
 		ANeoComEntity.connectSDEHelper(new GlobalDataManager().getSDEDBHelper());
 
+		// Connect the MarketData service.
+		logger.info("-- [NeoComMicroServiceApplication.main]> Starting Market Data service...");
+		mdServer = new MarketDataServer().start();
+		InfinityGlobalDataManager.setMarketDataManager(mdServer);
+
 		// Connect the NeoCom database.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting NeoCom private database...");
 		try {
@@ -207,11 +212,6 @@ public class NeoComMicroServiceApplication {
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		}
-
-		// Connect the MarketData service.
-		logger.info("-- [NeoComMicroServiceApplication.main]> Starting Market Data service...");
-		mdServer = new MarketDataServer().start();
-		InfinityGlobalDataManager.setMarketDataManager(mdServer);
 
 		// Load the Locations cache to speed up the Citadel and Outpost search.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Read Locations data cache...");

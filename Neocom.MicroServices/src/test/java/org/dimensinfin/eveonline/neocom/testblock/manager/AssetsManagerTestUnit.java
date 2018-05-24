@@ -74,13 +74,13 @@ public class AssetsManagerTestUnit {
 	// - M E T H O D - S E C T I O N ..........................................................................
 	@Test
 	public void test01GetAssets4Type() {
-		logger.info(">> [AssetsManagerTestUnit.test01GetAssets4Type]");
-		// Get the list of character assets.
-		final int credentialIdentifier = 92002067;
-		final AssetsManager assetsManager = GlobalDataManager.getAssetsManager(DataManagementModelStore.activateCredential(credentialIdentifier),
-				true);
-		final List<NeoComAsset> available = assetsManager.getAssets4Type(578);
-		logger.info("<< [AssetsManagerTestUnit.test01GetAssets4Type]");
+//		logger.info(">> [AssetsManagerTestUnit.test01GetAssets4Type]");
+//		// Get the list of character assets.
+//		final int credentialIdentifier = 92002067;
+//		final AssetsManager assetsManager = GlobalDataManager.getAssetsManager(DataManagementModelStore.activateCredential(credentialIdentifier),
+//				true);
+//		final List<NeoComAsset> available = assetsManager.getAssets4Type(578);
+//		logger.info("<< [AssetsManagerTestUnit.test01GetAssets4Type]");
 	}
 }
 

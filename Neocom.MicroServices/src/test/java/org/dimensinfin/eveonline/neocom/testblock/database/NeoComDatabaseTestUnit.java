@@ -13,15 +13,12 @@ import java.util.concurrent.TimeUnit;
 
 import org.joda.time.Instant;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
-import org.dimensinfin.eveonline.neocom.database.entity.Credential;
-import org.dimensinfin.eveonline.neocom.database.entity.TimeStamp;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 
 /**
@@ -32,7 +29,7 @@ public class NeoComDatabaseTestUnit {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger logger = LoggerFactory.getLogger("NeoComDatabaseTestUnit");
 
-//	@BeforeClass
+	//	@BeforeClass
 	public static void testOpenAndConnectDatabase() throws SQLException {
 		logger.info(">> [NeoComDatabaseTestUnit.testOpenAndConnectDatabase]");
 		// Connect the SDE database.
@@ -56,7 +53,7 @@ public class NeoComDatabaseTestUnit {
 		);
 		// Check the connection descriptor.
 		Assert.assertEquals("-> Validating the database is valid..."
-				,new GlobalDataManager().getNeocomDBHelper().isDatabaseValid()
+				, new GlobalDataManager().getNeocomDBHelper().isDatabaseValid()
 				, true);
 		// Check the database is open and has a valid connection.
 		Assert.assertEquals("-> Validating the database is open..."
@@ -72,49 +69,49 @@ public class NeoComDatabaseTestUnit {
 	// - M E T H O D - S E C T I O N ..........................................................................
 //	@Test
 	public void test01VerifyTimeStamps() throws SQLException {
-		logger.info(">> [NeoComDatabaseTestUnit.test01VerifyTimeStamps]");
-		// Get the current value for the TimeStamp.
-		final Credential credential = DataManagementModelStore.activateCredential(92002067);
-		final String reference = TimedUpdater.Job.constructReference(GlobalDataManager.EDataUpdateJobs.ASSETDATA
-				, credential.getAccountId());
-		TimeStamp ts = GlobalDataManager.getNeocomDBHelper().getTimeStampDao().queryForId(reference);
-		Assert.assertNotNull("-> Validating the timestamp is not null...", ts);
-		// Check if time point has already happened.
-		long nowMillis = Instant.now().getMillis();
-		long tsMillis = ts.getTimeStamp();
-		logger.info("-- [NeoComDatabaseTestUnit.test01VerifyTimeStamps]> nowMillis: {}", nowMillis);
-		logger.info("-- [NeoComDatabaseTestUnit.test01VerifyTimeStamps]> tsMillis : {}", tsMillis);
-		if (tsMillis < nowMillis) {
-			logger.info("-- [NeoComDatabaseTestUnit.test01VerifyTimeStamps]> TimeStamp is elapsed.");
-		} else {
-			logger.info("-- [NeoComDatabaseTestUnit.test01VerifyTimeStamps]> TimeStamp in the future.");
-		}
-		logger.info("-- [NeoComDatabaseTestUnit.test01VerifyTimeStamps]> Updating TimeStamp to 3600 seconds in the future.");
-
-		// Update the timer for this download at the database.
-		final Instant validUntil = Instant.now()
-				.plus(GlobalDataManager.getCacheTime4Type(GlobalDataManager.ECacheTimes.ASSETS_ASSETS));
-		nowMillis = validUntil.getMillis();
-		logger.info("-- [NeoComDatabaseTestUnit.test01VerifyTimeStamps]> futMillis: {}", nowMillis);
-		ts = new TimeStamp(reference, validUntil)
-				.setCredentialId(credential.getAccountId())
-				.store();
-
-		// validation after the update.
-		ts = GlobalDataManager.getNeocomDBHelper().getTimeStampDao().queryForId(reference);
-		Assert.assertNotNull("-> Validating the timestamp is not null...", ts);
-		// Check if time point has already happened.
-		nowMillis = Instant.now().getMillis();
-		tsMillis = ts.getTimeStamp();
-		logger.info("-- [NeoComDatabaseTestUnit.test01VerifyTimeStamps]> nowMillis: {}", nowMillis);
-		logger.info("-- [NeoComDatabaseTestUnit.test01VerifyTimeStamps]> tsMillis : {}", tsMillis);
-		if (tsMillis < nowMillis) {
-			logger.info("-- [NeoComDatabaseTestUnit.test01VerifyTimeStamps]> TimeStamp is elapsed.");
-		} else {
-			logger.info("-- [NeoComDatabaseTestUnit.test01VerifyTimeStamps]> TimeStamp in the future.");
-		}
-		logger.info("-- [NeoComDatabaseTestUnit.test01VerifyTimeStamps]> Updating TimeStamp to 3600 seconds in the future.");
-		logger.info("<< [NeoComDatabaseTestUnit.test01VerifyTimeStamps]");
+//		logger.info(">> [NeoComDatabaseTestUnit.test01VerifyTimeStamps]");
+//		// Get the current value for the TimeStamp.
+//		final Credential credential = DataManagementModelStore.activateCredential(92002067);
+//		final String reference = TimedUpdater.Job.constructReference(GlobalDataManager.EDataUpdateJobs.ASSETDATA
+//				, credential.getAccountId());
+//		TimeStamp ts = GlobalDataManager.getNeocomDBHelper().getTimeStampDao().queryForId(reference);
+//		Assert.assertNotNull("-> Validating the timestamp is not null...", ts);
+//		// Check if time point has already happened.
+//		long nowMillis = Instant.now().getMillis();
+//		long tsMillis = ts.getTimeStamp();
+//		logger.info("-- [NeoComDatabaseTestUnit.test01VerifyTimeStamps]> nowMillis: {}", nowMillis);
+//		logger.info("-- [NeoComDatabaseTestUnit.test01VerifyTimeStamps]> tsMillis : {}", tsMillis);
+//		if (tsMillis < nowMillis) {
+//			logger.info("-- [NeoComDatabaseTestUnit.test01VerifyTimeStamps]> TimeStamp is elapsed.");
+//		} else {
+//			logger.info("-- [NeoComDatabaseTestUnit.test01VerifyTimeStamps]> TimeStamp in the future.");
+//		}
+//		logger.info("-- [NeoComDatabaseTestUnit.test01VerifyTimeStamps]> Updating TimeStamp to 3600 seconds in the future.");
+//
+//		// Update the timer for this download at the database.
+//		final Instant validUntil = Instant.now()
+//				.plus(GlobalDataManager.getCacheTime4Type(GlobalDataManager.ECacheTimes.ASSETS_ASSETS));
+//		nowMillis = validUntil.getMillis();
+//		logger.info("-- [NeoComDatabaseTestUnit.test01VerifyTimeStamps]> futMillis: {}", nowMillis);
+//		ts = new TimeStamp(reference, validUntil)
+//				.setCredentialId(credential.getAccountId())
+//				.store();
+//
+//		// validation after the update.
+//		ts = GlobalDataManager.getNeocomDBHelper().getTimeStampDao().queryForId(reference);
+//		Assert.assertNotNull("-> Validating the timestamp is not null...", ts);
+//		// Check if time point has already happened.
+//		nowMillis = Instant.now().getMillis();
+//		tsMillis = ts.getTimeStamp();
+//		logger.info("-- [NeoComDatabaseTestUnit.test01VerifyTimeStamps]> nowMillis: {}", nowMillis);
+//		logger.info("-- [NeoComDatabaseTestUnit.test01VerifyTimeStamps]> tsMillis : {}", tsMillis);
+//		if (tsMillis < nowMillis) {
+//			logger.info("-- [NeoComDatabaseTestUnit.test01VerifyTimeStamps]> TimeStamp is elapsed.");
+//		} else {
+//			logger.info("-- [NeoComDatabaseTestUnit.test01VerifyTimeStamps]> TimeStamp in the future.");
+//		}
+//		logger.info("-- [NeoComDatabaseTestUnit.test01VerifyTimeStamps]> Updating TimeStamp to 3600 seconds in the future.");
+//		logger.info("<< [NeoComDatabaseTestUnit.test01VerifyTimeStamps]");
 	}
 
 	@Test

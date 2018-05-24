@@ -28,3 +28,7 @@ nbdist/
 ### NeoCom ###
 /classes/
 /target/
+
+## Heroku gradle additions ##
+gradlew
+gradlew.bat

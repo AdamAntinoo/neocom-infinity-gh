@@ -66,9 +66,9 @@ public class SDEDatabaseTestUnit {
 		// Check the access to an item the first time. Be sure the cache is empty.
 		GlobalDataManager.cleanEveItemCache();
 		// Access a know item.
-		final EveItem validItem = GlobalDataManager.searchItem4Id(34);
+		final EveItem validItem = new GlobalDataManager().searchItem4Id(34);
 		// Use the specific test for a know item to check the results.
-		Assert.assertEquals(validItem.getTypeID(), 34);
+		Assert.assertEquals(validItem.getTypeId(), 34);
 		Assert.assertEquals(validItem.getName(), "Tritanium");
 	}
 }

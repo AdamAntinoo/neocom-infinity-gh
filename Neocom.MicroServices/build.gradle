@@ -1,12 +1,31 @@
-plugins {
-    id 'java'
+//--- S P R I N G B O O T   C O N F I G U R A T I O N
+buildscript {
+    ext {
+        springBootVersion = '2.0.2.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
 }
 
+//--- P L U G I N S
+plugins {
+    id 'java'
+    id "io.ratpack.ratpack-groovy" version "1.5.4"
+}
 apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
+//--- P R O J E C T   D E F I N I T I O N
 group 'Dimensinfin Industries'
 version '0.12.0'
 archivesBaseName = 'NeoCom.MicroServices'
+mainClassName = 'org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -22,6 +41,17 @@ sourceSets {
 //    main.java.srcDirs += 'src/main/java-datamngmt'
 }
 
+//--- S P R I N G B O O T
+springBoot {
+    mainClassName = 'org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication'
+    buildInfo {
+        properties {
+            artifact = archivesBaseName
+            version = version
+            group = group
+            name = archivesBaseName
+        }
+    }}
 //jar {
 //    enabled = true
 //}
@@ -39,25 +69,28 @@ sourceSets {
 //}
 
 //--- T A S K S
+// Clean up the resources received from other modules.
+// Needs to be executed manually because it is dangerous to leave this decission to the build.
 task cleanUpResources(type: Delete) {
     delete 'src/main/resources/sdecontents'
     delete 'src/main/resources/yaml'
 }
+// Copy configuration and property resources fro other modules to the final 'resources' application folder.
 task copyResources(type: Copy) {
     copy {
         // NeoCom.Model Properties
         from project(':NeoCom.Model').file('src/main/resources')
         into file('src/main/resources')
-//        include 'properties/**'
-//        include 'ESINetworkScopes.Singularity.txt'
     }
     copy {
         from project(':NeoCom.DataManagement').file('src/main/resources')
         into file('src/main/resources')
-//        include 'properties/**'
-//        include 'sdecontents/**'
-//        include 'yaml/**'
     }
+}
+// Gradlew start tast to generate Heroku distribution
+task stage {
+//    dependsOn copyResources
+    dependsOn installDist
 }
 
 dependencies {
@@ -71,7 +104,8 @@ dependencies {
 
     // M O D U L E    D E P E N D E N C I E S
     // S P R I N G B O O T
-    implementation 'org.springframework.boot:spring-boot-starter-web:1.3.5.RELEASE'
+    compile('org.springframework.boot:spring-boot-starter-web')
+//    implementation 'org.springframework.boot:spring-boot-starter-web:1.3.5.RELEASE'
 //    implementation 'org.springframework.boot:spring-boot-starter-security:1.3.5.RELEASE'
 //    implementation 'org.springframework.boot:spring-boot-starter-actuator:1.3.5.RELEASE'
 //    implementation 'org.springframework.boot:spring-boot-starter-cache:1.3.5.RELEASE'
@@ -82,9 +116,14 @@ dependencies {
 //    implementation 'org.springframework.data:spring-data-redis:1.4.1.RELEASE'
 //    implementation 'redis.clients:jedis:2.4.1'
 
+    // H E R O K U
+    compile ratpack.dependency("hikari")
+    compile "org.postgresql:postgresql:42.2.2"
+
     // N E O C O M . M O D E L
     // C O R E
     implementation 'org.slf4j:slf4j-api:1.7.25'
+    runtime "org.slf4j:slf4j-simple:1.7.25"
     implementation 'joda-time:joda-time:2.3'
     // N E O C O M . M O D E L
     implementation 'com.beimin:eveapi:6.0.6'
@@ -109,6 +148,7 @@ dependencies {
 //    testImplementation project(path: ':NeoCom.Model')
 
     testImplementation 'junit:junit:4.12'
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 //    testImplementation 'org.slf4j:slf4j-simple:1.7.25'
 //    testImplementation 'joda-time:joda-time:2.3'
 //    testImplementation 'com.j256.ormlite:ormlite-core:4.48'

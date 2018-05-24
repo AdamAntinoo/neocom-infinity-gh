@@ -24,8 +24,6 @@ import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.database.entity.TimeStamp;
 import org.dimensinfin.eveonline.neocom.datamngmt.DownloadManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
-import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManagerCache;
-import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManagerConfiguration;
 import org.dimensinfin.eveonline.neocom.enums.PreferenceKeys;
 
 /**
@@ -234,7 +232,7 @@ public class TimedUpdater {
 					.setTask(() -> {
 						logger.info("-- [ServiceJob.ASSETDATA]> Downloading asset list for: [{}]", credential.getAccountName());
 						final DownloadManager downloader = new DownloadManager(credential);
-					final boolean allWentOk=	downloader.downloadPilotAssetsESI();
+						final boolean allWentOk = downloader.downloadPilotAssetsESI();
 
 						// Update the timer for this download at the database.
 						final Instant validUntil = Instant.now()
