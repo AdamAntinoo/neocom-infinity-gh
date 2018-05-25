@@ -41,7 +41,7 @@ import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
 import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
 import org.dimensinfin.eveonline.neocom.industry.Resource;
 import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
-import org.dimensinfin.eveonline.neocom.planetary.PlanetaryProcessor;
+import org.dimensinfin.eveonline.neocom.planetary.PlanetaryProcessorV3;
 import org.dimensinfin.eveonline.neocom.planetary.PlanetaryScenery;
 import org.dimensinfin.eveonline.neocom.planetary.ProcessingAction;
 
@@ -215,11 +215,12 @@ public class PlanetaryManagerController {
 				PlanetaryScenery scenery = new PlanetaryScenery();
 				scenery.stock(resources);
 				// Create the initial processing point and start the optimization recursively.
-				PlanetaryProcessor proc = new PlanetaryProcessor(scenery);
+				PlanetaryProcessorV3 proc = new PlanetaryProcessorV3(scenery);
 				// Start running the best profit search.
-				bestScenario = proc.startProfitSearch();
+				PlanetaryScenery optimizedScenery = proc.startProfitSearchNew();
 
-				final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(bestScenario);
+				final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(optimizedScenery
+						.getActions());
 				return contentsSerialized;
 			} else throw new NeocomRuntimeException("Not access.");
 		} catch (JsonProcessingException jspe) {

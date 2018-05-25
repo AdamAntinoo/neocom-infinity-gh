@@ -139,7 +139,8 @@ public class PlanetaryProcessorTestUnit {
 		PlanetaryProcessor proc = new PlanetaryProcessorV3(scenery);
 
 		// Main entry test point. Get the list of Tier 4 for this system.
-		final List<PlanetaryProcessorV3.ProcessStorage> data = ((PlanetaryProcessorV3) proc).startProfitSearchNew();
+
+		final PlanetaryScenery data = ((PlanetaryProcessorV3) proc).startProfitSearchNew();
 		logger.info("<< [PlanetaryProcessorTestUnit.test01GetSorageResourcesTier4]");
 	}
 }
