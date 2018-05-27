@@ -8,6 +8,7 @@
 //               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom.database;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -57,7 +58,10 @@ public class SDESBDBHelper extends SDEDatabaseManager implements ISDEDBHelper {
 	}
 
 	public ISDEDBHelper setDatabasePath( final String newpath ) {
-		this.databasePath = InfinityGlobalDataManager.accessAssetPath() + newpath;
+		try {
+			this.databasePath = InfinityGlobalDataManager.accessAsset4Path(newpath);
+		} catch (IOException ioe) {
+		}
 		return this;
 	}
 
@@ -98,7 +102,6 @@ public class SDESBDBHelper extends SDEDatabaseManager implements ISDEDBHelper {
 	 * Open a new pooled JDBC datasource connection list and stores its reference for use of the whole set of
 	 * services. Being a pooled connection it can create as many connections as required to do requests in
 	 * parallel to the database instance. This only is effective for MySql databases.
-	 *
 	 * @return
 	 */
 	private boolean openSDEDB() {
@@ -140,7 +143,6 @@ public class SDESBDBHelper extends SDEDatabaseManager implements ISDEDBHelper {
 	 * This is the specific SpringBoot implementation for the SDE database adaptation. We can create compatible
 	 * <code>RawStatements</code> that can isolate the generic database access code from the platform specific. This stetement
 	 * uses the database connection to create a generic JDBC Java statement.
-	 *
 	 * @param query
 	 * @param parameters
 	 * @return

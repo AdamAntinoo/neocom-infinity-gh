@@ -90,10 +90,10 @@ public class FileSystemSBImplementation implements IFileSystem {
 		return applicationFolder + "/" + filePath;
 	}
 
-	@Override
-	public String accessAppStorage4Path( final String filePath ) {
-		return accessResource4Path(filePath);
-	}
+//	@Override
+//	public String accessAppStorage4Path( final String filePath ) {
+//		return accessResource4Path(filePath);
+//	}
 //[01]
 
 	/**

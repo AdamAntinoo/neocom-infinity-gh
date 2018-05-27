@@ -189,10 +189,10 @@ public class PlanetaryManagerController {
 				// Write down the real data to generate the mock data.
 				if (GlobalDataManager.getResourceBoolean("R.runtime.mockdata")) {
 					// Write down the credential list ot be used as mock data.
-					final File outFile = new File(new InfinityGlobalDataManager().accessAssetPath(
-							GlobalDataManager.getResourceString("R.runtime.mockdata.location")
-									+ "PlanetaryResources430003752system.data"));
 					try {
+						final File outFile = new File(new InfinityGlobalDataManager().accessAsset4Path(
+								GlobalDataManager.getResourceString("R.runtime.mockdata.location")
+										+ "PlanetaryResources430003752system.data"));
 						final BufferedOutputStream buffer = new BufferedOutputStream(new FileOutputStream(outFile));
 						final ObjectOutput output = new ObjectOutputStream(buffer);
 						try {
