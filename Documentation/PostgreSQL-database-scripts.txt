@@ -1,0 +1,17 @@
+--- POSTGRESQL DATABASE LOCALSERVER 5432
+--- LOGIN CREATION
+CREATE ROLE "NEOCOM" LOGIN ENCRYPTED PASSWORD 'md53488ca3baf270e25ad23c0efab03e45e'
+  CREATEDB
+   VALID UNTIL 'infinity';
+GRANT pg_monitor TO "NEOCOM";
+COMMENT ON ROLE "NEOCOM"
+  IS 'Production user to access NeoCom.Infinity tables in local database storage.';
+
+--- NEOCOM SCHEMA
+CREATE SCHEMA "NEOCOM"
+       AUTHORIZATION "NEOCOM";
+COMMENT ON SCHEMA "NEOCOM"
+  IS 'NeoCom.Infinity schema to allow the advanced storage of ESI Eve data downloaded in background by the back end process.';
+GRANT ALL ON SCHEMA "NEOCOM" TO public;
+REVOKE ALL ON SCHEMA "NEOCOM" FROM GROUP pg_monitor;
+

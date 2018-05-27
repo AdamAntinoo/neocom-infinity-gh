@@ -14,6 +14,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,22 +24,26 @@ import org.slf4j.LoggerFactory;
 import org.dimensinfin.eveonline.neocom.interfaces.IFileSystem;
 
 /**
+ * Spring boot implementation for the File System isolation interface. We can get access to the application generated data
+ * files stored on the private application folder or to the application assets deployed with the compiled code.
+ *
+ * The Assets api will access the readonly application deployed files while the Resource api will deal with the temporary
+ * application storage files like cache or running stored local data.
  * @author Adam Antinoo
  */
 // - CLASS IMPLEMENTATION ...................................................................................
 public class FileSystemSBImplementation implements IFileSystem {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger logger = LoggerFactory.getLogger("FileSystemSBImplementation");
+	private static ClassLoader classLoader = null;
 
 	// - F I E L D - S E C T I O N ............................................................................
-	private String applicationFolder = ".";
+	private String applicationFolder = "./NeoCom.Infinity";
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
-	public FileSystemSBImplementation() {
-	}
-
 	public FileSystemSBImplementation( final String applicationStoreDirectory ) {
-		this.applicationFolder = applicationStoreDirectory;
+		if (null != applicationStoreDirectory)
+			this.applicationFolder = applicationStoreDirectory;
 	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................
@@ -44,6 +51,7 @@ public class FileSystemSBImplementation implements IFileSystem {
 	public InputStream openResource4Input( final String filePath ) throws IOException {
 		return new FileInputStream(new File(applicationFolder + "/" + filePath));
 	}
+
 	@Override
 	public OutputStream openResource4Output( final String filePath ) throws IOException {
 		return new FileOutputStream(new File(applicationFolder + "/" + filePath));
@@ -51,30 +59,80 @@ public class FileSystemSBImplementation implements IFileSystem {
 
 	@Override
 	public InputStream openAsset4Input( final String filePath ) throws IOException {
-		return new FileInputStream(new File(accessAssetPath() + filePath));
+		URI propertyURI = null;
+		try {
+			final URL resource = getClassLoader().getResource(filePath);
+			if (null == resource) throw new IOException("[FileSystemSBImplementation.openAsset4Input]> Resource file " + filePath + "" +
+					" not found with classloader.");
+			propertyURI = new URI(resource.toString());
+			logger.info("DD [FileSystemSBImplementation.openAsset4Input]> Processing file: {}", propertyURI);
+		} catch (URISyntaxException use) {
+		}
+		return new FileInputStream(propertyURI.getPath());
 	}
 
 	@Override
-	public File accessAppStorageFile( final String filePath ) {
-		return new File(applicationFolder + "/" + filePath);
+	public String accessAsset4Path( final String filePath ) throws IOException {
+		URI propertyURI = null;
+		try {
+			final URL resource = getClassLoader().getResource(filePath);
+			if (null == resource) throw new IOException("[FileSystemSBImplementation.accessAsset4Path]> Resource file " + filePath +
+					" not found with classloader.");
+			propertyURI = new URI(classLoader.getResource(filePath).toString());
+			logger.info("DD [FileSystemSBImplementation.accessAsset4Path]> Processing file: {}", propertyURI);
+		} catch (URISyntaxException e) {
+		}
+		return propertyURI.getPath();
 	}
 
 	@Override
-	public String accessAssetPath() {
-		return "./src/main/";
+	public String accessResource4Path( final String filePath ) {
+		return applicationFolder + "/" + filePath;
+	}
+
+	@Override
+	public String accessAppStorage4Path( final String filePath ) {
+		return accessResource4Path(filePath);
+	}
+//[01]
+
+	/**
+	 * Get a first access application classloader to be used to generate Resource paths.
+	 * @return an application classloader to have a reference point from the application run place.
+	 */
+	protected ClassLoader getClassLoader() {
+		if (null == classLoader) classLoader = getClass().getClassLoader();
+		return classLoader;
 	}
 
 	// --- D E L E G A T E D   M E T H O D S
 	@Override
 	public String toString() {
-		return new StringBuffer("FileSystemSBImplementation [ ")
-				.append("applicationFolder:").append(applicationFolder).append(" ")
-				.append("assetsFolder:").append(accessAssetPath()).append(" ")
-				.append("]")
-				.append("->").append(super.toString())
+		final StringBuffer buffer = new StringBuffer("FileSystemSBImplementation [ ")
+				.append("applicationFolder:").append(applicationFolder).append(" ");
+		try {
+			buffer.append("assetsFolder:").append(accessAsset4Path("")).append(" ");
+		} catch (IOException ioe) {
+		}
+		return buffer.append("]")
+//				.append("->").append(super.toString())
 				.toString();
 	}
 }
 
 // - UNUSED CODE ............................................................................................
 //[01]
+//	@Override
+//	public InputStream openAsset4Input( final String filePath ) throws IOException {
+//		return new FileInputStream(new File(accessAssetPath() + filePath));
+//	}
+//
+//	@Override
+//	public File accessAppStorageFile( final String filePath ) {
+//		return new File(applicationFolder + "/" + filePath);
+//	}
+//
+//	@Override
+//	public String accessAssetPath() {
+//		return "./src/main/";
+//	}

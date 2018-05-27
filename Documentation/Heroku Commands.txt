@@ -1,0 +1,15 @@
+--- HEROKU COMMANDS
+--- DATABASE CREATION
+heroku apps:create neocominfinity
+
+https://neocominfinity.herokuapp.com/ | https://git.heroku.com/neocominfinity.git
+
+
+heroku apps:destroy neocominfinity --confirm neocominfinity
+
+git push heroku master
+
+heroku local web -f Procfile.windows
+
+heroku config:set JAVA_OPTS=-Dserver.port=$PORT
+
