@@ -348,7 +348,7 @@ public class NeoComMicroServiceApplicationSerializers {
 			jgen.writeNumberField("targetId", value.getTargetId());
 			jgen.writeObjectField("targetItem", value.targetItem);
 			jgen.writeNumberField("outputQty", value.getQuantity());
-			jgen.writeObjectField("resources", value.getResources().values());
+			jgen.writeObjectField("resources", value.getLimitedActionResults());
 			jgen.writeObjectField("inputList", value.getInputs());
 			jgen.writeObjectField("output", value.getOutput());
 			jgen.writeEndObject();
