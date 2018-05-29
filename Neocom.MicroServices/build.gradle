@@ -71,46 +71,8 @@ jar {
 //}
 
 //--- T A S K S
-// Clean up the resources received from other modules.
-// Needs to be executed manually because it is dangerous to leave this decission to the build.
-task cleanUpResources(type: Delete) {
-    delete 'src/main/resources/sdecontents'
-    delete 'src/main/resources/yaml'
-}
-// Copy configuration and property resources fro other modules to the final 'resources' application folder.
-task copyResources(type: Copy) {
-    copy {
-        // NeoCom.Model Properties
-        from project(':NeoCom.Model').file('src/main/resources')
-        into file('src/main/resources')
-    }
-    copy {
-        from project(':NeoCom.DataManagement').file('src/main/resources')
-        into file('src/main/resources')
-    }
-}
-// Gradlew start task to generate Heroku distribution
-task stage {
-    dependsOn installDist
-}
-
-//task experiment1 {
-//    println 'Executing modules JAR generation tasks to update libraries'
-//    project(':ESI.SwaggerApi').tasks.swaggerGenerate.execute()
-//    project(':NeoCom.Model').tasks.build.execute()
-//    project(':NeoCom.DataManagement').tasks.jar.execute()
-//    project(':NeoCom.DataManagement').tasks.jsourcesJar.execute()
-//    project(':NeoCom.DataManagement').tasks.javadocJar.execute()
-//    println 'Moving updated libraries to staging'
-//    copy {
-//        // Modules JAR files
-//        println 'Copying ESI.SwaggerApi library'
-//        from project(':ESI.SwaggerApi').file('build/libs')
-//        into file('libs')
-//    }
-//    project(':ESI.SwaggerApi').ant.move(file: 'libs', tofile: 'Z://NC/libs')
-//}
-task experiment2 {
+// Collect output JARs from project modules to staging libs
+task copyStaging {
     copy {
         // Modules JAR files
         println 'Copying ESI.SwaggerApi library'
@@ -138,7 +100,61 @@ task experiment2 {
         into file('Z://NC/libs')
     }
 }
-//// Copy modules libraries to destination local folder and them moving away to staging
+// Clean up the resources received from other modules.
+// Needs to be executed manually because it is dangerous to leave this decission to the build.
+task cleanUpResources(type: Delete) {
+    delete 'src/main/resources/sdecontents'
+    delete 'src/main/resources/yaml'
+}
+// Copy configuration and property resources fro other modules to the final 'resources' application folder.
+task copyResources(type: Copy) {
+    copy {
+        // NeoCom.Model Properties
+        println 'Copy :NeoCom.Model resources to :NeoCom:MicroServices'
+        from project(':NeoCom.Model').file('src/main/resources')
+        into file('src/main/resources')
+    }
+    copy {
+        println 'Copy :NeoCom.DataManagement resources to :NeoCom:MicroServices'
+        from project(':NeoCom.DataManagement').file('src/main/resources')
+        into file('src/main/resources')
+    }
+}
+// Gradlew start task to generate Heroku distribution
+task stage {
+    println ':NeoCom.Microservices stage start'
+    dependsOn installDist
+    dependsOn copyStaging
+    dependsOn copyResources
+    copy {
+        println 'Copy :NeoCom.MicroServices production src to staging'
+        from file('src')
+        into file('Z://NC/src')
+    }
+    copy {
+        println 'Copy :NeoCom.MicroServices production libs to staging'
+        from file('libs')
+        into file('Z://NC/libs')
+    }
+    println ':NeoCom.Microservices stage end'
+}
+
+//task experiment1 {
+//    println 'Executing modules JAR generation tasks to update libraries'
+//    project(':ESI.SwaggerApi').tasks.swaggerGenerate.execute()
+//    project(':NeoCom.Model').tasks.build.execute()
+//    project(':NeoCom.DataManagement').tasks.jar.execute()
+//    project(':NeoCom.DataManagement').tasks.jsourcesJar.execute()
+//    project(':NeoCom.DataManagement').tasks.javadocJar.execute()
+//    println 'Moving updated libraries to staging'
+//    copy {
+//        // Modules JAR files
+//        println 'Copying ESI.SwaggerApi library'
+//        from project(':ESI.SwaggerApi').file('build/libs')
+//        into file('libs')
+//    }
+//    project(':ESI.SwaggerApi').ant.move(file: 'libs', tofile: 'Z://NC/libs')
+//}
 //task publish {
 //    copy {
 //        // Modules JAR files
