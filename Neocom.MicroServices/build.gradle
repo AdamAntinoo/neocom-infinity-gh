@@ -13,6 +13,7 @@ buildscript {
 
 //--- P L U G I N S
 plugins {
+    id 'groovy'
     id 'java'
     id "io.ratpack.ratpack-groovy" version "1.5.4"
 }
@@ -64,11 +65,11 @@ jar {
 //        writeTo("$buildDir/Manifest.mf")
 //    }
 //}
-//bootJar {
-//    manifest {
-//        attributes 'Start-Class': 'org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication'
-//    }
-//}
+bootJar {
+    manifest {
+        attributes 'Start-Class': 'org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication'
+    }
+}
 
 //--- T A S K S
 // Collect output JARs from project modules to staging libs

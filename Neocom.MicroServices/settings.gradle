@@ -8,5 +8,3 @@ project(':NeoCom.Model').projectDir = new File('D:\\Development\\Libraries Base\
 include ':NeoCom.DataManagement'
 project(':NeoCom.DataManagement').projectDir = new File('D:\\Development\\Libraries Base\\NeoCom-DM\\NeoCom-DataMngmt-0.12' +
         '.x\\NeoCom.DataManagement')
-rootProject.name = 'Neocom.MicroServices'
-
