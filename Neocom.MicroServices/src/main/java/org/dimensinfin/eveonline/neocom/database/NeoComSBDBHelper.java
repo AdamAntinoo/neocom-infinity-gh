@@ -8,6 +8,7 @@
 //               the source for the specific functionalities for the backend services.
 package org.dimensinfin.eveonline.neocom.database;
 
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -38,6 +39,7 @@ import org.dimensinfin.eveonline.neocom.database.entity.Property;
 import org.dimensinfin.eveonline.neocom.database.entity.TimeStamp;
 import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
 import org.dimensinfin.eveonline.neocom.enums.EPropertyTypes;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
 import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
@@ -669,8 +671,12 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 	 * @throws SQLException
 	 */
 	private void createConnectionSource() throws SQLException {
-		final String localConnectionDescriptor = hostName + "/" + databaseName + "?user=" + databaseUser
+		 String localConnectionDescriptor = hostName + "/" + databaseName + "?user=" + databaseUser
 				+ "&password=" + databasePassword + databaseOptions;
+		if(InfinityGlobalDataManager.getResourceString("R.database.neocom.databasetype").equalsIgnoreCase("postgres")){
+			// Postgress means Heroku and then configuration for connection from environment
+			localConnectionDescriptor = System.getenv("JDBC_DATABASE_URL");
+		}
 		if (databaseValid) connectionSource = new JdbcPooledConnectionSource(localConnectionDescriptor);
 		else connectionSource = new JdbcPooledConnectionSource(DEFAULT_CONNECTION_DESCRIPTOR);
 		// only keep the connections open for 5 minutes
