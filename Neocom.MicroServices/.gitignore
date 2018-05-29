@@ -32,3 +32,9 @@ nbdist/
 ## Heroku gradle additions ##
 gradlew
 gradlew.bat
+
+### Project file exceptions
+.idea/workspace.xml
+privatelibs/
+libs/
+src/main/resources/static/
