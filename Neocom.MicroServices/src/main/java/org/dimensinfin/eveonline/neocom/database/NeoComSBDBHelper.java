@@ -572,13 +572,13 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 					public Void call() throws Exception {
 						// Remove all assets that do not have a valid owner.
 						final DeleteBuilder<NeoComAsset, String> deleteBuilder = getAssetDao().deleteBuilder();
-						deleteBuilder.where().eq("ownerID", (pilotid * -1));
+						deleteBuilder.where().eq("ownerId", (pilotid * -1));
 						int count = deleteBuilder.delete();
 						logger.info("-- [NeoComSBDBHelper.clearInvalidAssets]> Invalid assets cleared for owner {}: {}", (pilotid * -1), count);
 
 //						// Remove all blueprints that do not have a valid owner.
 //						final DeleteBuilder<NeoComBlueprint, String> deleteBuilderBlueprint = getBlueprintDao().deleteBuilder();
-//						deleteBuilderBlueprint.where().eq("ownerID", (pilotid * -1));
+//						deleteBuilderBlueprint.where().eq("ownerId", (pilotid * -1));
 //						count = deleteBuilderBlueprint.delete();
 //						logger.info("-- [NeoComSBDBHelper.clearInvalidAssets]> Invalid blueprints cleared for owner {}: {}", (pilotid * -1),
 //								count);
@@ -606,14 +606,14 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 					public Void call() throws Exception {
 						// Remove all assets from this owner before adding the new set.
 						final DeleteBuilder<NeoComAsset, String> deleteBuilder = getAssetDao().deleteBuilder();
-						deleteBuilder.where().eq("ownerID", pilotid);
+						deleteBuilder.where().eq("ownerId", pilotid);
 						int count = deleteBuilder.delete();
 						logger.info("-- [NeoComSBDBHelper.clearInvalidAssets]> Invalid assets cleared for owner {}: {}", pilotid, count);
 
 						// Replace the owner to vake the assets valid.
 						final UpdateBuilder<NeoComAsset, String> updateBuilder = getAssetDao().updateBuilder();
-						updateBuilder.updateColumnValue("ownerID", pilotid)
-								.where().eq("ownerID", (pilotid * -1));
+						updateBuilder.updateColumnValue("ownerId", pilotid)
+								.where().eq("ownerId", (pilotid * -1));
 						count = updateBuilder.update();
 						logger.info("-- [NeoComSBDBHelper.replaceAssets]> Replace owner {} for assets: {}", pilotid, count);
 						return null;
@@ -635,8 +635,8 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 //					public Void call() throws Exception {
 //						// Remove all assets that do not have a valid owner.
 //						final UpdateBuilder<NeoComBlueprint, String> updateBuilder = getBlueprintDao().updateBuilder();
-//						updateBuilder.updateColumnValue( "ownerID", pilotid)
-//								.where().eq("ownerID", (pilotid * -1));
+//						updateBuilder.updateColumnValue( "ownerId", pilotid)
+//								.where().eq("ownerId", (pilotid * -1));
 //						int count = updateBuilder.update();
 //						logger.info("-- [NeoComSBDBHelper.replaceBlueprints]> Replace owner {} for assets: {}", pilotid, count);
 //						return null;

@@ -128,7 +128,7 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 	// - M E T H O D - S E C T I O N ..........................................................................
 	//	/**
 	//	 * Get the complete list of assets that are Planetary Materials.
-	//	 * 
+	//	 *
 	//	 * @return
 	//	 */
 	//	public ArrayList<NeoComAsset> accessAllPlanetaryAssets(final long characterID) {
@@ -177,9 +177,9 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 			ConnectionSource conn = neocomDBHelper.getConnectionSource();
 			DatabaseConnection database = conn.getReadWriteConnection();
 			synchronized (database) {
-				int rowCount = database.delete("DELETE FROM Assets WHERE ownerID=" + (pilotid * -1), null, null);
+				int rowCount = database.delete("DELETE FROM Assets WHERE ownerId=" + (pilotid * -1), null, null);
 				logger.info("-- [NeocomDatabaseConnector.clearInvalidAssets]> rows deleted ASSETS [OWNERID = -1] - " + rowCount);
-				rowCount = database.delete("DELETE FROM Blueprints WHERE ownerID=" + (pilotid * -1), null, null);
+				rowCount = database.delete("DELETE FROM Blueprints WHERE ownerId=" + (pilotid * -1), null, null);
 				logger.info("-- [NeocomDatabaseConnector.clearInvalidAssets]> rows deleted BLUEPRINTS [OWNERID = -1] - "
 								+ rowCount);
 			}
@@ -298,9 +298,9 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 		try {
 			Dao<NeoComAsset, String> assetDao = this.getAssetDAO();
 			QueryBuilder<NeoComAsset, String> queryBuilder = assetDao.queryBuilder().distinct()
-							.selectColumns("parentAssetID");
+							.selectColumns("parentAssetId");
 			Where<NeoComAsset, String> where = queryBuilder.where();
-			where.eq("ownerID", identifier);
+			where.eq("ownerId", identifier);
 			PreparedQuery<NeoComAsset> preparedQuery = queryBuilder.prepare();
 			uniqueContainers = assetDao.query(preparedQuery);
 		} catch (java.sql.SQLException sqle) {
@@ -318,7 +318,7 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 	 * Once the assets are processed inside a location this list can change because it may contain other
 	 * elements that are Ships or Containers. When processing the list we should connect them properly on the
 	 * new hierarchy.<br>
-	 * 
+	 *
 	 * @return
 	 */
 	@Override
@@ -327,9 +327,9 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 		List<NeoComAsset> uniqueLocations = new Vector<NeoComAsset>();
 		try {
 			Dao<NeoComAsset, String> assetDao = this.getAssetDAO();
-			QueryBuilder<NeoComAsset, String> queryBuilder = assetDao.queryBuilder().distinct().selectColumns("locationID");
+			QueryBuilder<NeoComAsset, String> queryBuilder = assetDao.queryBuilder().distinct().selectColumns("locationId");
 			Where<NeoComAsset, String> where = queryBuilder.where();
-			where.eq("ownerID", identifier);
+			where.eq("ownerId", identifier);
 			PreparedQuery<NeoComAsset> preparedQuery = queryBuilder.prepare();
 			uniqueLocations = assetDao.query(preparedQuery);
 		} catch (java.sql.SQLException sqle) {
@@ -380,8 +380,8 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 			Dao<NeoComAsset, String> assetDao = this.getAssetDAO();
 			QueryBuilder<NeoComAsset, String> queryBuilder = assetDao.queryBuilder();
 			Where<NeoComAsset, String> where = queryBuilder.where();
-			//			where.eq("ownerID", identifier);
-			where.eq("locationID", identifier);
+			//			where.eq("ownerId", identifier);
+			where.eq("locationId", identifier);
 			PreparedQuery<NeoComAsset> preparedQuery = queryBuilder.prepare();
 			contents = assetDao.query(preparedQuery);
 		} catch (java.sql.SQLException sqle) {
@@ -399,7 +399,7 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 			Dao<NeoComAsset, String> assetDao = this.getAssetDAO();
 			QueryBuilder<NeoComAsset, String> queryBuilder = assetDao.queryBuilder();
 			Where<NeoComAsset, String> where = queryBuilder.where();
-			where.eq("locationID", identifier);
+			where.eq("locationId", identifier);
 			where.and().eq("category", "Planetary Commodities");
 			where.or().eq("category", "Planetary Resources");
 			PreparedQuery<NeoComAsset> preparedQuery = queryBuilder.prepare();
@@ -423,10 +423,10 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 			ConnectionSource conn = neocomDBHelper.getConnectionSource();
 			DatabaseConnection database = conn.getReadWriteConnection();
 			synchronized (database) {
-				int rowCount = database.delete("DELETE FROM Assets WHERE ownerID=" + characterID, null, null);
+				int rowCount = database.delete("DELETE FROM Assets WHERE ownerId=" + characterID, null, null);
 				logger.info("-- [NeocomDatabaseConnector.replaceAssets]> rows deleted ASSETS [OWNERID = " + characterID
 								+ "] - " + rowCount);
-				rowCount = database.update("UPDATE Assets " + " SET ownerID=" + characterID + " WHERE ownerID="
+				rowCount = database.update("UPDATE Assets " + " SET ownerId=" + characterID + " WHERE ownerId="
 								+ (characterID * -1), null, null);
 				logger.info("-- [NeocomDatabaseConnector.replaceAssets]> rows replaced ASSETS [OWNERID = " + characterID
 								+ "] - " + rowCount);
@@ -441,10 +441,10 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 			ConnectionSource conn = neocomDBHelper.getConnectionSource();
 			DatabaseConnection database = conn.getReadWriteConnection();
 			synchronized (database) {
-				int rowCount = database.delete("DELETE FROM Blueprints WHERE ownerID=" + characterID, null, null);
-				logger.info("-- [NeocomDatabaseConnector.replaceAssets]> rows deleted BLUEPRINTS [OWNERID = " + characterID
+				int rowCount = database.delete("DELETE FROM Blueprints WHERE ownerId=" + characterID, null, null);
+				logger.info("-- [NeocomDatabaseConnector.replaceAssets]> rows deleted BLUEPRINTS [OWNERId = " + characterID
 								+ "] - " + rowCount);
-				rowCount = database.update("UPDATE FROM Blueprints WHERE ownerID=" + characterID + " SET ownerID="
+				rowCount = database.update("UPDATE FROM Blueprints WHERE ownerId=" + characterID + " SET ownerId="
 								+ characterID, null, null);
 				logger.info("-- [NeocomDatabaseConnector.replaceAssets]> rows replaces BLUEPRINTS [OWNERID = " + characterID
 								+ "] - " + rowCount);
@@ -457,7 +457,7 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 	/**
 	 * Get the list of all the Blueprints for a given Character. It can ge a Pilot or a Corporation and the
 	 * differences should be none.
-	 * 
+	 *
 	 * @param characterID
 	 * @return
 	 */
@@ -471,7 +471,7 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 
 	//	/**
 	//	 * Gets the list of assets of a select Category
-	//	 * 
+	//	 *
 	//	 * @param characterID
 	//	 * @param typeId
 	//	 * @return
@@ -483,7 +483,7 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 	//			Dao<NeoComAsset, String> assetDao = this.getAssetDAO();
 	//			QueryBuilder<NeoComAsset, String> queryBuilder = assetDao.queryBuilder();
 	//			Where<NeoComAsset, String> where = queryBuilder.where();
-	//			where.eq("ownerID", characterID);
+	//			where.eq("ownerId", characterID);
 	//			where.and();
 	//			where.eq("category", categoryName);
 	//			PreparedQuery<NeoComAsset> preparedQuery = queryBuilder.prepare();
@@ -502,7 +502,7 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 			Dao<NeoComAsset, String> assetDao = this.getAssetDAO();
 			QueryBuilder<NeoComAsset, String> queryBuilder = assetDao.queryBuilder();
 			Where<NeoComAsset, String> where = queryBuilder.where();
-			where.eq("ownerID", characterID);
+			where.eq("ownerId", characterID);
 			where.and();
 			where.eq("typeId", typeID);
 			PreparedQuery<NeoComAsset> preparedQuery = queryBuilder.prepare();
@@ -546,9 +546,9 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 			Dao<NeoComAsset, String> assetDao = this.getAssetDAO();
 			QueryBuilder<NeoComAsset, String> queryBuilder = assetDao.queryBuilder();
 			Where<NeoComAsset, String> where = queryBuilder.where();
-			where.eq("ownerID", characterID);
+			where.eq("ownerId", characterID);
 			where.and();
-			where.eq("parentAssetID", containerId);
+			where.eq("parentAssetId", containerId);
 			PreparedQuery<NeoComAsset> preparedQuery = queryBuilder.prepare();
 			assetList = assetDao.query(preparedQuery);
 		} catch (java.sql.SQLException sqle) {
@@ -565,7 +565,7 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 	/**
 	 * Gets the list of type ids for the required resources to get an output batch of the former planetary
 	 * resource.
-	 * 
+	 *
 	 * @param typeID
 	 * @return
 	 */
@@ -671,7 +671,7 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 
 	/**
 	 * Returns the resource identifier of the station class to locate icons or other type related resources.
-	 * 
+	 *
 	 * @param stationID
 	 * @return
 	 */

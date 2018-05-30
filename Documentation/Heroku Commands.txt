@@ -13,3 +13,26 @@ heroku local web -f Procfile.windows
 
 heroku config:set JAVA_OPTS=-Dserver.port=$PORT
 
+--- UPDATE PRODUCTION AND RECOMPILE
+git push heroku master
+
+--- DUMP SOM LOGS TO A FILE
+heroku logs > logs-20180530-1.logs
+
+--- ACTIVATE THE WEB SERVER
+heroku ps:scale web=1
+
+--- STOP THE WEB SERVER
+heroku ps:scale web=0
+
+--- RESET ALL THE CONTENTS OF THE DATABASE
+heroku pg:reset --confirm neocominfinity
+
+--- RUN A SHELL
+heroku run bash
+
+--- OPEN THE POSTGRES SHELL
+heroku pg:psql
+
+--- CLOSE THE POSTGRES SHELL
+\q<enter>

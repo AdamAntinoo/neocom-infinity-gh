@@ -94,59 +94,62 @@ task copyResources(type: Copy) {
 }
 // Collect output JARs from project modules to staging libs
 task copyStaging {
-    copy {
-        // Modules JAR files
-        println 'Copying ESI.SwaggerApi library'
-        from project(':ESI.SwaggerApi').file('build/libs')
-        into file('libs')
+    doLast {
+        copy {
+            // Modules JAR files
+            println 'Copying ESI.SwaggerApi library'
+            from project(':ESI.SwaggerApi').file('build/libs')
+            into file('libs')
+        }
+        copy {
+            // Modules JAR files
+            println 'Copying NeoCom.DataManagement library'
+            from project(':NeoCom.DataManagement').file('build/libs')
+            into file('libs')
+        }
+        copy {
+            // Modules JAR files
+            println 'Copying NeoCom.Model library'
+            from project(':NeoCom.Model').file('build/libs')
+            into file('libs')
+        }
+        println 'Moving final libraries to staging'
+        copy {
+            // Modules JAR files
+            println 'Copying NeoCom.Model library'
+            from file('libs')
+            into file('Z://NC/libs')
+        }
     }
-    copy {
-        // Modules JAR files
-        println 'Copying NeoCom.DataManagement library'
-        from project(':NeoCom.DataManagement').file('build/libs')
-        into file('libs')
-    }
-    copy {
-        // Modules JAR files
-        println 'Copying NeoCom.Model library'
-        from project(':NeoCom.Model').file('build/libs')
-        into file('libs')
-    }
-    println 'Moving final libraries to staging'
-//    ant.move(file: 'libs', tofile: 'Z://NC/libs')
-    copy {
-        // Modules JAR files
-        println 'Copying NeoCom.Model library'
-        from file('libs')
-        into file('Z://NC/libs')
-    }
+    dependsOn installDist
 }
 //copyStaging.dependsOn installDist
 //copyResources.dependsOn build
 // Gradlew start task to generate Heroku distribution
 task stage {
-    println ':NeoCom.Microservices stage start'
-    dependsOn copyResources
+//    println ':NeoCom.Microservices stage start'
+//    dependsOn copyResources
+//    dependsOn copyStaging
     dependsOn copyStaging
-    dependsOn installDist
-    copy {
-        println 'Copy :NeoCom.MicroServices production src to staging'
-        from file('src')
-        into file('Z://NC/src')
+    doLast {
+        copy {
+            println 'Copy :NeoCom.MicroServices production src to staging'
+            from file('src')
+            into file('Z://NC/src')
+        }
+        copy {
+            println 'Copy :NeoCom.MicroServices production libs to staging'
+            from file('libs')
+            into file('Z://NC/libs')
+        }
     }
-    copy {
-        println 'Copy :NeoCom.MicroServices production libs to staging'
-        from file('libs')
-        into file('Z://NC/libs')
-    }
-    println ':NeoCom.Microservices stage end'
+//    println ':NeoCom.Microservices stage end'
 }
 
 //--- TASK ORDERING
-//build.mustRunAfter copyResources
-copyStaging.mustRunAfter build
-installDist.mustRunAfter copyStaging
-stage.mustRunAfter installDist
+//copyStaging.mustRunAfter build
+//installDist.mustRunAfter copyStaging
+//stage.mustRunAfter installDist
 
 dependencies {
     // P R O J E C T    D E P E N D E N C I E S
