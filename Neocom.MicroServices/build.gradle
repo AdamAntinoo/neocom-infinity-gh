@@ -72,6 +72,26 @@ bootJar {
 }
 
 //--- T A S K S
+// Clean up the resources received from other modules.
+// Needs to be executed manually because it is dangerous to leave this decission to the build.
+task cleanUpResources(type: Delete) {
+    delete 'src/main/resources/sdecontents'
+    delete 'src/main/resources/yaml'
+}
+// Copy configuration and property resources fro other modules to the final 'resources' application folder.
+task copyResources(type: Copy) {
+    copy {
+        // NeoCom.Model Properties
+        println 'Copy :NeoCom.Model resources to :NeoCom:MicroServices'
+        from project(':NeoCom.Model').file('src/main/resources')
+        into file('src/main/resources')
+    }
+    copy {
+        println 'Copy :NeoCom.DataManagement resources to :NeoCom:MicroServices'
+        from project(':NeoCom.DataManagement').file('src/main/resources')
+        into file('src/main/resources')
+    }
+}
 // Collect output JARs from project modules to staging libs
 task copyStaging {
     copy {
@@ -101,32 +121,14 @@ task copyStaging {
         into file('Z://NC/libs')
     }
 }
-// Clean up the resources received from other modules.
-// Needs to be executed manually because it is dangerous to leave this decission to the build.
-task cleanUpResources(type: Delete) {
-    delete 'src/main/resources/sdecontents'
-    delete 'src/main/resources/yaml'
-}
-// Copy configuration and property resources fro other modules to the final 'resources' application folder.
-task copyResources(type: Copy) {
-    copy {
-        // NeoCom.Model Properties
-        println 'Copy :NeoCom.Model resources to :NeoCom:MicroServices'
-        from project(':NeoCom.Model').file('src/main/resources')
-        into file('src/main/resources')
-    }
-    copy {
-        println 'Copy :NeoCom.DataManagement resources to :NeoCom:MicroServices'
-        from project(':NeoCom.DataManagement').file('src/main/resources')
-        into file('src/main/resources')
-    }
-}
+//copyStaging.dependsOn installDist
+//copyResources.dependsOn build
 // Gradlew start task to generate Heroku distribution
 task stage {
     println ':NeoCom.Microservices stage start'
-    dependsOn installDist
-    dependsOn copyStaging
     dependsOn copyResources
+    dependsOn copyStaging
+    dependsOn installDist
     copy {
         println 'Copy :NeoCom.MicroServices production src to staging'
         from file('src')
@@ -140,57 +142,12 @@ task stage {
     println ':NeoCom.Microservices stage end'
 }
 
-//task experiment1 {
-//    println 'Executing modules JAR generation tasks to update libraries'
-//    project(':ESI.SwaggerApi').tasks.swaggerGenerate.execute()
-//    project(':NeoCom.Model').tasks.build.execute()
-//    project(':NeoCom.DataManagement').tasks.jar.execute()
-//    project(':NeoCom.DataManagement').tasks.jsourcesJar.execute()
-//    project(':NeoCom.DataManagement').tasks.javadocJar.execute()
-//    println 'Moving updated libraries to staging'
-//    copy {
-//        // Modules JAR files
-//        println 'Copying ESI.SwaggerApi library'
-//        from project(':ESI.SwaggerApi').file('build/libs')
-//        into file('libs')
-//    }
-//    project(':ESI.SwaggerApi').ant.move(file: 'libs', tofile: 'Z://NC/libs')
-//}
-//task publish {
-//    copy {
-//        // Modules JAR files
-//        println 'Copying ESI.SwaggerApi library'
-//        from project(':ESI.SwaggerApi').file('build/libs')
-//        into file('libs')
-//    }
-//    copy {
-//        // Modules JAR files
-//        println 'Copying NeoCom.DataManagement library'
-//        from project(':NeoCom.DataManagement').file('build/libs')
-//        into file('libs')
-//    }
-//    copy {
-//        // Modules JAR files
-//        println 'Copying NeoCom.Model library'
-//        from project(':NeoCom.Model').file('build/libs')
-//        into file('libs')
-//    }
-//    println 'Moving final libraries to staging'
-////    ant.move(file: 'libs', tofile: 'Z://NC/libs')
-//}
-//// User task to deply project to staging.
-//task deploy {
-//    dependsOn 'stage'
-//    dependsOn 'publish'
-////    tasks.findByName('stage').mustRunAfter 'installDist'
-//    tasks.findByName('publish').mustRunAfter 'stage'
-//    copy {
-//        // Modules JAR files to staging
-//        println 'Copying updated libraries to staging.'
-//        from file('libs')
-//        into file( 'Z://NC/libs')
-//    }
-//}
+//--- TASK ORDERING
+//build.mustRunAfter copyResources
+copyStaging.mustRunAfter build
+installDist.mustRunAfter copyStaging
+stage.mustRunAfter installDist
+
 dependencies {
     // P R O J E C T    D E P E N D E N C I E S
     implementation project(path: ':ESI.SwaggerApi')
@@ -211,8 +168,8 @@ dependencies {
 
     // N E O C O M . M O D E L
     // C O R E
-    implementation 'org.slf4j:slf4j-api:1.7.25'
-    runtime "org.slf4j:slf4j-simple:1.7.25"
+//    implementation 'org.slf4j:slf4j-api:1.7.25'
+//    runtime "org.slf4j:slf4j-simple:1.7.25"
     implementation 'joda-time:joda-time:2.3'
     // N E O C O M . M O D E L
     implementation 'com.beimin:eveapi:6.0.6'

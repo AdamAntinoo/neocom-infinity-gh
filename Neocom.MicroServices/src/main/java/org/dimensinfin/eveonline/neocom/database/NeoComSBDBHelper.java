@@ -60,6 +60,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 	private static String DEFAULT_CONNECTION_DESCRIPTOR = "jdbc:mysql://localhost:3306/neocom?user=NEOCOMTEST&password=01.Alpha";
 
 	// - F I E L D - S E C T I O N ............................................................................
+	private String databaseType = "postgres";
 	private String hostName = "";
 	private String databaseName = "";
 	private String databaseUser = "";
@@ -93,6 +94,11 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 
 	// - M E T H O D - S E C T I O N ..........................................................................
 	// --- B U I L D   S E C T I O N
+	public NeoComSBDBHelper setDatabaseType( final String databaseType ) {
+		this.databaseType = databaseType;
+		return this;
+	}
+
 	public NeoComSBDBHelper setDatabaseHost( final String hostName ) {
 		this.hostName = hostName;
 		return this;
@@ -110,6 +116,10 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 
 	public NeoComSBDBHelper setDatabasePassword( final String password ) {
 		this.databasePassword = password;
+		return this;
+	}
+	public NeoComSBDBHelper setDatabaseOptions( final String options ) {
+		this.databaseOptions = options;
 		return this;
 	}
 
@@ -130,8 +140,8 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		databaseOptions = GlobalDataManager.getResourceString("R.database.neocom.databaseoptions");
 		databaseValid = true;
 		if (openNeoComDB()) {
-			// Delay database initialization after the helper is assigned to the Global.
-			GlobalDataManager.submitJob2Generic(() -> {
+			// Warning. Delay database initialization after the helper is assigned to the Global.
+			InfinityGlobalDataManager.submitJob2Generic(() -> {
 				// Wait for some time units.
 				GlobalDataManager.suspendThread(TimeUnit.SECONDS.toMillis(2));
 				int currentVersion = readDatabaseVersion();
@@ -647,19 +657,19 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 	 *
 	 * @return
 	 */
-	private boolean openNeoComDB() {
+	private boolean openNeoComDB() throws SQLException {
 		logger.info(">> [NeoComSBDBHelper.openNeoComDB]");
 		if (!isOpen) if (null == connectionSource) {
 			// Open and configure the connection datasource for DAO queries.
-			try {
+//			try {
 				final String localConnectionDescriptor = hostName + "/" + databaseName;
 				createConnectionSource();
 				logger.info("-- [NeoComSBDBHelper.openNeoComDB]> Opened database " + localConnectionDescriptor + " successfully with version "
 						+ databaseVersion + ".");
 				isOpen = true;
-			} catch (Exception sqle) {
-				logger.error("E> [NeoComSBDBHelper.openNeoComDB]> " + sqle.getClass().getName() + ": " + sqle.getMessage());
-			}
+//			} catch (Exception sqle) {
+//				logger.error("E> [NeoComSBDBHelper.openNeoComDB]> " + sqle.getClass().getName() + ": " + sqle.getMessage());
+//			}
 		}
 		logger.info("<< [NeoComSBDBHelper.openNeoComDB]");
 		return isOpen;
@@ -673,8 +683,8 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 	private void createConnectionSource() throws SQLException {
 		 String localConnectionDescriptor = hostName + "/" + databaseName + "?user=" + databaseUser
 				+ "&password=" + databasePassword + databaseOptions;
-		if(InfinityGlobalDataManager.getResourceString("R.database.neocom.databasetype").equalsIgnoreCase("postgres")){
-			// Postgress means Heroku and then configuration for connection from environment
+		if(this.databaseType.equalsIgnoreCase("postgres")){
+			// Postgres means Heroku and then configuration for connection from environment
 			localConnectionDescriptor = System.getenv("JDBC_DATABASE_URL");
 		}
 		if (databaseValid) connectionSource = new JdbcPooledConnectionSource(localConnectionDescriptor);

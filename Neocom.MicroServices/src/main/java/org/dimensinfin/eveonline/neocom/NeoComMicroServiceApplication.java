@@ -179,12 +179,12 @@ public class NeoComMicroServiceApplication extends NeoComMicroServiceApplication
 		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting NeoCom private database...");
 		try {
 			InfinityGlobalDataManager.connectNeoComDBConnector(new NeoComSBDBHelper()
-					.setDatabaseHost(GlobalDataManager.getResourceString("R.database.neocom.databasehost"
-							, "jdbc:mysql://localhost:3306"))
-					.setDatabaseName("neocom")
-					.setDatabaseUser(GlobalDataManager.getResourceString("R.database.neocom.databaseuser"
-							, "NEOCOM"))
+					.setDatabaseType(GlobalDataManager.getResourceString("R.database.neocom.databasetype"))
+					.setDatabaseHost(GlobalDataManager.getResourceString("R.database.neocom.databasehost"))
+					.setDatabaseName(GlobalDataManager.getResourceString("R.database.neocom.databasename"))
+					.setDatabaseUser(GlobalDataManager.getResourceString("R.database.neocom.databaseuser"))
 					.setDatabasePassword(GlobalDataManager.getResourceString("R.database.neocom.databasepassword"))
+					.setDatabaseOptions(GlobalDataManager.getResourceString("R.database.neocom.databaseoptions"))
 					.setDatabaseVersion(GlobalDataManager.getResourceInt("R.database.neocom.databaseversion"))
 					.build()
 			);
