@@ -152,7 +152,6 @@ public class TimedUpdater {
 	 * With the TS and the Credential check id the data is still valid. If the timestamp has elapsed then we should
 	 * request the launch of the job. It is possible that this has been detected also on previous iterations but the
 	 * Manager filter should remove the duplication of jobs.
-	 *
 	 * @param dataIdentifier the time stamp and reference identifier for the job to launch.
 	 * @param credential     the credential to use during the update.
 	 */
@@ -234,12 +233,42 @@ public class TimedUpdater {
 						final DownloadManager downloader = new DownloadManager(credential);
 						final boolean allWentOk = downloader.downloadPilotAssetsESI();
 
-						// Update the timer for this download at the database.
-						final Instant validUntil = Instant.now()
-								.plus(GlobalDataManager.getCacheTime4Type(GlobalDataManager.ECacheTimes.ASSETS_ASSETS));
-						final TimeStamp ts = new TimeStamp(transferredCurrentrequestReference, validUntil)
-								.setCredentialId(credential.getAccountId())
-								.store();
+						if (allWentOk) {
+							// Update the timer for this download at the database.
+							final Instant validUntil = Instant.now()
+									.plus(GlobalDataManager.getCacheTime4Type(GlobalDataManager.ECacheTimes.ASSETS_ASSETS));
+							final TimeStamp ts = new TimeStamp(transferredCurrentrequestReference, validUntil)
+									.setCredentialId(credential.getAccountId())
+									.store();
+						}
+					});
+			UpdateJobManager.submit(newJob);
+			return;
+		}
+
+		// Search for BLUEPRINTDATA job request.
+		currentrequestReference = ServiceJob.constructReference(GlobalDataManager.EDataUpdateJobs.BLUEPRINTDATA
+				, credential.getAccountId());
+		// Check that the request is a BLUEPRINTDATA update request.
+		if (dataIdentifier.getReference().equalsIgnoreCase(currentrequestReference)) {
+			// Submit the job to the manager
+			final String transferredCurrentrequestReference = currentrequestReference;
+			final ServiceJob newJob = new ServiceJob(dataIdentifier)
+					.setCredentialIdentifier(credential.getAccountId())
+					.setJobClass(GlobalDataManager.EDataUpdateJobs.BLUEPRINTDATA)
+					.setTask(() -> {
+						logger.info("-- [ServiceJob.BLUEPRINTDATA]> Downloading blueprint list for: [{}]", credential.getAccountName());
+						final DownloadManager downloader = new DownloadManager(credential);
+						final boolean allWentOk = downloader.downloadPilotBlueprintsESI();
+
+						if (allWentOk) {
+							// Update the timer for this download at the database.
+							final Instant validUntil = Instant.now()
+									.plus(GlobalDataManager.getCacheTime4Type(GlobalDataManager.ECacheTimes.CHARACTER_BLUEPRINTS));
+							final TimeStamp ts = new TimeStamp(transferredCurrentrequestReference, validUntil)
+									.setCredentialId(credential.getAccountId())
+									.store();
+						}
 					});
 			UpdateJobManager.submit(newJob);
 			return;

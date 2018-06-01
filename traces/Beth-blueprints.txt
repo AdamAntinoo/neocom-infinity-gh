@@ -1,0 +1,5562 @@
+[
+  {
+    "item_id": 1005458604009,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 20,
+    "type_id": 31741
+  },
+  {
+    "item_id": 1005458706867,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 20,
+    "type_id": 31118
+  },
+  {
+    "item_id": 1005458732399,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 20,
+    "type_id": 31395
+  },
+  {
+    "item_id": 1007955093774,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 20,
+    "type_id": 31717
+  },
+  {
+    "item_id": 1007955096389,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 20,
+    "type_id": 31359
+  },
+  {
+    "item_id": 1008026537689,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 169,
+    "time_efficiency": 0,
+    "type_id": 2332
+  },
+  {
+    "item_id": 1008088504177,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 18,
+    "type_id": 31154
+  },
+  {
+    "item_id": 1008144844465,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 18,
+    "type_id": 31178
+  },
+  {
+    "item_id": 1008144850038,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 18,
+    "type_id": 31106
+  },
+  {
+    "item_id": 1008656218147,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 16,
+    "type_id": 31801
+  },
+  {
+    "item_id": 1008867024193,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 0,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1096
+  },
+  {
+    "item_id": 1008867024217,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1096
+  },
+  {
+    "item_id": 1008867024218,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1096
+  },
+  {
+    "item_id": 1008867024226,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1096
+  },
+  {
+    "item_id": 1008867024228,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1096
+  },
+  {
+    "item_id": 1008884857672,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1096
+  },
+  {
+    "item_id": 1008884857674,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1096
+  },
+  {
+    "item_id": 1008884857675,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1096
+  },
+  {
+    "item_id": 1009212982081,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 290,
+    "time_efficiency": 18,
+    "type_id": 824
+  },
+  {
+    "item_id": 1009212982085,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 18,
+    "type_id": 824
+  },
+  {
+    "item_id": 1009214402302,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 0,
+    "type_id": 31683
+  },
+  {
+    "item_id": 1009357548044,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 270,
+    "time_efficiency": 0,
+    "type_id": 11302
+  },
+  {
+    "item_id": 1009357548045,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11302
+  },
+  {
+    "item_id": 1009357548047,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11302
+  },
+  {
+    "item_id": 1009423739098,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 1500,
+    "time_efficiency": 18,
+    "type_id": 894
+  },
+  {
+    "item_id": 1009483062294,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 24349
+  },
+  {
+    "item_id": 1009483062336,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 200,
+    "time_efficiency": 0,
+    "type_id": 24349
+  },
+  {
+    "item_id": 1009483062351,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 24349
+  },
+  {
+    "item_id": 1009483062357,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 24349
+  },
+  {
+    "item_id": 1009546716692,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 8,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 16,
+    "type_id": 31659
+  },
+  {
+    "item_id": 1009624924639,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1305
+  },
+  {
+    "item_id": 1009624924643,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1305
+  },
+  {
+    "item_id": 1009780033706,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 18,
+    "type_id": 31743
+  },
+  {
+    "item_id": 1009868835349,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 10,
+    "time_efficiency": 20,
+    "type_id": 32871
+  },
+  {
+    "item_id": 1009933398049,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 0,
+    "type_id": 18067
+  },
+  {
+    "item_id": 1009933398050,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 0,
+    "type_id": 18067
+  },
+  {
+    "item_id": 1009933398051,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 0,
+    "type_id": 18067
+  },
+  {
+    "item_id": 1009933398052,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 60,
+    "time_efficiency": 0,
+    "type_id": 18067
+  },
+  {
+    "item_id": 1009933398055,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 0,
+    "type_id": 18067
+  },
+  {
+    "item_id": 1009933398056,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 0,
+    "type_id": 18067
+  },
+  {
+    "item_id": 1010220962027,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 0,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 0,
+    "type_id": 18061
+  },
+  {
+    "item_id": 1010220962028,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 0,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 0,
+    "type_id": 18061
+  },
+  {
+    "item_id": 1010221050043,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 98,
+    "time_efficiency": 0,
+    "type_id": 18057
+  },
+  {
+    "item_id": 1010221050045,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 77,
+    "time_efficiency": 0,
+    "type_id": 18057
+  },
+  {
+    "item_id": 1010224088302,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 0,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 0,
+    "type_id": 18057
+  },
+  {
+    "item_id": 1010224088331,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 0,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 0,
+    "type_id": 18059
+  },
+  {
+    "item_id": 1010281219755,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11302
+  },
+  {
+    "item_id": 1010293429592,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 18,
+    "type_id": 31731
+  },
+  {
+    "item_id": 1010297320655,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 16,
+    "type_id": 31719
+  },
+  {
+    "item_id": 1010306934333,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 0,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 0,
+    "type_id": 18067
+  },
+  {
+    "item_id": 1010306934350,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 0,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 0,
+    "type_id": 18067
+  },
+  {
+    "item_id": 1010331173264,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 1150,
+    "time_efficiency": 0,
+    "type_id": 902
+  },
+  {
+    "item_id": 1010337671318,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 1450,
+    "time_efficiency": 0,
+    "type_id": 899
+  },
+  {
+    "item_id": 1010397482768,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 828
+  },
+  {
+    "item_id": 1010709562710,
+    "location_flag": "Hangar",
+    "location_id": 1020832910242,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 10,
+    "type_id": 13000
+  },
+  {
+    "item_id": 1010718192552,
+    "location_flag": "Hangar",
+    "location_id": 1023188203364,
+    "material_efficiency": 0,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11613
+  },
+  {
+    "item_id": 1010718192554,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 0,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11613
+  },
+  {
+    "item_id": 1010718192555,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 0,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11613
+  },
+  {
+    "item_id": 1010718192557,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 0,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11613
+  },
+  {
+    "item_id": 1010718192560,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 0,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11613
+  },
+  {
+    "item_id": 1010755831856,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 824
+  },
+  {
+    "item_id": 1010755831857,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 824
+  },
+  {
+    "item_id": 1010755831858,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 824
+  },
+  {
+    "item_id": 1010755831859,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 824
+  },
+  {
+    "item_id": 1010755831860,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 824
+  },
+  {
+    "item_id": 1010755831861,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 824
+  },
+  {
+    "item_id": 1010755831862,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 824
+  },
+  {
+    "item_id": 1010755831863,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 824
+  },
+  {
+    "item_id": 1010755831864,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 824
+  },
+  {
+    "item_id": 1010755831866,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 250,
+    "time_efficiency": 20,
+    "type_id": 824
+  },
+  {
+    "item_id": 1010755831867,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 824
+  },
+  {
+    "item_id": 1010755831869,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 824
+  },
+  {
+    "item_id": 1010755831870,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 824
+  },
+  {
+    "item_id": 1010755831871,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 824
+  },
+  {
+    "item_id": 1010755831872,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 824
+  },
+  {
+    "item_id": 1010755831873,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 824
+  },
+  {
+    "item_id": 1010755831874,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 824
+  },
+  {
+    "item_id": 1010755831875,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 824
+  },
+  {
+    "item_id": 1010783196795,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 280,
+    "time_efficiency": 0,
+    "type_id": 11616
+  },
+  {
+    "item_id": 1010783196797,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11616
+  },
+  {
+    "item_id": 1010783196798,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 191,
+    "time_efficiency": 0,
+    "type_id": 11616
+  },
+  {
+    "item_id": 1010783196800,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11616
+  },
+  {
+    "item_id": 1010783196802,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11616
+  },
+  {
+    "item_id": 1010783196809,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11616
+  },
+  {
+    "item_id": 1010783196812,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11616
+  },
+  {
+    "item_id": 1010783196813,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11616
+  },
+  {
+    "item_id": 1010783196817,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11616
+  },
+  {
+    "item_id": 1010783196818,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11616
+  },
+  {
+    "item_id": 1010783196820,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11616
+  },
+  {
+    "item_id": 1010783196843,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 0,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11613
+  },
+  {
+    "item_id": 1010783196845,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 0,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11613
+  },
+  {
+    "item_id": 1010783196846,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 0,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11613
+  },
+  {
+    "item_id": 1011703411725,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1196
+  },
+  {
+    "item_id": 1011703411729,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1196
+  },
+  {
+    "item_id": 1011772708097,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1196
+  },
+  {
+    "item_id": 1011772708298,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 18,
+    "type_id": 22543
+  },
+  {
+    "item_id": 1011772708306,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 279,
+    "time_efficiency": 18,
+    "type_id": 22543
+  },
+  {
+    "item_id": 1011772708313,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 18,
+    "type_id": 22543
+  },
+  {
+    "item_id": 1011772708314,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 280,
+    "time_efficiency": 18,
+    "type_id": 22543
+  },
+  {
+    "item_id": 1011772708315,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 18,
+    "type_id": 22543
+  },
+  {
+    "item_id": 1011792961782,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 16,
+    "type_id": 31156
+  },
+  {
+    "item_id": 1011792967773,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 16,
+    "type_id": 31056
+  },
+  {
+    "item_id": 1011792973891,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 18,
+    "type_id": 31803
+  },
+  {
+    "item_id": 1011792976290,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 16,
+    "type_id": 31120
+  },
+  {
+    "item_id": 1011792978875,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 18,
+    "type_id": 31361
+  },
+  {
+    "item_id": 1011816287962,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1129
+  },
+  {
+    "item_id": 1011816287963,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1129
+  },
+  {
+    "item_id": 1011816287967,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1129
+  },
+  {
+    "item_id": 1011816287968,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1129
+  },
+  {
+    "item_id": 1011816287975,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1129
+  },
+  {
+    "item_id": 1011846209820,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 18,
+    "type_id": 22543
+  },
+  {
+    "item_id": 1011846209829,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 18,
+    "type_id": 22543
+  },
+  {
+    "item_id": 1011846209832,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 294,
+    "time_efficiency": 18,
+    "type_id": 22543
+  },
+  {
+    "item_id": 1011960907059,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 200,
+    "time_efficiency": 0,
+    "type_id": 2290
+  },
+  {
+    "item_id": 1011960907135,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 11873
+  },
+  {
+    "item_id": 1011988177019,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1245
+  },
+  {
+    "item_id": 1011988177022,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 245,
+    "time_efficiency": 0,
+    "type_id": 1245
+  },
+  {
+    "item_id": 1011988177031,
+    "location_flag": "Hangar",
+    "location_id": 1023188203364,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1245
+  },
+  {
+    "item_id": 1011994884316,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 18063
+  },
+  {
+    "item_id": 1012006529233,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 18059
+  },
+  {
+    "item_id": 1012006529281,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 18059
+  },
+  {
+    "item_id": 1012029708165,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 196,
+    "time_efficiency": 18,
+    "type_id": 1318
+  },
+  {
+    "item_id": 1012032011784,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 16,
+    "type_id": 31074
+  },
+  {
+    "item_id": 1012032017248,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 20,
+    "type_id": 31373
+  },
+  {
+    "item_id": 1012063030077,
+    "location_flag": "Hangar",
+    "location_id": 1023188203364,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1404
+  },
+  {
+    "item_id": 1012063030079,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 230,
+    "time_efficiency": 0,
+    "type_id": 1404
+  },
+  {
+    "item_id": 1012063030080,
+    "location_flag": "Hangar",
+    "location_id": 1023188203364,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1404
+  },
+  {
+    "item_id": 1012063030083,
+    "location_flag": "Hangar",
+    "location_id": 1023188203364,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1404
+  },
+  {
+    "item_id": 1012082100567,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 274,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012082100568,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 254,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012082100572,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012082100573,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012082100574,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012082100575,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012082100576,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012082100580,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012082100588,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012082100589,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 250,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012111048645,
+    "location_flag": "Hangar",
+    "location_id": 1023188203364,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1404
+  },
+  {
+    "item_id": 1012111048648,
+    "location_flag": "Hangar",
+    "location_id": 1023188203364,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1404
+  },
+  {
+    "item_id": 1012139393205,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 293,
+    "time_efficiency": 18,
+    "type_id": 2332
+  },
+  {
+    "item_id": 1012139393207,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 18,
+    "type_id": 2332
+  },
+  {
+    "item_id": 1012139393209,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 18,
+    "type_id": 2332
+  },
+  {
+    "item_id": 1012139393221,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 18,
+    "type_id": 2332
+  },
+  {
+    "item_id": 1012139393222,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 18,
+    "type_id": 2332
+  },
+  {
+    "item_id": 1012139393223,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 18,
+    "type_id": 2332
+  },
+  {
+    "item_id": 1012142143532,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11278
+  },
+  {
+    "item_id": 1012142143543,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11278
+  },
+  {
+    "item_id": 1012142143567,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11278
+  },
+  {
+    "item_id": 1012142143574,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11278
+  },
+  {
+    "item_id": 1012142143578,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11278
+  },
+  {
+    "item_id": 1012208988102,
+    "location_flag": "Hangar",
+    "location_id": 1023188203364,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1404
+  },
+  {
+    "item_id": 1012208988103,
+    "location_flag": "Hangar",
+    "location_id": 1023188203364,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1404
+  },
+  {
+    "item_id": 1012225304523,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012225304525,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012225304526,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012225304527,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012225304528,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012225304529,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012225304530,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012225304532,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012225304533,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012225304534,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012225304535,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 296,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012225304536,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012225304538,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012225304539,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012225304540,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012225304541,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012225304542,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012225304543,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012225304544,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 295,
+    "time_efficiency": 0,
+    "type_id": 2296
+  },
+  {
+    "item_id": 1012283194830,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2294
+  },
+  {
+    "item_id": 1012283194831,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2294
+  },
+  {
+    "item_id": 1012283194832,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2294
+  },
+  {
+    "item_id": 1012283194833,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2294
+  },
+  {
+    "item_id": 1012283194834,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2294
+  },
+  {
+    "item_id": 1012283194835,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2294
+  },
+  {
+    "item_id": 1012283194876,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012283194907,
+    "location_flag": "Hangar",
+    "location_id": 1023188203364,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 18,
+    "type_id": 2604
+  },
+  {
+    "item_id": 1012283194908,
+    "location_flag": "Hangar",
+    "location_id": 1023188203364,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 18,
+    "type_id": 2604
+  },
+  {
+    "item_id": 1012283194909,
+    "location_flag": "Hangar",
+    "location_id": 1023188203364,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 18,
+    "type_id": 2604
+  },
+  {
+    "item_id": 1012283194910,
+    "location_flag": "Hangar",
+    "location_id": 1023188203364,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 18,
+    "type_id": 2604
+  },
+  {
+    "item_id": 1012283194911,
+    "location_flag": "Hangar",
+    "location_id": 1023188203364,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 18,
+    "type_id": 2604
+  },
+  {
+    "item_id": 1012283194913,
+    "location_flag": "Hangar",
+    "location_id": 1023188203364,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 299,
+    "time_efficiency": 18,
+    "type_id": 2604
+  },
+  {
+    "item_id": 1012283194914,
+    "location_flag": "Hangar",
+    "location_id": 1023188203364,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 18,
+    "type_id": 2604
+  },
+  {
+    "item_id": 1012283194916,
+    "location_flag": "Hangar",
+    "location_id": 1023188203364,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 18,
+    "type_id": 2604
+  },
+  {
+    "item_id": 1012294189738,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012294189741,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012451147682,
+    "location_flag": "Hangar",
+    "location_id": 1023188203364,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 18,
+    "type_id": 2604
+  },
+  {
+    "item_id": 1012451147916,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 18063
+  },
+  {
+    "item_id": 1012451147918,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 18063
+  },
+  {
+    "item_id": 1012451147929,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 18063
+  },
+  {
+    "item_id": 1012451147931,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 18063
+  },
+  {
+    "item_id": 1012451189090,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 263,
+    "time_efficiency": 20,
+    "type_id": 828
+  },
+  {
+    "item_id": 1012512986389,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1404
+  },
+  {
+    "item_id": 1012512986390,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1404
+  },
+  {
+    "item_id": 1012512986391,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1404
+  },
+  {
+    "item_id": 1012512986485,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 278,
+    "time_efficiency": 18,
+    "type_id": 2604
+  },
+  {
+    "item_id": 1012512986487,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 18,
+    "type_id": 2604
+  },
+  {
+    "item_id": 1012512986488,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 18,
+    "type_id": 2604
+  },
+  {
+    "item_id": 1012512986497,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 2294
+  },
+  {
+    "item_id": 1012512986498,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 2294
+  },
+  {
+    "item_id": 1012512986500,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 2294
+  },
+  {
+    "item_id": 1012512986502,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 2294
+  },
+  {
+    "item_id": 1012512986504,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 2294
+  },
+  {
+    "item_id": 1012512986505,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 2294
+  },
+  {
+    "item_id": 1012512986525,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 2294
+  },
+  {
+    "item_id": 1012524445254,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 828
+  },
+  {
+    "item_id": 1012524445293,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 828
+  },
+  {
+    "item_id": 1012524445294,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 828
+  },
+  {
+    "item_id": 1012524445302,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 828
+  },
+  {
+    "item_id": 1012524445303,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 296,
+    "time_efficiency": 20,
+    "type_id": 828
+  },
+  {
+    "item_id": 1012524445304,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 828
+  },
+  {
+    "item_id": 1012524445305,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 828
+  },
+  {
+    "item_id": 1012524445306,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 828
+  },
+  {
+    "item_id": 1012524445307,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 828
+  },
+  {
+    "item_id": 1012524445350,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012524445353,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012524445354,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012524445355,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012524447948,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 299,
+    "time_efficiency": 0,
+    "type_id": 9945
+  },
+  {
+    "item_id": 1012524447955,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 9945
+  },
+  {
+    "item_id": 1012524447956,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 9945
+  },
+  {
+    "item_id": 1012524448124,
+    "location_flag": "Hangar",
+    "location_id": 1023188203364,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1245
+  },
+  {
+    "item_id": 1012524448126,
+    "location_flag": "Hangar",
+    "location_id": 1023188203364,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1245
+  },
+  {
+    "item_id": 1012524448127,
+    "location_flag": "Hangar",
+    "location_id": 1023188203364,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1245
+  },
+  {
+    "item_id": 1012524448129,
+    "location_flag": "Hangar",
+    "location_id": 1023188203364,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1245
+  },
+  {
+    "item_id": 1012524448130,
+    "location_flag": "Hangar",
+    "location_id": 1023188203364,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1245
+  },
+  {
+    "item_id": 1012565456068,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2290
+  },
+  {
+    "item_id": 1012565456073,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2290
+  },
+  {
+    "item_id": 1012565456076,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2290
+  },
+  {
+    "item_id": 1012565456082,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2290
+  },
+  {
+    "item_id": 1012565456085,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2290
+  },
+  {
+    "item_id": 1012565456086,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2290
+  },
+  {
+    "item_id": 1012565456087,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2290
+  },
+  {
+    "item_id": 1012565456089,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2290
+  },
+  {
+    "item_id": 1012565456090,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2290
+  },
+  {
+    "item_id": 1012565456118,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012565456120,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012565456126,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012565456128,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012565456130,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012565456133,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012565456135,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012565456137,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012565456138,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012565456139,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012565456142,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012565456147,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012565456148,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012565456154,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012565456156,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012569515681,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 280,
+    "time_efficiency": 20,
+    "type_id": 828
+  },
+  {
+    "item_id": 1012569516671,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012569516672,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012569516673,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012569516674,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012569516676,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012569516678,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012569516679,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012569516680,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012569516681,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012569516682,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012569516684,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012569516687,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012569516689,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012569516690,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012569516691,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012569516693,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012569516694,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012579169651,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 16,
+    "type_id": 25949
+  },
+  {
+    "item_id": 1012579567975,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 16,
+    "type_id": 31180
+  },
+  {
+    "item_id": 1012598006312,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 16,
+    "type_id": 31108
+  },
+  {
+    "item_id": 1012620512207,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 20,
+    "type_id": 31791
+  },
+  {
+    "item_id": 1012627069341,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 12275
+  },
+  {
+    "item_id": 1012627069342,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 12275
+  },
+  {
+    "item_id": 1012627069343,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 12275
+  },
+  {
+    "item_id": 1012627069369,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 828
+  },
+  {
+    "item_id": 1012627069380,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 828
+  },
+  {
+    "item_id": 1012627069383,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 828
+  },
+  {
+    "item_id": 1012627069385,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 828
+  },
+  {
+    "item_id": 1012627069387,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 828
+  },
+  {
+    "item_id": 1012629890740,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012629890742,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012629890745,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012629890746,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012629890747,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012629890749,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012629890750,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012629890752,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012629890756,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012629890757,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012629890762,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012629890823,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2290
+  },
+  {
+    "item_id": 1012629890824,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2290
+  },
+  {
+    "item_id": 1012629890827,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2290
+  },
+  {
+    "item_id": 1012629890829,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2290
+  },
+  {
+    "item_id": 1012629890833,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2290
+  },
+  {
+    "item_id": 1012629890834,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2290
+  },
+  {
+    "item_id": 1012629890841,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2290
+  },
+  {
+    "item_id": 1012629890843,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 287,
+    "time_efficiency": 0,
+    "type_id": 2290
+  },
+  {
+    "item_id": 1012629890850,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 2290
+  },
+  {
+    "item_id": 1012673323789,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 3840
+  },
+  {
+    "item_id": 1012673323807,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 3840
+  },
+  {
+    "item_id": 1012673323861,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012673323865,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012673323871,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012673323876,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012673323878,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012673323881,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012673323882,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012673323884,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012694074105,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012694074107,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012694074108,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 290,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012694074111,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012694074112,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012694074114,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012694074115,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012694074117,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012694074119,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012694074121,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012694074122,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012694074124,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012694074126,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012694074127,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012694074129,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012694074131,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012694074132,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012694074133,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012694074135,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012694074136,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1012705384861,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 12275
+  },
+  {
+    "item_id": 1012705384869,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 12275
+  },
+  {
+    "item_id": 1015033991543,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 297,
+    "time_efficiency": 20,
+    "type_id": 11889
+  },
+  {
+    "item_id": 1015033991569,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 251,
+    "time_efficiency": 18,
+    "type_id": 2332
+  },
+  {
+    "item_id": 1015033991573,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 18,
+    "type_id": 2332
+  },
+  {
+    "item_id": 1015046061416,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015046061420,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015046061423,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015046061425,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015046061428,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015046061430,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015046061432,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015046061435,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015046061438,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015046061441,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015046061442,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015046061444,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015046061445,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015046061448,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015046061451,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015046061454,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015046061455,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015046061456,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015046061457,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015046061460,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015046088212,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1245
+  },
+  {
+    "item_id": 1015046088213,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1245
+  },
+  {
+    "item_id": 1015046088214,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1245
+  },
+  {
+    "item_id": 1015093621983,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015093621985,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015093621986,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015093621987,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015093621988,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015093621989,
+    "location_flag": "Hangar",
+    "location_id": 60003760,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015093621991,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015093621992,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015093621993,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015093621995,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015093621998,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015093621999,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015093622000,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015093622002,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015093622005,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015093622006,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015093622007,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015138723490,
+    "location_flag": "Hangar",
+    "location_id": 1023188203364,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 1245
+  },
+  {
+    "item_id": 1015138739063,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015138739064,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015138739065,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015138739070,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015138739071,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015138739072,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015138739073,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015138739074,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015138739075,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015138739076,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015138739077,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015138739078,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015138739079,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015138887722,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015138887726,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 295,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015138887742,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1015217358315,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 24349
+  },
+  {
+    "item_id": 1015217358316,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 24349
+  },
+  {
+    "item_id": 1015217358329,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 24349
+  },
+  {
+    "item_id": 1015217358333,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 24349
+  },
+  {
+    "item_id": 1015217358335,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 24349
+  },
+  {
+    "item_id": 1015217358337,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 24349
+  },
+  {
+    "item_id": 1015217358339,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 24349
+  },
+  {
+    "item_id": 1015217358342,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 24349
+  },
+  {
+    "item_id": 1015217358344,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 24349
+  },
+  {
+    "item_id": 1015217358346,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 24349
+  },
+  {
+    "item_id": 1015217369351,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 18,
+    "type_id": 2604
+  },
+  {
+    "item_id": 1015217369352,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 18,
+    "type_id": 2604
+  },
+  {
+    "item_id": 1015238871691,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11887
+  },
+  {
+    "item_id": 1015238871699,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11887
+  },
+  {
+    "item_id": 1015238871719,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 297,
+    "time_efficiency": 20,
+    "type_id": 11889
+  },
+  {
+    "item_id": 1015238871724,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11891
+  },
+  {
+    "item_id": 1015238871725,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 11891
+  },
+  {
+    "item_id": 1015600870077,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 200,
+    "time_efficiency": 0,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1015600870078,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 290,
+    "time_efficiency": 0,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1015600870081,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1015600870082,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1015600870083,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1015600870084,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1015600870085,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 287,
+    "time_efficiency": 0,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1015600870089,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 296,
+    "time_efficiency": 0,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1015600870090,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1015600870091,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1015600871742,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 3840
+  },
+  {
+    "item_id": 1015600871744,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 3840
+  },
+  {
+    "item_id": 1015600871760,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 3840
+  },
+  {
+    "item_id": 1015600871761,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 3840
+  },
+  {
+    "item_id": 1015600871763,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 3840
+  },
+  {
+    "item_id": 1015600871765,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 297,
+    "time_efficiency": 0,
+    "type_id": 3840
+  },
+  {
+    "item_id": 1015600871766,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 0,
+    "type_id": 3840
+  },
+  {
+    "item_id": 1015750636583,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 300,
+    "time_efficiency": 20,
+    "type_id": 1137
+  },
+  {
+    "item_id": 1015871467993,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 94,
+    "time_efficiency": 20,
+    "type_id": 826
+  },
+  {
+    "item_id": 1015871468303,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3840
+  },
+  {
+    "item_id": 1015871468304,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3840
+  },
+  {
+    "item_id": 1015871468305,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3840
+  },
+  {
+    "item_id": 1015871468306,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3840
+  },
+  {
+    "item_id": 1015871468308,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3840
+  },
+  {
+    "item_id": 1015871468309,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3840
+  },
+  {
+    "item_id": 1015871468310,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3840
+  },
+  {
+    "item_id": 1015871468311,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3840
+  },
+  {
+    "item_id": 1015871468313,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3840
+  },
+  {
+    "item_id": 1015871468616,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 7,
+    "quantity": -2,
+    "runs": 200,
+    "time_efficiency": 0,
+    "type_id": 1354
+  },
+  {
+    "item_id": 1017172430988,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 0,
+    "quantity": -2,
+    "runs": 50,
+    "time_efficiency": 0,
+    "type_id": 32775
+  },
+  {
+    "item_id": 1017379860579,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 0,
+    "quantity": -2,
+    "runs": 50,
+    "time_efficiency": 0,
+    "type_id": 32775
+  },
+  {
+    "item_id": 1017503540585,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1017503540586,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1017503540587,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1017503540590,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1017503540592,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1017503540593,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1017503540594,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1017503540595,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1017503540596,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1017503540597,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1017503540598,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1017503540599,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1017503540600,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1017503541078,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1017503541079,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1017525503278,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1017525503528,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 11358
+  },
+  {
+    "item_id": 1017543649916,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 7,
+    "quantity": -2,
+    "runs": 200,
+    "time_efficiency": 0,
+    "type_id": 901
+  },
+  {
+    "item_id": 1017717937857,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 8,
+    "quantity": -2,
+    "runs": 3,
+    "time_efficiency": 0,
+    "type_id": 820
+  },
+  {
+    "item_id": 1017741739641,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 200,
+    "time_efficiency": 20,
+    "type_id": 11873
+  },
+  {
+    "item_id": 1017767979730,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 8,
+    "quantity": -2,
+    "runs": 50,
+    "time_efficiency": 0,
+    "type_id": 785
+  },
+  {
+    "item_id": 1017767979888,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 50,
+    "time_efficiency": 20,
+    "type_id": 2174
+  },
+  {
+    "item_id": 1017772668206,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 50,
+    "time_efficiency": 20,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1017772668207,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 36,
+    "time_efficiency": 20,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1017775873879,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 14,
+    "type_id": 1076
+  },
+  {
+    "item_id": 1017799330557,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1017799330558,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1017799330559,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3830
+  },
+  {
+    "item_id": 1017799330698,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3840
+  },
+  {
+    "item_id": 1017799330699,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 3840
+  },
+  {
+    "item_id": 1017802761899,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 8,
+    "quantity": -2,
+    "runs": 46,
+    "time_efficiency": 0,
+    "type_id": 785
+  },
+  {
+    "item_id": 1017852217917,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 10,
+    "time_efficiency": 16,
+    "type_id": 1334
+  },
+  {
+    "item_id": 1017864740582,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 2294
+  },
+  {
+    "item_id": 1017874334094,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 820
+  },
+  {
+    "item_id": 1017874334095,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 820
+  },
+  {
+    "item_id": 1017896186000,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 93,
+    "time_efficiency": 20,
+    "type_id": 820
+  },
+  {
+    "item_id": 1017896186002,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 820
+  },
+  {
+    "item_id": 1017896186003,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 820
+  },
+  {
+    "item_id": 1017910250472,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 828
+  },
+  {
+    "item_id": 1017933229740,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 820
+  },
+  {
+    "item_id": 1017933229755,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 50,
+    "time_efficiency": 20,
+    "type_id": 2184
+  },
+  {
+    "item_id": 1017933229756,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 50,
+    "time_efficiency": 20,
+    "type_id": 2184
+  },
+  {
+    "item_id": 1017933229762,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 1334
+  },
+  {
+    "item_id": 1017938864308,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 0,
+    "quantity": -2,
+    "runs": 50,
+    "time_efficiency": 0,
+    "type_id": 33916
+  },
+  {
+    "item_id": 1017954059119,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 1354
+  },
+  {
+    "item_id": 1017988878735,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 500,
+    "time_efficiency": 20,
+    "type_id": 1161
+  },
+  {
+    "item_id": 1017988879015,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 15511
+  },
+  {
+    "item_id": 1018020326236,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 200,
+    "time_efficiency": 0,
+    "type_id": 902
+  },
+  {
+    "item_id": 1018020326238,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 200,
+    "time_efficiency": 0,
+    "type_id": 902
+  },
+  {
+    "item_id": 1018065949648,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 200,
+    "time_efficiency": 20,
+    "type_id": 901
+  },
+  {
+    "item_id": 1018110303622,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 200,
+    "time_efficiency": 18,
+    "type_id": 902
+  },
+  {
+    "item_id": 1018110303623,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 200,
+    "time_efficiency": 18,
+    "type_id": 902
+  },
+  {
+    "item_id": 1018141775366,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 600,
+    "time_efficiency": 20,
+    "type_id": 1161
+  },
+  {
+    "item_id": 1018141775367,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 600,
+    "time_efficiency": 20,
+    "type_id": 1161
+  },
+  {
+    "item_id": 1018170717475,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 11284
+  },
+  {
+    "item_id": 1018170717476,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 11284
+  },
+  {
+    "item_id": 1018170717477,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 11284
+  },
+  {
+    "item_id": 1018170717481,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 200,
+    "time_efficiency": 18,
+    "type_id": 902
+  },
+  {
+    "item_id": 1018170717482,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 200,
+    "time_efficiency": 18,
+    "type_id": 902
+  },
+  {
+    "item_id": 1018170717483,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 200,
+    "time_efficiency": 18,
+    "type_id": 902
+  },
+  {
+    "item_id": 1018170717484,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 200,
+    "time_efficiency": 18,
+    "type_id": 902
+  },
+  {
+    "item_id": 1018170717485,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 200,
+    "time_efficiency": 18,
+    "type_id": 902
+  },
+  {
+    "item_id": 1018170717486,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 200,
+    "time_efficiency": 18,
+    "type_id": 902
+  },
+  {
+    "item_id": 1018308101020,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 14,
+    "time_efficiency": 20,
+    "type_id": 32858
+  },
+  {
+    "item_id": 1018308101021,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 20,
+    "time_efficiency": 20,
+    "type_id": 32858
+  },
+  {
+    "item_id": 1018309522424,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 200,
+    "time_efficiency": 20,
+    "type_id": 820
+  },
+  {
+    "item_id": 1018309522425,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 200,
+    "time_efficiency": 20,
+    "type_id": 820
+  },
+  {
+    "item_id": 1018516590569,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 200,
+    "time_efficiency": 20,
+    "type_id": 901
+  },
+  {
+    "item_id": 1018516590570,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 200,
+    "time_efficiency": 20,
+    "type_id": 901
+  },
+  {
+    "item_id": 1018516590571,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 200,
+    "time_efficiency": 20,
+    "type_id": 901
+  },
+  {
+    "item_id": 1018516590572,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 200,
+    "time_efficiency": 20,
+    "type_id": 901
+  },
+  {
+    "item_id": 1018516590573,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 200,
+    "time_efficiency": 20,
+    "type_id": 901
+  },
+  {
+    "item_id": 1018575704466,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 0,
+    "quantity": -2,
+    "runs": 1,
+    "time_efficiency": 0,
+    "type_id": 32775
+  },
+  {
+    "item_id": 1018582815679,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 200,
+    "time_efficiency": 20,
+    "type_id": 11870
+  },
+  {
+    "item_id": 1018582815680,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 200,
+    "time_efficiency": 20,
+    "type_id": 11870
+  },
+  {
+    "item_id": 1018677744735,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 20,
+    "time_efficiency": 0,
+    "type_id": 32863
+  },
+  {
+    "item_id": 1018677744736,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 20,
+    "time_efficiency": 0,
+    "type_id": 32863
+  },
+  {
+    "item_id": 1018677744737,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 20,
+    "time_efficiency": 0,
+    "type_id": 32863
+  },
+  {
+    "item_id": 1018762991162,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 20,
+    "time_efficiency": 0,
+    "type_id": 32863
+  },
+  {
+    "item_id": 1018762991163,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 20,
+    "time_efficiency": 0,
+    "type_id": 32863
+  },
+  {
+    "item_id": 1018762991164,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 20,
+    "time_efficiency": 0,
+    "type_id": 32863
+  },
+  {
+    "item_id": 1018762991165,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 20,
+    "time_efficiency": 0,
+    "type_id": 32863
+  },
+  {
+    "item_id": 1018762991166,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 20,
+    "time_efficiency": 0,
+    "type_id": 32863
+  },
+  {
+    "item_id": 1018762991167,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 20,
+    "time_efficiency": 0,
+    "type_id": 32863
+  },
+  {
+    "item_id": 1018762991168,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 20,
+    "time_efficiency": 0,
+    "type_id": 32863
+  },
+  {
+    "item_id": 1018762991169,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 20,
+    "time_efficiency": 0,
+    "type_id": 32863
+  },
+  {
+    "item_id": 1018784203335,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 12,
+    "type_id": 25737
+  },
+  {
+    "item_id": 1018784205401,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 12,
+    "type_id": 25895
+  },
+  {
+    "item_id": 1018784207596,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 12,
+    "type_id": 26089
+  },
+  {
+    "item_id": 1018805222373,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 1334
+  },
+  {
+    "item_id": 1018805222375,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 1334
+  },
+  {
+    "item_id": 1018815014245,
+    "location_flag": "Hangar",
+    "location_id": 1018923871659,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 1129
+  },
+  {
+    "item_id": 1018815014246,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 1129
+  },
+  {
+    "item_id": 1018815014248,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 1129
+  },
+  {
+    "item_id": 1018822788393,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 0,
+    "type_id": 899
+  },
+  {
+    "item_id": 1018822788394,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 0,
+    "type_id": 899
+  },
+  {
+    "item_id": 1018822788395,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 0,
+    "type_id": 899
+  },
+  {
+    "item_id": 1018822788396,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 0,
+    "type_id": 899
+  },
+  {
+    "item_id": 1018837647864,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 10,
+    "time_efficiency": 16,
+    "type_id": 4394
+  },
+  {
+    "item_id": 1018837647865,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 10,
+    "time_efficiency": 16,
+    "type_id": 4394
+  },
+  {
+    "item_id": 1018837647866,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 10,
+    "time_efficiency": 16,
+    "type_id": 4394
+  },
+  {
+    "item_id": 1018848310757,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 10,
+    "time_efficiency": 20,
+    "type_id": 4394
+  },
+  {
+    "item_id": 1018850271621,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 30,
+    "time_efficiency": 20,
+    "type_id": 4394
+  },
+  {
+    "item_id": 1018854055340,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 16,
+    "type_id": 4394
+  },
+  {
+    "item_id": 1018854055341,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 16,
+    "type_id": 4394
+  },
+  {
+    "item_id": 1019224057328,
+    "location_flag": "Hangar",
+    "location_id": 1019012096347,
+    "material_efficiency": 10,
+    "quantity": -2,
+    "runs": 100,
+    "time_efficiency": 20,
+    "type_id": 11859
+  },
+  {
+    "item_id": 1019495205956,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 16,
+    "type_id": 31000
+  },
+  {
+    "item_id": 1019495209233,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 16,
+    "type_id": 31012
+  },
+  {
+    "item_id": 1019495210472,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 16,
+    "type_id": 31024
+  },
+  {
+    "item_id": 1019495211620,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 16,
+    "type_id": 31036
+  },
+  {
+    "item_id": 1022327065476,
+    "location_flag": "Hangar",
+    "location_id": 60006220,
+    "material_efficiency": 10,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 14,
+    "type_id": 31359
+  },
+  {
+    "item_id": 1023497880551,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 9,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 14,
+    "type_id": 31789
+  },
+  {
+    "item_id": 1023784296639,
+    "location_flag": "Hangar",
+    "location_id": 1019312782218,
+    "material_efficiency": 9,
+    "quantity": -1,
+    "runs": -1,
+    "time_efficiency": 16,
+    "type_id": 31789
+  }
+]

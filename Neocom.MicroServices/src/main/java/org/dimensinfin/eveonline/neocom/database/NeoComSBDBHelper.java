@@ -8,7 +8,6 @@
 //               the source for the specific functionalities for the backend services.
 package org.dimensinfin.eveonline.neocom.database;
 
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -43,13 +42,13 @@ import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
 import org.dimensinfin.eveonline.neocom.enums.EPropertyTypes;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
 import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
+import org.dimensinfin.eveonline.neocom.model.NeoComBlueprint;
 
 /**
  * NeoCom private database connector that will have the same api as the connector to be used on Android. This
  * version already uses the mySql database JDBC implementation instead the SQLite copied from the Android
  * platform.
  * The class will encapsulate all dao and connection access.
- *
  * @author Adam Antinoo
  */
 
@@ -80,7 +79,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 	private Dao<NeoComAsset, String> assetDao = null;
 	private Dao<EveLocation, String> locationDao = null;
 	private Dao<Property, String> propertyDao = null;
-	//	private Dao<NeoComBlueprint, String> blueprintDao = null;
+	private Dao<NeoComBlueprint, String> blueprintDao = null;
 	private Dao<Job, String> jobDao = null;
 	private Dao<MarketOrder, String> marketOrderDao = null;
 	private Dao<FittingRequest, String> fittingRequestDao = null;
@@ -118,6 +117,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		this.databasePassword = password;
 		return this;
 	}
+
 	public NeoComSBDBHelper setDatabaseOptions( final String options ) {
 		this.databaseOptions = options;
 		return this;
@@ -228,6 +228,11 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 //		}
 		try {
 			TableUtils.createTableIfNotExists(databaseConnection, NeoComAsset.class);
+		} catch (SQLException sqle) {
+			logger.warn("SQL [NeoComSBDBHelper.onCreate]> SQL NeoComDatabase: {}", sqle.getMessage());
+		}
+		try {
+			TableUtils.createTableIfNotExists(databaseConnection, NeoComBlueprint.class);
 		} catch (SQLException sqle) {
 			logger.warn("SQL [NeoComSBDBHelper.onCreate]> SQL NeoComDatabase: {}", sqle.getMessage());
 		}
@@ -529,13 +534,13 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		return propertyDao;
 	}
 
-	//
-//	public Dao<NeoComBlueprint, String> getBlueprintDao() throws SQLException {
-//		if (null == blueprintDao) {
-//			blueprintDao = DaoManager.createDao(this.getConnectionSource(), NeoComBlueprint.class);
-//		}
-//		return blueprintDao;
-//	}
+	public Dao<NeoComBlueprint, String> getBlueprintDao() throws SQLException {
+		if (null == blueprintDao) {
+			blueprintDao = DaoManager.createDao(this.getConnectionSource(), NeoComBlueprint.class);
+		}
+		return blueprintDao;
+	}
+
 	public Dao<Job, String> getJobDao() throws SQLException {
 		if (null == jobDao) {
 			jobDao = DaoManager.createDao(this.getConnectionSource(), Job.class);
@@ -654,7 +659,6 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 	 * Open a new pooled JDBC datasource connection list and stores its reference for use of the whole set of
 	 * services. Being a pooled connection it can create as many connections as required to do requests in
 	 * parallel to the database instance. This only is effective for MySql databases.
-	 *
 	 * @return
 	 */
 	private boolean openNeoComDB() throws SQLException {
@@ -662,11 +666,11 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		if (!isOpen) if (null == connectionSource) {
 			// Open and configure the connection datasource for DAO queries.
 //			try {
-				final String localConnectionDescriptor = hostName + "/" + databaseName;
-				createConnectionSource();
-				logger.info("-- [NeoComSBDBHelper.openNeoComDB]> Opened database " + localConnectionDescriptor + " successfully with version "
-						+ databaseVersion + ".");
-				isOpen = true;
+			final String localConnectionDescriptor = hostName + "/" + databaseName;
+			createConnectionSource();
+			logger.info("-- [NeoComSBDBHelper.openNeoComDB]> Opened database " + localConnectionDescriptor + " successfully with version "
+					+ databaseVersion + ".");
+			isOpen = true;
 //			} catch (Exception sqle) {
 //				logger.error("E> [NeoComSBDBHelper.openNeoComDB]> " + sqle.getClass().getName() + ": " + sqle.getMessage());
 //			}
@@ -677,13 +681,12 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 
 	/**
 	 * Creates and configures the connection datasource to the database.
-	 *
 	 * @throws SQLException
 	 */
 	private void createConnectionSource() throws SQLException {
-		 String localConnectionDescriptor = hostName + "/" + databaseName + "?user=" + databaseUser
+		String localConnectionDescriptor = hostName + "/" + databaseName + "?user=" + databaseUser
 				+ "&password=" + databasePassword + databaseOptions;
-		if(this.databaseType.equalsIgnoreCase("postgres")){
+		if (this.databaseType.equalsIgnoreCase("postgres")) {
 			// Postgres means Heroku and then configuration for connection from environment
 			localConnectionDescriptor = System.getenv("JDBC_DATABASE_URL");
 		}

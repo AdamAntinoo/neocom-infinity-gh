@@ -93,6 +93,17 @@ task copyResources(type: Copy) {
     }
 }
 // Collect output JARs from project modules to staging libs
+task copyStagingModel(dependsOn: ':NeoCom.Model:javadocJar'){
+    doLast {
+        copy {
+            // Modules JAR files
+            println 'Copying NeoCom.Model library'
+            from project(':NeoCom.Model').file('build/libs')
+            into file('libs')
+        }
+    }
+    dependsOn installDist
+}
 task copyStaging {
     doLast {
         copy {
@@ -107,13 +118,7 @@ task copyStaging {
             from project(':NeoCom.DataManagement').file('build/libs')
             into file('libs')
         }
-        copy {
-            // Modules JAR files
-            println 'Copying NeoCom.Model library'
-            from project(':NeoCom.Model').file('build/libs')
-            into file('libs')
-        }
-        println 'Moving final libraries to staging'
+         println 'Moving final libraries to staging'
         copy {
             // Modules JAR files
             println 'Copying NeoCom.Model library'
@@ -121,17 +126,19 @@ task copyStaging {
             into file('Z://NC/libs')
         }
     }
+    dependsOn copyStagingModel
     dependsOn installDist
 }
 //copyStaging.dependsOn installDist
 //copyResources.dependsOn build
 // Gradlew start task to generate Heroku distribution
-task stage {
+task stage (dependsOn: ':NeoCom.Model:javadocJar'){
 //    println ':NeoCom.Microservices stage start'
 //    dependsOn copyResources
 //    dependsOn copyStaging
     dependsOn copyStaging
     doLast {
+//        project(':NeoCom.Model').ta
         copy {
             println 'Copy :NeoCom.MicroServices production src to staging'
             from file('src')
