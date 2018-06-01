@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication;
 import org.dimensinfin.eveonline.neocom.NeoComSession;
 import org.dimensinfin.eveonline.neocom.constant.ModelWideConstants;
-import org.dimensinfin.eveonline.neocom.core.NeocomRuntimeException;
+import org.dimensinfin.eveonline.neocom.core.NeoComRuntimeException;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.database.entity.FittingRequest;
 import org.dimensinfin.eveonline.neocom.database.entity.Property;
@@ -149,7 +149,7 @@ public class ManufactureResourcesController {
 
 				final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(jobList);
 				return contentsSerialized;
-			} else throw new NeocomRuntimeException("Not access.");
+			} else throw new NeoComRuntimeException("Not access.");
 		} catch (JsonProcessingException jspe) {
 			return new JsonExceptionInstance(jspe).toJson();
 		} catch (NeoComRegisteredException neore) {
@@ -224,7 +224,7 @@ public class ManufactureResourcesController {
 
 				final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(jobList);
 				return contentsSerialized;
-			} else throw new NeocomRuntimeException("Not access.");
+			} else throw new NeoComRuntimeException("Not access.");
 		} catch (JsonProcessingException jspe) {
 			return new JsonExceptionInstance(jspe).toJson();
 //		} catch (NeoComRegisteredException neore) {
@@ -319,7 +319,7 @@ public class ManufactureResourcesController {
 				final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(processor
 						.getStorageLocations().values());
 				return contentsSerialized;
-			} else throw new NeocomRuntimeException("Not access.");
+			} else throw new NeoComRuntimeException("Not access.");
 		} catch (JsonProcessingException jspe) {
 			return new JsonExceptionInstance(jspe).toJson();
 //		} catch (NeoComRegisteredException neore) {

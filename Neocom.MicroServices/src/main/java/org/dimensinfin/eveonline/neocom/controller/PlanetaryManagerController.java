@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication;
 import org.dimensinfin.eveonline.neocom.NeoComSession;
-import org.dimensinfin.eveonline.neocom.core.NeocomRuntimeException;
+import org.dimensinfin.eveonline.neocom.core.NeoComRuntimeException;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
@@ -110,7 +110,7 @@ public class PlanetaryManagerController {
 				processed = planetaryResources.size();
 				final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(planetaryResources);
 				return contentsSerialized;
-			} else throw new NeocomRuntimeException("Not access.");
+			} else throw new NeoComRuntimeException("Not access.");
 		} catch (JsonProcessingException jspe) {
 			return new JsonExceptionInstance(jspe).toJson();
 //		} catch (NeoComRegisteredException neore) {
@@ -222,7 +222,7 @@ public class PlanetaryManagerController {
 				final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(optimizedScenery
 						.getActions());
 				return contentsSerialized;
-			} else throw new NeocomRuntimeException("Not access.");
+			} else throw new NeoComRuntimeException("Not access.");
 		} catch (JsonProcessingException jspe) {
 			return new JsonExceptionInstance(jspe).toJson();
 //		} catch (NeoComRegisteredException neore) {

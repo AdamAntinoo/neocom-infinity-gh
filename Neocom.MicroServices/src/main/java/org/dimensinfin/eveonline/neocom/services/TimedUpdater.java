@@ -130,7 +130,7 @@ public class TimedUpdater {
 					if (null == ts) {
 						logger.info("-- [TimedUpdater.timeTick]> Generating job request for {}.", reference);
 						final TimeStamp newts = new TimeStamp(reference, Instant.now())
-								.setCredentialId(cred.getAccountId()).store();
+								.setCredentialId(cred.getAccountId());
 						doProcessJob(newts, cred);
 					} else {
 						// Check if time point has already happened.

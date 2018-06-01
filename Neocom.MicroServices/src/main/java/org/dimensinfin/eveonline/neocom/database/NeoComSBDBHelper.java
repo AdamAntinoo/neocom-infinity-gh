@@ -579,19 +579,19 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 						final DeleteBuilder<NeoComAsset, String> deleteBuilder = getAssetDao().deleteBuilder();
 						deleteBuilder.where().eq("ownerId", (pilotid * -1));
 						int count = deleteBuilder.delete();
-						logger.info("-- [NeoComSBDBHelper.clearInvalidAssets]> Invalid assets cleared for owner {}: {}", (pilotid * -1), count);
+						logger.info("-- [NeoComSBDBHelper.clearInvalidRecords]> Invalid assets cleared for owner {}: {}", (pilotid * -1), count);
 
-//						// Remove all blueprints that do not have a valid owner.
-//						final DeleteBuilder<NeoComBlueprint, String> deleteBuilderBlueprint = getBlueprintDao().deleteBuilder();
-//						deleteBuilderBlueprint.where().eq("ownerId", (pilotid * -1));
-//						count = deleteBuilderBlueprint.delete();
-//						logger.info("-- [NeoComSBDBHelper.clearInvalidAssets]> Invalid blueprints cleared for owner {}: {}", (pilotid * -1),
-//								count);
+						// Remove all blueprints that do not have a valid owner.
+						final DeleteBuilder<NeoComBlueprint, String> deleteBuilderBlueprint = getBlueprintDao().deleteBuilder();
+						deleteBuilderBlueprint.where().eq("ownerId", (pilotid * -1));
+						count = deleteBuilderBlueprint.delete();
+						logger.info("-- [NeoComSBDBHelper.clearInvalidRecords]> Invalid blueprints cleared for owner {}: {}", (pilotid * -1),
+								count);
 						return null;
 					}
 				});
 			} catch (final SQLException ex) {
-				logger.warn("W> [NeoComSBDBHelper.clearInvalidAssets]> Problem clearing invalid records. " + ex.getMessage());
+				logger.warn("W> [NeoComSBDBHelper.clearInvalidRecords]> Problem clearing invalid records. " + ex.getMessage());
 			} finally {
 				logger.info("<< [NeoComSBDBHelper.clearInvalidRecords]");
 			}
@@ -604,7 +604,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 	 * processing of data by the application.
 	 */
 	public synchronized void replaceAssets( final long pilotid ) {
-		logger.info(">> [NeoComSBDBHelper.clearInvalidRecords]> pilotid", pilotid);
+		logger.info(">> [NeoComSBDBHelper.clearInvalidRecords]> pilotid: {}", pilotid);
 		synchronized (connectionSource) {
 			try {
 				TransactionManager.callInTransaction(connectionSource, new Callable<Void>() {
@@ -633,26 +633,26 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 	}
 
 	public synchronized void replaceBlueprints( final long pilotid ) {
-		logger.info(">> [NeoComSBDBHelper.replaceBlueprints]> pilotid", pilotid);
-//		synchronized (connectionSource) {
-//			try {
-//				TransactionManager.callInTransaction(connectionSource, new Callable<Void>() {
-//					public Void call() throws Exception {
-//						// Remove all assets that do not have a valid owner.
-//						final UpdateBuilder<NeoComBlueprint, String> updateBuilder = getBlueprintDao().updateBuilder();
-//						updateBuilder.updateColumnValue( "ownerId", pilotid)
-//								.where().eq("ownerId", (pilotid * -1));
-//						int count = updateBuilder.update();
-//						logger.info("-- [NeoComSBDBHelper.replaceBlueprints]> Replace owner {} for assets: {}", pilotid, count);
-//						return null;
-//					}
-//				});
-//			} catch (final SQLException ex) {
-//				logger.warn("W> [NeoComSBDBHelper.replaceBlueprints]> Problem replacing records. " + ex.getMessage());
-//			} finally {
-//				logger.info("<< [NeoComSBDBHelper.replaceBlueprints]");
-//			}
-//		}
+		logger.info(">> [NeoComSBDBHelper.replaceBlueprints]> pilotid: {}", pilotid);
+		synchronized (connectionSource) {
+			try {
+				TransactionManager.callInTransaction(connectionSource, new Callable<Void>() {
+					public Void call() throws Exception {
+						// Remove all assets that do not have a valid owner.
+						final UpdateBuilder<NeoComBlueprint, String> updateBuilder = getBlueprintDao().updateBuilder();
+						updateBuilder.updateColumnValue( "ownerId", pilotid)
+								.where().eq("ownerId", (pilotid * -1));
+						int count = updateBuilder.update();
+						logger.info("-- [NeoComSBDBHelper.replaceBlueprints]> Replace owner {} for blueprints: {}", pilotid, count);
+						return null;
+					}
+				});
+			} catch (final SQLException ex) {
+				logger.warn("W> [NeoComSBDBHelper.replaceBlueprints]> Problem replacing records. " + ex.getMessage());
+			} finally {
+				logger.info("<< [NeoComSBDBHelper.replaceBlueprints]");
+			}
+		}
 	}
 
 	/**

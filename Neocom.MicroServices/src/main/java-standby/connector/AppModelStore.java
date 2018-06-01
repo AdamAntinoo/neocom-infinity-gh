@@ -401,7 +401,7 @@ public class AppModelStore implements INeoComModelStore {
 	//		for (NeoComCharacter character : _neocomCharacters) {
 	//			if (character.getCharacterID() == characterID) return character;
 	//		}
-	//		throw new NeocomRuntimeException("Character with id=" + characterID + " not found on list");
+	//		throw new NeoComRuntimeException("Character with id=" + characterID + " not found on list");
 	//	}
 }
 

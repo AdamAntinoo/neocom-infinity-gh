@@ -524,7 +524,7 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 				Dao<NeoComAsset, String> assetDao = this.getAssetDAO();
 				QueryBuilder<NeoComAsset, String> queryBuilder = assetDao.queryBuilder();
 				Where<NeoComAsset, String> where = queryBuilder.where();
-				where.eq("assetID", assetID);
+				where.eq("assetId", assetID);
 				PreparedQuery<NeoComAsset> preparedQuery = queryBuilder.prepare();
 				assetList = assetDao.query(preparedQuery);
 				if (assetList.size() > 0) {
