@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  name: "NeoCom.Infinity",
+  version: "0.12.1"
 };
 
 /*

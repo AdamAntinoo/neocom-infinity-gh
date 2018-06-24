@@ -32,7 +32,7 @@ import { AppRoutingModule } from './app-routing.module';
 // import { } from 'ng2-inline-editor';
 // import { AngularFontAwesomeModule } from 'angular-font-awesome';
 //--- APPLICATION MODULES
-// import { UIModule } from './modules/ui/ui.module';
+import { UIModule } from './modules/ui/ui.module';
 // import { NeoComModelsModule } from './modules/neocom-models/neocom-models.module';
 // import { FittingModule } from './modules/fitting/fitting.module';
 // import { AssetsModule } from './modules/assets/assets.module';
@@ -56,7 +56,9 @@ import { AppComponent } from './app.component';
     //--- BROWSER & ANIMATIONS
     BrowserModule,
     //--- ROUTING
-    AppRoutingModule
+    AppRoutingModule,
+    //--- APPLICATION MODULES
+    UIModule
   ],
   declarations: [
     AppComponent

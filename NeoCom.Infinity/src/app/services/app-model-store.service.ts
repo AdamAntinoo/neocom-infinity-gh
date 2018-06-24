@@ -57,4 +57,14 @@ This service will store persistent application data and has the knowledge to get
 */
 @Injectable()
 export class AppModelStoreService /*extends AppModelStoreServiceSDE*/ {
+  //--- C O M M O N    C A L L S
+  public getApplicationName(): string {
+    return environment.name;
+  }
+  public getApplicationVersion(): string {
+    return environment.version;
+  }
+  public inDevelopment(): boolean {
+    return true;
+  }
 }
