@@ -15,5 +15,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
+  // public  title = 'app';
+  public options = {
+    position: ["yop", "left"],
+    timeOut: 5000,
+    animate: "fade",
+    lastOnBottom: true
+  }
+  public created() { }
+  public destroyed() { }
 }

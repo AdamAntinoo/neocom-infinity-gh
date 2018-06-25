@@ -14,8 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //--- HTTP CLIENT
-// import { HttpModule } from '@angular/http';
-// import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 //--- ROUTING
 import { AppRoutingModule } from './app-routing.module';
 //--- DRAG AND DROP
@@ -23,9 +22,7 @@ import { AppRoutingModule } from './app-routing.module';
 //--- OAUTH2
 // import { OAuthModule } from 'angular-oauth2-oidc';
 //--- TOAST NOTIFICATIONS
-// import { ToasterModule } from 'angular5-toaster';
-// import { ToasterContainerComponent } from 'angular5-toaster';
-// import { ToasterService } from 'angular5-toaster';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 //--- ADDITIONAL MODULES
 // import { ReactiveFormsModule } from '@angular/forms';
 // import { InlineEditorModule } from 'ng2-inline-editor';
@@ -33,6 +30,7 @@ import { AppRoutingModule } from './app-routing.module';
 // import { AngularFontAwesomeModule } from 'angular-font-awesome';
 //--- APPLICATION MODULES
 import { UIModule } from './modules/ui/ui.module';
+import { AuthenticationModule } from './modules/authentication/authentication.module';
 // import { NeoComModelsModule } from './modules/neocom-models/neocom-models.module';
 // import { FittingModule } from './modules/fitting/fitting.module';
 // import { AssetsModule } from './modules/assets/assets.module';
@@ -55,10 +53,15 @@ import { AppComponent } from './app.component';
   imports: [
     //--- BROWSER & ANIMATIONS
     BrowserModule,
+    //--- HTTP CLIENT
+    HttpClientModule,
     //--- ROUTING
     AppRoutingModule,
+    //--- TOAST NOTIFICATIONS
+    SimpleNotificationsModule,
     //--- APPLICATION MODULES
-    UIModule
+    UIModule,
+    AuthenticationModule
   ],
   declarations: [
     AppComponent

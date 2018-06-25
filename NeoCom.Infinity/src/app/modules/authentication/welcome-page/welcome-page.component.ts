@@ -1,7 +1,7 @@
-//  PROJECT:     NeoCom.WS (NEOC.WS)
+//  PROJECT:     NeoCom.Angular (NEOC.A6)
 //  AUTHORS:     Adam Antinoo - adamantinoo.git@gmail.com
 //  COPYRIGHT:   (c) 2017-2018 by Dimensinfin Industries, all rights reserved.
-//  ENVIRONMENT: Angular 4
+//  ENVIRONMENT: Angular 6.0.4
 //  DESCRIPTION: Angular source code to run on a web server almost the same code as on the Android platform.
 //               The project has 3 clear parts. One is the Java libraries that are common for all platforms,
 //               the second is the java microservices that compose the web application backend made with
@@ -11,15 +11,15 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 //--- HTTP PACKAGE
-import { Http } from '@angular/http';
-// import { HttpClient } from '@angular/common/http';
-import { Response, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
+// import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+// import { Response, Headers, RequestOptions } from '@angular/http';
+// import { Observable } from 'rxjs/Rx';
 //--- ENVIRONMENT
-import { environment } from '../../../environments/environment';
+// import { environment } from '../../../environments/environment';
 //--- ROUTER
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import 'rxjs/add/operator/switchMap';
+// import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+// import 'rxjs/add/operator/switchMap';
 //--- NOTIFICATIONS
 // import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 //--- SERVICES
@@ -53,28 +53,16 @@ The Execution flow for this page is to show some Application information and the
 We use RSA public key encryption to adjoin to the token so the server backend can create a unique encrypted session that is only able to be decoed by the particular client that initiated it because the key is just created on every login.
 */
 @Component({
-  selector: 'neocom-welcome-page',
+  selector: 'welcome-page',
   templateUrl: './welcome-page.component.html',
   styleUrls: ['./welcome-page.component.scss']
 })
 export class WelcomePageComponent {
-  //
-  // //--- SINGULARITY CREDENTIALS
-  // public static AUTHORIZATION_SERVER = "https://sisilogin.testeveonline.com/";
-  // public static CLIENT_ID = "ddfafe24dcdb43e3ae964bf580636172";
-  // public static SECRET_KEY = "kKWgfyzBVs2ra0wn8Hcwto0llWoeUgWz1P1FkPlb";
-  // public static CALLBACK = "http://localhost:4200/validateauthorization";
-  // public static CONTENT_TYPE = "application/json";
-  // public static PECK = "ZWY2ODI5OGQ1ODJjNGRmZWJiNjc4ODZlMzBkMDg4YTg6emdQZnhPNjNRUFIyZUgxMXJOcGdQQUwwSjJtQjZmWko3SFFDcmkwcQ==";
-  // public static SCOPE = "publicData esi-location.read_location.v1 esi-location.read_ship_type.v1 esi-mail.organize_mail.v1 esi-skills.read_skills.v1 esi-skills.read_skillqueue.v1 esi-wallet.read_character_wallet.v1 esi-characters.read_contacts.v1 esi-search.search_structures.v1 esi-clones.read_clones.v1 esi-universe.read_structures.v1 esi-killmails.read_killmails.v1 esi-assets.read_assets.v1 esi-planets.manage_planets.v1 esi-markets.structure_markets.v1 esi-characters.read_corporation_roles.v1 esi-location.read_online.v1 esi-fleets.read_fleet.v1 esi-ui.open_window.v1 esi-ui.write_waypoint.v1 esi-fittings.read_fittings.v1  esi-characters.read_standings.v1 esi-industry.read_character_jobs.v1 esi-markets.read_character_orders.v1 esi-characters.read_blueprints.v1 esi-contracts.read_character_contracts.v1 esi-clones.read_implants.v1 esi-characters.read_fatigue.v1 esi-characters.read_notifications.v1 esi-industry.read_character_mining.v1 esi-characters.read_fw_stats.v1";
-  // public static AUTHORIZE_URL = WelcomePageComponent.AUTHORIZATION_SERVER + "oauth/authorize";
-  // public static ACCESS_TOKEN_RESOURCE = WelcomePageComponent.AUTHORIZATION_SERVER + "oauth/token";
-
   public working: boolean = false;
   public code: string;
 
   constructor(protected appModelStore: AppModelStoreService
-    , protected http: Http
+    , protected http: HttpClient
     , private oauthService: OAuthService) {
     this.oauthService.showDebugInformation = true;
     // this.oauthService.userResponseType = 'code';
@@ -101,44 +89,12 @@ export class WelcomePageComponent {
   }
 
   public getDescription(): string {
-    return "Welcome to the Infinity helper. Log in with your Eve Online credentials on the ESI login portal to get access to a capsuleer dedicated Industrialist Management System. Schedule complete Fittings and get all the Manufacture chain tasks to complete them on time."
+    return "Welcome to the Infinity helper. Log in with your Eve Online credentials on the ESI login portal to get access to a capsuleer dedicated Industrialist Management System. Services provided are: Asset List - Mining Legder and Skills List."
   }
   public launchLogin() {
     console.log(">> [WelcomePageComponent.launchLogin]");
     // Show the validation spinning while we get the authorization credentials.
     this.working = true;
-
-    // var crypto = require('crypto');
-    // Generate the Public key only for tis session.
-    // let crypting = new Cryptico()
-    // let c = cryptico;
-    // let j=cryptico.prototype;
-    // let d = new cryptico();
-
-    // let rsakey = cryptico.generateRSAKey(ESIConfiguration.passphrase, 2048);
-    // let publicKey = cryptico.publicKeyString(rsakey);
-    // this.appModelStore.setRSAKey(rsakey);
-    // this.appModelStore.setPublicKey(publicKey);
-    // this.generateRSAKey();
-
-    // let generateKeyPromise = window.crypto.subtle.generateKey(
-    //   {
-    //     name: "RSA-PSS",
-    //     modulusLength: 2048, //can be 1024, 2048, or 4096
-    //     publicExponent: new Uint8Array([0x01, 0x00, 0x01]),
-    //     hash: { name: "SHA-256" }, //can be "SHA-1", "SHA-256", "SHA-384", or "SHA-512"
-    //   },
-    //   false, //whether the key is extractable (i.e. can be used in exportKey)
-    //   ["sign", "verify"] //can be any combination of "sign" and "verify"
-    // );
-    // generateKeyPromise.then((key) => {
-    //   this.appModelStore.setRSAKey(key);
-    //   this.appModelStore.setPublicKey(key.publicKey);
-    //   //returns a keypair object
-    //   console.log(key);
-    //   console.log(key.publicKey);
-    //   console.log(key.privateKey);
-    //
     // Start the OAuth flow.
     console.log(">< [WelcomePageComponent.initImplicitFlow]");
     this.oauthService.initImplicitFlow();

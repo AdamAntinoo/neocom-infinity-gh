@@ -7,25 +7,23 @@
 //               the second is the java microservices that compose the web application backend made with
 //               SpringBoot technology and finally the web ui code made in typescript within the Angular
 //               framework.
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-//--- PAGES
-import { WelcomePageComponent } from 'app/modules/welcome-page/welcome-page.component';
+//--- CORE
+import { Component } from '@angular/core';
+import { Input } from '@angular/core';
+//--- INTERFACES
+//--- SERVICES
+//--- COMPONENTS
+//--- MODELS
 
-const routes: Routes = [
-  {
-    path: '',
-    redirectTo: '/welcome',
-    pathMatch: 'full'
-  },
-  //--- DASHBOARD PAGES
-  { path: 'dashboard', component: DashboardPageComponent },
-  //--- POC & FUNCTIONALITIES PAGES
-  { path: 'notifications', component: TestNotificationsPageComponent },
-];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+@Component({
+  selector: 'neocom-action-bar',
+  templateUrl: './action-bar.component.html',
+  styleUrls: ['./action-bar.component.scss']
 })
-export class AppRoutingModule { }
+export class ActionBarComponent {
+  @Input() titleLeft: string = "";
+  @Input() titleRight: string = "";
+  @Input() iconTop: string = "";
+  @Input() iconBottom: string = "";
+  @Input() subtitle: string = "";
+}

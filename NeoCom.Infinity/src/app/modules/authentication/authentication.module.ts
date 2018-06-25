@@ -24,18 +24,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //--- DIRECTIVES
 //--- SERVICES
 //--- PIPES
-import { CapitalizeLetterPipe } from './pipes/capitalize-letter.pipe';
-import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
-import { IskScaledPipe } from './pipes/iskscaled.pipe';
-import { ArraySortPipe } from './pipes/array-sort.pipe';
+// import { CapitalizeLetterPipe } from './pipes/capitalize-letter.pipe';
+// import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
+// import { IskScaledPipe } from './pipes/iskscaled.pipe';
+// import { ArraySortPipe } from './pipes/array-sort.pipe';
 //--- PAGES
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 //--- COMPONENTS-ABSTRACT
 // import { BasePageComponent } from './base-page.component';
 // import { MenuBarNodeComponent } from 'app/modules/ui/menubarnode.component';
 // import { ExpandableMenuBarNodeComponent } from 'app/modules/ui/expandablemenubarnode.component';
 // //--- COMPONENTS-UI
-import { ActionBarComponent } from './action-bar/action-bar.component';
-import { HeaderComponent } from './header/header.component';
+// import { ActionBarComponent } from './action-bar/action-bar.component';
 // import { InformationPanelComponent } from './information-panel/information-panel.component';
 // import { LabeledContainerComponent } from './labeled-container/labeled-container.component';
 // import { LocationNameComponent } from './location-name/location-name.component';
@@ -60,48 +60,12 @@ import { HeaderComponent } from './header/header.component';
     // NgDragDropModule.forRoot()
   ],
   declarations: [
-    //--- PIPES
-    CapitalizeLetterPipe,
-    ISKNoDecimalsPipe,
-    IskScaledPipe,
-    ArraySortPipe,
-    //--- COMPONENTS-ABSTRACT
-    // BasePageComponent,
-    // MenuBarNodeComponent,
-    // ExpandableMenuBarNodeComponent,
-    //--- COMPONENTS-UI
-    HeaderComponent,
-    ActionBarComponent,
-    // SeparatorComponent,
-    // SpinnerCentralComponent,
-    // InformationPanelComponent,
-    // LabeledContainerComponent,
-    // LocationNameComponent,
-    // ServerStatusComponent,
-    // StyleCatalogComponent,
-    // SpinnerPanelComponent
+    //--- PAGES
+    WelcomePageComponent
   ],
   exports: [
-    //--- PIPES
-    CapitalizeLetterPipe,
-    ISKNoDecimalsPipe,
-    IskScaledPipe,
-    ArraySortPipe,
-    //--- COMPONENTS-ABSTRACT
-    // BasePageComponent,
-    // MenuBarNodeComponent,
-    // ExpandableMenuBarNodeComponent,
-    //--- COMPONENTS-UI
-    HeaderComponent,
-    ActionBarComponent,
-    // SeparatorComponent,
-    // SpinnerCentralComponent,
-    // InformationPanelComponent,
-    // LabeledContainerComponent,
-    // LocationNameComponent,
-    // ServerStatusComponent,
-    // StyleCatalogComponent,
-    // SpinnerPanelComponent
+    //--- PAGES
+    WelcomePageComponent
   ]
 })
-export class UIModule { }
+export class AuthenticationModule { }
