@@ -16,6 +16,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 // import { InlineEditorModule } from 'ng2-inline-editor';
 //--- ANIMATIONS
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//--- TOAST NOTIFICATIONS
+import { SimpleNotificationsModule } from 'angular2-notifications';
+import { NotificationsService } from 'angular2-notifications';
 //--- HTTP CLIENT
 //--- DRAG AND DROP
 // import { NgDragDropModule } from 'ng-drag-drop';
@@ -28,6 +31,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
 // import { IskScaledPipe } from './pipes/iskscaled.pipe';
 // import { ArraySortPipe } from './pipes/array-sort.pipe';
+//--- APPLICATION COMPONENTS
+import { UIModule } from '../../modules/ui/ui.module';
 //--- PAGES
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 //--- COMPONENTS-ABSTRACT
@@ -55,9 +60,13 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
     // InlineEditorModule,
     //--- ANIMATIONS
     BrowserAnimationsModule,
+    //--- TOAST NOTIFICATIONS
+    SimpleNotificationsModule.forRoot(),
     //--- HTTP CLIENT
     //--- DRAG AND DROP
     // NgDragDropModule.forRoot()
+    //--- APPLICATION COMPONENTS
+    UIModule
   ],
   declarations: [
     //--- PAGES

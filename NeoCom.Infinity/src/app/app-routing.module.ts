@@ -10,7 +10,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 //--- PAGES
-import { WelcomePageComponent } from 'app/modules/welcome-page/welcome-page.component';
+import { WelcomePageComponent } from './modules/authentication/welcome-page/welcome-page.component';
 
 const routes: Routes = [
   {
@@ -19,9 +19,9 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   //--- DASHBOARD PAGES
-  { path: 'dashboard', component: DashboardPageComponent },
+  { path: 'welcome', component: WelcomePageComponent },
   //--- POC & FUNCTIONALITIES PAGES
-  { path: 'notifications', component: TestNotificationsPageComponent },
+  // { path: 'notifications', component: TestNotificationsPageComponent },
 ];
 
 @NgModule({

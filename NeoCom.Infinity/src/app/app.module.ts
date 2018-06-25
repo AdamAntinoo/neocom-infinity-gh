@@ -23,6 +23,7 @@ import { AppRoutingModule } from './app-routing.module';
 // import { OAuthModule } from 'angular-oauth2-oidc';
 //--- TOAST NOTIFICATIONS
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { NotificationsService } from 'angular2-notifications';
 //--- ADDITIONAL MODULES
 // import { ReactiveFormsModule } from '@angular/forms';
 // import { InlineEditorModule } from 'ng2-inline-editor';
@@ -58,7 +59,7 @@ import { AppComponent } from './app.component';
     //--- ROUTING
     AppRoutingModule,
     //--- TOAST NOTIFICATIONS
-    SimpleNotificationsModule,
+    SimpleNotificationsModule.forRoot(),
     //--- APPLICATION MODULES
     UIModule,
     AuthenticationModule
@@ -68,6 +69,7 @@ import { AppComponent } from './app.component';
   ],
   providers: [
     AppModelStoreService,
+    NotificationsService
   ],
   bootstrap: [AppComponent]
 })

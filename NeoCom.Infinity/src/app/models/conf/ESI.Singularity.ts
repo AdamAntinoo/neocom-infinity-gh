@@ -8,17 +8,18 @@
 //               SpringBoot technology and finally the web ui code made in typescript within the Angular
 //               framework.
 //--- CORE
-import { Observable } from 'rxjs/Rx';
-// Import RxJs required methods
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-//--- SERVICES
-import { AppModelStoreService } from 'app/services/app-model-store.service';
-//--- INTERFACES
-import { EVariant } from 'app/interfaces/EPack.enumerated';
-import { ESeparator } from 'app/interfaces/EPack.enumerated';
-//--- MODELS
-import { NeoComNode } from 'app/models/NeoComNode.model';
+// import { Observable } from 'rxjs/Rx';
+// // Import RxJs required methods
+// import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/catch';
+// //--- SERVICES
+// import { AppModelStoreService } from 'app/services/app-model-store.service';
+// //--- INTERFACES
+// import { EVariant } from 'app/interfaces/EPack.enumerated';
+// import { ESeparator } from 'app/interfaces/EPack.enumerated';
+// //--- MODELS
+// import { NeoComNode } from 'app/models/NeoComNode.model';
+
 
 export class ESIConfigurationS {
   //--- SINGULARITY CREDENTIALS
