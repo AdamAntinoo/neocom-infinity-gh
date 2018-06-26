@@ -9,21 +9,22 @@
 //               framework.
 //--- CORE MODULES
 import { NgModule } from '@angular/core';
+//--- ROUTING
+import { AppRoutingModule } from './app-routing.module';
 //--- BROWSER & ANIMATIONS
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //--- HTTP CLIENT
 import { HttpClientModule } from '@angular/common/http';
-//--- ROUTING
-import { AppRoutingModule } from './app-routing.module';
-//--- DRAG AND DROP
-// import { NgDragDropModule } from 'ng-drag-drop';
 //--- OAUTH2
-// import { OAuthModule } from 'angular-oauth2-oidc';
+import { OAuthModule } from 'angular-oauth2-oidc';
 //--- TOAST NOTIFICATIONS
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { NotificationsService } from 'angular2-notifications';
+//--- DRAG AND DROP
+// import { NgDragDropModule } from 'ng-drag-drop';
+
 //--- ADDITIONAL MODULES
 // import { ReactiveFormsModule } from '@angular/forms';
 // import { InlineEditorModule } from 'ng2-inline-editor';
@@ -52,12 +53,16 @@ import { AppComponent } from './app.component';
 
 @NgModule({
   imports: [
-    //--- BROWSER & ANIMATIONS
-    BrowserModule,
-    //--- HTTP CLIENT
-    HttpClientModule,
     //--- ROUTING
     AppRoutingModule,
+    //--- BROWSER & ANIMATIONS
+    FormsModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    //--- HTTP CLIENT
+    HttpClientModule,
+    //--- OAUTH2
+    OAuthModule,
     //--- TOAST NOTIFICATIONS
     SimpleNotificationsModule.forRoot(),
     //--- APPLICATION MODULES

@@ -24,9 +24,9 @@ import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
  * @author Adam Antinoo
  */
 // - CLASS IMPLEMENTATION ...................................................................................
-public class GlobalPreferencesManager implements IGlobalPreferencesManager {
+public class GlobalSBPreferencesManager implements IGlobalPreferencesManager {
 	// - S T A T I C - S E C T I O N ..........................................................................
-//	private static Logger logger = LoggerFactory.getLogger("GlobalPreferencesManager");
+//	private static Logger logger = LoggerFactory.getLogger("GlobalSBPreferencesManager");
 
 	// - F I E L D - S E C T I O N ............................................................................
 
@@ -40,13 +40,18 @@ public class GlobalPreferencesManager implements IGlobalPreferencesManager {
 	public boolean getBooleanPreference( final String preferenceName, final boolean defaultValue ) {
 		return GlobalDataManager.getResourceBoolean(preferenceName, defaultValue);
 	}
-	public boolean getBoolean( final String preferenceName ) {
-		return GlobalDataManager.getResourceBoolean(preferenceName);
-	}
 
-	public boolean getBoolean( final String preferenceName, final boolean defaultValue ) {
-		return GlobalDataManager.getResourceBoolean(preferenceName, defaultValue);
+	@Override
+	public float getFloatPreference(final String preferenceName, final float defaultValue) {
+		return GlobalDataManager.getResourceFloat(preferenceName, defaultValue);
 	}
+//	public boolean getBoolean( final String preferenceName ) {
+//		return GlobalDataManager.getResourceBoolean(preferenceName);
+//	}
+//
+//	public boolean getBoolean( final String preferenceName, final boolean defaultValue ) {
+//		return GlobalDataManager.getResourceBoolean(preferenceName, defaultValue);
+//	}
 }
 
 // - UNUSED CODE ............................................................................................

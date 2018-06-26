@@ -5,7 +5,9 @@
 export const environment = {
   production: false,
   name: "NeoCom.Infinity",
-  version: "0.12.1"
+  version: "0.12.1",
+  servicePort: 9000,
+  development: true
 };
 
 /*

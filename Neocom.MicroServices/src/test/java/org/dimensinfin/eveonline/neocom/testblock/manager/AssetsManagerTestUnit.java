@@ -12,19 +12,14 @@
 //               runtime implementation provided by the Application.
 package org.dimensinfin.eveonline.neocom.testblock.manager;
 
-import java.sql.SQLException;
-import java.util.List;
-
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
-import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
+import org.junit.Assert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.SQLException;
 
 /**
  * @author Adam Antinoo
@@ -33,8 +28,8 @@ import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
 public class AssetsManagerTestUnit {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger logger = LoggerFactory.getLogger("AssetsManagerTestUnit");
-
-//	@BeforeClass
+	
+	//	@BeforeClass
 	public static void testOpenAndConnectDatabase() throws SQLException {
 		logger.info(">> [NeoComDatabaseTestUnit.testOpenAndConnectDatabase]");
 		// Connect the SDE database.
@@ -66,11 +61,11 @@ public class AssetsManagerTestUnit {
 				, true);
 		logger.info("<< [NeoComDatabaseTestUnit.testOpenAndConnectDatabase]");
 	}
-
+	
 	// - F I E L D - S E C T I O N ............................................................................
-
+	
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
-
+	
 	// - M E T H O D - S E C T I O N ..........................................................................
 //	@Test
 	public void test01GetAssets4Type() {

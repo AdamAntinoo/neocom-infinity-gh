@@ -1,7 +1,29 @@
-<neocom-action-bar [titleLeft]="'WELCOME'" [subtitle]="getDescription()"></neocom-action-bar>
+<neocom-action-bar [titleLeft]="'WELCOME'" [subtitle]="'Click button to authorize credential.'"></neocom-action-bar>
+<div>
+  <p class="welcome-message">
+    Welcome to the NeoCom Infinity helper for industrialists.
+  </p>
+  <p class="welcome-message">
+    Log in with your Eve Online credentials on the ESI login portal to get access to a capsuleer dedicated Industrialist Management System.
+  </p>
+  <span class="welcome-message">
+    Services provided are:
+    <ul>
+      <li>
+        Asset List
+      </li>
+      <li>
+        Mining Legder
+      </li>
+      <li>
+        Skills List
+      </li>
+    </ul>
+  </span>
+</div>
 <div class="login-box">
   <div>
-    <a class="btn btn-outline-primary btn-lg btn-block button-size" (click)="launchLogin()">
+    <a class="authorization-button button-size" (click)="launchLogin()">
       <div *ngIf="!working">ESI Authorization</div>
       <div *ngIf="working" class="login-box">
         <span class="validating-label">Validating Authorization...</span>

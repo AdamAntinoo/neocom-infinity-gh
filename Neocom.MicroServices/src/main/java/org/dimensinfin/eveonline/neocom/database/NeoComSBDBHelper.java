@@ -34,15 +34,17 @@ import org.dimensinfin.eveonline.neocom.database.entity.DatabaseVersion;
 import org.dimensinfin.eveonline.neocom.database.entity.FittingRequest;
 import org.dimensinfin.eveonline.neocom.database.entity.Job;
 import org.dimensinfin.eveonline.neocom.database.entity.MarketOrder;
+import org.dimensinfin.eveonline.neocom.database.entity.MiningExtraction;
+import org.dimensinfin.eveonline.neocom.database.entity.NeoComAsset;
+import org.dimensinfin.eveonline.neocom.database.entity.NeoComBlueprint;
 import org.dimensinfin.eveonline.neocom.database.entity.Property;
+import org.dimensinfin.eveonline.neocom.database.entity.RefiningData;
 import org.dimensinfin.eveonline.neocom.database.entity.TimeStamp;
 import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
 import org.dimensinfin.eveonline.neocom.enums.EPropertyTypes;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
-import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
-import org.dimensinfin.eveonline.neocom.model.NeoComBlueprint;
 
 /**
  * NeoCom private database connector that will have the same api as the connector to be used on Android. This
@@ -83,6 +85,8 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 	private Dao<Job, String> jobDao = null;
 	private Dao<MarketOrder, String> marketOrderDao = null;
 	private Dao<FittingRequest, String> fittingRequestDao = null;
+	private Dao<MiningExtraction, String> miningExtractionDao = null;
+	private Dao<RefiningData, String> refiningDataDao = null;
 
 	private DatabaseVersion storedVersion = null;
 
@@ -93,37 +97,37 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 
 	// - M E T H O D - S E C T I O N ..........................................................................
 	// --- B U I L D   S E C T I O N
-	public NeoComSBDBHelper setDatabaseType( final String databaseType ) {
+	public NeoComSBDBHelper setDatabaseType(final String databaseType) {
 		this.databaseType = databaseType;
 		return this;
 	}
 
-	public NeoComSBDBHelper setDatabaseHost( final String hostName ) {
+	public NeoComSBDBHelper setDatabaseHost(final String hostName) {
 		this.hostName = hostName;
 		return this;
 	}
 
-	public NeoComSBDBHelper setDatabaseName( final String instanceName ) {
+	public NeoComSBDBHelper setDatabaseName(final String instanceName) {
 		this.databaseName = instanceName;
 		return this;
 	}
 
-	public NeoComSBDBHelper setDatabaseUser( final String user ) {
+	public NeoComSBDBHelper setDatabaseUser(final String user) {
 		this.databaseUser = user;
 		return this;
 	}
 
-	public NeoComSBDBHelper setDatabasePassword( final String password ) {
+	public NeoComSBDBHelper setDatabasePassword(final String password) {
 		this.databasePassword = password;
 		return this;
 	}
 
-	public NeoComSBDBHelper setDatabaseOptions( final String options ) {
+	public NeoComSBDBHelper setDatabaseOptions(final String options) {
 		this.databaseOptions = options;
 		return this;
 	}
 
-	public NeoComSBDBHelper setDatabaseVersion( final int newVersion ) {
+	public NeoComSBDBHelper setDatabaseVersion(final int newVersion) {
 		this.databaseVersion = newVersion;
 		return this;
 	}
@@ -141,7 +145,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		databaseValid = true;
 		if (openNeoComDB()) {
 			// Warning. Delay database initialization after the helper is assigned to the Global.
-			InfinityGlobalDataManager.submitJob2Generic(() -> {
+			InfinityGlobalDataManager.submitJob2ui(() -> {
 				// Wait for some time units.
 				GlobalDataManager.suspendThread(TimeUnit.SECONDS.toMillis(2));
 				int currentVersion = readDatabaseVersion();
@@ -198,7 +202,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		return connectionSource;
 	}
 
-	public void onCreate( final ConnectionSource databaseConnection ) {
+	public void onCreate(final ConnectionSource databaseConnection) {
 		logger.info(">> [NeoComSBDBHelper.onCreate]");
 		// Create the tables that do not exist
 		try {
@@ -261,6 +265,16 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		} catch (SQLException sqle) {
 			logger.warn("SQL [NeoComSBDBHelper.onCreate]> SQL NeoComDatabase: {}", sqle.getMessage());
 		}
+		try {
+			TableUtils.createTableIfNotExists(databaseConnection, MiningExtraction.class);
+		} catch (SQLException sqle) {
+			logger.warn("SQL [NeoComSBDBHelper.onCreate]> SQL NeoComDatabase: {}", sqle.getMessage());
+		}
+		try {
+			TableUtils.createTableIfNotExists(databaseConnection, RefiningData.class);
+		} catch (SQLException sqle) {
+			logger.warn("SQL [NeoComSBDBHelper.onCreate]> SQL NeoComDatabase: {}", sqle.getMessage());
+		}
 		//		try {
 		//			TableUtils.createTableIfNotExists(databaseConnection, ResourceList.class);
 		//		} catch (SQLException sqle) {
@@ -277,7 +291,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		logger.info("<< [NeoComSBDBHelper.onCreate]");
 	}
 
-	public void onUpgrade( final ConnectionSource databaseConnection, final int oldVersion, final int newVersion ) {
+	public void onUpgrade(final ConnectionSource databaseConnection, final int oldVersion, final int newVersion) {
 		logger.info(">> [NeoComSBDBHelper.onUpgrade]");
 		// Execute different actions depending on the new version.
 		if (oldVersion < 109) {
@@ -562,6 +576,20 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		return fittingRequestDao;
 	}
 
+	public Dao<MiningExtraction, String> getMiningExtractionDao() throws SQLException {
+		if (null == miningExtractionDao) {
+			miningExtractionDao = DaoManager.createDao(this.getConnectionSource(), MiningExtraction.class);
+		}
+		return miningExtractionDao;
+	}
+
+	public Dao<RefiningData, String> getRefiningDataDao() throws SQLException {
+		if (null == refiningDataDao) {
+			refiningDataDao = DaoManager.createDao(this.getConnectionSource(), RefiningData.class);
+		}
+		return refiningDataDao;
+	}
+
 	// --- PUBLIC CONNECTION SPECIFIC ACTIONS
 
 	/**
@@ -569,7 +597,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 	 * owner identifier. Those records are from older downloads and have to be removed to avoid merging with the
 	 * new download.
 	 */
-	public synchronized void clearInvalidRecords( final long pilotid ) {
+	public synchronized void clearInvalidRecords(final long pilotid) {
 		logger.info(">> [NeoComSBDBHelper.clearInvalidRecords]> pilotid", pilotid);
 		synchronized (connectionSource) {
 			try {
@@ -586,7 +614,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 						deleteBuilderBlueprint.where().eq("ownerId", (pilotid * -1));
 						count = deleteBuilderBlueprint.delete();
 						logger.info("-- [NeoComSBDBHelper.clearInvalidRecords]> Invalid blueprints cleared for owner {}: {}", (pilotid * -1),
-								count);
+						            count);
 						return null;
 					}
 				});
@@ -603,7 +631,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 	 * completes the download and the assignment of the resources to the character without interrupting the
 	 * processing of data by the application.
 	 */
-	public synchronized void replaceAssets( final long pilotid ) {
+	public synchronized void replaceAssets(final long pilotid) {
 		logger.info(">> [NeoComSBDBHelper.clearInvalidRecords]> pilotid: {}", pilotid);
 		synchronized (connectionSource) {
 			try {
@@ -632,7 +660,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		}
 	}
 
-	public synchronized void replaceBlueprints( final long pilotid ) {
+	public synchronized void replaceBlueprints(final long pilotid) {
 		logger.info(">> [NeoComSBDBHelper.replaceBlueprints]> pilotid: {}", pilotid);
 		synchronized (connectionSource) {
 			try {
@@ -640,7 +668,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 					public Void call() throws Exception {
 						// Remove all assets that do not have a valid owner.
 						final UpdateBuilder<NeoComBlueprint, String> updateBuilder = getBlueprintDao().updateBuilder();
-						updateBuilder.updateColumnValue( "ownerId", pilotid)
+						updateBuilder.updateColumnValue("ownerId", pilotid)
 								.where().eq("ownerId", (pilotid * -1));
 						int count = updateBuilder.update();
 						logger.info("-- [NeoComSBDBHelper.replaceBlueprints]> Replace owner {} for blueprints: {}", pilotid, count);
@@ -669,7 +697,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 			final String localConnectionDescriptor = hostName + "/" + databaseName;
 			createConnectionSource();
 			logger.info("-- [NeoComSBDBHelper.openNeoComDB]> Opened database " + localConnectionDescriptor + " successfully with version "
-					+ databaseVersion + ".");
+					            + databaseVersion + ".");
 			isOpen = true;
 //			} catch (Exception sqle) {
 //				logger.error("E> [NeoComSBDBHelper.openNeoComDB]> " + sqle.getClass().getName() + ": " + sqle.getMessage());

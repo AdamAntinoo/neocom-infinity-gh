@@ -12,24 +12,17 @@ import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 //--- HTTP PACKAGE
 import { HttpClient } from '@angular/common/http';
-// import { Response, Headers, RequestOptions } from '@angular/http';
-// import { Observable } from 'rxjs/Rx';
-//--- ENVIRONMENT
-// import { environment } from '../../../environments/environment';
-//--- ROUTER
-// import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-// import 'rxjs/add/operator/switchMap';
 //--- NOTIFICATIONS
 import { NotificationsService } from 'angular2-notifications';
 //--- SERVICES
+import { OAuthService } from 'angular-oauth2-oidc';
+import { AppModelStoreService } from 'app/services/app-model-store.service';
+
 // import { OAuthService } from 'angular2-oauth2/oauth-service';
 // import { AuthConfig } from 'angular-oauth2-oidc';
-// import { OAuthService } from 'angular-oauth2-oidc';
 // import { JwksValidationHandler } from 'angular-oauth2-oidc';
 // import { OAuthService, AuthConfig } from 'angular-oauth2-oidc';
-
 // import { authConfig } from './authconfig.const';
-import { AppModelStoreService } from 'app/services/app-model-store.service';
 //--- INTERFACES
 // import { EVariant } from '../../classes/EVariant.enumerated';
 // import { IDetailedEnabledPage } from '../../classes/IDetailedEnabledPage.interface';
@@ -62,43 +55,43 @@ export class WelcomePageComponent {
 
   constructor(protected appModelStore: AppModelStoreService
     , protected http: HttpClient
-    // , private oauthService: OAuthService
+    , protected oauthService: OAuthService
     , protected toaster: NotificationsService) {
-    // this.oauthService.showDebugInformation = true;
-    // // this.oauthService.userResponseType = 'code';
-    // this.oauthService.requestAccessToken = true;
-    // // Login-Url
-    // this.oauthService.loginUrl = ESIConfiguration.AUTHORIZE_URL; //Id-Provider?
-    // // URL of the SPA to redirect the user to after login
-    // this.oauthService.redirectUri = ESIConfiguration.CALLBACK;
-    // // The SPA's id. Register SPA with this id at the auth-server
-    // this.oauthService.clientId = ESIConfiguration.CLIENT_ID;
-    // // The name of the auth-server that has to be mentioned within the token
-    // this.oauthService.issuer = ESIConfiguration.AUTHORIZE_URL;
-    // // set the scope for the permissions the client should request
-    // this.oauthService.scope = ESIConfiguration.SCOPE;
-    // // set to true, to receive also an id_token via OpenId Connect (OIDC) in addition to the
-    // // OAuth2-based access_token
-    // this.oauthService.oidc = false;
-    // // this.oauthService.requestAccessToken = false;
-    // // Use setStorage to use sessionStorage or another implementation of the TS-type Storage
-    // // instead of localStorage
-    // this.oauthService.setStorage(sessionStorage);
-    // // To also enable single-sign-out set the url for your auth-server's logout-endpoint here
-    // this.oauthService.logoutUrl = ESIConfiguration.AUTHORIZATION_SERVER + "account/logoff";
+
+    this.oauthService.showDebugInformation = true;
+    // this.oauthService.userResponseType = 'code';
+    this.oauthService.requestAccessToken = true;
+    // Login-Url
+    this.oauthService.loginUrl = ESIConfiguration.AUTHORIZE_URL; //Id-Provider?
+    // URL of the SPA to redirect the user to after login
+    this.oauthService.redirectUri = ESIConfiguration.CALLBACK;
+    // The SPA's id. Register SPA with this id at the auth-server
+    this.oauthService.clientId = ESIConfiguration.CLIENT_ID;
+    // The name of the auth-server that has to be mentioned within the token
+    this.oauthService.issuer = ESIConfiguration.AUTHORIZE_URL;
+    // set the scope for the permissions the client should request
+    this.oauthService.scope = ESIConfiguration.SCOPE;
+    // set to true, to receive also an id_token via OpenId Connect (OIDC) in addition to the
+    // OAuth2-based access_token
+    this.oauthService.oidc = false;
+    // this.oauthService.requestAccessToken = false;
+    // Use setStorage to use sessionStorage or another implementation of the TS-type Storage
+    // instead of localStorage
+    this.oauthService.setStorage(sessionStorage);
+    // To also enable single-sign-out set the url for your auth-server's logout-endpoint here
+    this.oauthService.logoutUrl = ESIConfiguration.AUTHORIZATION_SERVER + "account/logoff";
   }
 
-  public getDescription(): string {
-    return "Welcome to the Infinity helper. Log in with your Eve Online credentials on the ESI login portal to get access to a capsuleer dedicated Industrialist Management System. Services provided are: Asset List - Mining Legder and Skills List."
-  }
+  // public getDescription(): string {
+  //   return "Welcome to the Infinity helper. Log in with your Eve Online credentials on the ESI login portal to get access to a capsuleer dedicated Industrialist Management System. Services provided are: Asset List - Mining Legder and Skills List."
+  // }
   public launchLogin() {
     console.log(">> [WelcomePageComponent.launchLogin]");
     // Show the validation spinning while we get the authorization credentials.
     this.working = true;
     // Start the OAuth flow.
     console.log(">< [WelcomePageComponent.initImplicitFlow]");
-    // this.oauthService.initImplicitFlow();
-    // });
+    this.oauthService.initImplicitFlow();
     console.log("<< [WelcomePageComponent.launchLogin]");
   }
   // private generateRSAKey() {

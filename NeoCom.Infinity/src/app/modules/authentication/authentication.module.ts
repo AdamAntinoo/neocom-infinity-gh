@@ -10,71 +10,49 @@
 //--- CORE MODULES
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-//--- ADDITIONAL MODULES
+//--- BROWSER & ANIMATIONS
 import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-// import { InlineEditorModule } from 'ng2-inline-editor';
-//--- ANIMATIONS
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//--- HTTP CLIENT
+import { HttpClientModule } from '@angular/common/http';
+//--- OAUTH2
+import { OAuthModule } from 'angular-oauth2-oidc';
 //--- TOAST NOTIFICATIONS
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { NotificationsService } from 'angular2-notifications';
-//--- HTTP CLIENT
-//--- DRAG AND DROP
-// import { NgDragDropModule } from 'ng-drag-drop';
-//--- OAUTH2
-//--- COMPONENTS-CORE
-//--- DIRECTIVES
-//--- SERVICES
-//--- PIPES
-// import { CapitalizeLetterPipe } from './pipes/capitalize-letter.pipe';
-// import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
-// import { IskScaledPipe } from './pipes/iskscaled.pipe';
-// import { ArraySortPipe } from './pipes/array-sort.pipe';
 //--- APPLICATION COMPONENTS
 import { UIModule } from '../../modules/ui/ui.module';
 //--- PAGES
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
-//--- COMPONENTS-ABSTRACT
-// import { BasePageComponent } from './base-page.component';
-// import { MenuBarNodeComponent } from 'app/modules/ui/menubarnode.component';
-// import { ExpandableMenuBarNodeComponent } from 'app/modules/ui/expandablemenubarnode.component';
-// //--- COMPONENTS-UI
-// import { ActionBarComponent } from './action-bar/action-bar.component';
-// import { InformationPanelComponent } from './information-panel/information-panel.component';
-// import { LabeledContainerComponent } from './labeled-container/labeled-container.component';
-// import { LocationNameComponent } from './location-name/location-name.component';
-// import { SeparatorComponent } from './separator/separator.component';
-// import { SpinnerCentralComponent } from './spinner-central/spinner-central.component';
-// import { ServerStatusComponent } from './server-status/server-status.component';
-// import { StyleCatalogComponent } from './style-catalog/style-catalog.component';
-// import { SpinnerPanelComponent } from './spinner-panel/spinner-panel.component';
+import { ValidateAuthorizationPageComponent } from './validate-authorization-page//validate-authorization-page.component';
 
 @NgModule({
   imports: [
     //--- CORE MODULES
     CommonModule,
-    //--- ADDITIONAL MODULES
+    //--- BROWSER & ANIMATIONS
     FormsModule,
-    ReactiveFormsModule,
-    // InlineEditorModule,
-    //--- ANIMATIONS
+    BrowserModule,
     BrowserAnimationsModule,
+    //--- HTTP CLIENT
+    HttpClientModule,
+    //--- OAUTH2
+    OAuthModule,
     //--- TOAST NOTIFICATIONS
     SimpleNotificationsModule.forRoot(),
-    //--- HTTP CLIENT
-    //--- DRAG AND DROP
-    // NgDragDropModule.forRoot()
-    //--- APPLICATION COMPONENTS
+    //--- APPLICATION MODULES
     UIModule
   ],
   declarations: [
     //--- PAGES
-    WelcomePageComponent
+    WelcomePageComponent,
+    ValidateAuthorizationPageComponent
   ],
   exports: [
     //--- PAGES
-    WelcomePageComponent
+    WelcomePageComponent,
+    ValidateAuthorizationPageComponent
   ]
 })
 export class AuthenticationModule { }

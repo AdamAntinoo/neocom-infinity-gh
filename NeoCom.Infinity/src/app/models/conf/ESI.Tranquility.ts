@@ -37,4 +37,5 @@ export class ESIConfiguration {
   public static AUTHORIZE_URL = ESIConfiguration.AUTHORIZATION_SERVER + "oauth/authorize";
   public static ACCESS_TOKEN_RESOURCE = ESIConfiguration.AUTHORIZATION_SERVER + "oauth/token";
   public static passphrase = "The access to Singularity is open for all developers.";
+  public static ESI_PUBLICACCESS_URL = "https://esi.tech.ccp.is/latest/";
 }

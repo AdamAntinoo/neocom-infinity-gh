@@ -8,12 +8,12 @@
 //               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom.testblock.marketdata;
 
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-
+import org.dimensinfin.eveonline.neocom.NeoComMicroServicesCoreTestUnit;
+import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
+import org.dimensinfin.eveonline.neocom.market.TrackEntry;
+import org.dimensinfin.eveonline.neocom.model.EveItem;
+import org.dimensinfin.eveonline.neocom.services.MarketDataServer;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.junit.Assert;
@@ -25,17 +25,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
-import org.dimensinfin.eveonline.neocom.NeoComMicroServicesApplicationTestUnit;
-import org.dimensinfin.eveonline.neocom.NeoComMicroServicesCoreTestUnit;
-import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
-import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
-import org.dimensinfin.eveonline.neocom.datamngmt.GlobalSBConfigurationProvider;
-import org.dimensinfin.eveonline.neocom.datamngmt.MarketDataServer;
-import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
-import org.dimensinfin.eveonline.neocom.market.MarketDataEntry;
-import org.dimensinfin.eveonline.neocom.market.MarketDataSet;
-import org.dimensinfin.eveonline.neocom.market.TrackEntry;
-import org.dimensinfin.eveonline.neocom.model.EveItem;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -43,24 +35,24 @@ public class MarketDownloaderTestUnit extends MarketDataServer.MarketDataJobDown
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger logger = LoggerFactory.getLogger("MarketDownloaderTestUnit");
 	private static MarketDataServer server = null;
-
+	
 	@BeforeClass
 	public static void testOpenAndConnectDatabase() throws SQLException, IOException {
 		logger.info(">> [MarketDownloaderTestUnit.testOpenAndConnectDatabase]");
-
+		
 		NeoComMicroServicesCoreTestUnit.before01CreateApplicationEnvironment();
-
+		
 		logger.info("<< [MarketDownloaderTestUnit.testOpenAndConnectDatabase]");
 	}
-
+	
 	// - F I E L D - S E C T I O N ............................................................................
-
+	
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 	public MarketDownloaderTestUnit() {
 		super(1);
 		logger.info(">< [MarketDownloaderTestUnit.<constructor>]> Initializing service with 1 thread.");
 	}
-
+	
 	// - M E T H O D - S E C T I O N ..........................................................................
 	@Test
 	public void test01GetModuleLink() {
@@ -70,17 +62,16 @@ public class MarketDownloaderTestUnit extends MarketDataServer.MarketDataJobDown
 				".php?type=SELL&region_id=-1&type_name_header=Tritanium".toLowerCase());
 		logger.info("<< [MarketDownloaderTestUnit.test01GetModuleLink]");
 	}
-
+	
 	/**
 	 * Some tests only have to be run depending on the configuration. For example the eve-central server is down for a long time
 	 * so I have to skip those tests until it is running again and I can activate again that flag.
-	 *
 	 * @throws JSONException
 	 */
 	@Test
 	public void test02ReadJsonData() throws JSONException {
 		logger.info(">> [MarketDownloaderTestUnit.test02ReadJsonData]");
-		if (GlobalDataManager.getResourceBoolean("R.cache.marketdata.provider.activateEC", false)) {
+		if ( GlobalDataManager.getResourceBoolean("R.cache.marketdata.provider.activateEC", false) ) {
 			logger.info(">> [MarketDownloaderTestUnit.test02ReadJsonData]> Activated");
 			String jsonStr = this.readJsonData(34);
 			Assert.assertNotNull("-> Validating the result is not null...", jsonStr);
@@ -90,11 +81,11 @@ public class MarketDownloaderTestUnit extends MarketDataServer.MarketDataJobDown
 		}
 		logger.info("<< [MarketDownloaderTestUnit.test02ReadJsonData]");
 	}
-
+	
 	@Test
 	public void test03ParseMarketDataEC() {
 		logger.info(">> [MarketDownloaderTestUnit.test03ParseMarketDataEC]");
-		if (GlobalDataManager.getResourceBoolean("R.cache.marketdata.provider.activateEC", false)) {
+		if ( GlobalDataManager.getResourceBoolean("R.cache.marketdata.provider.activateEC", false) ) {
 			logger.info(">> [MarketDownloaderTestUnit.test03ParseMarketDataEC]> Activated");
 			List<TrackEntry> marketEntries = parseMarketDataEC(34, EMarketSide.SELLER);
 			Assert.assertTrue("-> Validating the market entries exist.", marketEntries.size() > 0);
@@ -103,8 +94,8 @@ public class MarketDownloaderTestUnit extends MarketDataServer.MarketDataJobDown
 		}
 		logger.info("<< [MarketDownloaderTestUnit.test03ParseMarketDataEC]");
 	}
-
-//	@Test
+	
+	//	@Test
 	public void test04ParseMarketDataEMD() throws IOException, SAXException {
 		logger.info(">> [MarketDownloaderTestUnit.test04ParseMarketDataEMD]");
 		final EveItem item = new GlobalDataManager().searchItem4Id(34);
@@ -114,6 +105,7 @@ public class MarketDownloaderTestUnit extends MarketDataServer.MarketDataJobDown
 		Assert.assertTrue("-> Validating the market entries exist.", marketEntries.size() > 0);
 		logger.info("<< [MarketDownloaderTestUnit.test04ParseMarketDataEMD]");
 	}
+	
 	@Test
 	public void test05GenerateMarketDataJobReference() {
 		logger.info(">> [MarketDownloaderTestUnit.test05GenerateMarketDataJobReference]");
@@ -121,7 +113,7 @@ public class MarketDownloaderTestUnit extends MarketDataServer.MarketDataJobDown
 		Assert.assertEquals("-> Validating the Download Job Reference...", name, "MDJ:34:");
 		logger.info("<< [MarketDownloaderTestUnit.test05GenerateMarketDataJobReference]");
 	}
-
+	
 	@Test
 	public void test06FilterStations() {
 		logger.info(">> [MarketDownloaderTestUnit.test06FilterStations]");

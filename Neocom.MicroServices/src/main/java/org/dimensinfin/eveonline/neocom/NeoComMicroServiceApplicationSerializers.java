@@ -27,13 +27,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.dimensinfin.eveonline.neocom.controller.ManufactureResourcesController;
+import org.dimensinfin.eveonline.neocom.database.entity.NeoComAsset;
 import org.dimensinfin.eveonline.neocom.database.entity.Property;
 import org.dimensinfin.eveonline.neocom.industry.EveTask;
 import org.dimensinfin.eveonline.neocom.industry.FacetedAssetContainer;
 import org.dimensinfin.eveonline.neocom.industry.Resource;
 import org.dimensinfin.eveonline.neocom.model.EveItem;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
-import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
 import org.dimensinfin.eveonline.neocom.model.PilotV2;
 import org.dimensinfin.eveonline.neocom.planetary.ProcessingActionV2;
 
@@ -75,7 +75,7 @@ public class NeoComMicroServiceApplicationSerializers {
 
 		// - M E T H O D - S E C T I O N ..........................................................................
 		@Override
-		public void serialize( final Exception value, final JsonGenerator jgen, final SerializerProvider provider )
+		public void serialize(final Exception value, final JsonGenerator jgen, final SerializerProvider provider)
 				throws IOException, JsonProcessingException {
 			jgen.writeStartObject();
 			jgen.writeStringField("exceptionClass", value.getClass().getSimpleName());
@@ -92,7 +92,7 @@ public class NeoComMicroServiceApplicationSerializers {
 
 		// - M E T H O D - S E C T I O N ..........................................................................
 		@Override
-		public void serialize( final PilotV2 value, final JsonGenerator jgen, final SerializerProvider provider )
+		public void serialize(final PilotV2 value, final JsonGenerator jgen, final SerializerProvider provider)
 				throws IOException, JsonProcessingException {
 			jgen.writeStartObject();
 
@@ -130,7 +130,7 @@ public class NeoComMicroServiceApplicationSerializers {
 
 		// - M E T H O D - S E C T I O N ..........................................................................
 		@Override
-		public void serialize( final Property value, final JsonGenerator jgen, final SerializerProvider provider )
+		public void serialize(final Property value, final JsonGenerator jgen, final SerializerProvider provider)
 				throws IOException, JsonProcessingException {
 			jgen.writeStartObject();
 			jgen.writeStringField("jsonClass", "Property");
@@ -150,7 +150,7 @@ public class NeoComMicroServiceApplicationSerializers {
 
 		// - M E T H O D - S E C T I O N ..........................................................................
 		@Override
-		public void serialize( final NeoComAsset value, final JsonGenerator jgen, final SerializerProvider provider )
+		public void serialize(final NeoComAsset value, final JsonGenerator jgen, final SerializerProvider provider)
 				throws IOException, JsonProcessingException {
 			jgen.writeStartObject();
 			jgen.writeStringField("jsonClass", value.getJsonClass());
@@ -188,7 +188,7 @@ public class NeoComMicroServiceApplicationSerializers {
 
 		// - M E T H O D - S E C T I O N ..........................................................................
 		@Override
-		public void serialize( final EveLocation value, final JsonGenerator jgen, final SerializerProvider provider )
+		public void serialize(final EveLocation value, final JsonGenerator jgen, final SerializerProvider provider)
 				throws IOException, JsonProcessingException {
 			jgen.writeStartObject();
 //			jgen.writeNumberField("recordid", value.getRealId());
@@ -215,7 +215,7 @@ public class NeoComMicroServiceApplicationSerializers {
 
 		// - M E T H O D - S E C T I O N ..........................................................................
 		@Override
-		public void serialize( final Resource value, final JsonGenerator jgen, final SerializerProvider provider )
+		public void serialize(final Resource value, final JsonGenerator jgen, final SerializerProvider provider)
 				throws IOException, JsonProcessingException {
 			jgen.writeStartObject();
 			jgen.writeStringField("jsonClass", value.getJsonClass());
@@ -238,7 +238,7 @@ public class NeoComMicroServiceApplicationSerializers {
 
 		// - M E T H O D - S E C T I O N ..........................................................................
 		@Override
-		public void serialize( final FacetedAssetContainer value, final JsonGenerator jgen, final SerializerProvider provider )
+		public void serialize(final FacetedAssetContainer value, final JsonGenerator jgen, final SerializerProvider provider)
 				throws IOException, JsonProcessingException {
 			jgen.writeStartObject();
 			jgen.writeStringField("jsonClass", "FacetedResourceContainer");
@@ -255,7 +255,7 @@ public class NeoComMicroServiceApplicationSerializers {
 
 		// - M E T H O D - S E C T I O N ..........................................................................
 		@Override
-		public void serialize( final EveTask value, final JsonGenerator jgen, final SerializerProvider provider )
+		public void serialize(final EveTask value, final JsonGenerator jgen, final SerializerProvider provider)
 				throws IOException, JsonProcessingException {
 			jgen.writeStartObject();
 			jgen.writeStringField("jsonClass", value.getJsonClass());
@@ -280,7 +280,7 @@ public class NeoComMicroServiceApplicationSerializers {
 
 		// - M E T H O D - S E C T I O N ..........................................................................
 		@Override
-		public void serialize( final ManufactureResourcesController.RefiningProcess value, final JsonGenerator jgen, final SerializerProvider provider )
+		public void serialize(final ManufactureResourcesController.RefiningProcess value, final JsonGenerator jgen, final SerializerProvider provider)
 				throws IOException, JsonProcessingException {
 			jgen.writeStartObject();
 			jgen.writeStringField("jsonClass", "RefiningProcess");
@@ -304,7 +304,7 @@ public class NeoComMicroServiceApplicationSerializers {
 
 		// - M E T H O D - S E C T I O N ..........................................................................
 		@Override
-		public void serialize( final EveItem value, final JsonGenerator jgen, final SerializerProvider provider )
+		public void serialize(final EveItem value, final JsonGenerator jgen, final SerializerProvider provider)
 				throws IOException, JsonProcessingException {
 			jgen.writeStartObject();
 			jgen.writeStringField("jsonClass", value.getJsonClass());
@@ -341,7 +341,7 @@ public class NeoComMicroServiceApplicationSerializers {
 
 		// - M E T H O D - S E C T I O N ..........................................................................
 		@Override
-		public void serialize( final ProcessingActionV2 value, final JsonGenerator jgen, final SerializerProvider provider )
+		public void serialize(final ProcessingActionV2 value, final JsonGenerator jgen, final SerializerProvider provider)
 				throws IOException, JsonProcessingException {
 			jgen.writeStartObject();
 			jgen.writeStringField("jsonClass", value.getJsonClass());
