@@ -7,25 +7,14 @@
 //               the second is the java microservices that compose the web application backend made with
 //               SpringBoot technology and finally the web ui code made in typescript within the Angular
 //               framework.
-import { Component } from '@angular/core';
+//--- CORE
+//--- INTERFACES
+import { INode } from 'app/interfaces/INode.interface';
+import { ICollaboration } from 'app/interfaces/ICollaboration.interface';
+import { EVariant } from 'app/interfaces/EPack.enumerated';
 
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
-})
-export class AppComponent {
-  // public  title = 'app';
-  public options = {
-    position: ["top", "right"],
-    showProgressBar: false,
-    pauseOnHover: true,
-    timeOut: 4000,
-    animate: "fade",
-    lastOnBottom: true,
-    preventDuplicates: true,
-    theClass: "rounded"
-  }
-  public created() { }
-  public destroyed() { }
+export interface INeoComNode extends INode, ICollaboration {
+  // toggleExpanded();
+  // getContentsCount(): number;
+  // getTypeId(): number;
 }

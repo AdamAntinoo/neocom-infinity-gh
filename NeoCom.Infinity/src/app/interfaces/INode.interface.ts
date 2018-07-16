@@ -7,25 +7,6 @@
 //               the second is the java microservices that compose the web application backend made with
 //               SpringBoot technology and finally the web ui code made in typescript within the Angular
 //               framework.
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
-})
-export class AppComponent {
-  // public  title = 'app';
-  public options = {
-    position: ["top", "right"],
-    showProgressBar: false,
-    pauseOnHover: true,
-    timeOut: 4000,
-    animate: "fade",
-    lastOnBottom: true,
-    preventDuplicates: true,
-    theClass: "rounded"
-  }
-  public created() { }
-  public destroyed() { }
+export interface INode {
+  jsonClass: string;
 }

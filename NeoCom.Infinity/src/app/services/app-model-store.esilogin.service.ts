@@ -1,7 +1,7 @@
-//  PROJECT:     NeoCom.WS (NEOC.WS)
+//  PROJECT:     NeoCom.Angular (NEOC.A6)
 //  AUTHORS:     Adam Antinoo - adamantinoo.git@gmail.com
 //  COPYRIGHT:   (c) 2017-2018 by Dimensinfin Industries, all rights reserved.
-//  ENVIRONMENT: Angular 5.2.0
+//  ENVIRONMENT: Angular 6.0
 //  DESCRIPTION: Angular source code to run on a web server almost the same code as on the Android platform.
 //               The project has 3 clear parts. One is the Java libraries that are common for all platforms,
 //               the second is the java microservices that compose the web application backend made with
@@ -49,8 +49,8 @@ export class AppModelStoreServiceESILogin extends AppModelStoreServiceDefinition
   protected _rsaKey = null; // RSA session key generated on the login process.
   protected _publicKey = null; // Local public key from the RSA key to be used on message decryption by backend.
   // protected _sessionIdentifier: string = "-MOCK-SESSION-ID-"; // Unique session identifier to be interchanged with backend.
-  protected _session: NeoComSession = null;
-  protected _credentialList: Credential[] = null; // List of Credential data. It also includes the Pilotv2 information.
+  // protected _session: NeoComSession = null;
+  // protected _credentialList: Credential[] = null; // List of Credential data. It also includes the Pilotv2 information.
   protected _pilotIdentifier: number = 92002067; // Pilot identifier number for this session.
 
   //--- C O M M O N    C A L L S
@@ -60,20 +60,6 @@ export class AppModelStoreServiceESILogin extends AppModelStoreServiceDefinition
 
   //--- S T O R E   F I E L D S    A C C E S S O R S
   //--- S E S S I O N   A C C E S S O R S
-  public checkSessionActive(): Observable<NeoComSession> {
-    if (null == this._session) {
-      this.toasterService.pop('warning', 'SESSION NOT LOADED', 'There is not valid session. Going back to initial page!.');
-      this.router.navigate(['dashboard']);
-    }
-    return new Observable(observer => {
-      setTimeout(() => {
-        observer.next(this._session);
-      }, 500);
-      setTimeout(() => {
-        observer.complete();
-      }, 500);
-    });
-  }
   public getPublicKey(): CryptoKey {
     return this._publicKey;
   }

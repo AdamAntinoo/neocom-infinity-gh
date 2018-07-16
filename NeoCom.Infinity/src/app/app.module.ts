@@ -1,7 +1,7 @@
 //  PROJECT:     NeoCom.Angular (NEOC.A6)
 //  AUTHORS:     Adam Antinoo - adamantinoo.git@gmail.com
 //  COPYRIGHT:   (c) 2017-2018 by Dimensinfin Industries, all rights reserved.
-//  ENVIRONMENT: Angular 6.0.4
+//  ENVIRONMENT: Angular 6.0
 //  DESCRIPTION: Angular source code to run on a web server almost the same code as on the Android platform.
 //               The project has 3 clear parts. One is the Java libraries that are common for all platforms,
 //               the second is the java microservices that compose the web application backend made with
@@ -17,19 +17,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //--- HTTP CLIENT
 import { HttpClientModule } from '@angular/common/http';
-//--- OAUTH2
-import { OAuthModule } from 'angular-oauth2-oidc';
 //--- TOAST NOTIFICATIONS
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { NotificationsService } from 'angular2-notifications';
+//--- OAUTH2
+import { OAuthModule } from 'angular-oauth2-oidc';
+//--- WEBSTORAGE
+import { StorageServiceModule } from 'angular-webstorage-service';
 //--- DRAG AND DROP
 // import { NgDragDropModule } from 'ng-drag-drop';
-
 //--- ADDITIONAL MODULES
-// import { ReactiveFormsModule } from '@angular/forms';
-// import { InlineEditorModule } from 'ng2-inline-editor';
-// import { } from 'ng2-inline-editor';
-// import { AngularFontAwesomeModule } from 'angular-font-awesome';
+
 //--- APPLICATION MODULES
 import { UIModule } from './modules/ui/ui.module';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
@@ -46,10 +44,6 @@ import { AuthenticationModule } from './modules/authentication/authentication.mo
 import { AppModelStoreService } from './services/app-model-store.service';
 //--- COMPONENTS-CORE
 import { AppComponent } from './app.component';
-// import { ComponentFactoryComponent } from 'app/components/component-factory/component-factory.component';
-//--- DIRECTIVES
-//--- PIPES
-
 
 @NgModule({
   imports: [
@@ -61,10 +55,12 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     //--- HTTP CLIENT
     HttpClientModule,
-    //--- OAUTH2
-    OAuthModule,
     //--- TOAST NOTIFICATIONS
     SimpleNotificationsModule.forRoot(),
+    //--- OAUTH2
+    OAuthModule,
+    //--- WEBSTORAGE
+    StorageServiceModule,
     //--- APPLICATION MODULES
     UIModule,
     AuthenticationModule

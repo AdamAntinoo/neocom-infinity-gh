@@ -8,7 +8,8 @@
 //               SpringBoot technology and finally the web ui code made in typescript within the Angular
 //               framework.
 //-- ADDITIONAL MODULES STYLES
-// @import "~bootstrap/scss/bootstrap";  // From the boostrap module.
+@import "~bootstrap/dist/css/bootstrap.css"; // bootstrap styles
+@import "~font-awesome/css/font-awesome.css"; // additional styles from fontawesome
 @import './styles/toaster.css'; // angular5-toaster module additional styles
 
 //--- APPLICATION STYLES VARIABLES
