@@ -23,12 +23,13 @@
 </div>
 <div class="login-box">
   <div>
-    <a class="authorization-button button-size" (click)="launchLogin()">
-      <div *ngIf="!working">ESI Authorization</div>
-      <div *ngIf="working" class="login-box">
-        <span class="validating-label">Validating Authorization...</span>
-        <!-- <fa name="cog" animation="spin" size="1x"></fa> -->
-      </div>
-    </a>
+    <!-- <a class="authorization-button button-size" (click)="launchLogin()"> -->
+    <!-- <div *ngIf="!working">ESI Authorization</div> -->
+    <button *ngIf="!working" type="button" class="btn btn-default button-size authorization-button" (click)="launchLogin()">ESI Authorization</button>
+    <div *ngIf="working" class="login-box">
+      <span class="validating-label">Validating Authorization...</span>
+      <i class="fa fa-cog" id="ts24"></i>
+    </div>
+    <!-- </a> -->
   </div>
 </div>

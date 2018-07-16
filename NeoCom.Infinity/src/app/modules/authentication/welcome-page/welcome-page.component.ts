@@ -57,12 +57,11 @@ export class WelcomePageComponent {
     , protected http: HttpClient
     , protected oauthService: OAuthService
     , protected toaster: NotificationsService) {
-
+    // Setup authorization oauth configuration properties.
     this.oauthService.showDebugInformation = true;
-    // this.oauthService.userResponseType = 'code';
     this.oauthService.requestAccessToken = true;
     // Login-Url
-    this.oauthService.loginUrl = ESIConfiguration.AUTHORIZE_URL; //Id-Provider?
+    this.oauthService.loginUrl = ESIConfiguration.AUTHORIZE_URL;
     // URL of the SPA to redirect the user to after login
     this.oauthService.redirectUri = ESIConfiguration.CALLBACK;
     // The SPA's id. Register SPA with this id at the auth-server
@@ -74,7 +73,6 @@ export class WelcomePageComponent {
     // set to true, to receive also an id_token via OpenId Connect (OIDC) in addition to the
     // OAuth2-based access_token
     this.oauthService.oidc = false;
-    // this.oauthService.requestAccessToken = false;
     // Use setStorage to use sessionStorage or another implementation of the TS-type Storage
     // instead of localStorage
     this.oauthService.setStorage(sessionStorage);
@@ -82,9 +80,6 @@ export class WelcomePageComponent {
     this.oauthService.logoutUrl = ESIConfiguration.AUTHORIZATION_SERVER + "account/logoff";
   }
 
-  // public getDescription(): string {
-  //   return "Welcome to the Infinity helper. Log in with your Eve Online credentials on the ESI login portal to get access to a capsuleer dedicated Industrialist Management System. Services provided are: Asset List - Mining Legder and Skills List."
-  // }
   public launchLogin() {
     console.log(">> [WelcomePageComponent.launchLogin]");
     // Show the validation spinning while we get the authorization credentials.

@@ -58,7 +58,7 @@ import { AppComponent } from './app.component';
     //--- TOAST NOTIFICATIONS
     SimpleNotificationsModule.forRoot(),
     //--- OAUTH2
-    OAuthModule,
+    OAuthModule.forRoot(),
     //--- WEBSTORAGE
     StorageServiceModule,
     //--- APPLICATION MODULES

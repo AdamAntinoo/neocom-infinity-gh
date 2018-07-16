@@ -23,7 +23,15 @@ import { Input } from '@angular/core';
 export class ActionBarComponent {
   @Input() titleLeft: string = "";
   @Input() titleRight: string = "";
+  @Input() section: string = "-WELCOME-";
+
   @Input() iconTop: string = "";
   @Input() iconBottom: string = "";
   @Input() subtitle: string = "";
+
+  //--- BAR SELECTION
+  public sectionIs(section: string): boolean {
+    if (this.section === section) return true;
+    else return false;
+  }
 }
