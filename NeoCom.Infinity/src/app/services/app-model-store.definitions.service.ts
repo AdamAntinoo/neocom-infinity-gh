@@ -41,8 +41,8 @@ import { WebStorageService } from 'angular-webstorage-service';
 // // import { IViewer } from 'app/interfaces/IViewer.interface';
 import { INode } from 'app/interfaces/INode.interface';
 import { INeoComNode } from 'app/interfaces/INeoComNode.interface';
-// // //--- MODELS
-// import { NeoComException } from 'app/models/ui/NeoComException.model';
+//--- MODELS
+import { NeoComException } from 'app/models/ui/NeoComException.model';
 // import { NeoComNode } from 'AppModelStoreService/models/NeoComNode.model';
 // import { Credential } from '../models/Credential.model';
 // import { Pilot } from '../models/Pilot.model';
@@ -60,7 +60,6 @@ import { INeoComNode } from 'app/interfaces/INeoComNode.interface';
 // import { RefiningProcess } from 'app/models/industry/RefiningProcess.model';
 // import { FacetedResourceContainer } from 'app/models/industry/FacetedResourceContainer.model';
 // import { ProcessingAction } from 'app/models/planetary/ProcessingAction.model';
-const OTHER_KEY: string = "-KEY-";
 
 export class AppModelStoreServiceDefinitions {
   //--- MOCK SECTION
@@ -86,7 +85,6 @@ export class AppModelStoreServiceDefinitions {
   // protected static APPLICATION_SERVICE_PORT: number = environment.servicePort;
   // protected static RESOURCE_SERVICE_URL: string = "/api/v1";
 
-  protected _sessionIdentifier: string = "-MOCK-SESSION-ID-"; // Unique session identifier to be interchanged with backend.
 
   //--- C O N S T R U C T O R
   constructor(
@@ -114,23 +112,6 @@ export class AppModelStoreServiceDefinitions {
     if (null == data) return false;
     if (data.length < 1) return false;
     return true;
-  }
-
-  //-- S E S S I O N   M A N A G E M E N T
-
-  public checkSessionActive(): Observable<NeoComSession> {
-    if (null == this._session) {
-      this.toasterService.pop('warning', 'SESSION NOT LOADED', 'There is not valid session. Going back to initial page!.');
-      this.router.navigate(['dashboard']);
-    }
-    return new Observable(observer => {
-      setTimeout(() => {
-        observer.next(this._session);
-      }, 500);
-      setTimeout(() => {
-        observer.complete();
-      }, 500);
-    });
   }
 
   //--- B A C K E N D   U T I L I T I E S
@@ -185,8 +166,8 @@ export class AppModelStoreServiceDefinitions {
       //   let convertedProveedor = new Proveedor(node);
       //   console.log("--[AppModelStoreService.convertNode]> Proveedor node: " + convertedProveedor.getId());
       //   return convertedProveedor;
-      // default:
-      //   return new NeoComException().setMessage(JSON.stringify(node));
+      default:
+        return new NeoComException().setMessage(JSON.stringify(node));
       //   switch (node.jsonClass) {
       //     case "Credential":
       //       let convertedCredential = new Credential(node);

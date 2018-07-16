@@ -16,7 +16,7 @@ import { HttpClient } from '@angular/common/http';
 //--- NOTIFICATIONS
 import { NotificationsService } from 'angular2-notifications';
 //--- SERVICES
-import { AppModelStoreServiceDefinitions } from 'app/services/app-model-store.definitions.service';
+import { AppModelStoreServiceStorage } from 'app/services/app-model-store.storage.service';
 
 //--- CORE
 // import { Component } from '@angular/core';
@@ -39,12 +39,12 @@ import { AppModelStoreServiceDefinitions } from 'app/services/app-model-store.de
 // import { AppModelStoreServiceDefinitions } from 'app/services/app-model-store.definitions.service';
 // //--- INTERFACES
 // import { INeoComNode } from '../interfaces/INeoComNode.interface';
-// //--- MODELS
-// import { NeoComSession } from '../models/NeoComSession.model';
+//--- MODELS
+import { NeoComSession } from 'app/models/ui/NeoComSession.model';
 // import { Credential } from '../models/Credential.model';
 // import { Pilot } from '../models/Pilot.model';
 
-export class AppModelStoreServiceESILogin extends AppModelStoreServiceDefinitions {
+export class AppModelStoreServiceESILogin extends AppModelStoreServiceStorage {
   //--- STORE FIELDS
   protected _rsaKey = null; // RSA session key generated on the login process.
   protected _publicKey = null; // Local public key from the RSA key to be used on message decryption by backend.
@@ -78,7 +78,7 @@ export class AppModelStoreServiceESILogin extends AppModelStoreServiceDefinition
   }
   public setSession(newsession: NeoComSession): void {
     this._session = newsession;
-    this.toasterService.pop('success', 'SESSION OK', 'Session properly loaded.');
+    this.toasterService.success("OK !!", 'Session properly loaded.');
   }
   public setSessionIdentifier(sessionId: string): void {
     this._sessionIdentifier = sessionId;
@@ -103,7 +103,7 @@ export class AppModelStoreServiceESILogin extends AppModelStoreServiceDefinition
         let request = AppModelStoreServiceESILogin.RESOURCE_SERVICE_URL + "/exchangeauthorization/" + code
           + "/publickey/" + jsonKey.n;
         return this.http.get(request)
-          .map(res => res.json())
+          // .map(res => res.json())
           // .map(result => {
           //   console.log("><[AppModelStoreService.backendExchangeAuthorization]>Response interception.");
           //   // Check if the result is an exception. If so show it on the Notifications.
@@ -118,9 +118,9 @@ export class AppModelStoreServiceESILogin extends AppModelStoreServiceDefinition
             let list = [];
             list.push(neocomSession);
             // TODO - Review the processing for the received data.
-            this._credentialList = this.transformRequestOutput(list) as Credential[];
+            // this._credentialList = this.transformRequestOutput(list) as Credential[];
             // this.setPilotIdentifier(this._credentialList[0].accountId);
-            console.log("<<[AppModelStoreService.getBackendCredentialList]> Processed: " + this._credentialList.length);
+            // console.log("<<[AppModelStoreService.getBackendCredentialList]> Processed: " + this._credentialList.length);
 
             // // Decript the pilot identifier to check of we can trust the encrytion.
             // let pilotidencrypted = neocomSessionIdentifier["pilotIdentifier"];
@@ -139,7 +139,7 @@ export class AppModelStoreServiceESILogin extends AppModelStoreServiceDefinition
             // });
 
             // Authorization completed. Go to the initial application page. Dashboard.
-            this.router.navigate(['dashboard']);
+            // this.router.navigate(['dashboard']);
           });
       });
   }
@@ -148,52 +148,52 @@ export class AppModelStoreServiceESILogin extends AppModelStoreServiceDefinition
 	/**
 	This gets the list of Credentials that are the first interaction with the user to select with what character we like to continue the rest of the intereactions. If the Credential list is empty we return a node with an activation button to add new credentials while we go to the backend to get an updated list of the database stored credentials.
 	*/
-  public accessCredentialList(): Observable<Credential[]> {
-    console.log("><[AppModelStoreService.accessCredentialList]");
-    if (null == this._credentialList) {
-      // Initialize the list with the default "new credential" button.
-      //		this._credentialList.push(new )
-      // Get the list form the backend Database.
-      return this.getBackendCredentialList()
-        .map(credentials => {
-          this._credentialList = credentials;
-          return this._credentialList;
-        });
-    } else
-      return new Observable(observer => {
-        setTimeout(() => {
-          observer.next(this._credentialList);
-        }, 500);
-        setTimeout(() => {
-          observer.complete();
-        }, 500);
-      });
-  }
+  // public accessCredentialList(): Observable<Credential[]> {
+  //   console.log("><[AppModelStoreService.accessCredentialList]");
+  //   if (null == this._credentialList) {
+  //     // Initialize the list with the default "new credential" button.
+  //     //		this._credentialList.push(new )
+  //     // Get the list form the backend Database.
+  //     return this.getBackendCredentialList()
+  //       .map(credentials => {
+  //         this._credentialList = credentials;
+  //         return this._credentialList;
+  //       });
+  //   } else
+  //     return new Observable(observer => {
+  //       setTimeout(() => {
+  //         observer.next(this._credentialList);
+  //       }, 500);
+  //       setTimeout(() => {
+  //         observer.complete();
+  //       }, 500);
+  //     });
+  // }
   /**
 	Go to the backend Database to retrieve the list of declared Credentials to let the user to select the one he/she wants for working. If the list is already downloaded then do not access again the Database and return the cached list.
 	*/
-  public getBackendCredentialList(): Observable<Credential[]> {
-    console.log("><[AppModelStoreService.getBackendCredentialList]");
-    // If running mock replace the backend call by the prestored data.
-    let request = AppModelStoreServiceESILogin.RESOURCE_SERVICE_URL + "/credentials";
-    if (this.getMockStatus()) {
-      // Search for the request at the mock map.
-      let hit = this.responseTable[request];
-      if (null != hit) request = hit;
-    }
-
-    return this.http.get(request)
-      .map(res => res.json())
-      .map(result => {
-        console.log("--[AppModelStoreService.getBackendCredentialList]> Processing response.");
-        // Process the result into a set of Logins or process the Error Message if so.
-        //	let constructionList: NeoComNode[] = [];
-        // Process the resulting hash array into a list of transformed nodes.
-        this._credentialList = this.transformRequestOutput(result) as Credential[];
-        console.log("<<[AppModelStoreService.getBackendCredentialList]> Processed: " + this._credentialList.length);
-        return this._credentialList;
-      });
-  }
+  // public getBackendCredentialList(): Observable<Credential[]> {
+  //   console.log("><[AppModelStoreService.getBackendCredentialList]");
+  //   // If running mock replace the backend call by the prestored data.
+  //   let request = AppModelStoreServiceESILogin.RESOURCE_SERVICE_URL + "/credentials";
+  //   if (this.getMockStatus()) {
+  //     // Search for the request at the mock map.
+  //     let hit = this.responseTable[request];
+  //     if (null != hit) request = hit;
+  //   }
+  //
+  //   return this.http.get(request)
+  //     .map(res => res.json())
+  //     .map(result => {
+  //       console.log("--[AppModelStoreService.getBackendCredentialList]> Processing response.");
+  //       // Process the result into a set of Logins or process the Error Message if so.
+  //       //	let constructionList: NeoComNode[] = [];
+  //       // Process the resulting hash array into a list of transformed nodes.
+  //       this._credentialList = this.transformRequestOutput(result) as Credential[];
+  //       console.log("<<[AppModelStoreService.getBackendCredentialList]> Processed: " + this._credentialList.length);
+  //       return this._credentialList;
+  //     });
+  // }
 
   //--- P R I V A T E    S E C T I O N
 }
