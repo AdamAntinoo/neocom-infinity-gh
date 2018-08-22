@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="ESI.SwaggerApi" target="8" />
+      <module name="ESI.SwaggerApi" target="1.7" />
       <module name="NeoCom.MicroServices" target="8" />
       <module name="NeoCom.Model" target="8" />
     </bytecodeTargetLevel>

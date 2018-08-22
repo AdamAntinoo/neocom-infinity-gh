@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1142163847/ESI.SwaggerApi.iml" filepath="$PROJECT_DIR$/.idea/modules/1142163847/ESI.SwaggerApi.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1601493074/NeoCom.DataManagement.iml" filepath="$PROJECT_DIR$/.idea/modules/-1601493074/NeoCom.DataManagement.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/NeoCom.MicroServices.iml" filepath="$PROJECT_DIR$/.idea/modules/NeoCom.MicroServices.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/2043163080/NeoCom.Model.iml" filepath="$PROJECT_DIR$/.idea/modules/2043163080/NeoCom.Model.iml" />
