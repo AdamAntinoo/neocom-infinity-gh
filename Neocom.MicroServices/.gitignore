@@ -36,5 +36,5 @@ gradlew.bat
 ### Project file exceptions
 .idea/workspace.xml
 privatelibs/
-libs/
+#libs/
 src/main/resources/static/

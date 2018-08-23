@@ -45,6 +45,7 @@ public class FileSystemSBImplementation implements IFileSystem {
 		logger.info(">< [FileSystemSBImplementation.constructor]> applicationStoreDirectory: {}", applicationStoreDirectory);
 		if (null != applicationStoreDirectory)
 			this.applicationFolder = applicationStoreDirectory;
+		logger.info("-- [FileSystemSBImplementation.constructor]> applicationFolder: {}", this.applicationFolder);
 	}
 
 	// - M E T H O D - S E C T I O N ..........................................................................

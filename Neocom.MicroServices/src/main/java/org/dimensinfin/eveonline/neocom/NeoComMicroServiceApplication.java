@@ -9,26 +9,7 @@
 package org.dimensinfin.eveonline.neocom;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.dimensinfin.eveonline.neocom.conf.GlobalSBPreferencesManager;
-import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
-import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
-import org.dimensinfin.eveonline.neocom.datamngmt.*;
-import org.dimensinfin.eveonline.neocom.model.ANeoComEntity;
-import org.dimensinfin.eveonline.neocom.services.MarketDataServer;
-import org.dimensinfin.eveonline.neocom.services.TimedUpdater;
-import org.joda.time.Instant;
-import org.modelmapper.ModelMapper;
-import org.modelmapper.config.Configuration;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -36,6 +17,29 @@ import java.security.spec.InvalidKeySpecException;
 import java.sql.SQLException;
 import java.util.Hashtable;
 import java.util.concurrent.TimeUnit;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+
+import org.joda.time.Instant;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.config.Configuration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.dimensinfin.eveonline.neocom.conf.GlobalSBPreferencesManager;
+import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
+import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
+import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.FileSystemSBImplementation;
+import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.GlobalSBConfigurationProvider;
+import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
+import org.dimensinfin.eveonline.neocom.model.ANeoComEntity;
+import org.dimensinfin.eveonline.neocom.services.MarketDataServer;
+import org.dimensinfin.eveonline.neocom.services.TimedUpdater;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 
@@ -47,29 +51,35 @@ import java.util.concurrent.TimeUnit;
  */
 //@EnableCaching
 //@EnableCircuitBreaker
-@EnableScheduling
+//@EnableScheduling
 //@EnableAsync
 @SpringBootApplication
 public class NeoComMicroServiceApplication extends NeoComMicroServiceApplicationSerializers {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger logger = LoggerFactory.getLogger("NeoComMicroServiceApplication");
 	public static final boolean MOCK_UP = true;
-	
+	/** Market data downloader and server to ge the market prices. The data is stored locally and the control is made with futures. */
 	public static MarketDataServer mdServer = null;
-	public static final TimedUpdater timedService = new TimedUpdater();
-	/**
-	 * Instance for the mapping of OK instances to the MVC compatible classes.
-	 */
+	/** Periodic service that will check outdated data structures and post the requests to download and update new data. */
+	public static TimedUpdater timedService = new TimedUpdater();
+	/** Instance for the mapping of OK instances to the MVC compatible classes. Also its initialization. */
 	public static final ModelMapper modelMapper = new ModelMapper();
-	
+
 	static {
 		modelMapper.getConfiguration()
 				.setFieldMatchingEnabled(true)
 				.setMethodAccessLevel(Configuration.AccessLevel.PRIVATE);
 	}
-	
+
 	public static Hashtable<String, NeoComSession> sessionStore = new Hashtable();
-	
+
+	/**
+	 * Function to validate if the front end request contains a valid Eve Pilot identifier that matches the one stored on the session
+	 * structure. Sessions are created during the authorization phase and store some cached data structures.
+	 * @param sessionLocator
+	 * @param identifier
+	 * @return
+	 */
 	public static boolean validatePilotIdentifierMatch(final String sessionLocator, final Integer identifier) {
 		logger.info(">> [NeoComMicroServiceApplication.validatePilotIdentifierMatch]");
 		try {
@@ -80,18 +90,18 @@ public class NeoComMicroServiceApplication extends NeoComMicroServiceApplication
 					.setTimeValid(Instant.now().getMillis());
 			if ( null == locator ) return false;
 			final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(locator);
-			
+
 			// First check the time span validity.
 			final long now = Instant.now().getMillis();
 //			final long nowPlus15 = Instant.now().plus(TimeUnit.MINUTES.toMillis(15)).toInstant().getMillis();
 			final long timeLimit = new Instant(locator.getTimeValid()).plus(TimeUnit.MINUTES.toMillis(15)).toInstant().getMillis();
 			if ( timeLimit <= now ) return false;
-			
+
 			// Then check if the identifiers match.
 			final NeoComSession hit = sessionStore.get(locator.getSessionLocator());
 			if ( null == hit ) return false;
 			if ( hit.getPilotIdentifier() != identifier ) return false;
-			
+
 			// All was validated. We can access the data
 			return true;
 		} catch ( JsonProcessingException e ) {
@@ -102,8 +112,9 @@ public class NeoComMicroServiceApplication extends NeoComMicroServiceApplication
 		}
 //		return true;
 	}
+
 	// - M A I N   E N T R Y P O I N T ........................................................................
-	
+
 	/**
 	 * Create all the platform specific connectors and then launch it to run.
 	 * @param args
@@ -115,21 +126,21 @@ public class NeoComMicroServiceApplication extends NeoComMicroServiceApplication
 		InfinityGlobalDataManager.installFileSystem(new FileSystemSBImplementation(
 				System.getenv("appname"))
 		);
-		
+
 		// Connect the Configuration manager.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the Configuration Manager...");
 		InfinityGlobalDataManager.connectConfigurationManager(new GlobalSBConfigurationProvider("properties"));
-		
-		logger.info("-- [NeoComApp.onCreate]> Connecting the Preferences Manager...");
+
+		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the Preferences Manager...");
 		InfinityGlobalDataManager.connectPreferencesManager(new GlobalSBPreferencesManager());
-		
+
 		// Initialize the Model with the current global instance.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting Global to Model...");
 		ANeoComEntity.connectGlobal(new InfinityGlobalDataManager());
-		
+
 		// Initializing the ESI api network controller.
 		ESINetworkManager.initialize();
-		
+
 		// Connect the SDE database.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting SDE database...");
 		try {
@@ -142,13 +153,9 @@ public class NeoComMicroServiceApplication extends NeoComMicroServiceApplication
 		} catch ( SQLException sqle ) {
 			sqle.printStackTrace();
 		}
+		// Connect the helper to the global static entity class so persistent classes are able to access the SDE database.
 		ANeoComEntity.connectSDEHelper(new GlobalDataManager().getSDEDBHelper());
-		
-		// Connect the MarketData service.
-		logger.info("-- [NeoComMicroServiceApplication.main]> Starting Market Data service...");
-		mdServer = new MarketDataServer().start();
-		InfinityGlobalDataManager.connectMarketDataManager(mdServer);
-		
+
 		// Connect the NeoCom database.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting NeoCom private database...");
 		try {
@@ -163,32 +170,47 @@ public class NeoComMicroServiceApplication extends NeoComMicroServiceApplication
 					.build()
 			);
 		} catch ( SQLException sqle ) {
+			logger.error("E> [NeoComMicroServiceApplication.main]> Connecting NeoCom private database...: {}", sqle.getMessage());
 			sqle.printStackTrace();
 		}
-		
+
+		// Connect the MarketData service.
+		logger.info("-- [NeoComMicroServiceApplication.main]> Starting Market Data service...");
+		boolean startMarket = InfinityGlobalDataManager.getResourceBoolean("R.runtime.startMarketDataServer", true);
+		if ( startMarket ) {
+			mdServer = new MarketDataServer().start();
+			InfinityGlobalDataManager.connectMarketDataManager(mdServer);
+		} else logger.info("-- [NeoComMicroServiceApplication.main]>Settings set to FALSE: Not starting Market Data service.");
+
 		// Load the Locations cache to speed up the Citadel and Outpost search.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Read Locations data cache...");
 		InfinityGlobalDataManager.readLocationsDataCache();
 
-//		// Connect the Timed Upgrade scan.
-//		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the background timed download scanner...");
-//		timedService = new TimedUpdater();
-		
+		// Connect the Timed Upgrade scan.
+		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the background timed download scanner...");
+		boolean startTimedUpdater = InfinityGlobalDataManager.getResourceBoolean("R.runtime.startTimedUpdater", true);
+		if ( startTimedUpdater ) {
+			timedService = new TimedUpdater();
+		} else logger.info("-- [NeoComMicroServiceApplication.main]> Settings set to FALSE: Not starting Timed Update.");
+
 		logger.info("-- [NeoComMicroServiceApplication.main]> Starting application instance...");
-		SpringApplication.run(NeoComMicroServiceApplication.class, args);
+		// Post application initialization to task runner to schedule after any other initialization posted task.
+		InfinityGlobalDataManager.submitJob2ui(() -> {
+			SpringApplication.run(NeoComMicroServiceApplication.class, args);
+		});
 		logger.info("<< [NeoComMicroServiceApplication.main]");
 	}
-	
+
 	// - F I E L D - S E C T I O N ............................................................................
-	
+
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
-	
+
 	// - M E T H O D - S E C T I O N ..........................................................................
 	@Scheduled(initialDelay = 180000, fixedDelay = 120000)
 	private void writeMarketData() {
 		mdServer.writeMarketDataCacheToStorage();
 	}
-	
+
 	@Scheduled(initialDelay = 180000, fixedDelay = 120000)
 	private void writeMarketDataDownloadReport() {
 		mdServer.reportMarketDataJobs();
@@ -199,7 +221,7 @@ public class NeoComMicroServiceApplication extends NeoComMicroServiceApplication
 //		if (GlobalDataManager.getResourceBoolean("R.cache.locationscache.activestate", true))
 //			GlobalDataManager.writeLocationsDatacache();
 //	}
-	
+
 	//	@Scheduled(initialDelay = 120000, fixedDelay = 900000)
 	@Scheduled(initialDelay = 120000, fixedDelay = 120000)
 	private void onTime() {
@@ -209,37 +231,37 @@ public class NeoComMicroServiceApplication extends NeoComMicroServiceApplication
 			timedService.timeTick();
 		}
 	}
-	
+
 	public static class SessionLocator {
 		public String sessionLocator = null;
 		public long timeValid = -1;
-		
+
 		public String getSessionLocator() {
 			return sessionLocator;
 		}
-		
+
 		public long getTimeValid() {
 			return timeValid;
 		}
-		
+
 		public SessionLocator setSessionLocator(final String sessionLocator) {
 			this.sessionLocator = sessionLocator;
 			return this;
 		}
-		
+
 		public SessionLocator setTimeValid(final long timeValid) {
 			this.timeValid = timeValid;
 			return this;
 		}
 	}
-	
+
 	public static class NeoComSessionIdentifier {
 		public String jsonClass = "NeoComSessionIdentifier";
 		public String sessionIdentifier = "-NOT VALID-";
 		// TODO REMOVE ONCE THE encryption works.
 		public int pilotId = 0;
 		public byte[] pilotIdentifier = "-EMPTY-".getBytes();
-		
+
 		public NeoComSessionIdentifier(final NeoComSession session) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, InvalidKeySpecException, BadPaddingException, IllegalBlockSizeException {
 			sessionIdentifier = session.getSessionId();
 //		X509EncodedKeySpec publicSpec = new X509EncodedKeySpec(session.getPublicKey().getBytes());
