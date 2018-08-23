@@ -7,7 +7,11 @@
 //               the second is the java microservices that compose the web application backend made with
 //               SpringBoot technology and finally the web ui code made in typescript within the Angular
 //               framework.
+//--- CORE
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+//--- ENVIRONMENT
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +19,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  // public  title = 'app';
   public options = {
     position: ["top", "right"],
     showProgressBar: false,
@@ -25,6 +28,12 @@ export class AppComponent {
     lastOnBottom: true,
     preventDuplicates: true,
     theClass: "rounded"
+  }
+
+  public constructor(private titleService: Title) { }
+
+  public setTitle(newTitle: string) {
+    this.titleService.setTitle(environment.name + environment.version);
   }
   public created() { }
   public destroyed() { }

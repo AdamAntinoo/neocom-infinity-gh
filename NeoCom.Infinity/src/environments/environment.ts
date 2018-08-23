@@ -3,8 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  name: "NeoCom.Infinity",
-  version: "0.12.1",
+  name: require('../../package.json').name,
+  version: require('../../package.json').version,
   servicePort: 9000,
   serverName: "",
   apiVersion: "/api/v1",
