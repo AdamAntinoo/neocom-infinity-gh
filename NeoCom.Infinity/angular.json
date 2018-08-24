@@ -123,6 +123,46 @@
           }
         }
       }
+    },
+    "NeoComLib": {
+      "root": "projects/neocom-lib",
+      "sourceRoot": "projects/neocom-lib/src",
+      "projectType": "library",
+      "prefix": "neocom",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/neocom-lib/tsconfig.lib.json",
+            "project": "projects/neocom-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/neocom-lib/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/neocom-lib/src/test.ts",
+            "tsConfig": "projects/neocom-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/neocom-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/neocom-lib/tsconfig.lib.json",
+              "projects/neocom-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "NeoCom.Infinity"
