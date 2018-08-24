@@ -12,11 +12,13 @@ import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 //--- HTTP PACKAGE
 import { HttpClient } from '@angular/common/http';
+//--- ROUTER
+import { Router } from '@angular/router';
 //--- NOTIFICATIONS
 import { NotificationsService } from 'angular2-notifications';
 //--- SERVICES
 import { OAuthService } from 'angular-oauth2-oidc';
-import { AppModelStoreService } from 'app/services/app-model-store.service';
+import { AppStoreService } from 'app/services/appstore.service';
 
 // import { OAuthService } from 'angular2-oauth2/oauth-service';
 // import { AuthConfig } from 'angular-oauth2-oidc';
@@ -30,7 +32,7 @@ import { AppModelStoreService } from 'app/services/app-model-store.service';
 //--- COMPONENTS
 // import { BasePageComponent } from '../../components/core/base-page/base-page.component';
 //--- MODELS
-import { ESIConfiguration } from '../../../models/conf/ESI.Tranquility';
+import { ESIConfiguration } from 'app/models/conf/ESI.Tranquility';
 // import { Credential } from '../../models/Credential.model';
 // import { authConfig } from './auth.config';
 
@@ -49,13 +51,15 @@ We use RSA public key encryption to adjoin to the token so the server backend ca
   templateUrl: './welcome-page.component.html',
   styleUrls: ['./welcome-page.component.scss']
 })
-export class WelcomePageComponent {
+export class WelcomePageComponent implements OnInit {
   public working: boolean = false;
   public code: string;
 
-  constructor(protected appModelStore: AppModelStoreService
+  //--- C O N S T R U C T O R
+  constructor(protected appStoreService: AppStoreService
     , protected http: HttpClient
     , protected oauthService: OAuthService
+    , protected router: Router
     , protected toaster: NotificationsService) {
     // Setup authorization oauth configuration properties.
     this.oauthService.showDebugInformation = true;
@@ -80,6 +84,17 @@ export class WelcomePageComponent {
     this.oauthService.logoutUrl = ESIConfiguration.AUTHORIZATION_SERVER + "account/logoff";
   }
 
+  //--- L I F E C Y C L E   F L O W
+  ngOnInit() {
+    // Check the session validity. If the session exists and it is valid then go to the dashboard page.
+    this.appStoreService.checkSessionActive()
+      .subscribe((session) => {
+        if (null != session)
+          this.router.navigate(['dashboard']);
+      });
+  }
+
+  //--- P A G E   E V E N T S
   public launchLogin() {
     console.log(">> [WelcomePageComponent.launchLogin]");
     // Show the validation spinning while we get the authorization credentials.
@@ -89,46 +104,4 @@ export class WelcomePageComponent {
     this.oauthService.initImplicitFlow();
     console.log("<< [WelcomePageComponent.launchLogin]");
   }
-  // private generateRSAKey() {
-  //   let generateKeyPromise = window.crypto.subtle.generateKey(
-  //     {
-  //       name: "RSA-PSS",
-  //       modulusLength: 2048, //can be 1024, 2048, or 4096
-  //       publicExponent: new Uint8Array([0x01, 0x00, 0x01]),
-  //       hash: { name: "SHA-256" }, //can be "SHA-1", "SHA-256", "SHA-384", or "SHA-512"
-  //     },
-  //     false, //whether the key is extractable (i.e. can be used in exportKey)
-  //     ["sign", "verify"] //can be any combination of "sign" and "verify"
-  //   );
-  //   generateKeyPromise.then((key) => {
-  //     this.appModelStore.setRSAKey(key);
-  //     this.appModelStore.setPublicKey(key.publicKey);
-  //     //returns a keypair object
-  //     console.log(key);
-  //     console.log(key.publicKey);
-  //     console.log(key.privateKey);
-  //   });
-  //
-  //   window.crypto.subtle.generateKey(
-  //     {
-  //       name: "RSA-PSS",
-  //       modulusLength: 2048, //can be 1024, 2048, or 4096
-  //       publicExponent: new Uint8Array([0x01, 0x00, 0x01]),
-  //       hash: { name: "SHA-256" }, //can be "SHA-1", "SHA-256", "SHA-384", or "SHA-512"
-  //     },
-  //     false, //whether the key is extractable (i.e. can be used in exportKey)
-  //     ["sign", "verify"] //can be any combination of "sign" and "verify"
-  //   )
-  //     .then((key) => {
-  //       this.appModelStore.setRSAKey(key);
-  //       this.appModelStore.setPublicKey(key.publicKey);
-  //       //returns a keypair object
-  //       console.log(key);
-  //       console.log(key.publicKey);
-  //       console.log(key.privateKey);
-  //     });
-  //   // .catch(function(err) {
-  //   //   console.error(err);
-  //   // });
-  // }
 }

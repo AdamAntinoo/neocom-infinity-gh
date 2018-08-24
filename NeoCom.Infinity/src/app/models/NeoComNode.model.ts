@@ -13,27 +13,34 @@
 // import 'rxjs/add/operator/map';
 // import 'rxjs/add/operator/catch';
 //--- SERVICES
-import { AppModelStoreService } from 'app/services/app-model-store.service';
+import { AppStoreService } from 'app/services/appstore.service';
 //--- INTERFACES
+import { INode } from 'app/interfaces/INode.interface';
 import { INeoComNode } from 'app/interfaces/INeoComNode.interface';
 import { EVariant } from 'app/interfaces/EPack.enumerated';
-// import { ESeparator } from '../interfaces/EPack.enumerated';
-// //--- MODELS
-// import { ColorTheme } from 'app/models/ui/ColorTheme.model';
+import { ESeparator } from 'app/interfaces/EPack.enumerated';
+//--- MODELS
+import { ColorTheme } from 'app/models/ui/ColorTheme.model';
 
 export abstract class NeoComNode implements INeoComNode {
   public jsonClass: string = "NeoComNode";
+  public selected: boolean = false;
   //--- Visual properties and states.
   // public expanded: boolean = false;
   // public downloaded: boolean = true;
   // public renderWhenEmpty: boolean = true;
   // public visible: boolean = true;
-  // public themeColor: ColorTheme = new ColorTheme().setThemeColor(ESeparator.WHITE);
+  public themeColor: ColorTheme = new ColorTheme().setThemeColor(ESeparator.WHITE);
 
-  public selected: boolean = false;
-
+  //--- C O N S T R U C T O R
   constructor(values: Object = {}) {
     Object.assign(this, values);
+  }
+  // --- I C O L L A B O R A T I O N   I N T E R F A C E
+  public collaborate2View(appStoreService: AppStoreService, variant: EVariant): INode[] {
+    let collab: INode[] = [];
+    collab.push(this);
+    return collab;
   }
 
   // public toggleSelected(): boolean {
@@ -44,12 +51,6 @@ export abstract class NeoComNode implements INeoComNode {
   // // --- INEOCOMNODE INTERFACE
   // public /*abstract*/ getTypeId(): number { return 0; }
 
-  // --- ICOLLABORATION INTERFACE
-  public collaborate2View(appModelStore: AppModelStoreService, variant: EVariant): INeoComNode[] {
-    let collab: INeoComNode[] = [];
-    collab.push(this);
-    return collab;
-  }
   // --- GETTERS & SETTERS
   // public isExpanded(): boolean {
   //   return this.expanded;

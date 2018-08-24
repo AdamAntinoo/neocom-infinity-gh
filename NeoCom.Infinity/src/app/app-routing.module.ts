@@ -12,6 +12,7 @@ import { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
 //--- PAGES
 import { WelcomePageComponent } from './modules/authentication/welcome-page/welcome-page.component';
+import { PilotDashboardPageComponent } from './pages/pilot-dashboard-page/pilot-dashboard-page.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
   },
   //--- DASHBOARD PAGES
   { path: 'welcome', component: WelcomePageComponent },
+  { path: 'dashboard', component: PilotDashboardPageComponent },
   //--- POC & FUNCTIONALITIES PAGES
   // { path: 'notifications', component: TestNotificationsPageComponent },
 ];

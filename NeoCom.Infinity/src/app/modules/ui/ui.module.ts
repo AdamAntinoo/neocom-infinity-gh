@@ -36,6 +36,7 @@ import { ArraySortPipe } from './pipes/array-sort.pipe';
 // //--- COMPONENTS-UI
 import { ActionBarComponent } from './action-bar/action-bar.component';
 import { HeaderComponent } from './header/header.component';
+import { BasePageComponent } from './basepage.component';
 // import { InformationPanelComponent } from './information-panel/information-panel.component';
 // import { LabeledContainerComponent } from './labeled-container/labeled-container.component';
 // import { LocationNameComponent } from './location-name/location-name.component';
@@ -44,6 +45,8 @@ import { HeaderComponent } from './header/header.component';
 // import { ServerStatusComponent } from './server-status/server-status.component';
 // import { StyleCatalogComponent } from './style-catalog/style-catalog.component';
 // import { SpinnerPanelComponent } from './spinner-panel/spinner-panel.component';
+//--- PAGES
+// import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
 
 @NgModule({
   imports: [
@@ -70,6 +73,7 @@ import { HeaderComponent } from './header/header.component';
     // MenuBarNodeComponent,
     // ExpandableMenuBarNodeComponent,
     //--- COMPONENTS-UI
+    BasePageComponent,
     HeaderComponent,
     ActionBarComponent,
     // SeparatorComponent,
@@ -92,6 +96,7 @@ import { HeaderComponent } from './header/header.component';
     // MenuBarNodeComponent,
     // ExpandableMenuBarNodeComponent,
     //--- COMPONENTS-UI
+    BasePageComponent,
     HeaderComponent,
     ActionBarComponent,
     // SeparatorComponent,

@@ -5,9 +5,9 @@
 export const environment = {
   name: require('../../package.json').name,
   version: require('../../package.json').version,
-  servicePort: 9000,
   serverName: "",
   apiVersion: "/api/v1",
+  servicePort: 9000,
   production: false,
   development: true,
   mockStatus: true

@@ -10,10 +10,11 @@
 //--- CORE
 //--- INTERFACES
 import { INode } from 'app/interfaces/INode.interface';
-import { ICollaboration } from 'app/interfaces/ICollaboration.interface';
-import { EVariant } from 'app/interfaces/EPack.enumerated';
+// import { ICollaboration } from 'app/interfaces/ICollaboration.interface';
+// import { EVariant } from 'app/interfaces/EPack.enumerated';
 
-export interface INeoComNode extends INode, ICollaboration {
+export interface INeoComNode extends INode {
+  selected: boolean;
   // toggleExpanded();
   // getContentsCount(): number;
   // getTypeId(): number;

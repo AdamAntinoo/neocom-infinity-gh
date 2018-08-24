@@ -20,7 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { NotificationsService } from 'angular2-notifications';
 //--- OAUTH2
-// import { OAuthModule } from 'angular-oauth2-oidc';
+import { OAuthModule } from 'angular-oauth2-oidc';
 //--- WEBSTORAGE
 import { StorageServiceModule } from 'angular-webstorage-service';
 //--- APPLICATION COMPONENTS
@@ -43,7 +43,7 @@ import { ValidateAuthorizationPageComponent } from './validate-authorization-pag
     //--- TOAST NOTIFICATIONS
     SimpleNotificationsModule.forRoot(),
     //--- OAUTH2
-    // OAuthModule,
+    OAuthModule.forRoot(),
     //--- WEBSTORAGE
     StorageServiceModule,
     //--- APPLICATION MODULES

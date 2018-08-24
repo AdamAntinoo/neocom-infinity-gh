@@ -1,0 +1,69 @@
+<!-- A C T I O N   B A R -->
+<neocom-action-bar [title]="'PILOT DASHBOARD'" [subtitle]="''"></neocom-action-bar>
+<!-- DIVIDE THE PAGE INTO TWO COLUMNS 60/40 -->
+<div fxLayout="row">
+  <!-- L E F T   C O L U M N - P L A N E T A R Y   R E S O U R C E S -->
+  <div style="width: 60%; display: inline-block;">
+    <!-- H E A D E R -->
+    <div class="neocom-panel header-box" id="panelborder-white">
+      <span class="proxima-black-ff" style="padding: 2px;">CHARACTER SHEET BLOCK</span>
+    </div>
+    <div class="neocom-panel" id="panelborder-white">
+      <div class="page-background">
+        <img class="pilot-background" src="{{pilot.getIconUrl()}}">
+        <img class="pilot-background" src="{{pilot.corporation.getIconUrl()}}">
+        <img class="pilot-background" src="{{pilot.alliance.getIconUrl()}}">
+      </div>
+      <div style="position:absolute; top:0px; left:0px">
+        <!-- <div class="pilot-character-sheet" [ngStyle]="{'background-image': 'url(' + pilot.urlforAvatar + ')'}"> -->
+        <span style="height: 14px;">Character Sheet</span>
+        <table class="" cellspacing="0" cellpadpilot.ding="0" width="100%">
+          <tr height="100px">
+            <td><img class="neocom-panel-column" id="iconsize-32" src="/assets/res-sde/drawable/omega.png" id="iconsize-32"></td>
+            <td class="neocom-panel-column" width="80%">
+              <div>
+                <span class="" id="neocom-ts16">{{pilot.name}}</span><br>
+                <span>Born: {{pilot.birthday}}</span>
+              </div>
+            </td>
+            <td width="30%" class="neocom-panel-right-box" align="right ">
+              <img class="neocom-panel-column" id="iconsize-60" src="/assets/res-sde/drawable/minmatar.png">
+              <div>
+                <span>Total net worth: </span>
+                <span id="neocom-ts14">{{pilot.accountBalance | number:'1.2-2' }} ISK</span>
+              </div>
+            </td>
+          </tr>
+          <tr height="36px">
+            <td><img class="neocom-panel-column" id="iconsize-32" src="/assets/res-sde/drawable/clonebay.png" id="iconsize-32"></td>
+            <td colspan="2">
+              <span>{{pilot.getLastKnownLocation()}}</span>
+              <img class="neocom-panel-column" id="iconsize-32" src="/assets/res-sde/drawable/securitystatus.png" id="iconsize-32">
+              <span>{{pilot.securityStatus | number:'1.2-2'}}</span>
+            </td>
+            <!-- <td width="40%" class="neocom-panel-right-box" align="right "> -->
+            <!-- <div>
+              <span>Total net worth: </span>
+              <span id="neocom-ts14">{{pilot.accountBalance | number:'1.2-2' }} ISK</span>
+            </div> -->
+            <!-- </td> -->
+          </tr>
+        </table>
+      </div>
+      <!-- </<di></di>v> -->
+    </div>
+  </div>
+  <!-- R I G H T   C O L U M N - L O C A T I O N   D E T A I L   &   A C T I O N S -->
+  <div style="width: 40%; float: right;">
+    <!-- H E A D E R -->
+    <div class="neocom-panel header-box" id="panelborder-white">
+      <span class="proxima-black-ff" style="padding: 2px;">CHARACTER RESOURCES EVALUATION</span>
+    </div>
+    <!-- R E S O U R C E S   L I S T -->
+    <div>
+      Debug Data
+    </div>
+    <!-- <span>{{debugCorporation()}}</span><br /> -->
+    <!-- <span>{{pilot.alliance}}</span><br /> -->
+  </div>
+</div>

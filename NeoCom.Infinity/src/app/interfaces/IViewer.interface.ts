@@ -7,12 +7,11 @@
 //               the second is the java microservices that compose the web application backend made with
 //               SpringBoot technology and finally the web ui code made in typescript within the Angular
 //               framework.
-//--- SERVICES
-import { AppStoreService } from 'app/services/appstore.service';
 //--- INTERFACES
 import { INode } from 'app/interfaces/INode.interface';
-import { EVariant } from 'app/interfaces/EPack.enumerated';
 
-export interface ICollaboration {
-  collaborate2View(appStoreService: AppStoreService, variant?: EVariant): INode[];
+export interface IViewer {
+  getViewer(): IViewer;
+  notifyDataChanged(): void;
+  applyPolicies(inputList: INode[]): INode[]
 }

@@ -42,6 +42,7 @@ import { AuthenticationModule } from './modules/authentication/authentication.mo
 // import { IncubationModule } from './modules/incubation/incubation.module';
 //--- SERVICES
 import { AppModelStoreService } from './services/app-model-store.service';
+import { AppStoreService } from './services/appstore.service';
 //--- COMPONENTS-CORE
 import { AppComponent } from './app.component';
 
@@ -66,11 +67,13 @@ import { AppComponent } from './app.component';
     AuthenticationModule
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    // BasePageComponent
   ],
   providers: [
     AppModelStoreService,
-    NotificationsService
+    NotificationsService,
+    AppStoreService
   ],
   bootstrap: [AppComponent]
 })

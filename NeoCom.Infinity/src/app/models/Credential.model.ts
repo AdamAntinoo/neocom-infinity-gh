@@ -18,8 +18,8 @@
 import { EVariant } from 'app/interfaces/EPack.enumerated';
 import { ESeparator } from '../interfaces/EPack.enumerated';
 //--- MODELS
-import { NeoComNode } from '../models/NeoComNode.model';
-// import { Pilot } from '../models/Pilot.model';
+import { NeoComNode } from 'app/models/NeoComNode.model';
+import { Pilot } from 'app/models/Pilot.model';
 
 /**
 Typecript representation for the Credential entity.
@@ -35,7 +35,7 @@ export class Credential extends NeoComNode {
   // public isActive: boolean = false;
   // public isXML: boolean = false;
   // public isESI: boolean = false;
-  // protected pilot: Pilot = null;
+  protected pilot: Pilot = null;
 
   constructor(values: Object = {}) {
     super(values);
@@ -57,11 +57,10 @@ export class Credential extends NeoComNode {
   public getAccountName(): string {
     return this.accountName;
   }
-  // public getPilot(): Pilot {
-  //   // if (null == this.pilot) return new Pilot();
-  //   /*else*/ return this.pilot;
-  // }
-  // public setPilot(pilot: Pilot): void {
-  //   this.pilot = pilot;
-  // }
+  public getPilot(): Pilot {
+    return this.pilot;
+  }
+  public setPilot(pilot: Pilot): void {
+    this.pilot = pilot;
+  }
 }

@@ -19,11 +19,11 @@ import { AppModelStoreService } from 'app/services/app-model-store.service';
 //--- MODELS
 import { NeoComNode } from 'app/models/NeoComNode.model';
 import { Credential } from 'app/models/Credential.model';
-// import { Pilot } from '../models/Pilot.model';
+import { Pilot } from 'app/models/Pilot.model';
 
 export class NeoComSession extends NeoComNode {
-  public sessionId: string = "-UNIQUE-IDENTIFIER-";
-  public publicKey: string = "-RSA-GENERATED-KEY-";
+  private _sessionId: string = "-UNIQUE-IDENTIFIER-";
+  // public publicKey: string = "-RSA-GENERATED-KEY-";
   public pilotIdentifier: number = -1;
   public credential: Credential = new Credential();
 
@@ -42,6 +42,9 @@ export class NeoComSession extends NeoComNode {
   }
 
   // --- G E T T E R S   &   S E T T E R S
+  public getSessionLocator(): string {
+    return this._sessionId;
+  }
   public getCredential(): Credential {
     return this.credential;
   }
@@ -50,12 +53,12 @@ export class NeoComSession extends NeoComNode {
       return this.credential.getAccountId();
     else return this.pilotIdentifier;
   }
-  // public getPilot(): Pilot {
-  //   return this.credential.getPilot();
-  // }
-  // public storePilot(pilot: Pilot): void {
-  //   if (null != this.credential) {
-  //     this.credential.setPilot(pilot);
-  //   }
-  // }
+  public getPilot(): Pilot {
+    if (null != this.credential) return this.credential.getPilot();
+  }
+  public storePilot(pilot: Pilot): void {
+    if (null != this.credential) {
+      this.credential.setPilot(pilot);
+    }
+  }
 }

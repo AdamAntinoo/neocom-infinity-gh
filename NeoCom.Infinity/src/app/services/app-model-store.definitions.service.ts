@@ -9,7 +9,7 @@
 //               framework.
 //--- CORE
 import { Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
+// import { Injectable } from '@angular/core';
 import { Inject } from '@angular/core';
 //--- ENVIRONMENT
 import { environment } from 'app/../environments/environment';
@@ -20,9 +20,10 @@ import { HttpHeaders } from '@angular/common/http';
 import { NotificationsService } from 'angular2-notifications';
 //--- ROUTER
 import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+// import { ActivatedRoute } from '@angular/router';
 //--- WEBSTORAGE
 import { LOCAL_STORAGE } from 'angular-webstorage-service';
+import { SESSION_STORAGE } from 'angular-webstorage-service';
 import { WebStorageService } from 'angular-webstorage-service';
 
 // //--- NOTIFICATIONS
@@ -40,7 +41,7 @@ import { WebStorageService } from 'angular-webstorage-service';
 //--- INTERFACES
 // // import { IViewer } from 'app/interfaces/IViewer.interface';
 import { INode } from 'app/interfaces/INode.interface';
-import { INeoComNode } from 'app/interfaces/INeoComNode.interface';
+// import { INeoComNode } from 'app/interfaces/INeoComNode.interface';
 //--- MODELS
 import { NeoComException } from 'app/models/ui/NeoComException.model';
 // import { NeoComNode } from 'AppModelStoreService/models/NeoComNode.model';
@@ -62,11 +63,11 @@ import { NeoComException } from 'app/models/ui/NeoComException.model';
 // import { ProcessingAction } from 'app/models/planetary/ProcessingAction.model';
 
 export class AppModelStoreServiceDefinitions {
-  //--- MOCK SECTION
+  //--- ~M O C K   S E C T I O N
   // Define mock data references to input data on files.
   protected responseTable = {
-    // '/api/v1/centros':
-    //   '/assets/mockdata/centros.json'
+    '/api/v1/centros':
+      '/assets/mockdata/centros.json'
   }
   public getMockStatus(): boolean {
     return environment.mockStatus;
@@ -88,7 +89,7 @@ export class AppModelStoreServiceDefinitions {
 
   //--- C O N S T R U C T O R
   constructor(
-    @Inject(LOCAL_STORAGE) protected storage: WebStorageService,
+    // @Inject(SESSION_STORAGE) protected storage: WebStorageService,
     protected http: HttpClient,
     protected router: Router,
     protected toasterService: NotificationsService) { }

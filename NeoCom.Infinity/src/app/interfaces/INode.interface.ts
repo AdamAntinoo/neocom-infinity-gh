@@ -7,6 +7,9 @@
 //               the second is the java microservices that compose the web application backend made with
 //               SpringBoot technology and finally the web ui code made in typescript within the Angular
 //               framework.
-export interface INode {
+//--- INTERFACES
+import { ICollaboration } from './ICollaboration.interface';
+
+export interface INode extends ICollaboration {
   jsonClass: string;
 }

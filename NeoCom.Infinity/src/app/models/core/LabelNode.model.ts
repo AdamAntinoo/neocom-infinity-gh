@@ -7,12 +7,17 @@
 //               the second is the java microservices that compose the web application backend made with
 //               SpringBoot technology and finally the web ui code made in typescript within the Angular
 //               framework.
-//--- SERVICES
-import { AppStoreService } from 'app/services/appstore.service';
-//--- INTERFACES
+//--- MODELS
 import { INode } from 'app/interfaces/INode.interface';
-import { EVariant } from 'app/interfaces/EPack.enumerated';
+import { NeoComNode } from 'app/models/NeoComNode.model';
 
-export interface ICollaboration {
-  collaborate2View(appStoreService: AppStoreService, variant?: EVariant): INode[];
+export class LabelNode extends NeoComNode {
+  // public jsonClass: string = "LabelNode";
+  public title: string = "-TITLE-";
+
+  constructor(values: Object = {}) {
+    super(values);
+    Object.assign(this, values);
+    this.jsonClass = "LabelNode";
+  }
 }
