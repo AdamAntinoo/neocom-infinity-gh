@@ -18,13 +18,14 @@ plugins {
     id "io.ratpack.ratpack-groovy" version "1.5.4"
 }
 apply plugin: 'java'
-apply plugin: 'eclipse'
+//apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'maven-publish'
 
 //--- P R O J E C T   D E F I N I T I O N
-group 'Dimensinfin Industries'
-version '0.12.0'
+group = 'Dimensinfin Industries'
+version = '0.12.POC'
 archivesBaseName = 'NeoCom.MicroServices'
 mainClassName = 'org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication'
 
@@ -32,6 +33,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
+    mavenLocal()
     mavenCentral()
     google()
     jcenter()
@@ -78,94 +80,105 @@ task cleanUpResources(type: Delete) {
     delete 'src/main/resources/sdecontents'
     delete 'src/main/resources/yaml'
 }
-// Copy configuration and property resources fro other modules to the final 'resources' application folder.
+// Copy configuration and property resources from other modules to the final 'resources' application folder.
 task copyResources(type: Copy) {
-    copy {
-        // NeoCom.Model Properties
-        println 'Copy :NeoCom.Model resources to :NeoCom:MicroServices'
-        from project(':NeoCom.Model').file('src/main/resources')
-        into file('src/main/resources')
-    }
-    copy {
-        println 'Copy :NeoCom.DataManagement resources to :NeoCom:MicroServices'
-        from project(':NeoCom.DataManagement').file('src/main/resources')
-        into file('src/main/resources')
-    }
+//    copy {
+//        // NeoCom.Model Properties
+//        println 'Copy :NeoCom.Model resources to :NeoCom:MicroServices'
+//        from project(':NeoCom.Model').file('src/main/resources')
+//        into file('src/main/resources')
+//    }
+//    copy {
+//        println 'Copy :NeoCom.DataManagement resources to :NeoCom:MicroServices'
+//        from project(':NeoCom.DataManagement').file('src/main/resources')
+//        into file('src/main/resources')
+//    }
 }
 // Collect output JARs from project modules to staging libs
-task copyStagingModel(dependsOn: ':NeoCom.Model:javadocJar'){
-    doLast {
-        copy {
-            // Modules JAR files
-            println 'Copying NeoCom.Model library'
-            from project(':NeoCom.Model').file('build/libs')
-            into file('libs')
-        }
-    }
-    dependsOn installDist
-}
-task copyStaging {
-    doLast {
-        copy {
-            // Modules JAR files
-            println 'Copying ESI.SwaggerApi library'
-            from project(':ESI.SwaggerApi').file('build/libs')
-            into file('libs')
-        }
-        copy {
-            // Modules JAR files
-            println 'Copying NeoCom.DataManagement library'
-            from project(':NeoCom.DataManagement').file('build/libs')
-            into file('libs')
-        }
-         println 'Moving final libraries to staging'
-        copy {
-            // Modules JAR files
-            println 'Copying NeoCom.Model library'
-            from file('libs')
-            into file('Z://NC/libs')
-        }
-    }
-    dependsOn copyStagingModel
-    dependsOn installDist
-}
+//task copyStagingModel(dependsOn: ':NeoCom.Model:javadocJar') {
+//    doLast {
+//        copy {
+//            // Modules JAR files
+//            println 'Copying NeoCom.Model library'
+//            from project(':NeoCom.Model').file('build/libs')
+//            into file('libs')
+//        }
+//    }
+//    dependsOn installDist
+//}
+//task copyStaging {
+//    doLast {
+//        copy {
+//            // Modules JAR files
+//            println 'Copying ESI.SwaggerApi library'
+//            from project(':ESI.SwaggerApi').file('build/libs')
+//            into file('libs')
+//        }
+//        copy {
+//            // Modules JAR files
+//            println 'Copying NeoCom.DataManagement library'
+//            from project(':NeoCom.DataManagement').file('build/libs')
+//            into file('libs')
+//        }
+//        println 'Moving final libraries to staging'
+//        copy {
+//            // Modules JAR files
+//            println 'Copying NeoCom.Model library'
+//            from file('libs')
+//            into file('Z://NC/libs')
+//        }
+//    }
+//    dependsOn copyStagingModel
+//    dependsOn installDist
+//}
 //copyStaging.dependsOn installDist
 //copyResources.dependsOn build
 // Gradlew start task to generate Heroku distribution
-task stage (dependsOn: ':NeoCom.Model:javadocJar'){
-//    println ':NeoCom.Microservices stage start'
-//    dependsOn copyResources
+//task stage(dependsOn: ':NeoCom.Model:javadocJar') {
+////    println ':NeoCom.Microservices stage start'
+////    dependsOn copyResources
+////    dependsOn copyStaging
 //    dependsOn copyStaging
-    dependsOn copyStaging
-    doLast {
-//        project(':NeoCom.Model').ta
-        copy {
-            println 'Copy :NeoCom.MicroServices production src to staging'
-            from file('src')
-            into file('Z://NC/src')
-        }
-        copy {
-            println 'Copy :NeoCom.MicroServices production libs to staging'
-            from file('libs')
-            into file('Z://NC/libs')
-        }
-    }
-//    println ':NeoCom.Microservices stage end'
-}
+//    doLast {
+////        project(':NeoCom.Model').ta
+//        copy {
+//            println 'Copy :NeoCom.MicroServices production src to staging'
+//            from file('src')
+//            into file('Z://NC/src')
+//        }
+//        copy {
+//            println 'Copy :NeoCom.MicroServices production libs to staging'
+//            from file('libs')
+//            into file('Z://NC/libs')
+//        }
+//    }
+////    println ':NeoCom.Microservices stage end'
+//}
 
 //--- TASK ORDERING
 //copyStaging.mustRunAfter build
 //installDist.mustRunAfter copyStaging
 //stage.mustRunAfter installDist
 
+//--- P R O D U C T   V E R S I O N S
+ext {
+    jacksonVersion = '2.9.4'
+    ormliteVersion = '4.48'
+}
+
 dependencies {
     // P R O J E C T    D E P E N D E N C I E S
-    implementation project(path: ':ESI.SwaggerApi')
-    implementation project(path: ':NeoCom.Model')
-    implementation project(path: ':NeoCom.DataManagement')
+//    implementation project(path: ':ESI.SwaggerApi')
+//    implementation project(path: ':NeoCom.Model')
+//    implementation project(path: ':NeoCom.DataManagement')
 
     // L O C A L    L I B R A R I E S
+//    implementation 'org.dimensinfin:CoreBase.core:2.2.0'
+    implementation files('libs/jeveassets.3.1.2.jar')
     implementation files('libs/CoreBase.core-2.0.3.jar')
+    implementation 'org.dimensinfin:ESI.SwaggerApi:2.0.0'
+    implementation 'org.dimensinfin:NeoCom.Model:0.12.POC'
+    implementation 'org.dimensinfin:NeoCom.DataManagement:0.12.POC'
 
     // M O D U L E    D E P E N D E N C I E S
     // S P R I N G B O O T
@@ -181,28 +194,30 @@ dependencies {
 //    implementation 'org.slf4j:slf4j-api:1.7.25'
 //    runtime "org.slf4j:slf4j-simple:1.7.25"
     implementation 'joda-time:joda-time:2.3'
+    // N E O C O M . D A T A M A N A G E M E N T
+    implementation 'org.htmlparser:htmlparser:2.1'
+    implementation 'com.github.scribejava:scribejava-core:5.4.0'
+    implementation 'org.apache.commons:commons-lang3:3.7'
     // N E O C O M . M O D E L
     implementation 'com.beimin:eveapi:6.0.6'
-    implementation 'org.htmlparser:htmlparser:2.1'
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
-    implementation 'com.squareup.retrofit2:converter-jackson:2.3.0'
+    implementation "com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion"
+    implementation "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-joda:$jacksonVersion"
+    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonVersion"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-json-org:$jacksonVersion"
     implementation 'org.modelmapper:modelmapper:1.1.0'
+    implementation 'com.squareup.retrofit2:converter-jackson:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.annimon:stream:1.1.9'
-    // N E O C O M . I N F I N I T Y
-    implementation 'com.squareup.retrofit2:converter-jackson:2.4.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
-    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.8.6'
-    implementation 'org.apache.commons:commons-lang3:3.7'
-
-    implementation 'com.j256.ormlite:ormlite-core:4.48'
-    implementation 'com.j256.ormlite:ormlite-jdbc:4.48'
+    // D A T A B A S E
+    implementation "com.j256.ormlite:ormlite-jdbc:$ormliteVersion"
     implementation 'org.xerial:sqlite-jdbc:3.16.1'
     implementation 'mysql:mysql-connector-java:5.1.45'
+    implementation 'javax.persistence:javax.persistence-api:2.2'
+    implementation 'org.xerial:sqlite-jdbc:3.16.1'
 
     // T E S T I N G
     // P R O J E C T    D E P E N D E N C I E S
-//    testImplementation project(path: ':NeoCom.Model')
-
     testImplementation 'junit:junit:4.12'
     testCompile('org.springframework.boot:spring-boot-starter-test')
 //    testImplementation 'org.slf4j:slf4j-simple:1.7.25'

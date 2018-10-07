@@ -8,11 +8,6 @@
 //               the source for the specific functionalities for the backend services.
 package org.dimensinfin.eveonline.neocom.database;
 
-import java.sql.SQLException;
-import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.TimeUnit;
-
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcPooledConnectionSource;
@@ -24,16 +19,23 @@ import com.j256.ormlite.stmt.UpdateBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
+import java.sql.SQLException;
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.TimeUnit;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.dimensinfin.eveonline.neocom.database.entity.Colony;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.database.entity.DatabaseVersion;
 import org.dimensinfin.eveonline.neocom.database.entity.FittingRequest;
 import org.dimensinfin.eveonline.neocom.database.entity.Job;
 import org.dimensinfin.eveonline.neocom.database.entity.MarketOrder;
+import org.dimensinfin.eveonline.neocom.database.entity.MiningExtraction;
+import org.dimensinfin.eveonline.neocom.database.entity.NeoComAsset;
+import org.dimensinfin.eveonline.neocom.database.entity.NeoComBlueprint;
 import org.dimensinfin.eveonline.neocom.database.entity.Property;
 import org.dimensinfin.eveonline.neocom.database.entity.TimeStamp;
 import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
@@ -41,8 +43,6 @@ import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
 import org.dimensinfin.eveonline.neocom.enums.EPropertyTypes;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
-import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
-import org.dimensinfin.eveonline.neocom.model.NeoComBlueprint;
 
 /**
  * NeoCom private database connector that will have the same api as the connector to be used on Android. This
@@ -83,6 +83,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 	private Dao<Job, String> jobDao = null;
 	private Dao<MarketOrder, String> marketOrderDao = null;
 	private Dao<FittingRequest, String> fittingRequestDao = null;
+	private Dao<MiningExtraction, String> miningExtractionDao = null;
 
 	private DatabaseVersion storedVersion = null;
 
@@ -560,6 +561,12 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 			fittingRequestDao = DaoManager.createDao(this.getConnectionSource(), FittingRequest.class);
 		}
 		return fittingRequestDao;
+	}
+	public Dao<MiningExtraction, String> getMiningExtractionDao() throws SQLException {
+		if (null == miningExtractionDao) {
+			miningExtractionDao = DaoManager.createDao(this.getConnectionSource(), MiningExtraction.class);
+		}
+		return miningExtractionDao;
 	}
 
 	// --- PUBLIC CONNECTION SPECIFIC ACTIONS
