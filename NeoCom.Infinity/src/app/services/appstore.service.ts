@@ -21,7 +21,7 @@ import { HttpHeaders } from '@angular/common/http';
 //--- ENVIRONMENT
 import { environment } from 'src/environments/environment';
 //--- SERVICES
-import { AppModelStoreServiceStorage } from 'app/services/app-model-store.storage.service';
+import { AppModelStoreServiceStorage } from './app-model-store.storage.service';
 // import { ENVIRONMENT_CONFIG } from '../environment.config';
 // import { IEnvironmentService } from '../environment.config';
 //--- WEBSTORAGE
@@ -33,7 +33,7 @@ import { AppModelStoreServiceStorage } from 'app/services/app-model-store.storag
 // //--- NOTIFICATIONS
 // import { NotificationsService } from 'angular2-notifications';
 //--- INTERFACES
-import { INode } from 'app/interfaces/INode.interface';
+import { INode } from '@app/interfaces/INode.interface';
 // //--- SERVICES
 // import { AppModelStoreServiceBackend } from 'app/services/app-model-store.backend.service';
 //--- MODELS

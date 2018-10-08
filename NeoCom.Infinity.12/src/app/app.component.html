@@ -1,0 +1,13 @@
+<!-- P A G E   D I V I S I O N   6 0 / 4 0 -->
+<div fxLayout="row">
+  <div style="width: 60%; display: inline-block;">
+    <neocom-header></neocom-header>
+  </div>
+  <div style="width: 40%; float: right;">
+    <!-- <ui-server-status></ui-server-status> -->
+    SERVER STATUS
+  </div>
+</div>
+<simple-notifications [options]="options" (onCreate)="created($event)" (onDestroy)="destroyed($event)"></simple-notifications>
+<router-outlet></router-outlet>
+FOOTER
