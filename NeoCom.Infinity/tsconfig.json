@@ -19,7 +19,8 @@
     ],
     "paths": {
       "@app": ["src/app/*"],
-      "@shared": ["src/app/shared/*"],
+      "@loginapp": ["projects/NeoCom-Login/src/app/*"],
+      "@shared": ["src/shared/**"],
     }
   }
 }
