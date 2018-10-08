@@ -1,0 +1,11 @@
+rsync -rv --perms --delete "/cygdrive/d/Development/NeoComProjects/NeoComInfinity/NeoCom.Infinity 0.14.x/NeoCom.Infinity/pages" "/cygdrive/d/Development/IntelliJProjects/NeoCom WebUI/NeoCom.Infinity POC/NeoCom.Infinity"
+
+while true; do rsync -avrz localdir user@host:path; sleep 5; done
+
+C:\cygwin\bin\bash.exe -l -c "./full-path/to/script.sh"
+
+cygrunsrv -I cron -p /usr/sbin/cron -a -D
+cygrunsrv -I cron -p /usr/sbin/cron -a -n
+
+net start cron
+
