@@ -1,7 +1,7 @@
-//  PROJECT:     NeoCom.Angular (NEOC.A6)
+//  PROJECT:     NeoCom.Infinity(NCI.A6)
 //  AUTHORS:     Adam Antinoo - adamantinoo.git@gmail.com
-//  COPYRIGHT:   (c) 2017-2018 by Dimensinfin Industries, all rights reserved.
-//  ENVIRONMENT: Angular 6.0
+//  COPYRIGHT:   (c) 2017-2018-2019 by Dimensinfin Industries, all rights reserved.
+//  ENVIRONMENT: Angular 6.1
 //  DESCRIPTION: Angular source code to run on a web server almost the same code as on the Android platform.
 //               The project has 3 clear parts. One is the Java libraries that are common for all platforms,
 //               the second is the java microservices that compose the web application backend made with
@@ -18,31 +18,10 @@ import { Router } from '@angular/router';
 import { NotificationsService } from 'angular2-notifications';
 //--- SERVICES
 import { OAuthService } from 'angular-oauth2-oidc';
-import { AppStoreService } from 'app/services/appstore.service';
-import { ESIConfiguration } from 'src/shared/models/conf/ESI.Tranquility';
-// import { ESIConfiguration } from '@loginapp';
-// import { ESIConfiguration } from '@loginapp';
-
-// import { OAuthService } from 'angular2-oauth2/oauth-service';
-// import { AuthConfig } from 'angular-oauth2-oidc';
-// import { JwksValidationHandler } from 'angular-oauth2-oidc';
-// import { OAuthService, AuthConfig } from 'angular-oauth2-oidc';
-// import { authConfig } from './authconfig.const';
-//--- INTERFACES
-// import { EVariant } from '../../classes/EVariant.enumerated';
-// import { IDetailedEnabledPage } from '../../classes/IDetailedEnabledPage.interface';
-// import { INeoComNode } from '../../classes/INeoComNode.interface';
-//--- COMPONENTS
-// import { BasePageComponent } from '../../components/core/base-page/base-page.component';
-//--- MODELS
-// import { ESIConfiguration } from 'app/models/conf/ESI.Tranquility';
-// import { Credential } from '../../models/Credential.model';
-// import { authConfig } from './auth.config';
-
-// import cryptico from 'node_modules/cryptico/lib/cryptico.js'
-// import cryptico from 'cryptico';
-// import * as cryptico from "cryptico";
-// import { crypto } from 'crypto';
+// import { AppStoreService } from 'app/services/appstore.service';
+// import { ESIConfiguration } from 'src/shared/models/conf/ESI.Tranquility';
+import { AppCorePanel } from '@app';
+import { ESIConfiguration } from '@app';
 
 /**
 The Execution flow for this page is to show some Application information and then await for the user login through as ESI authorization. Because once the authorization is create some data is stored on the backend server we should create a unique client session data so nobody is able to access the authorized data.
@@ -54,16 +33,21 @@ We use RSA public key encryption to adjoin to the token so the server backend ca
   templateUrl: './welcome-page.component.html',
   styleUrls: ['./welcome-page.component.scss']
 })
-export class WelcomePageComponent implements OnInit {
-  public working: boolean = false;
-  public code: string;
+export class WelcomePageComponent extends AppCorePanel implements OnInit {
+  // public working: boolean = false;
+  // public code: string;
 
   //--- C O N S T R U C T O R
-  constructor(protected appStoreService: AppStoreService
-    , protected http: HttpClient
-    , protected oauthService: OAuthService
-    , protected router: Router
-    , protected toaster: NotificationsService) {
+  constructor(protected oauthService: OAuthService,
+    protected appStoreService : AppStoreService) {
+    super();
+  }
+
+  //--- L I F E C Y C L E   F L O W
+  /**
+   * Read the authorization token from the Sore cache or from the Session storage. If not found at any of those places then we shoud show the page and allow the user to start the authorization flow.
+   */
+  ngOnInit() {
     // Setup authorization oauth configuration properties.
     this.oauthService.showDebugInformation = true;
     this.oauthService.requestAccessToken = true;
@@ -85,23 +69,20 @@ export class WelcomePageComponent implements OnInit {
     this.oauthService.setStorage(sessionStorage);
     // To also enable single-sign-out set the url for your auth-server's logout-endpoint here
     this.oauthService.logoutUrl = ESIConfiguration.AUTHORIZATION_SERVER + "account/logoff";
-  }
 
-  //--- L I F E C Y C L E   F L O W
-  ngOnInit() {
     // Check the session validity. If the session exists and it is valid then go to the dashboard page.
-    this.appStoreService.checkSessionActive()
-      .subscribe((session) => {
-        if (null != session)
-          this.router.navigate(['dashboard']);
-      });
+    // this.appStoreService.accessAuthorizationToken()
+    //   .subscribe((token) => {
+    //     if (null != token)
+    //       this.router.navigate(['dashboard']); // The tokes exists, so we can skip the authorization flow.
+    //   });
   }
 
   //--- P A G E   E V E N T S
   public launchLogin() {
     console.log(">> [WelcomePageComponent.launchLogin]");
     // Show the validation spinning while we get the authorization credentials.
-    this.working = true;
+    this.downloading = true;
     // Start the OAuth flow.
     console.log(">< [WelcomePageComponent.initImplicitFlow]");
     this.oauthService.initImplicitFlow();
