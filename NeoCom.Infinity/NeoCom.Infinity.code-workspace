@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "D:\\Development\\POCProjects\\A5POCWorkBench"
 		}
 	]
 }
