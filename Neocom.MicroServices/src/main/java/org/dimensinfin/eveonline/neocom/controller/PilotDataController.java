@@ -8,37 +8,39 @@
 //               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
 
 import org.joda.time.Instant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication;
 import org.dimensinfin.eveonline.neocom.NeoComSession;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.database.entity.Job;
 import org.dimensinfin.eveonline.neocom.database.entity.MarketOrder;
+import org.dimensinfin.eveonline.neocom.database.entity.NeoComAsset;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
-import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdIndustryJobs200Ok;
 import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
 import org.dimensinfin.eveonline.neocom.exception.NeoComRegisteredException;
+import org.dimensinfin.eveonline.neocom.managers.AssetsManager;
 import org.dimensinfin.eveonline.neocom.model.PilotV2;
+import org.dimensinfin.eveonline.neocom.security.SessionManager;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 
@@ -47,7 +49,6 @@ import org.dimensinfin.eveonline.neocom.model.PilotV2;
  * When accessing a pilot credential we should also be able to get to its parent Corporation and from there to the Alliance
  * the corporation belongs. Also we should be able to download the assets, the market trade actions, the industry operations
  * and many more other data that allows to collaborate on the industrial manufacturing activities.
- *
  * @author Adam Antinoo
  */
 @RestController
@@ -67,7 +68,6 @@ public class PilotDataController {
 	 * This is the specific entry point to read the Pilot information to be presented on any dashboard. It should integrate all
 	 * the information possible from public and from core calls. The validation uses the <b>xNeocom-Session-Locator</b> header to
 	 * verify this is the Pilot that is really authenticated during the login process.
-	 *
 	 * @param identifier the pilot unique identifier requested. This should match the identifier stored at the session.
 	 * @return a Json serialized set of data corresponding to a PilotV2 class instance.
 	 */
@@ -90,7 +90,7 @@ public class PilotDataController {
 
 			// Validate the session locator. Only if this test passes we are authorized to access the Pilot information.
 //			if (NeoComMicroServiceApplication.validatePilotIdentifierMatch(sessionLocator, identifier)) {
-			if (true) {
+			if ( true ) {
 				// Create the session context to be used on this request.
 //				final GlobalDataManager.SessionContext context = new GlobalDataManager.SessionContext();
 				// Set the credential being used on this context.
@@ -101,12 +101,12 @@ public class PilotDataController {
 						.setSessionLocator("-MOCK-LOCATOR-IDENTIFIER-" + identifier + "-")
 						.setTimeValid(Instant.now().getMillis());
 
-				if (NeoComMicroServiceApplication.MOCK_UP) {
-	// Read all the Credentials from the database and store the one with the pilot identifier on the store.
+				if ( NeoComMicroServiceApplication.MOCK_UP ) {
+					// Read all the Credentials from the database and store the one with the pilot identifier on the store.
 					final List<Credential> credentials = GlobalDataManager.accessAllCredentials();
 					locator.setSessionLocator("-MOCK-LOCATOR-IDENTIFIER-" + identifier + "-");
-					for (Credential cred : credentials) {
-						if (cred.getAccountId() == identifier) {
+					for ( Credential cred : credentials ) {
+						if ( cred.getAccountId() == identifier ) {
 							final NeoComSession session = new NeoComSession()
 									.setCredential(cred)
 									.setPublicKey("-INVALID-PUBLIC-KEY-");
@@ -122,12 +122,12 @@ public class PilotDataController {
 				contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(pilotv2);
 				return contentsSerialized;
 			} else return "Not Access.";
-		} catch (JsonProcessingException jspe) {
+		} catch ( JsonProcessingException jspe ) {
 			return new JsonExceptionInstance(jspe).toJson();
-		} catch (NeoComRegisteredException neore) {
+		} catch ( NeoComRegisteredException neore ) {
 			neore.printStackTrace();
 			return InfinityGlobalDataManager.serializedException(neore);
-		} catch (RuntimeException rtx) {
+		} catch ( RuntimeException rtx ) {
 			logger.error("EX [PilotDataController.pilotPublicData]> Unexpected Exception: {}", rtx.getMessage());
 			rtx.printStackTrace();
 			return InfinityGlobalDataManager.serializedException(rtx);
@@ -135,6 +135,7 @@ public class PilotDataController {
 			logger.info("<< [PilotDataController.pilotPublicData]");
 		}
 	}
+
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/pilot/{identifier}/industryjobs", method = RequestMethod.GET, produces =
 			"application/json")
@@ -148,17 +149,17 @@ public class PilotDataController {
 			// Validate the session locator. Only if this test passes we are authorized to access the Pilot information.
 //			if (NeoComMicroServiceApplication.validatePilotIdentifierMatch(sessionLocator, identifier)) {
 			NeoComSession session = null;
-			if (true) {
+			if ( true ) {
 				final NeoComMicroServiceApplication.SessionLocator locator = new NeoComMicroServiceApplication.SessionLocator()
 						.setSessionLocator("-MOCK-LOCATOR-IDENTIFIER-" + identifier + "-")
 						.setTimeValid(Instant.now().getMillis());
 
-				if (NeoComMicroServiceApplication.MOCK_UP) {
+				if ( NeoComMicroServiceApplication.MOCK_UP ) {
 					// Read all the Credentials from the database and store the one with the pilot identifier on the store.
 					final List<Credential> credentials = GlobalDataManager.accessAllCredentials();
 					locator.setSessionLocator("-MOCK-LOCATOR-IDENTIFIER-" + identifier + "-");
-					for (Credential cred : credentials) {
-						if (cred.getAccountId() == identifier) {
+					for ( Credential cred : credentials ) {
+						if ( cred.getAccountId() == identifier ) {
 							session = new NeoComSession()
 									.setCredential(cred)
 									.setPublicKey("-INVALID-PUBLIC-KEY-");
@@ -174,19 +175,20 @@ public class PilotDataController {
 			final List<Job> jobs = GlobalDataManager.accessIndustryJobs4Credential(session.getCredential());
 			final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(jobs);
 			return contentsSerialized;
-		} catch (JsonProcessingException jspe) {
+		} catch ( JsonProcessingException jspe ) {
 			return new JsonExceptionInstance(jspe).toJson();
-		} catch (RuntimeException rtx) {
+		} catch ( RuntimeException rtx ) {
 			logger.error("EX [FittingManagerController.fittingProcessFitting]> Unexpected Exception: {}", rtx.getMessage());
 			rtx.printStackTrace();
 			return InfinityGlobalDataManager.serializedException(rtx);
-		} catch (SQLException sqle) {
+		} catch ( SQLException sqle ) {
 			logger.error("EX [FittingManagerController.fittingProcessFitting]> Database query failed: {}", sqle.getMessage());
 			return InfinityGlobalDataManager.serializedException(sqle);
 		} finally {
 			logger.info("<< [FittingManagerController.fittingProcessFitting]");
 		}
 	}
+
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/pilot/{identifier}/marketorders", method = RequestMethod.GET, produces =
 			"application/json")
@@ -200,17 +202,17 @@ public class PilotDataController {
 			// Validate the session locator. Only if this test passes we are authorized to access the Pilot information.
 //			if (NeoComMicroServiceApplication.validatePilotIdentifierMatch(sessionLocator, identifier)) {
 			NeoComSession session = null;
-			if (true) {
+			if ( true ) {
 				final NeoComMicroServiceApplication.SessionLocator locator = new NeoComMicroServiceApplication.SessionLocator()
 						.setSessionLocator("-MOCK-LOCATOR-IDENTIFIER-" + identifier + "-")
 						.setTimeValid(Instant.now().getMillis());
 
-				if (NeoComMicroServiceApplication.MOCK_UP) {
+				if ( NeoComMicroServiceApplication.MOCK_UP ) {
 					// Read all the Credentials from the database and store the one with the pilot identifier on the store.
 					final List<Credential> credentials = GlobalDataManager.accessAllCredentials();
 					locator.setSessionLocator("-MOCK-LOCATOR-IDENTIFIER-" + identifier + "-");
-					for (Credential cred : credentials) {
-						if (cred.getAccountId() == identifier) {
+					for ( Credential cred : credentials ) {
+						if ( cred.getAccountId() == identifier ) {
 							session = new NeoComSession()
 									.setCredential(cred)
 									.setPublicKey("-INVALID-PUBLIC-KEY-");
@@ -226,13 +228,13 @@ public class PilotDataController {
 			final List<MarketOrder> orders = GlobalDataManager.accessMarketOrders4Credential(session.getCredential());
 			final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(orders);
 			return contentsSerialized;
-		} catch (JsonProcessingException jspe) {
+		} catch ( JsonProcessingException jspe ) {
 			return new JsonExceptionInstance(jspe).toJson();
-		} catch (RuntimeException rtx) {
+		} catch ( RuntimeException rtx ) {
 			logger.error("EX [FittingManagerController.pilotMarketOrders]> Unexpected Exception: {}", rtx.getMessage());
 			rtx.printStackTrace();
 			return InfinityGlobalDataManager.serializedException(rtx);
-		} catch (SQLException sqle) {
+		} catch ( SQLException sqle ) {
 			logger.error("EX [FittingManagerController.pilotMarketOrders]> Database query failed: {}", sqle.getMessage());
 			return InfinityGlobalDataManager.serializedException(sqle);
 		} finally {
@@ -240,50 +242,52 @@ public class PilotDataController {
 		}
 	}
 
-//	/**
-//	 * Reads all the Pilots assets. Assrt grouping and processing is performed at the UI level so most of the AssetsManager
-//	 * original code can be stripped out since the list of assets is returned as a plain and single level list of NeoComAsset
-//	 * instances serialized.
-//	 * Instead of issuing Region-Location-Conainer-Asset we download the complete and processed list of assets. The only
-//	 * exception should be the Container and Ships that will be returned empty. Only when the user selectes to open their
-//	 * contents the request should get the list of assets inside that container.
-//	 * Locations and Regions are extracted from the list data and any item not located on space or an station on a Citadel will
-//	 * not be processed because it is expected to be read when the specific container it belongs is open.
-//	 *
-//	 * @param identifier
-//	 * @return
-//	 */
-//	@CrossOrigin()
-//	@RequestMapping(value = "/api/v1/pilot/{identifier}/assets", method = RequestMethod.GET, produces =
-//			"application/json")
-//	public String pilotAssets( @PathVariable final Integer identifier ) {
-//		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/pilot/{}/assets", identifier);
-//		logger.info(">> [PilotDataController.pilotAssets]");
-//		try {
-//			// Activate the list of credentials.
-//			final Credential credential = DataManagementModelStore.activateCredential(identifier);
-//			final AssetsManager assetsManager = GlobalDataManager.getAssetsManager(credential);
-//
-//			// Get the list of assets and serialize them back to the front end.
-//			final List<NeoComAsset> assets = assetsManager.getAllAssets();
-//			final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(assets);
-//			return contentsSerialized;
-//		} catch (NumberFormatException nfe) {
-//			logger.error("EX [PilotDataController.pilotAssets]> identifier received cannot be translated to number - " +
-//					"{}", nfe.getMessage());
-//			return new JsonExceptionInstance("Identifier received cannot be translated to number - " + nfe.getMessage()
-//			).toJson();
-//		} catch (JsonProcessingException jpe) {
-//			jpe.printStackTrace();
-//			return new JsonExceptionInstance(jpe.getMessage()).toJson();
-//		} catch (RuntimeException rtx) {
-//			rtx.printStackTrace();
-//			return new JsonExceptionInstance(rtx.getMessage()).toJson();
+	/**
+	 * Reads all the Pilots assets. Asset grouping and processing is performed at the UI level so most of the AssetsManager
+	 * original code can be stripped out since the list of assets is returned as a plain and single level list of NeoComAsset
+	 * instances serialized.
+	 * Instead of issuing Region-Location-Container-Asset we download the complete and processed list of assets. The only
+	 * exception should be the Container and Ships that will be returned empty. Only when the user selects to open their
+	 * contents the request should get the list of assets inside that container.
+	 * Locations and Regions are extracted from the list data and any item not located on space or an station on a Citadel will
+	 * not be processed because it is expected to be read when the specific container it belongs is open.
+	 * @param identifier
+	 * @return
+	 */
+	@CrossOrigin()
+//	@RequestMapping(value = "/api/v1/pilot/{identifier}/assets", method = RequestMethod.GET, produces = 	"application/json")
+	@GetMapping("/api/v1/pilot/{identifier}/assets")
+	public ResponseEntity<List<NeoComAsset>> pilotAssetsEntryPoint( @PathVariable final Integer identifier,
+	                                                                @RequestHeader(value = "xApp-Authentication") String _token ) {
+		// The headers should have the authorization data enough to retrieve the session.
+		final SessionManager.AppSession session = SessionManager.retrieve(_token);
+		if ( null != session ) {
+			try {
+				// Activate the list of credentials.
+				final Credential credential = session.getCredential();
+				final AssetsManager assetsManager = InfinityGlobalDataManager.getAssetsManager(credential);
+
+				// Get the list of assets and serialize them back to the front end.
+				final List<NeoComAsset> assets = assetsManager.getAllAssets();
+//				final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(assets);
+				return new ResponseEntity<>(assets, HttpStatus.OK);
+//			} catch ( NumberFormatException nfe ) {
+//				logger.error("EX [PilotDataController.pilotAssets]> identifier received cannot be translated to number - " +
+//						"{}", nfe.getMessage());
+//				return new JsonExceptionInstance("Identifier received cannot be translated to number - " + nfe.getMessage()
+//				).toJson();
+//			} catch ( JsonProcessingException jpe ) {
+//				jpe.printStackTrace();
+//				return new JsonExceptionInstance(jpe.getMessage()).toJson();
+			} catch ( RuntimeException rtx ) {
+				rtx.printStackTrace();
+				return new ResponseEntity<List<NeoComAsset>>(HttpStatus.BAD_REQUEST);
 //		} finally {
 //			logger.info("<< [PilotDataController.pilotAssets]");
-//		}
-//	}
-//
+			}
+		} else return new ResponseEntity<List<NeoComAsset>>(HttpStatus.UNAUTHORIZED);
+	}
+	//
 //	/**
 //	 * This is a mock methos to return samples manually constructed from json data that should be converted to OK instances and
 //	 * then to the MVC instances that are then being returned to the front end.
@@ -340,7 +344,6 @@ public class PilotDataController {
 //		}
 //	}
 //
-
 
 
 	private String readJsonMockData( final String filePath ) throws IOException {

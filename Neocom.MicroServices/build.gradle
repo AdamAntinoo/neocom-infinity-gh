@@ -177,8 +177,8 @@ dependencies {
     implementation files('libs/jeveassets.3.1.2.jar')
     implementation files('libs/CoreBase.core-2.0.3.jar')
     implementation 'org.dimensinfin:ESI.SwaggerApi:2.0.0'
-    implementation 'org.dimensinfin:NeoCom.Model:0.12.POC'
-    implementation 'org.dimensinfin:NeoCom.DataManagement:0.12.POC'
+    implementation 'org.dimensinfin:NeoCom.Model:0.13.POC'
+    implementation 'org.dimensinfin:NeoCom.DataManagement:0.13.POC'
 
     // M O D U L E    D E P E N D E N C I E S
     // S P R I N G B O O T
@@ -194,6 +194,7 @@ dependencies {
 //    implementation 'org.slf4j:slf4j-api:1.7.25'
 //    runtime "org.slf4j:slf4j-simple:1.7.25"
     implementation 'joda-time:joda-time:2.3'
+    implementation 'de.svenkubiak:jBCrypt:0.4.1'
     // N E O C O M . D A T A M A N A G E M E N T
     implementation 'org.htmlparser:htmlparser:2.1'
     implementation 'com.github.scribejava:scribejava-core:5.4.0'
