@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MVCViewerComponent } from './mvcviewer.component';
+import { MVControllerComponent } from './mvcontroller.component';
 
 describe('MVCViewerComponent', () => {
-  let component: MVCViewerComponent;
-  let fixture: ComponentFixture<MVCViewerComponent>;
+  let component: MVControllerComponent;
+  let fixture: ComponentFixture<MVControllerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MVCViewerComponent ]
+      declarations: [ MVControllerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MVCViewerComponent);
+    fixture = TestBed.createComponent(MVControllerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -14,14 +14,15 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //--- HTTP CLIENT
-import { HttpModule } from '@angular/http';
+// import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 //--- ROUTING
 import { AppRoutingModule } from './app-routing.module';
 //--- DRAG AND DROP
 import { NgDragDropModule } from 'ng-drag-drop';
 //--- OAUTH2
-import { OAuthModule } from 'angular-oauth2-oidc';
+// import { HttpClientModule } from '@angular/common/http';
+// import { OAuthModule } from 'angular-oauth2-oidc';
 //--- TOAST NOTIFICATIONS
 // import { ToasterModule } from 'angular5-toaster';
 // import { ToasterContainerComponent } from 'angular5-toaster';
@@ -48,12 +49,14 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 // import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WelcomePageComponent } from 'projects/NeoCom-Login/src/app/pages/welcome-page/welcome-page.component';
+import { OAuthModule } from 'src/app/modules/angular-oauth2-oidc';
 
 @NgModule({
   imports: [
     BrowserModule,
     AppRoutingModule,
-    OAuthModule
+    HttpClientModule,
+    OAuthModule.forRoot()
   ],
   declarations: [
     AppComponent,

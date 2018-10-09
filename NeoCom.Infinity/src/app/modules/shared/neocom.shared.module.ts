@@ -11,9 +11,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 //--- SERVICES
-import { BackendService } from '@shared';
-import { AppCorePanel } from './panels/app-core-panel/app-core-panel.component';
-import { RenderComponent } from '@app';
+// import { BackendService } from '@shared';
+import { AppCorePanelComponent } from './panels/app-core-panel/app-core-panel.component';
+import { BackendService } from './services/Backend.service';
+import { RenderComponent } from './renders/render/render.component';
+// import { RenderComponent } from '@app';
 
 @NgModule({
   imports: [
@@ -23,14 +25,14 @@ import { RenderComponent } from '@app';
     //--- SERVICES
     BackendService,
     //--- COMPONENTS
-    AppCorePanel,
+    AppCorePanelComponent,
     RenderComponent
 ],
   exports: [
     //--- SERVICES
     BackendService,
     //--- COMPONENTS
-    AppCorePanel,
+    AppCorePanelComponent,
     RenderComponent
   ]
 })

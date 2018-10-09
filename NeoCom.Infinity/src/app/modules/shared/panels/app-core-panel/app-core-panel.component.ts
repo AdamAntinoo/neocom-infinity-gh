@@ -4,8 +4,8 @@ import { Component, OnInit } from '@angular/core';
   selector: 'notused-app-core-panel',
   templateUrl: './notused.html'
 })
-export class AppCorePanel implements OnInit {
-
+export class AppCorePanelComponent implements OnInit {
+  public downloading: boolean = false; // Used to signal that that page is retrieving data.
   constructor() { }
 
   ngOnInit() {

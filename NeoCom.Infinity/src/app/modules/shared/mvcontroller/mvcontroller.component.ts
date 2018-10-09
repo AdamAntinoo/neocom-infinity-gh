@@ -11,7 +11,7 @@ import { OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 import { Inject } from '@angular/core';
 //--- ENVIRONMENT
-import { environment } from 'app/../environments/environment';
+// import { environment } from 'app/../environments/environment';
 //--- WEBSTORAGE
 import { LOCAL_STORAGE } from 'angular-webstorage-service';
 import { WebStorageService } from 'angular-webstorage-service';
@@ -20,25 +20,28 @@ import { Router } from '@angular/router';
 //--- NOTIFICATIONS
 import { NotificationsService } from 'angular2-notifications';
 //--- SERVICES
-import { AppModelStoreService } from 'app/services/app-model-store.service';
+// import { AppModelStoreService } from 'app/services/app-model-store.service';
 //--- CALENDAR
 // import { startOfDay } from 'date-fns';
 //--- INTERFACES
-import { EVariant, IContainerController } from 'citamed-lib';
-import { IViewer } from 'citamed-lib';
-import { INode } from 'citamed-lib';
+// import { EVariant, IContainerController } from 'citamed-lib';
+// import { IViewer } from 'citamed-lib';
+// import { INode } from 'citamed-lib';
 // //--- COMPONENTS
 // import { MVCViewer } from '@UIModule';
 //--- MODELS
-import { DailyAppointmentsTemplate } from 'app/models/DailyAppointmentsTemplate.model';
-import { AppStoreService } from '@app/services/appstore.service';
+// import { DailyAppointmentsTemplate } from 'app/models/DailyAppointmentsTemplate.model';
+// import { AppStoreService } from '@app/services/appstore.service';
+import { IContainerController } from '../interfaces/core/IContainerController.interface';
+import { INode } from '../interfaces/core/INode.interface';
+import { AppStoreService } from 'projects/NeoCom-Login/src/app/services/app-store.service';
 // import { Cita } from 'citamed-lib';
 
 @Component({
-  selector: 'mvcviewer',
+  selector: 'notused-mvcontroller',
   templateUrl: './notused.html'
 })
-export class MVCViewerComponent implements IViewer {
+export class MVControllerComponent implements IContainerController {
   /** Node activated by hovering over it with the mouse cursor. May be null. */
   protected selectedNode: INode = null;
   /** This exportable property will be used by the UI to know when to draw/hide the spinner. */
@@ -49,7 +52,7 @@ export class MVCViewerComponent implements IViewer {
   /** The real time updated list of nodes to render. */
   public renderNodeList: INode[] = [];
   /** This defines the rendering variant that can be used when collaborating nodes. */
-  private _variant: EVariant = EVariant.DEFAULT;
+  private _variant: string = "-DEFAULT-";
 
   //--- C O N S T R U C T O R
   constructor(
@@ -60,13 +63,13 @@ export class MVCViewerComponent implements IViewer {
   }
 
   // --- G E T T E R S   &   S E T T E R S
-  public getVariant(): EVariant {
+  public getVariant(): string {
     return this._variant;
   }
-  public getVariantName(): string {
-    return EVariant[this._variant];
-  }
-  public setVariant(variant: EVariant): void {
+  // public getVariantName(): string {
+  //   return EVariant[this._variant];
+  // }
+  public setVariant(variant: string): void {
     this._variant = variant;
   }
 
@@ -74,7 +77,7 @@ export class MVCViewerComponent implements IViewer {
   /**
 	Return the reference to the component that knows how to locate the Page to transmit the refresh events when any user action needs to update the UI.
 	*/
-  public getViewer(): IViewer {
+  public getViewer(): IContainerController {
     return this;
   }
   public getContainer(): IContainerController {

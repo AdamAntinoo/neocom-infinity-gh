@@ -1,5 +1,5 @@
 <!-- <neocom-action-bar [titleLeft]="'WELCOME'" [subtitle]="'Click button to authorize credential.'"></neocom-action-bar> -->
-<div>
+<div class="neocom-panel" id="panelborder-blue">
   <p class="welcome-message">
     Welcome to the NeoCom Infinity helper for industrialists.
   </p>
@@ -25,7 +25,7 @@
   <div>
     <!-- <a class="authorization-button button-size" (click)="launchLogin()"> -->
     <!-- <div *ngIf="!working">ESI Authorization</div> -->
-    <button *ngIf="!working" type="button" class="btn btn-default button-size authorization-button" (click)="launchLogin()">ESI Authorization</button>
+    <button *ngIf="!working" type="button" class="btn btn-default button-green button-size button-position login-button" (click)="launchLogin()">ESI Authorization</button>
     <div *ngIf="working" class="login-box">
       <i class="fa fa-cog" id="ts24"></i>
       <span class="validating-label">Validating Authorization...</span>
