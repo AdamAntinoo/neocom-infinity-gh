@@ -13,25 +13,12 @@ import { OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { Inject } from '@angular/core';
 //--- ENVIRONMENT
-import { environment } from 'src/environments/environment';
+import { environment } from 'environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MockUpBackendService {
-  // --- C O N S T R U C T O R
-  // constructor(
-  //   @Inject(LOCAL_STORAGE) protected storage: WebStorageService,
-  //   @Inject(SESSION_STORAGE) protected sessionStorage: WebStorageService,
-  //   protected http: HttpClient,
-  //   // protected cache: CacheService,
-  //   protected router: Router,
-  //   protected toasterService: NotificationsService
-  //   // protected appStoreService: AppStoreService
-  // ) {
-  //   // cache.setDefaultTTL(60 * 2); // set to 2 minutes.
-  // }
-
   // --- MOCK SECTION
   // Define mock data references to input data on files.
   protected responseTable = {
@@ -99,6 +86,6 @@ export class MockUpBackendService {
       '/assets/mockData/corporations-1427661573.json'
   };
   public getMockStatus(): boolean {
-    return environment.mockStatus;
+    return environment.mockActive;
   }
 }

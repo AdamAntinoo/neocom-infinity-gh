@@ -9,9 +9,9 @@
 //--- SERVICES
 // import { AppStoreService } from '../../services/appstore.service';
 //--- INTERFACES
-import { EVariant } from '../EPack.enumerated';
+// import { EVariant } from '../EPack.enumerated';
 import { INode } from './INode.interface';
 
 export interface ICollaboration {
-  collaborate2View(variant?: EVariant): INode[];
+  collaborate2View(variant?: string): INode[];
 }

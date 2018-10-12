@@ -9,3 +9,18 @@ cygrunsrv -I cron -p /usr/sbin/cron -a -n
 
 net start cron
 
+SOURCE
+D:\Development\NeoComProjects\NeoComInfinity\NeoCom.Infinity 0.14.x\NeoCom.Infinity\src\app\modules\shared
+/cygdrive/d/Development/NeoComProjects/NeoComInfinity/NeoCom.Infinity 0.14.x/NeoCom.Infinity/src/app/modules/shared
+
+DESTINATION 1
+D:\Development\POCProjects\A5POCWorkBench\src\app\modules\shared
+/cygdrive/d/Development/POCProjects/A5POCWorkBench/src/app/modules/shared
+
+SYNCH 01
+rsync -rv --perms --delete "/cygdrive/d/Development/NeoComProjects/NeoComInfinity/NeoCom.Infinity 0.14.x/NeoCom.Infinity/src/app/modules/shared" "/cygdrive/d/Development/POCProjects/A5POCWorkBench/src/app/modules"
+
+
+"C:\Users\Adam\Dropbox\Applications\Unison\unison 2.48.4 text.exe" "D:\Development\POCProjects\A6POCNeoCom\src\app\modules\shared" "D:\Development\NeoComProjects\NeoComInfinity\NeoCom.Infinity 0.14.x\NeoCom.Infinity\src\app\modules\shared"
+
+

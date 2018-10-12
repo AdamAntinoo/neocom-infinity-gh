@@ -13,12 +13,12 @@ import { Inject } from '@angular/core';
 //--- ENVIRONMENT
 // import { environment } from 'app/../environments/environment';
 //--- WEBSTORAGE
-import { LOCAL_STORAGE } from 'angular-webstorage-service';
-import { WebStorageService } from 'angular-webstorage-service';
+// import { LOCAL_STORAGE } from 'angular-webstorage-service';
+// import { WebStorageService } from 'angular-webstorage-service';
 //--- ROUTER
 import { Router } from '@angular/router';
 //--- NOTIFICATIONS
-import { NotificationsService } from 'angular2-notifications';
+// import { NotificationsService } from 'angular2-notifications';
 //--- SERVICES
 // import { AppModelStoreService } from 'app/services/app-model-store.service';
 //--- CALENDAR
@@ -34,7 +34,7 @@ import { NotificationsService } from 'angular2-notifications';
 // import { AppStoreService } from '@app/services/appstore.service';
 import { IContainerController } from '../interfaces/core/IContainerController.interface';
 import { INode } from '../interfaces/core/INode.interface';
-import { AppStoreService } from 'projects/NeoCom-Login/src/app/services/app-store.service';
+// import { AppStoreService } from 'projects/NeoCom-Login/src/app/services/app-store.service';
 // import { Cita } from 'citamed-lib';
 
 @Component({
@@ -55,12 +55,12 @@ export class MVControllerComponent implements IContainerController {
   private _variant: string = "-DEFAULT-";
 
   //--- C O N S T R U C T O R
-  constructor(
-    @Inject(LOCAL_STORAGE) protected storage: WebStorageService,
-    protected router: Router,
-    protected toasterService: NotificationsService,
-    protected appStoreService: AppStoreService) {
-  }
+  // constructor(
+  //   @Inject(LOCAL_STORAGE) protected storage: WebStorageService,
+  //   protected router: Router,
+  //   protected toasterService: NotificationsService,
+  //   protected appStoreService: AppStoreService) {
+  // }
 
   // --- G E T T E R S   &   S E T T E R S
   public getVariant(): string {

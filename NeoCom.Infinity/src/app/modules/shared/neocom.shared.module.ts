@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 //--- SERVICES
 // import { BackendService } from '@shared';
 import { AppCorePanelComponent } from './panels/app-core-panel/app-core-panel.component';
-import { BackendService } from './services/Backend.service';
+import { BackendService } from './services/backend.service';
 import { RenderComponent } from './renders/render/render.component';
 // import { RenderComponent } from '@app';
 
