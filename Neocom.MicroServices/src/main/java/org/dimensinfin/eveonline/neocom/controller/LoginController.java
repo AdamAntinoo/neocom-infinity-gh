@@ -8,6 +8,39 @@
 //               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
+import java.io.IOException;
+import java.util.Base64;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.joda.time.DateTime;
+import org.joda.time.Instant;
+import org.mindrot.jbcrypt.BCrypt;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.dimensinfin.core.util.Chrono;
+import org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication;
+import org.dimensinfin.eveonline.neocom.auth.TokenRequestBody;
+import org.dimensinfin.eveonline.neocom.auth.TokenTranslationResponse;
+import org.dimensinfin.eveonline.neocom.auth.VerifyCharacterResponse;
+import org.dimensinfin.eveonline.neocom.exception.NeoComException;
+import org.dimensinfin.eveonline.neocom.database.entity.Credential;
+import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
+import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
+import org.dimensinfin.eveonline.neocom.model.PilotV2;
+import org.dimensinfin.eveonline.neocom.security.SessionManager;
+
 import okhttp3.CertificatePinner;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -18,41 +51,6 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import java.io.IOException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-import java.util.Base64;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-
-import org.joda.time.Instant;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
-import org.dimensinfin.core.util.Chrono;
-import org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication;
-import org.dimensinfin.eveonline.neocom.NeoComSession;
-import org.dimensinfin.eveonline.neocom.auth.TokenRequestBody;
-import org.dimensinfin.eveonline.neocom.auth.TokenTranslationResponse;
-import org.dimensinfin.eveonline.neocom.auth.VerifyCharacterResponse;
-import org.dimensinfin.eveonline.neocom.exception.NeoComException;
-import org.dimensinfin.eveonline.neocom.database.entity.Credential;
-import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
-import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
-import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
-import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 @RestController
@@ -127,81 +125,85 @@ public class LoginController {
 //	}
 
 	@CrossOrigin()
-	@RequestMapping(value = "/api/v1/exchangeauthorization/{code}/publickey/{publickey}"
+	@RequestMapping(value = "/api/v1/exchangeauthorization/{code}"
 			, method = RequestMethod.GET, produces = "application/json")
-	public String exchangeAuthorizationEntryPoint( @PathVariable final String code, @PathVariable final String publickey ) {
-		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/exchangeauthorization/{}/publickey/{}", code, publickey);
+	public ResponseEntity<LoginResponse> exchangeAuthorizationEntryPoint( @PathVariable final String code ) {
+		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/exchangeauthorization/{}", code);
 		logger.info(">> [LoginController.exchangeAuthorizationEntryPoint]");
 		final Chrono totalElapsed = new Chrono();
 		try {
 			// With the 'code' complete the authorization flow and generate a new session.
-			final NeoComSession session = exchangeAuthorization(code, publickey);
+			final LoginResponse loginResponse = exchangeAuthorization(code);
 			// Convert any object instance returned to a Json serialized string.
-			return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(session);
-		} catch (JsonProcessingException jpe) {
-			return new JsonExceptionInstance(jpe.getMessage()).toJson();
-		} catch (NeoComException neoe) {
-			try {
-				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(neoe.getMessage()));
-			} catch (JsonProcessingException jpe) {
-				return new JsonExceptionInstance(jpe.getMessage() + '\n' + neoe.getMessage()).toJson();
-			}
-		} catch (IOException ioe) {
-			try {
-				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(ioe.getMessage()));
-			} catch (JsonProcessingException jpe) {
-				return new JsonExceptionInstance(jpe.getMessage() + '\n' + ioe.getMessage()).toJson();
-			}
-		} catch (NoSuchAlgorithmException nsae) {
-			try {
-				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(nsae.getMessage()));
-			} catch (JsonProcessingException jpe) {
-				return new JsonExceptionInstance(jpe.getMessage() + '\n' + nsae.getMessage()).toJson();
-			}
-		} catch (NoSuchPaddingException nspe) {
-			try {
-				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(nspe.getMessage()));
-			} catch (JsonProcessingException jpe) {
-				return new JsonExceptionInstance(jpe.getMessage() + '\n' + nspe.getMessage()).toJson();
-			}
-		} catch (BadPaddingException bpe) {
-			try {
-				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(bpe.getMessage()));
-			} catch (JsonProcessingException jpe) {
-				return new JsonExceptionInstance(jpe.getMessage() + '\n' + bpe.getMessage()).toJson();
-			}
-		} catch (IllegalBlockSizeException ibse) {
-			try {
-				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(ibse.getMessage()));
-			} catch (JsonProcessingException jpe) {
-				return new JsonExceptionInstance(jpe.getMessage() + '\n' + ibse.getMessage()).toJson();
-			}
-		} catch (InvalidKeyException ike) {
-			try {
-				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(ike.getMessage()));
-			} catch (JsonProcessingException jpe) {
-				return new JsonExceptionInstance(jpe.getMessage() + '\n' + ike.getMessage()).toJson();
-			}
-		} catch (InvalidKeySpecException ikse) {
-			try {
-				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(ikse.getMessage()));
-			} catch (JsonProcessingException jpe) {
-				return new JsonExceptionInstance(jpe.getMessage() + '\n' + ikse.getMessage()).toJson();
-			}
-		} catch (RuntimeException rte) {
-			try {
-				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(rte.getMessage()));
-			} catch (JsonProcessingException jpe) {
-				return new JsonExceptionInstance(jpe.getMessage() + '\n' + rte.getMessage()).toJson();
-			}
+//			return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(session);
+			return new ResponseEntity<LoginResponse>(loginResponse, HttpStatus.OK);
+//		} catch ( JsonProcessingException jpe ) {
+//			return new JsonExceptionInstance(jpe.getMessage()).toJson();
+		} catch ( NeoComException neoe ) {
+			return new ResponseEntity<LoginResponse>(HttpStatus.UNAUTHORIZED);
+//			try {
+//				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(neoe.getMessage()));
+//			} catch ( JsonProcessingException jpe ) {
+//				return new JsonExceptionInstance(jpe.getMessage() + '\n' + neoe.getMessage()).toJson();
+//			}
+		} catch ( IOException ioe ) {
+			return new ResponseEntity<LoginResponse>(HttpStatus.UNAUTHORIZED);
+//			try {
+//				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(ioe.getMessage()));
+//			} catch ( JsonProcessingException jpe ) {
+//				return new JsonExceptionInstance(jpe.getMessage() + '\n' + ioe.getMessage()).toJson();
+//			}
+//		} catch ( NoSuchAlgorithmException nsae ) {
+//			try {
+//				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(nsae.getMessage()));
+//			} catch ( JsonProcessingException jpe ) {
+//				return new JsonExceptionInstance(jpe.getMessage() + '\n' + nsae.getMessage()).toJson();
+//			}
+//		} catch ( NoSuchPaddingException nspe ) {
+//			try {
+//				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(nspe.getMessage()));
+//			} catch ( JsonProcessingException jpe ) {
+//				return new JsonExceptionInstance(jpe.getMessage() + '\n' + nspe.getMessage()).toJson();
+//			}
+//		} catch ( BadPaddingException bpe ) {
+//			try {
+//				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(bpe.getMessage()));
+//			} catch ( JsonProcessingException jpe ) {
+//				return new JsonExceptionInstance(jpe.getMessage() + '\n' + bpe.getMessage()).toJson();
+//			}
+//		} catch ( IllegalBlockSizeException ibse ) {
+//			try {
+//				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(ibse.getMessage()));
+//			} catch ( JsonProcessingException jpe ) {
+//				return new JsonExceptionInstance(jpe.getMessage() + '\n' + ibse.getMessage()).toJson();
+//			}
+//		} catch ( InvalidKeyException ike ) {
+//			try {
+//				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(ike.getMessage()));
+//			} catch ( JsonProcessingException jpe ) {
+//				return new JsonExceptionInstance(jpe.getMessage() + '\n' + ike.getMessage()).toJson();
+//			}
+//		} catch ( InvalidKeySpecException ikse ) {
+//			try {
+//				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(ikse.getMessage()));
+//			} catch ( JsonProcessingException jpe ) {
+//				return new JsonExceptionInstance(jpe.getMessage() + '\n' + ikse.getMessage()).toJson();
+//			}
+//		} catch ( RuntimeException rte ) {
+//			try {
+//				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(rte.getMessage()));
+//			} catch ( JsonProcessingException jpe ) {
+//				return new JsonExceptionInstance(jpe.getMessage() + '\n' + rte.getMessage()).toJson();
+//			}
 		} finally {
 			logger.info("<< [LoginController.exchangeAuthorizationEntryPoint]> [TIMING] Processing Time: {}"
 					, totalElapsed.printElapsed(Chrono.ChronoOptions.SHOWMILLIS));
 		}
 	}
 
-	private NeoComSession exchangeAuthorization( final String authCode, final String publickey ) throws NeoComException,
-			IOException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidKeySpecException, InvalidKeyException {
+	private LoginResponse exchangeAuthorization( final String authCode/*, final String publickey*/ ) throws NeoComException,
+			IOException /*, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException,
+			InvalidKeySpecException, InvalidKeyException */ {
 		// Create the conversion call by coding.
 		logger.info("-- [LoginController.exchangeAuthorization]> Preparing Verification HTTP request.");
 		logger.info("-- [LoginController.exchangeAuthorization]> Creating access token request.");
@@ -225,7 +227,7 @@ public class LoginController {
 					, tokenRequestBody);
 			// Getting the request response to be stored if valid.
 			final Response<TokenTranslationResponse> response = request.execute();
-			if (response.isSuccessful()) {
+			if ( response.isSuccessful() ) {
 				logger.info("-- [LoginController.exchangeAuthorization]> Response is 200 OK.");
 				final TokenTranslationResponse token = response.body();
 				// Create a security verification instance.
@@ -252,14 +254,33 @@ public class LoginController {
 						.create(VerifyCharacter.class);
 				final String accessToken = token.getAccessToken();
 				final Response<VerifyCharacterResponse> verificationResponse = verificationService.getVerification("Bearer " + accessToken).execute();
-				if (verificationResponse.isSuccessful()) {
+				if ( verificationResponse.isSuccessful() ) {
 					logger.info("-- [LoginController.exchangeAuthorization]> Character verification OK.");
 
-					// TODO Create a new session store to keep the session data.
-					// Create the credential and store it on a new encrypted session.
+//					logger.info("-- [LoginController.checkCredencial]> Password matches.");
+					// Create a new session and store the authorization token and the rest of the data.
+					// Generate token.
 					final int newAccountIdentifier = Long.valueOf(verificationResponse.body().getCharacterID()).intValue();
-					final Credential credential = new Credential(newAccountIdentifier);
-					credential.setAccountName(verificationResponse.body().getCharacterName())
+					final String salt = BCrypt.gensalt(8);
+					final String payload = DateTime.now().toString() + ":"
+							+ newAccountIdentifier + ":"
+							+ verificationResponse.body().getCharacterName();
+					final String authorizationToken = BCrypt.hashpw(payload, salt);
+					// Build up the session along with the credential data.
+					final SessionManager.AppSession session = new SessionManager.AppSession()
+							.setAuthorizationToken(authorizationToken)
+							.setPayload(payload)
+							.setAuthorizationPassword(salt)
+							.setUserIdentifier(newAccountIdentifier)
+							.setUserName(verificationResponse.body().getCharacterName());
+//							.setCredential ( credential )
+//							.setRole(credencial.getRole())
+//							.store();
+					logger.info("-- [LoginController.checkCredencial]> Session id: {}", session.getId());
+
+					// Construct the login response that it is a structure with the token and the Pilot credential.
+					final Credential credential = new Credential(newAccountIdentifier)
+							.setAccountName(verificationResponse.body().getCharacterName())
 							.setAccessToken(token.getAccessToken())
 							.setTokenType(token.getTokenType())
 							.setExpires(Instant.now().plus(TimeUnit.SECONDS.toMillis(token.getExpires())).getMillis())
@@ -267,20 +288,29 @@ public class LoginController {
 							.setDataSource(GlobalDataManager.SERVER_DATASOURCE)
 							.setScope(ESINetworkManager.getStringScopes())
 							.store();
-					final NeoComSession session = new NeoComSession()
-							.setCredential(credential)
-							.setPublicKey(publickey);
-					NeoComMicroServiceApplication.sessionStore.put(session.getSessionId(), session);
-					// TODO - Store an additional copy of the session under a predefined session identifier.
-					NeoComMicroServiceApplication.sessionStore.put("-MOCK-SESSION-LOCATOR-", session);
+					session.setCredential(credential)
+							.store();
+
+					// Create the response with the session token to conenct back the session on next calls.
+					final LoginResponse loginResponse = new LoginResponse()
+							.setAuthorizationToken(authorizationToken)
+							.setPilotPublicData(InfinityGlobalDataManager.requestPilotV2(credential));
+					return loginResponse;
+
+
+					// TODO Create a new session store to keep the session data.
+					// Create the credential and store it on a new encrypted session.
+//					NeoComMicroServiceApplication.sessionStore.put(session.getSessionId(), session);
+//					// TODO - Store an additional copy of the session under a predefined session identifier.
+//					NeoComMicroServiceApplication.sessionStore.put("-MOCK-SESSION-LOCATOR-", session);
 
 					// Clean up the list of credential to force a reload on next access.
 					// TODO This is a new code flow to store credentials only on the session and this on the database.
 
 //					DataManagementModelStore.getSingleton().cleanModel();
 //					// Update the Pilot information.
-					InfinityGlobalDataManager.requestPilotV2(credential);
-					return session;
+//					InfinityGlobalDataManager.requestPilotV2(credential);
+//					return session;
 //					return new NeoComMicroServiceApplication.NeoComSessionIdentifier(session);
 				} else
 					throw new NeoComException("NEO [LoginController.exchangeAuthorization]> the VerifyCharacterResponse response is " +
@@ -312,7 +342,7 @@ public class LoginController {
 		String serializedException = null;
 		try {
 			serializedException = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(exc);
-		} catch (JsonProcessingException jpe) {
+		} catch ( JsonProcessingException jpe ) {
 			jpe.printStackTrace();
 			serializedException = new JsonExceptionInstance(jpe.getMessage()).toJson();
 		}
@@ -325,7 +355,7 @@ public class LoginController {
 				"message: \"Unprocessed data. Possible JsonProcessingException exception.\"]";
 		try {
 			contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(credentials);
-		} catch (JsonProcessingException jpe) {
+		} catch ( JsonProcessingException jpe ) {
 			jpe.printStackTrace();
 			contentsSerialized = new JsonExceptionInstance(jpe.getMessage()).toJson();
 		}
@@ -343,6 +373,29 @@ public class LoginController {
 		Call<TokenTranslationResponse> getAccessToken( @Header("Authorization") String token
 				, @Header("Content-Type") String contentType
 				, @Body TokenRequestBody body );
+	}
+
+	public static class LoginResponse {
+		private String authorizationToken;
+		private PilotV2 pilotPublicData;
+
+		public String getAuthorizationToken() {
+			return authorizationToken;
+		}
+
+		public LoginResponse setAuthorizationToken( final String authorizationToken ) {
+			this.authorizationToken = authorizationToken;
+			return this;
+		}
+
+		public PilotV2 getPilotPublicData() {
+			return pilotPublicData;
+		}
+
+		public LoginResponse setPilotPublicData( final PilotV2 pilotPublicData ) {
+			this.pilotPublicData = pilotPublicData;
+			return this;
+		}
 	}
 }
 // - UNUSED CODE ............................................................................................

@@ -9,10 +9,9 @@
         <option name="gradleJvm" value="#JAVA_HOME" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt-0.12.x/ESI.SwaggerApi" />
-            <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt-0.12.x/NeoCom.Model" />
-            <option value="$PROJECT_DIR$/../../../../Libraries Base/NeoCom-DM/NeoCom-DataMngmt-POC/NeoCom.DataManagement" />
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/../../../NeoComLibrary/NeoCom-DataMngmt-0.14.x/NeoCom.DataManagement" />
+            <option value="$PROJECT_DIR$/../../../NeoComLibrary/NeoCom-DataMngmt-0.14.x/NeoCom.Model" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

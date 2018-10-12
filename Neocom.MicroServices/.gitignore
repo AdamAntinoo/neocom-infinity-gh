@@ -13,9 +13,6 @@
 *.ipr
 /.idea/libraries/
 /.gradle/
-/gradle/
-/build
-/out/
 
 ### NetBeans ###
 nbproject/private/
@@ -26,15 +23,16 @@ nbdist/
 .nb-gradle/
 
 ### NeoCom ###
-/classes/
-/target/
+classes/
+target/
+out/
 
 ## Heroku gradle additions ##
-gradlew
-gradlew.bat
+#gradlew
+#gradlew.bat
 
 ### Project file exceptions
-.idea/workspace.xml
-privatelibs/
+#.idea/workspace.xml
+#privatelibs/
 #libs/
 src/main/resources/static/

@@ -19,7 +19,10 @@ import java.util.List;
 import org.joda.time.Instant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,11 +33,14 @@ import org.dimensinfin.eveonline.neocom.NeoComSession;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.database.entity.Job;
 import org.dimensinfin.eveonline.neocom.database.entity.MarketOrder;
+import org.dimensinfin.eveonline.neocom.database.entity.NeoComAsset;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
 import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
 import org.dimensinfin.eveonline.neocom.exception.NeoComRegisteredException;
+import org.dimensinfin.eveonline.neocom.managers.AssetsManager;
 import org.dimensinfin.eveonline.neocom.model.PilotV2;
+import org.dimensinfin.eveonline.neocom.security.SessionManager;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 
@@ -66,12 +72,10 @@ public class PilotDataController {
 	 * @return a Json serialized set of data corresponding to a PilotV2 class instance.
 	 */
 	@CrossOrigin()
-	@RequestMapping(value = "/api/v1/pilot/{identifier}/publicdata"
-			, method = RequestMethod.GET
-			, produces = "application/json")
-	public String pilotPublicData(@RequestHeader(value = "xNeocom-Session-Locator", required = false) String sessionLocator
-//			, @CookieValue(value = "myCookieName", defaultValue = "defaultCookieValue") String cookieValue
-			, @PathVariable final Integer identifier) {
+	@RequestMapping(value = "/api/v1/pilot/{identifier}/publicdata", method = RequestMethod.GET, produces =
+			"application/json")
+	public String pilotPublicData( @RequestHeader(value = "xNeocom-Session-Locator", required = false) String sessionLocator
+			, @PathVariable final Integer identifier ) {
 		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/pilot/{}/publicdata", identifier);
 		logger.info(">> [PilotDataController.pilotPublicData]");
 		logger.info(">> [PilotDataController.pilotPublicData]> sessionLocator: {}", sessionLocator);
@@ -135,8 +139,8 @@ public class PilotDataController {
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/pilot/{identifier}/industryjobs", method = RequestMethod.GET, produces =
 			"application/json")
-	public String pilotIndustryJobs(@RequestHeader(value = "xNeocom-Session-Locator", required = false) String sessionLocator
-			, @PathVariable final Integer identifier) {
+	public String pilotIndustryJobs( @RequestHeader(value = "xNeocom-Session-Locator", required = false) String sessionLocator
+			, @PathVariable final Integer identifier ) {
 		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/pilot/{}/industryjobs", identifier);
 		logger.info(">> [PilotDataController.pilotIndustryJobs]");
 		logger.info(">> [PilotDataController.pilotIndustryJobs]> sessionLocator: {}", sessionLocator);
@@ -188,8 +192,8 @@ public class PilotDataController {
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/pilot/{identifier}/marketorders", method = RequestMethod.GET, produces =
 			"application/json")
-	public String pilotMarketOrders(@RequestHeader(value = "xNeocom-Session-Locator", required = false) String sessionLocator
-			, @PathVariable final Integer identifier) {
+	public String pilotMarketOrders( @RequestHeader(value = "xNeocom-Session-Locator", required = false) String sessionLocator
+			, @PathVariable final Integer identifier ) {
 		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/pilot/{}/marketorders", identifier);
 		logger.info(">> [PilotDataController.pilotMarketOrders]");
 		logger.info(">> [PilotDataController.pilotMarketOrders]> sessionLocator: {}", sessionLocator);
@@ -238,50 +242,53 @@ public class PilotDataController {
 		}
 	}
 
-//	/**
-//	 * Reads all the Pilots assets. Assrt grouping and processing is performed at the UI level so most of the AssetsManager
-//	 * original code can be stripped out since the list of assets is returned as a plain and single level list of NeoComAsset
-//	 * instances serialized.
-//	 * Instead of issuing Region-Location-Conainer-Asset we download the complete and processed list of assets. The only
-//	 * exception should be the Container and Ships that will be returned empty. Only when the user selectes to open their
-//	 * contents the request should get the list of assets inside that container.
-//	 * Locations and Regions are extracted from the list data and any item not located on space or an station on a Citadel will
-//	 * not be processed because it is expected to be read when the specific container it belongs is open.
-//	 *
-//	 * @param identifier
-//	 * @return
-//	 */
-//	@CrossOrigin()
-//	@RequestMapping(value = "/api/v1/pilot/{identifier}/assets", method = RequestMethod.GET, produces =
-//			"application/json")
-//	public String pilotAssets( @PathVariable final Integer identifier ) {
-//		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/pilot/{}/assets", identifier);
-//		logger.info(">> [PilotDataController.pilotAssets]");
-//		try {
-//			// Activate the list of credentials.
-//			final Credential credential = DataManagementModelStore.activateCredential(identifier);
-//			final AssetsManager assetsManager = GlobalDataManager.getAssetsManager(credential);
-//
-//			// Get the list of assets and serialize them back to the front end.
-//			final List<NeoComAsset> assets = assetsManager.getAllAssets();
-//			final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(assets);
-//			return contentsSerialized;
-//		} catch (NumberFormatException nfe) {
-//			logger.error("EX [PilotDataController.pilotAssets]> identifier received cannot be translated to number - " +
-//					"{}", nfe.getMessage());
-//			return new JsonExceptionInstance("Identifier received cannot be translated to number - " + nfe.getMessage()
-//			).toJson();
-//		} catch (JsonProcessingException jpe) {
-//			jpe.printStackTrace();
-//			return new JsonExceptionInstance(jpe.getMessage()).toJson();
-//		} catch (RuntimeException rtx) {
-//			rtx.printStackTrace();
-//			return new JsonExceptionInstance(rtx.getMessage()).toJson();
+	/**
+	 * Reads all the Pilots assets. Asset grouping and processing is performed at the UI level so most of the AssetsManager
+	 * original code can be stripped out since the list of assets is returned as a plain and single level list of NeoComAsset
+	 * instances serialized.
+	 * Instead of issuing Region-Location-Container-Asset we download the complete and processed list of assets. The only
+	 * exception should be the Container and Ships that will be returned empty. Only when the user selects to open their
+	 * contents the request should get the list of assets inside that container.
+	 * Locations and Regions are extracted from the list data and any item not located on space or an station on a Citadel will
+	 * not be processed because it is expected to be read when the specific container it belongs is open.
+	 * @return
+	 */
+	@CrossOrigin()
+//	@RequestMapping(value = "/api/v1/pilot/{identifier}/assets", method = RequestMethod.GET, produces = 	"application/json")
+	@GetMapping("/api/v2/pilot/assets")
+	public ResponseEntity<List<NeoComAsset>> pilotAssetsEntryPoint( @RequestHeader(value = "xApp-Authentication") String _token ) {
+		// The headers should have the authorization data enough to retrieve the session.
+		final SessionManager.AppSession session = SessionManager.retrieve(_token);
+		if ( null != session ) {
+			try {
+				// Activate the list of credentials.
+				final Credential credential = session.getCredential();
+				final AssetsManager assetsManager = new AssetsManager(credential);
+
+				// Get the list of assets and serialize them back to the front end.
+				final List<NeoComAsset> assets = assetsManager.getFullAssetList();
+//				final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(assets);
+				return new ResponseEntity<>(assets, HttpStatus.OK);
+//			} catch ( NumberFormatException nfe ) {
+//				logger.error("EX [PilotDataController.pilotAssets]> identifier received cannot be translated to number - " +
+//						"{}", nfe.getMessage());
+//				return new JsonExceptionInstance("Identifier received cannot be translated to number - " + nfe.getMessage()
+//				).toJson();
+//			} catch ( JsonProcessingException jpe ) {
+//				jpe.printStackTrace();
+//				return new JsonExceptionInstance(jpe.getMessage()).toJson();
+			} catch ( RuntimeException rtx ) {
+				rtx.printStackTrace();
+				return new ResponseEntity<List<NeoComAsset>>(HttpStatus.BAD_REQUEST);
 //		} finally {
 //			logger.info("<< [PilotDataController.pilotAssets]");
-//		}
-//	}
-//
+			} catch ( SQLException e ) {
+				e.printStackTrace();
+				return new ResponseEntity<List<NeoComAsset>>(HttpStatus.BAD_REQUEST);
+			}
+		} else return new ResponseEntity<List<NeoComAsset>>(HttpStatus.UNAUTHORIZED);
+	}
+	//
 //	/**
 //	 * This is a mock methos to return samples manually constructed from json data that should be converted to OK instances and
 //	 * then to the MVC instances that are then being returned to the front end.
@@ -340,14 +347,14 @@ public class PilotDataController {
 //
 
 
-	private String readJsonMockData(final String filePath) throws IOException {
+	private String readJsonMockData( final String filePath ) throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader(filePath));
 		String line = null;
 		StringBuilder stringBuilder = new StringBuilder();
 		String ls = System.getProperty("line.separator");
 
 		try {
-			while ((line = reader.readLine()) != null) {
+			while ( (line = reader.readLine()) != null ) {
 				stringBuilder.append(line);
 //				stringBuilder.append(ls);
 			}

@@ -29,15 +29,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication;
 import org.dimensinfin.eveonline.neocom.NeoComSession;
 import org.dimensinfin.eveonline.neocom.constant.ModelWideConstants;
-import org.dimensinfin.eveonline.neocom.exception.NeoComRuntimeException;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.database.entity.FittingRequest;
-import org.dimensinfin.eveonline.neocom.database.entity.NeoComAsset;
 import org.dimensinfin.eveonline.neocom.database.entity.Property;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
 import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
 import org.dimensinfin.eveonline.neocom.exception.NeoComRegisteredException;
+import org.dimensinfin.eveonline.neocom.exception.NeoComRuntimeException;
 import org.dimensinfin.eveonline.neocom.industry.FacetedAssetContainer;
 import org.dimensinfin.eveonline.neocom.industry.Fitting;
 import org.dimensinfin.eveonline.neocom.industry.Resource;
@@ -45,12 +44,14 @@ import org.dimensinfin.eveonline.neocom.model.ANeoComEntity;
 import org.dimensinfin.eveonline.neocom.model.EveItem;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
 import org.dimensinfin.eveonline.neocom.model.ManufactureResourcesRequest;
+import org.dimensinfin.eveonline.neocom.database.entity.NeoComAsset;
 import org.dimensinfin.eveonline.neocom.model.PilotV2;
 
 /**
  * This controller has the entry point to manage the resources for input and output. By the output we have the entry points to
  * get the hull list and LOM for their construction. Also on the output we have the Structure blueprints and their LOM for
  * building that are marked on special Locations/Containers tagged as CITADEL STORAGES.
+ *
  * @author Adam Antinoo
  */
 // - CLASS IMPLEMENTATION ...................................................................................
@@ -69,6 +70,7 @@ public class ManufactureResourcesController {
 	 * This entry point will search for all Pilot/Corporation Fitting Requests and extract their most mineral resource consuming
 	 * items like the Hulls. With that information we should locate the matching blueprint and get the List Of Materials required
 	 * for their construction including cost data.
+	 *
 	 * @param sessionLocator the session to locate the credentials and the rest of the session cached information.
 	 * @param identifier     the Pilot unique identifier.
 	 * @return a list of Manufacture Jobs with their blueprint and LOM for their construction.
@@ -76,9 +78,9 @@ public class ManufactureResourcesController {
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/pilot/{identifier}/manufactureresources/hullmanufacture"
 			, method = RequestMethod.GET, produces = "application/json")
-	public String manufactureResourcesHullManufacture(@RequestHeader(value = "xNeocom-Session-Locator", required = false) String
-			                                                  sessionLocator
-			, @PathVariable final Integer identifier) {
+	public String manufactureResourcesHullManufacture( @RequestHeader(value = "xNeocom-Session-Locator", required = false) String
+			                                                   sessionLocator
+			, @PathVariable final Integer identifier ) {
 		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/pilot/{}/manufactureresources/hullmanufacture"
 				, identifier);
 		logger.info(">> [ManufactureResourcesController.manufactureResourcesHullManufacture]");
@@ -118,7 +120,7 @@ public class ManufactureResourcesController {
 				final List<FittingRequest> corpRequests = InfinityGlobalDataManager.accessCorporationFittingRequests(corp);
 				final List<FittingRequest> pilotRequests = InfinityGlobalDataManager.accessPilotFittingRequests(
 						session.getCredential().getAccountId()
-				                                                                                               );
+				);
 				// Process the Requests to get the hulls and any other resource that is a heavy mineral consumer.
 				final List<FittingRequest> requests = new ArrayList<>();
 				requests.addAll(corpRequests);
@@ -138,8 +140,8 @@ public class ManufactureResourcesController {
 
 							// Create the Job Request to define the target and the resources required.
 							jobList.add(new ManufactureResourcesRequest(bpid)
-									            .setNumberOfCopies(req.copies)
-									            .setLOM(lom));
+									.setNumberOfCopies(req.copies)
+									.setLOM(lom));
 						}
 					}
 				}
@@ -165,8 +167,8 @@ public class ManufactureResourcesController {
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/pilot/{identifier}/manufactureresources/structuremanufacture"
 			, method = RequestMethod.GET, produces = "application/json")
-	public String manufactureResourcesStructureManufacture(@RequestHeader(value = "xNeocom-Session-Locator", required = false) String sessionLocator
-			, @PathVariable final Integer identifier) {
+	public String manufactureResourcesStructureManufacture( @RequestHeader(value = "xNeocom-Session-Locator", required = false) String sessionLocator
+			, @PathVariable final Integer identifier ) {
 		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/pilot/{}/manufactureresources/structuremanufacture"
 				, identifier);
 		logger.info(">> [ManufactureResourcesController.manufactureResourcesStructureManufacture]");
@@ -215,8 +217,8 @@ public class ManufactureResourcesController {
 						// Create the Job Request to define the target and the resources required.
 						// TODO - Download the blueprints to et access to the number of runs.
 						jobList.add(new ManufactureResourcesRequest(blueprint.getTypeId())
-								            .setNumberOfCopies(2)
-								            .setLOM(lom));
+								.setNumberOfCopies(2)
+								.setLOM(lom));
 					}
 				}
 
@@ -243,9 +245,9 @@ public class ManufactureResourcesController {
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/pilot/{identifier}/manufactureresources/resourcesavailable"
 			, method = RequestMethod.GET, produces = "application/json")
-	public String manufactureResourcesAvailable(@RequestHeader(value = "xNeocom-Session-Locator", required = false) String
-			                                            sessionLocator
-			, @PathVariable final Integer identifier) {
+	public String manufactureResourcesAvailable( @RequestHeader(value = "xNeocom-Session-Locator", required = false) String
+			                                             sessionLocator
+			, @PathVariable final Integer identifier ) {
 		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/pilot/{}/manufactureresources/resourcesavailable"
 				, identifier);
 		logger.info(">> [ManufactureResourcesController.manufactureResourcesAvailable]");
@@ -290,7 +292,7 @@ public class ManufactureResourcesController {
 				where.put("ownerId", session.getCredential().getAccountId());
 				where.put("category", "Asteroid");
 				manufactureResources.addAll(new InfinityGlobalDataManager().getNeocomDBHelper().getAssetDao()
-						                            .queryForFieldValues(where));
+						.queryForFieldValues(where));
 
 				// Classify them into System type Locations but only for Systems with REFINING role.
 				where = new HashMap<String, Object>();
@@ -315,7 +317,7 @@ public class ManufactureResourcesController {
 				}
 
 				final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(processor
-						                                                                                              .getStorageLocations().values());
+						.getStorageLocations().values());
 				return contentsSerialized;
 			} else throw new NeoComRuntimeException("Not access.");
 		} catch (JsonProcessingException jspe) {
@@ -341,9 +343,10 @@ public class ManufactureResourcesController {
 		/**
 		 * Add the resource depending on the type. For Mineral resources they are added automatically to the matching Location
 		 * Storage. For Ore resources they are wrapped into a refining processor that is then added to the target location.
+		 *
 		 * @param resource
 		 */
-		public void addResource(final NeoComAsset resource) {
+		public void addResource( final NeoComAsset resource ) {
 			if (resource.getCategoryName().equalsIgnoreCase("Asteroid")) {
 				// Wrap into a RefiningProcess before adding it to the location.
 				RefiningProcess refiner = new RefiningProcess(resource);
@@ -353,22 +356,22 @@ public class ManufactureResourcesController {
 			}
 		}
 
-		private void add2Location(final RefiningProcess refiner, final EveLocation location) {
+		private void add2Location( final RefiningProcess refiner, final EveLocation location ) {
 			FacetedAssetContainer<EveLocation> hit = _storageLocations.get(location.getSystemId());
 			if (null == hit) {
 				// Add this new location to the list.
 				hit = new FacetedAssetContainer(location);
-				this._storageLocations.put(location.getSystemId(), hit);
+				_storageLocations.put(location.getSystemId(), hit);
 			}
 			hit.addResource(refiner);
 		}
 
-		private void add2Location(final NeoComAsset asset, final EveLocation location) {
+		private void add2Location( final NeoComAsset asset, final EveLocation location ) {
 			FacetedAssetContainer<EveLocation> hit = _storageLocations.get(location.getSystemId());
 			if (null == hit) {
 				// Add this new location to the list.
 				hit = new FacetedAssetContainer(location);
-				this._storageLocations.put(location.getSystemId(), hit);
+				_storageLocations.put(location.getSystemId(), hit);
 			}
 			hit.addResource(new Resource(asset.getTypeId(), asset.getQuantity()));
 		}
@@ -377,7 +380,7 @@ public class ManufactureResourcesController {
 			return _storageLocations;
 		}
 
-		public MineralResourceProcessor setStorageLocations(final Map<Integer, FacetedAssetContainer<EveLocation>> _storageLocations) {
+		public MineralResourceProcessor setStorageLocations( final Map<Integer, FacetedAssetContainer<EveLocation>> _storageLocations ) {
 			this._storageLocations = _storageLocations;
 			return this;
 		}
@@ -386,15 +389,15 @@ public class ManufactureResourcesController {
 	public static class RefiningProcess extends Resource {
 		private RefiningFacility facility = null;
 
-		public RefiningProcess(final int typeId) {
+		public RefiningProcess( final int typeId ) {
 			super(typeId);
 		}
 
-		public RefiningProcess(final int typeId, final int newQty) {
+		public RefiningProcess( final int typeId, final int newQty ) {
 			super(typeId, newQty);
 		}
 
-		public RefiningProcess(final NeoComAsset resource) {
+		public RefiningProcess( final NeoComAsset resource ) {
 			super(resource.getTypeId(), resource.getQuantity());
 			// Create the refining station where to do the job.
 			this.facility = new RefiningFacility(resource.getLocation());
@@ -410,7 +413,7 @@ public class ManufactureResourcesController {
 			final List<Resource> refineParameters = accessGlobal().getSDEDBHelper().refineOre(getTypeId());
 			for (final Resource rc : refineParameters) {
 				final double mineral = Math.floor(Math.floor(getQuantity() / rc.getStackSize())
-						                                  * (rc.getBaseQuantity() * facility.getYield()));
+						* (rc.getBaseQuantity() * facility.getYield()));
 				refineResults.put(rc.getTypeId(), new Resource(rc.getTypeId(), Double.valueOf(mineral).intValue()));
 			}
 			return refineResults;
@@ -426,7 +429,7 @@ final class RefiningFacility extends ANeoComEntity {
 	private EveLocation location = null;
 	private double yield = 0.6;
 
-	public RefiningFacility(final EveLocation facilityLocation) {
+	public RefiningFacility( final EveLocation facilityLocation ) {
 		this.location = facilityLocation;
 		List<Property> yieldList = new ArrayList();
 		try {

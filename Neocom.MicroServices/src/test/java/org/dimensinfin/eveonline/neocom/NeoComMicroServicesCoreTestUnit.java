@@ -8,16 +8,20 @@
 //               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom;
 
-import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
-import org.dimensinfin.eveonline.neocom.datamngmt.*;
-import org.dimensinfin.eveonline.neocom.model.ANeoComEntity;
-import org.dimensinfin.eveonline.neocom.services.MarketDataServer;
+import java.io.IOException;
+import java.sql.SQLException;
+
 import org.junit.BeforeClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.IOException;
-import java.sql.SQLException;
+import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
+import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.FileSystemSBImplementation;
+import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.GlobalSBConfigurationProvider;
+import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
+import org.dimensinfin.eveonline.neocom.model.ANeoComEntity;
+import org.dimensinfin.eveonline.neocom.services.MarketDataServer;
 
 /**
  * @author Adam Antinoo
@@ -26,28 +30,28 @@ import java.sql.SQLException;
 public class NeoComMicroServicesCoreTestUnit {
 	// - S T A T I C - S E C T I O N ..........................................................................
 	private static Logger logger = LoggerFactory.getLogger("NeoComMicroServicesCoreTestUnit");
-	
+
 	@BeforeClass
 	public static void before01CreateApplicationEnvironment() throws SQLException, IOException {
 		logger.info(">> [NeoComMicroServicesCoreTestUnit.before01CreateApplicationEnvironment]");
-		
+
 		// Connect the file system to be able to read the assets and other application resources stored externally.
 		logger.info("-- [NeoComMicroServicesCoreTestUnit.before01CreateApplicationEnvironment]> Connecting the File System to Global...");
 		InfinityGlobalDataManager.installFileSystem(new FileSystemSBImplementation(
 				System.getenv("appname"))
 		);
-		
+
 		// Connect the Configuration manager.
 		logger.info("-- [NeoComMicroServicesCoreTestUnit.before01CreateApplicationEnvironment]> Connecting the Configuration Manager...");
 		InfinityGlobalDataManager.connectConfigurationManager(new GlobalSBConfigurationProvider("properties"));
-		
+
 		// Initialize the Model with the current global instance.
 		logger.info("-- [NeoComMicroServicesCoreTestUnit.before01CreateApplicationEnvironment]> Connecting Global to Model...");
 		ANeoComEntity.connectGlobal(new InfinityGlobalDataManager());
-		
+
 		// Initializing the ESI api network controller.
 		ESINetworkManager.initialize();
-		
+
 		// Connect the SDE database.
 		logger.info("-- [NeoComMicroServicesCoreTestUnit.before01CreateApplicationEnvironment]> Connecting SDE database...");
 		try {
@@ -57,22 +61,22 @@ public class NeoComMicroServicesCoreTestUnit {
 					.setDatabaseName(GlobalDataManager.getResourceString("R.database.sdedatabase.databasename"))
 					.build()
 			);
-		} catch ( SQLException sqle ) {
+		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		}
 		ANeoComEntity.connectSDEHelper(new GlobalDataManager().getSDEDBHelper());
-		
+
 		// Connect the MarketData service.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Starting Market Data service...");
 		final MarketDataServer mdServer = new MarketDataServer().start();
 		InfinityGlobalDataManager.connectMarketDataManager(mdServer);
-		
-		
+
+
 		logger.info("<< [NeoComMicroServicesCoreTestUnit.before01CreateApplicationEnvironment]");
 	}
-	
+
 	// - F I E L D - S E C T I O N ............................................................................
-	
+
 	// - M E T H O D - S E C T I O N ..........................................................................
 }
 
