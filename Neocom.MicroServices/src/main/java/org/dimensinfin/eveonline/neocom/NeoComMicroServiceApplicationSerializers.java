@@ -156,14 +156,14 @@ public class NeoComMicroServiceApplicationSerializers {
 				throws IOException, JsonProcessingException {
 			jgen.writeStartObject();
 			jgen.writeStringField("jsonClass", value.getJsonClass());
-			jgen.writeNumberField("id", value.getDAOID());
+			jgen.writeNumberField("id", value.getDAOId());
 			jgen.writeNumberField("assetId", value.getAssetId());
 			jgen.writeNumberField("typeId", value.getTypeId());
 			jgen.writeNumberField("quantity", value.getQuantity());
 			jgen.writeNumberField("locationId", value.getLocationId());
 			jgen.writeObjectField("location", value.getLocation());
 			jgen.writeStringField("locationType", value.getLocationType().name());
-			jgen.writeStringField("locationFlag", value.getFlag().name());
+			jgen.writeStringField("locationFlag", value.getLocationFlag().name());
 			jgen.writeStringField("isPackaged", Boolean.valueOf(value.isPackaged()).toString());
 			jgen.writeNumberField("parentAssetId", value.getParentContainerId());
 			jgen.writeNumberField("ownerId", value.getOwnerId());
@@ -194,7 +194,7 @@ public class NeoComMicroServiceApplicationSerializers {
 				throws IOException, JsonProcessingException {
 			jgen.writeStartObject();
 //			jgen.writeNumberField("recordid", value.getRealId());
-			jgen.writeNumberField("id", value.getID());
+			jgen.writeNumberField("id", value.getId());
 			jgen.writeNumberField("stationId", value.getStationId());
 			jgen.writeStringField("station", value.getStation());
 			jgen.writeNumberField("systemId", value.getSystemId());

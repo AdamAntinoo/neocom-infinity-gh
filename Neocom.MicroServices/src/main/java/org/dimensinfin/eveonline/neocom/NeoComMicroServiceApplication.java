@@ -9,6 +9,7 @@
 package org.dimensinfin.eveonline.neocom;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.j256.ormlite.field.DataPersisterManager;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
@@ -31,6 +32,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.dimensinfin.eveonline.neocom.conf.GlobalSBPreferencesManager;
+import org.dimensinfin.eveonline.neocom.database.EveItemPersister;
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
@@ -182,6 +184,9 @@ public class NeoComMicroServiceApplication extends NeoComMicroServiceApplication
 //		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the background timed download scanner...");
 //		timedService = new TimedUpdater();
 
+//		DataPersisterManager.registerDataPersisters(
+//				EveItemPersister.getSingleton());
+
 		logger.info("-- [NeoComMicroServiceApplication.main]> Starting application instance...");
 		SpringApplication.run(NeoComMicroServiceApplication.class, args);
 		logger.info("<< [NeoComMicroServiceApplication.main]");
@@ -209,7 +214,8 @@ public class NeoComMicroServiceApplication extends NeoComMicroServiceApplication
 //	}
 
 	//	@Scheduled(initialDelay = 120000, fixedDelay = 900000)
-	@Scheduled(initialDelay = 120000, fixedDelay = 120000)
+//	@Scheduled(initialDelay = 120000, fixedDelay = 120000)
+	@Scheduled(initialDelay = 60000, fixedDelay = 60000)
 	private void onTime() {
 		// Fire another background update scan.
 		// Check if the configuration properties allow to run the updater.
