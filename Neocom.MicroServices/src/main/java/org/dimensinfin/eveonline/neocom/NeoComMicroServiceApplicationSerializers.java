@@ -8,9 +8,6 @@
 //               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom;
 
-import java.io.IOException;
-import java.util.concurrent.ExecutionException;
-
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
@@ -20,12 +17,14 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 
+import java.io.IOException;
+import java.util.concurrent.ExecutionException;
+
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.dimensinfin.eveonline.neocom.controller.ManufactureResourcesController;
 import org.dimensinfin.eveonline.neocom.database.entity.NeoComAsset;
 import org.dimensinfin.eveonline.neocom.database.entity.Property;
