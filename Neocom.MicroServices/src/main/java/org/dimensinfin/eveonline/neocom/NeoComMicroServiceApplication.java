@@ -9,7 +9,6 @@
 package org.dimensinfin.eveonline.neocom;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.j256.ormlite.field.DataPersisterManager;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
@@ -32,7 +31,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.dimensinfin.eveonline.neocom.conf.GlobalSBPreferencesManager;
-import org.dimensinfin.eveonline.neocom.database.EveItemPersister;
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
@@ -41,6 +39,7 @@ import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalSBConfigurationProvider;
 import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
 import org.dimensinfin.eveonline.neocom.model.ANeoComEntity;
+import org.dimensinfin.eveonline.neocom.security.SessionManager;
 import org.dimensinfin.eveonline.neocom.services.MarketDataServer;
 import org.dimensinfin.eveonline.neocom.services.TimedUpdater;
 
@@ -50,7 +49,6 @@ import org.dimensinfin.eveonline.neocom.services.TimedUpdater;
  * This is the initial class and loader for the Spring Boot application. It will be used to integrate the
  * different modules and libraries, instantiate the adapters and serve as the base point to integrate the
  * different controllers. Most of the code will be imported and integrated from the depending libraries.
- *
  * @author Adam Antinoo
  */
 //@EnableCaching
@@ -76,8 +74,10 @@ public class NeoComMicroServiceApplication extends NeoComMicroServiceApplication
 				.setMethodAccessLevel(Configuration.AccessLevel.PRIVATE);
 	}
 
+	@Deprecated
 	public static Hashtable<String, NeoComSession> sessionStore = new Hashtable();
 
+	@Deprecated
 	public static boolean validatePilotIdentifierMatch( final String sessionLocator, final Integer identifier ) {
 		logger.info(">> [NeoComMicroServiceApplication.validatePilotIdentifierMatch]");
 		try {
@@ -86,23 +86,23 @@ public class NeoComMicroServiceApplication extends NeoComMicroServiceApplication
 			locator = new SessionLocator()
 					.setSessionLocator("-MANUALLY-CREATED-LOCATOR-")
 					.setTimeValid(Instant.now().getMillis());
-			if (null == locator) return false;
+			if ( null == locator ) return false;
 			final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(locator);
 
 			// First check the time span validity.
 			final long now = Instant.now().getMillis();
 //			final long nowPlus15 = Instant.now().plus(TimeUnit.MINUTES.toMillis(15)).toInstant().getMillis();
 			final long timeLimit = new Instant(locator.getTimeValid()).plus(TimeUnit.MINUTES.toMillis(15)).toInstant().getMillis();
-			if (timeLimit <= now) return false;
+			if ( timeLimit <= now ) return false;
 
 			// Then check if the identifiers match.
 			final NeoComSession hit = sessionStore.get(locator.getSessionLocator());
-			if (null == hit) return false;
-			if (hit.getPilotIdentifier() != identifier) return false;
+			if ( null == hit ) return false;
+			if ( hit.getPilotIdentifier() != identifier ) return false;
 
 			// All was validated. We can access the data
 			return true;
-		} catch (JsonProcessingException e) {
+		} catch ( JsonProcessingException e ) {
 			e.printStackTrace();
 			return false;
 		} finally {
@@ -114,7 +114,6 @@ public class NeoComMicroServiceApplication extends NeoComMicroServiceApplication
 
 	/**
 	 * Create all the platform specific connectors and then launch it to run.
-	 *
 	 * @param args
 	 */
 	public static void main( final String[] args ) throws IOException {
@@ -148,7 +147,7 @@ public class NeoComMicroServiceApplication extends NeoComMicroServiceApplication
 					.setDatabaseName(GlobalDataManager.getResourceString("R.database.sdedatabase.databasename"))
 					.build()
 			);
-		} catch (SQLException sqle) {
+		} catch ( SQLException sqle ) {
 			sqle.printStackTrace();
 		}
 		ANeoComEntity.connectSDEHelper(new GlobalDataManager().getSDEDBHelper());
@@ -172,7 +171,7 @@ public class NeoComMicroServiceApplication extends NeoComMicroServiceApplication
 					.setDatabaseVersion(GlobalDataManager.getResourceInt("R.database.neocom.databaseversion"))
 					.build()
 			);
-		} catch (SQLException sqle) {
+		} catch ( SQLException sqle ) {
 			sqle.printStackTrace();
 		}
 
@@ -180,12 +179,9 @@ public class NeoComMicroServiceApplication extends NeoComMicroServiceApplication
 		logger.info("-- [NeoComMicroServiceApplication.main]> Read Locations data cache...");
 		InfinityGlobalDataManager.readLocationsDataCache();
 
-//		// Connect the Timed Upgrade scan.
-//		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the background timed download scanner...");
-//		timedService = new TimedUpdater();
-
-//		DataPersisterManager.registerDataPersisters(
-//				EveItemPersister.getSingleton());
+		// Load the Session data.
+		logger.info("-- [NeoComMicroServiceApplication.main]> Read Session data...");
+		SessionManager.readSessionData();
 
 		logger.info("-- [NeoComMicroServiceApplication.main]> Starting application instance...");
 		SpringApplication.run(NeoComMicroServiceApplication.class, args);
@@ -206,12 +202,18 @@ public class NeoComMicroServiceApplication extends NeoComMicroServiceApplication
 	private void writeMarketDataDownloadReport() {
 		mdServer.reportMarketDataJobs();
 	}
-//
-//	@Scheduled(initialDelay = 180000, fixedDelay = 180000)
-//	private void writeLocationData() {
-//		if (GlobalDataManager.getResourceBoolean("R.cache.locationscache.activestate", true))
-//			GlobalDataManager.writeLocationsDatacache();
-//	}
+
+	@Scheduled(initialDelay = 180000, fixedDelay = 180000)
+	private void writeLocationData() {
+		if ( GlobalDataManager.getResourceBoolean("R.cache.locationscache.activestate", true) )
+			GlobalDataManager.writeLocationsDatacache();
+	}
+
+	@Scheduled(initialDelay = 60000, fixedDelay = 60000)
+	private void writeSessionData() {
+		if ( GlobalDataManager.getResourceBoolean("R.runtime.session.savedata", true) )
+			SessionManager.writeSessionData();
+	}
 
 	//	@Scheduled(initialDelay = 120000, fixedDelay = 900000)
 //	@Scheduled(initialDelay = 120000, fixedDelay = 120000)
@@ -219,7 +221,7 @@ public class NeoComMicroServiceApplication extends NeoComMicroServiceApplication
 	private void onTime() {
 		// Fire another background update scan.
 		// Check if the configuration properties allow to run the updater.
-		if (GlobalDataManager.getResourceBoolean("R.updater.allowtimer", false)) {
+		if ( GlobalDataManager.getResourceBoolean("R.updater.allowtimer", false) ) {
 			timedService.timeTick();
 		}
 	}

@@ -258,7 +258,7 @@ public class PilotDataController {
 	@CrossOrigin()
 //	@RequestMapping(value = "/api/v1/pilot/{identifier}/assets", method = RequestMethod.GET, produces = 	"application/json")
 	@GetMapping("/api/v2/pilot/assets")
-	public ResponseEntity<List<NeoComAsset>> pilotAssetsEntryPoint( @RequestHeader(value = "xApp-Authentication") String _token ) {
+	public ResponseEntity<List<NeoComAsset>> pilotAssetsEntryPoint( @RequestHeader(value = "xApp-Authentication", required = true) String _token ) {
 		// The headers should have the authorization data enough to retrieve the session.
 		final SessionManager.AppSession session = SessionManager.retrieve(_token);
 		if ( null != session ) {

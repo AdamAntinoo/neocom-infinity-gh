@@ -9,14 +9,25 @@
 //               desde aplicaciones dispares, como Angular 6 o Android.
 package org.dimensinfin.eveonline.neocom.security;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
+import java.util.Hashtable;
 
 import org.joda.time.DateTime;
 import org.mindrot.jbcrypt.BCrypt;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
 import org.dimensinfin.eveonline.neocom.entities.Credential;
+import org.dimensinfin.eveonline.neocom.model.EveLocation;
 
 /**
  * @author Adam Antinoo
@@ -24,7 +35,7 @@ import org.dimensinfin.eveonline.neocom.entities.Credential;
 // - CLASS IMPLEMENTATION ...................................................................................
 public class SessionManager {
 	// - S T A T I C - S E C T I O N ..........................................................................
-//	private static Logger logger = LoggerFactory.getLogger("SessionManager");
+	private static Logger logger = LoggerFactory.getLogger("SessionManager");
 	public static HashMap<String, AppSession> sessionStore = new HashMap();
 
 	public static void store( final AppSession _session ) {
@@ -63,6 +74,69 @@ public class SessionManager {
 		} else return sessionStore.get(_id);
 	}
 
+	public static void readSessionData() {
+		logger.info(">> [SessionManager.readSessionData]");
+		final String cacheFileName = GlobalDataManager.getResourceString("R.cache.directorypath")
+				+ GlobalDataManager.getResourceString("R.cache.locationscache.filename");
+		logger.info("-- [SessionManager.readSessionData]> Opening cache file: {}", cacheFileName);
+		try {
+			final BufferedInputStream buffer = new BufferedInputStream(
+					GlobalDataManager.openResource4Input(cacheFileName)
+			);
+			final ObjectInputStream input = new ObjectInputStream(buffer);
+			try {
+				synchronized (sessionStore) {
+					sessionStore = (HashMap<String, AppSession>) input.readObject();
+					logger.info("-- [SessionManager.readSessionData]> Restored Session Data: " + sessionStore.size()
+							+ " entries.");
+				}
+			} finally {
+				input.close();
+				buffer.close();
+			}
+		} catch ( final ClassNotFoundException ex ) {
+			logger.warn("W> [SessionManager.readSessionData]> ClassNotFoundException."); //$NON-NLS-1$
+		} catch ( final FileNotFoundException fnfe ) {
+			logger.warn("W> [SessionManager.readSessionData]> FileNotFoundException."); //$NON-NLS-1$
+		} catch ( final IOException ex ) {
+			logger.warn("W> [SessionManager.readSessionData]> IOException."); //$NON-NLS-1$
+		} catch ( final RuntimeException rex ) {
+			rex.printStackTrace();
+		} finally {
+			logger.info("<< [SessionManager.readSessionData]");
+		}
+	}
+
+	public static void writeSessionData() {
+		logger.info(">> [GlobalDataManager.writeLocationsDatacache]");
+		final String cacheFileName = GlobalDataManager.getResourceString("R.cache.directorypath")
+				+ GlobalDataManager.getResourceString("R.cache.locationscache.filename");
+		logger.info("-- [GlobalDataManager.writeLocationsDatacache]> Openning cache file: {}", cacheFileName);
+		//		File modelStoreFile = new File(cacheFileName);
+		try {
+			final BufferedOutputStream buffer = new BufferedOutputStream(
+					GlobalDataManager.openResource4Output(cacheFileName)
+			);
+			final ObjectOutput output = new ObjectOutputStream(buffer);
+			try {
+				synchronized (sessionStore) {
+					output.writeObject(sessionStore);
+					logger.info(
+							"-- [GlobalDataManager.writeLocationsDatacache]> Wrote Session Data: " + sessionStore.size() + " entries.");
+				}
+			} finally {
+				output.flush();
+				output.close();
+				buffer.close();
+			}
+		} catch ( final FileNotFoundException fnfe ) {
+			logger.warn("W> [GlobalDataManager.writeLocationsDatacache]> FileNotFoundException."); //$NON-NLS-1$
+		} catch ( final IOException ex ) {
+			logger.warn("W> [GlobalDataManager.writeLocationsDatacache]> IOException."); //$NON-NLS-1$
+		} finally {
+			logger.info("<< [GlobalDataManager.writeLocationsDatacache]");
+		}
+	}
 	// - F I E L D - S E C T I O N ............................................................................
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................

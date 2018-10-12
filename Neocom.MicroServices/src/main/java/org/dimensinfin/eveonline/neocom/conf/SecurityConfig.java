@@ -7,7 +7,7 @@
 //               JPA como sistema de persistencia. Se configura para utilizar una base de datos PostgreSQL
 //               y dotado de un modelo de acceso RESTful para poder exportar el api y el modelo para acceso
 //               desde aplicaciones dispares, como Angular 6 o Android.
-package org.dimensinfin.citamed.conf;
+package org.dimensinfin.eveonline.neocom.conf;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
