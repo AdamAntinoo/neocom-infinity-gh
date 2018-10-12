@@ -32,10 +32,9 @@ import org.dimensinfin.eveonline.neocom.datamngmt.FileSystemSBImplementation;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalSBConfigurationProvider;
 import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
-import org.dimensinfin.eveonline.neocom.datamngmt.MarketDataServer;
 import org.dimensinfin.eveonline.neocom.industry.Resource;
 import org.dimensinfin.eveonline.neocom.model.ANeoComEntity;
-//import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
+import org.dimensinfin.eveonline.neocom.services.MarketDataServer;
 
 /**
  * @author Adam Antinoo
@@ -76,7 +75,7 @@ public class PlanetaryProcessorTestUnit {
 					.setDatabaseName(GlobalDataManager.getResourceString("R.database.sdedatabase.databasename"))
 					.build()
 			);
-		} catch (SQLException sqle) {
+		} catch ( SQLException sqle ) {
 			sqle.printStackTrace();
 		}
 		ANeoComEntity.connectSDEHelper(new GlobalDataManager().getSDEDBHelper());
@@ -98,7 +97,7 @@ public class PlanetaryProcessorTestUnit {
 		logger.info(">> [PlanetaryProcessorTestUnit.test01GetSorageResourcesTier4]");
 		// Read the list of Planetary Resources from the mock data file.
 		final String inputFileName = InfinityGlobalDataManager.getResourceString("R.runtime.mockdata.location")
-						+ "PlanetaryResources430003752system.data";
+				+ "PlanetaryResources430003752system.data";
 		List<Resource> resources = new ArrayList<>();
 		try {
 			final BufferedInputStream buffer = new BufferedInputStream(InfinityGlobalDataManager.openAsset4Input(inputFileName));
@@ -111,13 +110,13 @@ public class PlanetaryProcessorTestUnit {
 				input.close();
 				buffer.close();
 			}
-		} catch (final ClassNotFoundException ex) {
+		} catch ( final ClassNotFoundException ex ) {
 			logger.warn("W> [PlanetaryProcessorTestUnit.test01GetSorageResourcesTier4]> ClassNotFoundException."); //$NON-NLS-1$
-		} catch (final FileNotFoundException fnfe) {
+		} catch ( final FileNotFoundException fnfe ) {
 			logger.warn("W> [PlanetaryProcessorTestUnit.test01GetSorageResourcesTier4]> FileNotFoundException."); //$NON-NLS-1$
-		} catch (final IOException ex) {
+		} catch ( final IOException ex ) {
 			logger.warn("W> [PlanetaryProcessorTestUnit.test01GetSorageResourcesTier4]> IOException."); //$NON-NLS-1$
-		} catch (final RuntimeException rex) {
+		} catch ( final RuntimeException rex ) {
 			rex.printStackTrace();
 		}
 

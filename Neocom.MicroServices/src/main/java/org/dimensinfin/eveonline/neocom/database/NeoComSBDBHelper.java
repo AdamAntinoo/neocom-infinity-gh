@@ -142,7 +142,7 @@ public class NeoComSBDBHelper implements INeoComDBHelper {
 		databaseValid = true;
 		if (openNeoComDB()) {
 			// Warning. Delay database initialization after the helper is assigned to the Global.
-			InfinityGlobalDataManager.submitJob2Generic(() -> {
+			InfinityGlobalDataManager.submitJob2ui(() -> {
 				// Wait for some time units.
 				GlobalDataManager.suspendThread(TimeUnit.SECONDS.toMillis(2));
 				int currentVersion = readDatabaseVersion();

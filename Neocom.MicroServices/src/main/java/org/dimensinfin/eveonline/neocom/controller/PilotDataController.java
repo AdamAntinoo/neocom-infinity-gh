@@ -251,24 +251,22 @@ public class PilotDataController {
 	 * contents the request should get the list of assets inside that container.
 	 * Locations and Regions are extracted from the list data and any item not located on space or an station on a Citadel will
 	 * not be processed because it is expected to be read when the specific container it belongs is open.
-	 * @param identifier
 	 * @return
 	 */
 	@CrossOrigin()
 //	@RequestMapping(value = "/api/v1/pilot/{identifier}/assets", method = RequestMethod.GET, produces = 	"application/json")
-	@GetMapping("/api/v1/pilot/{identifier}/assets")
-	public ResponseEntity<List<NeoComAsset>> pilotAssetsEntryPoint( @PathVariable final Integer identifier,
-	                                                                @RequestHeader(value = "xApp-Authentication") String _token ) {
+	@GetMapping("/api/v2/pilot/assets")
+	public ResponseEntity<List<NeoComAsset>> pilotAssetsEntryPoint( @RequestHeader(value = "xApp-Authentication") String _token ) {
 		// The headers should have the authorization data enough to retrieve the session.
 		final SessionManager.AppSession session = SessionManager.retrieve(_token);
 		if ( null != session ) {
 			try {
 				// Activate the list of credentials.
 				final Credential credential = session.getCredential();
-				final AssetsManager assetsManager = InfinityGlobalDataManager.getAssetsManager(credential);
+				final AssetsManager assetsManager = new AssetsManager(credential);
 
 				// Get the list of assets and serialize them back to the front end.
-				final List<NeoComAsset> assets = assetsManager.getAllAssets();
+				final List<NeoComAsset> assets = assetsManager.getFullAssetList();
 //				final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(assets);
 				return new ResponseEntity<>(assets, HttpStatus.OK);
 //			} catch ( NumberFormatException nfe ) {
@@ -284,6 +282,9 @@ public class PilotDataController {
 				return new ResponseEntity<List<NeoComAsset>>(HttpStatus.BAD_REQUEST);
 //		} finally {
 //			logger.info("<< [PilotDataController.pilotAssets]");
+			} catch ( SQLException e ) {
+				e.printStackTrace();
+				return new ResponseEntity<List<NeoComAsset>>(HttpStatus.BAD_REQUEST);
 			}
 		} else return new ResponseEntity<List<NeoComAsset>>(HttpStatus.UNAUTHORIZED);
 	}
@@ -353,7 +354,7 @@ public class PilotDataController {
 		String ls = System.getProperty("line.separator");
 
 		try {
-			while ((line = reader.readLine()) != null) {
+			while ( (line = reader.readLine()) != null ) {
 				stringBuilder.append(line);
 //				stringBuilder.append(ls);
 			}

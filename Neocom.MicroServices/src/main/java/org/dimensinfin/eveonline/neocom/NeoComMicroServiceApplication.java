@@ -30,6 +30,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.dimensinfin.eveonline.neocom.conf.GlobalSBPreferencesManager;
 import org.dimensinfin.eveonline.neocom.database.NeoComSBDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
@@ -37,8 +38,8 @@ import org.dimensinfin.eveonline.neocom.datamngmt.FileSystemSBImplementation;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalSBConfigurationProvider;
 import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
-import org.dimensinfin.eveonline.neocom.datamngmt.MarketDataServer;
 import org.dimensinfin.eveonline.neocom.model.ANeoComEntity;
+import org.dimensinfin.eveonline.neocom.services.MarketDataServer;
 import org.dimensinfin.eveonline.neocom.services.TimedUpdater;
 
 // - CLASS IMPLEMENTATION ...................................................................................
@@ -126,6 +127,9 @@ public class NeoComMicroServiceApplication extends NeoComMicroServiceApplication
 		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the Configuration Manager...");
 		InfinityGlobalDataManager.connectConfigurationManager(new GlobalSBConfigurationProvider("properties"));
 
+		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the Preferences Manager...");
+		InfinityGlobalDataManager.connectPreferencesManager(new GlobalSBPreferencesManager());
+
 		// Initialize the Model with the current global instance.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting Global to Model...");
 		ANeoComEntity.connectGlobal(new InfinityGlobalDataManager());
@@ -151,6 +155,7 @@ public class NeoComMicroServiceApplication extends NeoComMicroServiceApplication
 		logger.info("-- [NeoComMicroServiceApplication.main]> Starting Market Data service...");
 		mdServer = new MarketDataServer().start();
 		InfinityGlobalDataManager.setMarketDataManager(mdServer);
+
 
 		// Connect the NeoCom database.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting NeoCom private database...");

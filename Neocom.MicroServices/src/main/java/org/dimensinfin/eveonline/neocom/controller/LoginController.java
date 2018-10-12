@@ -263,12 +263,12 @@ public class LoginController {
 					final int newAccountIdentifier = Long.valueOf(verificationResponse.body().getCharacterID()).intValue();
 					final String salt = BCrypt.gensalt(8);
 					final String payload = DateTime.now().toString() + ":"
-							+ verificationResponse.body().getCharacterID() + ":"
-							+ newAccountIdentifier;
+							+ newAccountIdentifier + ":"
+							+ verificationResponse.body().getCharacterName();
 					final String authorizationToken = BCrypt.hashpw(payload, salt);
 					// Build up the session along with the credential data.
-					final SessionManager.AppSession session = new SessionManager.AppSession();
-					session.setAuthorizationToken(authorizationToken)
+					final SessionManager.AppSession session = new SessionManager.AppSession()
+							.setAuthorizationToken(authorizationToken)
 							.setPayload(payload)
 							.setAuthorizationPassword(salt)
 							.setUserIdentifier(newAccountIdentifier)
@@ -279,8 +279,8 @@ public class LoginController {
 					logger.info("-- [LoginController.checkCredencial]> Session id: {}", session.getId());
 
 					// Construct the login response that it is a structure with the token and the Pilot credential.
-					final Credential credential = new Credential(newAccountIdentifier);
-					credential.setAccountName(verificationResponse.body().getCharacterName())
+					final Credential credential = new Credential(newAccountIdentifier)
+							.setAccountName(verificationResponse.body().getCharacterName())
 							.setAccessToken(token.getAccessToken())
 							.setTokenType(token.getTokenType())
 							.setExpires(Instant.now().plus(TimeUnit.SECONDS.toMillis(token.getExpires())).getMillis())

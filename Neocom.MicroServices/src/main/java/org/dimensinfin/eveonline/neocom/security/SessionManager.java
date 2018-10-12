@@ -11,7 +11,12 @@ package org.dimensinfin.eveonline.neocom.security;
 
 import java.util.HashMap;
 
+import org.joda.time.DateTime;
+import org.mindrot.jbcrypt.BCrypt;
 import org.dimensinfin.eveonline.neocom.database.entity.Credential;
+import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
 
 /**
  * @author Adam Antinoo
@@ -27,7 +32,35 @@ public class SessionManager {
 	}
 
 	public static AppSession retrieve( final String _id ) {
-		return sessionStore.get(_id);
+		// If using mock data we should ever return the testing credential.
+		if ( InfinityGlobalDataManager.getResourceBoolean("R.runtime.mockdata") ) {
+			final int newAccountIdentifier = 92223647;
+			final String salt = BCrypt.gensalt(8);
+			final String payload = DateTime.now().toString() + ":"
+					+ newAccountIdentifier + ":"
+					+ "Beth Ripley";
+			final String authorizationToken = BCrypt.hashpw(payload, salt);
+			// Build up the session along with the credential data.
+			final SessionManager.AppSession session = new SessionManager.AppSession()
+					.setAuthorizationToken(authorizationToken)
+					.setPayload(payload)
+					.setAuthorizationPassword(salt)
+					.setUserIdentifier(newAccountIdentifier)
+					.setUserName("Beth Ripley");
+//			logger.info("-- [LoginController.checkCredencial]> Session id: {}", session.getId());
+
+			// Construct the login response that it is a structure with the token and the Pilot credential.
+			final Credential credential = new Credential(newAccountIdentifier)
+					.setAccountName("Beth Ripley")
+//					.setAccessToken(token.getAccessToken())
+//					.setTokenType(token.getTokenType())
+//					.setExpires(Instant.now().plus(TimeUnit.SECONDS.toMillis(token.getExpires())).getMillis())
+//					.setRefreshToken(token.getRefreshToken())
+					.setDataSource(GlobalDataManager.SERVER_DATASOURCE)
+					.setScope(ESINetworkManager.getStringScopes());
+			session.setCredential(credential);
+			return session;
+		} else return sessionStore.get(_id);
 	}
 
 	// - F I E L D - S E C T I O N ............................................................................
