@@ -10,8 +10,10 @@ package org.dimensinfin.eveonline.neocom;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import org.dimensinfin.eveonline.neocom.database.entity.Credential;
+import org.dimensinfin.eveonline.neocom.entities.Colony;
+import org.dimensinfin.eveonline.neocom.entities.Credential;
+import org.dimensinfin.eveonline.neocom.entities.Property;
+import org.dimensinfin.eveonline.neocom.entities.Job;
 
 /**
  * @author Adam Antinoo

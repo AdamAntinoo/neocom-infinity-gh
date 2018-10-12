@@ -19,20 +19,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication;
-import org.dimensinfin.eveonline.neocom.database.entity.Credential;
-import org.dimensinfin.eveonline.neocom.database.entity.FittingRequest;
-import org.dimensinfin.eveonline.neocom.esiswagger.model.GetAlliancesAllianceIdOk;
-import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdClonesOk;
-import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
-import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCorporationsCorporationIdOk;
+import org.dimensinfin.eveonline.neocom.entities.Credential;
+import org.dimensinfin.eveonline.neocom.entities.FittingRequest;
 import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
-import org.dimensinfin.eveonline.neocom.exception.NEOE;
-import org.dimensinfin.eveonline.neocom.exception.NeoComRegisteredException;
 import org.dimensinfin.eveonline.neocom.industry.Fitting;
-import org.dimensinfin.eveonline.neocom.model.AllianceV1;
-import org.dimensinfin.eveonline.neocom.model.CorporationV1;
-import org.dimensinfin.eveonline.neocom.model.PilotV2;
-import org.dimensinfin.eveonline.neocom.database.entity.Property;
 
 /**
  * This is the Infinity special extension to get .

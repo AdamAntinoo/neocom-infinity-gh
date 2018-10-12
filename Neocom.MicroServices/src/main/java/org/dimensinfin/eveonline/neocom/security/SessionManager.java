@@ -13,10 +13,10 @@ import java.util.HashMap;
 
 import org.joda.time.DateTime;
 import org.mindrot.jbcrypt.BCrypt;
-import org.dimensinfin.eveonline.neocom.database.entity.Credential;
 import org.dimensinfin.eveonline.neocom.datamngmt.ESINetworkManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
+import org.dimensinfin.eveonline.neocom.entities.Credential;
 
 /**
  * @author Adam Antinoo

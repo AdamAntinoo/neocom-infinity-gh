@@ -29,11 +29,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication;
 import org.dimensinfin.eveonline.neocom.NeoComSession;
 import org.dimensinfin.eveonline.neocom.constant.ModelWideConstants;
-import org.dimensinfin.eveonline.neocom.database.entity.Credential;
-import org.dimensinfin.eveonline.neocom.database.entity.FittingRequest;
-import org.dimensinfin.eveonline.neocom.database.entity.Property;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
+import org.dimensinfin.eveonline.neocom.entities.Colony;
+import org.dimensinfin.eveonline.neocom.entities.Credential;
+import org.dimensinfin.eveonline.neocom.entities.Property;
+import org.dimensinfin.eveonline.neocom.entities.Job;
 import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
+import org.dimensinfin.eveonline.neocom.entities.FittingRequest;
+import org.dimensinfin.eveonline.neocom.entities.NeoComAsset;
 import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
 import org.dimensinfin.eveonline.neocom.exception.NeoComRegisteredException;
 import org.dimensinfin.eveonline.neocom.exception.NeoComRuntimeException;
@@ -44,7 +47,6 @@ import org.dimensinfin.eveonline.neocom.model.ANeoComEntity;
 import org.dimensinfin.eveonline.neocom.model.EveItem;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
 import org.dimensinfin.eveonline.neocom.model.ManufactureResourcesRequest;
-import org.dimensinfin.eveonline.neocom.database.entity.NeoComAsset;
 import org.dimensinfin.eveonline.neocom.model.PilotV2;
 
 /**
