@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Hashtable;
 
@@ -77,7 +78,7 @@ public class SessionManager {
 	public static void readSessionData() {
 		logger.info(">> [SessionManager.readSessionData]");
 		final String cacheFileName = GlobalDataManager.getResourceString("R.cache.directorypath")
-				+ GlobalDataManager.getResourceString("R.cache.locationscache.filename");
+				+ GlobalDataManager.getResourceString("R.runtime.session.savedata.filename");
 		logger.info("-- [SessionManager.readSessionData]> Opening cache file: {}", cacheFileName);
 		try {
 			final BufferedInputStream buffer = new BufferedInputStream(
@@ -108,10 +109,10 @@ public class SessionManager {
 	}
 
 	public static void writeSessionData() {
-		logger.info(">> [GlobalDataManager.writeLocationsDatacache]");
+		logger.info(">> [SessionManager.writeSessionData]");
 		final String cacheFileName = GlobalDataManager.getResourceString("R.cache.directorypath")
-				+ GlobalDataManager.getResourceString("R.cache.locationscache.filename");
-		logger.info("-- [GlobalDataManager.writeLocationsDatacache]> Openning cache file: {}", cacheFileName);
+				+ GlobalDataManager.getResourceString("R.runtime.session.savedata.filename");
+		logger.info("-- [SessionManager.writeSessionData]> Opening cache file: {}", cacheFileName);
 		//		File modelStoreFile = new File(cacheFileName);
 		try {
 			final BufferedOutputStream buffer = new BufferedOutputStream(
@@ -122,7 +123,7 @@ public class SessionManager {
 				synchronized (sessionStore) {
 					output.writeObject(sessionStore);
 					logger.info(
-							"-- [GlobalDataManager.writeLocationsDatacache]> Wrote Session Data: " + sessionStore.size() + " entries.");
+							"-- [SessionManager.writeSessionData]> Wrote Session Data: " + sessionStore.size() + " entries.");
 				}
 			} finally {
 				output.flush();
@@ -130,11 +131,11 @@ public class SessionManager {
 				buffer.close();
 			}
 		} catch ( final FileNotFoundException fnfe ) {
-			logger.warn("W> [GlobalDataManager.writeLocationsDatacache]> FileNotFoundException."); //$NON-NLS-1$
+			logger.warn("W> [SessionManager.writeSessionData]> FileNotFoundException."); //$NON-NLS-1$
 		} catch ( final IOException ex ) {
-			logger.warn("W> [GlobalDataManager.writeLocationsDatacache]> IOException."); //$NON-NLS-1$
+			logger.warn("W> [SessionManager.writeSessionData]> IOException."); //$NON-NLS-1$
 		} finally {
-			logger.info("<< [GlobalDataManager.writeLocationsDatacache]");
+			logger.info("<< [SessionManager.writeSessionData]");
 		}
 	}
 	// - F I E L D - S E C T I O N ............................................................................
@@ -143,7 +144,9 @@ public class SessionManager {
 
 	// - M E T H O D - S E C T I O N ..........................................................................
 	// --- G E T T E R S   &   S E T T E R S
-	public static class AppSession {
+	public static class AppSession implements Serializable {
+		private static final long serialVersionUID = -945048861313405949L;
+
 		private String authorizationToken;
 		private String payload;
 		private String authorizationPassword;

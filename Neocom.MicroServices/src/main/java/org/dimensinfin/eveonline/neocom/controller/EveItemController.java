@@ -8,21 +8,24 @@
 //               the source for the specific functionality for the backend services.
 package org.dimensinfin.eveonline.neocom.controller;
 
-import java.util.concurrent.ExecutionException;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
+
+import java.util.concurrent.ExecutionException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication;
 import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
 import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
+import org.dimensinfin.eveonline.neocom.market.MarketDataEntry;
 import org.dimensinfin.eveonline.neocom.model.EveItem;
 
 // - CLASS IMPLEMENTATION ...................................................................................
@@ -39,13 +42,46 @@ public class EveItemController {
 
 	/**
 	 * Gets the Eve Database information for an eve item identified by it's identifier.
-	 *
 	 * @param typeId identifier of the type to search.
 	 * @return json information of the type from the CCP item database.
 	 */
 	@CrossOrigin()
 	@RequestMapping(value = "/api/v1/eveitem/{typeId}", method = RequestMethod.GET, produces = "application/json")
-	public String eveItem( @PathVariable final Integer typeId ) {
+	public String eveItemV1( @PathVariable final Integer typeId ) {
+		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/eveitem/{}", typeId);
+		logger.info(">> [EveItemController.eveItem]");
+
+		// --- C O N T R O L L E R   B O D Y
+		EveItem item = null;
+		try {
+			// Connect to the eve database and generate an output for the query related to the eve item received as parameter.
+			item = new InfinityGlobalDataManager().searchItem4Id(typeId);
+			// Initialize the market data from start because this is a requirements on serialization.
+			final MarketDataEntry high = item.getHighestBuyerPrice();
+			item.getLowestSellerPrice();
+			final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(item);
+			return contentsSerialized;
+		} catch ( JsonProcessingException jspe ) {
+			return new JsonExceptionInstance(jspe).toJson();
+		} catch ( RuntimeException rtx ) {
+			logger.error("EX [EveItemController.eveItem]> Unexpected Exception: {}", rtx.getMessage());
+			rtx.printStackTrace();
+			return InfinityGlobalDataManager.serializedException(rtx);
+		} catch ( ExecutionException ee ) {
+			ee.printStackTrace();
+			return InfinityGlobalDataManager.serializedException(ee);
+		} catch ( InterruptedException ie ) {
+			ie.printStackTrace();
+			return InfinityGlobalDataManager.serializedException(ie);
+		} finally {
+			logger.info("-- [EveItemController.eveItem]> [#" + item.getTypeId() + "]" + item.getName());
+			logger.info("<< [EveItemController.eveItem]");
+		}
+	}
+
+	@CrossOrigin()
+	@GetMapping("/api/v2/eveitem/{typeId}")
+	public ResponseEntity<EveItem> eveItemV2( @PathVariable final Integer typeId ) {
 		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/eveitem/{}", typeId);
 		logger.info(">> [EveItemController.eveItem]");
 
@@ -57,31 +93,17 @@ public class EveItemController {
 			// Initialize the market data from start because this is a requirements on serialization.
 			item.getHighestBuyerPrice();
 			item.getLowestSellerPrice();
-//			printCacheInfo();
-			final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(item);
-			return contentsSerialized;
-		} catch (JsonProcessingException jspe) {
-			return new JsonExceptionInstance(jspe).toJson();
-		} catch (RuntimeException rtx) {
-			logger.error("EX [EveItemController.eveItem]> Unexpected Exception: {}", rtx.getMessage());
-			rtx.printStackTrace();
-			return InfinityGlobalDataManager.serializedException(rtx);
-		} catch (ExecutionException ee) {
+			return new ResponseEntity<EveItem>(item, HttpStatus.OK);
+		} catch ( ExecutionException ee ) {
 			ee.printStackTrace();
-			return InfinityGlobalDataManager.serializedException(ee);
-		} catch (InterruptedException ie) {
+			return new ResponseEntity<EveItem>(HttpStatus.BAD_REQUEST);
+		} catch ( InterruptedException ie ) {
 			ie.printStackTrace();
-			return InfinityGlobalDataManager.serializedException(ie);
+			return new ResponseEntity<EveItem>(HttpStatus.BAD_REQUEST);
 		} finally {
 			logger.info("-- [EveItemController.eveItem]> [#" + item.getTypeId() + "]" + item.getName());
 			logger.info("<< [EveItemController.eveItem]");
 		}
 	}
-
-//	@SuppressWarnings("unused")
-//	private void printCacheInfo() {
-//		//		Cache cache = NeoComMicroServiceApplication.singleton.cacheManager.getCache("MarketData");
-//		int dummy = 1;
-//	}
 }
 // - UNUSED CODE ............................................................................................
