@@ -177,7 +177,7 @@ dependencies {
     implementation files('libs/jeveassets.3.1.2.jar')
 //    implementation files('libs/CoreBase.core-2.0.3.jar')
     implementation 'org.dimensinfin:CoreBase.core:2.2.0'
-    implementation 'org.dimensinfin:ESI.SwaggerApi:2.0.0'
+    implementation 'org.dimensinfin:ESI.SwaggerApi:3.0.0'
 //    implementation 'org.dimensinfin:NeoCom.Model:0.13.POC'
 //    implementation 'org.dimensinfin:NeoCom.DataManagement:0.13.POC'
 

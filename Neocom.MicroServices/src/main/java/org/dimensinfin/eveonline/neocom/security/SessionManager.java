@@ -29,6 +29,7 @@ import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
 import org.dimensinfin.eveonline.neocom.entities.Credential;
 import org.dimensinfin.eveonline.neocom.model.EveLocation;
+import org.dimensinfin.eveonline.neocom.model.PilotV2;
 
 /**
  * @author Adam Antinoo
@@ -154,6 +155,7 @@ public class SessionManager {
 		private String userName;
 		private String role;
 		private Credential credential;
+//		private PilotV2 pilotPublicData;
 
 		public String getId() {
 			return this.authorizationToken;
@@ -222,6 +224,15 @@ public class SessionManager {
 			this.credential = credential;
 			return this;
 		}
+
+//		public PilotV2 getPilotPublicData() {
+//			return this.pilotPublicData;
+//		}
+//
+//		public AppSession setPilotPublicData( final PilotV2 pilotPublicData ) {
+//			this.pilotPublicData = pilotPublicData;
+//			return this;
+//		}
 
 		public void store() {
 			SessionManager.store(this);

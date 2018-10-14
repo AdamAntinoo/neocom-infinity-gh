@@ -294,10 +294,12 @@ public class LoginController {
 					session.setCredential(credential)
 							.store();
 
+					final PilotV2 pilotData = InfinityGlobalDataManager.requestPilotV2(credential);
+//					session.setPilotPublicData(pilotData);
 					// Create the response with the session token to conenct back the session on next calls.
 					final LoginResponse loginResponse = new LoginResponse()
 							.setAuthorizationToken(authorizationToken)
-							.setPilotPublicData(InfinityGlobalDataManager.requestPilotV2(credential));
+							.setPilotPublicData(pilotData);
 					return loginResponse;
 
 
