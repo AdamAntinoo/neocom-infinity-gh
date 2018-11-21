@@ -12,8 +12,9 @@ import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { Inject } from '@angular/core';
+import { environment } from 'src/environments/environment';
 //--- ENVIRONMENT
-import { environment } from 'environments/environment';
+// import { environment } from 'environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -86,6 +87,6 @@ export class MockUpBackendService {
       '/assets/mockData/corporations-1427661573.json'
   };
   public getMockStatus(): boolean {
-    return environment.mockActive;
+    return environment.mockStatus;
   }
 }

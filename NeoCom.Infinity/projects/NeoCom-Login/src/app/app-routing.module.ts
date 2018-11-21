@@ -9,8 +9,9 @@
 //               framework.
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { WelcomePageComponent } from 'src/app/modules/shared/pages/welcome-page/welcome-page.component';
 
-import { WelcomePageComponent } from 'projects/NeoCom-Login/src/app/pages/welcome-page/welcome-page.component';
+// import { WelcomePageComponent } from 'projects/NeoCom-Login/src/app/pages/welcome-page/welcome-page.component';
 
 const routes: Routes = [
   {

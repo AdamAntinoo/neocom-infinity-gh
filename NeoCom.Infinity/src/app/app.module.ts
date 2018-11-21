@@ -14,9 +14,9 @@ import { NgDragDropModule } from 'ng-drag-drop';
 //--- OAUTH2
 import { OAuthModule } from 'angular-oauth2-oidc';
 
-import { AppRoutingModule } from './app-routing.module';
+// import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BackendService } from 'src/shared/services/BackendService.service';
+// import { BackendService } from 'src/shared/services/BackendService.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,7 @@ import { BackendService } from 'src/shared/services/BackendService.service';
     AppRoutingModule
   ],
   providers: [
-    BackendService
+    // BackendService
   ],
   bootstrap: [AppComponent]
 })

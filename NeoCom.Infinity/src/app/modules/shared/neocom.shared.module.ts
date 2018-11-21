@@ -13,8 +13,10 @@ import { CommonModule } from '@angular/common';
 //--- SERVICES
 // import { BackendService } from '@shared';
 import { AppCorePanelComponent } from './panels/app-core-panel/app-core-panel.component';
-import { BackendService } from './services/backend.service';
+// import { BackendService } from './services/backend.service';
 import { RenderComponent } from './renders/render/render.component';
+import { SharedBackendService } from 'src/app/modules/shared/services/sharedbackend.service';
+import { WelcomePageComponent } from 'src/app/modules/shared/pages/welcome-page/welcome-page.component';
 // import { RenderComponent } from '@app';
 
 @NgModule({
@@ -23,17 +25,21 @@ import { RenderComponent } from './renders/render/render.component';
   ],
   declarations: [
     //--- SERVICES
-    BackendService,
+    SharedBackendService,
     //--- COMPONENTS
     AppCorePanelComponent,
-    RenderComponent
-],
+    RenderComponent,
+    // --- PAGES
+    WelcomePageComponent
+  ],
   exports: [
     //--- SERVICES
-    BackendService,
+    SharedBackendService,
     //--- COMPONENTS
     AppCorePanelComponent,
-    RenderComponent
+    RenderComponent,
+    // --- PAGES
+    WelcomePageComponent
   ]
 })
 export class NeoComSharedModule { }

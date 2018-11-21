@@ -10,53 +10,27 @@
 //--- CORE
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
-//--- HTTP PACKAGE
-import { HttpClient } from '@angular/common/http';
-//--- ROUTER
-import { Router } from '@angular/router';
-//--- NOTIFICATIONS
-import { NotificationsService } from 'angular2-notifications';
-//--- SERVICES
-// import { OAuthService } from 'angular-oauth2-oidc';
 //--- COMPONENTS
 import { AppCorePanelComponent } from 'src/app/modules/shared/panels/app-core-panel/app-core-panel.component';
-import { ESIConfiguration } from 'src/app/modules/shared/models/conf/ESI.Tranquility';
+import { ESIConfigurationTranquility } from 'src/app/modules/shared/conf/ESI.Tranquility';
+import { ESIConfigurationSingularity } from 'src/app/modules/shared/conf/ESI.Singularity';
 import { OAuthService } from 'src/app/modules/angular-oauth2-oidc';
 import { AuthConfig } from 'src/app/modules/angular-oauth2-oidc';
-// import { OAuthService, AuthConfig } from 'dist/lib';
 
-// import { AuthConfig } from 'angular-oauth2-oidc';
-
-const authConfig: AuthConfig = {
-  // responseType : 'code',
-  // Url of the Identity Provider
-  // issuer: 'https://steyer-identity-server.azurewebsites.net/identity',
-
-  // // URL of the SPA to redirect the user to after login
-  // redirectUri: window.location.origin + '/index.html',
-
-  // // The SPA's id. The SPA is registerd with this id at the auth-server
-  // clientId: 'spa-demo',
-
-  // // set the scope for the permissions the client should request
-  // // The first three are defined by OIDC. The 4th is a usecase-specific one
-  // scope: 'openid profile email voucher',
-
-
-
+const authConfigTranquility: AuthConfig = {
   // Setup authorization oauth configuration properties.
   showDebugInformation: true,
-  requestAccessToken: false,
+  requestAccessToken: true,
   // Login-Url
-  loginUrl: ESIConfiguration.AUTHORIZE_URL,
+  loginUrl: ESIConfigurationTranquility.AUTHORIZE_URL,
   // URL of the SPA to redirect the user to after login
-  redirectUri: ESIConfiguration.CALLBACK,
+  redirectUri: ESIConfigurationTranquility.CALLBACK,
   // The SPA's id. Register SPA with this id at the auth-server
-  clientId: ESIConfiguration.CLIENT_ID,
+  clientId: ESIConfigurationTranquility.CLIENT_ID,
   // The name of the auth-server that has to be mentioned within the token
-  issuer: ESIConfiguration.AUTHORIZE_URL,
+  issuer: ESIConfigurationTranquility.AUTHORIZE_URL,
   // set the scope for the permissions the client should request
-  scope: ESIConfiguration.SCOPE,
+  scope: ESIConfigurationTranquility.SCOPE,
   // set to true, to receive also an id_token via OpenId Connect (OIDC) in addition to the
   // OAuth2-based access_token
   oidc: false,
@@ -64,13 +38,34 @@ const authConfig: AuthConfig = {
   responseType: 'code',
   // Use setStorage to use sessionStorage or another implementation of the TS-type Storage
   // instead of localStorage
-  //  this.oauthService.setStorage(sessionStorage);
+  // this.oauthService.setStorage(sessionStorage);
   // To also enable single-sign-out set the url for your auth-server's logout-endpoint here
-  logoutUrl: ESIConfiguration.AUTHORIZATION_SERVER + "account/logoff"
-
-
-
-
+  logoutUrl: ESIConfigurationTranquility.AUTHORIZATION_SERVER + "account/logoff"
+}
+const authConfigSingularity: AuthConfig = {
+  // Setup authorization oauth configuration properties.
+  showDebugInformation: true,
+  requestAccessToken: true,
+  // Login-Url
+  loginUrl: ESIConfigurationSingularity.AUTHORIZE_URL,
+  // URL of the SPA to redirect the user to after login
+  redirectUri: ESIConfigurationSingularity.CALLBACK,
+  // The SPA's id. Register SPA with this id at the auth-server
+  clientId: ESIConfigurationSingularity.CLIENT_ID,
+  // The name of the auth-server that has to be mentioned within the token
+  issuer: ESIConfigurationSingularity.AUTHORIZE_URL,
+  // set the scope for the permissions the client should request
+  scope: ESIConfigurationSingularity.SCOPE,
+  // set to true, to receive also an id_token via OpenId Connect (OIDC) in addition to the
+  // OAuth2-based access_token
+  oidc: false,
+  // override the default token flow for the specific code flow that is the one implemented on Eve Online
+  responseType: 'code',
+  // Use setStorage to use sessionStorage or another implementation of the TS-type Storage
+  // instead of localStorage
+  // this.oauthService.setStorage(sessionStorage);
+  // To also enable single-sign-out set the url for your auth-server's logout-endpoint here
+  logoutUrl: ESIConfigurationSingularity.AUTHORIZATION_SERVER + "account/logoff"
 }
 
 /**
@@ -84,9 +79,6 @@ We use RSA public key encryption to adjoin to the token so the server backend ca
   styleUrls: ['./welcome-page.component.scss']
 })
 export class WelcomePageComponent extends AppCorePanelComponent implements OnInit {
-  // public working: boolean = false;
-  // public code: string;
-
   //--- C O N S T R U C T O R
   constructor(protected oauthService: OAuthService) {
     super();
@@ -97,46 +89,59 @@ export class WelcomePageComponent extends AppCorePanelComponent implements OnIni
    * Read the authorization token from the Sore cache or from the Session storage. If not found at any of those places then we shoud show the page and allow the user to start the authorization flow.
    */
   ngOnInit() {
-    this.oauthService.configure(authConfig);
-    // Setup authorization oauth configuration properties.
-    this.oauthService.showDebugInformation = true;
-    this.oauthService.requestAccessToken = true;
-    // Login-Url
-    this.oauthService.loginUrl = ESIConfiguration.AUTHORIZE_URL;
-    // URL of the SPA to redirect the user to after login
-    this.oauthService.redirectUri = ESIConfiguration.CALLBACK;
-    // The SPA's id. Register SPA with this id at the auth-server
-    this.oauthService.clientId = ESIConfiguration.CLIENT_ID;
-    // The name of the auth-server that has to be mentioned within the token
-    this.oauthService.issuer = ESIConfiguration.AUTHORIZE_URL;
-    // set the scope for the permissions the client should request
-    this.oauthService.scope = ESIConfiguration.SCOPE;
-    // set to true, to receive also an id_token via OpenId Connect (OIDC) in addition to the
-    // OAuth2-based access_token
-    this.oauthService.oidc = false;
-    // override the default token flow for the specific code flow that is the one implemented on Eve Online
-    // this.oauthService.responseType = 'code';
-    // Use setStorage to use sessionStorage or another implementation of the TS-type Storage
-    // instead of localStorage
-    this.oauthService.setStorage(sessionStorage);
-    // To also enable single-sign-out set the url for your auth-server's logout-endpoint here
-    this.oauthService.logoutUrl = ESIConfiguration.AUTHORIZATION_SERVER + "account/logoff";
+    // this.oauthService.configure(authConfig);
+    // // Setup authorization oauth configuration properties.
+    // this.oauthService.showDebugInformation = true;
+    // this.oauthService.requestAccessToken = true;
+    // // Login-Url
+    // this.oauthService.loginUrl = ESIConfiguration.AUTHORIZE_URL;
+    // // URL of the SPA to redirect the user to after login
+    // this.oauthService.redirectUri = ESIConfiguration.CALLBACK;
+    // // The SPA's id. Register SPA with this id at the auth-server
+    // this.oauthService.clientId = ESIConfiguration.CLIENT_ID;
+    // // The name of the auth-server that has to be mentioned within the token
+    // this.oauthService.issuer = ESIConfiguration.AUTHORIZE_URL;
+    // // set the scope for the permissions the client should request
+    // this.oauthService.scope = ESIConfiguration.SCOPE;
+    // // set to true, to receive also an id_token via OpenId Connect (OIDC) in addition to the
+    // // OAuth2-based access_token
+    // this.oauthService.oidc = false;
+    // // override the default token flow for the specific code flow that is the one implemented on Eve Online
+    // // this.oauthService.responseType = 'code';
+    // // Use setStorage to use sessionStorage or another implementation of the TS-type Storage
+    // // instead of localStorage
+    // this.oauthService.setStorage(sessionStorage);
+    // // To also enable single-sign-out set the url for your auth-server's logout-endpoint here
+    // this.oauthService.logoutUrl = ESIConfiguration.AUTHORIZATION_SERVER + "account/logoff";
 
-    // Check the session validity. If the session exists and it is valid then go to the dashboard page.
-    // this.appStoreService.accessAuthorizationToken()
-    //   .subscribe((token) => {
-    //     if (null != token)
-    //       this.router.navigate(['dashboard']); // The tokes exists, so we can skip the authorization flow.
-    //   });
+    // // Check the session validity. If the session exists and it is valid then go to the dashboard page.
+    // // this.appStoreService.accessAuthorizationToken()
+    // //   .subscribe((token) => {
+    // //     if (null != token)
+    // //       this.router.navigate(['dashboard']); // The tokes exists, so we can skip the authorization flow.
+    // //   });
   }
 
   //--- P A G E   E V E N T S
-  public launchLogin() {
+  public launchLoginTranquility() {
     console.log(">> [WelcomePageComponent.launchLogin]");
     // Show the validation spinning while we get the authorization credentials.
     this.downloading = true;
     // Start the OAuth flow.
     console.log(">< [WelcomePageComponent.initImplicitFlow]");
+    this.oauthService.configure(authConfigTranquility);
+    this.oauthService.setStorage(sessionStorage);
+    this.oauthService.initImplicitFlow();
+    console.log("<< [WelcomePageComponent.launchLogin]");
+  }
+  public launchLoginSingularity() {
+    console.log(">> [WelcomePageComponent.launchLogin]");
+    // Show the validation spinning while we get the authorization credentials.
+    this.downloading = true;
+    // Start the OAuth flow.
+    console.log(">< [WelcomePageComponent.initImplicitFlow]");
+    this.oauthService.configure(authConfigSingularity);
+    this.oauthService.setStorage(sessionStorage);
     this.oauthService.initImplicitFlow();
     console.log("<< [WelcomePageComponent.launchLogin]");
   }

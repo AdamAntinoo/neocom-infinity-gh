@@ -20,6 +20,7 @@ import org.joda.time.Instant;
 import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -128,7 +129,7 @@ public class LoginController {
 //	}
 
 	@CrossOrigin()
-	@RequestMapping(value = "/api/v1/exchangeauthorization/{code}"
+	@RequestMapping(value = "/api/v1/exchangeauthorization/{code}/datasource/{datasource}"
 			, method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<LoginResponse> exchangeAuthorizationEntryPoint( @PathVariable final String code ) {
 		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/exchangeauthorization/{}", code);
@@ -143,7 +144,15 @@ public class LoginController {
 //		} catch ( JsonProcessingException jpe ) {
 //			return new JsonExceptionInstance(jpe.getMessage()).toJson();
 		} catch ( NeoComException neoe ) {
-			return new ResponseEntity<LoginResponse>(HttpStatus.UNAUTHORIZED);
+			HttpHeaders headers = new HttpHeaders();
+			headers.add("xApp-Error-Message", neoe.getMessage());
+//			final ResponseEntity<LoginResponse> response = new ResponseEntity<LoginResponse>(HttpStatus.UNAUTHORIZED);
+
+			logger.info("EX [LoginController.exchangeAuthorizationEntryPoint]> Exception: {}",neoe.getMessage());
+			return new ResponseEntity<LoginResponse>(null,headers,HttpStatus.UNAUTHORIZED);
+
+//			response.
+//					ResponseEntity.
 //			try {
 //				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException(neoe.getMessage()));
 //			} catch ( JsonProcessingException jpe ) {
@@ -288,7 +297,7 @@ public class LoginController {
 							.setTokenType(token.getTokenType())
 							.setExpires(Instant.now().plus(TimeUnit.SECONDS.toMillis(token.getExpires())).getMillis())
 							.setRefreshToken(token.getRefreshToken())
-							.setDataSource(GlobalDataManager.SERVER_DATASOURCE)
+							.setDataSource(GlobalDataManager.TRANQUILITY_DATASOURCE)
 							.setScope(ESINetworkManager.getStringScopes())
 							.store();
 					session.setCredential(credential)

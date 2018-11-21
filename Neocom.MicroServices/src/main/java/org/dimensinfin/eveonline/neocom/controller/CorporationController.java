@@ -62,7 +62,8 @@ public class CorporationController {
 				final int corporationIdentifier = pilotData.getCorporation().getCorporationId();
 				// Go to the ESI api interface and get the list of assets or an error message if not allowed.
 				final List<GetCorporationsCorporationIdAssets200Ok> assetOkList = ESINetworkManager.getCorporationsCorporationIdAssets(corporationIdentifier
-						, session.getCredential().getRefreshToken(), InfinityGlobalDataManager.SERVER_DATASOURCE);
+						, session.getCredential().getRefreshToken()
+						, session.getCredential().getDataSource());
 
 				// With the list of assets do the processing to get an adapted NeoCom asset.
 				final List<NeoComAsset> assetResultList = new ArrayList<>();

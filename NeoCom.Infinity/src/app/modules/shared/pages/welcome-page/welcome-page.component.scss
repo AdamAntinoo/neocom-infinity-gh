@@ -1,6 +1,49 @@
 //--- APPLICATION STYLES VARIABLES
-// @import "app/../styles/_scss_variables.scss";
+@import "./_scss_variables.scss";
+
 // B U T T O N    S T Y L E S
+.button-position {
+  margin-top: 16px;
+}
+.button-green {
+  color: $panel-green;
+  cursor: pointer;
+  line-height: 2;
+  font-size: 30px;
+  font-weight: 800;
+  font-family: 'Prototype', sans-serif;
+  min-width: 350px;
+  padding: 4px 24px;
+}
+.button-green:hover{
+  color: white;
+}
+.login-button {
+  // background-color: #A0EA7B;
+  // border-radius: 10px;
+  // color: white;
+}
+.button-blue {
+  color: $panel-blue;
+  cursor: pointer;
+  line-height: 2;
+  font-size: 30px;
+  font-weight: 800;
+  font-family: 'Prototype', sans-serif;
+  min-width: 350px;
+  padding: 4px 24px;
+}
+.button-blue:hover{
+  color: white;
+}
+.button-blue:disabled{
+  color: dimgray;
+}.button-blue:disabled:hover{
+  color: $panel-blue;
+  background-color: dimgray;
+}
+
+
 .button-size {
   line-height: 2;
   font-size: 30px;
@@ -12,19 +55,7 @@
   background: transparent;
 }
 
-.button-position {
-  // margin-left: 30px;
-  margin-top: 16px;
-  // width: 50%;
-  // font-size: 24px;
-  // line-height: 3;
-}
 
-.button-green {
-  color: green;
-  border: 3px solid green;
-  border-radius  : 8px;
-}
 
 .button-green:hover {
   color: white;
@@ -36,11 +67,6 @@
   border: 3px solid darkgrey;
 }
 
-.login-button {
-  background-color: #A0EA7B;
-  border-radius: 10px;
-  color: white;
-}
 
 .authorization-button:hover {
   background-color: #50B71D;
@@ -53,7 +79,6 @@
   line-height: 3;
   margin-bottom: 20px;
 }
-
 
 .login-box {
   display: flex;

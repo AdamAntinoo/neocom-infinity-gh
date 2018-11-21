@@ -34,11 +34,12 @@ import { NotificationsService } from 'angular2-notifications';
 import { differenceInMilliseconds } from 'date-fns';
 // --- SERVICES
 import { MockUpBackendService } from './mockup-backend.service';
+import { INode } from 'src/app/modules/shared/interfaces/core/INode.interface';
 // --- INTERFACES
 // import { INode } from 'citamed-lib';
-import { INeoComNode } from '../interfaces/INeoComNode.interface';
-// --- MODELS
-import { Pilot } from '../models/Pilot.model';
+// import { INeoComNode } from '../interfaces/INeoComNode.interface';
+// // --- MODELS
+// import { Pilot } from '../models/Pilot.model';
 
 @Injectable({
   providedIn: 'root'
@@ -226,12 +227,12 @@ export class SharedBackendService extends MockUpBackendService {
       .set('xApp-Signature', 'S0000.0011.0000');
 
     // Add authentication token but only for authorization required requests.
-    let cred = this.accessCredential();
-    if (null != cred) {
-      let auth = this.accessCredential().getAuthorization();
-      if (null != auth) HEADERS = HEADERS.set('xApp-Authentication', auth);
-      console.log("><[AppStoreService.wrapHttpPOSTCall]> xApp-Authentication: " + auth);
-    }
+    // let cred = this.accessCredential();
+    // if (null != cred) {
+    //   let auth = this.accessCredential().getAuthorization();
+    //   if (null != auth) HEADERS = HEADERS.set('xApp-Authentication', auth);
+    //   console.log("><[AppStoreService.wrapHttpPOSTCall]> xApp-Authentication: " + auth);
+    // }
     if (null != _requestHeaders) {
       for (let key of _requestHeaders.keys()) {
         HEADERS = HEADERS.set(key, _requestHeaders.get(key));
@@ -246,27 +247,28 @@ export class SharedBackendService extends MockUpBackendService {
       let hit = this.responseTable[request];
       if (null != hit) {
         // Check if the resolution should be from the LocalStorage. URL should start with LOCALSTORAGE::.
-        if (hit.search('LOCALSTORAGE::') > -1) {
-          return Observable.create((observer) => {
-            try {
-              let targetData = this.storage.get(hit + ':' + this.accessCredential().getId());
-              if (null != targetData) {
-                // .then((data) => {
-                console.log('--[AppStoreService.wrapHttpPOSTCall]> Mockup data: ', targetData);
-                // Process and convert the data string to the class instances.
-                let results = this.transformRequestOutput(JSON.parse(targetData));
-                observer.next(results);
-                observer.complete();
-              } else {
-                observer.next([]);
-                observer.complete();
-              }
-            } catch (mockException) {
-              observer.next([]);
-              observer.complete();
-            }
-          });
-        } else request = hit;
+        // if (hit.search('LOCALSTORAGE::') > -1) {
+        //   return Observable.create((observer) => {
+        //     try {
+        //       let targetData = this.storage.get(hit + ':' + this.accessCredential().getId());
+        //       if (null != targetData) {
+        //         // .then((data) => {
+        //         console.log('--[AppStoreService.wrapHttpPOSTCall]> Mockup data: ', targetData);
+        //         // Process and convert the data string to the class instances.
+        //         let results = this.transformRequestOutput(JSON.parse(targetData));
+        //         observer.next(results);
+        //         observer.complete();
+        //       } else {
+        //         observer.next([]);
+        //         observer.complete();
+        //       }
+        //     } catch (mockException) {
+        //       observer.next([]);
+        //       observer.complete();
+        //     }
+        //   });
+        // } else 
+        request = hit;
       }
     }
     console.log("><[AppStoreService.wrapHttpPOSTCall]> request: " + request);
@@ -280,12 +282,12 @@ export class SharedBackendService extends MockUpBackendService {
       .set('xApp-Signature', 'S0000.0011.0000');
 
     // Add authentication token but only for authorization required requests.
-    let cred = this.accessCredential();
-    if (null != cred) {
-      let auth = this.accessCredential().getAuthorization();
-      if (null != auth) HEADERS = HEADERS.set('xApp-Authentication', auth);
-      console.log("><[AppStoreService.wrapHttpPOSTCall]> xApp-Authentication: " + auth);
-    }
+    // let cred = this.accessCredential();
+    // if (null != cred) {
+    //   let auth = this.accessCredential().getAuthorization();
+    //   if (null != auth) HEADERS = HEADERS.set('xApp-Authentication', auth);
+    //   console.log("><[AppStoreService.wrapHttpPOSTCall]> xApp-Authentication: " + auth);
+    // }
     if (null != _requestHeaders) {
       for (let key of _requestHeaders.keys()) {
         HEADERS = HEADERS.set(key, _requestHeaders.get(key));
@@ -364,5 +366,6 @@ export class SharedBackendService extends MockUpBackendService {
       //   console.log("--[AppModelStoreService.convertNode]> AppModule node: " + convertedAppModule.nombre);
       //   return convertedAppModule;
     }
+    return node;
   }
 }

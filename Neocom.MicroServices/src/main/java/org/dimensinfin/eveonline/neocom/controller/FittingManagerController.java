@@ -31,7 +31,6 @@ import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
 import org.dimensinfin.eveonline.neocom.entities.Credential;
 import org.dimensinfin.eveonline.neocom.entities.FittingRequest;
 import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
-import org.dimensinfin.eveonline.neocom.exception.NeoComException;
 import org.dimensinfin.eveonline.neocom.exception.NeoComRegisteredException;
 import org.dimensinfin.eveonline.neocom.industry.Action;
 import org.dimensinfin.eveonline.neocom.industry.Fitting;
@@ -186,76 +185,79 @@ public class FittingManagerController {
 	/**
 	 * Returns the list of fittings that are accesible to this Pilot identifier. This data will be processed at the Angular side
 	 * to generate any UI structures required for a proper presentation.
-	 * @param identifier identifier for the selected Pilot.
 	 * @return list of OK class fittings serialized to Json.
 	 */
-	@CrossOrigin()
-	@RequestMapping(value = "/api/v1/pilot/{identifier}/fittingmanager/processfitting/{fittingidentifier}/copies/{copies}"
-			, method = RequestMethod.GET
-			, produces = "application/json")
-	public String fittingProcessFitting( @RequestHeader(value = "xNeocom-Session-Locator", required = false) String
-			                                     sessionLocator
-			, @PathVariable final int identifier
-			, @PathVariable final int fittingidentifier
-			, @PathVariable final int copies ) {
-		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/pilot/{}/fittingmanager/processfitting/{}/copies/{}"
-				, identifier, fittingidentifier, copies);
-		logger.info(">> [FittingManagerController.fittingProcessFitting]");
-		logger.info(">> [FittingManagerController.fittingProcessFitting]> sessionLocator: {}", sessionLocator);
+//	@RequestMapping(value = "/api/v2/pilot/processfitting/{fittingidentifier}/copies/{copies}"
+//			, method = RequestMethod.GET
+//			, produces = "application/json")
+	@GetMapping("/api/v2/pilot/processfitting/{fittingidentifier}/copies/{copies}")
+	public ResponseEntity<List<Action>> fittingProcessFitting(
+			@RequestHeader(value = "xApp-Authentication", required = true) String _token,
+			@PathVariable final int fittingidentifier,
+			@PathVariable final int copies ) {
+//		logger.info(">>>>>>>>>>>>>>>>>>>>NEW REQUEST: /api/v1/pilot/{}/fittingmanager/processfitting/{}/copies/{}"
+//				, identifier, fittingidentifier, copies);
+//		logger.info(">> [FittingManagerController.fittingProcessFitting]");
+//		logger.info(">> [FittingManagerController.fittingProcessFitting]> sessionLocator: {}", sessionLocator);
 
-		try {
-			// Validate the session locator. Only if this test passes we are authorized to access the Pilot information.
+		final SessionManager.AppSession session = SessionManager.retrieve(_token);
+		if ( null != session ) {
+			try {
+				// Validate the session locator. Only if this test passes we are authorized to access the Pilot information.
 //			if (NeoComMicroServiceApplication.validatePilotIdentifierMatch(sessionLocator, identifier)) {
-			NeoComSession session = null;
-			if ( true ) {
-				final NeoComMicroServiceApplication.SessionLocator locator = new NeoComMicroServiceApplication.SessionLocator()
-						.setSessionLocator("-MOCK-LOCATOR-IDENTIFIER-" + identifier + "-")
-						.setTimeValid(Instant.now().getMillis());
+//			NeoComSession session = null;
+//			if ( true ) {
+//				final NeoComMicroServiceApplication.SessionLocator locator = new NeoComMicroServiceApplication.SessionLocator()
+//						.setSessionLocator("-MOCK-LOCATOR-IDENTIFIER-" + identifier + "-")
+//						.setTimeValid(Instant.now().getMillis());
+//
+//				if ( NeoComMicroServiceApplication.MOCK_UP ) {
+//					// Read all the Credentials from the database and store the one with the pilot identifier on the store.
+//					final List<Credential> credentials = GlobalDataManager.accessAllCredentials();
+//					locator.setSessionLocator("-MOCK-LOCATOR-IDENTIFIER-" + identifier + "-");
+//					for ( Credential cred : credentials ) {
+//						if ( cred.getAccountId() == identifier ) {
+//							session = new NeoComSession()
+//									.setCredential(cred)
+//									.setPublicKey("-INVALID-PUBLIC-KEY-");
+//							NeoComMicroServiceApplication.sessionStore.put(locator.getSessionLocator(), session);
+//						}
+//					}
+//				}
+//				// Validate the location against the session store.
+//				session = NeoComMicroServiceApplication.sessionStore.get(locator.getSessionLocator());
+//			} else return "Not Access.";
 
-				if ( NeoComMicroServiceApplication.MOCK_UP ) {
-					// Read all the Credentials from the database and store the one with the pilot identifier on the store.
-					final List<Credential> credentials = GlobalDataManager.accessAllCredentials();
-					locator.setSessionLocator("-MOCK-LOCATOR-IDENTIFIER-" + identifier + "-");
-					for ( Credential cred : credentials ) {
-						if ( cred.getAccountId() == identifier ) {
-							session = new NeoComSession()
-									.setCredential(cred)
-									.setPublicKey("-INVALID-PUBLIC-KEY-");
-							NeoComMicroServiceApplication.sessionStore.put(locator.getSessionLocator(), session);
-						}
-					}
+				// Go to the service and process the fitting to return the result to the front end.
+				final FittingProcessor processor = new FittingProcessor();
+				InfinityGlobalDataManager.accessFittings4Credential(session.getCredential());
+				// Search for the fitting
+				final Fitting target = InfinityGlobalDataManager.searchFitting4Id(fittingidentifier);
+				if ( null != target ) {
+					final List<Action> actions = processor.processFitting(session.getCredential(), target, copies);
+//					final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(actions);
+//					return contentsSerialized;
+					return new ResponseEntity<List<Action>>(actions, HttpStatus.OK);
+				} else {
+					return new ResponseEntity<List<Action>>(HttpStatus.BAD_REQUEST);
 				}
-				// Validate the location against the session store.
-				session = NeoComMicroServiceApplication.sessionStore.get(locator.getSessionLocator());
-			} else return "Not Access.";
-
-			// Go to the service and process the fitting to return the result to the front end.
-			final FittingProcessor processor = new FittingProcessor();
-			InfinityGlobalDataManager.accessFittings4Credential(session.getCredential());
-			// Search for the fitting
-			final Fitting target = InfinityGlobalDataManager.searchFitting4Id(fittingidentifier);
-			if ( null != target ) {
-				final List<Action> actions = processor.processFitting(session.getCredential(), target, copies);
-				final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(actions);
-				return contentsSerialized;
-			} else {
-				return NeoComMicroServiceApplication.jsonMapper.writeValueAsString(new NeoComException("Fitting id " + fittingidentifier + " not found."));
-			}
-		} catch ( JsonProcessingException jspe ) {
-			return new JsonExceptionInstance(jspe).toJson();
+//			} catch ( JsonProcessingException jspe ) {
+//				return new ResponseEntity<List<Action>>(HttpStatus.BAD_REQUEST);
 //		} catch (NeoComRegisteredException neore) {
 //			neore.printStackTrace();
 //			return InfinityGlobalDataManager.serializedException(neore);
-		} catch ( RuntimeException rtx ) {
-			logger.error("EX [FittingManagerController.fittingProcessFitting]> Unexpected Exception: {}", rtx.getMessage());
-			rtx.printStackTrace();
-			return InfinityGlobalDataManager.serializedException(rtx);
-		} finally {
-			logger.info("<< [FittingManagerController.fittingProcessFitting]");
-		}
+			} catch ( RuntimeException rtx ) {
+				logger.error("EX [FittingManagerController.fittingProcessFitting]> Unexpected Exception: {}", rtx.getMessage());
+				rtx.printStackTrace();
+				return new ResponseEntity<List<Action>>(HttpStatus.BAD_REQUEST);
+//			} finally {
+//				logger.info("<< [FittingManagerController.fittingProcessFitting]");
+			}
+		} else return new ResponseEntity<List<Action>>(HttpStatus.UNAUTHORIZED);
 	}
 
 	//--- V E R S I O N   2   E N T R Y P O I N T S
+
 	/**
 	 * Returns the list of fittings that are accessible to this Pilot identifier. This data will be processed at the Angular side
 	 * to generate any UI structures required for a proper presentation.
