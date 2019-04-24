@@ -9,6 +9,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Dimensinfin_Industries.NeoCom.MicroServices.main" target="1.8" />
+      <module name="Dimensinfin_Industries.NeoCom.MicroServices.test" target="1.8" />
       <module name="ESI.SwaggerApi" target="1.7" />
       <module name="NeoCom-DataMngmt-POC-ESI.SwaggerApi" target="1.7" />
       <module name="NeoCom.MicroServices" target="8" />

@@ -33,10 +33,10 @@ public class SecurityConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors( InterceptorRegistry registry ) {
 		registry.addInterceptor(new LogInterceptor()).addPathPatterns("/api/**");
-		if ( InfinityGlobalDataManager.getResourceString("R.runtime.security.headers").equalsIgnoreCase("on") ) {
+		if ( InfinityGlobalDataManager.getResourceString("P.runtime.security.headers").equalsIgnoreCase("on") ) {
 			registry.addInterceptor(new HeaderVerifierInterceptor()).addPathPatterns("/api/**");
 		}
-		if ( InfinityGlobalDataManager.getResourceString("R.runtime.security.handlers").equalsIgnoreCase("on") ) {
+		if ( InfinityGlobalDataManager.getResourceString("P.runtime.security.handlers").equalsIgnoreCase("on") ) {
 			registry.addInterceptor(new SecurityInterceptor()).addPathPatterns("/api/v1/centros/**");
 			registry.addInterceptor(new SecurityInterceptor()).addPathPatterns("/api/v1/medicos/**");
 			registry.addInterceptor(new SecurityInterceptor()).addPathPatterns("/api/v1/citas/**");
