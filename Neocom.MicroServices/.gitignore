@@ -11,6 +11,8 @@
 *.iws
 *.iml
 *.ipr
+/.idea/modules.xml
+/.idea/workspace.xml
 /.idea/libraries/
 /.gradle/
 
