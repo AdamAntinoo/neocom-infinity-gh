@@ -63,10 +63,11 @@ public class FileSystemSBImplementation implements IFileSystem {
 	public InputStream openAsset4Input( final String filePath ) throws IOException {
 		URI propertyURI = null;
 		try {
-			final URL resource = getClassLoader().getResource(filePath);
-			if (null == resource) throw new IOException("[FileSystemSBImplementation.openAsset4Input]> Resource file " + filePath + "" +
-					" not found with classloader.");
-			propertyURI = new URI(resource.toString());
+			final String executionDirectory = new java.io.File(".").getCanonicalPath() + "/build/resources/main/";
+//			final URL resource = getClassLoader().getResource(filePath);
+//			if (null == resource) throw new IOException("[FileSystemSBImplementation.openAsset4Input]> Resource file " + filePath + "" +
+//					" not found with classloader.");
+			propertyURI = new URI(executionDirectory + filePath);
 			logger.info("DD [FileSystemSBImplementation.openAsset4Input]> Processing file: {}", propertyURI);
 		} catch (URISyntaxException use) {
 		}
@@ -77,10 +78,11 @@ public class FileSystemSBImplementation implements IFileSystem {
 	public String accessAsset4Path( final String filePath ) throws IOException {
 		URI propertyURI = null;
 		try {
-			final URL resource = getClassLoader().getResource(filePath);
-			if (null == resource) throw new IOException("[FileSystemSBImplementation.accessAsset4Path]> Resource file " + filePath +
-					" not found with classloader.");
-			propertyURI = new URI(classLoader.getResource(filePath).toString());
+			final String executionDirectory = new java.io.File(".").getCanonicalPath() + "/build/resources/main/";
+//			final URL resource = getClassLoader().getResource(filePath);
+//			if (null == resource) throw new IOException("[FileSystemSBImplementation.openAsset4Input]> Resource file " + filePath + "" +
+//					" not found with classloader.");
+			propertyURI = new URI(executionDirectory + filePath);
 			logger.info("DD [FileSystemSBImplementation.accessAsset4Path]> Processing file: {}", propertyURI);
 		} catch (URISyntaxException e) {
 		}
