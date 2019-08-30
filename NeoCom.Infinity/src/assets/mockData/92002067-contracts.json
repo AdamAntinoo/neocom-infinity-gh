@@ -37,7 +37,7 @@
       "industryGroup": "HULL",
       "lowestSellerPrice": {
         "location": {
-          "jsonClass": "EveLocation",
+          "jsonClass": "EsiLocation",
           "id": -1,
           "stationID": -1,
           "station": "SPACE",
@@ -94,7 +94,7 @@
       "price": 490097.81,
       "lowestSellerPrice": {
         "location": {
-          "jsonClass": "EveLocation",
+          "jsonClass": "EsiLocation",
           "id": -1,
           "stationID": -1,
           "station": "SPACE",

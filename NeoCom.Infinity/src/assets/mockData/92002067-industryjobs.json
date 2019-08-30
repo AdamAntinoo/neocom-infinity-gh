@@ -33,7 +33,7 @@
     "price": 5.0E10,
     "lowestSellerPrice": {
       "location": {
-        "jsonClass": "EveLocation",
+        "jsonClass": "EsiLocation",
         "id": -1,
         "stationID": -1,
         "station": "SPACE",
@@ -70,7 +70,7 @@
     "itemId": 12744
   },
   "jobLocation": {
-    "jsonClass": "EveLocation",
+    "jsonClass": "EsiLocation",
     "id": 60006526,
     "stationID": 60006526,
     "station": "Esescama VIII - Moon 3 - Imperial Armaments Warehouse",
@@ -120,7 +120,7 @@
       "price": 5440.19,
       "lowestSellerPrice": {
         "location": {
-          "jsonClass": "EveLocation",
+          "jsonClass": "EsiLocation",
           "id": -1,
           "stationID": -1,
           "station": "SPACE",
@@ -157,7 +157,7 @@
       "itemId": 3467
     },
     "location": {
-      "jsonClass": "EveLocation",
+      "jsonClass": "EsiLocation",
       "id": 60006526,
       "stationID": 60006526,
       "station": "Esescama VIII - Moon 3 - Imperial Armaments Warehouse",
@@ -191,7 +191,7 @@
     "price": 1.261432035E8,
     "lowestSellerPrice": {
       "location": {
-        "jsonClass": "EveLocation",
+        "jsonClass": "EsiLocation",
         "id": -1,
         "stationID": -1,
         "station": "SPACE",

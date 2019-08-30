@@ -11,7 +11,7 @@
   "duration" : 14,
   "orderState" : "OPEN",
   "location" : {
-    "jsonClass" : "EveLocation",
+    "jsonClass" : "EsiLocation",
     "id" : 60014089,
     "stationID" : 60014089,
     "station" : "PVH8-0 VI - Moon 8 - Thukker Mix Factory",
@@ -47,7 +47,7 @@
     "hullGroup" : "not-applies",
     "lowestSellerPrice" : {
       "location" : {
-        "jsonClass" : "EveLocation",
+        "jsonClass" : "EsiLocation",
         "id" : 30000142,
         "stationID" : 30000142,
         "station" : "Jita",
@@ -82,7 +82,7 @@
     "itemID" : 10998,
     "highestBuyerPrice" : {
       "location" : {
-        "jsonClass" : "EveLocation",
+        "jsonClass" : "EsiLocation",
         "id" : 30000142,
         "stationID" : 30000142,
         "station" : "Jita",
@@ -124,7 +124,7 @@
   "duration" : 14,
   "orderState" : "OPEN",
   "location" : {
-    "jsonClass" : "EveLocation",
+    "jsonClass" : "EsiLocation",
     "id" : 60014089,
     "stationID" : 60014089,
     "station" : "PVH8-0 VI - Moon 8 - Thukker Mix Factory",
@@ -160,7 +160,7 @@
     "hullGroup" : "not-applies",
     "lowestSellerPrice" : {
       "location" : {
-        "jsonClass" : "EveLocation",
+        "jsonClass" : "EsiLocation",
         "id" : 30002510,
         "stationID" : 30002510,
         "station" : "Rens",
@@ -195,7 +195,7 @@
     "itemID" : 33915,
     "highestBuyerPrice" : {
       "location" : {
-        "jsonClass" : "EveLocation",
+        "jsonClass" : "EsiLocation",
         "id" : 30002510,
         "stationID" : 30002510,
         "station" : "Rens",

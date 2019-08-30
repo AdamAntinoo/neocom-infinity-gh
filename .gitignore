@@ -1,13 +1,10 @@
 *.diff
 *.db
 *.log
-.recommenders/
-.metadata/
 *.db-journal
 *.ttf
 *.otf
-Documentation/~$emiminaryNotes.odt
-*.sqlite
-Neocom.MicroServices/NeoCom.Infinity/
 *.odt#
-OldProject/
+.recommenders/
+.metadata/
+

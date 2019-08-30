@@ -17,7 +17,7 @@
       "price" : 459145.45,
       "lowestSellerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30000144,
           "stationId" : 30000144,
           "station" : "Perimeter",
@@ -52,7 +52,7 @@
       "groupName" : "Damage Control",
       "highestBuyerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30000144,
           "stationId" : 30000144,
           "station" : "Perimeter",
@@ -124,7 +124,7 @@
       "price" : 459145.45,
       "lowestSellerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30000144,
           "stationId" : 30000144,
           "station" : "Perimeter",
@@ -159,7 +159,7 @@
       "groupName" : "Damage Control",
       "highestBuyerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30000144,
           "stationId" : 30000144,
           "station" : "Perimeter",
@@ -189,7 +189,7 @@
       "blueprint" : false
     },
     "sourceLocation" : {
-      "jsonClass" : "EveLocation",
+      "jsonClass" : "EsiLocation",
       "id" : 60014951,
       "stationId" : 60014951,
       "station" : "319-3D IX - Moon 22 - Blood Raiders Logistic Support",
@@ -210,7 +210,7 @@
       "unknown" : true
     },
     "destination" : {
-      "jsonClass" : "EveLocation",
+      "jsonClass" : "EsiLocation",
       "id" : 60006526,
       "stationId" : 60006526,
       "station" : "Esescama VIII - Moon 3 - Imperial Armaments Warehouse",
@@ -246,7 +246,7 @@
       "shipFlag" : false,
       "iskValue" : 459145.45,
       "location" : {
-        "jsonClass" : "EveLocation",
+        "jsonClass" : "EsiLocation",
         "id" : 60014951,
         "stationId" : 60014951,
         "station" : "319-3D IX - Moon 22 - Blood Raiders Logistic Support",
@@ -283,7 +283,7 @@
         "price" : 459145.45,
         "lowestSellerPrice" : {
           "location" : {
-            "jsonClass" : "EveLocation",
+            "jsonClass" : "EsiLocation",
             "id" : 30000144,
             "stationId" : 30000144,
             "station" : "Perimeter",
@@ -318,7 +318,7 @@
         "groupName" : "Damage Control",
         "highestBuyerPrice" : {
           "location" : {
-            "jsonClass" : "EveLocation",
+            "jsonClass" : "EsiLocation",
             "id" : 30000144,
             "stationId" : 30000144,
             "station" : "Perimeter",
@@ -382,7 +382,7 @@
       "price" : 21677.62,
       "lowestSellerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30000142,
           "stationId" : 30000142,
           "station" : "Jita",
@@ -417,7 +417,7 @@
       "groupName" : "Warp Core Stabilizer",
       "highestBuyerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30000142,
           "stationId" : 30000142,
           "station" : "Jita",
@@ -489,7 +489,7 @@
       "price" : 21677.62,
       "lowestSellerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30000142,
           "stationId" : 30000142,
           "station" : "Jita",
@@ -524,7 +524,7 @@
       "groupName" : "Warp Core Stabilizer",
       "highestBuyerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30000142,
           "stationId" : 30000142,
           "station" : "Jita",
@@ -554,7 +554,7 @@
       "blueprint" : false
     },
     "sourceLocation" : {
-      "jsonClass" : "EveLocation",
+      "jsonClass" : "EsiLocation",
       "id" : 60006526,
       "stationId" : 60006526,
       "station" : "Esescama VIII - Moon 3 - Imperial Armaments Warehouse",
@@ -575,7 +575,7 @@
       "unknown" : true
     },
     "destination" : {
-      "jsonClass" : "EveLocation",
+      "jsonClass" : "EsiLocation",
       "id" : 60006526,
       "stationId" : 60006526,
       "station" : "Esescama VIII - Moon 3 - Imperial Armaments Warehouse",
@@ -611,7 +611,7 @@
       "shipFlag" : false,
       "iskValue" : 173420.96,
       "location" : {
-        "jsonClass" : "EveLocation",
+        "jsonClass" : "EsiLocation",
         "id" : 60006526,
         "stationId" : 60006526,
         "station" : "Esescama VIII - Moon 3 - Imperial Armaments Warehouse",
@@ -648,7 +648,7 @@
         "price" : 21677.62,
         "lowestSellerPrice" : {
           "location" : {
-            "jsonClass" : "EveLocation",
+            "jsonClass" : "EsiLocation",
             "id" : 30000142,
             "stationId" : 30000142,
             "station" : "Jita",
@@ -683,7 +683,7 @@
         "groupName" : "Warp Core Stabilizer",
         "highestBuyerPrice" : {
           "location" : {
-            "jsonClass" : "EveLocation",
+            "jsonClass" : "EsiLocation",
             "id" : 30000142,
             "stationId" : 30000142,
             "station" : "Jita",
@@ -747,7 +747,7 @@
       "price" : 643573.46,
       "lowestSellerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30002187,
           "stationId" : 30002187,
           "station" : "Amarr",
@@ -782,7 +782,7 @@
       "groupName" : "Shield Extender",
       "highestBuyerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30002187,
           "stationId" : 30002187,
           "station" : "Amarr",
@@ -854,7 +854,7 @@
       "price" : 643573.46,
       "lowestSellerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30002187,
           "stationId" : 30002187,
           "station" : "Amarr",
@@ -889,7 +889,7 @@
       "groupName" : "Shield Extender",
       "highestBuyerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30002187,
           "stationId" : 30002187,
           "station" : "Amarr",
@@ -919,7 +919,7 @@
       "blueprint" : false
     },
     "sourceLocation" : {
-      "jsonClass" : "EveLocation",
+      "jsonClass" : "EsiLocation",
       "id" : 60006610,
       "stationId" : 60006610,
       "station" : "Esa VIII - Moon 2 - Viziam Warehouse",
@@ -940,7 +940,7 @@
       "unknown" : true
     },
     "destination" : {
-      "jsonClass" : "EveLocation",
+      "jsonClass" : "EsiLocation",
       "id" : 60006526,
       "stationId" : 60006526,
       "station" : "Esescama VIII - Moon 3 - Imperial Armaments Warehouse",
@@ -976,7 +976,7 @@
       "shipFlag" : false,
       "iskValue" : 643573.46,
       "location" : {
-        "jsonClass" : "EveLocation",
+        "jsonClass" : "EsiLocation",
         "id" : 60006610,
         "stationId" : 60006610,
         "station" : "Esa VIII - Moon 2 - Viziam Warehouse",
@@ -1013,7 +1013,7 @@
         "price" : 643573.46,
         "lowestSellerPrice" : {
           "location" : {
-            "jsonClass" : "EveLocation",
+            "jsonClass" : "EsiLocation",
             "id" : 30002187,
             "stationId" : 30002187,
             "station" : "Amarr",
@@ -1048,7 +1048,7 @@
         "groupName" : "Shield Extender",
         "highestBuyerPrice" : {
           "location" : {
-            "jsonClass" : "EveLocation",
+            "jsonClass" : "EsiLocation",
             "id" : 30002187,
             "stationId" : 30002187,
             "station" : "Amarr",
@@ -1112,7 +1112,7 @@
       "price" : 8818.16,
       "lowestSellerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30000142,
           "stationId" : 30000142,
           "station" : "Jita",
@@ -1147,7 +1147,7 @@
       "groupName" : "Propulsion Module",
       "highestBuyerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30000142,
           "stationId" : 30000142,
           "station" : "Jita",
@@ -1219,7 +1219,7 @@
       "price" : 8818.16,
       "lowestSellerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30000142,
           "stationId" : 30000142,
           "station" : "Jita",
@@ -1254,7 +1254,7 @@
       "groupName" : "Propulsion Module",
       "highestBuyerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30000142,
           "stationId" : 30000142,
           "station" : "Jita",
@@ -1284,7 +1284,7 @@
       "blueprint" : false
     },
     "sourceLocation" : {
-      "jsonClass" : "EveLocation",
+      "jsonClass" : "EsiLocation",
       "id" : 60012079,
       "stationId" : 60012079,
       "station" : "Octanneve III - Moon 1 - Federation Customs Logistic Support",
@@ -1305,7 +1305,7 @@
       "unknown" : true
     },
     "destination" : {
-      "jsonClass" : "EveLocation",
+      "jsonClass" : "EsiLocation",
       "id" : 60006526,
       "stationId" : 60006526,
       "station" : "Esescama VIII - Moon 3 - Imperial Armaments Warehouse",
@@ -1341,7 +1341,7 @@
       "shipFlag" : false,
       "iskValue" : 8818.16,
       "location" : {
-        "jsonClass" : "EveLocation",
+        "jsonClass" : "EsiLocation",
         "id" : 60012079,
         "stationId" : 60012079,
         "station" : "Octanneve III - Moon 1 - Federation Customs Logistic Support",
@@ -1378,7 +1378,7 @@
         "price" : 8818.16,
         "lowestSellerPrice" : {
           "location" : {
-            "jsonClass" : "EveLocation",
+            "jsonClass" : "EsiLocation",
             "id" : 30000142,
             "stationId" : 30000142,
             "station" : "Jita",
@@ -1413,7 +1413,7 @@
         "groupName" : "Propulsion Module",
         "highestBuyerPrice" : {
           "location" : {
-            "jsonClass" : "EveLocation",
+            "jsonClass" : "EsiLocation",
             "id" : 30000142,
             "stationId" : 30000142,
             "station" : "Jita",
@@ -1477,7 +1477,7 @@
       "price" : 8.662372741E7,
       "lowestSellerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30002187,
           "stationId" : 30002187,
           "station" : "Amarr",
@@ -1512,7 +1512,7 @@
       "groupName" : "Deep Space Transport",
       "highestBuyerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30002187,
           "stationId" : 30002187,
           "station" : "Amarr",
@@ -1584,7 +1584,7 @@
       "price" : 8.662372741E7,
       "lowestSellerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30002187,
           "stationId" : 30002187,
           "station" : "Amarr",
@@ -1619,7 +1619,7 @@
       "groupName" : "Deep Space Transport",
       "highestBuyerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30002187,
           "stationId" : 30002187,
           "station" : "Amarr",
@@ -1649,7 +1649,7 @@
       "blueprint" : false
     },
     "sourceLocation" : {
-      "jsonClass" : "EveLocation",
+      "jsonClass" : "EsiLocation",
       "id" : 30003752,
       "stationId" : -1,
       "station" : "H-GKI6 VI - Another 0ne Bites The Dust",
@@ -1670,7 +1670,7 @@
       "unknown" : false
     },
     "destination" : {
-      "jsonClass" : "EveLocation",
+      "jsonClass" : "EsiLocation",
       "id" : 60006526,
       "stationId" : 60006526,
       "station" : "Esescama VIII - Moon 3 - Imperial Armaments Warehouse",
@@ -1706,7 +1706,7 @@
       "shipFlag" : true,
       "iskValue" : 8.662372741E7,
       "location" : {
-        "jsonClass" : "EveLocation",
+        "jsonClass" : "EsiLocation",
         "id" : 30003752,
         "stationId" : -1,
         "station" : "H-GKI6 VI - Another 0ne Bites The Dust",
@@ -1743,7 +1743,7 @@
         "price" : 8.662372741E7,
         "lowestSellerPrice" : {
           "location" : {
-            "jsonClass" : "EveLocation",
+            "jsonClass" : "EsiLocation",
             "id" : 30002187,
             "stationId" : 30002187,
             "station" : "Amarr",
@@ -1778,7 +1778,7 @@
         "groupName" : "Deep Space Transport",
         "highestBuyerPrice" : {
           "location" : {
-            "jsonClass" : "EveLocation",
+            "jsonClass" : "EsiLocation",
             "id" : 30002187,
             "stationId" : 30002187,
             "station" : "Amarr",
@@ -1842,7 +1842,7 @@
       "price" : 3882132.79,
       "lowestSellerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30002187,
           "stationId" : 30002187,
           "station" : "Amarr",
@@ -1877,7 +1877,7 @@
       "groupName" : "Cloaking Device",
       "highestBuyerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30002187,
           "stationId" : 30002187,
           "station" : "Amarr",
@@ -1949,7 +1949,7 @@
       "price" : 3882132.79,
       "lowestSellerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30002187,
           "stationId" : 30002187,
           "station" : "Amarr",
@@ -1984,7 +1984,7 @@
       "groupName" : "Cloaking Device",
       "highestBuyerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30002187,
           "stationId" : 30002187,
           "station" : "Amarr",
@@ -2014,7 +2014,7 @@
       "blueprint" : false
     },
     "sourceLocation" : {
-      "jsonClass" : "EveLocation",
+      "jsonClass" : "EsiLocation",
       "id" : 60012301,
       "stationId" : 60012301,
       "station" : "Sendaya V - CONCORD Bureau",
@@ -2035,7 +2035,7 @@
       "unknown" : true
     },
     "destination" : {
-      "jsonClass" : "EveLocation",
+      "jsonClass" : "EsiLocation",
       "id" : 60006526,
       "stationId" : 60006526,
       "station" : "Esescama VIII - Moon 3 - Imperial Armaments Warehouse",
@@ -2071,7 +2071,7 @@
       "shipFlag" : false,
       "iskValue" : 1.1646398370000001E7,
       "location" : {
-        "jsonClass" : "EveLocation",
+        "jsonClass" : "EsiLocation",
         "id" : 60012301,
         "stationId" : 60012301,
         "station" : "Sendaya V - CONCORD Bureau",
@@ -2108,7 +2108,7 @@
         "price" : 3882132.79,
         "lowestSellerPrice" : {
           "location" : {
-            "jsonClass" : "EveLocation",
+            "jsonClass" : "EsiLocation",
             "id" : 30002187,
             "stationId" : 30002187,
             "station" : "Amarr",
@@ -2143,7 +2143,7 @@
         "groupName" : "Cloaking Device",
         "highestBuyerPrice" : {
           "location" : {
-            "jsonClass" : "EveLocation",
+            "jsonClass" : "EsiLocation",
             "id" : 30002187,
             "stationId" : 30002187,
             "station" : "Amarr",
@@ -2207,7 +2207,7 @@
       "price" : 1460917.33,
       "lowestSellerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30000142,
           "stationId" : 30000142,
           "station" : "Jita",
@@ -2242,7 +2242,7 @@
       "groupName" : "Armor Hardener",
       "highestBuyerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30000142,
           "stationId" : 30000142,
           "station" : "Jita",
@@ -2314,7 +2314,7 @@
       "price" : 1460917.33,
       "lowestSellerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30000142,
           "stationId" : 30000142,
           "station" : "Jita",
@@ -2349,7 +2349,7 @@
       "groupName" : "Armor Hardener",
       "highestBuyerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30000142,
           "stationId" : 30000142,
           "station" : "Jita",
@@ -2379,7 +2379,7 @@
       "blueprint" : false
     },
     "sourceLocation" : {
-      "jsonClass" : "EveLocation",
+      "jsonClass" : "EsiLocation",
       "id" : 60006220,
       "stationId" : 60006220,
       "station" : "Pimebeka VII - Moon 16 - Carthum Conglomerate Factory",
@@ -2400,7 +2400,7 @@
       "unknown" : true
     },
     "destination" : {
-      "jsonClass" : "EveLocation",
+      "jsonClass" : "EsiLocation",
       "id" : 60006526,
       "stationId" : 60006526,
       "station" : "Esescama VIII - Moon 3 - Imperial Armaments Warehouse",
@@ -2436,7 +2436,7 @@
       "shipFlag" : false,
       "iskValue" : 5843669.32,
       "location" : {
-        "jsonClass" : "EveLocation",
+        "jsonClass" : "EsiLocation",
         "id" : 60006220,
         "stationId" : 60006220,
         "station" : "Pimebeka VII - Moon 16 - Carthum Conglomerate Factory",
@@ -2473,7 +2473,7 @@
         "price" : 1460917.33,
         "lowestSellerPrice" : {
           "location" : {
-            "jsonClass" : "EveLocation",
+            "jsonClass" : "EsiLocation",
             "id" : 30000142,
             "stationId" : 30000142,
             "station" : "Jita",
@@ -2508,7 +2508,7 @@
         "groupName" : "Armor Hardener",
         "highestBuyerPrice" : {
           "location" : {
-            "jsonClass" : "EveLocation",
+            "jsonClass" : "EsiLocation",
             "id" : 30000142,
             "stationId" : 30000142,
             "station" : "Jita",
@@ -2572,7 +2572,7 @@
       "price" : 372659.84,
       "lowestSellerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30002510,
           "stationId" : 30002510,
           "station" : "Rens",
@@ -2607,7 +2607,7 @@
       "groupName" : "Micro Jump Drive",
       "highestBuyerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30002510,
           "stationId" : 30002510,
           "station" : "Rens",
@@ -2679,7 +2679,7 @@
       "price" : 372659.84,
       "lowestSellerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30002510,
           "stationId" : 30002510,
           "station" : "Rens",
@@ -2714,7 +2714,7 @@
       "groupName" : "Micro Jump Drive",
       "highestBuyerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30002510,
           "stationId" : 30002510,
           "station" : "Rens",
@@ -2744,7 +2744,7 @@
       "blueprint" : false
     },
     "sourceLocation" : {
-      "jsonClass" : "EveLocation",
+      "jsonClass" : "EsiLocation",
       "id" : 30003752,
       "stationId" : -1,
       "station" : "H-GKI6 VI - Another 0ne Bites The Dust",
@@ -2765,7 +2765,7 @@
       "unknown" : false
     },
     "destination" : {
-      "jsonClass" : "EveLocation",
+      "jsonClass" : "EsiLocation",
       "id" : 60006526,
       "stationId" : 60006526,
       "station" : "Esescama VIII - Moon 3 - Imperial Armaments Warehouse",
@@ -2801,7 +2801,7 @@
       "shipFlag" : false,
       "iskValue" : 372659.84,
       "location" : {
-        "jsonClass" : "EveLocation",
+        "jsonClass" : "EsiLocation",
         "id" : 30003752,
         "stationId" : -1,
         "station" : "H-GKI6 VI - Another 0ne Bites The Dust",
@@ -2838,7 +2838,7 @@
         "price" : 372659.84,
         "lowestSellerPrice" : {
           "location" : {
-            "jsonClass" : "EveLocation",
+            "jsonClass" : "EsiLocation",
             "id" : 30002510,
             "stationId" : 30002510,
             "station" : "Rens",
@@ -2873,7 +2873,7 @@
         "groupName" : "Micro Jump Drive",
         "highestBuyerPrice" : {
           "location" : {
-            "jsonClass" : "EveLocation",
+            "jsonClass" : "EsiLocation",
             "id" : 30002510,
             "stationId" : 30002510,
             "station" : "Rens",
@@ -2937,7 +2937,7 @@
       "price" : 427523.62,
       "lowestSellerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30002187,
           "stationId" : 30002187,
           "station" : "Amarr",
@@ -2972,7 +2972,7 @@
       "groupName" : "Nanofiber Internal Structure",
       "highestBuyerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30002187,
           "stationId" : 30002187,
           "station" : "Amarr",
@@ -3044,7 +3044,7 @@
       "price" : 427523.62,
       "lowestSellerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30002187,
           "stationId" : 30002187,
           "station" : "Amarr",
@@ -3079,7 +3079,7 @@
       "groupName" : "Nanofiber Internal Structure",
       "highestBuyerPrice" : {
         "location" : {
-          "jsonClass" : "EveLocation",
+          "jsonClass" : "EsiLocation",
           "id" : 30002187,
           "stationId" : 30002187,
           "station" : "Amarr",
@@ -3109,7 +3109,7 @@
       "blueprint" : false
     },
     "sourceLocation" : {
-      "jsonClass" : "EveLocation",
+      "jsonClass" : "EsiLocation",
       "id" : 60014951,
       "stationId" : 60014951,
       "station" : "319-3D IX - Moon 22 - Blood Raiders Logistic Support",
@@ -3130,7 +3130,7 @@
       "unknown" : true
     },
     "destination" : {
-      "jsonClass" : "EveLocation",
+      "jsonClass" : "EsiLocation",
       "id" : 60006526,
       "stationId" : 60006526,
       "station" : "Esescama VIII - Moon 3 - Imperial Armaments Warehouse",
@@ -3166,7 +3166,7 @@
       "shipFlag" : false,
       "iskValue" : 855047.24,
       "location" : {
-        "jsonClass" : "EveLocation",
+        "jsonClass" : "EsiLocation",
         "id" : 60014951,
         "stationId" : 60014951,
         "station" : "319-3D IX - Moon 22 - Blood Raiders Logistic Support",
@@ -3203,7 +3203,7 @@
         "price" : 427523.62,
         "lowestSellerPrice" : {
           "location" : {
-            "jsonClass" : "EveLocation",
+            "jsonClass" : "EsiLocation",
             "id" : 30002187,
             "stationId" : 30002187,
             "station" : "Amarr",
@@ -3238,7 +3238,7 @@
         "groupName" : "Nanofiber Internal Structure",
         "highestBuyerPrice" : {
           "location" : {
-            "jsonClass" : "EveLocation",
+            "jsonClass" : "EsiLocation",
             "id" : 30002187,
             "stationId" : 30002187,
             "station" : "Amarr",

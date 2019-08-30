@@ -20,7 +20,7 @@
         "price": 85377.42,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -79,7 +79,7 @@
         "price": 8219.56,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -138,7 +138,7 @@
         "price": 17007.06,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -197,7 +197,7 @@
         "price": 17007.06,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -256,7 +256,7 @@
         "price": 17007.06,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -315,7 +315,7 @@
         "price": 5275.15,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -374,7 +374,7 @@
         "price": 2423.12,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -433,7 +433,7 @@
         "price": 19239.63,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -492,7 +492,7 @@
         "price": 19239.63,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -551,7 +551,7 @@
         "price": 47061.1,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -610,7 +610,7 @@
         "price": 49398.04,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -669,7 +669,7 @@
         "price": 49398.04,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -728,7 +728,7 @@
         "price": 49398.04,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -784,7 +784,7 @@
       "price": 1.100786758E7,
       "lowestSellerPrice": {
         "location": {
-          "jsonClass": "EveLocation",
+          "jsonClass": "EsiLocation",
           "id": -1,
           "stationID": -1,
           "station": "SPACE",
@@ -843,7 +843,7 @@
         "price": 26.05,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -902,7 +902,7 @@
         "price": 9.3,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -961,7 +961,7 @@
         "price": 33258.66,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -1020,7 +1020,7 @@
         "price": 33258.66,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -1079,7 +1079,7 @@
         "price": 33258.66,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -1138,7 +1138,7 @@
         "price": 48691.12,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -1197,7 +1197,7 @@
         "price": 9700.83,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -1256,7 +1256,7 @@
         "price": 8219.56,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -1315,7 +1315,7 @@
         "price": 2425.25,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -1374,7 +1374,7 @@
         "price": 5129.49,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -1433,7 +1433,7 @@
         "price": 7313.42,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -1492,7 +1492,7 @@
         "price": 19239.63,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -1548,7 +1548,7 @@
       "price": 420184.08,
       "lowestSellerPrice": {
         "location": {
-          "jsonClass": "EveLocation",
+          "jsonClass": "EsiLocation",
           "id": -1,
           "stationID": -1,
           "station": "SPACE",
@@ -1607,7 +1607,7 @@
         "price": 45302.05,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -1666,7 +1666,7 @@
         "price": 123750.9,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -1725,7 +1725,7 @@
         "price": 123750.9,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -1784,7 +1784,7 @@
         "price": 123750.9,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -1843,7 +1843,7 @@
         "price": 123750.9,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -1902,7 +1902,7 @@
         "price": 57747.17,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -1961,7 +1961,7 @@
         "price": 57747.17,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -2020,7 +2020,7 @@
         "price": 48691.12,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -2079,7 +2079,7 @@
         "price": 14561.07,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -2138,7 +2138,7 @@
         "price": 14561.07,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -2197,7 +2197,7 @@
         "price": 27501.52,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -2256,7 +2256,7 @@
         "price": 8219.56,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -2315,7 +2315,7 @@
         "price": 451131.0,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -2374,7 +2374,7 @@
         "price": 148493.06,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -2430,7 +2430,7 @@
       "price": 1.100786758E7,
       "lowestSellerPrice": {
         "location": {
-          "jsonClass": "EveLocation",
+          "jsonClass": "EsiLocation",
           "id": -1,
           "stationID": -1,
           "station": "SPACE",
@@ -2489,7 +2489,7 @@
         "price": 1222390.78,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -2548,7 +2548,7 @@
         "price": 505856.27,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -2607,7 +2607,7 @@
         "price": 628860.38,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -2666,7 +2666,7 @@
         "price": 1508560.99,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -2725,7 +2725,7 @@
         "price": 981728.43,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -2784,7 +2784,7 @@
         "price": 981728.43,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -2843,7 +2843,7 @@
         "price": 981728.43,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -2902,7 +2902,7 @@
         "price": 981728.43,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -2961,7 +2961,7 @@
         "price": 981728.43,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -3020,7 +3020,7 @@
         "price": 2791922.47,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -3079,7 +3079,7 @@
         "price": 2791922.47,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -3138,7 +3138,7 @@
         "price": 2791922.47,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -3197,7 +3197,7 @@
         "price": 2791922.47,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -3256,7 +3256,7 @@
         "price": 1039613.74,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -3315,7 +3315,7 @@
         "price": 345707.12,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -3374,7 +3374,7 @@
         "price": 563824.04,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -3433,7 +3433,7 @@
         "price": 2.156775313E7,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -3492,7 +3492,7 @@
         "price": 2.156775313E7,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -3551,7 +3551,7 @@
         "price": 6.526759071E7,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -3610,7 +3610,7 @@
         "price": 804279.81,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -3669,7 +3669,7 @@
         "price": 1017764.35,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -3728,7 +3728,7 @@
         "price": 790096.63,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -3787,7 +3787,7 @@
         "price": 807651.83,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -3846,7 +3846,7 @@
         "price": 1240019.27,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -3905,7 +3905,7 @@
         "price": 1240019.27,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -3964,7 +3964,7 @@
         "price": 7539637.07,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -4023,7 +4023,7 @@
         "price": 7539637.07,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -4082,7 +4082,7 @@
         "price": 7539637.07,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -4141,7 +4141,7 @@
         "price": 8735.46,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -4200,7 +4200,7 @@
         "price": 10404.49,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -4256,7 +4256,7 @@
       "price": 4.7186381038E8,
       "lowestSellerPrice": {
         "location": {
-          "jsonClass": "EveLocation",
+          "jsonClass": "EsiLocation",
           "id": -1,
           "stationID": -1,
           "station": "SPACE",
@@ -4315,7 +4315,7 @@
         "price": 505856.27,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -4374,7 +4374,7 @@
         "price": 298411.5,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -4433,7 +4433,7 @@
         "price": 298411.5,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -4492,7 +4492,7 @@
         "price": 654257.31,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -4551,7 +4551,7 @@
         "price": 7846.22,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -4610,7 +4610,7 @@
         "price": 25183.07,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -4669,7 +4669,7 @@
         "price": 25183.07,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -4728,7 +4728,7 @@
         "price": 4498031.5,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -4787,7 +4787,7 @@
         "price": 1581692.06,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -4846,7 +4846,7 @@
         "price": 382181.3,
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": -1,
             "stationID": -1,
             "station": "SPACE",
@@ -4902,7 +4902,7 @@
       "price": 4.293962701E7,
       "lowestSellerPrice": {
         "location": {
-          "jsonClass": "EveLocation",
+          "jsonClass": "EsiLocation",
           "id": -1,
           "stationID": -1,
           "station": "SPACE",

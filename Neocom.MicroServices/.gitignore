@@ -34,7 +34,7 @@ out/
 #gradlew.bat
 
 ### Project file exceptions
-#.idea/workspace.xml
 #privatelibs/
 #libs/
 src/main/resources/static/
+NeoCom.Infinity/

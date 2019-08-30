@@ -20,7 +20,7 @@
       "industryGroup": "COMPONENTS",
       "lowestSellerPrice": {
         "location": {
-          "jsonClass": "EveLocation",
+          "jsonClass": "EsiLocation",
           "id": 30000144,
           "stationID": 30000144,
           "station": "Perimeter",
@@ -97,7 +97,7 @@
         "industryGroup": "COMPONENTS",
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": 30000144,
             "stationID": 30000144,
             "station": "Perimeter",
@@ -150,7 +150,7 @@
     },
     "quantity": 1,
     "sourceLocation": {
-      "jsonClass": "EveLocation",
+      "jsonClass": "EsiLocation",
       "id": -1,
       "stationID": -1,
       "station": "SPACE",
@@ -171,7 +171,7 @@
       "fullLocation": "[0.0] SPACE - -DEEP SPACE- > ID>1018641854165"
     },
     "destination": {
-      "jsonClass": "EveLocation",
+      "jsonClass": "EsiLocation",
       "id": 60006526,
       "stationID": 60006526,
       "station": "Esescama VIII - Moon 3 - Imperial Armaments Warehouse",
@@ -214,7 +214,7 @@
       "industryGroup": "HULL",
       "lowestSellerPrice": {
         "location": {
-          "jsonClass": "EveLocation",
+          "jsonClass": "EsiLocation",
           "id": 30000142,
           "stationID": 30000142,
           "station": "Jita",
@@ -291,7 +291,7 @@
         "industryGroup": "HULL",
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": 30000142,
             "stationID": 30000142,
             "station": "Jita",
@@ -344,7 +344,7 @@
     },
     "quantity": 1,
     "sourceLocation": {
-      "jsonClass": "EveLocation",
+      "jsonClass": "EsiLocation",
       "id": 60012301,
       "stationID": 60012301,
       "station": "Sendaya V - CONCORD Bureau",
@@ -365,7 +365,7 @@
       "fullLocation": "[0.293932972095294] Sendaya V - CONCORD Bureau - Derelik > Sendaya"
     },
     "destination": {
-      "jsonClass": "EveLocation",
+      "jsonClass": "EsiLocation",
       "id": 60006526,
       "stationID": 60006526,
       "station": "Esescama VIII - Moon 3 - Imperial Armaments Warehouse",
@@ -408,7 +408,7 @@
       "industryGroup": "COMPONENTS",
       "lowestSellerPrice": {
         "location": {
-          "jsonClass": "EveLocation",
+          "jsonClass": "EsiLocation",
           "id": 30002187,
           "stationID": 30002187,
           "station": "Amarr",
@@ -485,7 +485,7 @@
         "industryGroup": "COMPONENTS",
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": 30002187,
             "stationID": 30002187,
             "station": "Amarr",
@@ -538,7 +538,7 @@
     },
     "quantity": 1,
     "sourceLocation": {
-      "jsonClass": "EveLocation",
+      "jsonClass": "EsiLocation",
       "id": -1,
       "stationID": -1,
       "station": "SPACE",
@@ -559,7 +559,7 @@
       "fullLocation": "[0.0] SPACE - -DEEP SPACE- > ID>1022000471163"
     },
     "destination": {
-      "jsonClass": "EveLocation",
+      "jsonClass": "EsiLocation",
       "id": 60006526,
       "stationID": 60006526,
       "station": "Esescama VIII - Moon 3 - Imperial Armaments Warehouse",
@@ -602,7 +602,7 @@
       "industryGroup": "COMPONENTS",
       "lowestSellerPrice": {
         "location": {
-          "jsonClass": "EveLocation",
+          "jsonClass": "EsiLocation",
           "id": 30002187,
           "stationID": 30002187,
           "station": "Amarr",
@@ -679,7 +679,7 @@
         "industryGroup": "COMPONENTS",
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": 30002187,
             "stationID": 30002187,
             "station": "Amarr",
@@ -732,7 +732,7 @@
     },
     "quantity": 1,
     "sourceLocation": {
-      "jsonClass": "EveLocation",
+      "jsonClass": "EsiLocation",
       "id": 60006526,
       "stationID": 60006526,
       "station": "Esescama VIII - Moon 3 - Imperial Armaments Warehouse",
@@ -753,7 +753,7 @@
       "fullLocation": "[0.612691959383857] Esescama VIII - Moon 3 - Imperial Armaments Warehouse - Devoid > Esescama"
     },
     "destination": {
-      "jsonClass": "EveLocation",
+      "jsonClass": "EsiLocation",
       "id": 60006526,
       "stationID": 60006526,
       "station": "Esescama VIII - Moon 3 - Imperial Armaments Warehouse",
@@ -796,7 +796,7 @@
       "industryGroup": "COMPONENTS",
       "lowestSellerPrice": {
         "location": {
-          "jsonClass": "EveLocation",
+          "jsonClass": "EsiLocation",
           "id": 30002187,
           "stationID": 30002187,
           "station": "Amarr",
@@ -873,7 +873,7 @@
         "industryGroup": "COMPONENTS",
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": 30002187,
             "stationID": 30002187,
             "station": "Amarr",
@@ -926,7 +926,7 @@
     },
     "quantity": 1,
     "sourceLocation": {
-      "jsonClass": "EveLocation",
+      "jsonClass": "EsiLocation",
       "id": 60006526,
       "stationID": 60006526,
       "station": "Esescama VIII - Moon 3 - Imperial Armaments Warehouse",
@@ -947,7 +947,7 @@
       "fullLocation": "[0.612691959383857] Esescama VIII - Moon 3 - Imperial Armaments Warehouse - Devoid > Esescama"
     },
     "destination": {
-      "jsonClass": "EveLocation",
+      "jsonClass": "EsiLocation",
       "id": 60006526,
       "stationID": 60006526,
       "station": "Esescama VIII - Moon 3 - Imperial Armaments Warehouse",
@@ -990,7 +990,7 @@
       "industryGroup": "COMPONENTS",
       "lowestSellerPrice": {
         "location": {
-          "jsonClass": "EveLocation",
+          "jsonClass": "EsiLocation",
           "id": -1,
           "stationID": -1,
           "station": "SPACE",
@@ -1061,7 +1061,7 @@
       "industryGroup": "COMPONENTS",
       "lowestSellerPrice": {
         "location": {
-          "jsonClass": "EveLocation",
+          "jsonClass": "EsiLocation",
           "id": 30000142,
           "stationID": 30000142,
           "station": "Jita",
@@ -1138,7 +1138,7 @@
         "industryGroup": "COMPONENTS",
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": 30000142,
             "stationID": 30000142,
             "station": "Jita",
@@ -1191,7 +1191,7 @@
     },
     "quantity": 1,
     "sourceLocation": {
-      "jsonClass": "EveLocation",
+      "jsonClass": "EsiLocation",
       "id": 60006526,
       "stationID": 60006526,
       "station": "Esescama VIII - Moon 3 - Imperial Armaments Warehouse",
@@ -1212,7 +1212,7 @@
       "fullLocation": "[0.612691959383857] Esescama VIII - Moon 3 - Imperial Armaments Warehouse - Devoid > Esescama"
     },
     "destination": {
-      "jsonClass": "EveLocation",
+      "jsonClass": "EsiLocation",
       "id": 60006526,
       "stationID": 60006526,
       "station": "Esescama VIII - Moon 3 - Imperial Armaments Warehouse",
@@ -1255,7 +1255,7 @@
       "industryGroup": "COMPONENTS",
       "lowestSellerPrice": {
         "location": {
-          "jsonClass": "EveLocation",
+          "jsonClass": "EsiLocation",
           "id": 30000142,
           "stationID": 30000142,
           "station": "Jita",
@@ -1332,7 +1332,7 @@
         "industryGroup": "COMPONENTS",
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": 30000142,
             "stationID": 30000142,
             "station": "Jita",
@@ -1385,7 +1385,7 @@
     },
     "quantity": 1,
     "sourceLocation": {
-      "jsonClass": "EveLocation",
+      "jsonClass": "EsiLocation",
       "id": -1,
       "stationID": -1,
       "station": "SPACE",
@@ -1406,7 +1406,7 @@
       "fullLocation": "[0.0] SPACE - -DEEP SPACE- > ID>1018641854165"
     },
     "destination": {
-      "jsonClass": "EveLocation",
+      "jsonClass": "EsiLocation",
       "id": 60006526,
       "stationID": 60006526,
       "station": "Esescama VIII - Moon 3 - Imperial Armaments Warehouse",
@@ -1449,7 +1449,7 @@
       "industryGroup": "COMPONENTS",
       "lowestSellerPrice": {
         "location": {
-          "jsonClass": "EveLocation",
+          "jsonClass": "EsiLocation",
           "id": 30000142,
           "stationID": 30000142,
           "station": "Jita",
@@ -1526,7 +1526,7 @@
         "industryGroup": "COMPONENTS",
         "lowestSellerPrice": {
           "location": {
-            "jsonClass": "EveLocation",
+            "jsonClass": "EsiLocation",
             "id": 30000142,
             "stationID": 30000142,
             "station": "Jita",
@@ -1579,7 +1579,7 @@
     },
     "quantity": 1,
     "sourceLocation": {
-      "jsonClass": "EveLocation",
+      "jsonClass": "EsiLocation",
       "id": -1,
       "stationID": -1,
       "station": "SPACE",
@@ -1600,7 +1600,7 @@
       "fullLocation": "[0.0] SPACE - -DEEP SPACE- > ID>1015615661822"
     },
     "destination": {
-      "jsonClass": "EveLocation",
+      "jsonClass": "EsiLocation",
       "id": 60006526,
       "stationID": 60006526,
       "station": "Esescama VIII - Moon 3 - Imperial Armaments Warehouse",

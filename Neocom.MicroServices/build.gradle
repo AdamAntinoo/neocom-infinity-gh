@@ -1,13 +1,16 @@
 //--- S P R I N G B O O T   C O N F I G U R A T I O N
 buildscript {
     ext {
-        springBootVersion = '2.0.2.RELEASE'
+        springBootVersion = '2.1.1.RELEASE'
+        kotlin_version = '1.2.31'
     }
     repositories {
+        mavenLocal()
         mavenCentral()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
@@ -15,33 +18,29 @@ buildscript {
 plugins {
     id 'groovy'
     id 'java'
-    id "io.ratpack.ratpack-groovy" version "1.5.4"
 }
 apply plugin: 'java'
-//apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'maven-publish'
+apply plugin: 'kotlin'
 
 //--- P R O J E C T   D E F I N I T I O N
-group = 'Dimensinfin Industries'
+group = 'org.dimensinfin'
 version = '0.14.0'
 archivesBaseName = 'NeoCom.MicroServices'
-mainClassName = 'org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication'
+//mainClassName = 'org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-    mavenLocal()
+//    mavenLocal()
     mavenCentral()
     google()
     jcenter()
     maven { url 'https://jitpack.io' }
-}
-
-sourceSets {
-//    main.java.srcDirs += 'src/main/java-datamngmt'
+    maven { url "file:./repository/" }
 }
 
 //--- S P R I N G B O O T
@@ -56,17 +55,21 @@ springBoot {
         }
     }
 }
-// Generate also the normal archive in addition to the executable.
+
+//--- T A S K S
+// Gradlew start task to generate Heroku distribution
+task stage {
+    dependsOn bootJar
+}
 jar {
     enabled = true
+    manifest {
+        attributes(
+                'Main-Class': 'org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication'
+        )
+    }
 }
-//jar {
-//    manifest {
-//        attributes("Implementation-Title": "Gradle",
-//                "Implementation-Version": version)
-//        writeTo("$buildDir/Manifest.mf")
-//    }
-//}
+
 bootJar {
     manifest {
         attributes 'Start-Class': 'org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication'
@@ -75,127 +78,46 @@ bootJar {
 
 //--- T A S K S
 // Clean up the resources received from other modules.
-// Needs to be executed manually because it is dangerous to leave this decission to the build.
+// Needs to be executed manually because it is dangerous to leave this decision to the build.
 task cleanUpResources(type: Delete) {
     delete 'src/main/resources/sdecontents'
     delete 'src/main/resources/yaml'
 }
-// Copy configuration and property resources from other modules to the final 'resources' application folder.
-task copyResources(type: Copy) {
-//    copy {
-//        // NeoCom.Model Properties
-//        println 'Copy :NeoCom.Model resources to :NeoCom:MicroServices'
-//        from project(':NeoCom.Model').file('src/main/resources')
-//        into file('src/main/resources')
-//    }
-//    copy {
-//        println 'Copy :NeoCom.DataManagement resources to :NeoCom:MicroServices'
-//        from project(':NeoCom.DataManagement').file('src/main/resources')
-//        into file('src/main/resources')
-//    }
-}
-// Collect output JARs from project modules to staging libs
-//task copyStagingModel(dependsOn: ':NeoCom.Model:javadocJar') {
-//    doLast {
-//        copy {
-//            // Modules JAR files
-//            println 'Copying NeoCom.Model library'
-//            from project(':NeoCom.Model').file('build/libs')
-//            into file('libs')
-//        }
-//    }
-//    dependsOn installDist
-//}
-//task copyStaging {
-//    doLast {
-//        copy {
-//            // Modules JAR files
-//            println 'Copying ESI.SwaggerApi library'
-//            from project(':ESI.SwaggerApi').file('build/libs')
-//            into file('libs')
-//        }
-//        copy {
-//            // Modules JAR files
-//            println 'Copying NeoCom.DataManagement library'
-//            from project(':NeoCom.DataManagement').file('build/libs')
-//            into file('libs')
-//        }
-//        println 'Moving final libraries to staging'
-//        copy {
-//            // Modules JAR files
-//            println 'Copying NeoCom.Model library'
-//            from file('libs')
-//            into file('Z://NC/libs')
-//        }
-//    }
-//    dependsOn copyStagingModel
-//    dependsOn installDist
-//}
-//copyStaging.dependsOn installDist
-//copyResources.dependsOn build
-// Gradlew start task to generate Heroku distribution
-//task stage(dependsOn: ':NeoCom.Model:javadocJar') {
-////    println ':NeoCom.Microservices stage start'
-////    dependsOn copyResources
-////    dependsOn copyStaging
-//    dependsOn copyStaging
-//    doLast {
-////        project(':NeoCom.Model').ta
-//        copy {
-//            println 'Copy :NeoCom.MicroServices production src to staging'
-//            from file('src')
-//            into file('Z://NC/src')
-//        }
-//        copy {
-//            println 'Copy :NeoCom.MicroServices production libs to staging'
-//            from file('libs')
-//            into file('Z://NC/libs')
-//        }
-//    }
-////    println ':NeoCom.Microservices stage end'
-//}
 
-//--- TASK ORDERING
-//copyStaging.mustRunAfter build
-//installDist.mustRunAfter copyStaging
-//stage.mustRunAfter installDist
-
-//--- P R O D U C T   V E R S I O N S
+// - P R O D U C T   V E R S I O N S
 ext {
-    jacksonVersion = '2.9.4'
+    jacksonVersion = '2.9.8'
     ormliteVersion = '4.48'
+    micrometerVersion = '1.1.0'
 }
 
+// - S P R I N G B O O T
 dependencies {
-    // P R O J E C T    D E P E N D E N C I E S
+    implementation "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
+    implementation "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+//    implementation "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
+//    implementation 'javax.xml.bind:jaxb-api:2.3.0'
+    implementation 'org.codehaus.groovy:groovy-all:2.3.11'
+}
+
+// - P R O J E C T    D E P E N D E N C I E S
+dependencies {
 //    implementation project(path: ':ESI.SwaggerApi')
 //    implementation project(path: ':NeoCom.Model')
 //    implementation project(path: ':NeoCom.DataManagement')
-
-    // L O C A L    L I B R A R I E S
-//    implementation 'org.dimensinfin:CoreBase.core:2.2.0'
     implementation files('libs/jeveassets.3.1.2.jar')
-//    implementation files('libs/CoreBase.core-2.0.3.jar')
     implementation 'org.dimensinfin:CoreBase.core:2.2.0'
     implementation 'org.dimensinfin:ESI.SwaggerApi:3.0.0'
     implementation 'org.dimensinfin:NeoCom.Model:0.14.0'
     implementation 'org.dimensinfin:NeoCom.DataManagement:0.14.0'
 
-    // M O D U L E    D E P E N D E N C I E S
-    // S P R I N G B O O T
-    compile('org.springframework.boot:spring-boot-starter-web')
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-
-    // H E R O K U
-    compile ratpack.dependency("hikari")
-    compile "org.postgresql:postgresql:42.2.2"
+    implementation 'joda-time:joda-time:2.3'
+    implementation 'de.svenkubiak:jBCrypt:0.4.1'
 
     // N E O C O M . M O D E L
     // C O R E
 //    implementation 'org.slf4j:slf4j-api:1.7.25'
 //    runtime "org.slf4j:slf4j-simple:1.7.25"
-    implementation 'joda-time:joda-time:2.3'
-    implementation 'de.svenkubiak:jBCrypt:0.4.1'
     // N E O C O M . D A T A M A N A G E M E N T
     implementation 'org.htmlparser:htmlparser:2.1'
     implementation 'com.github.scribejava:scribejava-core:5.4.0'
@@ -217,18 +139,12 @@ dependencies {
     implementation 'mysql:mysql-connector-java:5.1.45'
     implementation 'javax.persistence:javax.persistence-api:2.2'
     implementation 'org.xerial:sqlite-jdbc:3.16.1'
+    implementation "org.postgresql:postgresql:42.2.2"
+}
 
-    // T E S T I N G
+// - T E S T I N G
+dependencies {
     // P R O J E C T    D E P E N D E N C I E S
     testImplementation 'junit:junit:4.12'
     testCompile('org.springframework.boot:spring-boot-starter-test')
-//    testImplementation 'org.slf4j:slf4j-simple:1.7.25'
-//    testImplementation 'joda-time:joda-time:2.3'
-//    testImplementation 'com.j256.ormlite:ormlite-core:4.48'
-//    testImplementation 'com.j256.ormlite:ormlite-jdbc:4.48'
-//    testImplementation 'org.xerial:sqlite-jdbc:3.16.1'
-//    testImplementation 'mysql:mysql-connector-java:5.1.45'
-//    testImplementation 'com.fasterxml.jackson.core:jackson-annotations:2.8.6'
-//    testImplementation 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.8.6'
-//    testImplementation 'org.apache.commons:commons-lang3:3.7'
 }

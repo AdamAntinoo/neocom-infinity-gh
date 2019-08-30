@@ -20,7 +20,7 @@
     "taxRate": 0.0,
     "dateFounded": 1244885100000,
     "homeStation": {
-      "jsonClass": "EveLocation",
+      "jsonClass": "EsiLocation",
       "id": -1,
       "stationId": -1,
       "station": "SPACE",
@@ -85,7 +85,7 @@
   "accountBalance": 2.29212530515E9,
   "urlforAvatar": "http://image.eveonline.com/character/92002067_256.jpg",
   "lastKnownLocation": {
-    "jsonClass": "EveLocation",
+    "jsonClass": "EsiLocation",
     "id": 60003928,
     "stationId": 60003928,
     "station": "Isikemi VI - Moon 5 - Caldari Navy Logistic Support",

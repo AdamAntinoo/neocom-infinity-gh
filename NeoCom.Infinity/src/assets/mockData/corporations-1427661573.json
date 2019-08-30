@@ -12,7 +12,7 @@
   "shares": 1000,
   "url4Icon": "http://image.eveonline.com/Corporation/1427661573_256.png",
   "homeStation": {
-    "jsonClass": "EveLocation",
+    "jsonClass": "EsiLocation",
     "id": 60006610,
     "stationID": 60006610,
     "station": "Esa VIII - Moon 2 - Viziam Warehouse",
@@ -58,7 +58,7 @@
       "shares": 1000,
       "url4Icon": "http://image.eveonline.com/Corporation/1427661573_256.png",
       "homeStation": {
-        "jsonClass": "EveLocation",
+        "jsonClass": "EsiLocation",
         "id": 60006610,
         "stationID": 60006610,
         "station": "Esa VIII - Moon 2 - Viziam Warehouse",
