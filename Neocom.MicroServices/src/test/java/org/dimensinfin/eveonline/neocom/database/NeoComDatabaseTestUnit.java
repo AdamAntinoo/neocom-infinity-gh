@@ -25,7 +25,7 @@ import org.dimensinfin.eveonline.neocom.FullInitializationTestBase;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
 import org.dimensinfin.eveonline.neocom.enums.ELocationType;
-import org.dimensinfin.eveonline.neocom.model.EveLocation;
+import org.dimensinfin.eveonline.neocom.domain.EsiLocation;
 
 /**
  * @author Adam Antinoo
@@ -68,9 +68,9 @@ public class NeoComDatabaseTestUnit extends FullInitializationTestBase {
 	public void test03LocationEntityVerification() throws SQLException {
 		logger.info(">> [NeoComDatabaseTestUnit.test03LocationEntityVerification]");
 		// Check that we can create, verify and delete a Location on the NeoCom database.
-		final Dao<EveLocation, String> locDao = new InfinityGlobalDataManager().getNeocomDBHelper().getLocationDao();
+		final Dao<EsiLocation, String> locDao = new InfinityGlobalDataManager().getNeocomDBHelper().getLocationDao();
 		Assert.assertNotNull("-> LocationDao is not available.", locDao);
-		final EveLocation testLocation = new EveLocation(1001001)
+		final EsiLocation testLocation = new EsiLocation(1001001)
 				.setRegionId(10)
 				.setRegion("Test Region")
 				.setConstellationId(20)
@@ -84,13 +84,13 @@ public class NeoComDatabaseTestUnit extends FullInitializationTestBase {
 				.store();
 		Assert.assertNotNull("-> Location not properly created.", testLocation);
 
-		final EveLocation backLocation = new InfinityGlobalDataManager().getNeocomDBHelper().getLocationDao().queryForId("1001001");
+		final EsiLocation backLocation = new InfinityGlobalDataManager().getNeocomDBHelper().getLocationDao().queryForId("1001001");
 		Assert.assertNotNull("-> Location not retrieved from database.", backLocation);
 		Assert.assertEquals("-> Attribute RegionId not matches.", 10, backLocation.getRegionId());
 		Assert.assertEquals("-> Attribute Region not matches.", "Test Region", backLocation.getRegion());
 
 		new InfinityGlobalDataManager().getNeocomDBHelper().getLocationDao().delete(backLocation);
-		final EveLocation deleteLocation = new InfinityGlobalDataManager().getNeocomDBHelper().getLocationDao().queryForId("1001001");
+		final EsiLocation deleteLocation = new InfinityGlobalDataManager().getNeocomDBHelper().getLocationDao().queryForId("1001001");
 		Assert.assertNull("-> Location not deleted.", deleteLocation);
 
 		logger.info(">> [NeoComDatabaseTestUnit.test03LocationEntityVerification]");
@@ -117,7 +117,7 @@ public class NeoComDatabaseTestUnit extends FullInitializationTestBase {
 	@Test
 	public void test05LocationSearch() throws SQLException {
 		logger.info(">> [NeoComDatabaseTestUnit.test05LocationSearch]");
-		final EveLocation location = new InfinityGlobalDataManager().searchLocation4Id(30002510);
+		final EsiLocation location = new InfinityGlobalDataManager().searchLocation4Id(30002510);
 		Assert.assertNotNull("-> Location not retrieved from database.", location);
 		logger.info(">> [NeoComDatabaseTestUnit.test05LocationSearch]");
 	}

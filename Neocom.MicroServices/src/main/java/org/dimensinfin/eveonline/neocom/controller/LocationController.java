@@ -46,7 +46,7 @@ import org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
 import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
-import org.dimensinfin.eveonline.neocom.model.EveLocation;
+import org.dimensinfin.eveonline.neocom.domain.EsiLocation;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 @RestController
@@ -69,7 +69,7 @@ public class LocationController {
 		try {
 			// --- C O N T R O L L E R   B O D Y
 			// Search the location and eturn the serializaed JSON.
-			final EveLocation location = new InfinityGlobalDataManager().searchLocation4Id(locationid);
+			final EsiLocation location = new InfinityGlobalDataManager().searchLocation4Id(locationid);
 			final String contentsSerialized = NeoComMicroServiceApplication.jsonMapper.writeValueAsString(location);
 			return contentsSerialized;
 		} catch (JsonProcessingException jspe) {
@@ -184,7 +184,7 @@ public class LocationController {
 			if (results != null) {
 				for (Map.Entry<Long, Citadel> entry : results.entrySet()) {
 					// Convert each Citadel to a new Location and update the database if needed.
-					EveLocation loc = new EveLocation(entry.getKey(), entry.getValue());
+					EsiLocation loc = new EsiLocation(entry.getKey(), entry.getValue());
 					logger.info("-- [LocationController.updateCitadelsProcess]> Created location: " + loc);
 				}
 			}
@@ -224,8 +224,8 @@ public class LocationController {
 			if (null != response) {
 				Map<Long, Station> stations = response.getStations();
 				for (Long stationid : stations.keySet()) {
-					// Convert the station to an EveLocation
-					EveLocation loc = new EveLocation(stations.get(stationid));
+					// Convert the station to an EsiLocation
+					EsiLocation loc = new EsiLocation(stations.get(stationid));
 					logger.info("-- [LocationController.updateOutpostsProcess]> Created location: " + loc);
 				}
 			}

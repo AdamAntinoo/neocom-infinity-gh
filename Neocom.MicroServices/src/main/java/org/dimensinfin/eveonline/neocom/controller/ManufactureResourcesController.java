@@ -44,8 +44,8 @@ import org.dimensinfin.eveonline.neocom.industry.FacetedAssetContainer;
 import org.dimensinfin.eveonline.neocom.industry.Fitting;
 import org.dimensinfin.eveonline.neocom.industry.Resource;
 import org.dimensinfin.eveonline.neocom.model.ANeoComEntity;
-import org.dimensinfin.eveonline.neocom.model.EveItem;
-import org.dimensinfin.eveonline.neocom.model.EveLocation;
+import org.dimensinfin.eveonline.neocom.domain.EveItem;
+import org.dimensinfin.eveonline.neocom.domain.EsiLocation;
 import org.dimensinfin.eveonline.neocom.model.ManufactureResourcesRequest;
 import org.dimensinfin.eveonline.neocom.model.PilotV2;
 
@@ -340,7 +340,7 @@ public class ManufactureResourcesController {
 	}
 
 	public static class MineralResourceProcessor {
-		private Map<Integer, FacetedAssetContainer<EveLocation>> _storageLocations = new HashMap<>();
+		private Map<Integer, FacetedAssetContainer<EsiLocation>> _storageLocations = new HashMap<>();
 
 		/**
 		 * Add the resource depending on the type. For Mineral resources they are added automatically to the matching Location
@@ -358,8 +358,8 @@ public class ManufactureResourcesController {
 			}
 		}
 
-		private void add2Location( final RefiningProcess refiner, final EveLocation location ) {
-			FacetedAssetContainer<EveLocation> hit = _storageLocations.get(location.getSystemId());
+		private void add2Location( final RefiningProcess refiner, final EsiLocation location ) {
+			FacetedAssetContainer<EsiLocation> hit = _storageLocations.get(location.getSystemId());
 			if (null == hit) {
 				// Add this new location to the list.
 				hit = new FacetedAssetContainer(location);
@@ -368,8 +368,8 @@ public class ManufactureResourcesController {
 			hit.addResource(refiner);
 		}
 
-		private void add2Location( final NeoComAsset asset, final EveLocation location ) {
-			FacetedAssetContainer<EveLocation> hit = _storageLocations.get(location.getSystemId());
+		private void add2Location( final NeoComAsset asset, final EsiLocation location ) {
+			FacetedAssetContainer<EsiLocation> hit = _storageLocations.get(location.getSystemId());
 			if (null == hit) {
 				// Add this new location to the list.
 				hit = new FacetedAssetContainer(location);
@@ -378,11 +378,11 @@ public class ManufactureResourcesController {
 			hit.addResource(new Resource(asset.getTypeId(), asset.getQuantity()));
 		}
 
-		public Map<Integer, FacetedAssetContainer<EveLocation>> getStorageLocations() {
+		public Map<Integer, FacetedAssetContainer<EsiLocation>> getStorageLocations() {
 			return _storageLocations;
 		}
 
-		public MineralResourceProcessor setStorageLocations( final Map<Integer, FacetedAssetContainer<EveLocation>> _storageLocations ) {
+		public MineralResourceProcessor setStorageLocations( final Map<Integer, FacetedAssetContainer<EsiLocation>> _storageLocations ) {
 			this._storageLocations = _storageLocations;
 			return this;
 		}
@@ -428,10 +428,10 @@ public class ManufactureResourcesController {
 
 
 final class RefiningFacility extends ANeoComEntity {
-	private EveLocation location = null;
+	private EsiLocation location = null;
 	private double yield = 0.6;
 
-	public RefiningFacility( final EveLocation facilityLocation ) {
+	public RefiningFacility( final EsiLocation facilityLocation ) {
 		this.location = facilityLocation;
 		List<Property> yieldList = new ArrayList();
 		try {

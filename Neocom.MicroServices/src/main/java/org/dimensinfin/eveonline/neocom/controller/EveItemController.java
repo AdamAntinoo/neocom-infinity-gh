@@ -26,7 +26,7 @@ import org.dimensinfin.eveonline.neocom.NeoComMicroServiceApplication;
 import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
 import org.dimensinfin.eveonline.neocom.exception.JsonExceptionInstance;
 import org.dimensinfin.eveonline.neocom.market.MarketDataEntry;
-import org.dimensinfin.eveonline.neocom.model.EveItem;
+import org.dimensinfin.eveonline.neocom.domain.EveItem;
 
 // - CLASS IMPLEMENTATION ...................................................................................
 @RestController

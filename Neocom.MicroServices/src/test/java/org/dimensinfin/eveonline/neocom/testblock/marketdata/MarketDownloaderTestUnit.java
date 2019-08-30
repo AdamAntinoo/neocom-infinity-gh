@@ -26,7 +26,7 @@ import org.dimensinfin.eveonline.neocom.NeoComMicroServicesCoreTestUnit;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.enums.EMarketSide;
 import org.dimensinfin.eveonline.neocom.market.TrackEntry;
-import org.dimensinfin.eveonline.neocom.model.EveItem;
+import org.dimensinfin.eveonline.neocom.domain.EveItem;
 import org.dimensinfin.eveonline.neocom.services.MarketDataServer;
 
 // - CLASS IMPLEMENTATION ...................................................................................

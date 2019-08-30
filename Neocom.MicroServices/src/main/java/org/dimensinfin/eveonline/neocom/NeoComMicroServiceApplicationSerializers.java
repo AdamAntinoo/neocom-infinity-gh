@@ -34,8 +34,8 @@ import org.dimensinfin.eveonline.neocom.entities.NeoComAsset;
 import org.dimensinfin.eveonline.neocom.industry.EveTask;
 import org.dimensinfin.eveonline.neocom.industry.FacetedAssetContainer;
 import org.dimensinfin.eveonline.neocom.industry.Resource;
-import org.dimensinfin.eveonline.neocom.model.EveItem;
-import org.dimensinfin.eveonline.neocom.model.EveLocation;
+import org.dimensinfin.eveonline.neocom.domain.EveItem;
+import org.dimensinfin.eveonline.neocom.domain.EsiLocation;
 import org.dimensinfin.eveonline.neocom.model.PilotV2;
 import org.dimensinfin.eveonline.neocom.planetary.ProcessingActionV2;
 
@@ -60,7 +60,7 @@ public class NeoComMicroServiceApplicationSerializers {
 		neocomSerializerModule.addSerializer(NeoComAsset.class, new NeoComAssetSerializer());
 		neocomSerializerModule.addSerializer(EveTask.class, new ProcessingTaskSerializer());
 		neocomSerializerModule.addSerializer(Exception.class, new ExceptionSerializer());
-		neocomSerializerModule.addSerializer(EveLocation.class, new LocationSerializer());
+		neocomSerializerModule.addSerializer(EsiLocation.class, new LocationSerializer());
 		neocomSerializerModule.addSerializer(EveTask.class, new ProcessingTaskSerializer());
 		neocomSerializerModule.addSerializer(Resource.class, new ResourceSerializer());
 		neocomSerializerModule.addSerializer(ManufactureResourcesController.RefiningProcess.class, new RefiningProcessSerializer());
@@ -185,12 +185,12 @@ public class NeoComMicroServiceApplicationSerializers {
 	// ..........................................................................................................
 
 	// - CLASS IMPLEMENTATION ...................................................................................
-	public static class LocationSerializer extends JsonSerializer<EveLocation> {
+	public static class LocationSerializer extends JsonSerializer<EsiLocation> {
 		// - F I E L D - S E C T I O N ............................................................................
 
 		// - M E T H O D - S E C T I O N ..........................................................................
 		@Override
-		public void serialize(final EveLocation value, final JsonGenerator jgen, final SerializerProvider provider)
+		public void serialize(final EsiLocation value, final JsonGenerator jgen, final SerializerProvider provider)
 				throws IOException, JsonProcessingException {
 			jgen.writeStartObject();
 //			jgen.writeNumberField("recordid", value.getRealId());

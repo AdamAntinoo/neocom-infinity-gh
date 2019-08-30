@@ -24,8 +24,8 @@ import org.dimensinfin.eveonline.neocom.industry.Job;
 import org.dimensinfin.eveonline.neocom.market.NeoComMarketOrder;
 import org.dimensinfin.eveonline.neocom.model.ApiKey;
 import org.dimensinfin.eveonline.neocom.model.DatabaseVersion;
-import org.dimensinfin.eveonline.neocom.model.EveItem;
-import org.dimensinfin.eveonline.neocom.model.EveLocation;
+import org.dimensinfin.eveonline.neocom.domain.EveItem;
+import org.dimensinfin.eveonline.neocom.domain.EsiLocation;
 import org.dimensinfin.eveonline.neocom.model.Login;
 import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
 import org.dimensinfin.eveonline.neocom.model.NeoComBlueprint;
@@ -233,7 +233,7 @@ public class SpringDatabaseConnector extends NeoComBaseDatabase implements INeoC
 	}
 
 	@Override
-	public Dao<EveLocation, String> getLocationDAO () throws SQLException {
+	public Dao<EsiLocation, String> getLocationDAO () throws SQLException {
 		return this.getNeocomDBHelper().getLocationDAO();
 	}
 

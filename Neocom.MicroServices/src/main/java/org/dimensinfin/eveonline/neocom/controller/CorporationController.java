@@ -30,8 +30,8 @@ import org.dimensinfin.eveonline.neocom.enums.ELocationType;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCorporationsCorporationIdAssets200Ok;
 import org.dimensinfin.eveonline.neocom.exception.NeoComRegisteredException;
 import org.dimensinfin.eveonline.neocom.interfaces.ILocatableAsset;
-import org.dimensinfin.eveonline.neocom.model.EveItem;
-import org.dimensinfin.eveonline.neocom.model.EveLocation;
+import org.dimensinfin.eveonline.neocom.domain.EveItem;
+import org.dimensinfin.eveonline.neocom.domain.EsiLocation;
 import org.dimensinfin.eveonline.neocom.model.PilotV2;
 import org.dimensinfin.eveonline.neocom.security.SessionManager;
 
@@ -96,7 +96,7 @@ public class CorporationController {
 						//--- L O C A T I O N   P R O C E S S I N G
 						// Check the asset location. The location can be a known game station, a known user structure, another asset
 						// or an unknown player structure. Check which one is this location.
-						EveLocation targetLoc = new GlobalDataManager().searchLocation4Id(myasset.getLocationId());
+						EsiLocation targetLoc = new GlobalDataManager().searchLocation4Id(myasset.getLocationId());
 						if ( targetLoc.getTypeId() == ELocationType.UNKNOWN ) {
 							// Add this asset to the list of items to be reprocessed.
 							this.unlocatedAssets.add(myasset);
@@ -186,7 +186,7 @@ public class CorporationController {
 	 */
 	private ELocationType validateLocation( final ILocatableAsset locatable ) {
 		long targetLocationid = locatable.getLocationId();
-		EveLocation targetLoc = new GlobalDataManager().searchLocation4Id(targetLocationid);
+		EsiLocation targetLoc = new GlobalDataManager().searchLocation4Id(targetLocationid);
 		if ( targetLoc.getTypeId() == ELocationType.UNKNOWN ) {
 			try {
 				// Need to check if asset or unreachable location. Search for asset with locationid.

@@ -21,7 +21,7 @@ import org.dimensinfin.eveonline.neocom.NeoComMicroServicesCoreTestUnit;
 import org.dimensinfin.eveonline.neocom.database.ISDEDBHelper;
 import org.dimensinfin.eveonline.neocom.database.SDESBDBHelper;
 import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
-import org.dimensinfin.eveonline.neocom.model.EveItem;
+import org.dimensinfin.eveonline.neocom.domain.EveItem;
 
 /**
  * Test unit for opening and data access to the different queries supported by the SDE Eve Online game model database. The

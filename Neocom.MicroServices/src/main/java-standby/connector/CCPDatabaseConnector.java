@@ -22,8 +22,8 @@ import org.dimensinfin.eveonline.neocom.constant.ModelWideConstants;
 import org.dimensinfin.eveonline.neocom.core.AccessStatistics;
 import org.dimensinfin.eveonline.neocom.enums.ELocationType;
 import org.dimensinfin.eveonline.neocom.industry.Resource;
-import org.dimensinfin.eveonline.neocom.model.EveItem;
-import org.dimensinfin.eveonline.neocom.model.EveLocation;
+import org.dimensinfin.eveonline.neocom.domain.EveItem;
+import org.dimensinfin.eveonline.neocom.domain.EsiLocation;
 import org.dimensinfin.eveonline.neocom.planetary.Schematics;
 
 import com.j256.ormlite.dao.Dao;
@@ -102,7 +102,7 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 	// - F I E L D - S E C T I O N ............................................................................
 	private Connection ccpDatabase = null;
 	private final Hashtable<Integer, EveItem> itemCache = new Hashtable<Integer, EveItem>();
-	private final Hashtable<Long, EveLocation> locationsCache = new Hashtable<Long, EveLocation>(200);
+	private final Hashtable<Long, EsiLocation> locationsCache = new Hashtable<Long, EsiLocation>(200);
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 	public CCPDatabaseConnector () {
@@ -284,10 +284,10 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 	 * Locations table at the application database.
 	 */
 	@Override
-	public EveLocation searchLocationbyID ( final long locationID ) {
+	public EsiLocation searchLocationbyID ( final long locationID ) {
 		CCPDatabaseConnector.logger.info(">< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: " + locationID);
 		// First check if the location is already on the cache table.
-		EveLocation hit = locationsCache.get(locationID);
+		EsiLocation hit = locationsCache.get(locationID);
 		if (null != hit) {
 			int access = CCPDatabaseConnector.locationsCacheStatistics.accountAccess(true);
 			int hits = CCPDatabaseConnector.locationsCacheStatistics.getHits();
@@ -297,17 +297,17 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 		} else {
 			// Try to get that id from the cache tables
 			int access = CCPDatabaseConnector.locationsCacheStatistics.accountAccess(false);
-			List<EveLocation> locationList = null;
+			List<EsiLocation> locationList = null;
 			try {
-				Dao<EveLocation, String> locationDao = ModelAppConnector.getSingleton().getDBConnector().getLocationDAO();
-				QueryBuilder<EveLocation, String> queryBuilder = locationDao.queryBuilder();
-				Where<EveLocation, String> where = queryBuilder.where();
+				Dao<EsiLocation, String> locationDao = ModelAppConnector.getSingleton().getDBConnector().getLocationDAO();
+				QueryBuilder<EsiLocation, String> queryBuilder = locationDao.queryBuilder();
+				Where<EsiLocation, String> where = queryBuilder.where();
 				where.eq("id", locationID);
-				PreparedQuery<EveLocation> preparedQuery = queryBuilder.prepare();
+				PreparedQuery<EsiLocation> preparedQuery = queryBuilder.prepare();
 				locationList = locationDao.query(preparedQuery);
 			} catch (java.sql.SQLException sqle) {
 				sqle.printStackTrace();
-				return new EveLocation(locationID);
+				return new EsiLocation(locationID);
 			}
 
 			// Check list contents. If found we have the location. Else then check if Office
@@ -323,7 +323,7 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 				//						fixedLocationID = fixedLocationID - 6000000;
 				//					}
 				//				}
-				hit = new EveLocation(fixedLocationID);
+				hit = new EsiLocation(fixedLocationID);
 				ResultSet cursor = null;
 				try {
 					PreparedStatement prepStmt = this.getCCPDatabase().prepareStatement(CCPDatabaseConnector.SELECT_LOCATIONBYID);
@@ -389,7 +389,7 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 				int hits = CCPDatabaseConnector.locationsCacheStatistics.getHits();
 				CCPDatabaseConnector.logger.info(">< [CCPDatabaseConnector.searchLocationbyID]> [HIT-" + hits + "/" + access
 								+ "] Location " + locationID + " found at Application Database.");
-				EveLocation foundLoc = locationList.get(0);
+				EsiLocation foundLoc = locationList.get(0);
 				locationsCache.put(foundLoc.getID(), foundLoc);
 				return locationList.get(0);
 			}
@@ -397,8 +397,8 @@ public class CCPDatabaseConnector implements ICCPDatabaseConnector {
 	}
 
 	@Override
-	public EveLocation searchLocationBySystem ( final String name ) {
-		EveLocation hit = new EveLocation();
+	public EsiLocation searchLocationBySystem ( final String name ) {
+		EsiLocation hit = new EsiLocation();
 		PreparedStatement prepStmt = null;
 		ResultSet cursor = null;
 		try {

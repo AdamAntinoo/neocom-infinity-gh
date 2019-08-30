@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 import org.dimensinfin.core.model.AbstractComplexNode;
 import org.dimensinfin.eveonline.neocom.connector.NeoComMSConnector;
 import org.dimensinfin.eveonline.neocom.manager.DefaultAssetsContentManager;
-import org.dimensinfin.eveonline.neocom.model.EveLocation;
+import org.dimensinfin.eveonline.neocom.domain.EsiLocation;
 import org.dimensinfin.eveonline.neocom.model.ExtendedLocation;
 import org.dimensinfin.eveonline.neocom.model.NeoComAsset;
 import org.dimensinfin.eveonline.neocom.model.NeoComCharacter;
@@ -111,7 +111,7 @@ public class AssetsManagerController {
 			NeoComMSConnector.getSingleton().getModelStore().activateLoginIdentifier(login);
 			NeoComCharacter pilot = NeoComMSConnector.getSingleton().getModelStore().activatePilot(Long.valueOf(identifier));
 			long locationidnumber = Long.valueOf(locationid).longValue();
-			EveLocation location = NeoComMSConnector.getSingleton().getCCPDBConnector().searchLocationbyID(locationidnumber);
+			EsiLocation location = NeoComMSConnector.getSingleton().getCCPDBConnector().searchLocationbyID(locationidnumber);
 			// Convert the Location to a new Extended Location with the new Contents Manager.
 			ExtendedLocation newloc = new ExtendedLocation(pilot, location);
 			newloc.setContentManager(new DefaultAssetsContentManager(newloc));

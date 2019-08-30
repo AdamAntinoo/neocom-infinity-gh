@@ -21,8 +21,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.dimensinfin.eveonline.neocom.datamngmt.InfinityGlobalDataManager;
-import org.dimensinfin.eveonline.neocom.model.EveItem;
-import org.dimensinfin.eveonline.neocom.model.EveLocation;
+import org.dimensinfin.eveonline.neocom.domain.EveItem;
+import org.dimensinfin.eveonline.neocom.domain.EsiLocation;
 
 /**
  * @author Adam Antinoo
@@ -44,7 +44,7 @@ public class SDESBDBHelper extends SDEDatabaseManager implements ISDEDBHelper {
 	private Connection connectionSource = null;
 
 	private final Hashtable<Integer, EveItem> itemCache = new Hashtable<Integer, EveItem>(1000);
-	private final Hashtable<Long, EveLocation> locationsCache = new Hashtable<Long, EveLocation>(200);
+	private final Hashtable<Long, EsiLocation> locationsCache = new Hashtable<Long, EsiLocation>(200);
 
 	// - C O N S T R U C T O R - S E C T I O N ................................................................
 	public SDESBDBHelper() {

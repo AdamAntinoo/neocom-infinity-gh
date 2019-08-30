@@ -126,7 +126,8 @@ public class NeoComMicroServiceApplication extends NeoComMicroServiceApplication
 
 		// Connect the Configuration manager.
 		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the Configuration Manager...");
-		InfinityGlobalDataManager.connectConfigurationManager(new GlobalSBConfigurationProvider("properties"));
+		InfinityGlobalDataManager.connectConfigurationManager(new GlobalSBConfigurationProvider("build/resources/main" +
+				"/properties"));
 
 		logger.info("-- [NeoComMicroServiceApplication.main]> Connecting the Preferences Manager...");
 		InfinityGlobalDataManager.connectPreferencesManager(new GlobalSBPreferencesManager());
