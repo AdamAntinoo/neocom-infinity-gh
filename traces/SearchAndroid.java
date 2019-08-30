@@ -1,12 +1,12 @@
-	public EveLocation searchLocationbyID(final long locationID) {
+	public EsiLocation searchLocationbyID(final long locationID) {
 		// Try to get that id from the cache tables
 		try {
-			Dao<EveLocation, String> locationDao = NeoComAppConnector.getSingleton().getDBConnector().getLocationDAO();
-			QueryBuilder<EveLocation, String> queryBuilder = locationDao.queryBuilder();
-			Where<EveLocation, String> where = queryBuilder.where();
+			Dao<EsiLocation, String> locationDao = NeoComAppConnector.getSingleton().getDBConnector().getLocationDAO();
+			QueryBuilder<EsiLocation, String> queryBuilder = locationDao.queryBuilder();
+			Where<EsiLocation, String> where = queryBuilder.where();
 			where.eq("id", locationID);
-			PreparedQuery<EveLocation> preparedQuery = queryBuilder.prepare();
-			List<EveLocation> locationList = locationDao.query(preparedQuery);
+			PreparedQuery<EsiLocation> preparedQuery = queryBuilder.prepare();
+			List<EsiLocation> locationList = locationDao.query(preparedQuery);
 
 			// Check list contents. If found we have the location. Else then check if Office
 			if (locationList.size() < 1) {
@@ -21,7 +21,7 @@
 						fixedLocationID = fixedLocationID - 6000000;
 					}
 				}
-				EveLocation hit = new EveLocation(fixedLocationID);
+				EsiLocation hit = new EsiLocation(fixedLocationID);
 				try {
 					final Cursor cursor = this.getCCPDatabase().rawQuery(AndroidCCPDatabaseConnector.SELECT_LOCATIONBYID,
 							new String[] { Long.valueOf(fixedLocationID).toString() });
@@ -71,6 +71,6 @@
 			return locationList.get(0);
 		} catch (java.sql.SQLException sqle) {
 			sqle.printStackTrace();
-			return new EveLocation(locationID);
+			return new EsiLocation(locationID);
 		}
 	}

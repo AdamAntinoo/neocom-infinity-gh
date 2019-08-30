@@ -99,7 +99,7 @@ locations: [ ]
 },
 locations: {
 60003643: {
-jsonClass: "EveLocation",
+jsonClass: "EsiLocation",
 expanded: false,
 downloaded: true,
 renderWhenEmpty: true,
@@ -171,7 +171,7 @@ fullLocation: "[0.562468977048859] Hakshma VIII - Moon 13 - Caldari Business Tri
 securityValue: 0.562468977048859
 },
 60003760: {
-jsonClass: "EveLocation",
+jsonClass: "EsiLocation",
 expanded: false,
 downloaded: true,
 renderWhenEmpty: true,
@@ -194,7 +194,7 @@ fullLocation: "[0.945913116664839] Jita IV - Moon 4 - Caldari Navy Assembly Plan
 securityValue: 0.945913116664839
 },
 60005155: {
-jsonClass: "EveLocation",
+jsonClass: "EsiLocation",
 expanded: false,
 downloaded: true,
 renderWhenEmpty: true,
@@ -217,7 +217,7 @@ fullLocation: "[0.822735560922698] Scolluzer XI - Republic Security Services Ass
 securityValue: 0.822735560922698
 },
 60006220: {
-jsonClass: "EveLocation",
+jsonClass: "EsiLocation",
 expanded: false,
 downloaded: true,
 renderWhenEmpty: true,
@@ -240,7 +240,7 @@ fullLocation: "[0.684395768593291] Pimebeka VII - Moon 16 - Carthum Conglomerate
 securityValue: 0.684395768593291
 },
 60006526: {
-jsonClass: "EveLocation",
+jsonClass: "EsiLocation",
 expanded: false,
 downloaded: true,
 renderWhenEmpty: true,
@@ -263,7 +263,7 @@ fullLocation: "[0.612691959383857] Esescama VIII - Moon 3 - Imperial Armaments W
 securityValue: 0.612691959383857
 },
 60006610: {
-jsonClass: "EveLocation",
+jsonClass: "EsiLocation",
 expanded: false,
 downloaded: true,
 renderWhenEmpty: true,
@@ -286,7 +286,7 @@ fullLocation: "[0.757320250704002] Esa VIII - Moon 2 - Viziam Warehouse - Tash-M
 securityValue: 0.757320250704002
 },
 60008494: {
-jsonClass: "EveLocation",
+jsonClass: "EsiLocation",
 expanded: false,
 downloaded: true,
 renderWhenEmpty: true,
@@ -43585,7 +43585,7 @@ fullLocation: "[1.0] Amarr VIII (Oris) - Emperor Family Academy - Domain > Amarr
 securityValue: 1
 },
 60012928: {
-jsonClass: "EveLocation",
+jsonClass: "EsiLocation",
 expanded: false,
 downloaded: true,
 renderWhenEmpty: true,
@@ -43705,7 +43705,7 @@ fullLocation: "[0.398013837972186] Reblier VIII - Moon 7 - DED Logistic Support 
 securityValue: 0.398013837972186
 },
 60013549: {
-jsonClass: "EveLocation",
+jsonClass: "EsiLocation",
 expanded: false,
 downloaded: true,
 renderWhenEmpty: true,
@@ -43728,7 +43728,7 @@ fullLocation: "[-0.157212654503891] 6-CZ49 VI - Moon 6 - Intaki Syndicate Bureau
 securityValue: -0.157212654503891
 },
 60014089: {
-jsonClass: "EveLocation",
+jsonClass: "EsiLocation",
 expanded: false,
 downloaded: true,
 renderWhenEmpty: true,
@@ -44376,7 +44376,7 @@ fullLocation: "[-0.103962672977765] PVH8-0 VI - Moon 8 - Thukker Mix Factory - S
 securityValue: -0.103962672977765
 },
 60014719: {
-jsonClass: "EveLocation",
+jsonClass: "EsiLocation",
 expanded: false,
 downloaded: true,
 renderWhenEmpty: true,
@@ -44399,7 +44399,7 @@ fullLocation: "[1.0] Cistuvaert V - Moon 12 - Center for Advanced Studies School
 securityValue: 1
 },
 60015143: {
-jsonClass: "EveLocation",
+jsonClass: "EsiLocation",
 expanded: false,
 downloaded: true,
 renderWhenEmpty: true,
@@ -44422,7 +44422,7 @@ fullLocation: "[0.612358466038543] Aidart IV - Federal Defense Union Logistic Su
 securityValue: 0.612358466038543
 },
 61000796: {
-jsonClass: "EveLocation",
+jsonClass: "EsiLocation",
 expanded: false,
 downloaded: true,
 renderWhenEmpty: true,
@@ -44445,7 +44445,7 @@ fullLocation: "[-0.0616773789441644] H-GKI6 VI - Basilica of Maxentius - Provide
 securityValue: -0.0616773789441644
 },
 1024674208617: {
-jsonClass: "EveLocation",
+jsonClass: "EsiLocation",
 expanded: false,
 downloaded: true,
 renderWhenEmpty: true,
@@ -49493,7 +49493,7 @@ content: "",
 type: "DEFAULT",
 locations: [
 {
-jsonClass: "EveLocation",
+jsonClass: "EsiLocation",
 expanded: false,
 downloaded: true,
 renderWhenEmpty: true,
@@ -49577,7 +49577,7 @@ content: "",
 type: "DEFAULT",
 locations: [
 {
-jsonClass: "EveLocation",
+jsonClass: "EsiLocation",
 expanded: false,
 downloaded: true,
 renderWhenEmpty: true,
@@ -50237,7 +50237,7 @@ content: "",
 type: "DEFAULT",
 locations: [
 {
-jsonClass: "EveLocation",
+jsonClass: "EsiLocation",
 expanded: false,
 downloaded: true,
 renderWhenEmpty: true,
@@ -93548,7 +93548,7 @@ content: "",
 type: "DEFAULT",
 locations: [
 {
-jsonClass: "EveLocation",
+jsonClass: "EsiLocation",
 expanded: false,
 downloaded: true,
 renderWhenEmpty: true,

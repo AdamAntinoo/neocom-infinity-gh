@@ -9,10 +9,10 @@
 	 * Locations table at the application database.
 	 */
 	@Override
-	public EveLocation searchLocationbyID(final long locationID) {
+	public EsiLocation searchLocationbyID(final long locationID) {
 		CCPDatabaseConnector.logger.info(">< [CCPDatabaseConnector.searchLocationbyID]> Searching ID: " + locationID);
 		// First check if the location is already on the cache table.
-		EveLocation hit = locationsCache.get(locationID);
+		EsiLocation hit = locationsCache.get(locationID);
 		if (null != hit) {
 			int access = CCPDatabaseConnector.locationsCacheStatistics.accountAccess(true);
 			int hits = CCPDatabaseConnector.locationsCacheStatistics.getHits();
@@ -22,17 +22,17 @@
 		} else {
 			// Try to get that id from the cache tables
 			int access = CCPDatabaseConnector.locationsCacheStatistics.accountAccess(false);
-			List<EveLocation> locationList = null;
+			List<EsiLocation> locationList = null;
 			try {
-				Dao<EveLocation, String> locationDao = ModelAppConnector.getSingleton().getDBConnector().getLocationDAO();
-				QueryBuilder<EveLocation, String> queryBuilder = locationDao.queryBuilder();
-				Where<EveLocation, String> where = queryBuilder.where();
+				Dao<EsiLocation, String> locationDao = ModelAppConnector.getSingleton().getDBConnector().getLocationDAO();
+				QueryBuilder<EsiLocation, String> queryBuilder = locationDao.queryBuilder();
+				Where<EsiLocation, String> where = queryBuilder.where();
 				where.eq("id", locationID);
-				PreparedQuery<EveLocation> preparedQuery = queryBuilder.prepare();
+				PreparedQuery<EsiLocation> preparedQuery = queryBuilder.prepare();
 				locationList = locationDao.query(preparedQuery);
 			} catch (java.sql.SQLException sqle) {
 				sqle.printStackTrace();
-				return new EveLocation(locationID);
+				return new EsiLocation(locationID);
 			}
 
 			// Check list contents. If found we have the location. Else then check if Office
@@ -48,7 +48,7 @@
 						fixedLocationID = fixedLocationID - 6000000;
 					}
 				}
-				hit = new EveLocation(fixedLocationID);
+				hit = new EsiLocation(fixedLocationID);
 				ResultSet cursor = null;
 				try {
 					PreparedStatement prepStmt = this.getCCPDatabase().prepareStatement(CCPDatabaseConnector.SELECT_LOCATIONBYID);
@@ -110,7 +110,7 @@
 				int hits = CCPDatabaseConnector.locationsCacheStatistics.getHits();
 				CCPDatabaseConnector.logger.info(">< [CCPDatabaseConnector.searchLocationbyID]> [HIT-" + hits + "/" + access
 						+ "] Location " + locationID + " found at Application Database.");
-				EveLocation foundLoc = locationList.get(0);
+				EsiLocation foundLoc = locationList.get(0);
 				locationsCache.put(foundLoc.getID(), foundLoc);
 				return locationList.get(0);
 			}

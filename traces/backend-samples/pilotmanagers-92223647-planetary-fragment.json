@@ -17,7 +17,7 @@
       content: "",
       type: "DEFAULT",
       locations: [{
-        jsonClass: "EveLocation",
+        jsonClass: "EsiLocation",
         expanded: false,
         downloaded: true,
         renderWhenEmpty: true,
@@ -97,7 +97,7 @@
       content: "",
       type: "DEFAULT",
       locations: [{
-            jsonClass: "EveLocation",
+            jsonClass: "EsiLocation",
             expanded: false,
             downloaded: true,
             renderWhenEmpty: true,
