@@ -4,11 +4,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
+import java.util.Collections;
+
 @SpringBootApplication
 public class StaticserverApplication extends SpringBootServletInitializer {
 
-	public static void main( String[] args ) {
-		SpringApplication.run(StaticserverApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication app = new SpringApplication(StaticserverApplication.class);
+        app.setDefaultProperties(Collections
+                .singletonMap("server.port", "8091"));
+        app.run(args);
+    }
 
 }
