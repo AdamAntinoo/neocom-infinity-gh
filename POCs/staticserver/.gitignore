@@ -34,3 +34,8 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### POC Application
+#staticserver/src/main/resources/static/pocangstatic/
+src/main/resources/static/pocangstatic/
+
