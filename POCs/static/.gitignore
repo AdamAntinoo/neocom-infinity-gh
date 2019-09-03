@@ -3,3 +3,6 @@
 
 .gradle/
 classes/
+build/
+
+src/main/resources/static/ui/
