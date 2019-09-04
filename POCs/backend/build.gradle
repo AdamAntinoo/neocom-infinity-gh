@@ -1,0 +1,24 @@
+plugins {
+    id 'groovy'
+    id 'java'
+    id 'org.springframework.boot' version '2.1.7.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+}
+
+group 'org.dimensinfin.poc'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+//    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+}
+//dependencies{
+//    testCompile group: 'junit', name: 'junit', version: '4.12'
+//}
