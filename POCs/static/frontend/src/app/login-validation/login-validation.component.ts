@@ -10,6 +10,7 @@ export class LoginValidationComponent implements OnInit {
   param1: string;
   param2: string;
   constructor(private route: ActivatedRoute) {
+    console.log('>LoginValidation');
     this.route.queryParams.subscribe(params => {
       this.param1 = params['code'];
       this.param2 = params['state'];

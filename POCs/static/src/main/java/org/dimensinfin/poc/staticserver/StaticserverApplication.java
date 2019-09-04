@@ -13,8 +13,8 @@ public class StaticserverApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(StaticserverApplication.class);
-        app.setDefaultProperties(Collections
-                .singletonMap("server.port", "8091"));
+//        app.setDefaultProperties(Collections
+//                .singletonMap("server.port", "8080"));
         app.run(args);
     }
 
