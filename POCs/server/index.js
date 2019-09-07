@@ -47,13 +47,16 @@ app.get('/', function (req, res) {
 
 // - A P P   M O U N T P O I N T
 app.use(express.static(__dirname + app.locals.apppath, options));
-app.get('/app', function (req, res) {
+app.get('/app/*.*', function (req, res) {
+    res.sendFile(path.join(__dirname + req.url));
+});
+app.get('/app/*', function (req, res) {
     res.sendFile(path.join(__dirname + app.locals.apppath + '/index.html'));
 });
 app.get('/app/', function (req, res) {
     res.sendFile(path.join(__dirname + app.locals.apppath + '/index.html'));
 });
-app.get('/app/*', function (req, res) {
+app.get('/app', function (req, res) {
     res.sendFile(path.join(__dirname + app.locals.apppath + '/index.html'));
 });
 

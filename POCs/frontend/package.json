@@ -5,14 +5,13 @@
     "ng": "ng831",
     "start": "node server.js",
     "serve": "ng serve",
-    "server": "ng serve --host neocominfinity.poc --port 8080 --base-href /ui/",
     "install:clean": "rm -rf ../server/app/*.*",
     "install:copy": "npm run install:clean && cp --recursive --verbose ./dist/pocangstatic/* ../server/app",
-    "build": "ng build --aot --prod && npm run install:copy",
+    "build:dev": "ng build --aot --prod && npm run install:copy",
+    "build": "ng build --aot --prod --base-href /app/ && npm run install:copy",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "postinstall2": "ng build --aot --prod --base-href /ui/"
+    "e2e": "ng e2e"
   },
   "engines": {
     "node": "10.16.3",
