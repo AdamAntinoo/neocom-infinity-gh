@@ -1,0 +1,15 @@
+{
+  "name": "neocom.server",
+  "version": "0.1.0",
+  "description": "POC static server configured for an express server that will serve the frontend static pages along with the Angular 8 forntend server and the routing to the /api backend server.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adam Antinoo (adamantinoo.git@gmail.com)",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.17.1"
+  }
+}

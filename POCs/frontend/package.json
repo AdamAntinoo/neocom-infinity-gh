@@ -5,11 +5,13 @@
     "ng": "ng831",
     "start": "node server.js",
     "server": "ng serve --host neocominfinity.poc --port 8080 --base-href /ui/",
-    "build": "ng build",
+    "install:clean": "rm -rf ../server/app/*.*",
+    "install:copy": "npm run install:clean && cp --recursive --verbose ./dist/pocangstatic/* ../server/app",
+    "build": "ng build --aot --prod --base-href /app/ && npm run install:copy",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --aot --prod"
+    "postinstall2": "ng build --aot --prod --base-href /ui/"
   },
   "engines": {
     "node": "10.16.3",
@@ -17,19 +19,19 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~8.2.3",
-    "@angular/common": "~8.2.3",
-    "@angular/compiler": "~8.2.3",
-    "@angular/core": "~8.2.3",
-    "@angular/forms": "~8.2.3",
-    "@angular/platform-browser": "~8.2.3",
-    "@angular/platform-browser-dynamic": "~8.2.3",
-    "@angular/router": "~8.2.3",
-    "express": "^4.17.1",
-    "path": "^0.12.7",
-    "rxjs": "~6.4.0",
-    "tslib": "^1.10.0",
-    "zone.js": "~0.9.1"
+    "@angular/animations": "8.2.3",
+    "@angular/common": "8.2.3",
+    "@angular/compiler": "8.2.3",
+    "@angular/core": "8.2.3",
+    "@angular/forms": "8.2.3",
+    "@angular/platform-browser": "8.2.3",
+    "@angular/platform-browser-dynamic": "8.2.3",
+    "@angular/router": "8.2.3",
+    "express": "4.17.1",
+    "path": "0.12.7",
+    "rxjs": "6.4.0",
+    "tslib": "1.10.0",
+    "zone.js": "0.9.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.1",
