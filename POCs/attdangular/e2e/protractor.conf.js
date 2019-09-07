@@ -3,6 +3,7 @@
 // https://github.com/angular/protractor/blob/master/lib/config.ts
 
 // const { SpecReporter } = require('jasmine-spec-reporter');
+const path = require('path');
 
 /**
  * @type { import("protractor").Config }
@@ -22,7 +23,17 @@ exports.config = {
   frameworkPath: require.resolve('protractor-cucumber-framework'),
   cucumberOpts: {
     require: ['./src/steps/**/*.steps.ts'],
+    format: 'json:.tmp/results.json',
+    strict: true
   },
+  plugins: [{
+    package: 'protractor-multiple-cucumber-html-reporter-plugin',
+    options: {
+      // read the options part
+      automaticallyGenerateReport: true,
+      removeExistingJsonReportFile: true
+    }
+  }],
   // jasmineNodeOpts: {
   //   showColors: true,
   //   defaultTimeoutInterval: 30000,
