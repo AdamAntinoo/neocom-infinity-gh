@@ -21,8 +21,8 @@ var options = {
 }
 app.locals.appname = "NEOCOM"
 app.locals.version = "v0.16.0POC"
-app.locals.port = 4000
-app.locals.apppath = "/app"
+app.locals.port = 8080
+app.locals.apppath = "/ui"
 app.locals.apipath = "api"
 
 // - L O G G I N G
@@ -46,17 +46,31 @@ app.get('/', function (req, res) {
 })
 
 // - A P P   M O U N T P O I N T
+// app.use(express.static(__dirname + app.locals.apppath, options));
+// app.get('/app/*.*', function (req, res) {
+//     res.sendFile(path.join(__dirname + req.url));
+// });
+// app.get('/app/*', function (req, res) {
+//     res.sendFile(path.join(__dirname + app.locals.apppath + '/index.html'));
+// });
+// app.get('/app/', function (req, res) {
+//     res.sendFile(path.join(__dirname + app.locals.apppath + '/index.html'));
+// });
+// app.get('/app', function (req, res) {
+//     res.sendFile(path.join(__dirname + app.locals.apppath + '/index.html'));
+// });
+
 app.use(express.static(__dirname + app.locals.apppath, options));
-app.get('/app/*.*', function (req, res) {
+app.get('/ui/*.*', function (req, res) {
     res.sendFile(path.join(__dirname + req.url));
 });
-app.get('/app/*', function (req, res) {
+app.get('/ui/*', function (req, res) {
     res.sendFile(path.join(__dirname + app.locals.apppath + '/index.html'));
 });
-app.get('/app/', function (req, res) {
+app.get('/ui/', function (req, res) {
     res.sendFile(path.join(__dirname + app.locals.apppath + '/index.html'));
 });
-app.get('/app', function (req, res) {
+app.get('/ui', function (req, res) {
     res.sendFile(path.join(__dirname + app.locals.apppath + '/index.html'));
 });
 
