@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginVerificationComponent } from './login-verification/login-verification.component';
 import { LoginValidationComponent } from './login-validation/login-validation.component';
 
 
