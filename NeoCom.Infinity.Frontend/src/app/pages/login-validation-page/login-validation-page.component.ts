@@ -11,5 +11,10 @@ export class LoginValidationPageComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  public getAppName(): string {
+    return 'NeoCom';
+  }
+  public getAppVersion(): string {
+    return '0.16.1';
+  }
 }

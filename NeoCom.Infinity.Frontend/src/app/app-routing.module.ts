@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LoginValidationPageComponent } from './pages/login-validation-page/login-validation-page.component';
 
 
 const routes: Routes = [
@@ -8,8 +9,8 @@ const routes: Routes = [
     redirectTo: '/loginValidation',
     pathMatch: 'full'
   },
-  //--- DASHBOARD PAGES
-  { path: 'loginValidation', component: LoginValidationComponent },
+  // - DASHBOARD PAGES
+  { path: 'loginValidation', component: LoginValidationPageComponent },
 ];
 
 @NgModule({
