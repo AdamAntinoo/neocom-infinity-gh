@@ -16,7 +16,7 @@ Given('I am on the login landing page', async () => {
 When('I do nothing', () => { });
 Then('I should see a {string} panel', function (panelColor: string) {
   // Write code here that turns the phrase above into concrete actions
-  return 'pending';
+  return 'completed';
 });
 Then('The panel should render the application name', async () => {
   browser.debugger();

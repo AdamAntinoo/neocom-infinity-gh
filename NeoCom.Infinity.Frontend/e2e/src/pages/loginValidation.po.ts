@@ -9,16 +9,12 @@ export class LoginValidationPage {
     return element(by.css('app-root .content span')).getText() as Promise<string>;
   }
   getAppName() {
-    browser.debugger();
-   /* console.log(">AppName> " +*/ element(by.css('.app-name')).getText().then(function (value) {
-      console.log(value);
-    });
     return element(by.css('.app-name')).getText() as Promise<string>;
   }
   getAppVersion() {
-    return element(by.css('app-info-panel span .app-version')).getText() as Promise<string>;
+    return element(by.css('.app-version')).getText() as Promise<string>;
   }
   getCopyright() {
-    return element(by.css('app-info-panel span .app-copyright')).getText() as Promise<string>;
+    return element(by.css('.app-copyright')).getText() as Promise<string>;
   }
 }

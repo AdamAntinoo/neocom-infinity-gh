@@ -15,6 +15,6 @@ export class LoginValidationPageComponent implements OnInit {
     return 'NeoCom';
   }
   public getAppVersion(): string {
-    return '0.16.1';
+    return 'v0.16.1';
   }
 }
