@@ -5,7 +5,15 @@
     "types": [
       "jasmine",
       "node"
-    ]
+    ],
+    "baseUrl": "./",
+    "paths": {
+      "@interfaces/*": ["app/modules/shared/interfaces/*"],
+      "@models/*": ["app/modules/shared/models/*"],
+      "@renders/*": ["app/modules/shared/renders/*"],
+      "@app/*": ["app/*"],
+      "@env/*": ["environments/*"]
+    }
   },
   "files": [
     "src/test.ts",
