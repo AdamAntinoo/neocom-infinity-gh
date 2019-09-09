@@ -1,5 +1,6 @@
 import { Before, Given, Then, When } from 'cucumber';
 import { expect } from 'chai';
+import { browser, by, element } from 'protractor';
 
 import { LoginValidationPage } from '../pages/loginValidation.po';
 
@@ -18,6 +19,7 @@ Then('I should see a {string} panel', function (panelColor: string) {
   return 'pending';
 });
 Then('The panel should render the application name', async () => {
+  browser.debugger();
   expect(await page.getAppName()).to.equal('NeoCom');
 });
 Then('The panel should render the application version', async () => {

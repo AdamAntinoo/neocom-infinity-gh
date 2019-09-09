@@ -1,11 +1,11 @@
-import { AppPage } from './pages/loginValidation.po';
+import { LoginValidationPage } from './pages/loginValidation.po';
 import { browser, logging } from 'protractor';
 
 describe('workspace-project App', () => {
-  let page: AppPage;
+  let page: LoginValidationPage;
 
   beforeEach(() => {
-    page = new AppPage();
+    page = new LoginValidationPage();
   });
 
   it('should display welcome message', () => {

@@ -32,6 +32,13 @@ exports.config = {
       automaticallyGenerateReport: true,
       removeExistingJsonReportFile: true
     }
+  },
+  {
+    package: 'protractor-console-plugin',
+    failOnWarning: false,
+    failOnError: true,
+    logWarnings: true,
+    exclude: []
   }],
   // jasmineNodeOpts: {
   //   showColors: true,

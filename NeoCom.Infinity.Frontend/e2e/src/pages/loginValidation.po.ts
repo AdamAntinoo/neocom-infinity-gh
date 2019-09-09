@@ -9,6 +9,10 @@ export class LoginValidationPage {
     return element(by.css('app-root .content span')).getText() as Promise<string>;
   }
   getAppName() {
+    browser.debugger();
+   /* console.log(">AppName> " +*/ element(by.css('.app-name')).getText().then(function (value) {
+      console.log(value);
+    });
     return element(by.css('.app-name')).getText() as Promise<string>;
   }
   getAppVersion() {

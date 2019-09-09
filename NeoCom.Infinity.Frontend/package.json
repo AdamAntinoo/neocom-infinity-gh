@@ -16,7 +16,8 @@
     "test:dev": "ng test --code-coverage --source-map --watch --progress ",
     "test:prod": "ng test --watch=false --no-progress --browsers=ChromeHeadlessCI",
     "e2e": "ng e2e --port 4300",
-    "e2e:atdd": "ng e2e --port 4300 --protractor-config e2e/protractor-cucumber.conf.js"
+    "e2e:atdd": "ng e2e --port 4300 --protractor-config e2e/protractor-cucumber.conf.js",
+    "e2e:compile": "tsc -p e2e"
   },
   "private": true,
   "dependencies": {
@@ -54,6 +55,7 @@
     "karma-jasmine": "2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "protractor": "5.4.0",
+    "protractor-console-plugin": "^0.1.1",
     "protractor-multiple-cucumber-html-reporter-plugin": "^1.8.1",
     "ts-node": "7.0.0",
     "tslint": "5.15.0",
