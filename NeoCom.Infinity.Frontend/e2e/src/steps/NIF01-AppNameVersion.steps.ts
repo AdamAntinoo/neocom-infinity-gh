@@ -1,8 +1,8 @@
-import { Before, Given, Then, When } from 'cucumber';
 import { expect } from 'chai';
-import { browser, by, element } from 'protractor';
-
+import { Before, Given, Then, When } from 'cucumber';
+import { browser } from 'protractor';
 import { LoginValidationPage } from '../pages/loginValidation.po';
+
 
 let page: LoginValidationPage;
 
@@ -26,5 +26,5 @@ Then('The panel should render the application version', async () => {
   expect(await page.getAppVersion()).to.equal('v0.16.1');
 });
 Then('The panel should render the copyright notice', async () =>{
-  expect(await page.getCopyright()).to.equal('@2019,2020 Dimensinfin Industries');
+  expect(await page.getCopyright()).to.equal('© 2019,2020 Dimensinfin Industries');
 });

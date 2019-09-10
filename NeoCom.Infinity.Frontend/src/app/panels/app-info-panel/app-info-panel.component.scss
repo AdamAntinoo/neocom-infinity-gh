@@ -1,6 +1,19 @@
+.app-info-panel{
+    height: 50px;
+    padding: 8px;
+}
 .app-name{
     font-size: 30px;
+    color: white;
+    text-shadow: 0px 0px 6px white;
 }
 .app-version{
     font-size: 20px;
+    color: #50B71D;
+    text-shadow: 0px 0px 6px #50B71D;
+}
+.app-copyright{
+    font-size: 10px;
+    float: right;
+    color: white;
 }

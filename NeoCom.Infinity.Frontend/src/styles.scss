@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css"; // bootstrap styles
+// - APPLICATION STYLES VARIABLES
+@import "./styles/_scss_variables.scss";
+@import "./styles/font-styles.css";
+// @import "./styles/panel-styles.scss"; // bootstrap styles
+@import "./styles/new-panel-styles.scss"; // bootstrap styles
