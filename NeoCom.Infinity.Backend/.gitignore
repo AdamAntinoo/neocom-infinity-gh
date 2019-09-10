@@ -1,10 +1,40 @@
-# IntelliJ IDEA ignored files
-.idea/workspace.xml
+### MAVEN ###
+!.mvn/wrapper/maven-wrapper.jar
 
-# Framework ignored files
-.gradle/
+### STS ###
+.apt_generated
+.factorypath
+.springBeans
+
+### IntelliJ IDEA ###
+#.idea
+*.iws
+*.iml
+*.ipr
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/libraries/
+/.gradle/
+
+### NetBeans ###
+nbproject/private/
 build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
 
-# Standby development files to be ignored
-src/main/java-standby
-src/main/resources
+### NeoCom ###
+classes/
+target/
+out/
+
+## Heroku gradle additions ##
+#gradlew
+#gradlew.bat
+
+### Project file exceptions
+#privatelibs/
+#libs/
+src/main/resources/static/
+NeoCom.Infinity/

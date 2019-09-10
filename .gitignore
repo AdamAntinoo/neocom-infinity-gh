@@ -1,3 +1,4 @@
+# File extensions to be ignored on the repository
 *.diff
 *.db
 *.log
@@ -5,7 +6,10 @@
 *.ttf
 *.otf
 *.odt#
-.recommenders/
-.metadata/
 
+# Stage directories to be excluded
+Stage/
+stage/
 Neocom.MicroServices/repository/
+NeoCom.Infinity.Backend/repository/
+
