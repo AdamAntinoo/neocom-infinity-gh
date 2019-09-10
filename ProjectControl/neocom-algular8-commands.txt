@@ -40,8 +40,8 @@ npm install --save-exact date-fns
 npm install --save-exact rollbar@2.5.1
 npm install --save-exact font-awesome
 npm install --save-exact ng6-toastr-notifications
-npm install --save-exact protractor-cucumber-framework cucumber chai @types/chai @types/cucumber
-
+npm install --save-dev protractor-cucumber-framework cucumber chai @types/chai @types/cucumber
+npm install --save-dev protractor-multiple-cucumber-html-reporter-plugin
 
 
 -- INCUBATION DEPENDENCIES
