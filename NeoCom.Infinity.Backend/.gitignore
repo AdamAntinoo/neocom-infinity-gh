@@ -3,3 +3,7 @@
 
 # Framework ignored files
 .gradle/
+
+# Standby development files to be ignored
+src/main/java-standby
+src/main/resources

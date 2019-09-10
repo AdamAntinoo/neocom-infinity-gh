@@ -10,6 +10,7 @@ ext {
     jodaTimeVersion = '2.3'
     loggerVersion = '1.7.26'
     jacksonVersion = '2.9.4'
+    retrofitVersion = '2.5.0'
     ormliteVersion = '4.48'
     micrometerVersion = '1.1.0'
 }
@@ -20,6 +21,8 @@ dependencies {
     compile "org.slf4j:slf4j-simple:$loggerVersion"
     implementation "joda-time:joda-time:$jodaTimeVersion"
     implementation 'org.apache.commons:commons-lang3:3.9'
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion" // OAuth2 authentication
+    implementation "com.squareup.retrofit2:converter-jackson:$retrofitVersion" // HTTP encapsulation and swagger support
     // D A T A B A S E - R E D I S
     implementation 'org.redisson:redisson:3.8.2'
     implementation 'com.vladmihalcea:hibernate-types-52:2.4.2'
@@ -38,7 +41,7 @@ dependencies {
     implementation files('libs/jeveassets.3.1.2.jar')
     implementation 'org.dimensinfin:CoreBase.core:3.2.0'
     implementation 'org.dimensinfin:ESI.SwaggerApi:4.0.1'
-    implementation 'org.dimensinfin:NeoCom.DataManagement:0.15.0'
+    implementation project(':NeoCom.DataManagement')
 }
 
 // - U N I T   T E S T I N G

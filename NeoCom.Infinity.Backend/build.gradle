@@ -38,7 +38,7 @@ springBoot {
 
 // - A D D I T I O N A L   C O N F I G U R A T I O N
 apply from: './dependencies.gradle'
-
+apply from: './tasks.gradle'
 
 compileKotlin {
     kotlinOptions.jvmTarget = "1.8"
