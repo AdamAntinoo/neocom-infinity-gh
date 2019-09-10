@@ -1,17 +1,16 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component } from '@angular/core';
+import { Input } from '@angular/core';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'app-info-panel',
   templateUrl: './app-info-panel.component.html',
   styleUrls: ['./app-info-panel.component.scss']
 })
-export class AppInfoPanelComponent implements OnInit {
+export class AppInfoPanelComponent {
   @Input() name: string;
   @Input() version: string;
-
-  constructor() { }
-
-  ngOnInit() {
+  public getCopyright(): string {
+    return environment.copyright;
   }
-
 }

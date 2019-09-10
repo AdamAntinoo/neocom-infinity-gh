@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  copyright : '© 2019,2020 Dimensinfin Industries'
 };
 
 /*
