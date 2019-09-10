@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginValidationPageComponent } from './login-validation-page.component';
+import { AppInfoPanelComponent } from '@app/panels/app-info-panel/app-info-panel.component';
 
 describe('LoginValidationPageComponent', () => {
   let component: LoginValidationPageComponent;
@@ -8,7 +9,7 @@ describe('LoginValidationPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginValidationPageComponent ]
+      declarations: [ LoginValidationPageComponent, AppInfoPanelComponent ]
     })
     .compileComponents();
   }));

@@ -12,6 +12,10 @@ import { AppInfoPanelComponent } from './panels/app-info-panel/app-info-panel.co
     LoginValidationPageComponent,
     AppInfoPanelComponent
   ],
+  exports: [
+    LoginValidationPageComponent,
+    AppInfoPanelComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule

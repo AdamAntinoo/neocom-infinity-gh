@@ -11,8 +11,8 @@
       "@interfaces/*": ["app/modules/shared/interfaces/*"],
       "@models/*": ["app/modules/shared/models/*"],
       "@renders/*": ["app/modules/shared/renders/*"],
-      "@app/*": ["app/*"],
-      "@env/*": ["environments/*"]
+      "@app/*": ["src/app/*"],
+      "@env/*": ["src/environments/*"]
     }
   },
   "files": [
