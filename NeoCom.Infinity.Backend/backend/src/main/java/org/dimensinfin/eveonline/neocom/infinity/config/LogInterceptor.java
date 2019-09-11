@@ -6,8 +6,10 @@ import java.util.Enumeration;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.dimensinfin.eveonline.neocom.infinity.adapters.ConfigurationProviderComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 /**
@@ -16,20 +18,20 @@ import org.springframework.web.servlet.HandlerInterceptor;
 public class LogInterceptor implements HandlerInterceptor {
 	public static Logger logger = LoggerFactory.getLogger(LogInterceptor.class);
 
-	//    private ConfigurationProviderComponent configurationProvider;
+	private ConfigurationProviderComponent configurationProvider;
 	private String requestPath;
 	private Instant timer;
 
-//    public LogInterceptor(final ConfigurationProviderComponent configurationProvider) {
-//        this.configurationProvider = configurationProvider;
-//    }
+	public LogInterceptor(@Autowired final ConfigurationProviderComponent configurationProvider) {
+		this.configurationProvider = configurationProvider;
+	}
 
 	@Override
 	public boolean preHandle(final HttpServletRequest request, final HttpServletResponse response, final Object handler) {
 		requestPath = request.getRequestURI();
 		timer = Instant.now();
-//        if (this.configurationProvider.getResourceBoolean("P.runtime.logging.request.headers")) {
-		if (false) {
+		if (this.configurationProvider.getResourceBoolean("P.runtime.logging.request.headers")) {
+//		if (false) {
 			// Dump to logger almost all headers.
 			final Enumeration<String> headerNames = request.getHeaderNames();
 			while (headerNames.hasMoreElements()) {

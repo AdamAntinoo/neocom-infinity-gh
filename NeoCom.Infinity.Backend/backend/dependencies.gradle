@@ -60,7 +60,7 @@ dependencies {
     implementation 'org.dimensinfin:CoreBase.core:3.2.0'
     implementation 'org.dimensinfin:ESI.SwaggerApi:4.0.1'
 //    implementation 'org.dimensinfin:NeoCom.DataManagement:0.15.0'
-//    implementation project(':NeoCom.DataManagement')
+    implementation project(':NeoCom.DataManagement')
 }
 
 // - U N I T   T E S T I N G
