@@ -3,6 +3,8 @@
 
 # Project generated ignored files
 .gradle/
+backend/build/
+baeckend.AcceptanceTest/build/
 
 # Project not required files set to be ignored
 backend/libs/
