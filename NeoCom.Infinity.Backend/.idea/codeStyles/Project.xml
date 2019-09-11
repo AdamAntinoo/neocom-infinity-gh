@@ -17,6 +17,10 @@
       <option name="WRAP_COMMENTS" value="true" />
       <option name="WRAP_ON_TYPING" value="1" />
       <option name="SOFT_MARGINS" value="100,150" />
+      <indentOptions>
+        <option name="USE_TAB_CHARACTER" value="true" />
+        <option name="SMART_TABS" value="true" />
+      </indentOptions>
       <arrangement>
         <groups>
           <group>
