@@ -3,6 +3,7 @@
 
 # Project generated ignored files
 .gradle/
+build/
 backend/build/
 baeckend.AcceptanceTest/build/
 

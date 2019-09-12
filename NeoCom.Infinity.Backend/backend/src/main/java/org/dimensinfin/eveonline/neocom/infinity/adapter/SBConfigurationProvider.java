@@ -1,33 +1,22 @@
-package org.dimensinfin.eveonline.neocom.infinity.adapters;
+package org.dimensinfin.eveonline.neocom.infinity.adapter;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import com.annimon.stream.Stream;
+import org.dimensinfin.eveonline.neocom.conf.GlobalConfigurationProvider;
+
+import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.annimon.stream.Stream;
-
-import org.dimensinfin.eveonline.neocom.conf.GlobalConfigurationProvider;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-/**
- * @author Adam Antinoo
- */
 public class SBConfigurationProvider extends GlobalConfigurationProvider {
 	public SBConfigurationProvider(final String propertiesFolder ) {
 		super(propertiesFolder);
 	}
 
-	// - M E T H O D - S E C T I O N ..........................................................................
 	protected void readAllProperties() throws IOException {
-		logger.info(">> [GlobalConfigurationProvider.readAllProperties]");
+		logger.info(">> [SBConfigurationProvider.readAllProperties]");
 		// Read all .properties files under the predefined path on the /resources folder.
 		final List<String> propertyFiles = getResourceFiles(getResourceLocation());
 		final ClassLoader classLoader = getClass().getClassLoader();
@@ -51,7 +40,7 @@ public class SBConfigurationProvider extends GlobalConfigurationProvider {
 						e.printStackTrace();
 					}
 				});
-		logger.info("<< [GlobalConfigurationProvider.readAllProperties]> Total properties number: {}", contentCount());
+		logger.info("<< [SBConfigurationProvider.readAllProperties]> Total properties number: {}", contentCount());
 	}
 
 	protected List<String> getResourceFiles( String path ) throws IOException {
