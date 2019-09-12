@@ -1,0 +1,11 @@
+P:
+  runtime:
+    configuration:
+      properties:
+        path: properties
+    filesystem:
+      application:
+        directory: ./NeoCom.Infinity
+
+          P.runtime.configuration.properties.path=properties
+          P.runtime.filesystem.application.directory=./NeoCom.Infinity

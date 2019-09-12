@@ -1,11 +1,13 @@
 package org.dimensinfin.eveonline.neocom.infinity.adapter;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-public class SBNeoComDBWrapper extends SBNeoComDBAdapter {
+@Component
+public class NeoComDBWrapper extends SBNeoComDBAdapter {
 	private ConfigurationProviderWrapper configurationProvider;
 
-	public SBNeoComDBWrapper(@Autowired final ConfigurationProviderWrapper configurationProvider) {
+	public NeoComDBWrapper(@Autowired final ConfigurationProviderWrapper configurationProvider) {
 		this.configurationProvider = configurationProvider;
 		// Initialize the parent adapter with configuration data.
 		this.localConnectionDescriptor = this.configurationProvider.getResourceString("P.database.neocom.databasehost")

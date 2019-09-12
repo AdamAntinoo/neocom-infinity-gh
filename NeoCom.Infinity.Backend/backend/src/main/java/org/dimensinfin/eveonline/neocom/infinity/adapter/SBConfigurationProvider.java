@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Properties;
 
 public class SBConfigurationProvider extends GlobalConfigurationProvider {
-	public SBConfigurationProvider(final String propertiesFolder ) {
+	public SBConfigurationProvider(final String propertiesFolder) {
 		super(propertiesFolder);
 	}
 
@@ -22,7 +22,7 @@ public class SBConfigurationProvider extends GlobalConfigurationProvider {
 		final ClassLoader classLoader = getClass().getClassLoader();
 		Stream.of(propertyFiles)
 				.sorted()
-				.forEach(( fileName ) -> {
+				.forEach((fileName) -> {
 					logger.info("-- [GlobalConfigurationProvider.readAllProperties]> Processing file: {}", fileName);
 					try {
 						Properties properties = new Properties();
@@ -43,12 +43,11 @@ public class SBConfigurationProvider extends GlobalConfigurationProvider {
 		logger.info("<< [SBConfigurationProvider.readAllProperties]> Total properties number: {}", contentCount());
 	}
 
-	protected List<String> getResourceFiles( String path ) throws IOException {
+	protected List<String> getResourceFiles(String path) throws IOException {
 		List<String> filenames = new ArrayList<>();
 
-		try (
-				InputStream in = getResourceAsStream(path);
-				BufferedReader br = new BufferedReader(new InputStreamReader(in))) {
+		try (InputStream in = getResourceAsStream(path);
+		     BufferedReader br = new BufferedReader(new InputStreamReader(in))) {
 			String resource;
 
 			while ((resource = br.readLine()) != null) {
@@ -59,9 +58,8 @@ public class SBConfigurationProvider extends GlobalConfigurationProvider {
 		return filenames;
 	}
 
-	private InputStream getResourceAsStream( String resource ) {
-		final InputStream in
-				= getContextClassLoader().getResourceAsStream(resource);
+	private InputStream getResourceAsStream(String resource) {
+		final InputStream in = getContextClassLoader().getResourceAsStream(resource);
 
 		return in == null ? getClass().getResourceAsStream(resource) : in;
 	}
