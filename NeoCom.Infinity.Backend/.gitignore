@@ -6,6 +6,7 @@
 .idea/assetWizardSettings.xml
 .idea/caches/
 .idea/libraries/
+.idea/sonarlint/
 
 # Project generated ignored files
 .gradle/

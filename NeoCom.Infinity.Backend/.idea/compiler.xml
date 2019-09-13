@@ -4,6 +4,7 @@
     <bytecodeTargetLevel>
       <module name="backend" target="1.7" />
       <module name="backend-AcceptanceTest" target="1.7" />
+      <module name="NeoCom.DataManagement" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
