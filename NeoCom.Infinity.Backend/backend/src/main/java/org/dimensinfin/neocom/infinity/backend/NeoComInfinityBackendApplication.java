@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity;
+package org.dimensinfin.neocom.infinity.backend;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,12 +15,12 @@ import java.util.Objects;
 @SpringBootApplication
 public class NeoComInfinityBackendApplication {
     private static final Logger logger = LoggerFactory.getLogger(NeoComInfinityBackendApplication.class);
-    private static final NeoComComponentFactory neocomComponentFactory = new NeoComComponentFactory();
+//    private static final NeoComComponentFactory neocomComponentFactory = new NeoComComponentFactory();
 
     public static void main(String[] args) {
 		logger.info(">> [NeoComInfinityBackendApplication.main]");
 		logger.info(">> [NeoComInfinityBackendApplication.main]> Check application startup...");
-		Objects.requireNonNull(neocomComponentFactory);
+//		Objects.requireNonNull(neocomComponentFactory);
         SpringApplication.run(NeoComInfinityBackendApplication.class, args);
         logger.info("<< [NeoComInfinityBackendApplication.main]");
     }

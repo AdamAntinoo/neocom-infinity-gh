@@ -1,32 +1,54 @@
-// - P L U G I N S
-plugins {
-	id 'org.springframework.boot' version '2.1.8.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
-	id 'java'
+buildscript {
+    ext {
+        springBootVersion = '2.1.1.RELEASE'
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
 }
-apply plugin: 'maven-publish'
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
-group = 'org.dimensinfin.eveonline'
-version = '0.0.1-SNAPSHOT'
-archivesBaseName = 'NeoCom.MicroServices'
-sourceCompatibility = '11'
-//targetCompatibility = 1.8
+//android {
+//    compileSdkVersion 28
+////    buildToolsVersion "29.0.2"
+//    defaultConfig {
+//        applicationId "org.dimensinfin.neocom.infinity"
+//        minSdkVersion 15
+//        targetSdkVersion 28
+//        versionCode 1
+//        versionName "1.0"
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+//    }
+//    buildTypes {
+//        release {
+//            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//        }
+//    }
+//}
 
-configurations {
-	developmentOnly
-	runtimeClasspath {
-		extendsFrom developmentOnly
-	}
+// - P R O D U C T   V E R S I O N S
+ext {
+    jacksonVersion = '2.9.8'
+    ormliteVersion = '4.48'
+    micrometerVersion = '1.1.0'
 }
 
-repositories {
-	mavenLocal()
-	mavenCentral()
-	google()
-	jcenter()
-	maven { url 'https://jitpack.io' }
-}
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-// - A D D I T I O N A L   C O N F I G U R A T I O N
-apply from: './dependencies.gradle'
-//apply from: './tasks.gradle'
+//    implementation "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
+    implementation "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+//    implementation "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
+
+//    implementation 'androidx.appcompat:appcompat:1.0.2'
+    testImplementation 'junit:junit:4.12'
+//    androidTestImplementation 'androidx.test:runner:1.1.1'
+//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+}

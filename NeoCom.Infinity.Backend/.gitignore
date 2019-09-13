@@ -1,5 +1,11 @@
 # IntelliJ IDEA ignored files
+*.iml
+.idea/modules.xml
 .idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+.idea/caches/
+.idea/libraries/
 
 # Project generated ignored files
 .gradle/
@@ -10,4 +16,4 @@ baeckend.AcceptanceTest/build/
 # Project not required files set to be ignored
 backend/libs/
 backend.AcceptanceTest/libs/
-
+app/
