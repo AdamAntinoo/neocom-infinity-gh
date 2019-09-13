@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: 101_neocom_create_schema
+      author: NeoCom development team. Adam Antinoo main developer.
+      changes:
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS "neocom"

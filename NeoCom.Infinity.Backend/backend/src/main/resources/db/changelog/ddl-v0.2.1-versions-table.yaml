@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: 201_neocom_create_versions_table
+      author: NeoCom development team. Adam Antinoo main developer.
+      changes:
+        - createTable:
+            schemaName: neocom
+            tableName: Versions
+            columns:
+              - column:
+                  name: version
+                  type: bigint

@@ -13,7 +13,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/.idea/compiler.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/backend-AcceptanceTest/build.gradle">
           <value>
             <set />
           </value>
@@ -24,6 +34,26 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/backend/dependencies.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/backend/src/main/java/org/dimensinfin/eveonline/neocom/infinity/NeoComInfinityBackendApplication.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/backend/src/main/java/org/dimensinfin/eveonline/neocom/infinity/adapter/FileSystemWrapper.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/backend/src/main/java/org/dimensinfin/eveonline/neocom/infinity/adapter/SBConfigurationProvider.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/backend/src/main/java/org/dimensinfin/eveonline/neocom/infinity/serializer/CredentialSerializer.java">
           <value>
             <set />
           </value>
@@ -44,6 +74,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/backend/src/main/resources/application.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/backend/src/main/resources/db/changelog/ddl-v0.2.2-credentials-table.yaml">
           <value>
             <set />
           </value>

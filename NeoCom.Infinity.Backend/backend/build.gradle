@@ -7,46 +7,10 @@ plugins {
 apply plugin: 'maven-publish'
 
 group = 'org.dimensinfin.eveonline'
-version = '0.0.1-SNAPSHOT'
-archivesBaseName = 'NeoCom.MicroServices'
+version = '0.16.0'
+archivesBaseName = 'NeoCom.Infinity.Backend'
 sourceCompatibility = 1.8
-//targetCompatibility = 1.8
+targetCompatibility = 1.8
 
-
-
-//buildscript {
-//    ext {
-//        springBootVersion = '2.1.1.RELEASE'
-//    }
-//    repositories {
-//        mavenLocal()
-//        mavenCentral()
-//    }
-//    dependencies {
-//        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-//    }
-//}
-//apply plugin: 'java'
-//apply plugin: 'org.springframework.boot'
-//apply plugin: 'io.spring.dependency-management'
-
-//android {
-//    compileSdkVersion 28
-////    buildToolsVersion "29.0.2"
-//    defaultConfig {
-//        applicationId "org.dimensinfin.neocom.infinity"
-//        minSdkVersion 15
-//        targetSdkVersion 28
-//        versionCode 1
-//        versionName "1.0"
-//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-//    }
-//    buildTypes {
-//        release {
-//            minifyEnabled false
-//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-//        }
-//    }
-//}
 // - A D D I T I O N A L   C O N F I G U R A T I O N
 apply from: './dependencies.gradle'

@@ -4,13 +4,17 @@ server:
 #  - D A T A B A S E
 spring:
   datasource:
-#    url: jdbc:postgresql://localhost:5432/postgres
+    url: "jdbc:postgresql://localhost:5432/postgres"
     username: neocom
     password: 01.Alpha
+    driver-class-name: org.postgresql.Driver
   jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
     generate-ddl: true
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+        temp:
+          use_jdbc_metadata_defaults: false

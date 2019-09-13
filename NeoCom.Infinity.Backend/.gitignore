@@ -12,7 +12,9 @@
 .gradle/
 build/
 backend/build/
-baeckend.AcceptanceTest/build/
+backend/out/
+backend.AcceptanceTest/build/
+backend.AcceptanceTest/out/
 
 # Project not required files set to be ignored
 backend/libs/
