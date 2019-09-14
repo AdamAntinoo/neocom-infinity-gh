@@ -1,6 +1,7 @@
 // - P R O D U C T   V E R S I O N S
 ext {
     springBootVersion = '2.1.8.RELEASE'
+    springCloudVersion = '2.1.2.RELEASE'
     jodaTimeVersion = '2.3'
     loggerVersion = '1.7.26'
     retrofitVersion = '2.5.0'
@@ -15,12 +16,8 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
     implementation "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
     implementation "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
-
-//    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 //	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-//    implementation 'org.springframework.boot:spring-boot-starter-web-services'
-//    implementation 'org.liquibase:liquibase-core'
-//    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation "org.springframework.cloud:spring-cloud-starter-openfeign:$springCloudVersion"
 //    implementation "io.github.resilience4j:resilience4j-circuitbreaker:0.17.0"
 }
 
