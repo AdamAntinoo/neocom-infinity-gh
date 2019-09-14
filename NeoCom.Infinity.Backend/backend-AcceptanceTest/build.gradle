@@ -1,8 +1,20 @@
-apply plugin: 'java-library'
+// - P L U G I N S
+apply plugin: 'java'
+apply plugin: 'project-report'
+apply plugin: 'jacoco'
 
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-}
-
+group = 'org.dimensinfin.eveonline'
+version = '0.16.0'
+archivesBaseName = 'NeoCom.Infinity.Backend.AcceptanceTest'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+
+// - A D D I T I O N A L   C O N F I G U R A T I O N
+apply from: './dependencies.gradle'
+
+sourceSets {
+    test.java {
+        srcDirs += "src/test/java-steps"
+        srcDirs += "src/test/java-support"
+    }
+}
