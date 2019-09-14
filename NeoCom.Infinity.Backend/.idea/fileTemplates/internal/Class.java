@@ -10,6 +10,10 @@ private ${NAME}(){}
 			this.onConstruction = new ${NAME}();
 		}
 
+		public ${NAME}.Builder with<Field>( final <Field> <Field> ) {
+			this.onConstruction.<Field> = <Field>;
+			return this;
+		}
 		public ${NAME} build() {
 			return this.onConstruction;
 		}
