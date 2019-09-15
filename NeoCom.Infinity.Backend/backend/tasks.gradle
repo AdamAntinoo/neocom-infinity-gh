@@ -1,17 +1,21 @@
 // - T A S K S
 ext {
     resourcesPath = "$projectDir/src/main/resources"
-    dataManagementProject = project.configurations.implementation.find {
-        it.name.startsWith("NeoCom.DataManagement")
-    }
+    dataManagementProjectFileName = 'NeoCom.DataManagement-0.15.0.jar'
     dataManagementProperties = 'properties'
     sdedbSource = '/src/main/sh/sde.db'
 }
 // Copy configuration and property resources from other modules to the final 'resources' application folder.
 task copyProperties(type: Copy) {
     group = "neocom"
+//    dataManagementProjectJar = project.configurations.compile*.toURI().find { URI uri -> new File(uri).name == dataManagementProjectFileName }
     println '> Task :neocom.infinity:copyResources: > Copy :NeoCom.DataManagement resources to :app:resources'
-    from new File(zipTree(dataManagementProject), dataManagementProperties)
+//    println dataManagementProject
+    from zipTree(new File(
+            project.configurations.compile*.toURI().find {
+                URI uri -> new File(uri).name == dataManagementProjectFileName
+            }, dataManagementProperties)
+    )
     into resourcesPath
 }
 build.dependsOn copyProperties

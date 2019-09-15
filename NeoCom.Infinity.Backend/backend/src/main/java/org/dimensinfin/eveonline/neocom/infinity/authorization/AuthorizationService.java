@@ -6,7 +6,6 @@ import org.dimensinfin.eveonline.neocom.auth.TokenTranslationResponse;
 import org.dimensinfin.eveonline.neocom.auth.VerifyCharacterResponse;
 import org.dimensinfin.eveonline.neocom.core.updaters.CredentialUpdater;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
-import org.dimensinfin.eveonline.neocom.datamngmt.GlobalDataManager;
 import org.dimensinfin.eveonline.neocom.exception.NeoComException;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ConfigurationProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.CredentialRepositoryWrapper;
@@ -55,8 +54,8 @@ public class AuthorizationService extends NeoComService {
 	private final CredentialRepositoryWrapper credentialRepository;
 
 	@Autowired
-	public AuthorizationService(  final ConfigurationProviderWrapper configurationProvider,
-	                              final CredentialRepositoryWrapper credentialRepository/*,
+	public AuthorizationService( final ConfigurationProviderWrapper configurationProvider,
+	                             final CredentialRepositoryWrapper credentialRepository/*,
 	                            @Autowired final ESIDataAdapterComponent esiDataAdapter*/ ) {
 		this.configurationProvider = configurationProvider;
 		this.credentialRepository = credentialRepository;
@@ -125,22 +124,24 @@ public class AuthorizationService extends NeoComService {
 	private TokenTranslationResponse getTokenTranslationResponse( final TokenVerification store ) throws NeoComException, IOException {
 		final GetAccessToken serviceGetAccessToken = new Retrofit.Builder()
 				                                             .baseUrl(this.configurationProvider.getResourceString(
-						                                             "P.esi.authorization.authorizationserver"))
+						                                             "P.esi.tranquility.authorization.server"))
 				                                             .addConverterFactory(JacksonConverterFactory.create())
 				                                             .build()
 				                                             .create(GetAccessToken.class);
 		logger.info("-- [AuthorizationService.getTokenTranslationResponse]> Creating request body.");
 		final TokenRequestBody tokenRequestBody = new TokenRequestBody().setCode(store.getAuthCode());
 		logger.info("-- [AuthorizationService.getTokenTranslationResponse]> Creating request call.");
-		final String peckString = this.configurationProvider.getResourceString("P.esi.authorization.clientid") +
+		final String peckString = this.configurationProvider.getResourceString("P.esi.tranquility.authorization.clientid") +
 				                          ":" +
-				                          this.configurationProvider.getResourceString("P.esi.authorization.secretkey");
+				                          this.configurationProvider.getResourceString("P.esi.tranquility.authorization" +
+						                                                                       ".secretkey");
 		final String peck = Base64.getEncoder().encodeToString(peckString.getBytes());
 		store.setPeck(peck);
-		final Call<TokenTranslationResponse> request = serviceGetAccessToken.getAccessToken("Basic " + peck,
-		                                                                                    GlobalDataManager.getResourceString(
-				                                                                                    "P.esi.authorization.contenttype"),
-		                                                                                    tokenRequestBody);
+		final Call<TokenTranslationResponse> request = serviceGetAccessToken.getAccessToken(
+				"Basic " + peck,
+				this.configurationProvider.getResourceString("P.esi.authorization.content.type"),
+				tokenRequestBody
+		);
 		// Getting the request response to be stored if valid.
 		final Response<TokenTranslationResponse> response = request.execute();
 		if (response.isSuccessful()) {
