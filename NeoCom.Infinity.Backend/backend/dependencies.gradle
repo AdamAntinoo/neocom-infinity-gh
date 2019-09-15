@@ -32,6 +32,8 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion" // OAuth2 authentication
     implementation "com.squareup.retrofit2:converter-jackson:$retrofitVersion" // HTTP encapsulation and swagger support
     implementation "com.fasterxml.jackson.datatype:jackson-datatype-joda:$jacksonVersion"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion"
+
     // D A T A B A S E - R E D I S
     implementation 'org.redisson:redisson:3.8.2'
     implementation 'com.vladmihalcea:hibernate-types-52:2.4.2'

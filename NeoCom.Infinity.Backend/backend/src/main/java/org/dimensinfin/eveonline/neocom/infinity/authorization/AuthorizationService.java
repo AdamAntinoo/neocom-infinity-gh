@@ -11,11 +11,14 @@ import org.dimensinfin.eveonline.neocom.infinity.adapter.ConfigurationProviderWr
 import org.dimensinfin.eveonline.neocom.infinity.adapter.CredentialRepositoryWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.TokenVerification;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.dto.ValidateAuthorizationTokenRequest;
+import org.dimensinfin.eveonline.neocom.infinity.core.ErrorInfo;
+import org.dimensinfin.eveonline.neocom.infinity.core.NeoComSBException;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComService;
 import org.dimensinfin.eveonline.neocom.services.UpdaterJobManager;
 import org.joda.time.DateTime;
 import org.joda.time.Instant;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -121,7 +124,7 @@ public class AuthorizationService extends NeoComService {
 		return true;
 	}
 
-	private TokenTranslationResponse getTokenTranslationResponse( final TokenVerification store ) throws NeoComException, IOException {
+	private TokenTranslationResponse getTokenTranslationResponse( final TokenVerification store ) throws IOException {
 		final GetAccessToken serviceGetAccessToken = new Retrofit.Builder()
 				                                             .baseUrl(this.configurationProvider.getResourceString(
 						                                             "P.esi.tranquility.authorization.server"))
@@ -148,11 +151,11 @@ public class AuthorizationService extends NeoComService {
 			logger.info("-- [AuthorizationService.getTokenTranslationResponse]> Response is 200 OK.");
 			final TokenTranslationResponse token = response.body();
 			return token;
-		} else
-			throw new NeoComException(
-					"NEO [AuthorizationService.getTokenTranslationResponse]> the TokenTranslationResponse response is" +
-							" invalid. "
-							+ response.message());
+		} else {
+			logger.info("-- [AuthorizationService.getTokenTranslationResponse]> Response is {} - {}.",
+			            HttpStatus.BAD_REQUEST, response.message());
+			throw new NeoComSBException(ErrorInfo.AUTHORIZATION_TRANSLATION);
+		}
 	}
 
 	private VerifyCharacterResponse getVerifyCharacterResponse( final TokenVerification store ) throws NeoComException, IOException {

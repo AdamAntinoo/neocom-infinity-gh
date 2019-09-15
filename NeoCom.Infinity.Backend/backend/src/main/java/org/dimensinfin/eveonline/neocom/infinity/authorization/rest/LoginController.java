@@ -1,11 +1,11 @@
 package org.dimensinfin.eveonline.neocom.infinity.authorization.rest;
 
-import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.exception.NeoComException;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.AuthorizationService;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.dto.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.dto.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComController;
+import org.dimensinfin.eveonline.neocom.infinity.core.NeoComSBException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -104,22 +104,22 @@ public class LoginController extends NeoComController {
 //		}
 //	}
 
-	@ExceptionHandler({ NeoComException.class })
-	public ResponseEntity<Credential> handleNeoComException( final NeoComException neoe ) {
+	@ExceptionHandler(NeoComSBException.class)
+	public ResponseEntity<NeoComSBException> handleNeoComSBException( final NeoComSBException neocomException ) {
 		// Convert the exception to a json response
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("xApp-Error-Message", neoe.getMessage());
-		logger.info("EX [LoginController.exchangeAuthorizationEntryPoint]> Exception: {}", neoe.getMessage());
-		return new ResponseEntity<Credential>(null, headers, HttpStatus.FORBIDDEN);
+		headers.add("xApp-Error-Message", neocomException.getMessage());
+		logger.info("EX [LoginController.handleNeoComSBException]> Exception: {}", neocomException.getMessage());
+		return new ResponseEntity<NeoComSBException>(neocomException, headers, neocomException.getHttpStatus());
 	}
 
 	@ExceptionHandler({ IOException.class })
-	public ResponseEntity<Credential> handleIOException( final IOException ioe ) {
-		return new ResponseEntity<Credential>(HttpStatus.UNAUTHORIZED);
+	public ResponseEntity<NeoComSBException> handleIOException( final IOException ioe ) {
+		return new ResponseEntity<NeoComSBException>(new NeoComSBException(ioe), HttpStatus.UNAUTHORIZED);
 	}
 
 	@ExceptionHandler({ SQLException.class })
-	public ResponseEntity<Credential> handleSQLException( final SQLException ioe ) {
-		return new ResponseEntity<Credential>(HttpStatus.UNAUTHORIZED);
+	public ResponseEntity<NeoComSBException> handleSQLException( final SQLException sqle ) {
+		return new ResponseEntity<NeoComSBException>(new NeoComSBException(sqle), HttpStatus.UNAUTHORIZED);
 	}
 }
