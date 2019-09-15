@@ -68,6 +68,9 @@ dependencies {
     testImplementation "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
 //    testImplementation 'com.h2database:h2:1.4.194'
 
+    // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.10'
+
     // - C O R E
     testImplementation 'junit:junit:4.12'
 //    testImplementation "org.slf4j:slf4j-simple:$loggerVersion"

@@ -7,7 +7,7 @@ import java.util.Arrays;
 public enum RequestType {
 	VALIDATE_AUTHORIZATION_TOKEN_ENDPOINT_NAME("Validate Authorization Token");
 
-	public static RequestType from( String code ) {
+	public static RequestType from( final String code ) {
 		return Arrays.stream(RequestType.values())
 				       .filter(requestType -> requestType.code.equals(code))
 				       .findFirst()

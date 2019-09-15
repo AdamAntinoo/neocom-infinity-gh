@@ -5,6 +5,7 @@ Feature: [NIB01] Validate the authorization token from ESI OAuth2 service.
   Once we arrive to this endpoint we should check that the source is the expected source identifier and that we
   can create a Credential from the token received by exchanging that token by a refresh token.
 
+  @NIB01.01 @Authorization
   Scenario: [NIB01.01] Detect the correct state at the endpoint.
 	Given a request to the "Validate Authorization Token" endpoint with the next data
 	  | code          | state         | dataSource |

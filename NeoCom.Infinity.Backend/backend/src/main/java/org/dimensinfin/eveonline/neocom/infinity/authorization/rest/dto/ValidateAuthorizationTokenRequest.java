@@ -46,7 +46,7 @@ public class ValidateAuthorizationTokenRequest {
 		}
 
 		public ValidateAuthorizationTokenRequest.Builder optionalDataSource( final String dataSource ) {
-			if (null != dataSource)
+			if ((null != dataSource) || !(dataSource.isEmpty()))
 				this.onConstruction.dataSource = Optional.of(dataSource);
 			return this;
 		}

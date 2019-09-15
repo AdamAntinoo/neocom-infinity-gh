@@ -16,6 +16,7 @@ backend/build/
 backend/out/
 backend-AcceptanceTest/build/
 backend-AcceptanceTest/out/
+backend-AcceptanceTest/target/
 
 # Project not required files set to be ignored
 backend/libs/

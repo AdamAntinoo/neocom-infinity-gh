@@ -1,35 +1,29 @@
 // - T A S K S
 ext {
     resourcesPath = "$projectDir/src/main/resources"
-    dataManagementProject = project(':NeoCom.DataManagement').projectDir
-    dataManagementResources = '/src/main/resources'
+    dataManagementProject = project.configurations.implementation.find {
+        it.name.startsWith("NeoCom.DataManagement")
+    }
+    dataManagementProperties = 'properties'
     sdedbSource = '/src/main/sh/sde.db'
-
-//    sdeRepositoryProjectPath = "/src/main/sh"
-//    propertiesPath = "$projectDir/src/main/resources/properties"
-//    assetsPath = "$projectDir/src/main/resources"
 }
 // Copy configuration and property resources from other modules to the final 'resources' application folder.
-task copyResources(type: Copy) {
+task copyProperties(type: Copy) {
     group = "neocom"
-//    doLast {
-//        copy {
-            println '> Task :neocom.infinity:copyResources: > Copy :NeoCom.DataManagement resources to :app:resources'
-            from new File(dataManagementProject, dataManagementResources)
-            into resourcesPath
-//        }
-//    }
+    println '> Task :neocom.infinity:copyResources: > Copy :NeoCom.DataManagement resources to :app:resources'
+    from new File(zipTree(dataManagementProject), dataManagementProperties)
+    into resourcesPath
 }
-build.dependsOn copyResources
+build.dependsOn copyProperties
 
 task copySDEDatabase(type: Copy) {
     group = "neocom"
 //    println new File(dataManagementProject, sdedbSource)
 //    println sdedbSource
 //    doLast {
-        println '> Task :neocom.infinity:copySDEDatabase: copying new sde database to resources...'
-        from new File(dataManagementProject, sdedbSource)
-        into resourcesPath
+    println '> Task :neocom.infinity:copySDEDatabase: copying new sde database to resources...'
+    from new File(dataManagementProject, sdedbSource)
+    into resourcesPath
 //    }
 }
-copyResources.dependsOn copySDEDatabase
+//copyResources.dependsOn copySDEDatabase
