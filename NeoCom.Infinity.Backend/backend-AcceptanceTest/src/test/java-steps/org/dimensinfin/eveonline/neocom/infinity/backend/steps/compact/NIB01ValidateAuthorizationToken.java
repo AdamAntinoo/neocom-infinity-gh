@@ -6,13 +6,14 @@ import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.dto.Validate
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.NeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.SupportSteps;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.authorization.adapter.rest.v1.client.AuthorizationFeignClientV1;
+import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.ConverterContainer;
 import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.CucumberTableConverter;
-import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.CucumberTableToRequestConverter;
 import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.RequestType;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -25,10 +26,12 @@ public class NIB01ValidateAuthorizationToken extends SupportSteps {
 	private AuthorizationFeignClientV1 authorizationFeignClient;
 
 	@Autowired
-	public NIB01ValidateAuthorizationToken( final List<CucumberTableToRequestConverter> cucumberTableToRequestConverters,
-	                                        final NeoComWorld neocomWorld ) {
+	public NIB01ValidateAuthorizationToken( final ConverterContainer cucumberTableToRequestConverters,
+	                                        final NeoComWorld neocomWorld,
+	                                        final AuthorizationFeignClientV1 authorizationFeignClient ) {
 		super(cucumberTableToRequestConverters);
 		this.neocomWorld = neocomWorld;
+		this.authorizationFeignClient = authorizationFeignClient;
 	}
 
 	@Given("a request to the {string} endpoint with the next data")
@@ -88,19 +91,23 @@ public class NIB01ValidateAuthorizationToken extends SupportSteps {
 	}
 
 	private ResponseEntity process( final RequestType requestType ) {
-		switch (requestType) {
-			case VALIDATE_AUTHORIZATION_TOKEN_ENDPOINT_NAME:
-				ResponseEntity<ValidateAuthorizationTokenResponse> validateAuthorizationTokenResponse =
-						this.authorizationFeignClient.validateAuthorizationToken(
-								this.neocomWorld.getValidateAuthorizationTokenRequest().getCode(),
-								this.neocomWorld.getValidateAuthorizationTokenRequest().getState(),
-								this.neocomWorld.getValidateAuthorizationTokenRequest().getDataSource()
-						);
-				Assert.assertNotNull(validateAuthorizationTokenResponse.getBody());
-				this.neocomWorld.setValidateAuthorizationTokenResponse(validateAuthorizationTokenResponse.getBody());
-				return validateAuthorizationTokenResponse;
-			default:
-				throw new NotImplementedException();
+		try {
+			switch (requestType) {
+				case VALIDATE_AUTHORIZATION_TOKEN_ENDPOINT_NAME:
+					ResponseEntity<ValidateAuthorizationTokenResponse> validateAuthorizationTokenResponse =
+							null;
+					validateAuthorizationTokenResponse = this.authorizationFeignClient.validateAuthorizationToken(
+							this.neocomWorld.getValidateAuthorizationTokenRequest()
+					);
+					Assert.assertNotNull(validateAuthorizationTokenResponse.getBody());
+					this.neocomWorld.setValidateAuthorizationTokenResponse(validateAuthorizationTokenResponse.getBody());
+					return validateAuthorizationTokenResponse;
+				default:
+					throw new NotImplementedException();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 }
