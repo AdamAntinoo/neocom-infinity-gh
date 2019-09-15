@@ -6,17 +6,17 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
+import org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-public class CredentialSerializer extends JsonSerializer<Credential> {
-//	private NeoComComponentFactory componentFactory;
+import javax.annotation.PostConstruct;
 
-//	public CredentialSerializer(@Autowired final NeoComComponentFactory componentFactory) {
-//		this.componentFactory = componentFactory;
-//	}
+@Component
+public class CredentialSerializer extends JsonSerializer<Credential> {
 	@Override
-	public void serialize(final Credential value, final JsonGenerator jgen, final SerializerProvider provider)
+	public void serialize( final Credential value, final JsonGenerator jgen, final SerializerProvider provider )
 			throws IOException, JsonProcessingException {
 		jgen.writeStartObject();
 
@@ -45,16 +45,8 @@ public class CredentialSerializer extends JsonSerializer<Credential> {
 		jgen.writeEndObject();
 	}
 
-	// - B U I L D E R
-//	public static class Builder {
-//		private CredentialSerializer onConstruction;
-//
-//		public Builder() {
-//			this.onConstruction = new CredentialSerializer();
-//		}
-//
-//		public CredentialSerializer build() {
-//			return this.onConstruction;
-//		}
-//	}
+	@PostConstruct
+	private void register() {
+		NeoComInfinityBackendApplication.registerSerializer(this.getClass(), this);
+	}
 }

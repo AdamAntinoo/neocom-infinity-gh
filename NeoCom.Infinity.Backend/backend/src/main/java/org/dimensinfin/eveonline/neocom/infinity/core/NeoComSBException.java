@@ -33,6 +33,18 @@ public class NeoComSBException extends RuntimeException {
 		return message;
 	}
 
+	public String getSourceClass() {
+		return this.sourceClass;
+	}
+
+	public String getSourceMethod() {
+		return this.sourceMethod;
+	}
+
+	public Exception getRootException() {
+		return this.rootException;
+	}
+
 	public HttpStatus getHttpStatus() {
 		return this.errorInfo.status;
 	}
