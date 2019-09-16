@@ -5,11 +5,13 @@ server:
 # - A C T U A T O R
 management:
   endpoints:
+    enabled-by-default: true
     httptrace:
       enabled: true
       sensitive: false
-  trace:
+    trace:
     include: request-headers,response-headers,cookies,errors,parameters
+
 
 #  - D A T A B A S E
 spring:

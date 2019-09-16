@@ -10,8 +10,8 @@ public class NeoComSBException extends RuntimeException {
 	private ErrorInfo errorInfo;
 
 	public NeoComSBException() {
-		StackTraceElement[] stacktrace = Thread.currentThread().getStackTrace();
-		StackTraceElement stackElement = stacktrace[0]; // This is to check if we are using Dalvik
+		final StackTraceElement[] stacktrace = Thread.currentThread().getStackTrace();
+		final StackTraceElement stackElement = stacktrace[3]; // This is to check if we are using Dalvik
 		this.sourceMethod = stackElement.getMethodName();
 		this.sourceClass = stackElement.getClassName();
 	}
@@ -22,7 +22,13 @@ public class NeoComSBException extends RuntimeException {
 	}
 
 	public NeoComSBException( final Exception rootException ) {
-		this.errorInfo= ErrorInfo.NOT_INTERCEPTED_EXCEPTION;
+		this();
+		this.errorInfo = ErrorInfo.NOT_INTERCEPTED_EXCEPTION;
+		this.rootException = rootException;
+	}
+
+	public NeoComSBException( final ErrorInfo errorInfo, final Exception rootException ) {
+		this(errorInfo);
 		this.rootException = rootException;
 	}
 
