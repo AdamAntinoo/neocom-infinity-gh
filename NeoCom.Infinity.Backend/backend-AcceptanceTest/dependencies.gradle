@@ -66,6 +66,7 @@ dependencies {
 dependencies {
     // - S P R I N G B O O T
     testImplementation "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
+    testImplementation "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
 //    testImplementation 'com.h2database:h2:1.4.194'
 
     // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient

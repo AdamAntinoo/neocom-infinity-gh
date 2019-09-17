@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "47c26a5e-a381-4321-a8a8-dc176cdbbfe3",
+		"name": "Neocom.Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ESIOAuthMock",
+			"item": [
+				{
+					"name": "Validate Authorization Token Default",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic ZWFjYWE5Y2QzNjU5NDE4OTg3NzU0NGQ4NTE3NTM3MzQ6RjVTR04xc1VobHBnb053bmlKeGlTaHpIRUM1M0dERUJhUXNIRzBqRw==",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"auth-token\": \"CONTENT-FOR-AUTH-TOKEN\"\n}"
+						},
+						"url": {
+							"raw": "{{serverName}}{{serverPort}}/v2/oauth/token",
+							"host": [
+								"{{serverName}}{{serverPort}}"
+							],
+							"path": [
+								"v2",
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Authorization Token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{serverName}}{{serverPort}}/oauth/verify",
+							"host": [
+								"{{serverName}}{{serverPort}}"
+							],
+							"path": [
+								"oauth",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

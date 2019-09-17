@@ -1,14 +1,14 @@
-simlet: authorization
+simlet: validate-authorization
 
 request:
-- method: GET
-- uriPath: /v2/oauth/token
+  - method: POST
+  - uriPath: /v2/oauth/token
 
 response:
   from: template
   status: 200
   headers:
-  - "Content-Type: application/json"
+    - "Content-Type: application/json"
   body: |+
     {
      "access_token": "FFACCESSTOKENCONTENTFF",
@@ -16,6 +16,9 @@ response:
      "token_type": "Bearer",
      "refresh_token": "AAREFRESHTOKENAA"
     }
+
+---
+simlet: verify-authorization
 
 request:
 - method: GET
@@ -36,8 +39,8 @@ response:
     }
 
 ---
-
 simlet: not-found
+
 request: any
 
 response:

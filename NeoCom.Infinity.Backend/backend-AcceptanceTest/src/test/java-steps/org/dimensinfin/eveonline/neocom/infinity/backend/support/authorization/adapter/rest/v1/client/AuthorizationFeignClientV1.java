@@ -25,7 +25,7 @@ public class AuthorizationFeignClientV1 {
 	public ResponseEntity<ValidateAuthorizationTokenResponse> validateAuthorizationToken(
 			final ValidateAuthorizationTokenRequest validateAuthorizationTokenRequest
 	) throws IOException {
-		HttpGet request = new HttpGet("http://localhost:" + 9000 + "/api/v1/neocom/validateAuthorizationToken/123/state/456");
+		HttpGet request = new HttpGet("http://localhost:" + 9200 + "/api/v1/neocom/validateAuthorizationToken/123/state/456");
 //		StringEntity entity = new StringEntity(jsonString);
 		request.addHeader("content-type", "application/json");
 //		request.setEntity(entity);
