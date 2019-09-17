@@ -1,0 +1,46 @@
+simlet: authorization
+
+request:
+- method: GET
+- uriPath: /v2/oauth/token
+
+response:
+  from: template
+  status: 200
+  headers:
+  - "Content-Type: application/json"
+  body: |+
+    {
+     "access_token": "FFACCESSTOKENCONTENTFF",
+     "expires_in": 1199,
+     "token_type": "Bearer",
+     "refresh_token": "AAREFRESHTOKENAA"
+    }
+
+request:
+- method: GET
+- uriPath: /oauth/verify
+
+response:
+  from: template
+  status: 200
+  headers:
+  - "Content-Type: application/json"
+  body: |+
+    {
+     "CharacterID": 123,
+     "CharacterName": "Adam Antinoo",
+     "Scopes": "public-data",
+     "TokenType": "Bearer",
+     "IntellectualProperty": "Eve Online"
+    }
+
+---
+
+simlet: not-found
+request: any
+
+response:
+  from: stub
+  status: 400
+  body: "What are you doing?"

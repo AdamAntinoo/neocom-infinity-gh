@@ -44,7 +44,6 @@ public class AuthorizationService extends NeoComService {
 	}
 
 	public interface GetAccessToken {
-		//		@POST("/persistPerson")
 		@POST("/v2/oauth/token")
 		Call<TokenTranslationResponse> getAccessToken( @Header("Authorization") String token,
 		                                               @Header("Content-Type") String contentType,

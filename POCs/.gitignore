@@ -1,0 +1,4 @@
+# POC projects not to be included on repository
+apisimulator/
+mocker/
+
