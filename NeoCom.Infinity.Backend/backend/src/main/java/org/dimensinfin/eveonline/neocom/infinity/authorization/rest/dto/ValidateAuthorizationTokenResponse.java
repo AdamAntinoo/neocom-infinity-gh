@@ -7,12 +7,17 @@ import java.util.Objects;
 
 @Component
 public class ValidateAuthorizationTokenResponse {
+	private String jwtToken;
 	private Credential credential;
 
 	private ValidateAuthorizationTokenResponse() {}
 
 	public Credential getCredential() {
 		return this.credential;
+	}
+
+	public String getJwtToken() {
+		return jwtToken;
 	}
 
 	// - B U I L D E R
@@ -26,6 +31,11 @@ public class ValidateAuthorizationTokenResponse {
 		public ValidateAuthorizationTokenResponse.Builder withCredential( final Credential credential ) {
 			Objects.requireNonNull(credential);
 			this.onConstruction.credential = credential;
+			return this;
+		}
+		public ValidateAuthorizationTokenResponse.Builder withJwtToken( final String jwtToken ) {
+			Objects.requireNonNull(jwtToken);
+			this.onConstruction.jwtToken = jwtToken;
 			return this;
 		}
 

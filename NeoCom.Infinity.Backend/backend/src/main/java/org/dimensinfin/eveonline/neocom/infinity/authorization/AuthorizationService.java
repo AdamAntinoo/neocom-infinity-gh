@@ -1,5 +1,8 @@
 package org.dimensinfin.eveonline.neocom.infinity.authorization;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+
 import org.dimensinfin.eveonline.neocom.adapters.ESIDataAdapter;
 import org.dimensinfin.eveonline.neocom.auth.TokenRequestBody;
 import org.dimensinfin.eveonline.neocom.auth.TokenTranslationResponse;
@@ -10,6 +13,7 @@ import org.dimensinfin.eveonline.neocom.infinity.adapter.ConfigurationProviderWr
 import org.dimensinfin.eveonline.neocom.infinity.adapter.CredentialRepositoryWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.TokenVerification;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.dto.ValidateAuthorizationTokenRequest;
+import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.dto.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.core.ErrorInfo;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComSBException;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComService;
@@ -21,8 +25,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 
 import jodd.util.BCrypt;
 import okhttp3.CertificatePinner;
@@ -64,7 +71,7 @@ public class AuthorizationService extends NeoComService {
 //		this.esiDataAdapter = esiDataAdapter;
 	}
 
-	public Credential validateAuthorizationToken( final ValidateAuthorizationTokenRequest validateAuthorizationTokenRequest ) {
+	public ValidateAuthorizationTokenResponse validateAuthorizationToken( final ValidateAuthorizationTokenRequest validateAuthorizationTokenRequest ) {
 		logger.info(">> [AuthorizationService.validateAuthorizationToken]");
 		final Instant timer = Instant.now();
 		this.validateStateMatch(validateAuthorizationTokenRequest.getState());
@@ -115,12 +122,21 @@ public class AuthorizationService extends NeoComService {
 			this.credentialRepository.persist(credential);
 			logger.info("-- [AuthorizationService.validateAuthorizationToken]> Credential #{}-{} created successfully.",
 			            credential.getAccountId(), credential.getAccountName());
-		} catch (SQLException sqle) {
+			final String jwtToken = JWT.create()
+					                        .withIssuer("NeoCom.Infinity.Backend")
+					                        .withSubject("ESI OAuth2 Authentication")
+					                        .withClaim("uniqueId", credential.getUniqueId())
+					                        .withClaim("accountName", credential.getAccountName())
+					                        .sign(Algorithm.HMAC512("The secre phrase"));
+			return new ValidateAuthorizationTokenResponse.Builder()
+					       .withCredential(credential)
+					       .withJwtToken(jwtToken)
+					       .build();
+		} catch (final SQLException | UnsupportedEncodingException sqle) {
 			logger.info("-- [AuthorizationService.validateAuthorizationToken]> Response is {} - {}.",
 			            HttpStatus.BAD_REQUEST, sqle.getMessage());
 			throw new NeoComSBException(sqle);
 		}
-		return credential;
 	}
 
 	private boolean validateStateMatch( final String state ) {

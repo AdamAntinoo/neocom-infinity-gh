@@ -1,5 +1,6 @@
 package org.dimensinfin.eveonline.neocom.infinity.authorization.rest.dto;
 
+import org.dimensinfin.eveonline.neocom.adapters.ESIDataAdapter;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
@@ -23,6 +24,12 @@ public class ValidateAuthorizationTokenRequest {
 
 	public Optional<String> getDataSource() {
 		return this.dataSource;
+	}
+
+	public String getDataSourceName() {
+		if (this.dataSource.isPresent())
+			return this.dataSource.get();
+		else return ESIDataAdapter.DEFAULT_ESI_SERVER;
 	}
 
 	// - B U I L D E R
