@@ -1,24 +1,9 @@
-# IntelliJ IDEA ignored files
+# IntelliJ Idea ignorable files and directories
 *.iml
-.idea/modules.xml
 .idea/workspace.xml
-.idea/navEditor.xml
-.idea/assetWizardSettings.xml
-.idea/sonarIssues.xml
+.idea/sonarLint/
 .idea/caches/
 .idea/libraries/
-.idea/sonarlint/
 
-# Project generated ignored files
 .gradle/
 build/
-backend/build/
-backend/out/
-backend-AcceptanceTest/build/
-backend-AcceptanceTest/out/
-backend-AcceptanceTest/target/
-
-# Project not required files set to be ignored
-backend/libs/
-backend.AcceptanceTest/libs/
-app/

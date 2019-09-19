@@ -1,7 +1,5 @@
-include ':app'
-include ':backend'
-include ':backend-AcceptanceTest'
-
-//include ':NeoCom.DataManagement'
-//project(':NeoCom.DataManagement').projectDir = new File('/home/adam/Development/NeoCom/neocom-datamanagement/NeoCom.DataManagement')
 rootProject.name = 'NeoCom.Infinity.Backend'
+
+include 'backend.App'
+include 'backend.AcceptanceTest'
+

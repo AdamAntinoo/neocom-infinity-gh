@@ -1,0 +1,59 @@
+// - P R O D U C T   V E R S I O N S
+ext {
+//    springBootVersion = '2.1.8.RELEASE'
+//    springCloudVersion = '2.1.2.RELEASE'
+    jodaTimeVersion = '2.3'
+    loggerVersion = '1.7.26'
+    retrofitVersion = '2.5.0'
+    jacksonVersion = '2.9.8'
+    ormliteVersion = '4.48'
+    micrometerVersion = '1.1.0'
+    resilience4jVersion = '0.17.0'
+}
+
+// - S P R I N G B O O T
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-web-services'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'org.postgresql:postgresql'
+}
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+// - C O R E
+dependencies {
+    implementation 'net.logstash.logback:logstash-logback-encoder:4.11'
+    implementation "joda-time:joda-time:$jodaTimeVersion"
+    implementation 'org.apache.commons:commons-lang3:3.9'
+    implementation 'commons-codec:commons-codec:1.11'
+    implementation 'com.annimon:stream:1.1.9'
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-joda:$jacksonVersion"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion"
+    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion" // OAuth2 authentication
+    implementation "com.squareup.retrofit2:converter-jackson:$retrofitVersion" // HTTP encapsulation and swagger support
+    implementation 'com.auth0:java-jwt:3.3.0'
+    // - D A T A B A S E
+    implementation "com.j256.ormlite:ormlite-jdbc:$ormliteVersion"
+//    implementation 'javax.persistence:javax.persistence-api:2.2'
+    implementation 'org.postgresql:postgresql:42.2.5'
+    implementation 'org.liquibase:liquibase-core:3.8.0'
+    implementation 'com.h2database:h2:1.4.194'
+    // - R E D I S
+    implementation 'org.redisson:redisson:3.8.2'
+    // -  N E O C O M
+    implementation 'org.dimensinfin:CoreBase.core:3.2.0'
+    implementation 'org.dimensinfin:NeoCom.DataManagement:0.15.2'
+}
+
+// - U N I T   T E S T I N G
+dependencies {
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
