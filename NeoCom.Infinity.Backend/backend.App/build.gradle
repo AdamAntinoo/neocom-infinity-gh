@@ -6,9 +6,17 @@ plugins {
 
 group = 'org.dimensinfin.eveonline.neocom'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = '11'
+targetCompatibility = '11'
 
+repositories {
+    mavenLocal()
+    mavenCentral()
+    google()
+    jcenter()
+    maven { url 'https://jitpack.io' }
+    maven { url "https://kotlin.bintray.com/kotlinx/" }
+}
 configurations {
     developmentOnly
     runtimeClasspath {

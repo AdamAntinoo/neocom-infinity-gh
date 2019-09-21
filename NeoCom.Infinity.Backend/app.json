@@ -1,6 +1,6 @@
 ﻿{
-  "name": "Citas.backend",
-  "description": "Citas. Sistema S1. Aplicacion SpringBoot adaptada para Heroku y diseñada con arquitectura JPA como sistema de persistencia. Se configura para utilizar una base de datos PostgreSQL y dotado de un modelo de acceso RESTful para poder exportar el api y el modelo para acceso desde aplicaciones dispares, como Angular 6 o Android.",
+  "name": "NeoCom.Infinity.backend",
+  "description": "Web backend for the NeoCom application set. Access to the Eve Online data store though ESI api access.",
   "image": "heroku/gradle",
   "addons": [ "heroku-postgresql" ]
 }

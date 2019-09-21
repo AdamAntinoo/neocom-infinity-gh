@@ -1,2 +1,5 @@
 src/main/java-standby
 src/test/java-removed
+backend.AcceptanceTest
+gradle
+.gradle

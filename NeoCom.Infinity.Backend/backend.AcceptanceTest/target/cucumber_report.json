@@ -3,7 +3,7 @@
     "line": 2,
     "elements": [
       {
-        "start_timestamp": "2019-09-19T17:46:26.609Z",
+        "start_timestamp": "2019-09-20T17:42:55.806Z",
         "line": 9,
         "name": "[NIB01.01] Detect the correct state at the endpoint.",
         "description": "",
@@ -13,7 +13,7 @@
         "steps": [
           {
             "result": {
-              "duration": 169381682,
+              "duration": 211092368,
               "status": "passed"
             },
             "line": 10,
@@ -47,7 +47,7 @@
           },
           {
             "result": {
-              "duration": 1871396,
+              "duration": 7289513,
               "status": "passed"
             },
             "line": 13,
@@ -65,7 +65,7 @@
           },
           {
             "result": {
-              "duration": 1422907535,
+              "duration": 5189908416,
               "status": "passed"
             },
             "line": 14,
@@ -83,7 +83,7 @@
           },
           {
             "result": {
-              "duration": 226177,
+              "duration": 6976175,
               "status": "passed"
             },
             "line": 15,
@@ -101,7 +101,7 @@
           },
           {
             "result": {
-              "duration": 272655,
+              "duration": 412931,
               "status": "passed"
             },
             "line": 16,

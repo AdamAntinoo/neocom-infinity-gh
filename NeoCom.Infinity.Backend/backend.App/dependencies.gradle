@@ -12,6 +12,9 @@ ext {
 }
 
 // - S P R I N G B O O T
+ext {
+    set('springCloudVersion', "Greenwich.SR2")
+}
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
