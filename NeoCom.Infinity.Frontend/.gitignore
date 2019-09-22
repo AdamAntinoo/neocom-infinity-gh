@@ -1,5 +1,11 @@
+# Generic inginable files
+*.log
+
 # Node ignored contents
 node_modules/
+
+# Mock ignored files
+support/apisimulator/apisimulator-http-1.4/
 
 # Project generated ignored files
 .tmp/
