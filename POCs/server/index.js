@@ -13,7 +13,7 @@ var options = {
     redirect: false,
     setHeaders: function (res, path, stat) {
         res.set('x-timestamp', Date.now())
-        res.set('x-app-name', 'NeoCom.Infiniti POC')
+        res.set('x-app-name', 'NeoCom.Infinity.Frontend')
         res.set('Access-Control-Allow-Origin', '*');
         res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
         res.set('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, DELETE');

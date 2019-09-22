@@ -4,10 +4,10 @@
 			"path": "."
 		},
 		{
-			"path": "D:\\Development\\POCProjects\\A6POCNeoCom"
+			"path": "/home/adam/Development/NeoCom/neocom-infinity/POCs/frontend"
 		},
 		{
-			"path": "D:\\Development\\POCProjects\\A5POCWorkBench"
+			"path": "/home/adam/Development/NeoCom/neocom-infinity/POCs/server"
 		}
 	]
 }

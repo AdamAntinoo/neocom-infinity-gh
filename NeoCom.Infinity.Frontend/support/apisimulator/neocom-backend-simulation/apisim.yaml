@@ -1,0 +1,33 @@
+simlet: validate-authorization-token
+
+request:
+  - method: GET
+  - uriPath: /api/v1/neocom/validateAuthorizationToken
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+      "jwtToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiYWNjb3VudE5hbWUiOiJBZGFtIEFudGlub28iLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvMTIzIn0.VE261-Uzlsw8nH6JNox_DBVhrQY_BqR3P2Knc_DQmO-ejlHXiCNX3YPHd-pKK-bis_bxWq-lQxVEXd2vvhg0yQ",
+      "credential": {
+          "jsonClass": "Credential",
+          "uniqueId": "tranquility/123",
+          "accountId": 123,
+          "accountName": "Adam Antinoo",
+          "dataSource": "tranquility"
+      }
+    }
+
+---
+
+simlet: not-found
+
+request: any
+
+response:
+  from: stub
+  status: 400
+  body: "What are you doing?"
