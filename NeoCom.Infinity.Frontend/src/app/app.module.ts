@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // - HTTP CLIENT
 import { HttpClientModule } from '@angular/common/http';
 // - NOTIFICATIONS
-// import { ToastrModule } from 'ng6-toastr-notifications';
+import { ToastrModule } from 'ng6-toastr-notifications';
 // - DRAG & DROP
 import { NgDragDropModule } from 'ng-drag-drop';
 // - WEBSTORAGE
@@ -58,7 +58,7 @@ export function rollbarFactory() {
     // - HTTP CLIENT
     HttpClientModule,
     // - NOTIFICATIONS
-    // ToastrModule.forRoot(),
+    ToastrModule.forRoot(),
     // - DRAG & DROP
     NgDragDropModule.forRoot(),
     // - WEBSTORAGE

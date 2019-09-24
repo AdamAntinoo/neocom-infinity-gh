@@ -4,12 +4,16 @@
 
 export const environment = {
   production: false,
-  copyright : '© 2019,2020 Dimensinfin Industries',
+  mockStatus: true,
+  showexceptions: true,
+  serverName: "http://localhost:6091",
+  copyright: '© 2019,2020 Dimensinfin Industries',
   appName: require('../../package.json').name,
   appVersion: require('../../package.json').version + " dev",
-  backendServerHost: 'http://localhost',
-  backendServerPort: ':6091',
-  prefixApiV1: '/api/v1/neocom/'
+  apiVersion1: '/api/v1/neocom/',
+  apiVersion2: '/api/v1/neocom/',
+  // - C O N S T A N T S
+  JWTTOKEN_KEY: '-JWTTOKEN_KEY-',
 };
 
 import 'zone.js/dist/zone-error';  // Included with Angular CLI.

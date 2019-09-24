@@ -6,6 +6,8 @@ import { environment } from '@env/environment';
 import { LOCAL_STORAGE } from 'angular-webstorage-service';
 import { SESSION_STORAGE } from 'angular-webstorage-service';
 import { WebStorageService } from 'angular-webstorage-service';
+// - ROUTER
+import { Router } from '@angular/router';
 // - SERVICES
 import { BackendService } from '@app/services/backend.service';
 
@@ -13,7 +15,11 @@ import { BackendService } from '@app/services/backend.service';
     providedIn: 'root'
 })
 export class AppStoreService {
-    // - E N V I R O N M E N T    C A L L S
+    constructor(
+        protected router: Router,
+        protected backendService: BackendService) {}
+
+        // - E N V I R O N M E N T    C A L L S
     public getApplicationName(): string {
         return this.backendService.getApplicationName();
     }
