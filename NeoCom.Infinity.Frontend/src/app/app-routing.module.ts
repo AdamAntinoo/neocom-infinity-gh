@@ -1,6 +1,19 @@
+// - CORE
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { LoginValidationPageComponent } from './pages/login-validation-page/login-validation-page.component';
+import { RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
+
+// - GUARDS
+// import { AuthCommonGuard } from '@app/modules/authorization/auth-common.guard';
+// import { AuthManagerGuard } from '@app/modules/authorization/auth-manager.guard';
+// import { AuthAdminGuard } from '@app/modules/authorization/auth-admin.guard';
+
+// - PAGES
+import { LoginValidationPageComponent } from '@app/pages/login-validation-page/login-validation-page.component';
+// import { NotFoundPage } from '@app/pages/not-found-page/not-found-page.component';
+// import { LoginPageComponent } from '@app/modules/login/pages/login-page/login-page.component';
+// import { DashboardPageComponent } from '@app/modules/login/pages/dashboard-page/dashboard-page.component';
+// - CITACIONES - MODULE
 
 
 const routes: Routes = [
@@ -9,12 +22,14 @@ const routes: Routes = [
     redirectTo: '/loginValidation',
     pathMatch: 'full'
   },
-  // - DASHBOARD PAGES
+  // - LOGIN PAGES
   { path: 'loginValidation', component: LoginValidationPageComponent },
+  // --- REDIRECT NOT FOUND PAGES
+  // { path: '**', component: NotFoundPage }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

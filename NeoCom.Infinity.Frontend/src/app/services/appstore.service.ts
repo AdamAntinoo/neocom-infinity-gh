@@ -1,0 +1,44 @@
+// - CORE
+import { Injectable } from '@angular/core';
+// - ENVIRONMENT
+import { environment } from '@env/environment';
+// - WEBSTORAGE
+import { LOCAL_STORAGE } from 'angular-webstorage-service';
+import { SESSION_STORAGE } from 'angular-webstorage-service';
+import { WebStorageService } from 'angular-webstorage-service';
+// - SERVICES
+import { BackendService } from '@app/services/backend.service';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class AppStoreService {
+    // - E N V I R O N M E N T    C A L L S
+    public getApplicationName(): string {
+        return this.backendService.getApplicationName();
+    }
+    public getApplicationVersion(): string {
+        return this.backendService.getApplicationVersion();
+    }
+    public inDevelopment(): boolean {
+        return this.backendService.inDevelopment();
+    }
+    public showExceptions(): boolean {
+        return this.backendService.showExceptions();
+    }
+
+    // - N O T I F I C A T I O N S
+    // tslint:disable-next-line: variable-name
+    public successNotification(_message: string, _title?: string, _options?: any): void {
+        this.backendService.isolation.successNotification(_message, _title, _options);
+    }
+    public errorNotification(_message: string, _title?: string, _options?: any): void {
+        this.backendService.isolation.errorNotification(_message, _title, _options);
+    }
+    public warningNotification(_message: string, _title?: string, _options?: any): void {
+        this.backendService.isolation.warningNotification(_message, _title, _options);
+    }
+    public infoNotification(_message: string, _title?: string, _options?: any): void {
+        this.backendService.isolation.infoNotification(_message, _title, _options);
+    }
+}  
