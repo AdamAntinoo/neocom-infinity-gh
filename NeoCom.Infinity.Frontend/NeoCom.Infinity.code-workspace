@@ -9,5 +9,12 @@
 		{
 			"path": "/home/adam/Development/NeoCom/neocom-infinity/POCs/server"
 		}
-	]
+	],
+	"settings": {
+		"html.format.wrapLineLength": 140,
+		"editor.wordWrap": "wordWrapColumn",
+		"editor.wrappingIndent": "indent",
+		"editor.wordWrapColumn": 130,
+		"editor.rulers": [120,130]
+	}
 }

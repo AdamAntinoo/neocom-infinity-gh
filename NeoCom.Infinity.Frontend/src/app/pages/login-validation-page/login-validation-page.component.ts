@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login-validation-page.component.scss']
 })
 export class LoginValidationPageComponent implements OnInit {
+public validationException:any;
 
   constructor() { }
 
   ngOnInit() {
+    this.validationException = "exception";
   }
   public getAppName(): string {
     return 'NeoCom';

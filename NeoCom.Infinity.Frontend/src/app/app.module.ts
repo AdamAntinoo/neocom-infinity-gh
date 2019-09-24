@@ -40,6 +40,7 @@ import { RollbarService } from '@app/rollbar-errorhandler.service';
 import { ErrorHandler } from '@angular/core';
 import { RollbarErrorHandler } from '@app/rollbar-errorhandler.service';
 import { LoginValidationProgressComponent } from './panels/login-validation-progress/login-validation-progress.component';
+import { LoginValidationExceptionComponent } from './panels/login-validation-exception/login-validation-exception.component';
 export function rollbarFactory() {
   return new Rollbar(rollbarConfig);
 }
@@ -73,7 +74,8 @@ export function rollbarFactory() {
     AppInfoPanelComponent,
     // - PAGES
     LoginValidationPageComponent,
-    LoginValidationProgressComponent
+    LoginValidationProgressComponent,
+    LoginValidationExceptionComponent
   ],
   providers: [
     // - SERVICES
@@ -82,8 +84,8 @@ export function rollbarFactory() {
     // { provide: ErrorHandler, useClass: RollbarErrorHandler },
     // { provide: RollbarService, useFactory: rollbarFactory },
   ],
-  exports: [
-  ],
+  // exports: [
+  // ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
