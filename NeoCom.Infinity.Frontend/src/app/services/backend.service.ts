@@ -1,16 +1,26 @@
 // - CORE
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { throwError } from 'rxjs';
+import { map } from 'rxjs/operators';
 // - HTTP PACKAGE
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 // - SERVICES
 import { IsolationService } from '@app/platform/isolation.service';
+// - DOMAIN
+import { ValidateAuthorizationTokenResponse } from '@app/domain/dto/ValidateAuthorizationTokenResponse';
+import { environment } from '@env/environment.prod';
+import { NeoComResponse } from '@app/domain/dto/NeoComResponse';
+import { NeoComException } from '@app/platform/NeoComException';
 
 @Injectable({
     providedIn: 'root'
 })
 export class BackendService /*extends RuntimeBackendService*/ {
     private HEADERS;
+
     constructor(
         public isolation: IsolationService,
         protected http: HttpClient) {
@@ -25,17 +35,235 @@ export class BackendService /*extends RuntimeBackendService*/ {
             .set('xApp-Brand', 'CitasCentro-Demo')
             .set('xApp-Signature', 'S0000.0011.0000');
     }
-  // - E N V I R O N M E N T    C A L L S
-  public getApplicationName(): string {
-    return this.isolation.getAppName();
-  }
-  public getApplicationVersion(): string {
-    return this.isolation.getAppVersion();
-  }
-  public inDevelopment(): boolean {
-    return this.isolation.inDevelopment();
-  }
-  public showExceptions(): boolean {
-    return this.isolation.showExceptions();
-  }
+
+    // - E N V I R O N M E N T    C A L L S
+    public getApplicationName(): string {
+        return this.isolation.getAppName();
+    }
+    public getApplicationVersion(): string {
+        return this.isolation.getAppVersion();
+    }
+    public inDevelopment(): boolean {
+        return this.isolation.inDevelopment();
+    }
+    public showExceptions(): boolean {
+        return this.isolation.showExceptions();
+    }
+
+    // - B A C K E N D - A P I
+    public apiValidateAuthorizationToken_v1(code: string, state: string): Observable<ValidateAuthorizationTokenResponse> {
+        console.log(">[BackendService.apiValidateAuthorizationToken_v1]> code: " + code);
+        // Construct the request to call the backend.
+        let request = this.isolation.getServerName() + this.isolation.getApiV1() + "/validateAuthorizationToken" +
+            "/code/" + code +
+            "/state/" + state +
+            "/datasource/" + environment.ESIDataSource.toLowerCase();
+        // console.log("--[BackendService.apiValidateAuthorizationToken_v1]> request = " + request);
+        // console.log("--[BackendService.backendReserveAppointment]> body = " + JSON.stringify(patient));
+        return this.wrapHttpGETCall(request)
+            .pipe(map((data: any) => {
+                const response = this.transformApiResponse(data) as ValidateAuthorizationTokenResponse;
+                return response;
+            }));
+    }
+
+    // -  H T T P   W R A P P E R S
+    private wrapHttpHandleError(error: HttpErrorResponse) {
+        if (error.error instanceof ErrorEvent) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('An error occurred:', error.error.message);
+        } else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.error(
+                `Backend returned code ${error.status}, ` +
+                `Error message ${error.message}, `);
+
+            // Do some generic error processing.
+            // 401 are accesses without the token so we should move right to the login page.
+            if (error.status == 401) {
+                // this.router.navigate(['login']);
+                return throwError('Autenticacion ya no valida. Es necesario logarse de nuevo.');
+            }
+        }
+        // return an observable with a user-facing error message
+        return throwError(
+            'Something bad happened; please try again later.');
+    }
+    public wrapHttpRESOURCECall(request: string): Observable<any> {
+        console.log("><[AppStoreService.wrapHttpGETCall]> request: " + request);
+        return this.http.get(request);
+    }
+    /**
+     * This method wraps the HTTP access to the backend. It should add any predefined headers, any request specific headers and will also deal with mock data.
+     * Mock data comes now into two flavours. he first one will search for the request on the list of defined requests (if the mock is active). If found then it will check if the request should be sent to the file system ot it should be resolved by accessing the LocalStorage.
+     * @param  request [description]
+     * @return         [description]
+     */
+    public wrapHttpGETCall(_request: string, _requestHeaders?: HttpHeaders): Observable<any> {
+        let adjustedRequest = this.wrapHttpSecureRequest(_request);
+        if (typeof adjustedRequest === 'string') {
+            // The request should continue with processing.
+            console.log("><[AppStoreService.wrapHttpGETCall]> request: " + adjustedRequest);
+            let newheaders = this.wrapHttpSecureHeaders(_requestHeaders);
+            return this.http.get(adjustedRequest, { headers: newheaders });
+        } else {
+            // The requst is a LOCALSTORAGE mockup and shoudl return with no more processing.
+            console.log("><[AppStoreService.wrapHttpGETCall]> request: " + _request);
+            return adjustedRequest;
+        }
+    }
+    public wrapHttpPUTCall(_request: string, _body: string, _requestHeaders?: HttpHeaders): Observable<any> {
+        let adjustedRequest = this.wrapHttpSecureRequest(_request);
+        if (typeof adjustedRequest === 'string') {
+            // The request should continue with processing.
+            console.log("><[AppStoreService.wrapHttpPUTCall]> request: " + adjustedRequest);
+            console.log("><[AppStoreService.wrapHttpPUTCall]> body: " + _body);
+            let newheaders = this.wrapHttpSecureHeaders(_requestHeaders);
+            return this.http.put(adjustedRequest, _body, { headers: newheaders });
+            // .pipe(
+            //   catchError(this.wrapHttpHandleError)
+            // );
+        } else {
+            // The requst is a LOCALSTORAGE mockup and shoudl return with no more processing.
+            console.log("><[AppStoreService.wrapHttpPUTCall]> request: " + _request);
+            return adjustedRequest;
+        }
+    }
+    public wrapHttpPOSTCall(_request: string, _body: string, _requestHeaders?: HttpHeaders): Observable<any> {
+        let adjustedRequest = this.wrapHttpSecureRequest(_request);
+        if (typeof adjustedRequest === 'string') {
+            // The request should continue with processing.
+            console.log("><[AppStoreService.wrapHttpPOSTCall]> request: " + adjustedRequest);
+            console.log("><[AppStoreService.wrapHttpPOSTCall]> body: " + _body);
+            let newheaders = this.wrapHttpSecureHeaders(_requestHeaders);
+            return this.http.post(adjustedRequest, _body, { headers: newheaders });
+            // .pipe(
+            //   catchError(this.wrapHttpHandleError)
+            // );
+        } else {
+            // The requst is a LOCALSTORAGE mockup and shoudl return with no more processing.
+            console.log("><[AppStoreService.wrapHttpPOSTCall]> request: " + _request);
+            return adjustedRequest;
+        }
+    }
+    public wrapHttpDELETECall(_request: string, _requestHeaders?: HttpHeaders): Observable<any> {
+        let adjustedRequest = this.wrapHttpSecureRequest(_request);
+        if (typeof adjustedRequest === 'string') {
+            // The request should continue with processing.
+            console.log("><[AppStoreService.wrapHttpDELETECall]> request: " + adjustedRequest);
+            let newheaders = this.wrapHttpSecureHeaders(_requestHeaders);
+            return this.http.delete(adjustedRequest, { headers: newheaders });
+        } else {
+            // The request is a LOCALSTORAGE mockup and should return with no more processing.
+            console.log("><[AppStoreService.wrapHttpDELETECall]> request: " + _request);
+            return adjustedRequest;
+        }
+    }
+
+    protected wrapHttpSecureRequest(request: string): string | Observable<any> {
+        // Check if we should use mock data.
+        // if (this.getMockStatus()) {
+        //     // Search for the request at the mock map.
+        //     let hit = this.responseTable[request];
+        //     if (null != hit) {
+        //         // Check if the resolution should be from the LocalStorage. URL should start with LOCALSTORAGE::.
+        //         if (hit.search('LOCALSTORAGE::') > -1) {
+        //             return Observable.create((observer) => {
+        //                 let targetData = this.getFromStorage(hit + ':' + this.accessCredential().getId());
+        //                 try {
+        //                     if (null != targetData) {
+        //                         // .then((data) => {
+        //                         console.log('--[AppStoreService.wrapHttpPOSTCall]> Mockup data: ', targetData);
+        //                         // Process and convert the data string to the class instances.
+        //                         let results = this.transformRequestOutput(JSON.parse(targetData));
+        //                         observer.next(results);
+        //                         observer.complete();
+        //                     } else {
+        //                         observer.next([]);
+        //                         observer.complete();
+        //                     }
+        //                 } catch (mockException) {
+        //                     observer.next([]);
+        //                     observer.complete();
+        //                 }
+        //             })
+        //         } else request = hit;
+        //     }
+        // }
+        return request;
+    }
+    /**
+     * This is the common code to all secure calls. It will check if the call can use the mockup system and if that system has a mockup destionation for the request.
+     * This call also should create a new set of headers to be used on the next call and should put inside the current authentication data.
+     *
+     * @protected
+     * @param {string} request
+     * @param {string} _body
+     * @param {HttpHeaders} [_requestHeaders]
+     * @returns {HttpHeaders}
+     * @memberof BackendService
+     */
+    protected wrapHttpSecureHeaders(_requestHeaders?: HttpHeaders): HttpHeaders {
+        let headers = new HttpHeaders()
+            .set('Content-Type', 'application/json; charset=utf-8')
+            .set('Access-Control-Allow-Origin', '*')
+            .set('xApp-Name', this.isolation.getAppName())
+            .set('xApp-Version', this.isolation.getAppVersion())
+            .set('xApp-Platform', 'Angular 6.1.x')
+            .set('xApp-Brand', 'CitasCentro-development')
+            // .set('xApp-Signature', 'S0000.0011.0000');
+            .set('xApp-Signature', 'S0000.0100.0000');
+
+        // Add authentication token but only for authorization required requests.
+        // let cred = this.accessCredential();
+        // if (null != cred) {
+        //     let auth = this.accessCredential().getAuthorization();
+        //     if (null != auth) headers = headers.set('xApp-Authentication', auth);
+        //     console.log("><[AppStoreService.wrapHttpSecureHeaders]> xApp-Authentication: " + auth);
+        // }
+        // if (null != _requestHeaders) {
+        //     for (let key of _requestHeaders.keys()) {
+        //         headers = headers.set(key, _requestHeaders.get(key));
+        //     }
+        // }
+        return headers;
+    }
+
+    // - R E S P O N S E   T R A N S F O R M A T I O N
+    // public transformRequestOutput(entrydata: any): INode[] | INode {
+    //     let results: INode[] = [];
+    //     // Check if the entry data is a single object. If so process it because can be an exception.
+    //     if (entrydata instanceof Array) {
+    //         for (let key in entrydata) {
+    //             // Access the object into the spot.
+    //             let node = entrydata[key] as INode;
+    //             // Convert and add the node.
+    //             results.push(this.convertNode(node));
+    //         }
+    //     } else {
+    //         // Process a single element.
+    //         let jclass = entrydata["jsonClass"];
+    //         if (null == jclass) return [];
+    //         return this.convertNode(entrydata);
+    //     }
+    //     return results;
+    // }
+    private transformApiResponse(responseData: any): NeoComResponse {
+        let responseType = responseData["responseType"];
+        switch (responseType) {
+            case 'ValidateAuthorizationTokenResponse':
+                // console.log("-[BackendService.transformApiResponse]> ValidateAuthorizationTokenResponse response: " +
+                //     convertedMedico.getId());
+                return new ValidateAuthorizationTokenResponse(responseData);
+                break;
+            default:
+                throw new NeoComException({
+                    "ok": false,
+                    status:400,
+                    statusText: "Unidentified response",
+                    message: "Api responde type does not match any of the declared types. Invalid response"
+                });
+        }
+    }
 }

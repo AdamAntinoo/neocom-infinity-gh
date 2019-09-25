@@ -2,5 +2,6 @@
 </app-info-panel>
 <app-login-validation-progress id="loginvalidationprogress-panel"></app-login-validation-progress>
 <div *ngIf="validationException">
-    <app-login-validation-exception id ="loginvalidationexception-panel"></app-login-validation-exception>
+    <app-login-validation-exception id ="loginvalidationexception-panel" exception="validationException">        
+    </app-login-validation-exception>
 </div>

@@ -33,6 +33,25 @@ export class AppStoreService {
         return this.backendService.showExceptions();
     }
 
+    // - G L O B A L   A C C E S S   M E T H O D S
+    public isNonEmptyString(str: string): boolean {
+        return str && str.length > 0; // Or any other logic, removing whitespace, etc.
+    }
+    public isNonEmptyArray(data: any[]): boolean {
+        if (null == data) return false;
+        if (data.length < 1) return false;
+        return true;
+    }
+    public isEmptyString(str: string): boolean {
+        let empty = str && str.length > 0; // Or any other logic, removing whitespace, etc.
+        return !empty;
+    }
+    public isEmptyArray(data: any[]): boolean {
+        if (null == data) return true;
+        if (data.length < 1) return true;
+        return false;
+    }
+
     // - N O T I F I C A T I O N S
     // tslint:disable-next-line: variable-name
     public successNotification(_message: string, _title?: string, _options?: any): void {

@@ -25,6 +25,7 @@ export class LoginValidationPage {
     return panelCount;
   }
   public getPagePanelById(panelIdentifier: string): any {
+    this.getPanelCount(); // Preload the panels is not done yet before returning the panel.
     switch (panelIdentifier.toLowerCase()) {
       case 'appinfo-panel':
         return this.appinfo;

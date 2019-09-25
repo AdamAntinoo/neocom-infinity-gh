@@ -19,11 +19,12 @@
     ],
     "baseUrl": "./",
     "paths": {
+      "@app/*": ["src/app/*"],
+      "@env/*": ["src/environments/*"],
+      "@domain/*": ["src/app/domain/*"],
       "@interfaces/*": ["src/app/modules/shared/interfaces/*"],
       "@models/*": ["src/app/modules/shared/models/*"],
       "@renders/*": ["src/app/modules/shared/renders/*"],
-      "@app/*": ["src/app/*"],
-      "@env/*": ["src/environments/*"]
     }
   },
   "angularCompilerOptions": {

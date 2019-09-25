@@ -27,6 +27,10 @@ import { AppComponent } from './app.component';
 import { LoginValidationPageComponent } from './pages/login-validation-page/login-validation-page.component';
 // - COMPONENTS
 import { AppInfoPanelComponent } from './panels/app-info-panel/app-info-panel.component';
+// - SERVICES
+import { IsolationService } from './platform/isolation.service';
+import { AppStoreService } from './services/appstore.service';
+import { BackendService } from './services/backend.service';
 
 // - LOCALES
 import localeEs from '@angular/common/locales/es';
@@ -79,7 +83,9 @@ export function rollbarFactory() {
   ],
   providers: [
     // - SERVICES
-    // { provide: BackendService, useClass: Angular6BackendService },
+      { provide: IsolationService, useClass: IsolationService },
+      { provide: AppStoreService, useClass: AppStoreService },
+      { provide: BackendService, useClass: BackendService },
     // --- ERROR INTERCEPTION
     // { provide: ErrorHandler, useClass: RollbarErrorHandler },
     // { provide: RollbarService, useFactory: rollbarFactory },

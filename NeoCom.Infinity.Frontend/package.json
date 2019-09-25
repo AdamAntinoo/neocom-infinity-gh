@@ -14,6 +14,7 @@
     "start:aot": "ng serve --aot --progress --public-host neocom.infinity.dimensinfin.org --proxy-config proxy.conf.json",
     "cucumber": "./node_modules/cucumber/bin/cucumber-js e2e/src/features/",
     "stop:support": "bash ./support/support-services.sh stop",
+    "restart:support": "npm run stop:support && npm run start:support",
     "build:dev": "ng build",
     "build:prod": "ng build --aot --prod --configuration production",
     "test:dev": "ng test --code-coverage --source-map --watch --progress ",
