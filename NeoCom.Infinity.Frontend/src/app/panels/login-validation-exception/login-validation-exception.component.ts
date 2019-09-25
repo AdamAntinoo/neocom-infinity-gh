@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'login-validation-exception',
+  selector: 'app-login-validation-exception',
   templateUrl: './login-validation-exception.component.html',
   styleUrls: ['./login-validation-exception.component.scss']
 })

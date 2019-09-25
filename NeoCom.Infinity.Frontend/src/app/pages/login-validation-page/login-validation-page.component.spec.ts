@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginValidationPageComponent } from './login-validation-page.component';
 import { AppInfoPanelComponent } from '@app/panels/app-info-panel/app-info-panel.component';
+import { LoginValidationProgressComponent } from '@app/panels/login-validation-progress/login-validation-progress.component';
+import { LoginValidationExceptionComponent } from '@app/panels/login-validation-exception/login-validation-exception.component';
 
 describe('LoginValidationPageComponent', () => {
   let component: LoginValidationPageComponent;
@@ -9,7 +11,8 @@ describe('LoginValidationPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginValidationPageComponent, AppInfoPanelComponent ]
+      declarations: [ LoginValidationPageComponent, AppInfoPanelComponent ,LoginValidationProgressComponent,
+        LoginValidationExceptionComponent]
     })
     .compileComponents();
   }));

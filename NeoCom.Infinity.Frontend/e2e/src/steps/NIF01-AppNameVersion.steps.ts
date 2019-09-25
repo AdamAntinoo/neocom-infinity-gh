@@ -1,8 +1,8 @@
 import { expect } from 'chai';
-import { Before, Given, Then, When } from 'cucumber';
+import { Before, Given } from 'cucumber';
+import {  Then, When } from 'cucumber';
 import { browser } from 'protractor';
-import { LoginValidationPage } from '../pages/loginValidation.po';
-
+import { LoginValidationPage } from '../pages/LoginValidation.page';
 
 let page: LoginValidationPage;
 
@@ -11,7 +11,7 @@ Before(() => {
 });
 
 Given('I am on the login landing page', async () => {
-  await page.navigateTo();
+  await page.navigateTo('-ANY-CODE-IS-VALID-');
 });
 When('I do nothing', () => { });
 Then('I should see a {string} panel', function (panelColor: string) {

@@ -1,8 +1,12 @@
-import { LoginValidationPage } from './pages/loginValidation.po';
-import { browser, logging } from 'protractor';
+// - PROTRACTOR
+import { browser } from 'protractor';
+import { logging } from 'protractor';
+// - COMPONENTS
+import { LoginValidationPage } from '../pages/LoginValidation.page';
 
 describe('workspace-project App', () => {
   let page: LoginValidationPage;
+  const pageIdentifier = 'Login Validation Page';
 
   beforeEach(() => {
     page = new LoginValidationPage();
@@ -10,7 +14,9 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('NeoCom-Infinity app is running!');
+    expect(page.getPageName()).toEqual(pageIdentifier);
+    // await loginValidationPage.navigateTo();
+    // expect(loginValidationPage.getPageName()).toBe(pageIdentifier);
   });
 
   afterEach(async () => {

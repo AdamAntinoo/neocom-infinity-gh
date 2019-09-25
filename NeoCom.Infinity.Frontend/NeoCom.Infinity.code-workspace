@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "/home/adam/Development/NeoCom/neocom-infinity/POCs/server"
+		},
+		{
+			"path": "/home/adam/Development/NeoCom/neocom-infinity/POCs/attdangular"
 		}
 	],
 	"settings": {
@@ -15,6 +18,9 @@
 		"editor.wordWrap": "wordWrapColumn",
 		"editor.wrappingIndent": "indent",
 		"editor.wordWrapColumn": 130,
-		"editor.rulers": [120,130]
+		"editor.rulers": [
+			120,
+			130
+		]
 	}
 }
