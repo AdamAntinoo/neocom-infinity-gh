@@ -11,23 +11,49 @@ import { browser } from 'protractor';
 import { LoginValidationPage } from '../pages/LoginValidation.page';
 import { IsolationService } from '../support/IsolationService.support';
 
+// - DEFINITIONS
+const APP_NAME: string = 'app-name';
+const APP_VERSION: string = 'app-version';
+const COPYRIGHT: string = 'copyright';
+// const DATATABLE_FIELD_NAME: number = 0;
+// const DATATABLE_FIELD_VALUE: number = 1;
 let loginValidationPage: LoginValidationPage;
 let isolationService: IsolationService;
 // let worldPanel: any;
 
 Before(() => {
-  loginValidationPage = new LoginValidationPage();
-  isolationService = new IsolationService();
+    loginValidationPage = new LoginValidationPage();
+    isolationService = new IsolationService();
 });
 
 Then('panel displays the next fields', function (dataTable) {
-  dataTable.rows().forEach((row) => {
-    switch (row[0]) {
-      case 'app-name':
-        assert.equal(row[1], isolationService.getAppName());
-        break;
-    }
-  });
+    console.log('>Then panel displays the next fields');
+    dataTable.hashes().forEach((row) => {
+        console.log('-' + APP_NAME + ': ' + isolationService.decodeDataTableRow(row, APP_NAME));
+        assert.equal(isolationService.decodeDataTableRow(row, APP_NAME), isolationService.getAppName());
+        console.log('-' + APP_VERSION + ': ' + isolationService.decodeDataTableRow(row, APP_VERSION));
+        assert.equal(isolationService.decodeDataTableRow(row, APP_VERSION), isolationService.getAppVersion());
+        console.log('-' + COPYRIGHT + ': ' + isolationService.decodeDataTableRow(row, COPYRIGHT));
+        assert.equal(isolationService.decodeDataTableRow(row, COPYRIGHT), isolationService.getCopyright());
+
+        // const appName = ;
+        // let value = row[DATATABLE_FIELD_VALUE];
+        // value = isolationService.replaceValueTemplated(value);
+        // console.log('-Field Name: ' + row[DATATABLE_FIELD_NAME]);
+        // console.log('-Field Value: ' + value);
+        // switch (row[DATATABLE_FIELD_NAME]) {
+        //     case 'app-name':
+        //         assert.equal(value, isolationService.getAppName());
+        //         break;
+        //     case 'app-version':
+        //         assert.equal(value, isolationService.getAppVersion());
+        //         break;
+        //     case 'app-copyright':
+        //         assert.equal(value, isolationService.getCopyright());
+        //         break;
+        // }
+    });
+    console.log('<Then panel displays the next fields');
 });
 
 // Given('I am on the login landing page', async () => {

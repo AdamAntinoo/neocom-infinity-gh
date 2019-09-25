@@ -46,52 +46,52 @@ import { RollbarErrorHandler } from '@app/rollbar-errorhandler.service';
 import { LoginValidationProgressComponent } from './panels/login-validation-progress/login-validation-progress.component';
 import { LoginValidationExceptionComponent } from './panels/login-validation-exception/login-validation-exception.component';
 export function rollbarFactory() {
-  return new Rollbar(rollbarConfig);
+    return new Rollbar(rollbarConfig);
 }
 
 // import { IsolationService } from '@app/platform/isolation.service';
 // import { Angular6BackendService } from '@app/platform/angular6-backend.service';
 
 @NgModule({
-  imports: [
-    // - BROWSER & ANIMATIONS
-    FormsModule,
-    ReactiveFormsModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    // BootstrapModalModule,
-    // - HTTP CLIENT
-    HttpClientModule,
-    // - NOTIFICATIONS
-    ToastrModule.forRoot(),
-    // - DRAG & DROP
-    NgDragDropModule.forRoot(),
-    // - WEBSTORAGE
-    StorageServiceModule,
-    // - APPLICATION MODULES
-    // - ROUTING
-    RouterModule,
-    AppRoutingModule
-  ],
-  declarations: [
-    AppComponent,
-    AppInfoPanelComponent,
-    // - PAGES
-    LoginValidationPageComponent,
-    LoginValidationProgressComponent,
-    LoginValidationExceptionComponent
-  ],
-  providers: [
-    // - SERVICES
-      { provide: IsolationService, useClass: IsolationService },
-      { provide: AppStoreService, useClass: AppStoreService },
-      { provide: BackendService, useClass: BackendService },
-    // --- ERROR INTERCEPTION
-    // { provide: ErrorHandler, useClass: RollbarErrorHandler },
-    // { provide: RollbarService, useFactory: rollbarFactory },
-  ],
-  // exports: [
-  // ],
-  bootstrap: [AppComponent]
+    imports: [
+        // - BROWSER & ANIMATIONS
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        // BootstrapModalModule,
+        // - HTTP CLIENT
+        HttpClientModule,
+        // - NOTIFICATIONS
+        ToastrModule.forRoot(),
+        // - DRAG & DROP
+        NgDragDropModule.forRoot(),
+        // - WEBSTORAGE
+        StorageServiceModule,
+        // - APPLICATION MODULES
+        // - ROUTING
+        RouterModule,
+        AppRoutingModule
+    ],
+    declarations: [
+        AppComponent,
+        AppInfoPanelComponent,
+        // - PAGES
+        LoginValidationPageComponent,
+        LoginValidationProgressComponent,
+        LoginValidationExceptionComponent
+    ],
+    providers: [
+        // - SERVICES
+        { provide: IsolationService, useClass: IsolationService },
+        { provide: AppStoreService, useClass: AppStoreService },
+        { provide: BackendService, useClass: BackendService },
+        // --- ERROR INTERCEPTION
+        // { provide: ErrorHandler, useClass: RollbarErrorHandler },
+        // { provide: RollbarService, useFactory: rollbarFactory },
+    ],
+    // exports: [
+    // ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
