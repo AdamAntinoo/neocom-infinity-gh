@@ -5,8 +5,8 @@ import { IsolationService } from '@app/platform/isolation.service';
     providedIn: 'root'
 })
 export class SupportBackendService{
-    constructor(
-        public isolation: IsolationService) {
-        // super(isolation);
-    }
+    // constructor(
+    //     public isolation: IsolationService) {
+    //     // super(isolation);
+    // }
 }

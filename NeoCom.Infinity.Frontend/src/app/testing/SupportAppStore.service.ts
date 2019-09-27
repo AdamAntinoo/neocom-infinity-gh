@@ -16,9 +16,37 @@ import { BackendService } from '@app/services/backend.service';
 @Injectable({
     providedIn: 'root'
 })
-export class SupportAppStoreService extends GlobalService {
+export class SupportAppStoreService /*extends GlobalService*/ {
     constructor(
-        protected isolation: IsolationService,
+        // protected isolation: IsolationService,
         // protected router: Router,
-        protected backendService: BackendService) { super(isolation); }
- }
+        protected backendService: BackendService) {
+        // super(isolation);
+    }
+    // - E N V I R O N M E N T    C A L L S
+    public getApplicationName(): string {
+        return environment.appName;
+    }
+    public getApplicationVersion(): string {
+        return environment.appVersion;
+    }
+
+    // - G L O B A L   A C C E S S   M E T H O D S
+    public isNonEmptyString(str: string): boolean {
+        return str && str.length > 0; // Or any other logic, removing whitespace, etc.
+    }
+    public isNonEmptyArray(data: any[]): boolean {
+        if (null == data) return false;
+        if (data.length < 1) return false;
+        return true;
+    }
+    public isEmptyString(str: string): boolean {
+        let empty = str && str.length > 0; // Or any other logic, removing whitespace, etc.
+        return !empty;
+    }
+    public isEmptyArray(data: any[]): boolean {
+        if (null == data) return true;
+        if (data.length < 1) return true;
+        return false;
+    }
+}
