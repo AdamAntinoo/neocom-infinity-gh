@@ -45,10 +45,10 @@ export class LoginValidationPageComponent implements OnInit {
 			console.log('-LoginValidationPageComponent.<ngOnInit> Validation should be false');
 	}
 	public getAppName(): string {
-		return this.backendService.getApplicationName();
+        return this.appModelStore.getApplicationName();
 	}
 	public getAppVersion(): string {
-		return this.backendService.getApplicationVersion();
+        return this.appModelStore.getApplicationVersion();
 	}
 
 	// - F U N C T I O N A L I T I E S

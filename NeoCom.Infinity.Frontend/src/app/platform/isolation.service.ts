@@ -1,24 +1,15 @@
-//  PROJECT:     CitasCentro.frontend(CCF.A6+I)
-//  AUTHORS:     Adam Antinoo - adamantinoo.git@gmail.com
-//  COPYRIGHT:   (c) 2018, 2019 by Endless Dimensions Ltd., all rights reserved.
-//  ENVIRONMENT: Angular 6.0 + Ionic 4.0
-//  SITE:        citascentro.com
-//  DESCRIPTION: CitasCentro. Sistema S2. Aplicación Angular modular para acceder a las funcionalidades de
-//               administracion de calendarios de servicios, gestion de citaciones, gestión de recursos
-//               y administración del sistema en general.
-//               Este sistema utiliza como backend el sistema S1 para almacenar los datos de las citaciones.
-// --- CORE
+// - CORE
 import { Injectable } from '@angular/core';
 import { Inject } from '@angular/core';
-// --- ENVIRONMENT
+// - ENVIRONMENT
 import { environment } from '@env/environment';
-// --- WEBSTORAGE
+// - WEBSTORAGE
 import { LOCAL_STORAGE } from 'angular-webstorage-service';
 import { SESSION_STORAGE } from 'angular-webstorage-service';
 import { WebStorageService } from 'angular-webstorage-service';
-//--- NOTIFICATIONS
+// - NOTIFICATIONS
 import { ToastrManager } from 'ng6-toastr-notifications';
-// --- ROUTER
+// - ROUTER
 import { Router } from '@angular/router';
 
 @Injectable()
