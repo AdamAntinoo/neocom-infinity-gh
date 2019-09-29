@@ -11,8 +11,11 @@ export class IsolationService {
         return environment.copyright;
     }
     public decodeDataTableRow(row: any, columnIdentifier: string): string {
+        console.log('-[decodeDataTableRow]>row=' + JSON.stringify(row));
+        console.log('-[decodeDataTableRow]>columnIdentifier=' + columnIdentifier);
         let foundValue = row[columnIdentifier];
-        if (null != foundValue) return this.replaceConfigurationTemplate(foundValue)
+        console.log('-[decodeDataTableRow]>foundValue=' + foundValue);
+        if (null != foundValue) return this.replaceValueTemplated(foundValue)
         else return '-undefined-';
     }
     /**
@@ -27,6 +30,8 @@ export class IsolationService {
         if (regex.test(value)) {
             const domain = RegExp.$1;
             const name = RegExp.$2;
+            console.log('-[replaceValueTemplated]>domain=' + domain);
+            console.log('-[replaceValueTemplated]>name=' + name);
             if (null != domain) {
                 switch (domain) {
                     case 'environment':
@@ -41,7 +46,7 @@ export class IsolationService {
                 }
             }
         }
-        return '-undefined-';
+        return value;
     }
     public replaceEnvironmentTemplate(templateName: string): string {
         switch (templateName) {
