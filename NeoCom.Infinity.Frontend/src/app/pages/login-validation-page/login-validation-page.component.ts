@@ -23,28 +23,25 @@ export class LoginValidationPageComponent implements OnInit, OnDestroy {
 
     constructor(protected appModelStore: AppStoreService,
         protected backendService: BackendService,
-        protected route: ActivatedRoute) {
-        console.log('>LoginValidationPageComponent.<constructor>');
+        protected route: ActivatedRoute) { }
+
+    ngOnInit() {
+        console.log('>[LoginValidationPageComponent.ngOnInit]');
         this.route.queryParams.subscribe(params => {
             this.paramCode = params['code'];
             this.paramState = params['state'];
+            console.log('-[LoginValidationPageComponent.<ngOnInit>]> Query Parameter: ' + 'code=' + this.paramCode);
+            console.log('-[LoginValidationPageComponent.<ngOnInit>]> Query Parameter: ' + 'state=' + this.paramState);
+            if (this.parameterValidation()) {
+                console.log('-[LoginValidationPageComponent.<ngOnInit>] Validation should be true');
+                this.validateAuthorizationTokenSubscription = this.backendService.apiValidateAuthorizationToken_v1(
+                    this.paramCode, this.paramState)
+                    .subscribe(response => {
+                        console.log('-[LoginValidationPageComponent.<ngOnInit>.apiValidateAuthorizationToken]');
+                    });
+            } else
+                console.log('-[LoginValidationPageComponent.<ngOnInit>] Validation should be false');
         });
-        console.log('-LoginValidationPageComponent.<constructor> Query Parameter: ' + 'code=' + this.paramCode);
-        console.log('-LoginValidationPageComponent.<constructor> Query Parameter: ' + 'state=' + this.paramState);
-        console.log('<LoginValidationPageComponent.<constructor>');
-    }
-
-    ngOnInit() {
-        console.log('>LoginValidationPageComponent.ngOnInit');
-        if (this.parameterValidation()) {
-            console.log('-LoginValidationPageComponent.<ngOnInit> Validation should be true');
-            this.validateAuthorizationTokenSubscription = this.backendService.apiValidateAuthorizationToken_v1(
-                this.paramCode, this.paramState)
-                .subscribe(response => {
-                    console.log('-LoginValidationPageComponent.<ngOnInit>.apiValidateAuthorizationToken');
-                });
-        } else
-            console.log('-LoginValidationPageComponent.<ngOnInit> Validation should be false');
     }
     ngOnDestroy() {
         if (null != this.validateAuthorizationTokenSubscription) this.validateAuthorizationTokenSubscription.unsubscribe();

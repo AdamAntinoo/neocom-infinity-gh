@@ -30,7 +30,8 @@ describe('PAGE LoginValidationPageComponent [Module: CORE]', () => {
     let fixture: ComponentFixture<LoginValidationPageComponent>;
     let params: Subject<Params> = new Subject<Params>();
 
-    beforeEach(async(() => {
+    beforeEach(() => {
+        params = new Subject<Params>();
         TestBed.configureTestingModule({
             schemas: [NO_ERRORS_SCHEMA],
             imports: [
@@ -51,48 +52,68 @@ describe('PAGE LoginValidationPageComponent [Module: CORE]', () => {
             ]
         })
             .compileComponents();
-    }));
-
-    beforeEach(() => {
-        params = new Subject<Params>();
         fixture = TestBed.createComponent(LoginValidationPageComponent);
         component = fixture.componentInstance;
-        // fixture.detectChanges();
     });
 
     // - C O N S T R U C T I O N   P H A S E
     describe('Construction Phase', () => {
-        xit('should be created', () => {
+        it('Should be created', () => {
             console.log('><[core/LoginValidationPageComponent]> should be created');
             expect(component).toBeDefined('component has not been created.');
         });
-        it('should be created with parameters', fakeAsync(() => {
-            console.log('><[core/LoginValidationPageComponent]> should be created');
-            params.next({
-                'code': '-ANY-CODE-',
-                'state': 'LU5FT0NPTS5JTkZJTklUWS1ERVZFTE9QTUVOVC1WQUxJRCBTVEFURSBTVFJJTkct'
-            });
-            tick();
-            expect(component).toBeDefined('component has not been created.');
-        }));
-        xit('Fields should be on initial state', fakeAsync(() => {
-            fixture.detectChanges();
-            params.next({
-                'code': '-ANY-CODE-',
-                'state': 'LU5FT0NPTS5JTkZJTklUWS1ERVZFTE9QTUVOVC1WQUxJRCBTVEFURSBTVFJJTkct'
-            });
-            tick();
-            fixture.detectChanges();
+        it('Fields should be on initial state', () => {
             let componentAsAny = component as any;
-            // expect(componentAsAny.validationException).toBeUndefined('"validationException" should be <undefined>');
+            expect(componentAsAny.validationException).toBeUndefined('"validationException" should be <undefined>');
             expect(componentAsAny.paramCode).toBeUndefined('"paramCode" should be <undefined>');
             expect(componentAsAny.paramState).toBeUndefined('"paramState" should be <undefined>');
             expect(componentAsAny.validateAuthorizationTokenSubscription)
                 .toBeUndefined('"validateAuthorizationTokenSubscription" should be <undefined>');
+        });
+    });
+    describe('Initialization Phase', () => {
+        it('Initialization Phase: initialize with valid parameters', fakeAsync(() => {
+            console.log('><[core/LoginValidationPageComponent]> Initialization Phase: initialize with valid parameters');
+            fixture.detectChanges();
+            params.next({
+                'code': '-ANY-CODE-',
+                'state': 'LU5FT0NPTS5JTkZJTklUWS1ERVZFTE9QTUVOVC1WQUxJRCBTVEFURSBTVFJJTkct'
+            });
+            tick();
+            expect(component).toBeDefined('component has not been created.');
+            let componentAsAny = component as any;
+            expect(componentAsAny.paramCode).toBeDefined('"paramCode" should be <undefined>');
+            expect(componentAsAny.paramCode).toBe('-ANY-CODE-', '"paramCode" should be <undefined>');
+        }));
+        it('Initialization Phase: initialize with invalid parameters', fakeAsync(() => {
+            console.log('><[core/LoginValidationPageComponent]> Initialization Phase: initialize with invalid parameters');
+            fixture.detectChanges();
+            params.next({
+                'code': '-ANY-CODE-',
+                'state': '-NOT-VALID-LU5FT0NPTS5JTkZJTklUWS1ERVZFTE9QTUVOVC1WQUxJRCBTVEFURSBTVFJJTkct'
+            });
+            tick();
+            expect(component).toBeDefined('component has not been created.');
+            let componentAsAny = component as any;
+            expect(componentAsAny.paramCode).toBeDefined('"paramCode" should be <undefined>');
+            expect(componentAsAny.paramCode).toBe('-ANY-CODE-', '"paramCode" should be <undefined>');
+        }));
+        it('Initialization Phase: initialize with invalid parameters', fakeAsync(() => {
+            console.log('><[core/LoginValidationPageComponent]> Initialization Phase: initialize with invalid parameters');
+            fixture.detectChanges();
+            params.next({
+                'state': 'LU5FT0NPTS5JTkZJTklUWS1ERVZFTE9QTUVOVC1WQUxJRCBTVEFURSBTVFJJTkct'
+            });
+            tick();
+            expect(component).toBeDefined('component has not been created.');
+            let componentAsAny = component as any;
+            expect(componentAsAny.paramCode).toBeUndefined('"paramCode" should be <undefined>');
+            // expect(componentAsAny.paramCode).toBe('-ANY-CODE-', '"paramCode" should be <undefined>');
         }));
     });
+
     // - C O D E   C O V E R A G E   P H A S E
-    xdescribe('Code Coverage Phase [parameterValidation]', /*fakeAsync(*/() => {
+    describe('Code Coverage Phase [parameterValidation]', /*fakeAsync(*/() => {
         it('parameterValidation: validate the parameters received on the route', () => {
             let componentAsAny = component as any;
             componentAsAny.paramCode = '-ANY-CODE-';
