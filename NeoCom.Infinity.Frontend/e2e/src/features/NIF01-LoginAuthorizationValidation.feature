@@ -8,7 +8,7 @@ Feature: NIF01-Display the login autorization confirmation page
     Scenario: NIF01.01-Check that the Login Validation Page has all the panels expected
         Given I am on the "Login Validation Page" page
         When the request has the code "-CODE-TO-CHECK-ALL-PANELS-" and state "-INVALID-STATE-"
-        Then the page shows 3 panels
+        # Then the page shows 3 panels
         And there is a "appinfo-panel"
         And there is a "loginvalidationprogress-panel"
         And there is a "loginvalidationexception-panel"
@@ -26,10 +26,10 @@ Feature: NIF01-Display the login autorization confirmation page
     Scenario: NIF01.03-Check that the Login Validation Page has all only two panels when correct parameters
         Given I am on the "Login Validation Page" page
         When the request has the code "-CODE-VALID-" and state "LU5FT0NPTS5JTkZJTklUWS1ERVZFTE9QTUVOVC1WQUxJRCBTVEFURSBTVFJJTkct"
-        Then the page shows 3 panels
+        # Then the page shows 3 panels
         And there is a "appinfo-panel"
         And there is a "loginvalidationprogress-panel"
-        # And there is a "loginvalidationexception-panel"
+        And there is not a "loginvalidationexception-panel"
 
     # Scenario: NIF02.04-Check the Application header contents
     #     Given I am on the "Login Token Authorization Validation" page

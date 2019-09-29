@@ -3,10 +3,13 @@ import { Before } from 'cucumber';
 import { Given } from 'cucumber';
 import { Then } from 'cucumber';
 import { When } from 'cucumber';
+// - PROTRACTOR
+import { browser } from 'protractor';
+import { by } from 'protractor';
+import { element } from 'protractor';
 // - ASSERTION
 import { expect } from 'chai';
 import { assert } from 'chai';
-import { browser } from 'protractor';
 // - PAGES
 import { LoginValidationPage } from '../pages/LoginValidation.page';
 import { IsolationService } from '../support/IsolationService.support';
@@ -37,26 +40,22 @@ When('the request has the code {string} and state {string}', function (requestCo
     authorizationWorld.setCode(requestCode);
     authorizationWorld.setState(requestState);
 });
-
-// When('the request has the code {string}', function (requestCode) {
-// });
-// When('the request has the state {string}', function (requestState) {
-//     loginValidationPage.navigateTo(requestCode, INVALID_STATE);
-//     authorizationWorld.setCode(requestCode);
-// });
-Then('the page shows {int} panels', function (panelCount) {
-    assert.equal(loginValidationPage.getPanelCount(), panelCount, 'Check the number of panels visible on the target page');
+Then('there is a {string}', async (panelIdentifier) => {
+    // console.log('>Then there is a {string}' + '=' + JSON.stringify(element(by.id(panelIdentifier)).isPresent()));
+    // console.log('>Then there is a {string}' + '=' + JSON.stringify(expect(element(by.id(panelIdentifier)).isPresent())));
+    expect(await element(by.id(panelIdentifier))).to.be.ok;
 });
-Then('there is a {string}', function (panelIdentifier) {
-    assert.isOk(loginValidationPage.getPagePanelById(panelIdentifier), 'And there is a ' + panelIdentifier);
+When('there is not a {string}', async (panelIdentifier) => {
+    expect(await element(by.id(panelIdentifier))).to.be.ok;
 });
 
-Then('panel displays the next fields', function (dataTable) {
+Then('panel displays the next fields',  (dataTable) => {
     console.log('>Then panel displays the next fields');
-    dataTable.hashes().forEach((row) => {
+    dataTable.hashes().forEach(async (row) => {
         console.log('-[Then panel displays the next fields]>' + APP_NAME + ': ' +
             isolationService.decodeDataTableRow(row, APP_NAME));
         assert.equal(isolationService.decodeDataTableRow(row, APP_NAME), isolationService.getAppName());
+        expect(await loginValidationPage.getAppName()).to.equal(isolationService.decodeDataTableRow(row, APP_NAME));
         console.log('-[Then panel displays the next fields]>' + APP_VERSION + ': ' +
             isolationService.decodeDataTableRow(row, APP_VERSION));
         assert.equal(isolationService.decodeDataTableRow(row, APP_VERSION), isolationService.getAppVersion());
