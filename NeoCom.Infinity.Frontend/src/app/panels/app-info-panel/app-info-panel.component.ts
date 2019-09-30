@@ -1,3 +1,4 @@
+// - CORE
 import { Component } from '@angular/core';
 import { Input } from '@angular/core';
 import { environment } from '@env/environment';

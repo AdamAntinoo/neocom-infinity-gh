@@ -17,7 +17,7 @@ import { NeoComException } from '@app/platform/NeoComException';
 })
 export class LoginValidationPageComponent implements OnInit, OnDestroy {
     public validationException: any;
-    private paramCode: string;
+    public paramCode: string;
     private paramState: string;
     private validateAuthorizationTokenSubscription: Subscription;
 
@@ -51,6 +51,9 @@ export class LoginValidationPageComponent implements OnInit, OnDestroy {
     }
     public getAppVersion(): string {
         return this.appModelStore.getApplicationVersion();
+    }
+    public getCode(): string {
+        return '-TEH-CODE-';
     }
 
     // - F U N C T I O N A L I T I E S

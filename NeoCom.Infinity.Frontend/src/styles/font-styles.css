@@ -178,6 +178,17 @@
   font-family: "Prototype";
 }
 
+@font-face {
+  font-family: 'TheExpanse';
+  font-style: normal;
+  font-weight: normal;
+  src: url("/assets/fonts/TheExpanse.otf");
+}
+
+.expanse-ff {
+  font-family: 'TheExpanse';
+}
+
 /* S I Z E S */
 
 #neocom-ts30 {
