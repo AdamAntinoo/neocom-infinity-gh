@@ -55,7 +55,6 @@ public class AuthorizationService extends NeoComService {
 		                                               @Body TokenRequestBody body );
 	}
 
-	//	private final ESIDataAdapter esiDataAdapter;
 	private final ConfigurationProviderWrapper configurationProvider;
 	private final CredentialRepositoryWrapper credentialRepository;
 
@@ -144,9 +143,7 @@ public class AuthorizationService extends NeoComService {
 		final String esiServer = store.getDataSource();
 		final GetAccessToken serviceGetAccessToken = new Retrofit.Builder()
 				.baseUrl( this.configurationProvider.getResourceString(
-						"P.esi." +
-								esiServer.toLowerCase() +
-								".authorization.server" )
+						"P.esi." + esiServer.toLowerCase() + ".authorization.server" )
 				)
 				.addConverterFactory( JacksonConverterFactory.create() )
 				.build()
@@ -155,12 +152,9 @@ public class AuthorizationService extends NeoComService {
 		final TokenRequestBody tokenRequestBody = new TokenRequestBody().setCode( store.getAuthCode() );
 		logger.info( "-- [AuthorizationService.getTokenTranslationResponse]> Creating request call." );
 		final String peckString = this.configurationProvider.getResourceString( "P.esi." +
-				esiServer +
-				".authorization.clientid" )
-				+ ":"
-				+ this.configurationProvider.getResourceString( "P.esi." +
-				esiServer +
-				".authorization.secretkey" );
+				esiServer + ".authorization.clientid" ) +
+				":" +
+				this.configurationProvider.getResourceString( "P.esi." + esiServer + ".authorization.secretkey" );
 		String peck = Base64.getEncoder().encodeToString( peckString.getBytes() ).replaceAll( "\n", "" );
 		store.setPeck( peck );
 		final Call<TokenTranslationResponse> request = serviceGetAccessToken.getAccessToken(

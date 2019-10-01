@@ -1,3 +1,6 @@
+# Heroku git repository ignored
+backend.App/.git-heroku/
+
 # IntelliJ Idea ignorable files and directories
 *.iml
 .idea/workspace.xml
