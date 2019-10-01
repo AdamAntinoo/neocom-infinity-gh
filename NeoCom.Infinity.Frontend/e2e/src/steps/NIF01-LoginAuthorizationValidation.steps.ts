@@ -10,6 +10,10 @@ import { element } from 'protractor';
 // - ASSERTION
 import { expect } from 'chai';
 import { assert } from 'chai';
+// - WEBSTORAGE
+import { inject } from '@angular/core';
+import { InjectionToken } from '@angular/core';
+import { WebStorageService } from 'angular-webstorage-service';
 // - PAGES
 import { LoginValidationPage } from '../pages/LoginValidation.page';
 import { IsolationService } from '../support/IsolationService.support';
@@ -23,6 +27,15 @@ let isolationService: IsolationService;
 let authorizationWorld: AuthorizationWorld;
 
 Before(() => {
+    // Create the conponent by manual injection.
+    // const LOGIN_VALIDATION_PAGE_TOKEN = new InjectionToken<LoginValidationPage>('Manually constructed LoginValidationPage', {
+    //     providedIn: 'root',
+    //     factory: () => new LoginValidationPage(inject(WebStorageService), inject(WebStorageService)),
+    // });
+
+    // const instance = injector.get(LOGIN_VALIDATION_PAGE_TOKEN);
+
+    // loginValidationPage = new LoginValidationPage(inject(WebStorageService), inject(WebStorageService));
     loginValidationPage = new LoginValidationPage();
     isolationService = new IsolationService();
     authorizationWorld = new AuthorizationWorld();
@@ -41,19 +54,6 @@ When('the request has the code {string} and state {string}', async (requestCode,
 Then('there is a {string}', async (panelIdentifier) => {
     expect(await element(by.id(panelIdentifier))).to.be.ok;
 });
-// When('there is not a {string}', async (panelIdentifier) => {
-//     expect(await element(by.id(panelIdentifier)).getId()).to.be.undefined;
-// });
-// Then('the response has a valid JWT token', function () {
-//     // Write code here that turns the phrase above into concrete actions
-//     return 'pending';
-// });
-// Then('the response has a Credential', function () {
-//     // Write code here that turns the phrase above into concrete actions
-//     return 'pending';
-// });
-
-
 Then('appinfo panel displays the next fields', async (dataTable) => {
     const APP_NAME: string = 'app-name';
     const APP_VERSION: string = 'app-version';
@@ -96,6 +96,19 @@ Then('loginvalidationprogress panel displays the next fields', async (dataTable)
     // });
     console.log('<Then loginvalidationprogress panel displays the next fields');
 });
+// When('there is not a {string}', async (panelIdentifier) => {
+//     expect(await element(by.id(panelIdentifier)).getId()).to.be.undefined;
+// });
+// Then('the response has a valid JWT token', function () {
+//     // Write code here that turns the phrase above into concrete actions
+//     return 'pending';
+// });
+// Then('the response has a Credential', function () {
+//     // Write code here that turns the phrase above into concrete actions
+//     return 'pending';
+// });
+
+
 //    ?And appinfo panel displays the next fields
 //     | app - name | app - version | copyright |
 //        | NeoCom.Infinity | 0.16.0 - TEST | <environment.copyright> |
@@ -108,7 +121,18 @@ Then('loginvalidationprogress panel displays the next fields', async (dataTable)
 //        | Adam Antinoo | tranquility / 123 |
 //     Undefined.Implement with the following snippet:
 
-When('the JWT token has the next contents', function (dataTable) {
+// When('the JWT token has the next contents', async (key: string, dataTable) => {
+//     // const ACCOUNT_NAME: string = 'accountName';
+//     // const UNIQUE_ID: string = 'uniqueId';
+//     // const jwtToken = loginValidationPage.readStorage(key); // Get the current JWT token from the storage.
+//     // assert.isDefined(jwtToken);
+//     // const row = dataTable.hashes()[0];
+//     // console.log('-[When the JWT token has the next contents]> row=' + JSON.stringify(row));
+//     // assert.equal(isolationService.decodeDataTableRow(row, ACCOUNT_NAME), jwtToken.accountName);
+//     // assert.equal(isolationService.decodeDataTableRow(row, UNIQUE_ID), jwtToken.uniqueId);
+//     return 'pending';
+// });
+When('the JWT token with key {string} has the next contents', function (string, dataTable) {
     // Write code here that turns the phrase above into concrete actions
     return 'pending';
 });
