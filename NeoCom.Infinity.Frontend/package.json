@@ -36,6 +36,7 @@
     "angular-webstorage-service": "1.0.2",
     "bootstrap": "4.3.1",
     "font-awesome": "4.7.0",
+    "jwt-decode": "2.2.0",
     "ng-drag-drop": "5.0.0",
     "ng6-toastr-notifications": "1.0.4",
     "ngx-toastr": "10.2.0",

@@ -17,4 +17,10 @@ export class ValidateAuthorizationTokenResponse extends NeoComResponse {
             this.credential = new Credential(this.credential);
         }
     }
+    public getJwtToken(): string {
+        return this.jwtToken;
+    }
+    public getCredential(): Credential{
+        return this.credential;
+    }
 }

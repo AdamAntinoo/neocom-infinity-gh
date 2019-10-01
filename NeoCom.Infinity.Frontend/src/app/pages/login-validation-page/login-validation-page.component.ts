@@ -9,6 +9,9 @@ import { Subscription } from 'rxjs';
 import { AppStoreService } from '@app/services/appstore.service';
 import { BackendService } from '@app/services/backend.service';
 import { NeoComException } from '@app/platform/NeoComException';
+// - DOMAIN
+import { Credential } from '@domain/Credential';
+
 
 @Component({
     selector: 'app-login-validation-page',
@@ -37,7 +40,15 @@ export class LoginValidationPageComponent implements OnInit, OnDestroy {
                 this.validateAuthorizationTokenSubscription = this.backendService.apiValidateAuthorizationToken_v1(
                     this.paramCode, this.paramState)
                     .subscribe(response => {
-                        console.log('-[LoginValidationPageComponent.<ngOnInit>.apiValidateAuthorizationToken]');
+                        console.log('-[LoginValidationPageComponent.<ngOnInit>.apiValidateAuthorizationToken]> JWT: ' +
+                            response.getJwtToken());
+                        const credential: Credential = new Credential(response.getCredential());
+                        console.log('-[LoginValidationPageComponent.<ngOnInit>.apiValidateAuthorizationToken]> Credential: ' +
+                            JSON.stringify(credential));
+                        if (this.validateJWT(response.getJwtToken(), credential)) {
+                            this.storeJWT(response.getJwtToken());
+                            this.appModelStore.setCredential(response.getCredential());
+                        }
                     });
             } else
                 console.log('-[LoginValidationPageComponent.<ngOnInit>] Validation should be false');
@@ -76,5 +87,19 @@ export class LoginValidationPageComponent implements OnInit, OnDestroy {
         this.validationException = new NeoComException(
             { code: 400, message: 'The request state does not match. Caller not verified.' }
         );
+    }
+    private validateJWT(jwtToken: string, credential: Credential): boolean {
+        // Decode the JWT.
+        const accountName = this.appModelStore.JWTDecode2AccountName(jwtToken);
+        console.log('-[LoginValidationPageComponent.validateJWT]> accountName=' + accountName);
+        const uniqueId = this.appModelStore.JWTDecode2UniqueId(jwtToken);
+        console.log('-[LoginValidationPageComponent.validateJWT]> uniqueId=' + uniqueId);
+        if (accountName != credential.getAccountName()) return false;
+        if (uniqueId != credential.getUniqueId()) return false;
+        return true;
+    }
+    private storeJWT(jwtToken: string): boolean {
+        this.backendService.isolation.setToStorage(this.backendService.isolation.JWTTOKEN_KEY, jwtToken);
+        return true;
     }
 }
