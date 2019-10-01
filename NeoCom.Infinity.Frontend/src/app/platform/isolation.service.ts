@@ -30,6 +30,7 @@ export class IsolationService {
     public route2FirstPage(): void {
         this.router.navigate(['login']);
     }
+    
     // - E N V I R O N M E N T   A C C E S S
     public getServerName(): string {
         return environment.serverName;

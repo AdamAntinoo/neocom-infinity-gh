@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 // - SERVICES
 import { BackendService } from '@app/services/backend.service';
 // - DOMAIN
-import { Credential } from '@domain/Credential';
+import { Credential } from '../domain/Credential';
 
 @Injectable({
     providedIn: 'root'
@@ -27,7 +27,7 @@ export class AppStoreService {
     public setCredential(newCredential: Credential): void {
         this.credential = newCredential;
     }
-    
+
     // - E N V I R O N M E N T    C A L L S
     public getApplicationName(): string {
         return this.backendService.getApplicationName();

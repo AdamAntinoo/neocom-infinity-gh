@@ -10,7 +10,7 @@ import { AppStoreService } from '@app/services/appstore.service';
 import { BackendService } from '@app/services/backend.service';
 import { NeoComException } from '@app/platform/NeoComException';
 // - DOMAIN
-import { Credential } from '@domain/Credential';
+import { Credential } from '../../domain/Credential';
 
 
 @Component({
@@ -48,6 +48,9 @@ export class LoginValidationPageComponent implements OnInit, OnDestroy {
                         if (this.validateJWT(response.getJwtToken(), credential)) {
                             this.storeJWT(response.getJwtToken());
                             this.appModelStore.setCredential(response.getCredential());
+                            // Jump to the Dashboard page if all complete.
+                        } else {
+                            // Jump to the repeat login page with some information.
                         }
                     });
             } else
@@ -62,9 +65,6 @@ export class LoginValidationPageComponent implements OnInit, OnDestroy {
     }
     public getAppVersion(): string {
         return this.appModelStore.getApplicationVersion();
-    }
-    public getCode(): string {
-        return '-TEH-CODE-';
     }
 
     // - F U N C T I O N A L I T I E S

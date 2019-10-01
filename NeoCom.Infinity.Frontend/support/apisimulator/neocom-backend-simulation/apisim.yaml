@@ -7,6 +7,11 @@ request:
 
 response:
   from: template
+  latency:
+    timeUnit: seconds
+    fixed:
+      initial: 10
+      subsequent: 1
   status: 200
   headers:
     - "Content-Type: application/json"

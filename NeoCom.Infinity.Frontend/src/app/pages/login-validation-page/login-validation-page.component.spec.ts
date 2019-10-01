@@ -45,7 +45,7 @@ describe('PAGE LoginValidationPageComponent [Module: CORE]', () => {
                 LoginValidationExceptionComponent
             ],
             providers: [
-                // { provide: IsolationService, useClass: SupportIsolationService },
+                { provide: IsolationService, useClass: SupportIsolationService },
                 { provide: ActivatedRoute, useValue: { queryParams: params } },
                 { provide: AppStoreService, useClass: SupportAppStoreService },
                 { provide: BackendService, useClass: SupportBackendService }

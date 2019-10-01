@@ -10,7 +10,8 @@
       "node"
     ],
     "paths": {
-      "@pages/*": ["src/pages/*"]
+      "@pages/*": ["src/pages/*"],
+      "@domain/*": ["src/app/domain/*"]
     }
   }
 }

@@ -9,9 +9,9 @@ import { Input } from '@angular/core';
 })
 export class LoginValidationExceptionComponent /*implements OnInit*/ {
     @Input() exception: any;
-    constructor() { }
 
-    ngOnInit() {
+    public getExceptionType(): string {
+        return 'EXCEPTION';
     }
     public getMessage(): string {
         if (null != this.exception) return this.exception.message;

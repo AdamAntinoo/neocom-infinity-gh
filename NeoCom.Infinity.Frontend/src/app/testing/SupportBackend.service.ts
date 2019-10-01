@@ -19,6 +19,9 @@ import { NeoComException } from '@app/platform/NeoComException';
     providedIn: 'root'
 })
 export class SupportBackendService {
+    constructor(
+        public isolation: IsolationService) { }
+
     public apiValidateAuthorizationToken_v1(code: string, state: string): Observable<ValidateAuthorizationTokenResponse> {
         console.log(">[BackendService.apiValidateAuthorizationToken_v1]> code: " + code);
         // Construct the request to call the backend.
