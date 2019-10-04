@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.eveonline.neocom.infinity.authorization.AuthorizationService;
@@ -32,6 +33,22 @@ public class LoginController extends NeoComController {
 		this.authorizationService = authorizationService;
 	}
 
+	@GetMapping(path = { "/validateAuthorizationToken?code={code}&state={state}&datasource={datasource}" },
+			produces = "application/json",
+			consumes = "application/json")
+	public ResponseEntity validate( @RequestParam(value = "code") final String code,
+	                                @RequestParam(value = "state") final String state,
+	                                @RequestParam(value = "dataSource", required = false) final Optional<String> dataSource ) {
+
+		final ValidateAuthorizationTokenRequest.Builder requestBuilder = new ValidateAuthorizationTokenRequest.Builder()
+				.withCode( code )
+				.withState( state );
+		if (dataSource.isPresent()) requestBuilder.optionalDataSource( dataSource.get() );
+		return new ResponseEntity( this.authorizationService.validateAuthorizationToken( requestBuilder.build() ),
+				HttpStatus.OK );
+	}
+
+	@Deprecated
 	@GetMapping(path = {
 			"/validateAuthorizationToken/{code}/state/{state}",
 			"/validateAuthorizationToken/{code}/state/{state}/datasource/{dataSource}" },
@@ -39,8 +56,7 @@ public class LoginController extends NeoComController {
 			produces = "application/json")
 	public ResponseEntity<ValidateAuthorizationTokenResponse> validateAuthorizationToken( @PathVariable final String code,
 	                                                                                      @PathVariable final String state,
-	                                                                                      @PathVariable("dataSource") final Optional<String> dataSource
-	) {
+	                                                                                      @PathVariable("dataSource") final Optional<String> dataSource ) {
 		if (dataSource.isPresent())
 			logger.info( ">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/validateAuthorizationToken/{}/state/{}/datasource/{}",
 					code, state, dataSource );

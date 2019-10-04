@@ -54,4 +54,9 @@ public class NeoComSBException extends RuntimeException {
 	public HttpStatus getHttpStatus() {
 		return this.errorInfo.status;
 	}
+
+	public String getExceptionType() {
+		if ( null != this.rootException) return this.rootException.getClass().getSimpleName();
+		else return "NeoComSBException";
+	}
 }

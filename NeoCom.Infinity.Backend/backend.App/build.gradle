@@ -25,4 +25,10 @@ configurations {
     }
 }
 
+sourceSets {
+    test.java {
+        srcDirs += 'src/test/springBoot'
+    }
+}
+
 apply from: './dependencies.gradle'

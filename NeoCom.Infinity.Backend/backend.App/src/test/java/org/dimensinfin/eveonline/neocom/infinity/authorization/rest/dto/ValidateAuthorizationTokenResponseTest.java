@@ -1,34 +1,48 @@
 package org.dimensinfin.eveonline.neocom.infinity.authorization.rest.dto;
 
-import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+
+import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 
 public class ValidateAuthorizationTokenResponseTest {
 	private Credential credential;
 
 	@Before
 	public void setUp() {
-		this.credential = Mockito.mock(Credential.class);
+		this.credential = Mockito.mock( Credential.class );
 	}
 
 	@Test
-	public void assertContract() {
+	public void getterContract() {
 		final ValidateAuthorizationTokenResponse request = new ValidateAuthorizationTokenResponse.Builder()
-				                                                   .withCredential(credential)
-				                                                   .build();
-		Assert.assertNotNull(request);
-		Assert.assertNotNull(request.getCredential());
+				.withCredential( credential )
+				.withJwtToken( "FFJJWWTT-TTKKEENNFF" )
+				.build();
+		Assert.assertNotNull( request );
+		Assert.assertNotNull( request.getCredential() );
+		Assert.assertNotNull( request.getJwtToken() );
 	}
 
 	@Test
-	public void build_complete() {
+	public void buildComplete() {
 		final ValidateAuthorizationTokenResponse request = new ValidateAuthorizationTokenResponse.Builder()
-				                                                   .withCredential(credential)
-				                                                   .build();
-		Assert.assertNotNull(request);
-		Assert.assertNotNull(request.getCredential());
+				.withCredential( credential )
+				.withJwtToken( "FFJJWWTT-TTKKEENNFF" )
+				.build();
+		Assert.assertNotNull( request );
+		Assert.assertNotNull( request.getCredential() );
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void buildiNComplete() {
+		final ValidateAuthorizationTokenResponse request = new ValidateAuthorizationTokenResponse.Builder()
+				.withCredential( null )
+				.withJwtToken( "FFJJWWTT-TTKKEENNFF" )
+				.build();
+		Assert.assertNotNull( request );
+		Assert.assertNotNull( request.getCredential() );
 	}
 }

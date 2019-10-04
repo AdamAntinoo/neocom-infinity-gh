@@ -1,12 +1,21 @@
 package org.dimensinfin.eveonline.neocom.infinity.authorization;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
+import java.util.Base64;
+
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import org.joda.time.Instant;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+
 import org.dimensinfin.eveonline.neocom.adapters.ESIDataAdapter;
 import org.dimensinfin.eveonline.neocom.auth.TokenRequestBody;
 import org.dimensinfin.eveonline.neocom.auth.TokenTranslationResponse;
 import org.dimensinfin.eveonline.neocom.auth.VerifyCharacterResponse;
-import org.dimensinfin.eveonline.neocom.core.updaters.CredentialUpdater;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ConfigurationProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.CredentialRepositoryWrapper;
@@ -17,18 +26,8 @@ import org.dimensinfin.eveonline.neocom.infinity.core.ErrorInfo;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComSBException;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComService;
 import org.dimensinfin.eveonline.neocom.services.UpdaterJobManager;
-import org.joda.time.DateTime;
-import org.joda.time.Instant;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
+import org.dimensinfin.eveonline.neocom.updaters.CredentialUpdater;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.sql.SQLException;
-import java.util.Base64;
-
-import jodd.util.BCrypt;
 import okhttp3.CertificatePinner;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -86,44 +85,43 @@ public class AuthorizationService extends NeoComService {
 		tokenVerificationStore.setTokenTranslationResponse( this.getTokenTranslationResponse( tokenVerificationStore ) );
 		// Create a security verification instance.
 		tokenVerificationStore.setVerifyCharacterResponse( this.getVerifyCharacterResponse( tokenVerificationStore ) );
-		logger.info( "-- [AuthorizationService.validateAuthorizationToken]> Character verification OK." );
 
 		// Create a new session and store the authorization token and the rest of the data.
 		// Generate token.
-		tokenVerificationStore.setAccountIdentifier( tokenVerificationStore.getVerifyCharacterResponse().getCharacterID() );
-		final String salt = BCrypt.gensalt( 8 );
-		final String payload = DateTime.now().toString() + ":"
-				+ tokenVerificationStore.getAccountIdentifier() + ":"
-				+ tokenVerificationStore.getVerifyCharacterResponse().getCharacterName();
-		final String authorizationToken = BCrypt.hashpw( payload, salt );
+//		tokenVerificationStore.setAccountIdentifier( tokenVerificationStore.getVerifyCharacterResponse().getCharacterID() );
+//		final String salt = BCrypt.gensalt( 8 );
+//		final String payload = DateTime.now().toString() + ":"
+//				+ tokenVerificationStore.getAccountIdentifier() + ":"
+//				+ tokenVerificationStore.getVerifyCharacterResponse().getCharacterName();
+//		final String authorizationToken = BCrypt.hashpw( payload, salt );
+//
+//		// Build up the session along with the credential data.
+//		this.buildSession( tokenVerificationStore );
 
-		// Build up the session along with the credential data.
-		this.buildSession( tokenVerificationStore );
-
+		logger.info( "-- [AuthorizationService.validateAuthorizationToken]> Creating Credential..." );
 		final TokenTranslationResponse token = tokenVerificationStore.getTokenTranslationResponse();
 		final Credential credential = new Credential.Builder( tokenVerificationStore.getAccountIdentifier() )
 				.withAccountId( tokenVerificationStore.getAccountIdentifier() )
-				.withAccountName(
-						tokenVerificationStore.getVerifyCharacterResponse().getCharacterName() )
+				.withAccountName( tokenVerificationStore.getVerifyCharacterResponse().getCharacterName() )
 				.withTokenType( token.getTokenType() )
 				.withAccessToken( token.getAccessToken() )
 				.withRefreshToken( token.getRefreshToken() )
 				.withDataSource( tokenVerificationStore.getDataSource() )
-				// TODO - This will require the ESI for a simple configurable data. Review this set.
+				// TODO - This will require the ESI for a simple configurable data. Review this set. Probably scopes can be
+				//  removed from Credentials
 				.withScope( "publicData" )
 				.build();
-		// Update the additional render fields.
-		UpdaterJobManager.submit( new CredentialUpdater( credential ) ); // Post the update request to the scheduler.
 		try {
 			this.credentialRepository.persist( credential );
 			logger.info( "-- [AuthorizationService.validateAuthorizationToken]> Credential #{}-{} created successfully.",
 					credential.getAccountId(), credential.getAccountName() );
+			UpdaterJobManager.submit( new CredentialUpdater( credential ) ); // Post the update request to the scheduler.
 			final String jwtToken = JWT.create()
 					.withIssuer( "NeoCom.Infinity.Backend" )
 					.withSubject( "ESI OAuth2 Authentication" )
 					.withClaim( "uniqueId", credential.getUniqueId() )
 					.withClaim( "accountName", credential.getAccountName() )
-					.sign( Algorithm.HMAC512( "The secre phrase" ) );
+					.sign( Algorithm.HMAC512( "The secret phrase to be used for encrypting." ) );
 			return new ValidateAuthorizationTokenResponse.Builder()
 					.withCredential( credential )
 					.withJwtToken( jwtToken )
@@ -140,26 +138,29 @@ public class AuthorizationService extends NeoComService {
 	}
 
 	private TokenTranslationResponse getTokenTranslationResponse( final TokenVerification store ) {
+		// Preload configuration variables.
 		final String esiServer = store.getDataSource();
+		final String authorizationServer = this.configurationProvider.getResourceString(
+				"P.esi." + esiServer + ".authorization.server" );
+		final String authorizationClientid = this.configurationProvider.getResourceString(
+				"P.esi." + esiServer + ".authorization.clientid" );
+		final String authorizationSecretKey = this.configurationProvider.getResourceString(
+				"P.esi." + esiServer + ".authorization.secretkey" );
+		final String authorizationContentType = this.configurationProvider.getResourceString(
+				"P.esi.authorization.content.type" );
+
 		final GetAccessToken serviceGetAccessToken = new Retrofit.Builder()
-				.baseUrl( this.configurationProvider.getResourceString(
-						"P.esi." + esiServer.toLowerCase() + ".authorization.server" )
-				)
+				.baseUrl( authorizationServer )
 				.addConverterFactory( JacksonConverterFactory.create() )
 				.build()
 				.create( GetAccessToken.class );
-		logger.info( "-- [AuthorizationService.getTokenTranslationResponse]> Creating request body." );
 		final TokenRequestBody tokenRequestBody = new TokenRequestBody().setCode( store.getAuthCode() );
 		logger.info( "-- [AuthorizationService.getTokenTranslationResponse]> Creating request call." );
-		final String peckString = this.configurationProvider.getResourceString( "P.esi." +
-				esiServer + ".authorization.clientid" ) +
-				":" +
-				this.configurationProvider.getResourceString( "P.esi." + esiServer + ".authorization.secretkey" );
+		final String peckString = authorizationClientid + ":" + authorizationSecretKey;
 		String peck = Base64.getEncoder().encodeToString( peckString.getBytes() ).replaceAll( "\n", "" );
 		store.setPeck( peck );
 		final Call<TokenTranslationResponse> request = serviceGetAccessToken.getAccessToken(
-				"Basic " + peck,
-				this.configurationProvider.getResourceString( "P.esi.authorization.content.type" ),
+				"Basic " + peck,authorizationContentType,
 				"login.eveonline.com",
 				tokenRequestBody
 		);
