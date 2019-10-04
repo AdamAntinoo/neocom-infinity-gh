@@ -3,6 +3,8 @@ package org.dimensinfin.eveonline.neocom.infinity.adapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBNeoComDBAdapter;
+
 @Component
 public class NeoComDBWrapper extends SBNeoComDBAdapter {
 	private ConfigurationProviderWrapper configurationProvider;

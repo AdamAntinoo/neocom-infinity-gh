@@ -4,4 +4,14 @@ P:
   runtime:
     configuration:
       properties:
-        path: properties-conf
+        path: properties-dev
+    filesystem:
+      application:
+        directory: ./NeoCom.Infinity.development
+neocom:
+  database:
+    neocom:
+      databasehost: "jdbc:postgresql://localhost:5432"
+      databasepath: postgres
+      databaseuser: neocom
+      databasepassword: 01.Alpha

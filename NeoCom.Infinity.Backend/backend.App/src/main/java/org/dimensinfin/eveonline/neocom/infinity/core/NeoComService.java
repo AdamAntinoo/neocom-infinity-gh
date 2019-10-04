@@ -5,6 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
-public class NeoComService {
+public abstract class NeoComService {
 	protected static Logger logger = LoggerFactory.getLogger(NeoComService.class);
 }

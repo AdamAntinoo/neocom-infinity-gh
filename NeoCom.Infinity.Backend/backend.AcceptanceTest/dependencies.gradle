@@ -42,14 +42,14 @@ dependencies {
     testImplementation "io.cucumber:cucumber-junit:$cucumberVersion"
     testImplementation "io.cucumber:cucumber-picocontainer:$cucumberVersion"
 
-    testImplementation "joda-time:joda-time:$jodaTimeVersion"
+//    testImplementation "joda-time:joda-time:$jodaTimeVersion"
     testImplementation 'org.apache.commons:commons-lang3:3.9'
-    testImplementation 'com.squareup.okhttp3:okhttp:3.12.0'
+//    testImplementation 'com.squareup.okhttp3:okhttp:3.12.0'
     testImplementation "com.squareup.retrofit2:retrofit:$retrofitVersion" // OAuth2 authentication
-    testImplementation "com.squareup.retrofit2:converter-jackson:$retrofitVersion" // HTTP encapsulation and swagger support
-
-    testImplementation 'org.dimensinfin:CoreBase.core:3.2.0'
-    testImplementation 'org.dimensinfin:NeoCom.DataManagement:0.15.2'
+//    testImplementation "com.squareup.retrofit2:converter-jackson:$retrofitVersion" // HTTP encapsulation and swagger support
+//
+//    testImplementation 'org.dimensinfin:CoreBase.core:3.2.0'
+    testImplementation 'org.dimensinfin:NeoCom.DataManagement:0.16.0'
 }
 
 sourceSets {

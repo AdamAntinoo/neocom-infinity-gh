@@ -3,6 +3,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'java'
 }
+apply plugin: 'project-report'
 
 group = 'org.dimensinfin.eveonline.neocom'
 version = '0.0.1-SNAPSHOT'

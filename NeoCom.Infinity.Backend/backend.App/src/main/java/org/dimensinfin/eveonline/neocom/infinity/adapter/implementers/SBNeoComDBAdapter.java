@@ -1,17 +1,18 @@
-package org.dimensinfin.eveonline.neocom.infinity.adapter;
+package org.dimensinfin.eveonline.neocom.infinity.adapter.implementers;
+
+import java.sql.SQLException;
+import java.util.concurrent.TimeUnit;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcPooledConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.commons.lang3.StringUtils;
-import org.dimensinfin.eveonline.neocom.database.entities.Credential;
-import org.dimensinfin.eveonline.neocom.entities.DatabaseVersion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.SQLException;
-import java.util.concurrent.TimeUnit;
+import org.dimensinfin.eveonline.neocom.database.entities.Credential;
+import org.dimensinfin.eveonline.neocom.database.entities.DatabaseVersion;
 
 /**
  * NeoCom private database connector that will have the same api as the connector to be used on Android. This

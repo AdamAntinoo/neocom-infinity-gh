@@ -5,6 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class NeoComController {
+public abstract class NeoComController {
 	protected static Logger logger = LoggerFactory.getLogger(NeoComController.class);
 }

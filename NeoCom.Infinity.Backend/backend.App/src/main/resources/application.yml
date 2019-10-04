@@ -23,4 +23,7 @@ P:
   runtime:
     configuration:
       properties:
-        path: properties-conf
+        path: properties
+    filesystem:
+      application:
+        directory: ./NeoCom.Infinity
