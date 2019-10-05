@@ -25,10 +25,10 @@ import org.dimensinfin.eveonline.neocom.exception.NeoComRuntimeException;
  * compatible SQLite database adapter. The SDE database is generated from the downloaded SDE raw data and configured for
  * a game version that should match the latest game client implementation.
  *
- * This adater will support custom queries to the SDE tables along with addition DAO for additional persistence tables.
+ * This adapter will support custom queries to the SDE tables along with addition DAO for additional persistence tables.
  */
-public class SDEDatabaseAdapter implements ISDEDatabaseAdapter {
-	private static Logger logger = LoggerFactory.getLogger( SDEDatabaseAdapter.class );
+public class SBSDEDatabaseAdapter implements ISDEDatabaseAdapter {
+	private static Logger logger = LoggerFactory.getLogger( SBSDEDatabaseAdapter.class );
 	// - C O M P O N E N T S
 	protected IFileSystem fileSystemAdapter;
 
@@ -41,7 +41,7 @@ public class SDEDatabaseAdapter implements ISDEDatabaseAdapter {
 
 	private Dao<EsiLocation, Long> locationDao = null;
 
-	protected SDEDatabaseAdapter() { }
+	protected SBSDEDatabaseAdapter() { }
 
 	public Dao<EsiLocation, Long> getLocationDao() throws NeoComRuntimeException {
 		if (null == this.locationDao) {
@@ -130,15 +130,15 @@ public class SDEDatabaseAdapter implements ISDEDatabaseAdapter {
 
 	// - B U I L D E R
 	public static class Builder {
-		private SDEDatabaseAdapter onConstruction;
+		private SBSDEDatabaseAdapter onConstruction;
 
 		public Builder() {
-			this.onConstruction = new SDEDatabaseAdapter();
+			this.onConstruction = new SBSDEDatabaseAdapter();
 		}
 
-		public Builder( final SDEDatabaseAdapter preInstance ) {
+		public Builder( final SBSDEDatabaseAdapter preInstance ) {
 			if (null != preInstance) this.onConstruction = preInstance;
-			else this.onConstruction = new SDEDatabaseAdapter();
+			else this.onConstruction = new SBSDEDatabaseAdapter();
 		}
 
 		public Builder withDatabasePath( final String databasePath ) {
@@ -156,7 +156,7 @@ public class SDEDatabaseAdapter implements ISDEDatabaseAdapter {
 			return this;
 		}
 
-		public SDEDatabaseAdapter build() {
+		public SBSDEDatabaseAdapter build() {
 			Objects.requireNonNull( this.onConstruction.databasePath );
 			Objects.requireNonNull( this.onConstruction.databaseName );
 			Objects.requireNonNull( this.onConstruction.fileSystemAdapter );

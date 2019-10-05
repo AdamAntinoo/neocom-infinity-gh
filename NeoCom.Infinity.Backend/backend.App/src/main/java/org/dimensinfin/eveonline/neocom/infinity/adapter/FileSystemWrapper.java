@@ -3,10 +3,10 @@ package org.dimensinfin.eveonline.neocom.infinity.adapter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.FileSystemSBAdapter;
+import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBFileSystemAdapter;
 
 @Component
-public class FileSystemWrapper extends FileSystemSBAdapter {
+public class FileSystemWrapper extends SBFileSystemAdapter {
 	//
 	private static String DEFAULT_APPLICATION_DIRECTORY = "./NeoCom.Infinity";
 

@@ -24,14 +24,14 @@ import org.dimensinfin.eveonline.neocom.adapters.IFileSystem;
  * application storage files like cache or running stored local data.
  * @author Adam Antinoo
  */
-public class FileSystemSBAdapter implements IFileSystem {
-	private static Logger logger = LoggerFactory.getLogger(FileSystemSBAdapter.class);
+public class SBFileSystemAdapter implements IFileSystem {
+	private static Logger logger = LoggerFactory.getLogger( SBFileSystemAdapter.class);
 //	private static ClassLoader classLoader = null;
 
 	protected String applicationFolder = "./NeoCom.Infinity";
 
 	// - C O N S T R U C T O R S
-	protected FileSystemSBAdapter(){}
+	protected SBFileSystemAdapter(){}
 //	@Deprecated
 //	public FileSystemSBAdapter(final String applicationStoreDirectory ) {
 //		logger.info(">< [FileSystemSBImplementation.constructor]> applicationStoreDirectory: {}", applicationStoreDirectory);

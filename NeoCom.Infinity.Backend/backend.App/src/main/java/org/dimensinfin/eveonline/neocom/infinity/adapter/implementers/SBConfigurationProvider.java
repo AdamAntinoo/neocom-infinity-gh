@@ -19,6 +19,8 @@ public class SBConfigurationProvider extends AConfigurationProvider {
 	protected void readAllProperties() throws IOException {
 		logger.info( ">> [SBConfigurationProvider.readAllProperties]" );
 		// Read all .properties files under the predefined path on the /resources folder.
+		logger.info( "-- [SBConfigurationProvider.readAllProperties]> Read property files from: build/resources {}",
+				this.getResourceLocation() );
 		final List<String> propertyFiles = this.getResourceFiles( this.getResourceLocation() );
 		final ClassLoader classLoader = getClass().getClassLoader();
 		Stream.of( propertyFiles )
@@ -41,25 +43,26 @@ public class SBConfigurationProvider extends AConfigurationProvider {
 						e.printStackTrace();
 					}
 				} );
-		logger.info( "<< [SBConfigurationProvider.readAllProperties]> Total properties number: {}", contentCount() );
+		logger.info( "<< [SBConfigurationProvider.readAllProperties]> Total properties number: {}", this.contentCount() );
 	}
 
-	protected List<String> getResourceFiles( String path ) throws IOException {
+	/**
+	 * Reads all the files found on the parameter directory path. Because the directory is read as a stream the method to read
+	 * the directory does not use the file system isolation.
+	 */
+	protected List<String> getResourceFiles( final String path ) throws IOException {
 		List<String> filenames = new ArrayList<>();
-
 		try (InputStream in = this.getResourceAsStream( path );
 		     BufferedReader br = new BufferedReader( new InputStreamReader( in ) )) {
 			String resource;
-
 			while ((resource = br.readLine()) != null) {
 				filenames.add( resource );
 			}
 		}
-
 		return filenames;
 	}
 
-	private InputStream getResourceAsStream( String resource ) {
+	private InputStream getResourceAsStream( final String resource ) {
 		final InputStream in = getContextClassLoader().getResourceAsStream( resource );
 
 		return in == null ? getClass().getResourceAsStream( resource ) : in;

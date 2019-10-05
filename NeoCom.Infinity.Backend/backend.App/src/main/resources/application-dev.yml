@@ -9,9 +9,8 @@ P:
       application:
         directory: ./NeoCom.Infinity.development
 neocom:
-  database:
-    neocom:
-      databasehost: "jdbc:postgresql://localhost:5432"
-      databasepath: postgres
-      databaseuser: neocom
-      databasepassword: 01.Alpha
+  sde:
+    database:
+      schema: "jdbc:sqlite:"
+      path: "backend.App/build/resources/main/"
+      name: sde.db
