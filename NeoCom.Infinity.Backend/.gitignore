@@ -12,6 +12,7 @@ backend.App/.git-heroku/
 .gradle/
 build/
 backend.App/build/
+backend.App/coverage/
 backend.AcceptanceTest/build/
 
 # Ignore application cache directories from runs

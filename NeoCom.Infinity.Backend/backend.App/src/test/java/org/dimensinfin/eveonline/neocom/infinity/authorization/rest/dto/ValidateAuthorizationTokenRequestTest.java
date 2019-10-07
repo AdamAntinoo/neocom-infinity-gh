@@ -3,8 +3,6 @@ package org.dimensinfin.eveonline.neocom.infinity.authorization.rest.dto;
 import org.junit.Assert;
 import org.junit.Test;
 
-import org.dimensinfin.eveonline.neocom.adapters.ESIDataAdapter;
-
 public class ValidateAuthorizationTokenRequestTest {
 	@Test
 	public void getterContract() {
@@ -18,7 +16,7 @@ public class ValidateAuthorizationTokenRequestTest {
 		Assert.assertEquals( "-TEST-CODE-", request.getCode() );
 		Assert.assertEquals( "-TEST-STATE-", request.getState() );
 		Assert.assertEquals( "-OPTIONAL-DATA-SOURCE-", request.getDataSource().get() );
-		Assert.assertEquals( ESIDataAdapter.DEFAULT_ESI_SERVER, request.getDataSourceName() );
+		Assert.assertEquals( "-OPTIONAL-DATA-SOURCE-", request.getDataSourceName() );
 	}
 
 	@Test

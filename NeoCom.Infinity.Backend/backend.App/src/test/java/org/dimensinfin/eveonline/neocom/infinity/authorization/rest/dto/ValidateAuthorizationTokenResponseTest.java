@@ -3,10 +3,13 @@ package org.dimensinfin.eveonline.neocom.infinity.authorization.rest.dto;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import org.mockito.Mockito;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 
+@RunWith(JUnit4.class)
 public class ValidateAuthorizationTokenResponseTest {
 	private Credential credential;
 

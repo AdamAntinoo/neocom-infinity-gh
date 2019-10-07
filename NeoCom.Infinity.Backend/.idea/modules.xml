@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/NeoCom.Infinity.Backend.iml" filepath="$PROJECT_DIR$/.idea/NeoCom.Infinity.Backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/backend.AcceptanceTest/NeoCom.Infinity.Backend.backend.AcceptanceTest.iml" filepath="$PROJECT_DIR$/.idea/modules/backend.AcceptanceTest/NeoCom.Infinity.Backend.backend.AcceptanceTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/backend.AcceptanceTest/NeoCom.Infinity.Backend.backend.AcceptanceTest.main.iml" filepath="$PROJECT_DIR$/.idea/modules/backend.AcceptanceTest/NeoCom.Infinity.Backend.backend.AcceptanceTest.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/backend.AcceptanceTest/NeoCom.Infinity.Backend.backend.AcceptanceTest.test.iml" filepath="$PROJECT_DIR$/.idea/modules/backend.AcceptanceTest/NeoCom.Infinity.Backend.backend.AcceptanceTest.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/backend.App/NeoCom.Infinity.Backend.backend.App.iml" filepath="$PROJECT_DIR$/.idea/modules/backend.App/NeoCom.Infinity.Backend.backend.App.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/backend.App/NeoCom.Infinity.Backend.backend.App.main.iml" filepath="$PROJECT_DIR$/.idea/modules/backend.App/NeoCom.Infinity.Backend.backend.App.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/backend.App/NeoCom.Infinity.Backend.backend.App.test.iml" filepath="$PROJECT_DIR$/.idea/modules/backend.App/NeoCom.Infinity.Backend.backend.App.test.iml" />

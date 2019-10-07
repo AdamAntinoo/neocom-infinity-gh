@@ -27,7 +27,7 @@ configurations {
 
 sourceSets {
     test.java {
-        srcDirs += 'src/test/springBoot'
+//        srcDirs += 'src/test/springBoot'
     }
 }
 
