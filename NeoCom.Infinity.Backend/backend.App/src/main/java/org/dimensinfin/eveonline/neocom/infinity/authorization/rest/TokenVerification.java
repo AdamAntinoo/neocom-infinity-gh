@@ -12,7 +12,7 @@ public class TokenVerification {
 	private TokenTranslationResponse tokenTranslationResponse;
 	private String peck;
 	private VerifyCharacterResponse verifyCharacterResponse;
-//	private Long accountIdentifier;
+
 	public String getAuthCode() {
 		return authCode;
 	}
@@ -64,9 +64,4 @@ public class TokenVerification {
 		this.verifyCharacterResponse = verifyCharacterResponse;
 		return this;
 	}
-//
-//	public TokenVerification setAccountIdentifier(Long accountIdentifier) {
-//		this.accountIdentifier = accountIdentifier;
-//		return this;
-//	}
 }

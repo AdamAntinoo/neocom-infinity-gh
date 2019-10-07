@@ -12,6 +12,7 @@ backend.App/.git-heroku/
 .gradle/
 build/
 backend.App/build/
+backend.App/out/
 backend.App/coverage/
 backend.AcceptanceTest/build/
 

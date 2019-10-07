@@ -13,11 +13,11 @@ public class LocationCatalogServiceWrapper extends LocationCatalogService {
 	@Autowired
 	public LocationCatalogServiceWrapper( final ConfigurationProviderWrapper configurationProvider,
 	                                      final FileSystemWrapper fileSystemAdapter,
-//	                                      final SDEDatabaseAdapterWrapper sdeDatabaseAdapter,
+	                                      final SDEDatabaseAdapterWrapper sdeDatabaseAdapter,
 	                                      final LocationRepositoryWrapper locationRepository ) {
 		this.configurationProvider = configurationProvider;
 		this.fileSystemAdapter = fileSystemAdapter;
-//		this.sdeDatabaseAdapter = sdeDatabaseAdapter;
+		this.sdeDatabaseAdapter = sdeDatabaseAdapter;
 		this.locationRepository = locationRepository;
 	}
 
@@ -26,7 +26,7 @@ public class LocationCatalogServiceWrapper extends LocationCatalogService {
 		new LocationCatalogService.Builder( this )
 				.withConfigurationProvider( this.configurationProvider )
 				.withFileSystemAdapter( this.fileSystemAdapter )
-//				.withSDEDatabaseAdapter( this.sdeDatabaseAdapter )
+				.withSDEDatabaseAdapter( this.sdeDatabaseAdapter )
 				.withLocationRepository( this.locationRepository )
 				.build();
 	}
