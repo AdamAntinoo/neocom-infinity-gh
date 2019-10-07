@@ -10,6 +10,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import org.joda.time.Instant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import org.dimensinfin.eveonline.neocom.adapters.ESIDataAdapter;
@@ -66,7 +67,7 @@ public class AuthorizationService extends NeoComService {
 //		this.esiDataAdapter = esiDataAdapter;
 	}
 
-	public ValidateAuthorizationTokenResponse validateAuthorizationToken( final ValidateAuthorizationTokenRequest validateAuthorizationTokenRequest ) {
+	public ResponseEntity<ValidateAuthorizationTokenResponse> validateAuthorizationToken( final ValidateAuthorizationTokenRequest validateAuthorizationTokenRequest ) {
 		logger.info( ">> [AuthorizationService.validateAuthorizationToken]" );
 		final Instant timer = Instant.now();
 		this.validateStateMatch( validateAuthorizationTokenRequest.getState() );
@@ -122,10 +123,10 @@ public class AuthorizationService extends NeoComService {
 					.withClaim( "uniqueId", credential.getUniqueId() )
 					.withClaim( "accountName", credential.getAccountName() )
 					.sign( Algorithm.HMAC512( "The secret phrase to be used for encrypting." ) );
-			return new ValidateAuthorizationTokenResponse.Builder()
+			return new ResponseEntity(new ValidateAuthorizationTokenResponse.Builder()
 					.withCredential( credential )
 					.withJwtToken( jwtToken )
-					.build();
+					.build(), HttpStatus.OK);
 		} catch (final SQLException | UnsupportedEncodingException sqle) {
 			logger.info( "-- [AuthorizationService.validateAuthorizationToken]> Response is {} - {}.",
 					HttpStatus.BAD_REQUEST, sqle.getMessage() );

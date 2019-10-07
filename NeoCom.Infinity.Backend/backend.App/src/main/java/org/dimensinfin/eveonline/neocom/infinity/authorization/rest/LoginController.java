@@ -36,16 +36,14 @@ public class LoginController extends NeoComController {
 	@GetMapping(path = { "/validateAuthorizationToken?code={code}&state={state}&datasource={datasource}" },
 			produces = "application/json",
 			consumes = "application/json")
-	public ResponseEntity validate( @RequestParam(value = "code") final String code,
+	public ResponseEntity<ValidateAuthorizationTokenResponse> validate( @RequestParam(value = "code") final String code,
 	                                @RequestParam(value = "state") final String state,
 	                                @RequestParam(value = "dataSource", required = false) final Optional<String> dataSource ) {
-
 		final ValidateAuthorizationTokenRequest.Builder requestBuilder = new ValidateAuthorizationTokenRequest.Builder()
 				.withCode( code )
 				.withState( state );
 		if (dataSource.isPresent()) requestBuilder.optionalDataSource( dataSource.get() );
-		return new ResponseEntity( this.authorizationService.validateAuthorizationToken( requestBuilder.build() ),
-				HttpStatus.OK );
+		return  this.authorizationService.validateAuthorizationToken( requestBuilder.build() );
 	}
 
 	@Deprecated
