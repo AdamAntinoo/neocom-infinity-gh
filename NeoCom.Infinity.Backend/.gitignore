@@ -15,6 +15,7 @@ backend.App/build/
 backend.App/out/
 backend.App/coverage/
 backend.AcceptanceTest/build/
+backend.AcceptanceTest/target/
 
 # Ignore application cache directories from runs
 NeoCom.Infinity.development/

@@ -336,7 +336,7 @@ simlet: corporation-machaque
 
 request:
   - method: GET
-  - uriPathPattern: "/corporation/{corporation_id}/"
+  - uriPathPattern: "/corporations/{corporation_id}/"
 
 response:
   from: stub
