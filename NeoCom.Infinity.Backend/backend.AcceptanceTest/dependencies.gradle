@@ -20,11 +20,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'org.springframework.boot:spring-boot-starter-web-services'
-//    implementation 'org.liquibase:liquibase-core'
-//    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
-//    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-//    runtimeOnly 'org.postgresql:postgresql'
-//    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 dependencyManagement {
@@ -41,14 +36,11 @@ dependencies {
     testImplementation "io.cucumber:cucumber-java:$cucumberVersion"
     testImplementation "io.cucumber:cucumber-junit:$cucumberVersion"
     testImplementation "io.cucumber:cucumber-picocontainer:$cucumberVersion"
-
-//    testImplementation "joda-time:joda-time:$jodaTimeVersion"
+    // CORE
     testImplementation 'org.apache.commons:commons-lang3:3.9'
-//    testImplementation 'com.squareup.okhttp3:okhttp:3.12.0'
     testImplementation "com.squareup.retrofit2:retrofit:$retrofitVersion" // OAuth2 authentication
-//    testImplementation "com.squareup.retrofit2:converter-jackson:$retrofitVersion" // HTTP encapsulation and swagger support
-//
-//    testImplementation 'org.dimensinfin:CoreBase.core:3.2.0'
+    testImplementation "com.squareup.retrofit2:converter-jackson:$retrofitVersion" // HTTP encapsulation and swagger support
+    // NEOCOM
     testImplementation 'org.dimensinfin:NeoCom.DataManagement:0.16.0'
 }
 
