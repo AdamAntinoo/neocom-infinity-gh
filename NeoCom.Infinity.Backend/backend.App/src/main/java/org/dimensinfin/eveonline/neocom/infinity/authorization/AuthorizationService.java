@@ -39,6 +39,11 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.ISSUER;
+import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.SECRET;
+import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.SUBJECT;
+import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.TOKEN_ACCOUNT_NAME_FIELD_NAME;
+import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.TOKEN_UNIQUE_IDENTIFIER_FIELD_NAME;
 
 @Service
 public class AuthorizationService extends NeoComService {
@@ -118,11 +123,11 @@ public class AuthorizationService extends NeoComService {
 					credential.getAccountId(), credential.getAccountName() );
 			UpdaterJobManager.submit( new CredentialUpdater( credential ) ); // Post the update request to the scheduler.
 			final String jwtToken = JWT.create()
-					.withIssuer( "NeoCom.Infinity.Backend" )
-					.withSubject( "ESI OAuth2 Authentication" )
-					.withClaim( "uniqueId", credential.getUniqueId() )
-					.withClaim( "accountName", credential.getAccountName() )
-					.sign( Algorithm.HMAC512( "The secret phrase to be used for encrypting." ) );
+					.withIssuer( ISSUER )
+					.withSubject( SUBJECT )
+					.withClaim( TOKEN_UNIQUE_IDENTIFIER_FIELD_NAME, credential.getUniqueId() )
+					.withClaim( TOKEN_ACCOUNT_NAME_FIELD_NAME, credential.getAccountName() )
+					.sign( Algorithm.HMAC512( SECRET ) );
 			return new ResponseEntity(new ValidateAuthorizationTokenResponse.Builder()
 					.withCredential( credential )
 					.withJwtToken( jwtToken )
