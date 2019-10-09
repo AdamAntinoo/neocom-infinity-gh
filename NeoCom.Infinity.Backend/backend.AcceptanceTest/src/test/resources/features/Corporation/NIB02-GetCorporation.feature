@@ -11,7 +11,7 @@ Feature: [NIB02] Get the selected Corporation first level data
       | 123456        |
     And "<null>" authorization token
     When the "Get Corporation Data" request is processed
-    Then the response status code is 404
+    Then the response status code is 403
 
   @NIB02.02 @Corporation
   Scenario: [NIB02.02] The authorization token corporation identifier does not match the requested corporation.
@@ -20,5 +20,5 @@ Feature: [NIB02] Get the selected Corporation first level data
       | 123456        |
     And "FFGG" authorization token
     When the "Get Corporation Data" request is processed
-    Then the response status code is 404
-    And the exception message is ""
+    Then the response status code is 403
+    And the exception message is "Access Denied"

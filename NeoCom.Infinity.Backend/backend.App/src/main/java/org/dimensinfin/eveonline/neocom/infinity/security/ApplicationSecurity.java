@@ -2,6 +2,7 @@ package org.dimensinfin.eveonline.neocom.infinity.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,14 +16,18 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.LOGIN_VERIFICATION_URL;
 
+@Configuration
 @EnableWebSecurity
 public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
+	private NeoComAuthenticationProvider neoComAuthenticationProvider;
 	private CredentialDetailsService credentialDetailsService;
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Autowired
 	public ApplicationSecurity( final CredentialDetailsService userDetailsService,
+	                            final NeoComAuthenticationProvider neoComAuthenticationProvider,
 	                            final BCryptPasswordEncoder bCryptPasswordEncoder ) {
+		this.neoComAuthenticationProvider = neoComAuthenticationProvider;
 		this.credentialDetailsService = userDetailsService;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}
@@ -41,7 +46,8 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure( AuthenticationManagerBuilder auth ) throws Exception {
-		auth.userDetailsService( credentialDetailsService ).passwordEncoder( bCryptPasswordEncoder );
+		auth.authenticationProvider(this.neoComAuthenticationProvider);
+//		auth.userDetailsService( credentialDetailsService ).passwordEncoder( bCryptPasswordEncoder );
 	}
 
 	@Bean

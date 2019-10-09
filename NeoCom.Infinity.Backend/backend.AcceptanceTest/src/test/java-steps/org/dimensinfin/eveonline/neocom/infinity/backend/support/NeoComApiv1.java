@@ -19,5 +19,6 @@ public interface NeoComApiv1 {
 
 	@GET("/api/v1/neocom/corporation/{corporationId}")
 	Call<CorporationDataResponse> getCorporationData( @Header("Content-Type") String contentType,
+	                                                  @Header ("Authorization")String authorization,
 	                                                  @Path("corporationId") Integer code );
 }

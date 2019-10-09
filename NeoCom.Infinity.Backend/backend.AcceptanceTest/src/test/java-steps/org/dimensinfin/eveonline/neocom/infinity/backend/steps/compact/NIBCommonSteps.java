@@ -88,7 +88,8 @@ public class NIBCommonSteps extends SupportSteps {
 					Assert.assertTrue( this.neocomWorld.getCorporationIdentifier().isPresent() );
 					final ResponseEntity<CorporationDataResponse> corporationDataResponse =
 							this.corporationFeignClient.getCorporationData(
-									this.neocomWorld.getCorporationIdentifier().get()
+									this.neocomWorld.getCorporationIdentifier().get(),
+									this.neocomWorld.getJwtAuthorizationToken()
 							);
 					Assert.assertNotNull( corporationDataResponse.getBody() );
 					this.neocomWorld.setCorporationDataResponse( corporationDataResponse.getBody() );
