@@ -31,7 +31,7 @@ public class CorporationFeignClientV1 {
 		if (response.isSuccessful()) {
 			final CorporationDataResponse corporationResponse = response.body();
 			return new ResponseEntity<>( corporationResponse, HttpStatus.OK );
-		} else return new ResponseEntity( HttpStatus.BAD_REQUEST );
+		} else return new ResponseEntity( HttpStatus.valueOf( response.code() ) );
 	}
 
 }

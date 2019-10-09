@@ -1,6 +1,5 @@
 package org.dimensinfin.eveonline.neocom.infinity.backend.steps.compact;
 
-import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.NeoComWorld;
@@ -25,7 +24,11 @@ public class NIB02GetCorporation extends SupportSteps {
 
 	@Given("{string} authorization token")
 	public void authorization_token( String jwtToken ) {
-		Assert.assertNotNull( jwtToken );
+		// Process special values
+		if ( jwtToken.equalsIgnoreCase( "<null>" )){
+			this.neocomWorld.setJwtAuthorizationToken( null );
+			return;
+		}
 		this.neocomWorld.setJwtAuthorizationToken( jwtToken );
 	}
 

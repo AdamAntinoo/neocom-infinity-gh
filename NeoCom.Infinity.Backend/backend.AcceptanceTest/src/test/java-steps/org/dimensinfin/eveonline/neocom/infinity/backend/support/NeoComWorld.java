@@ -10,27 +10,29 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.support.corporation.res
 
 public class NeoComWorld {
 	private ResponseEntity responseEntity;
-	private int httpStatusCode;
+	private int httpStatusCodeValue;
 
 	private ValidateAuthorizationTokenRequest validateAuthorizationTokenRequest;
 	private ValidateAuthorizationTokenResponse validateAuthorizationTokenResponse;
 	private Optional<Integer> corporationIdentifier = Optional.empty();
 	private String jwtAuthorizationToken;
-	private CorporationDataResponse corporationDataResponse;
+	private ResponseEntity<CorporationDataResponse> corporationDataResponse;
 
-	public int getHttpStatusCode() {
-		return httpStatusCode;
+	public int getHttpStatusCodeValue() {
+		return httpStatusCodeValue;
 	}
 
-	public NeoComWorld setHttpStatusCode( final int httpStatusCode ) {
-		this.httpStatusCode = httpStatusCode;
+	public NeoComWorld setHttpStatusCodeValue( final int httpStatusCodeValue ) {
+		this.httpStatusCodeValue = httpStatusCodeValue;
 		return this;
 	}
 
+	@Deprecated
 	public ResponseEntity getResponseEntity() {
 		return responseEntity;
 	}
 
+	@Deprecated
 	public NeoComWorld setResponseEntity( final ResponseEntity responseEntity ) {
 		this.responseEntity = responseEntity;
 		return this;
@@ -72,12 +74,13 @@ public class NeoComWorld {
 		return this;
 	}
 
-	public CorporationDataResponse getCorporationDataResponse() {
+	public ResponseEntity<CorporationDataResponse> getCorporationDataResponse() {
 		return corporationDataResponse;
 	}
 
-	public NeoComWorld setCorporationDataResponse( final CorporationDataResponse corporationDataResponse ) {
+	public NeoComWorld setCorporationDataResponse( final ResponseEntity<CorporationDataResponse> corporationDataResponse ) {
 		this.corporationDataResponse = corporationDataResponse;
+		this.httpStatusCodeValue =corporationDataResponse.getStatusCodeValue();
 		return this;
 	}
 }

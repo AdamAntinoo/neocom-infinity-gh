@@ -32,6 +32,7 @@ public class CorporationController extends NeoComController {
 	public ResponseEntity<CorporationDataResponse> getCorporationData( @PathVariable final Integer corporationId ) {
 			logger.info( ">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/neocom/corporation/{}",
 					corporationId );
+			// Check corporation identifier access is authorized.
 		return  this.corporationService.getCorporationData( corporationId);
 	}
 

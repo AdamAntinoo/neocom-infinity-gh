@@ -1,16 +1,11 @@
 package org.dimensinfin.eveonline.neocom.infinity.backend.steps.compact;
 
-import java.io.IOException;
-
-import org.apache.commons.lang3.NotImplementedException;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.NeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.SupportSteps;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.authorization.adapter.rest.v1.client.AuthorizationFeignClientV1;
-import org.dimensinfin.eveonline.neocom.infinity.backend.support.authorization.adapter.rest.v1.client.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.ConverterContainer;
 import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.RequestType;
 
@@ -34,12 +29,6 @@ public class NIB01ValidateAuthorizationToken extends SupportSteps {
 	public void the_state_field_matches( final String stateValue ) {
 		Assert.assertEquals(this.neocomWorld.getValidateAuthorizationTokenRequest().getState(),
 		                    stateValue);
-	}
-
-	@Then("the response status code is {int}")
-	public void the_response_status_code_is( final Integer httpStatusCodeValue ) {
-		Assert.assertNotNull(this.neocomWorld.getHttpStatusCode());
-		Assert.assertEquals(httpStatusCodeValue.intValue(), this.neocomWorld.getHttpStatusCode());
 	}
 
 	@Then("the {string} response contains a valid Credential")

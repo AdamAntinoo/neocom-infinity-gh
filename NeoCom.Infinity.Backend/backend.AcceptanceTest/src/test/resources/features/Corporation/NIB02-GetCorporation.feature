@@ -18,7 +18,7 @@ Feature: [NIB02] Get the selected Corporation first level data
     Given a request to the "Get Corporation Data" endpoint with the next data
       | corporationId |
       | 123456        |
-    And "FFGG" authorization token
+    And "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiYWNjb3VudE5hbWUiOiJUZXN0aW5nIENoYXJhY3RlciBBY2NvdW50IiwiaXNzIjoiTmVvQ29tLkluZmluaXR5LkJhY2tlbmQiLCJ1bmlxdWVJZCI6InRyYW5xdWlsaXR5LzkzODEzMzEwIn0.oc7hROjmsBG7s0D_ZD30B3EJOpz2B_mWmZXgVBcO_NpHmQ5fBLJ028xAaE0aiMrAcc_OQDtzTZrsjFTZZufAlg" authorization token
     When the "Get Corporation Data" request is processed
     Then the response status code is 403
     And the exception message is "Access Denied"
