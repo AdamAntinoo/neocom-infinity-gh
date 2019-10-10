@@ -1,7 +1,10 @@
 package org.dimensinfin.eveonline.neocom.infinity.backend.support.corporation.rest.v1;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import org.dimensinfin.eveonline.neocom.domain.EsiLocation;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CorporationDataResponse {
 	private int ceoId;
 	private String dateFunded;
