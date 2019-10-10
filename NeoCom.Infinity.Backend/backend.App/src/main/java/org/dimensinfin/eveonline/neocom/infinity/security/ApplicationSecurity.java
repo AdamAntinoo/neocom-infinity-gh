@@ -25,11 +25,11 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public ApplicationSecurity( final CredentialDetailsService userDetailsService,
-	                            final NeoComAuthenticationProvider neoComAuthenticationProvider,
-	                            final BCryptPasswordEncoder bCryptPasswordEncoder ) {
+	                            final NeoComAuthenticationProvider neoComAuthenticationProvider/*,
+	                            final BCryptPasswordEncoder bCryptPasswordEncoder*/ ) {
 		this.neoComAuthenticationProvider = neoComAuthenticationProvider;
 		this.credentialDetailsService = userDetailsService;
-		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+//		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}
 
 	@Override
@@ -38,7 +38,6 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 				.antMatchers( HttpMethod.GET, LOGIN_VERIFICATION_URL ).permitAll()
 				.anyRequest().authenticated()
 				.and()
-//				.addFilter(new JWTAuthenticationFilter(authenticationManager()))
 				.addFilter( new JWTAuthorizationFilter( authenticationManager() ) )
 				// This disables session creation on Spring Security
 				.sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS );
@@ -47,7 +46,6 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure( AuthenticationManagerBuilder auth ) throws Exception {
 		auth.authenticationProvider(this.neoComAuthenticationProvider);
-//		auth.userDetailsService( credentialDetailsService ).passwordEncoder( bCryptPasswordEncoder );
 	}
 
 	@Bean

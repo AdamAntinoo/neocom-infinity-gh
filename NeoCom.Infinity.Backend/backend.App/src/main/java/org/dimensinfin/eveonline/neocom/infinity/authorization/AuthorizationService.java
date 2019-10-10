@@ -43,6 +43,8 @@ import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstan
 import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.SECRET;
 import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.SUBJECT;
 import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.TOKEN_ACCOUNT_NAME_FIELD_NAME;
+import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.TOKEN_CORPORATION_ID_FIELD_NAME;
+import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.TOKEN_PILOT_ID_FIELD_NAME;
 import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.TOKEN_UNIQUE_IDENTIFIER_FIELD_NAME;
 
 @Service
@@ -127,6 +129,8 @@ public class AuthorizationService extends NeoComService {
 					.withSubject( SUBJECT )
 					.withClaim( TOKEN_UNIQUE_IDENTIFIER_FIELD_NAME, credential.getUniqueId() )
 					.withClaim( TOKEN_ACCOUNT_NAME_FIELD_NAME, credential.getAccountName() )
+					.withClaim( TOKEN_CORPORATION_ID_FIELD_NAME, credential.getAccountId() )
+					.withClaim( TOKEN_PILOT_ID_FIELD_NAME, credential.getAccountId() )
 					.sign( Algorithm.HMAC512( SECRET ) );
 			return new ResponseEntity(new ValidateAuthorizationTokenResponse.Builder()
 					.withCredential( credential )

@@ -18,7 +18,7 @@ Feature: [NIB02] Get the selected Corporation first level data
     Given a request to the "Get Corporation Data" endpoint with the next data
       | corporationId |
       | 123456        |
-    And "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiYWNjb3VudE5hbWUiOiJUZXN0aW5nIENoYXJhY3RlciBBY2NvdW50IiwiaXNzIjoiTmVvQ29tLkluZmluaXR5LkJhY2tlbmQiLCJ1bmlxdWVJZCI6InRyYW5xdWlsaXR5LzkzODEzMzEwIn0.oc7hROjmsBG7s0D_ZD30B3EJOpz2B_mWmZXgVBcO_NpHmQ5fBLJ028xAaE0aiMrAcc_OQDtzTZrsjFTZZufAlg" authorization token
+    And "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTM4MTMzMTAsImFjY291bnROYW1lIjoiVGVzdGluZyBDaGFyYWN0ZXIgQWNjb3VudCIsImlzcyI6Ik5lb0NvbS5JbmZpbml0eS5CYWNrZW5kIiwidW5pcXVlSWQiOiJ0cmFucXVpbGl0eS85MzgxMzMxMCIsInBpbG90SWQiOjkzODEzMzEwfQ.g4VqcRxThHb9g0Ln24yix8zbu7kIplA4oIOuU5LM53v0pvEtrotWaBAF8zS9zELmm2_10QJhhdSdamSI9ntjdw" authorization token
     When the "Get Corporation Data" request is processed
     Then the response status code is 403
-    And the exception message is "Access Denied"
+#    And the exception message is "The corporation requested is not authorized to the requester."

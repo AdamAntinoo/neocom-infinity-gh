@@ -33,8 +33,7 @@ public class NIB02GetCorporation extends SupportSteps {
 	}
 
 //	@Then("the exception message is {string}")
-	public void the_exception_message_is( String exceptionMessage ) {
-		// Write code here that turns the phrase above into concrete actions
-		throw new cucumber.api.PendingException();
-	}
+//	public void the_exception_message_is( String exceptionMessage ) {
+//		final ResponseEntity<CorporationDataResponse> response = this.neocomWorld.getCorporationDataResponse();
+//	}
 }

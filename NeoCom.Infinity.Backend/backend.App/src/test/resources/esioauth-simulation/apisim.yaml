@@ -1,3 +1,24 @@
+simlet: esi-get-authorization-token
+
+request:
+  - method: POST
+  - uriPath: /oauth/token
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+     "access_token": "P940P9FpVhR8oq2V96D7pbcLzndNWTsAVgVAMt0HE5tJT15zg83MMqfsZhW1yf1XoFn9_IQJN5LrIa3NA90Ifw",
+     "expires_in": 1199,
+     "token_type": "Bearer",
+     "refresh_token": "52HSB2sQiYBOrvaPidnxvnc-DIgT7DP5gUoCEOCW4v61dBfHOrCplfuwma0En0eZsLff2L6OJ6csIDTEQhqDmr0iVB6XmuNloTYhTT2Lx-x15j37Oo91jRrbHiC414DMX2nDPz-JGAdPLDtOzG2-4ofHR61rvw7sGY8Z1CnAgdGexAN6M4ZX93D_UWBEvlFd"
+    }
+
+---
+
 simlet: esi-validate-authorization
 
 request:
