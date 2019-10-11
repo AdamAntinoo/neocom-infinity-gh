@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.pilot;
+package org.dimensinfin.eveonline.neocom.infinity.pilot.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -10,6 +10,27 @@ public class PilotDataResponse {
 	private int corporationId;
 	private GetCharactersCharacterIdOk.GenderEnum gender;
 	private String name;
+
+	public int getId() {
+		return id;
+	}
+
+	public int getCorporationId() {
+		return corporationId;
+	}
+
+	public GetCharactersCharacterIdOk.GenderEnum getGender() {
+		return gender;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public PilotDataResponse setPilotId( final int pilotId ) {
+		this.id = pilotId;
+		return this;
+	}
 
 	// - B U I L D E R
 	public static class Builder {

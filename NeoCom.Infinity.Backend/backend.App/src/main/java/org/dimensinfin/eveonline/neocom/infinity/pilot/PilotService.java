@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataAdapterWrapper;
+import org.dimensinfin.eveonline.neocom.infinity.pilot.converter.GetCharactersCharacterId2PilotDataResponseConverter;
+import org.dimensinfin.eveonline.neocom.infinity.pilot.dto.PilotDataResponse;
 
 @Service
 public class PilotService {
@@ -24,7 +26,7 @@ public class PilotService {
 		final GetCharactersCharacterIdOk pilotData = this.esiDataAdapter.getCharactersCharacterId( pilotId );
 		if (null == pilotData)
 			return new ResponseEntity<>( HttpStatus.NOT_FOUND );
-		return new ResponseEntity<PilotDataResponse>( this.pilotDataConverter.convert( pilotData ),
+		return new ResponseEntity<PilotDataResponse>( this.pilotDataConverter.convert( pilotData ).setPilotId(pilotId),
 				HttpStatus.OK );
 	}
 }

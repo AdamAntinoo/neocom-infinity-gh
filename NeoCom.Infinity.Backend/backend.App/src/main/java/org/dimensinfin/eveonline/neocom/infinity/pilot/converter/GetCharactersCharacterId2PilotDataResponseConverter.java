@@ -1,9 +1,10 @@
-package org.dimensinfin.eveonline.neocom.infinity.pilot;
+package org.dimensinfin.eveonline.neocom.infinity.pilot.converter;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
+import org.dimensinfin.eveonline.neocom.infinity.pilot.dto.PilotDataResponse;
 
 @Component
 public class GetCharactersCharacterId2PilotDataResponseConverter implements Converter<GetCharactersCharacterIdOk, PilotDataResponse> {

@@ -1,7 +1,5 @@
 package org.dimensinfin.eveonline.neocom.infinity.pilot;
 
-import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -13,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.dimensinfin.eveonline.neocom.infinity.core.ErrorInfo;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComController;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComSBException;
-import org.dimensinfin.eveonline.neocom.infinity.corporation.rest.dto.CorporationDataResponse;
+import org.dimensinfin.eveonline.neocom.infinity.pilot.dto.PilotDataResponse;
 import org.dimensinfin.eveonline.neocom.infinity.security.NeoComAuthenticationProvider;
 
 @RestController
@@ -25,7 +23,7 @@ public class PilotController extends NeoComController {
 
 	@Autowired
 	public PilotController( final PilotService pilotService,
-	                              final NeoComAuthenticationProvider neoComAuthenticationProvider ) {
+	                        final NeoComAuthenticationProvider neoComAuthenticationProvider ) {
 		this.pilotService = pilotService;
 		this.neoComAuthenticationProvider = neoComAuthenticationProvider;
 	}
@@ -33,15 +31,11 @@ public class PilotController extends NeoComController {
 	@GetMapping(path = "/pilots/{pilotId}",
 			consumes = "application/json",
 			produces = "application/json")
-	public ResponseEntity<CorporationDataResponse> getCorporationData( @PathVariable final Integer pilotId ) {
+	public ResponseEntity<PilotDataResponse> getCorporationData( @PathVariable final Integer pilotId ) {
 		logger.info( ">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/neocom/corporation/{}", pilotId );
-//		try {
-			final Integer authorizedPilotId = this.neoComAuthenticationProvider.getAuthenticatedPilot();
-			if (authorizedPilotId.intValue() != pilotId.intValue())
-				throw new NeoComSBException( ErrorInfo.PILOT_ID_NOT_AUTHORIZED );
-//		} catch (final IOException ioe) {
-//			throw new NeoComSBException( ErrorInfo.PILOT_ID_NOT_AUTHORIZED );
-//		}
+		final Integer authorizedPilotId = this.neoComAuthenticationProvider.getAuthenticatedPilot();
+		if (authorizedPilotId.intValue() != pilotId.intValue())
+			throw new NeoComSBException( ErrorInfo.PILOT_ID_NOT_AUTHORIZED );
 		return this.pilotService.getPilotData( pilotId );
 	}
 }
