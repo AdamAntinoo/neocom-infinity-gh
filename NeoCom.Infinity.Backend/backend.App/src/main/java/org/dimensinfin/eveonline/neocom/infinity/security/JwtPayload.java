@@ -15,4 +15,8 @@ public class JwtPayload {
 	public Integer getCorporationId() {
 		return this.corporationId;
 	}
+
+	public Integer getPilotId() {
+		return this.pilotId;
+	}
 }

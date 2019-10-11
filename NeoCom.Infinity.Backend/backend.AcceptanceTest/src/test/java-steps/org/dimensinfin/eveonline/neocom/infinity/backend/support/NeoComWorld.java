@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.authorization.adapter.rest.v1.client.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.authorization.adapter.rest.v1.client.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.corporation.rest.v1.CorporationDataResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.support.pilot.PilotDataResponse;
 
 public class NeoComWorld {
 	private ResponseEntity responseEntity;
@@ -15,8 +16,10 @@ public class NeoComWorld {
 	private ValidateAuthorizationTokenRequest validateAuthorizationTokenRequest;
 	private ValidateAuthorizationTokenResponse validateAuthorizationTokenResponse;
 	private Optional<Integer> corporationIdentifier = Optional.empty();
+	private Optional<Integer> pilotIdentifier = Optional.empty();
 	private String jwtAuthorizationToken;
 	private ResponseEntity<CorporationDataResponse> corporationDataResponse;
+	private ResponseEntity<PilotDataResponse> pilotDataResponse;
 
 	public int getHttpStatusCodeValue() {
 		return httpStatusCodeValue;
@@ -65,6 +68,15 @@ public class NeoComWorld {
 		return this;
 	}
 
+	public Optional<Integer> getPilotIdentifier() {
+		return pilotIdentifier;
+	}
+
+	public NeoComWorld setPilotIdentifier( final Integer pilotIdentifier ) {
+		if (null != pilotIdentifier) this.pilotIdentifier = Optional.of( pilotIdentifier );
+		return this;
+	}
+
 	public String getJwtAuthorizationToken() {
 		return jwtAuthorizationToken;
 	}
@@ -75,12 +87,21 @@ public class NeoComWorld {
 	}
 
 	public ResponseEntity<CorporationDataResponse> getCorporationDataResponse() {
-		return corporationDataResponse;
+		return this.corporationDataResponse;
 	}
 
 	public NeoComWorld setCorporationDataResponse( final ResponseEntity<CorporationDataResponse> corporationDataResponse ) {
 		this.corporationDataResponse = corporationDataResponse;
-		this.httpStatusCodeValue =corporationDataResponse.getStatusCodeValue();
+		this.httpStatusCodeValue = corporationDataResponse.getStatusCodeValue();
+		return this;
+	}
+
+	public ResponseEntity<PilotDataResponse> getPilotDataResponse() {
+		return this.pilotDataResponse;
+	}
+
+	public NeoComWorld setPilotDataResponse( final ResponseEntity<PilotDataResponse> pilotDataResponse ) {
+		this.pilotDataResponse = pilotDataResponse;
 		return this;
 	}
 }

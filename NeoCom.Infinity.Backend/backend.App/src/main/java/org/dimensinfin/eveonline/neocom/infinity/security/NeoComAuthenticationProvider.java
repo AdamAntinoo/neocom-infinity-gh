@@ -37,4 +37,21 @@ public class NeoComAuthenticationProvider implements AuthenticationProvider {
 		if (null == payload) throw new NeoComSBException( ErrorInfo.CORPORATION_ID_NOT_AUTHORIZED );
 		return payload.getCorporationId();
 	}
+
+	public Integer getAuthenticatedPilot() {
+		return this.accessDecodedPayload( ErrorInfo.PILOT_ID_NOT_AUTHORIZED ).getPilotId();
+	}
+
+	private JwtPayload accessDecodedPayload( final ErrorInfo configuredError ) {
+		try {
+			final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			final String payloadBase64 = (String) authentication.getPrincipal();
+			final String payloadString = new String( Base64.decodeBase64( payloadBase64.getBytes() ) );
+			final JwtPayload payload = jsonMapper.readValue( payloadString, JwtPayload.class );
+			if (null == payload) throw new NeoComSBException( configuredError );
+			return payload;
+		} catch (final IOException ioe) {
+			throw new NeoComSBException( configuredError, ioe );
+		}
+	}
 }

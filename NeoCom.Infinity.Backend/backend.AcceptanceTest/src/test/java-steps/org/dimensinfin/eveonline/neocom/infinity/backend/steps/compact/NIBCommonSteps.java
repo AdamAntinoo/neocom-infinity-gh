@@ -16,6 +16,8 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.support.authorization.a
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.authorization.adapter.rest.v1.client.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.corporation.rest.v1.CorporationDataResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.corporation.rest.v1.CorporationFeignClientV1;
+import org.dimensinfin.eveonline.neocom.infinity.backend.support.pilot.PilotDataResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.support.pilot.PilotFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.ConverterContainer;
 import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.CucumberTableConverter;
 import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.RequestType;
@@ -26,20 +28,24 @@ import cucumber.api.java.en.When;
 
 public class NIBCommonSteps extends SupportSteps {
 	private static final String CORPORATION_ID = "corporationId";
+	private static final String PILOT_ID = "pilotId";
 
 	private NeoComWorld neocomWorld;
 	private AuthorizationFeignClientV1 authorizationFeignClient;
 	private CorporationFeignClientV1 corporationFeignClient;
+	private PilotFeignClientV1 pilotFeignClient;
 
 	@Autowired
 	public NIBCommonSteps( final ConverterContainer cucumberTableToRequestConverters,
 	                       final NeoComWorld neocomWorld,
 	                       final AuthorizationFeignClientV1 authorizationFeignClient,
-	                       final CorporationFeignClientV1 corporationFeignClient ) {
+	                       final CorporationFeignClientV1 corporationFeignClient,
+	                       final PilotFeignClientV1 pilotFeignClient) {
 		super( cucumberTableToRequestConverters );
 		this.neocomWorld = neocomWorld;
 		this.authorizationFeignClient = authorizationFeignClient;
 		this.corporationFeignClient = corporationFeignClient;
+		this.pilotFeignClient=pilotFeignClient;
 	}
 
 	@Given("a request to the {string} endpoint with the next data")
@@ -59,6 +65,12 @@ public class NIBCommonSteps extends SupportSteps {
 				Assert.assertNotNull( corporationId );
 				this.neocomWorld.setCorporationIdentifier( corporationId );
 				break;
+			case GET_PILOT_ENDPOINT_NAME:
+				final Map<String, String> rowPilot = cucumberTable.get( 0 );
+				final Integer pilotId = Integer.valueOf( rowPilot.get( PILOT_ID ) );
+				Assert.assertNotNull( pilotId );
+				this.neocomWorld.setPilotIdentifier( pilotId );
+				break;
 			default:
 				throw new NotImplementedException( "Request type not implemented." );
 		}
@@ -66,13 +78,13 @@ public class NIBCommonSteps extends SupportSteps {
 
 	@When("the {string} request is processed")
 	public void the_request_is_processed( final String endpointName ) {
-		this.process( endpointName );
-	}
-
-	private void process( final String endpointName ) {
+//		this.process( endpointName );
+//	}
+//
+//	private void process( final String endpointName ) {
 		final RequestType requestType = RequestType.from( endpointName );
 		final ResponseEntity responseEntity = processRequest( requestType );
-		this.neocomWorld.setResponseEntity( responseEntity );
+//		this.neocomWorld.setResponseEntity( responseEntity );
 		this.neocomWorld.setHttpStatusCodeValue( responseEntity.getStatusCodeValue() );
 	}
 
@@ -102,6 +114,15 @@ public class NIBCommonSteps extends SupportSteps {
 							);
 					this.neocomWorld.setCorporationDataResponse( corporationDataResponse );
 					return corporationDataResponse;
+				case GET_PILOT_ENDPOINT_NAME:
+					Assert.assertTrue( this.neocomWorld.getPilotIdentifier().isPresent() );
+					final ResponseEntity<PilotDataResponse> pilotDataResponse =
+							this.pilotFeignClient.getPilotData(
+									this.neocomWorld.getPilotIdentifier().get(),
+									this.neocomWorld.getJwtAuthorizationToken()
+							);
+					this.neocomWorld.setPilotDataResponse( pilotDataResponse );
+					return pilotDataResponse;
 				default:
 					throw new NotImplementedException( "Request type not implemented." );
 			}
