@@ -24,9 +24,9 @@ public class CorporationService {
 
 	public ResponseEntity<CorporationDataResponse> getCorporationData( final int corporationId ) {
 		final GetCorporationsCorporationIdOk corporationData = this.esiDataAdapter.getCorporationsCorporationId( corporationId );
-		if (null != corporationData)
-			return new ResponseEntity<CorporationDataResponse>( this.corporationDataConverter.convert( corporationData ),
-					HttpStatus.OK );
+		if (null == corporationData)
 		return new ResponseEntity<>( HttpStatus.NOT_FOUND );
+		return new ResponseEntity<CorporationDataResponse>( this.corporationDataConverter.convert( corporationData ),
+				HttpStatus.OK );
 	}
 }
