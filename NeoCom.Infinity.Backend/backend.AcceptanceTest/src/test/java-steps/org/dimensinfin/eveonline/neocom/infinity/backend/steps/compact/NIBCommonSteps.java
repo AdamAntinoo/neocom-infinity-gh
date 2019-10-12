@@ -78,13 +78,8 @@ public class NIBCommonSteps extends SupportSteps {
 
 	@When("the {string} request is processed")
 	public void the_request_is_processed( final String endpointName ) {
-//		this.process( endpointName );
-//	}
-//
-//	private void process( final String endpointName ) {
 		final RequestType requestType = RequestType.from( endpointName );
 		final ResponseEntity responseEntity = processRequest( requestType );
-//		this.neocomWorld.setResponseEntity( responseEntity );
 		this.neocomWorld.setHttpStatusCodeValue( responseEntity.getStatusCodeValue() );
 	}
 

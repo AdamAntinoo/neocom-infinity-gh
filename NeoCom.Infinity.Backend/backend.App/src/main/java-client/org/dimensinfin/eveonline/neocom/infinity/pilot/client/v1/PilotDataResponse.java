@@ -12,7 +12,7 @@ public class PilotDataResponse {
 	private String name;
 
 	public int getId() {
-		return id;
+		return this.id;
 	}
 
 	public int getCorporationId() {

@@ -22,7 +22,7 @@ public interface NeoComApiv1 {
 	Call<CorporationDataResponse> getCorporationData( @Header("Content-Type") String contentType,
 	                                                  @Header ("Authorization")String authorization,
 	                                                  @Path("corporationId") Integer corporationId );
-	@GET("/api/v1/neocom/pilot/{pilotId}")
+	@GET("/api/v1/neocom/pilots/{pilotId}")
 	Call<PilotDataResponse> getPilotData( @Header("Content-Type") String contentType,
 	                                      @Header ("Authorization")String authorization,
 	                                      @Path("pilotId") Integer pilotId );
