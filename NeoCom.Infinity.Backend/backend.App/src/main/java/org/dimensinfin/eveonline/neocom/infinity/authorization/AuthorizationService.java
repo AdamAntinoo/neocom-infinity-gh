@@ -18,11 +18,13 @@ import org.dimensinfin.eveonline.neocom.auth.TokenRequestBody;
 import org.dimensinfin.eveonline.neocom.auth.TokenTranslationResponse;
 import org.dimensinfin.eveonline.neocom.auth.VerifyCharacterResponse;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
+import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ConfigurationProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.CredentialRepositoryWrapper;
-import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.TokenVerification;
+import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataAdapterWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.dto.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.dto.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.authorization.support.TokenVerification;
 import org.dimensinfin.eveonline.neocom.infinity.core.ErrorInfo;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComSBException;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComService;
@@ -63,15 +65,16 @@ public class AuthorizationService extends NeoComService {
 	}
 
 	private final ConfigurationProviderWrapper configurationProvider;
+	private final ESIDataAdapterWrapper esiDataAdapter;
 	private final CredentialRepositoryWrapper credentialRepository;
 
 	@Autowired
 	public AuthorizationService( final ConfigurationProviderWrapper configurationProvider,
-	                             final CredentialRepositoryWrapper credentialRepository/*,
-	                            @Autowired final ESIDataAdapterComponent esiDataAdapter*/ ) {
+	                             final ESIDataAdapterWrapper esiDataAdapter,
+	                             final CredentialRepositoryWrapper credentialRepository) {
 		this.configurationProvider = configurationProvider;
+		this.esiDataAdapter = esiDataAdapter;
 		this.credentialRepository = credentialRepository;
-//		this.esiDataAdapter = esiDataAdapter;
 	}
 
 	public ResponseEntity<ValidateAuthorizationTokenResponse> validateAuthorizationToken( final ValidateAuthorizationTokenRequest validateAuthorizationTokenRequest ) {
@@ -124,12 +127,13 @@ public class AuthorizationService extends NeoComService {
 			logger.info( "-- [AuthorizationService.validateAuthorizationToken]> Credential #{}-{} created successfully.",
 					credential.getAccountId(), credential.getAccountName() );
 			UpdaterJobManager.submit( new CredentialUpdater( credential ) ); // Post the update request to the scheduler.
+			final GetCharactersCharacterIdOk pilotData = this.esiDataAdapter.getCharactersCharacterId( credential.getAccountId() );
 			final String jwtToken = JWT.create()
 					.withIssuer( ISSUER )
 					.withSubject( SUBJECT )
 					.withClaim( TOKEN_UNIQUE_IDENTIFIER_FIELD_NAME, credential.getUniqueId() )
 					.withClaim( TOKEN_ACCOUNT_NAME_FIELD_NAME, credential.getAccountName() )
-					.withClaim( TOKEN_CORPORATION_ID_FIELD_NAME, credential.getAccountId() )
+					.withClaim( TOKEN_CORPORATION_ID_FIELD_NAME, pilotData.getCorporationId() )
 					.withClaim( TOKEN_PILOT_ID_FIELD_NAME, credential.getAccountId() )
 					.sign( Algorithm.HMAC512( SECRET ) );
 			return new ResponseEntity(new ValidateAuthorizationTokenResponse.Builder()

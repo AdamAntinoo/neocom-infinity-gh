@@ -28,6 +28,7 @@ configurations {
 sourceSets {
     main.java {
         srcDirs += 'src/main/java-implementers'
+        srcDirs += 'src/main/java-client'
     }
     test.java {
 //        srcDirs += 'src/test/springBoot'

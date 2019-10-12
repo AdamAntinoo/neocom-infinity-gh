@@ -49,5 +49,6 @@ sourceSets {
     test.java {
         srcDirs += "src/test/java-steps"
         srcDirs += "src/test/java-support"
+        srcDirs += 'src/test/java-import-client'
     }
 }

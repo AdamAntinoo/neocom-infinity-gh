@@ -31,8 +31,8 @@ public class PilotController extends NeoComController {
 	@GetMapping(path = "/pilots/{pilotId}",
 			consumes = "application/json",
 			produces = "application/json")
-	public ResponseEntity<PilotDataResponse> getCorporationData( @PathVariable final Integer pilotId ) {
-		logger.info( ">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/neocom/corporation/{}", pilotId );
+	public ResponseEntity<PilotDataResponse> getPilotData( @PathVariable final Integer pilotId ) {
+		logger.info( ">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/neocom/pilots/{}", pilotId );
 		final Integer authorizedPilotId = this.neoComAuthenticationProvider.getAuthenticatedPilot();
 		if (authorizedPilotId.intValue() != pilotId.intValue())
 			throw new NeoComSBException( ErrorInfo.PILOT_ID_NOT_AUTHORIZED );

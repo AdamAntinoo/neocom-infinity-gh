@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.authorization.rest;
+package org.dimensinfin.eveonline.neocom.infinity.authorization;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.dimensinfin.eveonline.neocom.infinity.authorization.AuthorizationService;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.dto.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.dto.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComController;

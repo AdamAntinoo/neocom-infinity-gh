@@ -1,9 +1,10 @@
 package org.dimensinfin.eveonline.neocom.infinity.authorization.rest.dto;
 
-import org.dimensinfin.eveonline.neocom.database.entities.Credential;
+import java.util.Objects;
+
 import org.springframework.stereotype.Component;
 
-import java.util.Objects;
+import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 
 @Component
 public class ValidateAuthorizationTokenResponse {

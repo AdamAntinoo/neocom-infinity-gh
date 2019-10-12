@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.corporation.rest;
+package org.dimensinfin.eveonline.neocom.infinity.corporation;
 
 import java.io.IOException;
 
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.dimensinfin.eveonline.neocom.infinity.core.ErrorInfo;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComController;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComSBException;
-import org.dimensinfin.eveonline.neocom.infinity.corporation.CorporationService;
 import org.dimensinfin.eveonline.neocom.infinity.corporation.rest.dto.CorporationDataResponse;
 import org.dimensinfin.eveonline.neocom.infinity.security.NeoComAuthenticationProvider;
 

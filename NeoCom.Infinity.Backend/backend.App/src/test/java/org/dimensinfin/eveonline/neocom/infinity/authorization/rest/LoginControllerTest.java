@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.infinity.authorization.AuthorizationService;
+import org.dimensinfin.eveonline.neocom.infinity.authorization.LoginController;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.dto.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.dto.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComSBException;

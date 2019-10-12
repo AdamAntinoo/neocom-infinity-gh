@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.authorization.rest;
+package org.dimensinfin.eveonline.neocom.infinity.authorization.support;
 
 import org.dimensinfin.eveonline.neocom.adapters.ESIDataAdapter;
 import org.dimensinfin.eveonline.neocom.auth.TokenTranslationResponse;

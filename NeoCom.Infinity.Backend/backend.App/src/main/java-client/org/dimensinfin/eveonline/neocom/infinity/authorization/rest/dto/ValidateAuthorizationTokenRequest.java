@@ -1,10 +1,11 @@
 package org.dimensinfin.eveonline.neocom.infinity.authorization.rest.dto;
 
-import org.dimensinfin.eveonline.neocom.adapters.ESIDataAdapter;
-import org.springframework.stereotype.Component;
-
 import java.util.Objects;
 import java.util.Optional;
+
+import org.springframework.stereotype.Component;
+
+import org.dimensinfin.eveonline.neocom.adapters.ESIDataAdapter;
 
 @Component
 public class ValidateAuthorizationTokenRequest {
