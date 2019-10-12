@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.dimensinfin.eveonline.neocom.infinity.core.ErrorInfo;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComController;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComSBException;
-import org.dimensinfin.eveonline.neocom.infinity.pilot.dto.PilotDataResponse;
+import org.dimensinfin.eveonline.neocom.infinity.pilot.client.v1.PilotDataResponse;
 import org.dimensinfin.eveonline.neocom.infinity.security.NeoComAuthenticationProvider;
 
 @RestController

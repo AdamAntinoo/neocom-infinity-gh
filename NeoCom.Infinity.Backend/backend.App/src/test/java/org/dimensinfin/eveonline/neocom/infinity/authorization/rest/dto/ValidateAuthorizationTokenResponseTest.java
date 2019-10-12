@@ -8,6 +8,7 @@ import org.junit.runners.JUnit4;
 import org.mockito.Mockito;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
+import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.client.v1.ValidateAuthorizationTokenResponse;
 
 @RunWith(JUnit4.class)
 public class ValidateAuthorizationTokenResponseTest {

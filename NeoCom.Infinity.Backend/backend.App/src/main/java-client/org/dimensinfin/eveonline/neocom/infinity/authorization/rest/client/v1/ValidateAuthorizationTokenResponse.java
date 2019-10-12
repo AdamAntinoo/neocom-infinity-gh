@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.authorization.rest.dto;
+package org.dimensinfin.eveonline.neocom.infinity.authorization.rest.client.v1;
 
 import java.util.Objects;
 

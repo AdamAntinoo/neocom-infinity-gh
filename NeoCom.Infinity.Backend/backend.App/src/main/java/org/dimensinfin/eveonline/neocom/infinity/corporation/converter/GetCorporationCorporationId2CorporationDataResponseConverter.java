@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCorporationsCorporationIdOk;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataAdapterWrapper;
-import org.dimensinfin.eveonline.neocom.infinity.corporation.rest.dto.CorporationDataResponse;
+import org.dimensinfin.eveonline.neocom.infinity.corporation.rest.client.v1.CorporationDataResponse;
 
 @Component
 public class GetCorporationCorporationId2CorporationDataResponseConverter implements Converter<GetCorporationsCorporationIdOk, CorporationDataResponse> {

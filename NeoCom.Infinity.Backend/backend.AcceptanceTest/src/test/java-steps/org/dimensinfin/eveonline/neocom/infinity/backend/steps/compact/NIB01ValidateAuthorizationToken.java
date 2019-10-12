@@ -1,5 +1,10 @@
 package org.dimensinfin.eveonline.neocom.infinity.backend.steps.compact;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -8,12 +13,11 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.support.SupportSteps;
 import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.ConverterContainer;
 import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.RequestType;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import io.cucumber.datatable.DataTable;
 
 public class NIB01ValidateAuthorizationToken extends SupportSteps {
+	private static final String SUB ="sub";
 	private NeoComWorld neocomWorld;
 //	private AuthorizationFeignClientV1 authorizationFeignClient;
 
@@ -42,15 +46,22 @@ public class NIB01ValidateAuthorizationToken extends SupportSteps {
 				break;
 		}
 	}
-	//	@Then("the JWT generated token has the next contents")
-	public void the_JWT_generated_token_has_the_next_contents(final DataTable dataTable) {
-		// Write code here that turns the phrase above into concrete actions
-		// For automatic transformation, change DataTable to one of
-		// E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-		// Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-		// Double, Byte, Short, Long, BigInteger or BigDecimal.
-		//
-		// For other transformations you can register a DataTableType.
-		throw new PendingException();
+		@Then("the JWT generated token has the next contents")
+	public void the_JWT_generated_token_has_the_next_contents(final List<Map<String, String>> dataTable) {
+			final Map<String, String> row = dataTable.get( 0 );
+		Assert.assertEquals( row.get( SUB ) , this.extractClaim(SUB, this.neocomWorld.getJwtAuthorizationToken()));
+	}
+	private String extractClaim ( final String fieldName , final String token){
+		final DecodedJWT jwtToken = JWT.require( Algorithm.HMAC512( SECRET.getBytes() ) )
+				.build()
+				.verify( token.replace( TOKEN_PREFIX, "" ) );
+		if (this.validateSubject( token )) { // Check this is the subject we expect
+			return new UsernamePasswordAuthenticationToken( jwtToken.getPayload(), null, new ArrayList<>() );
+		}
+		final String payloadBase64 = token;
+		final String payloadString = new String( Base64.decodeBase64( token.getBytes() ) );
+		final JwtPayload payload = jsonMapper.readValue( payloadString, JwtPayload.class );
+		if (null == payload) throw new NeoComSBException( configuredError );
+
 	}
 }

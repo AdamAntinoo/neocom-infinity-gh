@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.pilot.dto;
+package org.dimensinfin.eveonline.neocom.infinity.pilot.client.v1;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.corporation.rest.dto;
+package org.dimensinfin.eveonline.neocom.infinity.corporation.rest.client.v1;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
