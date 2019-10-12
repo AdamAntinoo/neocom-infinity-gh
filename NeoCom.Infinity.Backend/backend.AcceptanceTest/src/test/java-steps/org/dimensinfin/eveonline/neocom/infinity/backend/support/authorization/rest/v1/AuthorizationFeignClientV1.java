@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.backend.support.authorization.adapter.rest.v1.client;
+package org.dimensinfin.eveonline.neocom.infinity.backend.support.authorization.rest.v1;
 
 import java.io.IOException;
 
@@ -29,17 +29,17 @@ public class AuthorizationFeignClientV1 {
 				.addConverterFactory( JacksonConverterFactory.create() )
 				.build()
 				.create( NeoComApiv1.class );
-		final Call<ValidateAuthorizationTokenResponse> request = serviceGetAccessToken.validateAuthorizationToken(
+		final Call<ValidateAuthorizationTokenResponseClient> request = serviceGetAccessToken.validateAuthorizationToken(
 				"application/json",
 				validateAuthorizationTokenRequest.getCode(),
 				validateAuthorizationTokenRequest.getState(),
 				validateAuthorizationTokenRequest.getDataSourceName()
 		);
 		// Getting the request response to be stored if valid.
-		final Response<ValidateAuthorizationTokenResponse> response = request.execute();
+		final Response<ValidateAuthorizationTokenResponseClient> response = request.execute();
 		if (response.isSuccessful()) {
 			logger.info( "-- [AuthorizationService.getTokenTranslationResponse]> Response is 200 OK." );
-			final ValidateAuthorizationTokenResponse auhorizationResponse = response.body();
+			final ValidateAuthorizationTokenResponse auhorizationResponse = response.body().getBody();
 			return new ResponseEntity<>( auhorizationResponse, HttpStatus.OK );
 		} else return new ResponseEntity( HttpStatus.BAD_REQUEST );
 	}
