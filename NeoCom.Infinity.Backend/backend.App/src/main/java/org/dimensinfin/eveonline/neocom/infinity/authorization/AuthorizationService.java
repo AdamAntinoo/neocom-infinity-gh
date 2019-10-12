@@ -24,12 +24,9 @@ import org.dimensinfin.eveonline.neocom.infinity.adapter.CredentialRepositoryWra
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataAdapterWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.client.v1.ValidateAuthorizationTokenResponse;
-import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.client.v1.TokenVerification;
 import org.dimensinfin.eveonline.neocom.infinity.core.ErrorInfo;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComSBException;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComService;
-import org.dimensinfin.eveonline.neocom.services.UpdaterJobManager;
-import org.dimensinfin.eveonline.neocom.updaters.CredentialUpdater;
 
 import okhttp3.CertificatePinner;
 import okhttp3.OkHttpClient;
@@ -126,7 +123,8 @@ public class AuthorizationService extends NeoComService {
 			this.credentialRepository.persist( credential );
 			logger.info( "-- [AuthorizationService.validateAuthorizationToken]> Credential #{}-{} created successfully.",
 					credential.getAccountId(), credential.getAccountName() );
-			UpdaterJobManager.submit( new CredentialUpdater( credential ) ); // Post the update request to the scheduler.
+			// TODO - Seems the updated enters endless loop. Review later.
+//			UpdaterJobManager.submit( new CredentialUpdater( credential ) ); // Post the update request to the scheduler.
 			final GetCharactersCharacterIdOk pilotData = this.esiDataAdapter.getCharactersCharacterId( credential.getAccountId() );
 			final String jwtToken = JWT.create()
 					.withIssuer( ISSUER )
