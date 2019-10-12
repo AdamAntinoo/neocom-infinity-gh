@@ -23,5 +23,5 @@ Feature: [NIB01] Validate the authorization token from ESI OAuth2 service.
     When the "Validate Authorization Token" request is processed
     Then the JWT generated token has the next contents
       | sub                       | corporationId | accountName               | iss                     | uniqueId             | pilotId  |
-      | ESI OAuth2 Authentication | 93813310      | Testing Character Account | NeoCom.Infinity.Backend | tranquility/93813310 | 93813310 |
+      | ESI OAuth2 Authentication | 98384726      | Testing Character Account | NeoCom.Infinity.Backend | tranquility/93813310 | 93813310 |
 	  

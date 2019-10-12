@@ -2,11 +2,11 @@ package org.dimensinfin.eveonline.neocom.infinity.authorization.rest.client.v1;
 
 import java.util.Objects;
 
-import org.springframework.stereotype.Component;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 
-@Component
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ValidateAuthorizationTokenResponse {
 	private String jwtToken;
 	private Credential credential;

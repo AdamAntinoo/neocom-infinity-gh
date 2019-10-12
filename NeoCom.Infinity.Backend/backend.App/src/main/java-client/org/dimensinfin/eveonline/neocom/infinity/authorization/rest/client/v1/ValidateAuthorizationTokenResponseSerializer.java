@@ -1,14 +1,12 @@
-package org.dimensinfin.eveonline.neocom.infinity.serializer;
+package org.dimensinfin.eveonline.neocom.infinity.authorization.rest.client.v1;
+
+import java.io.IOException;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-
-import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.client.v1.ValidateAuthorizationTokenResponse;
 import org.springframework.boot.jackson.JsonComponent;
-
-import java.io.IOException;
 
 @JsonComponent
 public class ValidateAuthorizationTokenResponseSerializer extends JsonSerializer<ValidateAuthorizationTokenResponse> {

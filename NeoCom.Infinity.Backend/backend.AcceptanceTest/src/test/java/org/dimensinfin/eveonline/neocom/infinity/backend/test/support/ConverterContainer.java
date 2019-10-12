@@ -1,6 +1,6 @@
 package org.dimensinfin.eveonline.neocom.infinity.backend.test.support;
 
-import org.dimensinfin.eveonline.neocom.infinity.backend.support.authorization.adapter.converters.CucumberTableToValidateAuthorizationTokenRequest;
+import org.dimensinfin.eveonline.neocom.infinity.backend.support.authorization.converter.CucumberTableToValidateAuthorizationTokenRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

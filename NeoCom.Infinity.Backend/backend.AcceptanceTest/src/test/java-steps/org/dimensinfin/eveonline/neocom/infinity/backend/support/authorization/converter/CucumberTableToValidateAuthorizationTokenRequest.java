@@ -1,11 +1,12 @@
-package org.dimensinfin.eveonline.neocom.infinity.backend.support.authorization.adapter.converters;
-
-import org.dimensinfin.eveonline.neocom.infinity.backend.support.authorization.adapter.rest.v1.client.ValidateAuthorizationTokenRequest;
-import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.CucumberTableToRequestConverter;
-import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.RequestType;
-import org.springframework.stereotype.Component;
+package org.dimensinfin.eveonline.neocom.infinity.backend.support.authorization.converter;
 
 import java.util.Map;
+
+import org.springframework.stereotype.Component;
+
+import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.client.v1.ValidateAuthorizationTokenRequest;
+import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.CucumberTableToRequestConverter;
+import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.RequestType;
 
 @Component
 public class CucumberTableToValidateAuthorizationTokenRequest extends CucumberTableToRequestConverter<ValidateAuthorizationTokenRequest> {

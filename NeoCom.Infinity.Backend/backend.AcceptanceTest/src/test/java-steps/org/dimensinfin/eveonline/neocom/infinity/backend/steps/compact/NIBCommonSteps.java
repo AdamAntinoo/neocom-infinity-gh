@@ -9,18 +9,18 @@ import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
+import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.client.v1.ValidateAuthorizationTokenRequest;
+import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.NeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.SupportSteps;
-import org.dimensinfin.eveonline.neocom.infinity.backend.support.authorization.adapter.rest.v1.client.AuthorizationFeignClientV1;
-import org.dimensinfin.eveonline.neocom.infinity.backend.support.authorization.adapter.rest.v1.client.ValidateAuthorizationTokenRequest;
-import org.dimensinfin.eveonline.neocom.infinity.backend.support.authorization.adapter.rest.v1.client.ValidateAuthorizationTokenResponse;
-import org.dimensinfin.eveonline.neocom.infinity.backend.support.corporation.rest.v1.CorporationDataResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.support.authorization.rest.v1.AuthorizationFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.corporation.rest.v1.CorporationFeignClientV1;
-import org.dimensinfin.eveonline.neocom.infinity.backend.support.pilot.PilotDataResponse;
-import org.dimensinfin.eveonline.neocom.infinity.backend.support.pilot.PilotFeignClientV1;
+import org.dimensinfin.eveonline.neocom.infinity.backend.support.pilot.rest.v1.PilotFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.ConverterContainer;
 import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.CucumberTableConverter;
 import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.RequestType;
+import org.dimensinfin.eveonline.neocom.infinity.corporation.rest.client.v1.CorporationDataResponse;
+import org.dimensinfin.eveonline.neocom.infinity.pilot.client.v1.PilotDataResponse;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -104,6 +104,7 @@ public class NIBCommonSteps extends SupportSteps {
 							);
 					Assert.assertNotNull( validateAuthorizationTokenResponse.getBody() );
 					this.neocomWorld.setValidateAuthorizationTokenResponse( validateAuthorizationTokenResponse.getBody() );
+					this.neocomWorld.setJwtAuthorizationToken( validateAuthorizationTokenResponse.getBody().getJwtToken() );
 					return validateAuthorizationTokenResponse;
 				case GET_CORPORATION_ENDPOINT_NAME:
 					Assert.assertTrue( this.neocomWorld.getCorporationIdentifier().isPresent() );

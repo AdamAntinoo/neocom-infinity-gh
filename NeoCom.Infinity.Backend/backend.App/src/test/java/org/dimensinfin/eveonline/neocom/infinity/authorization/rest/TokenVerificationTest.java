@@ -7,7 +7,7 @@ import org.mockito.Mockito;
 
 import org.dimensinfin.eveonline.neocom.auth.TokenTranslationResponse;
 import org.dimensinfin.eveonline.neocom.auth.VerifyCharacterResponse;
-import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.client.v1.TokenVerification;
+import org.dimensinfin.eveonline.neocom.infinity.authorization.TokenVerification;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComSBException;
 
 public class TokenVerificationTest {

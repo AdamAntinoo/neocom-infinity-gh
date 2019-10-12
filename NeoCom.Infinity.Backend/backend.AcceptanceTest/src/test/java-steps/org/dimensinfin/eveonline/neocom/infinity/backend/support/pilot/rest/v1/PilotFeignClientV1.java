@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.backend.support.pilot;
+package org.dimensinfin.eveonline.neocom.infinity.backend.support.pilot.rest.v1;
 
 import java.io.IOException;
 

@@ -12,11 +12,27 @@ public class JwtPayload {
 	private Integer corporationId;
 	private Integer pilotId;
 
+	public String getSub() {
+		return this.sub;
+	}
+
+	public String getIss() {
+		return this.iss;
+	}
+
 	public Integer getCorporationId() {
 		return this.corporationId;
 	}
 
 	public Integer getPilotId() {
 		return this.pilotId;
+	}
+
+	public String getUniqueId() {
+		return this.uniqueId;
+	}
+
+	public String getAccountName() {
+		return this.accountName;
 	}
 }
