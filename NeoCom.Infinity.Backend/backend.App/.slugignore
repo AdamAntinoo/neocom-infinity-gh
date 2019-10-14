@@ -1,0 +1,3 @@
+# - Ignore files that should be removed after the compilation process.
+src/main/resources/properties-dev/
+src/test/

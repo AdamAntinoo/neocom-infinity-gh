@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.http.ResponseEntity;
 
+import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.CredentialRepositoryWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataAdapterWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.client.v1.ValidateAuthorizationTokenRequest;
@@ -32,11 +33,15 @@ public class AuthorizationServiceTest {
 
 	@Test
 	public void validateAuthorizationToken() {
+		final GetCharactersCharacterIdOk characterIdOkBlock = Mockito.mock( GetCharactersCharacterIdOk.class );
+		Mockito.when( this.esiDataAdapter.getCharactersCharacterId(Mockito.anyInt()) ).thenReturn( characterIdOkBlock );
+		Mockito.when( characterIdOkBlock.getCorporationId() ).thenReturn( 98384726 );
 		final ValidateAuthorizationTokenRequest validateAuthorizationTokenRequest =
 				new ValidateAuthorizationTokenRequest.Builder()
 						.withCode( "-VALID-CODE-" )
 						.withState( "-ANY-STATE-IS-VALID-" )
 						.build();
+
 		final ResponseEntity<ValidateAuthorizationTokenResponse> obtainedResponse = this.authorizationService
 				.validateAuthorizationToken( validateAuthorizationTokenRequest );
 

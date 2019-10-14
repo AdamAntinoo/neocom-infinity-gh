@@ -11,9 +11,6 @@ backend.App/.git-heroku/
 # Compilation ignorable directories
 .gradle/
 build/
-backend.App/build/
-backend.App/out/
-backend.App/coverage/
 backend.AcceptanceTest/build/
 backend.AcceptanceTest/target/
 
