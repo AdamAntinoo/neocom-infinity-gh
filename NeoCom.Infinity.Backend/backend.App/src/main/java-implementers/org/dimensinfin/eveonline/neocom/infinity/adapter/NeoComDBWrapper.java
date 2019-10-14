@@ -21,13 +21,14 @@ public class NeoComDBWrapper extends SBNeoComDBAdapter {
 
 	@PostConstruct
 	private void build() throws SQLException {
+		logger.info( ">> [NeoComDBWrapper.build]" );
 		// Check if there is Heroku running configuration.
 		if (!this.isHerokuConfiguration()) {
 			final String databaseHost = this.configurationProvider.getResourceString( "P.database.neocom.databasehost" );
 			final String databasePath = this.configurationProvider.getResourceString( "P.database.neocom.databasepath" );
 			final String user = this.configurationProvider.getResourceString( "P.database.neocom.databaseuser" );
 			final String password = this.configurationProvider.getResourceString( "P.database.neocom.databasepassword" );
-			new SBNeoComDBAdapter.Builder( this )
+			final SBNeoComDBAdapter adapter = new Builder( this )
 					.withDatabaseHostName( databaseHost )
 					.withDatabasePath( databasePath )
 					.withDatabaseUser( user )
@@ -36,16 +37,19 @@ public class NeoComDBWrapper extends SBNeoComDBAdapter {
 					.optionalDatabaseOptions(
 							this.configurationProvider.getResourceString( "P.database.neocom.databaseoptions" ) )
 					.build();
+			adapter.onCreate( adapter.getConnectionSource() );
+			logger.info( "<< [NeoComDBWrapper.build]" );
 		}
 	}
 
 	private boolean isHerokuConfiguration() throws SQLException {
 		final String neocomUrl = System.getenv( "JDBC_DATABASE_URL" );
 		if (null != neocomUrl) {
-			new SBNeoComDBAdapter.Builder( this )
+			final SBNeoComDBAdapter adapter = new SBNeoComDBAdapter.Builder( this )
 					.optionalDatabaseType( "postgres" )
 					.optionalDatabaseUrl( neocomUrl )
 					.build();
+			adapter.onCreate( adapter.getConnectionSource() );
 			return true;
 		}
 		return false;

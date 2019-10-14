@@ -7,6 +7,7 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcPooledConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
+import com.j256.ormlite.table.TableUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -122,6 +123,14 @@ public class SBNeoComDBAdapter /*implements INeoComDBHelper*/ {
 		return true;
 	}
 
+	public void onCreate( final ConnectionSource connectionSource ) {
+		try {
+			TableUtils.createTableIfNotExists( connectionSource, Credential.class );
+		} catch (SQLException sqle) {
+			logger.warn( "SQL [NeoComSBDBHelper.onCreate]> SQL NeoComDatabase: {}", sqle.getMessage() );
+		}
+	}
+
 	// - B U I L D E R
 	public static class Builder {
 		private SBNeoComDBAdapter onConstruction;
@@ -174,7 +183,7 @@ public class SBNeoComDBAdapter /*implements INeoComDBHelper*/ {
 			// Connect to the database instance.
 			this.onConstruction.databaseValid = this.onConstruction.isDatabaseDescriptorValid();
 			logger.info( ">> [SBNeoComDBHelper.Builder.build]> Database URL in use: {}",
-					this.onConstruction.localConnectionDescriptor);
+					this.onConstruction.localConnectionDescriptor );
 			this.onConstruction.openNeoComDB(); // Open and connect the database.
 			return this.onConstruction;
 		}

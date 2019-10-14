@@ -8,3 +8,9 @@ P:
     filesystem:
       application:
         directory: ./NeoCom.Infinity.development
+spring:
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/postgres"
+    username: neocom
+    password: 01.Alpha
+    driver-class-name: org.postgresql.Driver

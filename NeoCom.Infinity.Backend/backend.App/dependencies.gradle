@@ -39,7 +39,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-jackson:$retrofitVersion" // HTTP encapsulation and swagger support
     implementation 'com.auth0:java-jwt:3.3.0'
     // - D A T A B A S E
-    implementation 'org.liquibase:liquibase-core:3.8.0'
+//    implementation 'org.liquibase:liquibase-core:3.8.0'
     implementation "com.j256.ormlite:ormlite-jdbc:$ormliteVersion"
     implementation 'org.postgresql:postgresql:42.2.5'
     implementation 'org.xerial:sqlite-jdbc:3.16.1' // Database dependency to read sde sqlite database.

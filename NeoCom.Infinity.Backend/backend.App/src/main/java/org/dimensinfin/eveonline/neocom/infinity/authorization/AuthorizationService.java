@@ -68,7 +68,7 @@ public class AuthorizationService extends NeoComService {
 	@Autowired
 	public AuthorizationService( final ConfigurationProviderWrapper configurationProvider,
 	                             final ESIDataAdapterWrapper esiDataAdapter,
-	                             final CredentialRepositoryWrapper credentialRepository) {
+	                             final CredentialRepositoryWrapper credentialRepository ) {
 		this.configurationProvider = configurationProvider;
 		this.esiDataAdapter = esiDataAdapter;
 		this.credentialRepository = credentialRepository;
@@ -120,12 +120,22 @@ public class AuthorizationService extends NeoComService {
 				.withScope( "publicData" )
 				.build();
 		try {
+			logger.info( "-- [AuthorizationService.validateAuthorizationToken]> accountName length {}-{}",
+					credential.getAccountName().length(), credential.getAccountName() );
+			logger.info( "-- [AuthorizationService.validateAuthorizationToken]> accessToken length {}-{}",
+					credential.getAccessToken().length(), credential.getAccessToken() );
+			logger.info( "-- [AuthorizationService.validateAuthorizationToken]> scope length {}-{}",
+					credential.getScope().length(), credential.getScope() );
+			logger.info( "-- [AuthorizationService.validateAuthorizationToken]> refreshToken length {}-{}",
+					credential.getRefreshToken().length(), credential.getRefreshToken() );
 			this.credentialRepository.persist( credential );
+
 			logger.info( "-- [AuthorizationService.validateAuthorizationToken]> Credential #{}-{} created successfully.",
 					credential.getAccountId(), credential.getAccountName() );
 			// TODO - Seems the updated enters endless loop. Review later.
 //			UpdaterJobManager.submit( new CredentialUpdater( credential ) ); // Post the update request to the scheduler.
-			final GetCharactersCharacterIdOk pilotData = this.esiDataAdapter.getCharactersCharacterId( credential.getAccountId() );
+			final GetCharactersCharacterIdOk pilotData = this.esiDataAdapter
+					.getCharactersCharacterId( credential.getAccountId() );
 			final String jwtToken = JWT.create()
 					.withIssuer( ISSUER )
 					.withSubject( SUBJECT )
@@ -134,11 +144,12 @@ public class AuthorizationService extends NeoComService {
 					.withClaim( TOKEN_CORPORATION_ID_FIELD_NAME, pilotData.getCorporationId() )
 					.withClaim( TOKEN_PILOT_ID_FIELD_NAME, credential.getAccountId() )
 					.sign( Algorithm.HMAC512( SECRET ) );
-			return new ResponseEntity(new ValidateAuthorizationTokenResponse.Builder()
+			return new ResponseEntity( new ValidateAuthorizationTokenResponse.Builder()
 					.withCredential( credential )
 					.withJwtToken( jwtToken )
-					.build(), HttpStatus.OK);
+					.build(), HttpStatus.OK );
 		} catch (final SQLException | UnsupportedEncodingException sqle) {
+			sqle.printStackTrace();
 			logger.info( "-- [AuthorizationService.validateAuthorizationToken]> Response is {} - {}.",
 					HttpStatus.BAD_REQUEST, sqle.getMessage() );
 			throw new NeoComSBException( sqle );
@@ -172,7 +183,7 @@ public class AuthorizationService extends NeoComService {
 		String peck = Base64.getEncoder().encodeToString( peckString.getBytes() ).replaceAll( "\n", "" );
 		store.setPeck( peck );
 		final Call<TokenTranslationResponse> request = serviceGetAccessToken.getAccessToken(
-				"Basic " + peck,authorizationContentType,
+				"Basic " + peck, authorizationContentType,
 				"login.eveonline.com",
 				tokenRequestBody
 		);
