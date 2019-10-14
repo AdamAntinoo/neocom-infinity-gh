@@ -1,12 +1,8 @@
 package org.dimensinfin.eveonline.neocom.infinity.adapter.implementers;
 
-import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -19,10 +15,10 @@ public class SBConfigurationProvider extends AConfigurationProvider {
 	protected void readAllProperties() throws IOException {
 		logger.info( ">> [SBConfigurationProvider.readAllProperties]" );
 		// Read all .properties files under the predefined path on the /resources folder.
-		logger.info( "-- [SBConfigurationProvider.readAllProperties]> Read property files from: build/resources {}",
-				this.getResourceLocation() );
+//		logger.info( "-- [SBConfigurationProvider.readAllProperties]> Read property files from: build/resources {}",
+//				this.getResourceLocation() );
 		final List<String> propertyFiles = this.getResourceFiles( this.getResourceLocation() );
-		final ClassLoader classLoader = getClass().getClassLoader();
+//		final ClassLoader classLoader = getClass().getClassLoader();
 		Stream.of( propertyFiles )
 				.sorted()
 				.forEach( ( fileName ) -> {
@@ -30,17 +26,17 @@ public class SBConfigurationProvider extends AConfigurationProvider {
 					try {
 						Properties properties = new Properties();
 						// Generate the proper URI to ge tot the resource file.
-						final String propertyFileName = getResourceLocation() + "/" + fileName;
-						final URI propertyURI = new URI( classLoader.getResource( propertyFileName ).toString() );
-						properties.load( new FileInputStream( propertyURI.getPath() ) );
+//						final String propertyFileName = this.getResourceLocation() + "/" + fileName;
+//						final URI propertyURI = new URI( classLoader.getResource( propertyFileName ).toString() );
+						properties.load( new FileInputStream( fileName ) );
 						// Copy properties to globals.
 						configurationProperties.putAll( properties );
 					} catch (IOException ioe) {
 						logger.error( "E [SBConfigurationProvider.readAllProperties]> Exception reading properties file {}. {}",
 								fileName, ioe.getMessage() );
 						ioe.printStackTrace();
-					} catch (URISyntaxException e) {
-						e.printStackTrace();
+//					} catch (URISyntaxException e) {
+//						e.printStackTrace();
 					}
 				} );
 		logger.info( "<< [SBConfigurationProvider.readAllProperties]> Total properties number: {}", this.contentCount() );
@@ -50,27 +46,49 @@ public class SBConfigurationProvider extends AConfigurationProvider {
 	 * Reads all the files found on the parameter directory path. Because the directory is read as a stream the method to read
 	 * the directory does not use the file system isolation.
 	 */
-	protected List<String> getResourceFiles( final String path ) throws IOException {
+	protected List<String> getResourceFiles( final String initialPath ) throws IOException {
+		final File rootFolder = new File( System.getProperty( "user.dir" ) + initialPath );
+		logger.info( "-- [SBConfigurationProvider.readAllProperties]> Root directory: {}",
+				rootFolder );
+		return listFilesForFolder( rootFolder );
+//		Files.walk API is available from Java 8.
+
+//		try (Stream<Path> paths = Files.walk( Paths.get( "/home/you/Desktop" ) )) {
+//			paths
+//					.filter( Files::isRegularFile )
+//					.forEach( System.out::println );
+//		}
+
+
+//		List<String> filenames = new ArrayList<>();
+//		try (InputStream in = this.getResourceAsStream( path );
+//		     BufferedReader br = new BufferedReader( new InputStreamReader( in ) )) {
+//			String resource;
+//			while ((resource = br.readLine()) != null) {
+//				filenames.add( resource );
+//			}
+//		}
+//		return filenames;
+	}
+
+	public List<String> listFilesForFolder( final File folder ) {
 		List<String> filenames = new ArrayList<>();
-		try (InputStream in = this.getResourceAsStream( path );
-		     BufferedReader br = new BufferedReader( new InputStreamReader( in ) )) {
-			String resource;
-			while ((resource = br.readLine()) != null) {
-				filenames.add( resource );
-			}
+		for (final File fileEntry : folder.listFiles()) {
+			if (fileEntry.isDirectory()) listFilesForFolder( fileEntry );
+			else filenames.add( fileEntry.getPath() );
 		}
 		return filenames;
 	}
 
-	private InputStream getResourceAsStream( final String resource ) {
-		final InputStream in = getContextClassLoader().getResourceAsStream( resource );
-
-		return in == null ? getClass().getResourceAsStream( resource ) : in;
-	}
-
-	private ClassLoader getContextClassLoader() {
-		return Thread.currentThread().getContextClassLoader();
-	}
+//	private InputStream getResourceAsStream( final String resource ) {
+//		final InputStream in = getContextClassLoader().getResourceAsStream( resource );
+//
+//		return in == null ? getClass().getResourceAsStream( resource ) : in;
+//	}
+//
+//	private ClassLoader getContextClassLoader() {
+//		return Thread.currentThread().getContextClassLoader();
+//	}
 
 	// - B U I L D E R
 	public static class Builder extends AConfigurationProvider.Builder {

@@ -1,13 +1,14 @@
 package org.dimensinfin.eveonline.neocom.infinity.serializer;
 
+import java.io.IOException;
+
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import org.dimensinfin.eveonline.neocom.infinity.core.NeoComSBException;
 import org.springframework.boot.jackson.JsonComponent;
 
-import java.io.IOException;
+import org.dimensinfin.eveonline.neocom.infinity.core.NeoComSBException;
 
 @JsonComponent
 public class NeoComSBExceptionSerializer extends JsonSerializer<NeoComSBException> {
@@ -24,7 +25,7 @@ public class NeoComSBExceptionSerializer extends JsonSerializer<NeoComSBExceptio
 			jgen.writeStringField("exceptionMessage", value.getRootException().getMessage());
 		}
 		final String classLongName = value.getSourceClass();
-		final String[] nameParts = classLongName.split( "." );
+		final String[] nameParts = classLongName.split( "\\." );
 		final String className = nameParts[nameParts.length-1];
 		jgen.writeStringField("sourceClass", className);
 		jgen.writeStringField("sourceMethod", value.getSourceMethod());

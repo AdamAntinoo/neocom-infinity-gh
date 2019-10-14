@@ -173,6 +173,8 @@ public class SBNeoComDBAdapter /*implements INeoComDBHelper*/ {
 		public SBNeoComDBAdapter build() throws SQLException {
 			// Connect to the database instance.
 			this.onConstruction.databaseValid = this.onConstruction.isDatabaseDescriptorValid();
+			logger.info( ">> [SBNeoComDBHelper.Builder.build]> Database URL in use: {}",
+					this.onConstruction.localConnectionDescriptor);
 			this.onConstruction.openNeoComDB(); // Open and connect the database.
 			return this.onConstruction;
 		}

@@ -15,29 +15,39 @@ public class NeoComDBWrapper extends SBNeoComDBAdapter {
 	@Autowired
 	public NeoComDBWrapper( final ConfigurationProviderWrapper configurationProvider ) {
 		logger.info( ">> [NeoComDBWrapper.<constructor>]" );
-		this.configurationProvider=configurationProvider;
+		this.configurationProvider = configurationProvider;
 		logger.info( "<< [NeoComDBWrapper.<constructor>]" );
 	}
 
 	@PostConstruct
 	private void build() throws SQLException {
-		final String databaseHost = this.configurationProvider.getResourceString( "P.database.neocom.databasehost" );
-		final String databasePath = this.configurationProvider.getResourceString( "P.database.neocom.databasepath" );
-		final String user = this.configurationProvider.getResourceString( "P.database.neocom.databaseuser" );
-		final String password = this.configurationProvider.getResourceString( "P.database.neocom.databasepassword" );
-		// Initialize the parent adapter with configuration data.
-//		this.localConnectionDescriptor = databaseHost
-//				.concat( "/" )
-//				.concat( databasePath )
-//				.concat( "?user=" ).concat( user )
-//				.concat( "&password=" ).concat( password );
-		new SBNeoComDBAdapter.Builder( this )
-				.withDatabaseHostName( databaseHost )
-				.withDatabasePath( databasePath )
-				.withDatabaseUser( user )
-				.withDatabasePassword( password )
-				.optionalDatabaseType( this.configurationProvider.getResourceString( "P.database.neocom.databasetype" ) )
-				.optionalDatabaseOptions( this.configurationProvider.getResourceString( "P.database.neocom.databaseoptions" ) )
-				.build();
+		// Check if there is Heroku running configuration.
+		if (!this.isHerokuConfiguration()) {
+			final String databaseHost = this.configurationProvider.getResourceString( "P.database.neocom.databasehost" );
+			final String databasePath = this.configurationProvider.getResourceString( "P.database.neocom.databasepath" );
+			final String user = this.configurationProvider.getResourceString( "P.database.neocom.databaseuser" );
+			final String password = this.configurationProvider.getResourceString( "P.database.neocom.databasepassword" );
+			new SBNeoComDBAdapter.Builder( this )
+					.withDatabaseHostName( databaseHost )
+					.withDatabasePath( databasePath )
+					.withDatabaseUser( user )
+					.withDatabasePassword( password )
+					.optionalDatabaseType( this.configurationProvider.getResourceString( "P.database.neocom.databasetype" ) )
+					.optionalDatabaseOptions(
+							this.configurationProvider.getResourceString( "P.database.neocom.databaseoptions" ) )
+					.build();
+		}
+	}
+
+	private boolean isHerokuConfiguration() throws SQLException {
+		final String neocomUrl = System.getenv( "JDBC_DATABASE_URL" );
+		if (null != neocomUrl) {
+			new SBNeoComDBAdapter.Builder( this )
+					.optionalDatabaseType( "postgres" )
+					.optionalDatabaseUrl( neocomUrl )
+					.build();
+			return true;
+		}
+		return false;
 	}
 }

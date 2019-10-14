@@ -27,14 +27,5 @@ public class ESIDataAdapterWrapper extends ESIDataAdapter {
 				.withFileSystemAdapter( this.fileSystemAdapter )
 				.withLocationCatalogService( this.locationCatalogService )
 				.build();
-//		builder.onConstruction = this;
-
-//		this.cacheManager = new StoreCacheManager.Builder()
-//				.withEsiDataAdapter( this )
-//				.withConfigurationProvider( this.configurationProvider )
-//				.withFileSystem( this.fileSystemAdapter )
-//				.build();
-//		this.retrofitFactory = new NeoComRetrofitFactory.Builder( this.configurationProvider, this.fileSystemAdapter )
-//				.build();
 	}
 }

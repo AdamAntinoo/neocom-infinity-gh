@@ -9,11 +9,8 @@ import org.dimensinfin.eveonline.neocom.database.repositories.CredentialReposito
 
 @Component
 public class CredentialRepositoryWrapper extends CredentialRepository {
-//	private NeoComDBWrapper neocomDBAdapter;
-
 	@Autowired
 	public CredentialRepositoryWrapper( final NeoComDBWrapper neocomDBAdapter ) throws SQLException {
-//		this.neocomDBAdapter = neocomDBAdapter;
 		this.credentialDao = neocomDBAdapter.getCredentialDao();
 	}
 }
