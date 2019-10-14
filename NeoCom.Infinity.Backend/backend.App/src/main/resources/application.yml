@@ -1,11 +1,11 @@
 # - S E R V E R
 server:
-  port: 9000
+  port: ${PORT}
 
 #  - D A T A B A S E
 spring:
   datasource:
-    url: "jdbc:postgresql://localhost:5432/postgres"
+    url: ${JDBC_DATABASE_URL}
     username: neocom
     password: 01.Alpha
     driver-class-name: org.postgresql.Driver
@@ -23,7 +23,13 @@ P:
   runtime:
     configuration:
       properties:
-        path: properties
+        path: "/build/resources/main/properties"
     filesystem:
       application:
         directory: ./NeoCom.Infinity
+neocom:
+  sde:
+    database:
+      schema: "jdbc:sqlite:"
+      path: "build/resources/main/"
+      name: sde.db

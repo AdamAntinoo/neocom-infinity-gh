@@ -4,13 +4,7 @@ P:
   runtime:
     configuration:
       properties:
-        path: properties-dev
+        path: "/build/resources/main/properties-dev"
     filesystem:
       application:
         directory: ./NeoCom.Infinity.development
-neocom:
-  sde:
-    database:
-      schema: "jdbc:sqlite:"
-      path: "backend.App/build/resources/main/"
-      name: sde.db
