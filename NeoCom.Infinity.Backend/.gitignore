@@ -16,3 +16,9 @@ backend.AcceptanceTest/target/
 
 # Ignore application cache directories from runs
 NeoCom.Infinity.development/
+
+# Ignore the libraries to be deployed fro common repository
+backend.App/gradlew
+backend.App/gradlew.bat
+backend.App/deploy/
+backend.App/gradle/

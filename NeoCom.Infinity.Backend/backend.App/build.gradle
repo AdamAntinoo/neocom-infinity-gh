@@ -6,9 +6,10 @@ plugins {
 apply plugin: 'project-report'
 
 group = 'org.dimensinfin.eveonline.neocom'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
-targetCompatibility = '11'
+version = '0.16.0'
+archivesBaseName = 'NeoCom.Infinity.Backend'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     mavenLocal()
@@ -35,4 +36,19 @@ sourceSets {
     }
 }
 
+// - Heroku mavenlocal dependencies deployment.
+configurations {
+    deploy
+}
+
 apply from: './dependencies.gradle'
+
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
+
+task copyDeploy(type: Copy) {
+    group = "deploy"
+    println '> Task :backend.App:copyDeploy: copying local libraries to deployment...'
+    from configurations.deploy
+    into "deploy"
+}

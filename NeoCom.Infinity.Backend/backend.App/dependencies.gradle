@@ -46,15 +46,21 @@ dependencies {
     // - R E D I S
 //    implementation 'org.redisson:redisson:3.8.2'
     // -  N E O C O M
-    implementation 'org.dimensinfin:CoreBase.core:3.2.0'
-    implementation 'org.dimensinfin:ESI.SwaggerApi:4.0.1'
-    implementation 'org.dimensinfin:NeoCom.DataManagement:0.16.0'
+//    developmentOnly 'org.dimensinfin:CoreBase.core:3.2.0'
+//    developmentOnly 'org.dimensinfin:ESI.SwaggerApi:4.0.1'
+//    developmentOnly 'org.dimensinfin:NeoCom.DataManagement:0.16.0'
+    implementation fileTree(dir: 'deploy', include: '*.jar')
 }
-
 // - U N I T   T E S T I N G
 dependencies {
 //    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.23.4'
 }
-
+// - D E P L O Y M E N T
+dependencies {
+    // -  N E O C O M
+    deploy 'org.dimensinfin:CoreBase.core:3.2.0'
+    deploy 'org.dimensinfin:ESI.SwaggerApi:4.0.1'
+    deploy 'org.dimensinfin:NeoCom.DataManagement:0.16.0'
+}
