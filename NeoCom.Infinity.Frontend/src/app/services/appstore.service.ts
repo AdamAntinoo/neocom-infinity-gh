@@ -72,7 +72,6 @@ export class AppStoreService {
     }
 
     // - N O T I F I C A T I O N S
-    // tslint:disable-next-line: variable-name
     public successNotification(_message: string, _title?: string, _options?: any): void {
         this.backendService.isolation.successNotification(_message, _title, _options);
     }

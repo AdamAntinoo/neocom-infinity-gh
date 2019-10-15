@@ -71,6 +71,8 @@ describe('PAGE LoginValidationPageComponent [Module: CORE]', () => {
                 .toBeUndefined('"validateAuthorizationTokenSubscription" should be <undefined>');
         });
     });
+
+    // - I N I T I A L I Z A T I O N   P H A S E
     describe('Initialization Phase', () => {
         it('Initialization Phase: initialize with valid parameters', fakeAsync(() => {
             console.log('><[core/LoginValidationPageComponent]> Initialization Phase: initialize with valid parameters');

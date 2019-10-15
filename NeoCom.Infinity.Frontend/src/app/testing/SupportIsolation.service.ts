@@ -22,4 +22,7 @@ export class SupportIsolationService {
     public setToStorage(_key: string, _content: any): any {
         return this.storage.set(_key, _content)
     }
+    public removeFromStorage(_key: string): void {
+        this.storage.set(_key, null);
+    }
 }

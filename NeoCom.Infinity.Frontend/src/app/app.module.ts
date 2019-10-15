@@ -31,6 +31,7 @@ import { AppInfoPanelComponent } from './panels/app-info-panel/app-info-panel.co
 import { IsolationService } from './platform/isolation.service';
 import { AppStoreService } from './services/appstore.service';
 import { BackendService } from './services/backend.service';
+import { AuthenticationService } from './security/authentication.service';
 
 // - LOCALES
 import localeEs from '@angular/common/locales/es';
@@ -86,6 +87,7 @@ export function rollbarFactory() {
         { provide: IsolationService, useClass: IsolationService },
         { provide: AppStoreService, useClass: AppStoreService },
         { provide: BackendService, useClass: BackendService },
+        { provide: AuthenticationService, useClass: AuthenticationService },
         // --- ERROR INTERCEPTION
         // { provide: ErrorHandler, useClass: RollbarErrorHandler },
         // { provide: RollbarService, useFactory: rollbarFactory },
