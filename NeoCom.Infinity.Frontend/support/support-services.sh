@@ -1,24 +1,33 @@
 #!/bin/bash
 # - PARAMETERS & CONSTANTS
 COMMAND=$1
-APISIMULATOR_COMMAND='apisimulator/apisimulator-http-1.4/bin/apisimulator'
-APISUMULATOR_ADMIN_PORT=' -admin_port 6191 '
-APISIMULATOR_OPTIONS=' -p 6091 '
-APISIMULATOR_SIMULATION='apisimulator/neocom-backend-simulation'
-WORKING_DIRECTORY='/home/adam/Development/NeoCom/neocom-infinity/NeoCom.Infinity.Frontend/support'
+
+SERVICE_PORT=6099
+ADMIN_PORT=$(($SERVICE_PORT + 100))
+SIMULATION_NAME='backend-simulation'
+
+WORKING_DIRECTORY="${HOME}/Development/NeoCom/neocom-infinity/NeoCom.Infinity.Frontend"
+APISIMULATOR_COMMAND="${WORKING_DIRECTORY}/support/apisimulator-http-1.4/bin/apisimulator"
+export APISIMULATOR_LOG_LEVEL=debug
 
 export APISIMULATOR_JAVA='/usr/lib/jvm/java-1.11.0-openjdk-amd64'
 
 # - S T A R T
 start() {
   cd ${WORKING_DIRECTORY}
-  echo "Starting api sumulator with: $APISIMULATOR_SIMULATION"
-  $APISIMULATOR_COMMAND start $APISIMULATOR_SIMULATION $APISIMULATOR_OPTIONS $APISUMULATOR_ADMIN_PORT &
+  APISIMULATOR_SIMULATION="${WORKING_DIRECTORY}/support/$SIMULATION_NAME"
+  echo ">> Starting api simulator with: $APISIMULATOR_SIMULATION"
+  echo ">>> Service port: $SERVICE_PORT"
+  echo ">>> Administration port: $ADMIN_PORT"
+  echo ">>> Simulation: $SIMULATION_NAME"
+  $APISIMULATOR_COMMAND start $APISIMULATOR_SIMULATION -p ${SERVICE_PORT} -admin_port ${ADMIN_PORT} &
 }
+# - S T O P
 stop() {
   cd ${WORKING_DIRECTORY}
-  echo "Stopping api sumulator..."
-  $APISIMULATOR_COMMAND stop $APISIMULATOR_SIMULATION $APISUMULATOR_ADMIN_PORT &
+  echo "Stopping api simulator..."
+  APISIMULATOR_SIMULATION="${WORKING_DIRECTORY}/support/$SIMULATION_NAME"
+  $APISIMULATOR_COMMAND stop "support/$SIMULATION_NAME" -admin_port ${ADMIN_PORT} &
 }
 
 case $COMMAND in
