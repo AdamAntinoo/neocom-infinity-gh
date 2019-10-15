@@ -9,9 +9,11 @@
       "jasminewd2",
       "node"
     ],
+    "baseUrl": "./",
     "paths": {
       "@pages/*": ["src/pages/*"],
-      "@domain/*": ["src/app/domain/*"]
+      "@domain/*": ["src/app/domain/*"],
+      "@steps/*": ["e2e/src/steps/*"]
     }
   }
 }

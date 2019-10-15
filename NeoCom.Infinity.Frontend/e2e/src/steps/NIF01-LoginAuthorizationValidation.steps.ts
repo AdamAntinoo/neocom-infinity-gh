@@ -81,84 +81,15 @@ Then('loginvalidationprogress panel displays the next fields', async (dataTable)
     console.log('>Then loginvalidationprogress panel displays the next fields');
     const row = dataTable.hashes()[0];
     console.log('-[Then loginvalidationprogress panel displays the next fields]> row=' + JSON.stringify(row));
-    // dataTable.hashes().forEach((row) => {
-    // console.log('-[Then loginvalidationprogress panel displays the next fields]>' + PROGRESS_LABEL + ': ' +
-    //         isolationService.decodeDataTableRow(row, PROGRESS_LABEL));
-    // assert.equal(isolationService.decodeDataTableRow(row, APP_NAME), isolationService.getAppName());
     expect(await loginValidationPage.getProgressLabel()).to.equal(isolationService.decodeDataTableRow(row, PROGRESS_LABEL));
     expect(await loginValidationPage.getProgressCode()).to.equal(isolationService.decodeDataTableRow(row, PROGRESS_CODE));
-    // console.log('-[Then panel displays the next fields]>' + APP_VERSION + ': ' +
-    //     isolationService.decodeDataTableRow(row, APP_VERSION));
-    // assert.equal(isolationService.decodeDataTableRow(row, APP_VERSION), isolationService.getAppVersion());
-    // console.log('-[Then panel displays the next fields]>' + COPYRIGHT + ': ' +
-    //     isolationService.decodeDataTableRow(row, COPYRIGHT));
-    // assert.equal(isolationService.decodeDataTableRow(row, COPYRIGHT), isolationService.getCopyright());
-    // });
     console.log('<Then loginvalidationprogress panel displays the next fields');
 });
-// When('there is not a {string}', async (panelIdentifier) => {
-//     expect(await element(by.id(panelIdentifier)).getId()).to.be.undefined;
-// });
-// Then('the response has a valid JWT token', function () {
-//     // Write code here that turns the phrase above into concrete actions
-//     return 'pending';
-// });
-// Then('the response has a Credential', function () {
-//     // Write code here that turns the phrase above into concrete actions
-//     return 'pending';
-// });
-
-
-//    ?And appinfo panel displays the next fields
-//     | app - name | app - version | copyright |
-//        | NeoCom.Infinity | 0.16.0 - TEST | <environment.copyright> |
-//     Undefined.Implement with the following snippet:
-
-//    ?And The response has a valid JWT token # e2e / src / steps / NIF01 - LoginAuthorizationValidation.steps.ts: 84
-// Pending
-//     ? And the JWT token has the next contents
-//         | accountName | uniqueId |
-//        | Adam Antinoo | tranquility / 123 |
-//     Undefined.Implement with the following snippet:
-
-// When('the JWT token has the next contents', async (key: string, dataTable) => {
-//     // const ACCOUNT_NAME: string = 'accountName';
-//     // const UNIQUE_ID: string = 'uniqueId';
-//     // const jwtToken = loginValidationPage.readStorage(key); // Get the current JWT token from the storage.
-//     // assert.isDefined(jwtToken);
-//     // const row = dataTable.hashes()[0];
-//     // console.log('-[When the JWT token has the next contents]> row=' + JSON.stringify(row));
-//     // assert.equal(isolationService.decodeDataTableRow(row, ACCOUNT_NAME), jwtToken.accountName);
-//     // assert.equal(isolationService.decodeDataTableRow(row, UNIQUE_ID), jwtToken.uniqueId);
-//     return 'pending';
-// });
-When('the JWT token with key {string} has the next contents', function (string, dataTable) {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-});
-
-//    ?And the Credential has the next contents
-//     | accountId | accountName | uniqueId |
-//        | 123 | Adam Antinoo | tranquility / 123 |
-//     Undefined.Implement with the following snippet:
-
-When('the Credential has the next contents', function (dataTable) {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-});
-
-//    ?And after the validations and process
-// Undefined.Implement with the following snippet:
-
-When('after the validations and process', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-});
-
-//    ?Then the page jumps to the "Dashboard Page" page
-// Undefined.Implement with the following snippet:
-
-Then('the page jumps to the {string} page', function (string) {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+Then('loginvalidationexception panel displays the next fields', async (dataTable) =>{
+    console.log('>[Then loginvalidationexception panel displays the next fields]');
+    const EXCEPTION_MESSAGE: string = 'exception-message';
+    const row = dataTable.hashes()[0];
+    console.log('-[Then loginvalidationexception panel displays the next fields]> row=' + JSON.stringify(row));
+    expect(await loginValidationPage.getExceptionMessage()).to.equal(isolationService.decodeDataTableRow(row, EXCEPTION_MESSAGE));
+    console.log('<[Then loginvalidationexception panel displays the next fields]');
 });

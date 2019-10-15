@@ -13,10 +13,14 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 // - ROUTER
 import { Router } from '@angular/router';
 
+/**
+ * The responsibility for this service is to isolate the internal application api from the external implementation when using libraries that can change over time like the Toaster. It will also provide a simplification when accessing some common features like the environment, global functions or storage.
+ */
 @Injectable()
 export class IsolationService {
     // - C O N S T A N T S
     public JWTTOKEN_KEY: string;
+    public JWTTOKEN_EXPIRATION_TIME_KEY: string;
     // - C O N S T R U C T O R
     constructor(
         @Inject(LOCAL_STORAGE) protected storage: WebStorageService,
@@ -24,11 +28,12 @@ export class IsolationService {
         protected notifier: ToastrManager,
         protected router: Router) {
         this.JWTTOKEN_KEY = environment.JWTTOKEN_KEY;
+        this.JWTTOKEN_EXPIRATION_TIME_KEY = environment.JWTTOKEN_EXPIRATION_TIME_KEY;
     }
 
     // - R O U T I N G   W R A P
     public route2FirstPage(): void {
-        this.router.navigate(['login']);
+        this.router.navigate(['loginValidation']);
     }
     
     // - E N V I R O N M E N T   A C C E S S
@@ -81,30 +86,7 @@ export class IsolationService {
     public removeFromSession(_key: string): any {
         this.sessionStorage.remove(_key);
     }
-    // public getFromStorage(_key: string): Promise<any> {
-    //   return new Promise((resolve) => {
-    //     setTimeout(() => {
-    //       console.log("><[AngularIsolationService.getFromStorage]");
-    //       resolve(this.storage.get(_key));
-    //     }, 100);
-    //   });
-    // }
-    // public setToStorage(_key: string, _content: any): Promise<any> {
-    //   return new Promise((resolve) => {
-    //     setTimeout(() => {
-    //       console.log("><[AngularIsolationService.getFromStorage]");
-    //       resolve(this.storage.set(_key, _content));
-    //     }, 100);
-    //   });
-    // }
-    // public removeFromStorage(_key: string): Promise<any> {
-    //   return new Promise((resolve) => {
-    //     setTimeout(() => {
-    //       console.log("><[AngularIsolationService.removeFromStorage]");
-    //       resolve(this.storage.remove(_key));
-    //     }, 100);
-    //   });
-    // }
+
     // - N O T I F I C A T I O N S
     private notifierConfiguration: any = {
         toastTimeout: 5000,

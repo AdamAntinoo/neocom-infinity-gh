@@ -32,6 +32,6 @@ resonse:
       "httpStatus": 400,
       "httpStatusName": "BAD_REQUEST",
       "message": "TokenTranslationResponse response is not valid.",
-      "sourceClass": "org.dimensinfin.eveonline.neocom.infinity.authorization.AuthorizationService",
+      "sourceClass": "AuthorizationService",
       "sourceMethod": "getTokenTranslationResponse"
     }
