@@ -1,33 +1,43 @@
 @NIF01
-Feature: NIF01-Display the login autorization confirmation page
+Feature: [NIF01]-Display the login autorization confirmation page
 
     Display the application header along with the progress indicator awaiting for the token authorization
     validation.
 
     @NIF01 @NIF01.01
-    Scenario: NIF01.01-Check that the Login Validation Page has all the panels expected
+    Scenario: [NIF01.01]-Check that the Login Validation Page has the application info panel
         Given I am on the "Login Validation Page" page
-        When the request has the code "-CODE-TO-CHECK-ALL-PANELS-" and state "-INVALID-STATE-"
-        And there is a "appinfo-panel"
-        And there is a "loginvalidationprogress-panel"
-        And there is a "loginvalidationexception-panel"
-
-    @NIF01 @NIF01.02
-    Scenario: NIF01.02-Check the Application Info panel contents
-        Given I am on the "Login Validation Page" page
-        When the request has the code "-CODE-TO-CHECK-ALL-PANELS-" and state "-INVALID-STATE-"
+        When the request has the code "-CODE-TO-CHECK-APP-INFO-" and state "-INVALID-STATE-"
         Then there is a "appinfo-panel"
         And appinfo panel displays the next fields
             | app-name        | app-version | copyright               |
             | neocom.infinity | 0.16.0-TEST | <environment.copyright> |
-        And there is a "loginvalidationprogress-panel"
+
+    @NIF01 @NIF01.02
+    Scenario: [NIF01.02]-Check that the Login Validation Page has the validation progress panel
+        Given I am on the "Login Validation Page" page
+        When the request has the code "-CODE-TO-CHECK-PROGRESS-PANEL-" and state "-INVALID-STATE-"
+        Then there is a "loginvalidationprogress-panel"
         And loginvalidationprogress panel displays the next fields
             | progress-label                     | progress-code              |
             | Waiting for code authentication... | -CODE-TO-CHECK-ALL-PANELS- |
-        And there is a "loginvalidationexception-panel"
+
+    @NIF01 @NIF01.03
+    Scenario: [NIF01.03]-Check that the Login Validation Page has the exception information panel
+        Given I am on the "Login Validation Page" page
+        When the request has the code "-CODE-TO-CHECK-VALIDATION-EXCEPTION-PANEL-" and state "-INVALID-STATE-"
+        Then there is a "loginvalidationexception-panel"
         And loginvalidationexception panel displays the next fields
             | exception-message                                      |
             | The request state does not match. Caller not verified. |
+
+    @NIF01 @NIF01.04
+    Scenario: [NIF01.04]-Check that if the validation is valid we move to the Dashboard page
+        Given I am on the "Login Validation Page" page
+        When the request has the code "-CODE-VALID-" and state "LU5FT0NPTS5JTkZJTklUWS1ERVZFTE9QTUVOVC1WQUxJRCBTVEFURSBTVFJJTkct"
+        Then there is a "appinfo-panel"
+        And there is a "loginvalidationprogress-panel"
+        And the route moves to the "Dashboard Home Page"
 
 # @NIF01 @NIF01.03
 # Scenario: NIF01.03-Check that the Login Validation Page has all only two panels when correct parameters and that should return a valid JWT token along a Credential

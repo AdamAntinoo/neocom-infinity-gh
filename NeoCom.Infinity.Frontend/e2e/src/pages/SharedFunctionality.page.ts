@@ -18,6 +18,7 @@ export class SharedFunctionalityPage {
         console.log('>[SharedFunctionalityPage.getPagePanelById]>Searching for panel: ' + panelIdentifier);
         return element(by.id(panelIdentifier));
     }
+    // - APP INFO PANEL
     public getAppName(): Promise<string> {
         return element(by.css('.app-name')).getText() as Promise<string>;
     }

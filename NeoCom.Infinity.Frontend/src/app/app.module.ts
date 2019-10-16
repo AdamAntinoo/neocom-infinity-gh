@@ -68,7 +68,7 @@ export function rollbarFactory() {
         // - WEBSTORAGE
         StorageServiceModule,
         // - APPLICATION MODULES
-        // SharedModule,
+        SharedModule,
         // - ROUTING
         RouterModule,
         AppRoutingModule

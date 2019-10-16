@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 // - ROUTING
 import { RouterModule } from '@angular/router';
 import { Routes } from '@angular/router';
-import { DashboardHomePage } from 'e2e/src/pages/DashboardHome.page';
 // - GUARDS
 import { TokenAuthorizationGuard } from '@app/security/token-authorization.guard';
 
@@ -14,8 +13,8 @@ import { AppInfoPanelComponent } from './panels/app-info-panel/app-info-panel.co
 
 // - MODULE ROUTES
 const routes: Routes = [
-    { path: '', component: DashboardHomePage, canActivate: [TokenAuthorizationGuard] },
-    { path: 'home', component: DashboardHomePage, canActivate: [TokenAuthorizationGuard] },
+    // { path: '', component: DashboardHomePage, canActivate: [TokenAuthorizationGuard] },
+    // { path: 'home', component: DashboardHomePage, canActivate: [TokenAuthorizationGuard] },
     // { path: 'servicios', component: AdminServiciosPageComponent, canActivate: [AuthAdminGuard] }
 ];
 
@@ -29,7 +28,8 @@ const routes: Routes = [
          AppInfoPanelComponent,
     ],
     exports: [
-        RouterModule
+        RouterModule,
+        AppInfoPanelComponent
     ]
 })
 export class SharedModule { }

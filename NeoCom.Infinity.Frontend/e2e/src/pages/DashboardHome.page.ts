@@ -15,8 +15,16 @@ export class DashboardHomePage extends SharedFunctionalityPage {
         console.log('>[DashboardHomePage.navigateTo]>Navigating to page: ' + urlRequest);
         return browser.get(browser.baseUrl + urlRequest) as Promise<any>;
     }
-
+    // - SERVER STATUS PANEL
+    public getServerName(): Promise<string> {
+        return element(by.css('.server-name')).getText() as Promise<string>;
+    }
+    // - CORPORATION PUBLIC DATA PANEL
     public getCorporationName(): Promise<string> {
         return element(by.css('.corporation-name')).getText() as Promise<string>;
+    }
+    // - PILOT PUBLIC DATA PANEL
+    public getPilotName(): Promise<string> {
+        return element(by.css('.pilot-name')).getText() as Promise<string>;
     }
 }
