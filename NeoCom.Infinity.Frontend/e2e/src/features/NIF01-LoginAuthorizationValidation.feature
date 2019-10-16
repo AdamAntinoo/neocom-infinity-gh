@@ -11,7 +11,7 @@ Feature: [NIF01]-Display the login autorization confirmation page
         Then there is a "appinfo-panel"
         And appinfo panel displays the next fields
             | app-name        | app-version | copyright               |
-            | neocom.infinity | 0.16.0-TEST | <environment.copyright> |
+            | NEOCOM.INFINITY | 0.16.0-TEST | <environment.copyright> |
 
     @NIF01 @NIF01.02
     Scenario: [NIF01.02]-Check that the Login Validation Page has the validation progress panel
@@ -19,8 +19,8 @@ Feature: [NIF01]-Display the login autorization confirmation page
         When the request has the code "-CODE-TO-CHECK-PROGRESS-PANEL-" and state "-INVALID-STATE-"
         Then there is a "loginvalidationprogress-panel"
         And loginvalidationprogress panel displays the next fields
-            | progress-label                     | progress-code              |
-            | Waiting for code authentication... | -CODE-TO-CHECK-ALL-PANELS- |
+            | progress-label                     | progress-code                  |
+            | Waiting for code authentication... | -CODE-TO-CHECK-PROGRESS-PANEL- |
 
     @NIF01 @NIF01.03
     Scenario: [NIF01.03]-Check that the Login Validation Page has the exception information panel

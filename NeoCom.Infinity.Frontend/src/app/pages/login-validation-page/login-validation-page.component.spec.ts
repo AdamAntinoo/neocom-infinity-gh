@@ -21,9 +21,10 @@ import { SupportAppStoreService } from '@app/testing/SupportAppStore.service';
 import { SupportBackendService } from '@app/testing/SupportBackend.service';
 
 import { LoginValidationPageComponent } from './login-validation-page.component';
-import { AppInfoPanelComponent } from '@app/panels/app-info-panel/app-info-panel.component';
+// import { AppInfoPanelComponent } from '@app/panels/app-info-panel/app-info-panel.component';
 import { LoginValidationProgressComponent } from '@app/panels/login-validation-progress/login-validation-progress.component';
 import { LoginValidationExceptionComponent } from '@app/panels/login-validation-exception/login-validation-exception.component';
+import { AppInfoPanelComponent } from '@app/modules/shared/panels/app-info-panel/app-info-panel.component';
 
 describe('PAGE LoginValidationPageComponent [Module: CORE]', () => {
     let component: LoginValidationPageComponent;

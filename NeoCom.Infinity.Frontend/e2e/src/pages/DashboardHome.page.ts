@@ -19,6 +19,12 @@ export class DashboardHomePage extends SharedFunctionalityPage {
     public getServerName(): Promise<string> {
         return element(by.css('.server-name')).getText() as Promise<string>;
     }
+    public getServerStatus(): Promise<string> {
+        return element(by.css('.server-status')).getText() as Promise<string>;
+    }
+    public getCapsuleers(): Promise<string> {
+        return element(by.css('.server-capsuleers')).getText() as Promise<string>;
+    }
     // - CORPORATION PUBLIC DATA PANEL
     public getCorporationName(): Promise<string> {
         return element(by.css('.corporation-name')).getText() as Promise<string>;

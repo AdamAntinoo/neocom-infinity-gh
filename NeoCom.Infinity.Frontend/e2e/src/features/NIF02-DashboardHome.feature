@@ -5,16 +5,16 @@ Feature: NIF02-Display the character dashboard page.
 
     @NIF02 @NIF02.01
     Scenario: [NIF02.01]-Check that the Dashboard Home Page has the application info panel
-        Given I am on the "Dashboard Home Page" page
+        Given I am on the Dashboard Home Page page
         When the page is activated
         Then there is a "appinfo-panel"
         And appinfo panel displays the next fields
             | app-name        | app-version | copyright               |
-            | neocom.infinity | 0.16.0-TEST | <environment.copyright> |
+            | NEOCOM.INFINITY | 0.16.0-TEST | <environment.copyright> |
 
     @NIF02 @NIF02.01
     Scenario: [NIF02.01]-Check that the Dashboard Home Page has the server information panel
-        Given I am on the "Dashboard Home Page" page
+        Given I am on the Dashboard Home Page page
         When the page is activated
         Then there is a "serverinfo-panel"
         And serverinfo panel displays the next fields

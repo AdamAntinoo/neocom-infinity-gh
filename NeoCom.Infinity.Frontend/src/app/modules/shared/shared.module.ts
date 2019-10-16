@@ -10,6 +10,7 @@ import { TokenAuthorizationGuard } from '@app/security/token-authorization.guard
 // - PAGES
 // - PANELS
 import { AppInfoPanelComponent } from './panels/app-info-panel/app-info-panel.component';
+import { ServerInfoPanelComponent } from './panels/server-info-panel/server-info-panel.component';
 
 // - MODULE ROUTES
 const routes: Routes = [
@@ -25,11 +26,13 @@ const routes: Routes = [
     ],
     declarations: [
         // - PANELS
-         AppInfoPanelComponent,
+        AppInfoPanelComponent,
+        ServerInfoPanelComponent,
     ],
     exports: [
         RouterModule,
-        AppInfoPanelComponent
+        AppInfoPanelComponent,
+        ServerInfoPanelComponent
     ]
 })
 export class SharedModule { }

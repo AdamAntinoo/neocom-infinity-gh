@@ -22,7 +22,7 @@ import { AuthorizationWorld } from '../support/AuthorizationWorld.world';
 const INVALID_STATE: string = '-INVALID-STATE-';
 const VALID_STATE: string = 'LU5FT0NPTS5JTkZJTklUWS1ERVZFTE9QTUVOVC1WQUxJRCBTVEFURSBTVFJJTkct';
 
-let loginValidationPage: LoginValidationPage;
+let page: LoginValidationPage;
 let isolationService: IsolationService;
 let authorizationWorld: AuthorizationWorld;
 
@@ -36,17 +36,17 @@ Before(() => {
     // const instance = injector.get(LOGIN_VALIDATION_PAGE_TOKEN);
 
     // loginValidationPage = new LoginValidationPage(inject(WebStorageService), inject(WebStorageService));
-    loginValidationPage = new LoginValidationPage();
+    page = new LoginValidationPage();
     isolationService = new IsolationService();
     authorizationWorld = new AuthorizationWorld();
-    authorizationWorld.setPage(loginValidationPage);
+    authorizationWorld.setPage(page);
 });
 
 Given('I am on the {string} page', function (pageIdentifier) {
-    assert.equal(loginValidationPage.getPageName(), pageIdentifier, 'Check the target page identifier.');
+    assert.equal(page.getPageName(), pageIdentifier, 'Check the target page identifier.');
 });
 When('the request has the code {string} and state {string}', async (requestCode, requestState) => {
-    await loginValidationPage.navigateTo(requestCode, requestState);
+    await page.navigateTo(requestCode, requestState);
     authorizationWorld.setCode(requestCode);
     authorizationWorld.setState(requestState);
     // authorizationWorld.setResponse(loginValidationPage.getResponse());
@@ -65,7 +65,7 @@ Then('appinfo panel displays the next fields', async (dataTable) => {
     console.log('-[Then appinfo panel displays the next fields]>' + APP_NAME + ': ' +
         isolationService.decodeDataTableRow(row, APP_NAME));
     // assert.equal(isolationService.decodeDataTableRow(row, APP_NAME), isolationService.getAppName());
-    expect(await loginValidationPage.getAppName()).to.equal(isolationService.decodeDataTableRow(row, APP_NAME));
+    expect(await page.getAppName()).to.equal(isolationService.decodeDataTableRow(row, APP_NAME));
     console.log('-[Then appinfo panel displays the next fields]>' + APP_VERSION + ': ' +
         isolationService.decodeDataTableRow(row, APP_VERSION));
     assert.equal(isolationService.decodeDataTableRow(row, APP_VERSION), isolationService.getAppVersion());
@@ -81,8 +81,8 @@ Then('loginvalidationprogress panel displays the next fields', async (dataTable)
     console.log('>Then loginvalidationprogress panel displays the next fields');
     const row = dataTable.hashes()[0];
     console.log('-[Then loginvalidationprogress panel displays the next fields]> row=' + JSON.stringify(row));
-    expect(await loginValidationPage.getProgressLabel()).to.equal(isolationService.decodeDataTableRow(row, PROGRESS_LABEL));
-    expect(await loginValidationPage.getProgressCode()).to.equal(isolationService.decodeDataTableRow(row, PROGRESS_CODE));
+    expect(await page.getProgressLabel()).to.equal(isolationService.decodeDataTableRow(row, PROGRESS_LABEL));
+    expect(await page.getProgressCode()).to.equal(isolationService.decodeDataTableRow(row, PROGRESS_CODE));
     console.log('<Then loginvalidationprogress panel displays the next fields');
 });
 Then('loginvalidationexception panel displays the next fields', async (dataTable) =>{
@@ -90,6 +90,6 @@ Then('loginvalidationexception panel displays the next fields', async (dataTable
     const EXCEPTION_MESSAGE: string = 'exception-message';
     const row = dataTable.hashes()[0];
     console.log('-[Then loginvalidationexception panel displays the next fields]> row=' + JSON.stringify(row));
-    expect(await loginValidationPage.getExceptionMessage()).to.equal(isolationService.decodeDataTableRow(row, EXCEPTION_MESSAGE));
+    expect(await page.getExceptionMessage()).to.equal(isolationService.decodeDataTableRow(row, EXCEPTION_MESSAGE));
     console.log('<[Then loginvalidationexception panel displays the next fields]');
 });
