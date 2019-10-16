@@ -10,239 +10,240 @@
 /* F O N T S */
 
 @font-face {
-  font-family: 'Proxima Nova Black';
-  src: url('/assets/fonts/Proxima Nova Alt Black.ttf') format('truetype');
-  font-weight: 900;
-  font-style: normal;
+    font-family: 'Proxima Nova Black';
+    src: url('./fonts/Proxima Nova Alt Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: 'Proxima Nova';
-  src: url('/assets/fonts/Proxima Nova Bold.ttf') format('truetype');
-  font-weight: 800;
-  font-style: normal;
+    font-family: 'Proxima Nova';
+    src: url('./fonts/Proxima Nova Bold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: 'Proxima Nova';
-  src: url('/assets/fonts/Proxima Nova Semibold.ttf') format('truetype');
-  font-weight: 600;
-  font-style: normal;
+    font-family: 'Proxima Nova';
+    src: url('./fonts/Proxima Nova Semibold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: 'Proxima Nova';
-  src: url('/assets/fonts/Proxima Nova Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
+    font-family: 'Proxima Nova';
+    src: url('./fonts/Proxima Nova Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: 'Proxima Nova';
-  src: url('/assets/fonts/Proxima Nova Thin.ttf') format('truetype');
-  font-style: normal;
-  font-weight: 100;
+    font-family: 'Proxima Nova';
+    src: url('./fonts/Proxima Nova Thin.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 100;
 }
 
 .proxima-ff {
-  font-family: 'Proxima Nova';
+    font-family: 'Proxima Nova';
 }
 
 .proxima-black-ff {
-  font-family: 'Proxima Nova Black';
+    font-family: 'Proxima Nova Black';
 }
 
 @font-face {
-  font-family: "Conthrax";
-  src: url("/assets/fonts/conthrax-sb.ttf");
+    font-family: "Conthrax";
+    src: url("/assets/fonts/conthrax-sb.ttf");
 }
 
 .contrax-ff {
-  font-family: "Conthrax";
+    font-family: "Conthrax";
 }
 
 @font-face {
-  font-family: "Tesla";
-  src: url("/assets/fonts/TESLA.ttf");
+    font-family: "Tesla";
+    src: url("/assets/fonts/TESLA.ttf");
 }
 
 .tesla-ff {
-  font-family: "Tesla";
+    font-family: "Tesla";
 }
 
 @font-face {
-  font-family: "Elemental";
-  font-style: normal;
-  font-weight: normal;
-  src: url("/assets/fonts/Elemental End.ttf") format('truetype');
+    font-family: "Elemental";
+    font-style: normal;
+    font-weight: normal;
+    src: url("/assets/fonts/Elemental End.ttf") format('truetype');
 }
 
 @font-face {
-  font-family: "Elemental";
-  font-style: italic;
-  font-weight: normal;
-  src: url("/assets/fonts/Elemental End Italic.ttf");
+    font-family: "Elemental";
+    font-style: italic;
+    font-weight: normal;
+    src: url("/assets/fonts/Elemental End Italic.ttf");
 }
 
 .elemental-ff {
-  font-family: "Elemental";
+    font-family: "Elemental";
 }
 
 @font-face {
-  font-family: 'Mons Olympia';
-  font-style: italic;
-  font-weight: bold;
-  src: url("/assets/fonts/Mons Olympia Bold Italic.otf");
+    font-family: 'Mons Olympia';
+    font-style: italic;
+    font-weight: bold;
+    src: url("/assets/fonts/Mons Olympia Bold Italic.otf");
 }
 
 @font-face {
-  font-family: 'Mons Olympia';
-  font-style: normal;
-  font-weight: bold;
-  src: url("/assets/fonts/Mons Olympia Bold.otf");
+    font-family: 'Mons Olympia';
+    font-style: normal;
+    font-weight: bold;
+    src: url("/assets/fonts/Mons Olympia Bold.otf");
 }
 
 @font-face {
-  font-family: 'Mons Olympia';
-  font-style: italic;
-  font-weight: normal;
-  src: url("/assets/fonts/Mons Olympia Italic.otf");
+    font-family: 'Mons Olympia';
+    font-style: italic;
+    font-weight: normal;
+    src: url("/assets/fonts/Mons Olympia Italic.otf");
 }
 
 @font-face {
-  font-family: 'Mons Olympia';
-  font-style: normal;
-  font-weight: normal;
-  src: url("/assets/fonts/Mons Olympia.otf");
+    font-family: 'Mons Olympia';
+    font-style: normal;
+    font-weight: normal;
+    src: url("/assets/fonts/Mons Olympia.otf");
 }
 
 .mons-olympia-ff {
-  font-family: "Mons Olympia";
+    font-family: "Mons Olympia";
 }
 
 @font-face {
-  font-family: 'Imaki';
-  font-style: normal;
-  font-weight: normal;
-  src: url("/assets/fonts/Imaki.otf");
+    font-family: 'Imaki';
+    font-style: normal;
+    font-weight: normal;
+    src: url("/assets/fonts/Imaki.otf");
 }
 
 @font-face {
-  font-family: 'Imaki';
-  font-style: normal;
-  font-weight: bold;
-  src: url("/assets/fonts/Imaki Bold.otf");
+    font-family: 'Imaki';
+    font-style: normal;
+    font-weight: bold;
+    src: url("/assets/fonts/Imaki Bold.otf");
 }
 
 .imaki-ff {
-  font-family: "Imaki";
+    font-family: "Imaki";
 }
 
 @font-face {
-  font-family: 'Din-1451';
-  font-style: normal;
-  font-weight: normal;
-  src: url("/assets/fonts/alte-din-1451-mittelschrift.regular.ttf");
+    font-family: 'Din-1451';
+    font-style: normal;
+    font-weight: normal;
+    src: url("/assets/fonts/alte-din-1451-mittelschrift.regular.ttf");
 }
 
 @font-face {
-  font-family: 'Din-1451';
-  font-style: normal;
-  font-weight: bold;
-  src: url("/assets/fonts/alte-din-1451-mittelschrift.bold.ttf");
+    font-family: 'Din-1451';
+    font-style: normal;
+    font-weight: bold;
+    src: url("/assets/fonts/alte-din-1451-mittelschrift.bold.ttf");
 }
 
 .din-1451-ff {
-  font-family: "Din-1451";
+    font-family: "Din-1451";
 }
 
 @font-face {
-  font-family: 'Zekton';
-  font-style: normal;
-  font-weight: normal;
-  src: url("/assets/fonts/zekton rg.ttf");
+    font-family: 'Zekton';
+    font-style: normal;
+    font-weight: normal;
+    src: url("/assets/fonts/zekton rg.ttf");
 }
 
 .zekton-ff {
-  font-family: "Zekton";
+    font-family: "Zekton";
 }
 
 @font-face {
-  font-family: 'Prototype';
-  font-style: normal;
-  font-weight: normal;
-  src: url("/assets/fonts/Prototype.ttf");
+    font-family: 'Prototype';
+    font-style: normal;
+    font-weight: normal;
+    src: url("/assets/fonts/Prototype.ttf");
 }
 
 .prototype-ff {
-  font-family: "Prototype";
+    font-family: "Prototype";
 }
 
 @font-face {
-  font-family: 'TheExpanse';
-  font-style: normal;
-  font-weight: normal;
-  src: url("/assets/fonts/TheExpanse.otf");
+    font-family: 'TheExpanse';
+    font-style: normal;
+    font-weight: normal;
+    src: url("/assets/fonts/TheExpanse.otf");
 }
 
 .expanse-ff {
-  font-family: 'TheExpanse';
+    font-family: 'TheExpanse';
 }
+
 
 /* S I Z E S */
 
 #neocom-ts30 {
-  font-size: 30px;
+    font-size: 30px;
 }
 
 #neocom-ts24 {
-  font-size: 24px;
+    font-size: 24px;
 }
 
 #neocom-ts20 {
-  font-size: 20px;
+    font-size: 20px;
 }
 
 #neocom-ts18 {
-  font-size: 18px;
+    font-size: 18px;
 }
 
 #neocom-ts16 {
-  font-size: 16px;
+    font-size: 16px;
 }
 
 #neocom-ts14 {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 #neocom-ts12 {
-  font-size: 12px;
+    font-size: 12px;
 }
 
 #neocom-ts11 {
-  font-size: 11px;
+    font-size: 11px;
 }
 
 #neocom-ts10 {
-  font-size: 10px;
+    font-size: 10px;
 }
 
 #neocom-ts9 {
-  font-size: 10px;
+    font-size: 10px;
 }
 
 #neocom-ts8 {
-  font-size: 10px;
+    font-size: 10px;
 }
 
 #label-small {
-  font-size: 8px;
+    font-size: 8px;
 }
 
 #label-medium {
-  font-size: 10px;
+    font-size: 10px;
 }
 
 #label-large {
-  font-size: 12px;
+    font-size: 12px;
 }

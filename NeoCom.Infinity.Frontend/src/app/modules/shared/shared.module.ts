@@ -11,6 +11,8 @@ import { TokenAuthorizationGuard } from '@app/security/token-authorization.guard
 // - PANELS
 import { AppInfoPanelComponent } from './panels/app-info-panel/app-info-panel.component';
 import { ServerInfoPanelComponent } from './panels/server-info-panel/server-info-panel.component';
+import { CorporationPublicDataPanelComponent } from './panels/corporation-public-data-panel/corporation-public-data-panel.component';
+import { PilotPublicDataPanelComponent } from './panels/pilot-public-data-panel/pilot-public-data-panel.component';
 
 // - MODULE ROUTES
 const routes: Routes = [
@@ -28,11 +30,15 @@ const routes: Routes = [
         // - PANELS
         AppInfoPanelComponent,
         ServerInfoPanelComponent,
+        CorporationPublicDataPanelComponent,
+        PilotPublicDataPanelComponent,
     ],
     exports: [
         RouterModule,
         AppInfoPanelComponent,
-        ServerInfoPanelComponent
+        ServerInfoPanelComponent,
+        CorporationPublicDataPanelComponent,
+        PilotPublicDataPanelComponent,
     ]
 })
 export class SharedModule { }

@@ -8,43 +8,59 @@ import { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 // - PROVIDERS
 import { IsolationService } from '@app/platform/isolation.service';
-import { AppStoreService } from '@app/services/appstore.service';
-import { BackendService } from '@app/services/backend.service';
 import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
-import { SupportAppStoreService } from '@app/testing/SupportAppStore.service';
-import { SupportBackendService } from '@app/testing/SupportBackend.service';
+import { environment } from '@env/environment';
 
 import { AppInfoPanelComponent } from '@app/modules/shared/panels/app-info-panel/app-info-panel.component';
 
 describe('PANEL AppInfoPanelComponent [Module: SHARED]', () => {
     let component: AppInfoPanelComponent;
     let fixture: ComponentFixture<AppInfoPanelComponent>;
+    let isolationService: SupportIsolationService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             schemas: [NO_ERRORS_SCHEMA],
-            // imports: [
-            //     RouterTestingModule.withRoutes(routes)
-            // ],
             declarations: [
-                // RouteMockUpComponent,
-                // DashboardHomePageComponent,
                 AppInfoPanelComponent,
-                // ServerInfoPanelComponent,
             ],
             providers: [
                 { provide: IsolationService, useClass: SupportIsolationService },
-                // { provide: ActivatedRoute, useValue: { queryParams: params } },
-                // { provide: AppStoreService, useClass: SupportAppStoreService },
-                // { provide: BackendService, useClass: SupportBackendService }
             ]
         })
             .compileComponents();
         fixture = TestBed.createComponent(AppInfoPanelComponent);
         component = fixture.componentInstance;
+        isolationService = TestBed.get(IsolationService);
     });
 
-    it('should create', () => {
-        expect(component).toBeTruthy();
+    // - C O N S T R U C T I O N   P H A S E
+    describe('Construction Phase', () => {
+        it('Should be created', () => {
+            console.log('><[shared/AppInfoPanelComponent]> should be created');
+            expect(component).toBeDefined('component has not been created.');
+        });
+    });
+
+    // - C O D E   C O V E R A G E   P H A S E
+    describe('Code Coverage Phase [getters]', () => {
+        it('getName: validate the name field', () => {
+            const expected = isolationService.generateRandomString(12).toUpperCase();
+            isolationService.setAppName(expected);
+            const obtained = component.getName();
+            expect(obtained).toBe(expected)
+        });
+        it('getVersion: validate the version field', () => {
+            const expected = isolationService.generateRandomString(12);
+            isolationService.setAppVersion(expected);
+            const obtained = component.getVersion();
+            expect(obtained).toBe(expected)
+        });
+        it('getCopyright: validate the copyright field', () => {
+            const expected = environment.copyright;
+            // isolationService.setAppVersion(expected);
+            const obtained = component.getCopyright();
+            expect(obtained).toBe(expected)
+        });
     });
 });

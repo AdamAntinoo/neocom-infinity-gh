@@ -1,69 +1,47 @@
-simlet: validate-authorization-token-v3
+simlet: authorization-success
 
 request:
   - method: GET
-  - where: uriPath
-    isLike: "/api/v1/neocom/validateAuthorizationToken/code/.*"
+  - uriPathPattern: "/api/v1/neocom/validateAuthorizationToken"
 
 response:
   from: template
-  latency:
-    timeUnit: seconds
-    fixed:
-      initial: 10
-      subsequent: 1
   status: 200
   headers:
-    - "Content-Type: application/json"
+    - "Content-Type: application/json; Cookie: jwtToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTgzODQ3MjYsImFjY291bnROYW1lIjoiQmV0aCBSaXBsZXkiLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvOTIyMjM2NDciLCJwaWxvdElkIjo5MjIyMzY0N30.Qom8COyZB2sW3bCGm9pnGcIOqw-E2yKDsmGklQW6r9Fhu8jJpkNUv5TUhU2cJjIg5jX3082bZ6eKtRZ3z10vGw"
   body: |+
     {
       "responseType": "ValidateAuthorizationTokenResponse",
-      "jwtToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiYWNjb3VudE5hbWUiOiJBZGFtIEFudGlub28iLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvMTIzIn0.VE261-Uzlsw8nH6JNox_DBVhrQY_BqR3P2Knc_DQmO-ejlHXiCNX3YPHd-pKK-bis_bxWq-lQxVEXd2vvhg0yQ",
+      "jwtToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTgzODQ3MjYsImFjY291bnROYW1lIjoiQmV0aCBSaXBsZXkiLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvOTIyMjM2NDciLCJwaWxvdElkIjo5MjIyMzY0N30.Qom8COyZB2sW3bCGm9pnGcIOqw-E2yKDsmGklQW6r9Fhu8jJpkNUv5TUhU2cJjIg5jX3082bZ6eKtRZ3z10vGw",
       "credential": {
           "jsonClass": "Credential",
-          "uniqueId": "tranquility/123",
-          "accountId": 123,
+          "uniqueId": "tranquility/92223647",
+          "accountId": 92223647,
           "accountName": "Adam Antinoo",
+          "assetsCount": 1476,
+          "walletBalance": 6.309543632E8,
+          "raceName": "Amarr",
           "dataSource": "tranquility"
       }
     }
 
 ---
 
-simlet: validate-authorization-token-v2
+simlet: server-success
 
 request:
   - method: GET
-  - uriPathPattern: "/api/v1/neocom/validateAuthorizationToken/code/{code}/state/{state}/datasource/{datasource}"
+  - uriPathPattern: "/api/v1/neocom/server/datasource/{datasource}"
 
 response:
   from: template
   status: 200
   headers:
-    - "Content-Type: application/json"
+    - "Content-Type: application/json; Cookie: jwtToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTgzODQ3MjYsImFjY291bnROYW1lIjoiQmV0aCBSaXBsZXkiLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvOTIyMjM2NDciLCJwaWxvdElkIjo5MjIyMzY0N30.Qom8COyZB2sW3bCGm9pnGcIOqw-E2yKDsmGklQW6r9Fhu8jJpkNUv5TUhU2cJjIg5jX3082bZ6eKtRZ3z10vGw"
   body: |+
     {
-      "responseType": "ValidateAuthorizationTokenResponse",
-      "jwtToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiYWNjb3VudE5hbWUiOiJBZGFtIEFudGlub28iLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvMTIzIn0.VE261-Uzlsw8nH6JNox_DBVhrQY_BqR3P2Knc_DQmO-ejlHXiCNX3YPHd-pKK-bis_bxWq-lQxVEXd2vvhg0yQ",
-      "credential": {
-          "jsonClass": "Credential",
-          "uniqueId": "tranquility/123",
-          "accountId": 123,
-          "accountName": "Adam Antinoo",
-          "dataSource": "tranquility"
-      }
+      "responseType": "ServerInfoResponse",
+      "players": 10528,
+      "server_version": "1585794",
+      "start_time": "2019-10-16T11:06:17Z"
     }
-
----
-
-
----
-
-simlet: not-found
-
-request: any
-
-response:
-  from: stub
-  status: 400
-  body: "What are you doing?"

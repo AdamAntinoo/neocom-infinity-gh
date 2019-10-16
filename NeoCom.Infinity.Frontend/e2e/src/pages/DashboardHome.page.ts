@@ -11,7 +11,8 @@ export class DashboardHomePage extends SharedFunctionalityPage {
     }
 
     public navigateTo(feature: string) {
-        const urlRequest = '/dashboard/' + feature;
+        // const urlRequest = '/dashboard' + feature;
+        const urlRequest = '/dashboard';
         console.log('>[DashboardHomePage.navigateTo]>Navigating to page: ' + urlRequest);
         return browser.get(browser.baseUrl + urlRequest) as Promise<any>;
     }

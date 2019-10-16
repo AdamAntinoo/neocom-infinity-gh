@@ -12,8 +12,8 @@ Feature: NIF02-Display the character dashboard page.
             | app-name        | app-version | copyright               |
             | NEOCOM.INFINITY | 0.16.0-TEST | <environment.copyright> |
 
-    @NIF02 @NIF02.01
-    Scenario: [NIF02.01]-Check that the Dashboard Home Page has the server information panel
+    @NIF02 @NIF02.02
+    Scenario: [NIF02.02]-Check that the Dashboard Home Page has the server information panel
         Given I am on the Dashboard Home Page page
         When the page is activated
         Then there is a "serverinfo-panel"

@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+// - CORE
+import { Component } from '@angular/core';
+import { OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+// - DOMAIN
+import { ServerInfo } from '@app/domain/ServerInfo.domain';
+import { BackendService } from '@app/services/backend.service';
+import { environment } from '@env/environment';
 
 @Component({
     selector: 'server-info-panel',
@@ -6,22 +13,36 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./server-info-panel.component.scss']
 })
 export class ServerInfoPanelComponent implements OnInit {
+    private serverInfoSubscription: Subscription;
+    private serverInfo: ServerInfo;
 
-    constructor() { }
+    constructor(protected backendService : BackendService) { }
 
     ngOnInit() {
+        this.serverInfoSubscription = this.backendService.aoiGetServerInfo_v1()
+            .subscribe(serverDataResponse=> {
+                this.serverInfo = new ServerInfo({
+                    players: serverDataResponse.players,
+                    startTime: serverDataResponse.start_time
+                })
+                this.serverInfo.setServerName(environment.ESIDataSource);
+            });
     }
 
     public getServerName(): string {
-        return "Tranquility";
+        if (null != this.serverInfo) return this.serverInfo.getServerName();
+        else return '-PENDING-UPDATE-';
     }
     public getServerStatus(): string {
-        return "online".toUpperCase();
+        if (null != this.serverInfo) return "online".toUpperCase();
+        else return "WAITING".toUpperCase();
     }
     public getServerCapsuleers(): number {
-        return 123456;
+        if (null != this.serverInfo) return this.serverInfo.getPlayersCount();
+        else return -1;
     }
     public getLastStartTime(): string {
-        return "2019-10-15T11:06:17Z";
+        if (null != this.serverInfo) return this.serverInfo.getStartTime();
+        else return new Date().toDateString();
     }
 }

@@ -5,7 +5,6 @@ export class Credential {
     private dataSource: string;
 
     constructor(values: Object = {}) {
-        // super(values);
         Object.assign(this, values);
     }
     public getAccountName(): string {

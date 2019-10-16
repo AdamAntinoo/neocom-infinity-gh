@@ -1,3 +1,4 @@
+// - CORE
 import { NeoComResponse } from './NeoComResponse';
 import { Credential } from '../Credential';
 
@@ -10,10 +11,6 @@ export class ValidateAuthorizationTokenResponse extends NeoComResponse {
         Object.assign(this, values);
         // Transform dependency objects
         if (null != this.credential) {
-            // let serviceList = [];
-            // for (let service of this.serviciosAutorizados) {
-            //     serviceList.push(new ServiceAuthorized(service));
-            // }
             this.credential = new Credential(this.credential);
         }
     }

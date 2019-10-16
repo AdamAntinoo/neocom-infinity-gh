@@ -14,6 +14,7 @@ import { ValidateAuthorizationTokenResponse } from '@app/domain/dto/ValidateAuth
 import { environment } from '@env/environment.prod';
 import { NeoComResponse } from '@app/domain/dto/NeoComResponse';
 import { NeoComException } from '@app/platform/NeoComException';
+import { ServerInfoResponse } from '@app/domain/dto/ServerInfoResponse.dto';
 
 @Injectable({
     providedIn: 'root'
@@ -63,6 +64,19 @@ export class BackendService /*extends RuntimeBackendService*/ {
         return this.wrapHttpGETCall(request)
             .pipe(map((data: any) => {
                 const response = this.transformApiResponse(data) as ValidateAuthorizationTokenResponse;
+                return response;
+            }));
+    }
+    public aoiGetServerInfo_v1(): Observable<ServerInfoResponse>{
+        // console.log(">[BackendService.aoiGetServerInfo_v1]> datasource: " + datasource);
+        // Construct the request to call the backend.
+        let request = this.isolation.getServerName() + this.isolation.getApiV1() + "/server" +
+            "/datasource/" + environment.ESIDataSource.toLowerCase();
+        // console.log("--[BackendService.apiValidateAuthorizationToken_v1]> request = " + request);
+        // console.log("--[BackendService.backendReserveAppointment]> body = " + JSON.stringify(patient));
+        return this.wrapHttpGETCall(request)
+            .pipe(map((data: any) => {
+                const response = this.transformApiResponse(data) as ServerInfoResponse;
                 return response;
             }));
     }
@@ -253,16 +267,15 @@ export class BackendService /*extends RuntimeBackendService*/ {
         let responseType = responseData["responseType"];
         switch (responseType) {
             case 'ValidateAuthorizationTokenResponse':
-                // console.log("-[BackendService.transformApiResponse]> ValidateAuthorizationTokenResponse response: " +
-                //     convertedMedico.getId());
                 return new ValidateAuthorizationTokenResponse(responseData);
-                break;
+            case 'ServerInfoResponse':
+                return new ServerInfoResponse(responseData);
             default:
                 throw new NeoComException({
                     "ok": false,
                     status:400,
                     statusText: "Unidentified response",
-                    message: "Api responde type does not match any of the declared types. Invalid response"
+                    message: "Api response type does not match any of the declared types. Invalid response"
                 });
         }
     }
