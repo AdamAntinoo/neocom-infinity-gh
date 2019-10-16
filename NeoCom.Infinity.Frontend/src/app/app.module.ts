@@ -23,10 +23,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 // - APPLICATION MODULES
+import { SharedModule } from './modules/shared/shared.module';
 // - PAGES
 import { LoginValidationPageComponent } from './pages/login-validation-page/login-validation-page.component';
 // - COMPONENTS
-import { AppInfoPanelComponent } from './panels/app-info-panel/app-info-panel.component';
+import { LoginValidationProgressComponent } from './panels/login-validation-progress/login-validation-progress.component';
+import { LoginValidationExceptionComponent } from './panels/login-validation-exception/login-validation-exception.component';
 // - SERVICES
 import { IsolationService } from './platform/isolation.service';
 import { AppStoreService } from './services/appstore.service';
@@ -44,14 +46,9 @@ import { rollbarConfig } from '@app/rollbar-errorhandler.service';
 import { RollbarService } from '@app/rollbar-errorhandler.service';
 import { ErrorHandler } from '@angular/core';
 import { RollbarErrorHandler } from '@app/rollbar-errorhandler.service';
-import { LoginValidationProgressComponent } from './panels/login-validation-progress/login-validation-progress.component';
-import { LoginValidationExceptionComponent } from './panels/login-validation-exception/login-validation-exception.component';
 export function rollbarFactory() {
     return new Rollbar(rollbarConfig);
 }
-
-// import { IsolationService } from '@app/platform/isolation.service';
-// import { Angular6BackendService } from '@app/platform/angular6-backend.service';
 
 @NgModule({
     imports: [
@@ -70,13 +67,13 @@ export function rollbarFactory() {
         // - WEBSTORAGE
         StorageServiceModule,
         // - APPLICATION MODULES
+        // SharedModule,
         // - ROUTING
         RouterModule,
         AppRoutingModule
     ],
     declarations: [
         AppComponent,
-        AppInfoPanelComponent,
         // - PAGES
         LoginValidationPageComponent,
         LoginValidationProgressComponent,

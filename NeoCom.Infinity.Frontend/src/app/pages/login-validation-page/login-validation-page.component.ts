@@ -50,7 +50,7 @@ export class LoginValidationPageComponent implements OnInit, OnDestroy {
                         if (this.validateJWT(response.getJwtToken(), credential)) {
                             this.storeJWT(response.getJwtToken());
                             this.appModelStore.setCredential(response.getCredential());
-                            this.router.navigate(['dashboard']);   // Jump to the Dashboard page if all complete.
+                            this.router.navigate(['dashboard/home']);   // Jump to the Dashboard page if all complete.
                         } else {
                             // Jump to the repeat login page with some information.
                         }
