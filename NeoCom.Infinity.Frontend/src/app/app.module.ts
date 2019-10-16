@@ -46,6 +46,7 @@ import { rollbarConfig } from '@app/rollbar-errorhandler.service';
 import { RollbarService } from '@app/rollbar-errorhandler.service';
 import { ErrorHandler } from '@angular/core';
 import { RollbarErrorHandler } from '@app/rollbar-errorhandler.service';
+import { DashboardHomePageComponent } from './pages/dashboard-home-page/dashboard-home-page.component';
 export function rollbarFactory() {
     return new Rollbar(rollbarConfig);
 }
@@ -77,7 +78,8 @@ export function rollbarFactory() {
         // - PAGES
         LoginValidationPageComponent,
         LoginValidationProgressComponent,
-        LoginValidationExceptionComponent
+        LoginValidationExceptionComponent,
+        DashboardHomePageComponent
     ],
     providers: [
         // - SERVICES
