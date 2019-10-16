@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { environment } from '@env/environment';
 import { Subscription } from 'rxjs';
 // - SERVICES
@@ -26,7 +27,8 @@ export class LoginValidationPageComponent implements OnInit, OnDestroy {
 
     constructor(protected appModelStore: AppStoreService,
         protected backendService: BackendService,
-        protected route: ActivatedRoute) { }
+        protected route: ActivatedRoute,
+        protected router: Router) { }
 
     ngOnInit() {
         console.log('>[LoginValidationPageComponent.ngOnInit]');
@@ -48,7 +50,7 @@ export class LoginValidationPageComponent implements OnInit, OnDestroy {
                         if (this.validateJWT(response.getJwtToken(), credential)) {
                             this.storeJWT(response.getJwtToken());
                             this.appModelStore.setCredential(response.getCredential());
-                            // Jump to the Dashboard page if all complete.
+                            this.router.navigate(['dashboard']);   // Jump to the Dashboard page if all complete.
                         } else {
                             // Jump to the repeat login page with some information.
                         }

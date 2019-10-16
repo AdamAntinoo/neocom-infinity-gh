@@ -13,7 +13,8 @@
     "paths": {
       "@pages/*": ["src/pages/*"],
       "@domain/*": ["src/app/domain/*"],
-      "@steps/*": ["e2e/src/steps/*"]
+      "@steps/*": ["src/steps/*"],
+      "@support/*": ["src/support/*"]
     }
   }
 }
