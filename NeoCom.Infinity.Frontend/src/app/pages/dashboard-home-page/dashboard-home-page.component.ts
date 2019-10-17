@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+// - CORE
+import { Component } from '@angular/core';
+import { OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+// - DOMAIN
+import { ServerInfo } from '@app/domain/ServerInfo.domain';
+import { BackendService } from '@app/services/backend.service';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'dashboard-home-page',
@@ -6,6 +13,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard-home-page.component.scss']
 })
 export class DashboardHomePageComponent implements OnInit {
+   // private serverInfoSubscription: Subscription;
 
   constructor() { }
 

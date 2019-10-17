@@ -14,7 +14,7 @@ import { GlobalService } from '@app/platform/global.service';
 import { IsolationService } from '@app/platform/isolation.service';
 import { BackendService } from '@app/services/backend.service';
 // - DOMAIN
-import { Credential } from '../domain/Credential';
+import { Credential } from '../domain/Credential.domain';
 
 @Injectable({
     providedIn: 'root'

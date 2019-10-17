@@ -45,3 +45,143 @@ response:
       "server_version": "1585794",
       "start_time": "2019-10-16T11:06:17Z"
     }
+
+---
+
+simlet: server-offline
+
+request:
+  - method: GET
+  - uriPathPattern: "/api/v1/neocom/server/datasource/{datasource}"
+
+response:
+  from: template
+  status: 503
+  headers:
+    - "Cookie: jwtToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTgzODQ3MjYsImFjY291bnROYW1lIjoiQmV0aCBSaXBsZXkiLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvOTIyMjM2NDciLCJwaWxvdElkIjo5MjIyMzY0N30.Qom8COyZB2sW3bCGm9pnGcIOqw-E2yKDsmGklQW6r9Fhu8jJpkNUv5TUhU2cJjIg5jX3082bZ6eKtRZ3z10vGw; access-control-max-age: 600; allow: GET,HEAD,OPTIONS; cache-control: public; content-type: application/json; charset=UTF-8"
+  body: |+
+    {
+      "error": "The datasource tranquility is temporarily unavailable"
+    }
+
+---
+
+simlet: corporations-success
+
+request:
+  - method: GET
+  - uriPathPattern: "/api/v1/neocom/corporations/{corporationid}"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json; Cookie: jwtToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTgzODQ3MjYsImFjY291bnROYW1lIjoiQmV0aCBSaXBsZXkiLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvOTIyMjM2NDciLCJwaWxvdElkIjo5MjIyMzY0N30.Qom8COyZB2sW3bCGm9pnGcIOqw-E2yKDsmGklQW6r9Fhu8jJpkNUv5TUhU2cJjIg5jX3082bZ6eKtRZ3z10vGw"
+  body: |+
+    {
+      "responseType": "CorporationDataResponse",
+      "corporation": {
+        "ceo_id": 92223647,
+        "creator_id": 92223647,
+        "date_founded": "2015-03-16T09:28:02Z",
+        "description": "<font size=\"12\" color=\"#bfffffff\"></font><font size=\"18\" color=\"#bfffffff\"><b>Industrias Machaque</b><br><br><br></font><font size=\"14\" color=\"#bfffffff\">Bienvenido a la página de descripción de Industrias Machaque.<br><br>El objeto de esta corporación es, además de hacer ricos en ISK a sus miembros, el gestionar los recursos disponibles de minería y de transporte logístico. Actualmente no aceptamos nuevos miembros ya que esta es una sociedad instrumental en un paraiso fiscal y no queremos compartir ese paraiso (de momento).<br><br>Estamos especializados en Industria manufacturera de tecnología T2. Podemos establecer relaciones de consultoría sobre gestión, planificación y logística para colaborar con otras corporaciones, principalmente de habla hispana, para aumentar la potencia económica de nuestras corporaciones. El “que inventen ellos” se ha terminado.<br><br>Para cualquier tema ponte en contacto con nuestro CEO: </font><font size=\"14\" color=\"#ffffa600\"><loc><a href=\"showinfo:1380//92223647\">Beth Ripley</a></loc></font><font size=\"14\" color=\"#bfffffff\"> (habitualmente a bordo de su Nostromo aunque hemos renombrado el nombre de la nave para evitar pagar licencias y royalties).</font>",
+        "home_station_id": 60006610,
+        "member_count": 3,
+        "name": "Industrias Machaque",
+        "shares": 1000,
+        "tax_rate": 0.05,
+        "ticker": "IN.MA",
+        "url": "http://www.eveonline.com"
+      },
+      "ceoPilotData": {
+        "ancestryId": 22,
+        "ancestry": {
+          "bloodline_id": 4,
+          "description": "Many Brutors have a modest background, and are often found performing backbreaking labor in the farms, mines and factories of the Republic — and before that, toiling under the yoke of the Amarr Empire. They still take great pride in their jobs, excelling as craftsmen and builders.",
+          "icon_id": 1662,
+          "id": 22,
+          "name": "Workers",
+          "short_description": "People of the fields, mines and factories."
+        },
+        "birthday": "2012-07-05T21:53:15.000Z",
+        "bloodlineId": 4,
+        "bloodline": {
+          "bloodline_id": 4,
+          "charisma": 6,
+          "corporation_id": 1000049,
+          "description": "A martial, strong-willed people, the Brutor hold their tribal heritage close to their hearts, and are renowned for living regimented, disciplined lives. Despite presenting a tough, no-nonsense exterior, they are deeply introspective, aware of even the smallest detail at all times. Immersed in ancient martial traditions that begin at childhood, they are physically robust individuals and intimidating to face in the flesh.",
+          "intelligence": 4,
+          "memory": 4,
+          "name": "Brutor",
+          "perception": 9,
+          "race_id": 2,
+          "ship_type_id": 588,
+          "willpower": 7
+        },
+        "corporationId": 98384726,
+        "description": "",
+        "gender": "FEMALE",
+        "name": "Beth Ripley",
+        "raceId": 2,
+        "race": {
+          "alliance_id": 500002,
+          "description": "Once a thriving tribal civilization, the Minmatar were enslaved by the Amarr Empire for more than 700 years until a massive rebellion freed most, but not all, of those held in servitude. The Minmatar people today are resilient, ingenious, and hard-working. Many of them believe that democracy, though it has served them well for a long time, can never restore what was taken from them so long ago. For this reason they have formed a government truly reflective of their tribal roots. They will forever resent the Amarrians, and yearn for the days before the Empire's accursed ships ever reached their home skies.",
+          "name": "Minmatar",
+          "race_id": 2
+        },
+        "securityStatus": 0
+      }
+    }
+
+---
+
+simlet: pilots-success
+
+request:
+  - method: GET
+  - uriPathPattern: "/api/v1/neocom/pilots/{characterid}"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json; Cookie: jwtToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTgzODQ3MjYsImFjY291bnROYW1lIjoiQmV0aCBSaXBsZXkiLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvOTIyMjM2NDciLCJwaWxvdElkIjo5MjIyMzY0N30.Qom8COyZB2sW3bCGm9pnGcIOqw-E2yKDsmGklQW6r9Fhu8jJpkNUv5TUhU2cJjIg5jX3082bZ6eKtRZ3z10vGw"
+  body: |+
+    {
+      "ancestryId": 22,
+      "ancestry": {
+        "bloodline_id": 4,
+        "description": "Many Brutors have a modest background, and are often found performing backbreaking labor in the farms, mines and factories of the Republic — and before that, toiling under the yoke of the Amarr Empire. They still take great pride in their jobs, excelling as craftsmen and builders.",
+        "icon_id": 1662,
+        "id": 22,
+        "name": "Workers",
+        "short_description": "People of the fields, mines and factories."
+      },
+      "birthday": "2012-07-05T21:53:15.000Z",
+      "bloodlineId": 4,
+      "bloodline": {
+        "bloodline_id": 4,
+        "charisma": 6,
+        "corporation_id": 1000049,
+        "description": "A martial, strong-willed people, the Brutor hold their tribal heritage close to their hearts, and are renowned for living regimented, disciplined lives. Despite presenting a tough, no-nonsense exterior, they are deeply introspective, aware of even the smallest detail at all times. Immersed in ancient martial traditions that begin at childhood, they are physically robust individuals and intimidating to face in the flesh.",
+        "intelligence": 4,
+        "memory": 4,
+        "name": "Brutor",
+        "perception": 9,
+        "race_id": 2,
+        "ship_type_id": 588,
+        "willpower": 7
+      },
+      "corporationId": 98384726,
+      "description": "",
+      "gender": "FEMALE",
+      "name": "Beth Ripley",
+      "raceId": 2,
+      "race": {
+        "alliance_id": 500002,
+        "description": "Once a thriving tribal civilization, the Minmatar were enslaved by the Amarr Empire for more than 700 years until a massive rebellion freed most, but not all, of those held in servitude. The Minmatar people today are resilient, ingenious, and hard-working. Many of them believe that democracy, though it has served them well for a long time, can never restore what was taken from them so long ago. For this reason they have formed a government truly reflective of their tribal roots. They will forever resent the Amarrians, and yearn for the days before the Empire's accursed ships ever reached their home skies.",
+        "name": "Minmatar",
+        "race_id": 2
+      },
+      "securityStatus": 0
+    }

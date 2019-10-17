@@ -1,1 +1,42 @@
-<p>corporation-public-data-panel works!</p>
+<div class="neocom-panel panel-orange">
+    <!-- <div class="panel-decorator-collapsed"> -->
+    <table class="neocom-panel-container" cellspacing="0" cellpadding="0" width="100%">
+        <tr>
+            <!-- ICON SECTION -->
+            <td width="94px">
+                <img class="neocom-icon" id="iconsize-90" src="{{getCorporationIcon()}}">
+            </td>
+            <!-- CENTRAL SECTION -->
+            <td class="neocom-panel-column" width="80%">
+                <!-- ALLIANCE BLOCK -->
+                <div class="alliance-box" *ngIf="getAlliance()">
+                    <alliance-render [node]="getAlliance()"></alliance-render>
+                </div>
+                <div class="neocom-label">ALLIANCE</div>
+                <!-- CORPORATION BLOCK -->
+                <!-- <div class="alliance-box">
+                    <div>
+                        <span class="neocom-selectable-name">{{node.name}}</span>
+                        <span id="neocom-ts14" style="margin-left: 5px;">[{{node.getId()}}]</span>
+                        <div id="neocom-ts14">[{{node.ticker}}]</div>
+                    </div>
+                    <div>
+                        <img class="" id="iconsize-24" src="/assets/res-window/drawable/corporationmembers.png">
+                    </div>
+                    <div id="neocom-ts14">{{node.memberCount}} MEMBERS</div>
+                    <img class="" id="iconsize-24" src="/assets/res-window/drawable/fittingmanagement.png">
+                    <div id="neocom-ts14">2 PENDING JOBS</div>
+                </div>
+                <div class="neocom-label">CORPORATION</div>
+                <div class="alliance-box">
+                    <img class="neocom-icon" id="iconsize-36" src="{{node.ceo.getIconUrl()}}">
+                    <div>
+                        <span class="neocom-marked-name" id="neocom-ts14">{{node.ceo.name}}</span>
+                    </div>
+                </div>
+                <div class="neocom-label">CEO</div> -->
+            </td>
+        </tr>
+    </table>
+    <!-- </div> -->
+</div>
