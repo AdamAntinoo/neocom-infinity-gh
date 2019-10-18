@@ -7,6 +7,7 @@ import { InjectionToken } from '@angular/core';
 // - ERROR INTERCEPTION
 import * as Rollbar from 'rollbar';
 import { AppStoreService } from '@app/services/appstore.service';
+import { environment } from '@env/environment.prod';
 
 export const rollbarConfig = {
   accessToken: '9a8dc1d8aa094a9bbe4e4d093faf1e1a',
@@ -27,20 +28,20 @@ export class RollbarErrorHandler implements ErrorHandler {
     if (err.constructor.name === 'TypeError') {
       // Those are syntax exceptions detected on the runtime.
       console.log('ERR[RollbarErrorHandler.handleError]> Error intercepted: ' + JSON.stringify(err.message));
-      if (appStoreService.showExceptions()) {
+      if (environment.showexceptions) {
         appStoreService.errorNotification(err.message, 'EXCEPCION ' + err.status)
       }
       rollbar.error(err);
     } else if (err.constructor.name === 'Error') {
       // Those are syntax exceptions detected on the runtime.
       console.log('ERR[RollbarErrorHandler.handleError]> Error intercepted: ' + JSON.stringify(err.message));
-      if (appStoreService.showExceptions()) {
+       if (environment.showexceptions) {
         appStoreService.errorNotification(err.message, 'EXCEPCION ' + err.status)
       }
       rollbar.error(err);
     } else {
       console.log('ERR[RollbarErrorHandler.handleError]> Error intercepted: ' + JSON.stringify(err.message));
-      if (appStoreService.showExceptions()) {
+       if (environment.showexceptions) {
         appStoreService.errorNotification(err.message, 'EXCEPCION ' + err.status)
       }
       rollbar.error(err);

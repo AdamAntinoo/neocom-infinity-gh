@@ -26,41 +26,42 @@ export class IsolationService {
         @Inject(LOCAL_STORAGE) protected storage: WebStorageService,
         @Inject(SESSION_STORAGE) protected sessionStorage: WebStorageService,
         protected notifier: ToastrManager,
-        protected router: Router) {
-        this.JWTTOKEN_KEY = environment.JWTTOKEN_KEY;
-        this.JWTTOKEN_EXPIRATION_TIME_KEY = environment.JWTTOKEN_EXPIRATION_TIME_KEY;
+      //  protected router: Router
+    ) {
+      //   this.JWTTOKEN_KEY = environment.JWTTOKEN_KEY;
+      //   this.JWTTOKEN_EXPIRATION_TIME_KEY = environment.JWTTOKEN_EXPIRATION_TIME_KEY;
     }
 
     // - R O U T I N G   W R A P
-    public route2FirstPage(): void {
-        this.router.navigate(['loginValidation']);
-    }
+   //  public route2FirstPage(): void {
+   //      this.router.navigate(['loginValidation']);
+   //  }
     
     // - E N V I R O N M E N T   A C C E S S
-    public getServerName(): string {
-        return environment.serverName;
-    }
-    public getApiV1(): string {
-        return environment.apiVersion1;
-    }
-    public getApiV2(): string {
-        return environment.apiVersion2;
-    }
-    public getAppName(): string {
-        return environment.appName;
-    }
-    public getAppVersion(): string {
-        return environment.appVersion;
-    }
-    public inDevelopment(): boolean {
-        return !environment.production;
-    }
-    public getMockStatus(): boolean {
-        return environment.mockStatus;
-    }
-    public showExceptions(): boolean {
-        return environment.showexceptions;
-    }
+   //  public getServerName(): string {
+   //      return environment.serverName;
+   //  }
+   //  public getApiV1(): string {
+   //      return environment.apiVersion1;
+   //  }
+   //  public getApiV2(): string {
+   //      return environment.apiVersion2;
+   //  }
+   //  public getAppName(): string {
+   //      return environment.appName;
+   //  }
+   //  public getAppVersion(): string {
+   //      return environment.appVersion;
+   //  }
+   //  public inDevelopment(): boolean {
+   //      return !environment.production;
+   //  }
+   //  public getMockStatus(): boolean {
+   //      return environment.mockStatus;
+   //  }
+   //  public showExceptions(): boolean {
+   //      return environment.showexceptions;
+   //  }
 
     // - J W T
     public JWTDecode(token: string): any {

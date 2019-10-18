@@ -1,57 +1,109 @@
 // - CORE
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 // - ENVIRONMENT
 import { environment } from '@env/environment';
-// - WEBSTORAGE
-import { LOCAL_STORAGE } from 'angular-webstorage-service';
-import { SESSION_STORAGE } from 'angular-webstorage-service';
-import { WebStorageService } from 'angular-webstorage-service';
 // - ROUTER
 import { Router } from '@angular/router';
 // - SERVICES
 import { BackendService } from '@app/services/backend.service';
+import { ActiveCacheWrapper } from '@app/modules/shared/support/ActiveCacheWrapper';
 // - DOMAIN
 import { Credential } from '../domain/Credential.domain';
 import { IsolationService } from '@app/platform/isolation.service';
 import { NeoComException } from '@app/platform/NeoComException';
 import { ExceptionCatalog } from '@app/platform/ExceptionCatalog';
+import { Corporation } from '@app/domain/Corporation.domain';
+import { CorporationDataResponse } from '@app/domain/dto/CorporationDataResponse.dto';
+import { Pilot } from '@app/domain/Pilot.domain';
 
 @Injectable({
    providedIn: 'root'
 })
 export class AppStoreService {
-   private credential: Credential;
+   // - S T O R E   D A T A   S E C T I O N
+   private corporationActiveCache: ActiveCacheWrapper<Corporation>;
+   private pilotActiveCache: ActiveCacheWrapper<Pilot>;
 
    constructor(
-      protected isolationService : IsolationService,
       protected router: Router,
-      protected backendService: BackendService) { }
+      protected isolationService: IsolationService,
+      protected backendService: BackendService) {
+      // - S T O R E   D A T A   S E C T I O N
+      this.corporationActiveCache = new ActiveCacheWrapper<Corporation>()
+         .setTimedCache(false) // Contents do not expire.
+         .setReturnObsoletes(false) // If the content is expired then wait for a new request.
+         .setDownloader((): Observable<Corporation | Corporation[]> => {
+            const corporationId = this.getCorporationIdentifier();
+            return this.downloadCorporation(corporationId);
+         });
+      this.pilotActiveCache = new ActiveCacheWrapper<Pilot>()
+         .setTimedCache(false) // Contents do not expire.
+         .setReturnObsoletes(false) // If the content is expired then wait for a new request.
+         .setDownloader((): Observable<Pilot | Pilot[]> => {
+            const pilotId = this.getPilotIdentifier();
+            return this.downloadPilot(pilotId);
+         });
+   }
+
+   // - S T O R E   D A T A   D O W N L O A D E R S
+   private downloadCorporation(corporationId: number): Observable<Corporation> {
+      return this.backendService.apiGetCorporationPublicData_v1(corporationId)
+         .pipe(map((corporationResponse: CorporationDataResponse) => {
+            let corporation = new Corporation(corporationResponse.corporation);
+            return corporation;
+         }));
+   }
+   private downloadPilot(pilotId: number): Observable<Pilot> {
+      return this.backendService.apiGetCorporationPublicData_v1(pilotId)
+         .pipe(map((response: CorporationDataResponse) => {
+            let pilot = new Pilot(response.pilot);
+            return pilot;
+         }));
+   }
 
    // - G L O B A L   S T O R E
-   public getCredential(): Credential {
-      return this.credential;
+   public accessCredential(): Credential {
+      return this.getCredential();
    }
-   public setCredential(newCredential: Credential): void {
-      this.credential = newCredential;
+   public getCredential(): Credential {
+      const credentialJson = this.isolationService.getFromSession(environment.CREDENTIAL_KEY);
+      if (null == credentialJson) throw new NeoComException(ExceptionCatalog.AUTHORIZATION_MISSING)
+      const credential = new Credential(JSON.parse(credentialJson));
+      return credential;
    }
    public getCorporationIdentifier(): number {
-      if (null != this.credential) return this.credential.getCorporationId();
-      else throw new NeoComException(ExceptionCatalog.UNDEFINED_INSTANCE);
+      return this.getCredential().getCorporationId();
+   }
+
+   // - S T O R E   A C C E S S   S E C T I O N
+   /**
+    * Resets and clears the cached stored contents so on next login we should reload all data.
+    */
+   public clearStore(): void {
+      // Clear dynamic caches.
+      this.corporationActiveCache.clear();
+   }
+   // - C O R P O R A T I O N
+   public accessCorporation(): Observable<Corporation | Corporation[]> {
+      return this.corporationActiveCache.accessData();
    }
 
    // - E N V I R O N M E N T    C A L L S
-   public getApplicationName(): string {
-      return this.backendService.getApplicationName();
-   }
-   public getApplicationVersion(): string {
-      return this.backendService.getApplicationVersion();
-   }
-   public inDevelopment(): boolean {
-      return this.backendService.inDevelopment();
-   }
-   public showExceptions(): boolean {
-      return this.backendService.showExceptions();
-   }
+   // public getApplicationName(): string {
+   //    return this.backendService.getApplicationName();
+   // }
+   // public getApplicationVersion(): string {
+   //    return this.backendService.getApplicationVersion();
+   // }
+   // public inDevelopment(): boolean {
+   //    return this.backendService.inDevelopment();
+   // }
+   // public showExceptions(): boolean {
+   //    return this.backendService.showExceptions();
+   // }
 
    // - G L O B A L   A C C E S S   M E T H O D S
    public isNonEmptyString(str: string): boolean {
