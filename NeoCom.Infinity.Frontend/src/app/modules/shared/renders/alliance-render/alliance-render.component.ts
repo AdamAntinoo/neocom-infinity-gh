@@ -20,7 +20,12 @@ export class AllianceRenderComponent implements OnInit {
 
   ngOnInit() {
   }
+   public getName(): string {
+      if (null != this.node) return this.node.name;
+      else return '-';
+   }
   public getAllianceIcon(): string {
-    if (null != this.node) return this.node.getIconUrl();
+     if (null != this.node) return this.node.getIconUrl();
+     else return environment.DEFAULT_AVATAR_PLACEHOLDER;
   }
 }

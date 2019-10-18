@@ -1,4 +1,4 @@
-export const constants = {
+export const neocom_constants = {
    // - C O N S T A N T S
    JWTTOKEN_KEY: '-JWTTOKEN_KEY-',
    JWTTOKEN_EXPIRATION_TIME_KEY: '-JWTTOKEN_EXPIRATION_TIME_KEY-',

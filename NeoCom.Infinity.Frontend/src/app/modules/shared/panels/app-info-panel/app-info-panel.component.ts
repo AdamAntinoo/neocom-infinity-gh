@@ -10,7 +10,7 @@ import { IsolationService } from '@app/platform/isolation.service';
     styleUrls: ['./app-info-panel.component.scss']
 })
 export class AppInfoPanelComponent {
-    constructor(protected isolationService: IsolationService) { }
+    constructor() { }
 
     public getName(): string {
         return environment.appName.toUpperCase();

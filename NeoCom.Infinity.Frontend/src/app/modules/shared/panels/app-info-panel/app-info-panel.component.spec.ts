@@ -45,22 +45,17 @@ describe('PANEL AppInfoPanelComponent [Module: SHARED]', () => {
     // - C O D E   C O V E R A G E   P H A S E
     describe('Code Coverage Phase [getters]', () => {
         it('getName: validate the name field', () => {
-            const expected = isolationService.generateRandomString(12).toUpperCase();
-            isolationService.setAppName(expected);
-            const obtained = component.getName();
-            expect(obtained).toBe(expected)
+           const obtained = component.getName();
+           const expected = environment.appName as string;
+           expect(obtained).toBe(expected.toUpperCase());
         });
         it('getVersion: validate the version field', () => {
-            const expected = isolationService.generateRandomString(12);
-            isolationService.setAppVersion(expected);
             const obtained = component.getVersion();
-            expect(obtained).toBe(expected)
+           expect(obtained).toBe(environment.appVersion);
         });
         it('getCopyright: validate the copyright field', () => {
-            const expected = environment.copyright;
-            // isolationService.setAppVersion(expected);
             const obtained = component.getCopyright();
-            expect(obtained).toBe(expected)
+           expect(obtained).toBe(environment.copyright);
         });
     });
 });

@@ -13,6 +13,8 @@ import { BackendService } from '@app/services/backend.service';
 import { NeoComException } from '@app/platform/NeoComException';
 // - DOMAIN
 import { Credential } from '../../domain/Credential.domain';
+import { neocom_constants } from '@app/platform/neocom-constants.platform';
+import { IsolationService } from '@app/platform/isolation.service';
 
 
 @Component({
@@ -26,7 +28,9 @@ export class LoginValidationPageComponent implements OnInit, OnDestroy {
    private paramState: string;
    private validateAuthorizationTokenSubscription: Subscription;
 
-   constructor(protected appModelStore: AppStoreService,
+   constructor(
+      protected isolationService : IsolationService,
+      protected appModelStore: AppStoreService,
       protected backendService: BackendService,
       protected route: ActivatedRoute,
       protected router: Router) { }
@@ -98,13 +102,12 @@ export class LoginValidationPageComponent implements OnInit, OnDestroy {
       return true;
    }
    private storeJWT(jwtToken: string): boolean {
-      this.backendService.isolation.setToSession(this.backendService.isolation.JWTTOKEN_KEY, jwtToken);
-      this.backendService.isolation.setToSession(this.backendService.isolation.JWTTOKEN_EXPIRATION_TIME_KEY,
+      this.isolationService.setToSession(neocom_constants.JWTTOKEN_KEY, jwtToken);
+      this.isolationService.setToSession(neocom_constants.JWTTOKEN_EXPIRATION_TIME_KEY,
          addMinutes(Date.now(), 120));
       return true;
    }
    private storeCredential(credential: Credential): void {
-      this.backendService.isolation.setToSession(environment.CREDENTIAL_KEY, JSON.stringify(credential));     
-      // this.appModelStore.setCredential(credential);
+      this.isolationService.setToSession(neocom_constants.CREDENTIAL_KEY, JSON.stringify(credential));     
    }
 }

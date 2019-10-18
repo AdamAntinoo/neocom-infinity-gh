@@ -13,6 +13,9 @@ import { environment } from '@env/environment';
 
 import { ServerInfoPanelComponent } from './server-info-panel.component';
 import { ServerInfo } from '@app/domain/ServerInfo.domain';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { BackendService } from '@app/services/backend.service';
+import { SupportBackendService } from '@app/testing/SupportBackend.service';
 
 describe('PANEL ServerInfoPanelComponent [Module: SHARED]', () => {
     let component: ServerInfoPanelComponent;
@@ -24,9 +27,11 @@ describe('PANEL ServerInfoPanelComponent [Module: SHARED]', () => {
             schemas: [NO_ERRORS_SCHEMA],
             declarations: [
                ServerInfoPanelComponent,
+               // HttpClientTestingModule
             ],
             providers: [
-                { provide: IsolationService, useClass: SupportIsolationService },
+               { provide: IsolationService, useClass: SupportIsolationService },
+               { provide: BackendService, useClass: SupportBackendService },
             ]
         })
             .compileComponents();
