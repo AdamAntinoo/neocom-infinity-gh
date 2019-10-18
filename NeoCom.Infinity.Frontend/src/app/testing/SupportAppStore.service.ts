@@ -40,8 +40,7 @@ export class SupportAppStoreService {
    public directAccessMockResource(dataIdentifier: string): any | any[] {
       console.log(">>[SupportAppStoreService.directAccessMockResource]> dataIdentifier: " + dataIdentifier);
       let rawdata = require('./mock-data/' + dataIdentifier.toLowerCase() + '.json');
-      // let corporationResponse = new CorporationDataResponse(rawdata);
-      return new Corporation(rawdata);
+      return rawdata;
    }
        // - G L O B A L   S T O R E
    public accessCredential(): Credential {

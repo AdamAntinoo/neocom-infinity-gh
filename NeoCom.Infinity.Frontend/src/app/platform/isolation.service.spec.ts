@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 import { LOCAL_STORAGE, InMemoryStorageService } from 'angular-webstorage-service';
 import { SESSION_STORAGE } from 'angular-webstorage-service';
 import { WebStorageService } from 'angular-webstorage-service';
-import { SupportWebStorageService } from '@app/testing/SupportWebStorageService';
+import { SupportWebStorageService } from '@app/testing/SupportWebStorage.service';
 // - TESTING
 import { async } from '@angular/core/testing';
 import { fakeAsync } from '@angular/core/testing';
@@ -37,7 +37,6 @@ xdescribe('SERVICE IsolationService [Module: APP]', () => {
          providers: [
             { provide: WebStorageService, useClass: InMemoryStorageService },
             { provide: ToastrManager, useClass: ToastrManager },
-            // { provide: Router, useClass: RouterTestingModule }
          ]
       })
          .compileComponents();

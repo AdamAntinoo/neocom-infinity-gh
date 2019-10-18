@@ -16,9 +16,14 @@ import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 import { BackendService } from './backend.service';
 import { ValidateAuthorizationTokenResponse } from '@app/domain/dto/ValidateAuthorizationTokenResponse';
 import { ServerInfoResponse } from '@app/domain/dto/ServerInfoResponse.dto';
+import { AppStoreService } from './appstore.service';
+import { SupportAppStoreService } from '@app/testing/SupportAppStore.service';
+import { CorporationDataResponse } from '@app/domain/dto/CorporationDataResponse.dto';
+import { Pilot } from '@app/domain/Pilot.domain';
 
-describe('SERVICE BackendService [Module: APP]', () => {
+fdescribe('SERVICE BackendService [Module: APP]', () => {
    let service: BackendService;
+   let appStoreService: SupportAppStoreService;
 
    beforeEach(() => {
       TestBed.configureTestingModule({
@@ -32,12 +37,14 @@ describe('SERVICE BackendService [Module: APP]', () => {
          ],
          providers: [
             { provide: IsolationService, useClass: SupportIsolationService },
+            { provide: AppStoreService, useClass: SupportAppStoreService },
          ]
       })
          .compileComponents();
       service = TestBed.get(BackendService);
+      appStoreService = TestBed.get(AppStoreService);
    });
-   
+
    // - C O N S T R U C T I O N   P H A S E
    describe('Construction Phase', () => {
       it('Should be created', () => {
@@ -143,6 +150,40 @@ describe('SERVICE BackendService [Module: APP]', () => {
                });
             backend.match((request) => {
                return request.url.match(/server/) &&
+                  request.method === 'GET';
+            })[0].flush(responseJson);
+            backend.verify();
+         })));
+   });
+   describe('Code Coverage Phase [apiGetCorporationPublicData_v1]', () => {
+      it('apiGetCorporationPublicData_v1.success: get the corporation data from the mocked server',
+         async(inject([HttpTestingController, BackendService], (backend: HttpTestingController, service: BackendService) => {
+            const responseJson = appStoreService.directAccessMockResource('corporationdataresponse');
+            service.apiGetCorporationPublicData_v1(123)
+               .subscribe(response => {
+                  console.log('--[apiGetCorporationPublicData_v1]> response: ' + JSON.stringify(response));
+                  expect(response).toBeDefined();
+                  expect(response.getResponseType()).toContain('CorporationDataResponse');
+               });
+            backend.match((request) => {
+               return request.url.match(/corporations/) &&
+                  request.method === 'GET';
+            })[0].flush(responseJson);
+            backend.verify();
+         })));
+   });
+   describe('Code Coverage Phase [apiGetPilotPublicData_v1]', () => {
+      it('apiGetPilotPublicData_v1.success: get the pilot data from the mocked server',
+         async(inject([HttpTestingController, BackendService], (backend: HttpTestingController, service: BackendService) => {
+            const responseJson = appStoreService.directAccessMockResource('pilots');
+            service.apiGetPilotPublicData_v1(123)
+               .subscribe((response: Pilot) => {
+                  console.log('--[apiGetCorporationPublicData_v1]> response: ' + JSON.stringify(response));
+                  expect(response).toBeDefined();
+                  expect(response.getJsonClass()).toContain('Pilot');
+               });
+            backend.match((request) => {
+               return request.url.match(/pilots/) &&
                   request.method === 'GET';
             })[0].flush(responseJson);
             backend.verify();
