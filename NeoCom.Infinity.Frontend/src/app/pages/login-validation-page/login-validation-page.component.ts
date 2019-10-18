@@ -13,8 +13,8 @@ import { BackendService } from '@app/services/backend.service';
 import { NeoComException } from '@app/platform/NeoComException';
 // - DOMAIN
 import { Credential } from '../../domain/Credential.domain';
-import { neocom_constants } from '@app/platform/neocom-constants.platform';
 import { IsolationService } from '@app/platform/isolation.service';
+import { neocom_constants } from '@app/platform/neocom-constants.platform';
 
 
 @Component({

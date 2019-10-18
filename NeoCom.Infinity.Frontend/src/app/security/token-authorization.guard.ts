@@ -5,17 +5,23 @@ import { Observable } from 'rxjs';
 import { CanActivate } from '@angular/router';
 import { CanActivateChild } from '@angular/router';
 import { CanLoad } from '@angular/router';
-import { Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Route } from '@angular/router';
+import { UrlSegment } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+// - SERVICES
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
    providedIn: 'root'
 })
 export class TokenAuthorizationGuard implements CanActivate, CanActivateChild, CanLoad {
+   constructor(protected authenticationService: AuthenticationService) { }
    canActivate(
       next: ActivatedRouteSnapshot,
       state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      console.log('-[TokenAuthorizationGuard.canActivate] true');
-      return true;
+      const pass: boolean = this.authenticationService.isLoggedIn(); // Check the token exists and it is not expired.
+      console.log('-[TokenAuthorizationGuard.canActivate] pass: ' + pass);
+      return pass;
    }
    canActivateChild(
       next: ActivatedRouteSnapshot,
