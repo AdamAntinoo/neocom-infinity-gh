@@ -2,7 +2,6 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { OnDestroy } from '@angular/core';
-import { Input } from '@angular/core';
 import { environment } from '@env/environment';
 import { Subscription } from 'rxjs';
 // - SERVICES
@@ -12,7 +11,6 @@ import { AppStoreService } from '@app/services/appstore.service';
 import { Corporation } from '@app/domain/Corporation.domain';
 import { Alliance } from '@app/domain/Alliance.domain';
 import { Pilot } from '@app/domain/Pilot.domain';
-import { CorporationDataResponse } from '@app/domain/dto/CorporationDataResponse.dto';
 
 @Component({
    selector: 'corporation-public-data-panel',
@@ -32,15 +30,14 @@ export class CorporationPublicDataPanelComponent implements OnInit, OnDestroy {
    ngOnInit() {
       this.corporationSubscription = this.appStoreService.accessCorporation()
          .subscribe((corporation: Corporation) => {
+            console.log('-[CorporationPublicDataPanelComponent]> processing response.');
+            console.log('-[CorporationPublicDataPanelComponent]> Corporation: '+JSON.stringify(corporation));
             this.corporation = corporation;
-            this.alliance = this.corporation.alliance;
+            // this.alliance = this.corporation.alliance;
          });
    }
    ngOnDestroy() {
       if (null != this.corporationSubscription) this.corporationSubscription.unsubscribe();
-   }
-   public getAlliance(): Alliance {
-      return this.alliance;
    }
    public getCorporationId(): number {
       if (!this.isEmpty(this.corporation)) return this.corporation.corporationId;
@@ -53,6 +50,9 @@ export class CorporationPublicDataPanelComponent implements OnInit, OnDestroy {
    public getCorporationIcon(): string {
       if (!this.isEmpty(this.corporation)) return this.corporation.getIconUrl();
       else return environment.DEFAULT_AVATAR_PLACEHOLDER;
+   }
+   public getAlliance(): Alliance {
+      return this.alliance;
    }
    public getAllianceIcon(): string {
       if (!this.isEmpty(this.alliance)) return this.alliance.getIconUrl();

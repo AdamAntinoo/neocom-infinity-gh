@@ -54,12 +54,12 @@ xdescribe('SERVICE IsolationService [Module: APP]', () => {
    });
 
    // - C O D E   C O V E R A G E   P H A S E
-   xdescribe('Code Coverage Phase [environment]', () => {
-      it('environment.getServerName: check environment getters', () => {
-         expect(service.getServerName()).toBe('expected');
-      });
-      it('environment.getServerName: check environment getters', () => {
-         expect(service.getAppName()).toBe('neocom.infinity');
-      });
-   });
+   // xdescribe('Code Coverage Phase [environment]', () => {
+   //    it('environment.getServerName: check environment getters', () => {
+   //       expect(service.getServerName()).toBe('expected');
+   //    });
+   //    it('environment.getServerName: check environment getters', () => {
+   //       expect(service.getAppName()).toBe('neocom.infinity');
+   //    });
+   // });
 });

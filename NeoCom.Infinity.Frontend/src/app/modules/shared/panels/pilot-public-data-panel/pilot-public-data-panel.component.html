@@ -2,12 +2,15 @@
     <table *ngIf="pilot else loading" cellspacing="2px" cellpadding="0" width="100%">
         <tr>
             <td width="64px">
-                <img class="neocom-icon" id="corporation-icon" src="{{getPilotIcon()}}">
+                <img class="neocom-icon" id="corporation-icon" style="width: 66px;" src="{{getPilotIcon()}}">
             </td>
-            <td class="neocom-panel-column">
+            <td class="neocom-panel-column" valign="top" style="padding-top: 2px;">
+                <div class="elemental-ff">PILOT</div>
                 <div *ngIf="pilot">
-                    <span id="corporation-name " class="neocom-selectable-name ">{{pilot.name}}</span>
+                    <span id="corporation-name " class="neocom-selectable-name ">{{pilot.name}} [{{pilot.pilotId}}]</span>
                 </div>
+                <div>{{pilot.race.name}} - {{pilot.ancestry.name}} - {{pilot.bloodline.name}}</div>
+                <div>{{pilot.gender}}</div>
             </td>
         </tr>
     </table>
