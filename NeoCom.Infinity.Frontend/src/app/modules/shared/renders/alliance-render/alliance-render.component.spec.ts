@@ -17,11 +17,22 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BackendService } from '@app/services/backend.service';
 import { SupportBackendService } from '@app/testing/SupportBackend.service';
 import { AllianceRenderComponent } from './alliance-render.component';
+import { Alliance } from '@app/domain/Alliance.domain';
 
 describe('RENDER AllianceRenderComponent [Module: SHARED]', () => {
    let component: AllianceRenderComponent;
    let fixture: ComponentFixture<AllianceRenderComponent>;
    let isolationService: SupportIsolationService;
+   const alliance = new Alliance(
+      {
+         "creator_corporation_id": 98388312,
+         "creator_id": 1597785719,
+         "date_founded": "2015-04-02T16:29:43Z",
+         "executor_corporation_id": 98500220,
+         "name": "Pandemic Horde",
+         "ticker": "REKTD"
+      }
+   );
 
    beforeEach(() => {
       TestBed.configureTestingModule({
@@ -45,6 +56,32 @@ describe('RENDER AllianceRenderComponent [Module: SHARED]', () => {
       it('Should be created', () => {
          console.log('><[shared/AllianceRenderComponent]> should be created');
          expect(component).toBeDefined('component has not been created.');
+      });
+   });
+
+   // - C O D E   C O V E R A G E   P H A S E
+   describe('Code Coverage Phase [getters]', () => {
+      it('getName.success: validate the name field', () => {
+         const expected = isolationService.generateRandomString(12);
+         alliance.name = expected;
+         component.node = alliance;
+         const obtained = component.getName();
+         expect(obtained).toBe(expected);
+      });
+      it('getName.failure: validate the name field', () => {
+         const obtained = component.getName();
+         expect(obtained).toBe('-');
+      });
+      it('getAllianceIcon.success: validate the alliance icon field', () => {
+         const expected = isolationService.generateRandomString(12);
+         alliance.url4Icon = expected;
+         component.node = alliance;
+         const obtained = component.getAllianceIcon();
+         expect(obtained).toBe(expected);
+      });
+      it('getAllianceIcon.failure: validate the alliance icon field', () => {
+         const obtained = component.getAllianceIcon();
+         expect(obtained).toBe(environment.DEFAULT_AVATAR_PLACEHOLDER);
       });
    });
 });

@@ -10,22 +10,19 @@ import { Corporation } from '@app/domain/Corporation.domain';
 import { Alliance } from '@app/domain/Alliance.domain';
 
 @Component({
-  selector: 'alliance-render',
-  templateUrl: './alliance-render.component.html',
-  styleUrls: ['./alliance-render.component.scss']
+   selector: 'alliance-render',
+   templateUrl: './alliance-render.component.html',
+   styleUrls: ['./alliance-render.component.scss']
 })
-export class AllianceRenderComponent implements OnInit {
-  @Input() node: Alliance;
-  constructor() { }
-
-  ngOnInit() {
-  }
+export class AllianceRenderComponent {
+   @Input() node: Alliance;
+   
    public getName(): string {
       if (null != this.node) return this.node.name;
       else return '-';
    }
-  public getAllianceIcon(): string {
-     if (null != this.node) return this.node.getIconUrl();
-     else return environment.DEFAULT_AVATAR_PLACEHOLDER;
-  }
+   public getAllianceIcon(): string {
+      if (null != this.node) return this.node.getIconUrl();
+      else return environment.DEFAULT_AVATAR_PLACEHOLDER;
+   }
 }
