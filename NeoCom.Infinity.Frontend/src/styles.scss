@@ -3,11 +3,11 @@
 @import './styles/toaster.css'; // angular5-toaster module additional styles
 // - APPLICATION STYLES VARIABLES
 @import "./styles/_scss_variables.scss";
-
 // - APPLICATION STYLE PACKS
 @import "./styles/open-sans.css";
 @import "./styles/font-styles.css";
 @import "./styles/panel-styles.scss";
+@import "./styles/neocom-styles.scss";
 body {
     background-color: black;
     color: white;
@@ -15,4 +15,4 @@ body {
     font-size: 12px;
     line-height: 1.0;
     margin: 2px;
-  }
+}

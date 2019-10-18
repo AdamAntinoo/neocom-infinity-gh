@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from '@env/environment';
 // - HTTP PACKAGE
 import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -11,17 +12,18 @@ import { HttpHeaders } from '@angular/common/http';
 import { IsolationService } from '@app/platform/isolation.service';
 // - DOMAIN
 import { ValidateAuthorizationTokenResponse } from '@app/domain/dto/ValidateAuthorizationTokenResponse';
-import { environment } from '@env/environment.prod';
 import { NeoComResponse } from '@app/domain/dto/NeoComResponse';
 import { NeoComException } from '@app/platform/NeoComException';
 import { ServerInfoResponse } from '@app/domain/dto/ServerInfoResponse.dto';
 import { CorporationDataResponse } from '@app/domain/dto/CorporationDataResponse.dto';
+import { Pilot } from '@app/domain/Pilot.domain';
 
 @Injectable({
    providedIn: 'root'
 })
 export class BackendService /*extends RuntimeBackendService*/ {
    private HEADERS;
+   private APIV1: string;
 
    constructor(
       public isolation: IsolationService,
@@ -36,27 +38,28 @@ export class BackendService /*extends RuntimeBackendService*/ {
          .set('xApp-Platform', 'Angular 6.1.x')
          .set('xApp-Brand', 'CitasCentro-Demo')
          .set('xApp-Signature', 'S0000.0011.0000');
+      this.APIV1 = environment.serverName + environment.apiVersion1;
    }
 
    // - E N V I R O N M E N T    C A L L S
-   public getApplicationName(): string {
-      return this.isolation.getAppName();
-   }
-   public getApplicationVersion(): string {
-      return this.isolation.getAppVersion();
-   }
-   public inDevelopment(): boolean {
-      return this.isolation.inDevelopment();
-   }
-   public showExceptions(): boolean {
-      return this.isolation.showExceptions();
-   }
+   // public getApplicationName(): string {
+   //    return this.isolation.getAppName();
+   // }
+   // public getApplicationVersion(): string {
+   //    return this.isolation.getAppVersion();
+   // }
+   // public inDevelopment(): boolean {
+   //    return this.isolation.inDevelopment();
+   // }
+   // public showExceptions(): boolean {
+   //    return this.isolation.showExceptions();
+   // }
 
    // - B A C K E N D - A P I
    public apiValidateAuthorizationToken_v1(code: string, state: string): Observable<ValidateAuthorizationTokenResponse> {
       console.log(">[BackendService.apiValidateAuthorizationToken_v1]> code: " + code);
       // Construct the request to call the backend.
-      let request = this.isolation.getServerName() + this.isolation.getApiV1() + "/validateAuthorizationToken" +
+      let request = this.APIV1 + "/validateAuthorizationToken" +
          "?code=" + code +
          "&state=" + state +
          "&datasource=" + environment.ESIDataSource.toLowerCase();
@@ -69,8 +72,7 @@ export class BackendService /*extends RuntimeBackendService*/ {
    public apiGetServerInfo_v1(): Observable<ServerInfoResponse> {
       // console.log(">[BackendService.aoiGetServerInfo_v1]> datasource: " + datasource);
       // Construct the request to call the backend.
-      let request = this.isolation.getServerName() + this.isolation.getApiV1() + "/server" +
-         "/datasource/" + environment.ESIDataSource.toLowerCase();
+      let request = this.APIV1 + "/server/datasource/" + environment.ESIDataSource.toLowerCase();
       // console.log("--[BackendService.apiValidateAuthorizationToken_v1]> request = " + request);
       // console.log("--[BackendService.backendReserveAppointment]> body = " + JSON.stringify(patient));
       return this.wrapHttpGETCall(request)
@@ -80,11 +82,18 @@ export class BackendService /*extends RuntimeBackendService*/ {
          }));
    }
    public apiGetCorporationPublicData_v1(corporationId: number): Observable<CorporationDataResponse> {
-      let request = this.isolation.getServerName() + this.isolation.getApiV1() + "/corporations" +
-         corporationId;
+      let request = this.APIV1 + "/corporations/" + corporationId;
       return this.wrapHttpGETCall(request)
          .pipe(map((data: any) => {
             const response = this.transformApiResponse(data) as CorporationDataResponse;
+            return response;
+         }));
+   }
+   public apiGetPilotPublicData_v1(pilotId: number): Observable<Pilot> {
+      let request = this.APIV1 + "/pilots/" + pilotId;
+      return this.wrapHttpGETCall(request)
+         .pipe(map((data: any) => {
+            const response = new Pilot(data);
             return response;
          }));
    }
@@ -230,13 +239,9 @@ export class BackendService /*extends RuntimeBackendService*/ {
       let headers = new HttpHeaders()
          .set('Content-Type', 'application/json; charset=utf-8')
          .set('Access-Control-Allow-Origin', '*')
-         .set('xApp-Name', this.isolation.getAppName())
-         .set('xApp-Version', this.isolation.getAppVersion())
+         .set('xApp-Name', environment.appName)
+         .set('xApp-Version', environment.appVersion)
          .set('xApp-Platform', 'Angular 6.1.x')
-         .set('xApp-Brand', 'CitasCentro-development')
-         // .set('xApp-Signature', 'S0000.0011.0000');
-         .set('xApp-Signature', 'S0000.0100.0000');
-
       // Add authentication token but only for authorization required requests.
       // let cred = this.accessCredential();
       // if (null != cred) {

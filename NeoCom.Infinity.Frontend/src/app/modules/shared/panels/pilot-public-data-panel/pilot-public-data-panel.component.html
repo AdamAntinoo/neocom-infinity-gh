@@ -1,1 +1,17 @@
-<p>pilot-public-data-panel works!</p>
+<div class="neocom-panel panel-blue">
+    <table *ngIf="pilot else loading" cellspacing="2px" cellpadding="0" width="100%">
+        <tr>
+            <td width="64px">
+                <img class="neocom-icon" id="corporation-icon" src="{{getPilotIcon()}}">
+            </td>
+            <td class="neocom-panel-column">
+                <div *ngIf="pilot">
+                    <span id="corporation-name " class="neocom-selectable-name ">{{pilot.name}}</span>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <ng-template #loading>
+        <div>Loading...</div>
+    </ng-template>
+</div>

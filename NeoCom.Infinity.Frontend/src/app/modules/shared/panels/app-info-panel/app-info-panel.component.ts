@@ -13,10 +13,10 @@ export class AppInfoPanelComponent {
     constructor(protected isolationService: IsolationService) { }
 
     public getName(): string {
-        return this.isolationService.getAppName().toUpperCase();
+        return environment.appName.toUpperCase();
     }
     public getVersion(): string {
-        return this.isolationService.getAppVersion();
+        return environment.appVersion;
     }
     public getCopyright(): string {
         return environment.copyright;

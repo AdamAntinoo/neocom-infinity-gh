@@ -57,9 +57,9 @@ export class AppStoreService {
          }));
    }
    private downloadPilot(pilotId: number): Observable<Pilot> {
-      return this.backendService.apiGetCorporationPublicData_v1(pilotId)
-         .pipe(map((response: CorporationDataResponse) => {
-            let pilot = new Pilot(response.pilot);
+      return this.backendService.apiGetPilotPublicData_v1(pilotId)
+         .pipe(map((response: Pilot) => {
+            let pilot = response;
             return pilot;
          }));
    }
@@ -77,6 +77,9 @@ export class AppStoreService {
    public getCorporationIdentifier(): number {
       return this.getCredential().getCorporationId();
    }
+   public getPilotIdentifier(): number {
+      return this.getCredential().getAccountId();
+   }
 
    // - S T O R E   A C C E S S   S E C T I O N
    /**
@@ -89,6 +92,10 @@ export class AppStoreService {
    // - C O R P O R A T I O N
    public accessCorporation(): Observable<Corporation | Corporation[]> {
       return this.corporationActiveCache.accessData();
+   }
+   // - P I L O T
+   public accessPilot(): Observable<Pilot | Pilot[]> {
+      return this.pilotActiveCache.accessData();
    }
 
    // - E N V I R O N M E N T    C A L L S

@@ -105,6 +105,6 @@ export class LoginValidationPageComponent implements OnInit, OnDestroy {
    }
    private storeCredential(credential: Credential): void {
       this.backendService.isolation.setToSession(environment.CREDENTIAL_KEY, JSON.stringify(credential));     
-      this.appModelStore.setCredential(credential);
+      // this.appModelStore.setCredential(credential);
    }
 }

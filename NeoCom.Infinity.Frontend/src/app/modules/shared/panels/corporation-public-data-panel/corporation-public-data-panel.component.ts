@@ -7,12 +7,12 @@ import { environment } from '@env/environment';
 import { Subscription } from 'rxjs';
 // - SERVICES
 import { BackendService } from '@app/services/backend.service';
+import { AppStoreService } from '@app/services/appstore.service';
 // - DOMAIN
 import { Corporation } from '@app/domain/Corporation.domain';
 import { Alliance } from '@app/domain/Alliance.domain';
 import { Pilot } from '@app/domain/Pilot.domain';
 import { CorporationDataResponse } from '@app/domain/dto/CorporationDataResponse.dto';
-import { AppStoreService } from '@app/services/appstore.service';
 
 @Component({
    selector: 'corporation-public-data-panel',
@@ -21,20 +21,18 @@ import { AppStoreService } from '@app/services/appstore.service';
 })
 export class CorporationPublicDataPanelComponent implements OnInit, OnDestroy {
    private corporationSubscription: Subscription;
-   private corporation: Corporation; // The authorized corporation public data.
-   private ceo: Pilot; // The Corporation CEO public pilot data.
-   private alliance: Alliance; // A link to the Alliance record. Maybe null if the corporation is not associated.
+   public corporation: Corporation; // The authorized corporation public data.
+   public ceo: Pilot; // The Corporation CEO public pilot data.
+   public alliance: Alliance; // A link to the Alliance record. Maybe null if the corporation is not associated.
 
    constructor(
       protected appStoreService: AppStoreService,
       protected backendService: BackendService) { }
 
    ngOnInit() {
-      const corporationId = this.appStoreService.getCorporationIdentifier();
-      this.corporationSubscription = this.backendService.apiGetCorporationPublicData_v1(corporationId)
-         .subscribe((corporationResponse: CorporationDataResponse) => {
-            this.corporation = corporationResponse.corporation;
-            this.ceo = corporationResponse.ceoPilotData;
+      this.corporationSubscription = this.appStoreService.accessCorporation()
+         .subscribe((corporation: Corporation) => {
+            this.corporation = corporation;
             this.alliance = this.corporation.alliance;
          });
    }
@@ -43,6 +41,14 @@ export class CorporationPublicDataPanelComponent implements OnInit, OnDestroy {
    }
    public getAlliance(): Alliance {
       return this.alliance;
+   }
+   public getCorporationId(): number {
+      if (!this.isEmpty(this.corporation)) return this.corporation.corporationId;
+      else return 0;
+   }
+   public getCorporationName(): string {
+      if (!this.isEmpty(this.corporation)) return this.corporation.name;
+      else return '-';
    }
    public getCorporationIcon(): string {
       if (!this.isEmpty(this.corporation)) return this.corporation.getIconUrl();
