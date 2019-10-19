@@ -4,7 +4,7 @@
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
-        "build": "ng build",
+        "build": "npm run build:prod",
         "test": "ng test",
         "lint": "ng lint",
         "compodoc": "compodoc -p tsconfig.json --theme laravel",
@@ -17,13 +17,16 @@
         "stop:support": "bash ./support/support-services.sh stop",
         "restart:support": "npm run stop:support && npm run start:support",
         "build:dev": "ng build --base-href /app",
-        "build:devold": "rm -rf app && ng build --base-href /app && mv dist/NeoCom-Infinity/ app",
-        "build:prod": "ng build --aot --prod --configuration production",
+        "build:prod": "ng build --aot --prod --configuration production --base-href /app",
         "test:dev": "ng test --code-coverage --source-map --watch --progress ",
         "test:prod": "ng test --watch=false --no-progress --browsers=ChromeHeadlessCI",
         "e2e": "ng e2e --port 4300",
         "e2e:atdd": "ng e2e --port 4300 --protractor-config e2e/protractor-cucumber.conf.js",
         "e2e:compile": "tsc -p e2e"
+    },
+    "engines": {
+        "node": "10.16.3",
+        "npm": "6.11.3"
     },
     "private": true,
     "dependencies": {
@@ -37,6 +40,7 @@
         "@angular/router": "8.2.3",
         "angular-webstorage-service": "1.0.2",
         "bootstrap": "4.3.1",
+        "compression": "1.7.4",
         "date-fns": "2.5.0",
         "express": "4.17.1",
         "font-awesome": "4.7.0",
@@ -44,6 +48,8 @@
         "ng-drag-drop": "5.0.0",
         "ng6-toastr-notifications": "1.0.4",
         "ngx-toastr": "10.2.0",
+        "path": "0.12.7",
+        "request": "2.88.0",
         "rollbar": "2.13.0",
         "rxjs": "6.4.0",
         "tslib": "1.10.0",

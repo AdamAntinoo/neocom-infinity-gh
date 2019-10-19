@@ -8,9 +8,9 @@ import { Routes } from '@angular/router';
  * @export
  * @class HomeComponent
  */
-@Component({
-    template: `Home`
-})
+// @Component({
+//     template: `Home`
+// })
 export class RouteMockUpComponent {}
 export const routes: Routes = [
     { path: '', redirectTo: 'loginValidation', pathMatch: 'full' },

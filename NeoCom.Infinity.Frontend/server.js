@@ -1,10 +1,11 @@
 //Install express server
 const express = require('express');
 const path = require('path');
-const http = require('http');
+const compression = require('compression');
 const request = require('request');
 
 const app = express();
+app.use(compression());
 var options = {
         dotfiles: 'ignore',
         etag: true,

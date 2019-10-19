@@ -11,22 +11,8 @@
 
 @font-face {
     font-family: 'Proxima Nova Black';
-    src: url('/assets/fonts/Proxima Nova Alt Black.ttf') format('truetype');
+    src: url('/assets/fonts/ProximaNovaAltBlack.ttf') format('truetype');
     font-weight: 900;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Proxima Nova';
-    src: url('/assets/fonts/Proxima Nova Bold.ttf') format('truetype');
-    font-weight: 800;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Proxima Nova';
-    src: url('/assets/fonts/Proxima Nova Semibold.ttf') format('truetype');
-    font-weight: 600;
     font-style: normal;
 }
 
@@ -39,7 +25,7 @@
 
 @font-face {
     font-family: 'Proxima Nova';
-    src: url('/assets/fonts/Proxima Nova Thin.ttf') format('truetype');
+    src: url('/assets/fonts/ProximaNovaThin.ttf') format('truetype');
     font-style: normal;
     font-weight: 100;
 }
@@ -50,24 +36,6 @@
 
 .proxima-black-ff {
     font-family: 'Proxima Nova Black';
-}
-
-@font-face {
-    font-family: "Conthrax";
-    src: url("/assets/fonts/conthrax-sb.ttf");
-}
-
-.contrax-ff {
-    font-family: "Conthrax";
-}
-
-@font-face {
-    font-family: "Tesla";
-    src: url("/assets/fonts/TESLA.ttf");
-}
-
-.tesla-ff {
-    font-family: "Tesla";
 }
 
 @font-face {
@@ -90,30 +58,9 @@
 
 @font-face {
     font-family: 'Mons Olympia';
-    font-style: italic;
-    font-weight: bold;
-    src: url("/assets/fonts/Mons Olympia Bold Italic.otf");
-}
-
-@font-face {
-    font-family: 'Mons Olympia';
-    font-style: normal;
-    font-weight: bold;
-    src: url("/assets/fonts/Mons Olympia Bold.otf");
-}
-
-@font-face {
-    font-family: 'Mons Olympia';
-    font-style: italic;
-    font-weight: normal;
-    src: url("/assets/fonts/Mons Olympia Italic.otf");
-}
-
-@font-face {
-    font-family: 'Mons Olympia';
     font-style: normal;
     font-weight: normal;
-    src: url("/assets/fonts/Mons Olympia.otf");
+    src: url("/assets/fonts/MonsOlympia.otf");
 }
 
 .mons-olympia-ff {
