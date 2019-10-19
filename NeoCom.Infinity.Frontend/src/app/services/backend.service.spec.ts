@@ -20,6 +20,8 @@ import { AppStoreService } from './appstore.service';
 import { SupportAppStoreService } from '@app/testing/SupportAppStore.service';
 import { CorporationDataResponse } from '@app/domain/dto/CorporationDataResponse.dto';
 import { Pilot } from '@app/domain/Pilot.domain';
+import { ResponseTransformer } from './support/ResponseTransformer';
+import { Corporation } from '@app/domain/Corporation.domain';
 
 describe('SERVICE BackendService [Module: APP]', () => {
    let service: BackendService;
@@ -158,12 +160,16 @@ describe('SERVICE BackendService [Module: APP]', () => {
    describe('Code Coverage Phase [apiGetCorporationPublicData_v1]', () => {
       it('apiGetCorporationPublicData_v1.success: get the corporation data from the mocked server',
          async(inject([HttpTestingController, BackendService], (backend: HttpTestingController, service: BackendService) => {
-            const responseJson = appStoreService.directAccessMockResource('corporationdataresponse');
-            service.apiGetCorporationPublicData_v1(123)
+            const responseJson = appStoreService.directAccessMockResource('corporations');
+            service.apiGetCorporationPublicData_v1(123,
+               new ResponseTransformer().setDescription('Do response transformation to "Corporation".')
+                  .setTransformation((data: any): Corporation => {
+                     return new Corporation(data);
+                  }))
                .subscribe(response => {
                   console.log('--[apiGetCorporationPublicData_v1]> response: ' + JSON.stringify(response));
                   expect(response).toBeDefined();
-                  expect(response.getResponseType()).toContain('CorporationDataResponse');
+                  expect(response.getJsonClass()).toContain('Corporation');
                });
             backend.match((request) => {
                return request.url.match(/corporations/) &&

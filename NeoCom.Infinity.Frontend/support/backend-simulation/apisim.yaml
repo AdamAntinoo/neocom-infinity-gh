@@ -99,3 +99,14 @@ response:
   body:
     type: text
     file: "${sim.path}/packed-responses/pilots.json"
+
+---
+
+simlet: options
+
+request:
+  - method: OPTIONS
+
+response:
+  from: template
+  status: 200

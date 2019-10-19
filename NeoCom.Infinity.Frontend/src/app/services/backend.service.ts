@@ -30,7 +30,8 @@ export class BackendService {
 
    constructor(
       public isolation: IsolationService,
-      protected httpService: HttpClientWrapperService) {
+      protected httpService: HttpClientWrapperService,
+   protected http: HttpClient) {
       // super();
       // Initialize the list of header as a constant. Do this in code because the isolation dependency.
       this.HEADERS = new HttpHeaders()
@@ -44,25 +45,11 @@ export class BackendService {
       this.APIV1 = environment.serverName + environment.apiVersion1;
    }
 
-   // - E N V I R O N M E N T    C A L L S
-   // public getApplicationName(): string {
-   //    return this.isolation.getAppName();
-   // }
-   // public getApplicationVersion(): string {
-   //    return this.isolation.getAppVersion();
-   // }
-   // public inDevelopment(): boolean {
-   //    return this.isolation.inDevelopment();
-   // }
-   // public showExceptions(): boolean {
-   //    return this.isolation.showExceptions();
-   // }
-
    // - B A C K E N D - A P I
    public apiValidateAuthorizationToken_v1(code: string, state: string): Observable<ValidateAuthorizationTokenResponse> {
       console.log(">[BackendService.apiValidateAuthorizationToken_v1]> code: " + code);
       // Construct the request to call the backend.
-      let request = this.APIV1 + "/validateAuthorizationToken" +
+      const request = this.APIV1 + "/validateAuthorizationToken" +
          "?code=" + code +
          "&state=" + state +
          "&datasource=" + environment.ESIDataSource.toLowerCase();
@@ -75,7 +62,7 @@ export class BackendService {
    public apiGetServerInfo_v1(): Observable<ServerInfoResponse> {
       // console.log(">[BackendService.aoiGetServerInfo_v1]> datasource: " + datasource);
       // Construct the request to call the backend.
-      let request = this.APIV1 + "/server/datasource/" + environment.ESIDataSource.toLowerCase();
+      const request = this.APIV1 + "/server/datasource/" + environment.ESIDataSource.toLowerCase();
       // console.log("--[BackendService.apiValidateAuthorizationToken_v1]> request = " + request);
       // console.log("--[BackendService.backendReserveAppointment]> body = " + JSON.stringify(patient));
       return this.wrapHttpGETCall(request)
@@ -85,7 +72,7 @@ export class BackendService {
          }));
    }
    public apiGetCorporationPublicData_v1(corporationId: number, transformer: ResponseTransformer): Observable<Corporation> {
-      let request = this.APIV1 + "/corporations/" + corporationId;
+      const request = this.APIV1 + "/corporations/" + corporationId;
       return this.wrapHttpGETCall(request)
          .pipe(map((data: any) => {
             console.log(">[BackendService.apiGetCorporationPublicData_v1]> Transformation: " +
@@ -95,7 +82,7 @@ export class BackendService {
          }));
    }
    public apiGetPilotPublicData_v1(pilotId: number): Observable<Pilot> {
-      let request = this.APIV1 + "/pilots/" + pilotId;
+      const request = this.APIV1 + "/pilots/" + pilotId;
       return this.wrapHttpGETCall(request)
          .pipe(map((data: any) => {
             const response = new Pilot(data);

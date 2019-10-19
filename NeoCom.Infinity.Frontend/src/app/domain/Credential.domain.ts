@@ -1,4 +1,7 @@
-export class Credential {
+// - DOMAIN
+import { NeoCom } from './NeoCom.domain';
+
+export class Credential extends NeoCom {
    private uniqueId: string;
    private accountId: number;
    private accountName: string;
@@ -6,7 +9,9 @@ export class Credential {
    private corporationId: number;
 
    constructor(values: Object = {}) {
+      super();
       Object.assign(this, values);
+      this.jsonClass = 'Credential';
    }
 
    public getAccountId(): number {

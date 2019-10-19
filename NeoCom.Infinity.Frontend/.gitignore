@@ -14,3 +14,5 @@ src/styles/fonts/
 .tmp/
 coverage/
 out-tsc/
+dist/
+app/

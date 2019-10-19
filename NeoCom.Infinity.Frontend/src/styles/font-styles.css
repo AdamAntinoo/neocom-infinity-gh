@@ -32,7 +32,7 @@
 
 @font-face {
     font-family: 'Proxima Nova';
-    src: url('./fonts/Proxima Nova Regular.ttf') format('truetype');
+    src: url('/assets/fonts/ProximaNovaRegular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
@@ -74,14 +74,14 @@
     font-family: "Elemental";
     font-style: normal;
     font-weight: normal;
-    src: url("/assets/fonts/Elemental End.ttf") format('truetype');
+    src: url("/assets/fonts/ElementalEnd.ttf") format('truetype');
 }
 
 @font-face {
     font-family: "Elemental";
     font-style: italic;
     font-weight: normal;
-    src: url("/assets/fonts/Elemental End Italic.ttf");
+    src: url("/assets/fonts/ElementalEndItalic.ttf");
 }
 
 .elemental-ff {

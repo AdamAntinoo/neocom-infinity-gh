@@ -13,7 +13,7 @@ export class SupportIsolationService {
       return this.storage.get(_key);
    }
    public setToStorage(_key: string, _content: any): any {
-      return this.storage.set(_key, _content)
+      return this.storage.set(_key, JSON.stringify(_content))
    }
    public removeFromStorage(_key: string): void {
       this.storage.set(_key, null);
@@ -22,7 +22,7 @@ export class SupportIsolationService {
       return this.storage.get(_key);
    }
    public setToSession(_key: string, _content: any): any {
-      return this.storage.set(_key, _content)
+      return this.storage.set(_key, JSON.stringify(_content))
    }
    public removeFromSession(_key: string): any {
       this.storage.set(_key, null);

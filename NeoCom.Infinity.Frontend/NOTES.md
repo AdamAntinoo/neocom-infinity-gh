@@ -1,3 +1,8 @@
+[GIT]
+-- CHECKOUT A FILE FROM A COMMIT
+git checkout 315e21e99c0121e5679f58b386799d2d800531a1 NeoCom.Infinity.Frontend/e2e/src/features/NIF02-DashboardHome.feature
+
+
 [FRONTEND] Create acceptance support functions to search for panels and other elements during the testing. Use the promise pattern
 or the direct access pattern so all code can use the same set of asserts.
 

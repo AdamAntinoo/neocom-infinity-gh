@@ -13,7 +13,7 @@ export class Alliance extends NeoCom {
         this.jsonClass = "Alliance";
     }
 
-    //--- GETTERS & SETTERS
+    // - GETTERS & SETTERS
     public getId(): number {
         return this.allianceId;
     }
