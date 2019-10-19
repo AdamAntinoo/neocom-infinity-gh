@@ -6,7 +6,7 @@ plugins {
 apply plugin: 'project-report'
 
 group = 'org.dimensinfin.eveonline.neocom'
-version = '0.16.0'
+version = '0.16.1'
 archivesBaseName = 'NeoCom.Infinity.Backend'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8

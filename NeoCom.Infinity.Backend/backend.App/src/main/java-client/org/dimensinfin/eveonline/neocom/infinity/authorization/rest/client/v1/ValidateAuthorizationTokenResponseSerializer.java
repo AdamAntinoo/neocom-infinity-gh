@@ -15,6 +15,7 @@ public class ValidateAuthorizationTokenResponseSerializer extends JsonSerializer
 			throws IOException, JsonProcessingException {
 		jgen.writeStartObject();
 
+		jgen.writeStringField("responseType", "ValidateAuthorizationTokenResponse");
 		jgen.writeObjectField("jwtToken", value.getJwtToken());
 		jgen.writeObjectField("credential", value.getCredential());
 

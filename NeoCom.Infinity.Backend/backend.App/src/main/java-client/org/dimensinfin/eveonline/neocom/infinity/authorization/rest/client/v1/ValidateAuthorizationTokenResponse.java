@@ -5,9 +5,10 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
+import org.dimensinfin.eveonline.neocom.infinity.core.client.v0.NeoComResponse;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ValidateAuthorizationTokenResponse {
+public class ValidateAuthorizationTokenResponse extends NeoComResponse {
 	private String jwtToken;
 	private Credential credential;
 

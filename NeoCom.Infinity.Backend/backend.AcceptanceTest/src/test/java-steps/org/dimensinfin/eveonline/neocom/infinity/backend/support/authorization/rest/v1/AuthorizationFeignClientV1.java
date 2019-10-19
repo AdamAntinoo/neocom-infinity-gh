@@ -29,17 +29,17 @@ public class AuthorizationFeignClientV1 {
 				.addConverterFactory( JacksonConverterFactory.create() )
 				.build()
 				.create( NeoComApiv1.class );
-		final Call<ValidateAuthorizationTokenResponseClient> request = serviceGetAccessToken.validateAuthorizationToken(
+		final Call<ValidateAuthorizationTokenResponse> request = serviceGetAccessToken.validateAuthorizationToken(
 				"application/json",
 				validateAuthorizationTokenRequest.getCode(),
 				validateAuthorizationTokenRequest.getState(),
 				validateAuthorizationTokenRequest.getDataSourceName()
 		);
 		// Getting the request response to be stored if valid.
-		final Response<ValidateAuthorizationTokenResponseClient> response = request.execute();
+		final Response<ValidateAuthorizationTokenResponse> response = request.execute();
 		if (response.isSuccessful()) {
 			logger.info( "-- [AuthorizationService.getTokenTranslationResponse]> Response is 200 OK." );
-			final ValidateAuthorizationTokenResponse auhorizationResponse = response.body().getBody();
+			final ValidateAuthorizationTokenResponse auhorizationResponse = response.body();
 			return new ResponseEntity<>( auhorizationResponse, HttpStatus.OK );
 		} else return new ResponseEntity( HttpStatus.BAD_REQUEST );
 	}

@@ -20,20 +20,21 @@ import org.dimensinfin.eveonline.neocom.infinity.core.NeoComSBException;
 @RestController
 @Validated
 @RequestMapping("/api/v1/neocom")
-public class LoginController extends NeoComController {
+public class AuthorizationController extends NeoComController {
 	private final AuthorizationService authorizationService;
 
 	@Autowired
-	public LoginController( final AuthorizationService authorizationService ) {
+	public AuthorizationController( final AuthorizationService authorizationService ) {
 		this.authorizationService = authorizationService;
 	}
 
 	@GetMapping(path = { "/validateAuthorizationToken" },
 			produces = "application/json",
 			consumes = "application/json")
-	public ResponseEntity<ValidateAuthorizationTokenResponse> validate( @RequestParam(value = "code", required = true) final String code,
-	                                                                    @RequestParam(value = "state", required = true) final String state,
-	                                                                    @RequestParam(value = "dataSource", required = false) final Optional<String> dataSource ) {
+	public ResponseEntity<ValidateAuthorizationTokenResponse> validate(
+			@RequestParam(value = "code", required = true) final String code,
+			@RequestParam(value = "state", required = true) final String state,
+			@RequestParam(value = "dataSource", required = false) final Optional<String> dataSource ) {
 		final ValidateAuthorizationTokenRequest.Builder requestBuilder = new ValidateAuthorizationTokenRequest.Builder()
 				.withCode( code )
 				.withState( state );
@@ -50,24 +51,4 @@ public class LoginController extends NeoComController {
 		logger.info( "EX [LoginController.handleNeoComSBException]> Exception: {}", neocomException.getMessage() );
 		return new ResponseEntity<NeoComSBException>( neocomException, headers, neocomException.getHttpStatus() );
 	}
-
-//	@ExceptionHandler({ IOException.class })
-//	public ResponseEntity<NeoComSBException> handleIOException( final IOException ioe ) {
-//		final NeoComSBException neocomException = new NeoComSBException( ioe );
-//		// Convert the exception to a json response
-//		HttpHeaders headers = new HttpHeaders();
-//		headers.add( "xApp-Error-Message", neocomException.getMessage() );
-//		headers.add( "xApp-Error-Class", neocomException.getExceptionType() );
-//		return new ResponseEntity<NeoComSBException>( neocomException, HttpStatus.UNAUTHORIZED );
-//	}
-//
-//	@ExceptionHandler({ SQLException.class })
-//	public ResponseEntity<NeoComSBException> handleSQLException( final SQLException sqle ) {
-//		final NeoComSBException neocomException = new NeoComSBException( sqle );
-//		// Convert the exception to a json response
-//		HttpHeaders headers = new HttpHeaders();
-//		headers.add( "xApp-Error-Message", neocomException.getMessage() );
-//		headers.add( "xApp-Error-Class", neocomException.getExceptionType() );
-//		return new ResponseEntity<NeoComSBException>( neocomException, HttpStatus.UNAUTHORIZED );
-//	}
 }

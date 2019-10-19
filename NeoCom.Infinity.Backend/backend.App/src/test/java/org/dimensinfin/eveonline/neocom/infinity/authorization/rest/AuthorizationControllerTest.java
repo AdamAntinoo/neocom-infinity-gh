@@ -10,22 +10,22 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.infinity.authorization.AuthorizationService;
-import org.dimensinfin.eveonline.neocom.infinity.authorization.LoginController;
+import org.dimensinfin.eveonline.neocom.infinity.authorization.AuthorizationController;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComSBException;
 
 import static org.dimensinfin.eveonline.neocom.infinity.core.ErrorInfo.AUTHORIZATION_TRANSLATION;
 
-public class LoginControllerTest {
+public class AuthorizationControllerTest {
 	private AuthorizationService authorizationService;
 
-	private LoginController loginController;
+	private AuthorizationController authorizationController;
 
 	@Before
 	public void setUp() throws Exception {
 		this.authorizationService = Mockito.mock( AuthorizationService.class );
-		this.loginController = new LoginController( this.authorizationService );
+		this.authorizationController = new AuthorizationController( this.authorizationService );
 	}
 
 	@Test
@@ -43,7 +43,7 @@ public class LoginControllerTest {
 				.thenReturn( responseEntity );
 		// Test
 		ResponseEntity<ValidateAuthorizationTokenResponse> obtainedEntity =
-				this.loginController.validate( code, state, dataSource );
+				this.authorizationController.validate( code, state, dataSource );
 		// Asserts
 		Assert.assertEquals( HttpStatus.OK, obtainedEntity.getStatusCode() );
 		Assert.assertNotNull( obtainedEntity.getBody() );
@@ -64,7 +64,7 @@ public class LoginControllerTest {
 				.thenReturn( responseEntity );
 		// Test
 		ResponseEntity<ValidateAuthorizationTokenResponse> obtainedEntity =
-				this.loginController.validate( code, state, dataSource );
+				this.authorizationController.validate( code, state, dataSource );
 		// Asserts
 		Assert.assertEquals( HttpStatus.OK, obtainedEntity.getStatusCode() );
 		Assert.assertNotNull( obtainedEntity.getBody() );
@@ -85,6 +85,6 @@ public class LoginControllerTest {
 				.thenThrow( new NeoComSBException( AUTHORIZATION_TRANSLATION ) );
 		// Test
 		ResponseEntity<ValidateAuthorizationTokenResponse> obtainedEntity =
-				this.loginController.validate( code, state, dataSource );
+				this.authorizationController.validate( code, state, dataSource );
 	}
 }
