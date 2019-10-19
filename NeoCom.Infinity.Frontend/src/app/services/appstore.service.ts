@@ -18,6 +18,7 @@ import { ExceptionCatalog } from '@app/platform/ExceptionCatalog';
 import { Corporation } from '@app/domain/Corporation.domain';
 import { CorporationDataResponse } from '@app/domain/dto/CorporationDataResponse.dto';
 import { Pilot } from '@app/domain/Pilot.domain';
+import { ResponseTransformer } from './support/ResponseTransformer';
 
 @Injectable({
    providedIn: 'root'
@@ -50,9 +51,12 @@ export class AppStoreService {
 
    // - S T O R E   D A T A   D O W N L O A D E R S
    private downloadCorporation(corporationId: number): Observable<Corporation> {
-      return this.backendService.apiGetCorporationPublicData_v1(corporationId)
-         .pipe(map((corporationResponse: CorporationDataResponse) => {
-            let corporation = new Corporation(corporationResponse.corporation);
+      return this.backendService.apiGetCorporationPublicData_v1(corporationId,
+         new ResponseTransformer().setDescription('Do response transformation to "Corporation".')
+            .setTransformation((data: any): Corporation => {
+               return new Corporation(data);
+            }))
+         .pipe(map((corporation: Corporation) => {
             return corporation;
          }));
    }

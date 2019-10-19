@@ -7,3 +7,22 @@ return Observable.create((observer) => {
 		observer.next(service);
 		observer.complete();
 });
+
+[FILTER]
+    this._filters.push(new Filter()
+      .setName('has contents')
+      .setDescription('Filter Especialidades empty of Medico')
+      .setFilter((_test: Especialidad): boolean => {
+        if (_test.getContentSize() < 1) return true;
+        else return false;
+      }));
+
+    this.filters.push({
+      name: 'appointment < now',
+      description: 'Filter appointment in the past',
+      filter: (_target: Cita): boolean => {
+        return isBefore(_target.getFecha(), new Date());
+      }
+    });
+
+      let filterResult = filter.filterFunction(_target);

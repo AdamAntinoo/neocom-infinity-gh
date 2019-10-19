@@ -21,7 +21,7 @@ import { SupportAppStoreService } from '@app/testing/SupportAppStore.service';
 import { CorporationDataResponse } from '@app/domain/dto/CorporationDataResponse.dto';
 import { Pilot } from '@app/domain/Pilot.domain';
 
-fdescribe('SERVICE BackendService [Module: APP]', () => {
+describe('SERVICE BackendService [Module: APP]', () => {
    let service: BackendService;
    let appStoreService: SupportAppStoreService;
 

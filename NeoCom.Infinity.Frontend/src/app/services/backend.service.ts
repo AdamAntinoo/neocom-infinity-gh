@@ -10,6 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 // - SERVICES
 import { IsolationService } from '@app/platform/isolation.service';
+import { HttpClientWrapperService } from './httpclientwrapper.service';
 // - DOMAIN
 import { ValidateAuthorizationTokenResponse } from '@app/domain/dto/ValidateAuthorizationTokenResponse';
 import { NeoComResponse } from '@app/domain/dto/NeoComResponse';
@@ -17,17 +18,19 @@ import { NeoComException } from '@app/platform/NeoComException';
 import { ServerInfoResponse } from '@app/domain/dto/ServerInfoResponse.dto';
 import { CorporationDataResponse } from '@app/domain/dto/CorporationDataResponse.dto';
 import { Pilot } from '@app/domain/Pilot.domain';
+import { ResponseTransformer } from './support/ResponseTransformer';
+import { Corporation } from '@app/domain/Corporation.domain';
 
 @Injectable({
    providedIn: 'root'
 })
-export class BackendService /*extends RuntimeBackendService*/ {
+export class BackendService {
    private HEADERS;
    private APIV1: string;
 
    constructor(
       public isolation: IsolationService,
-      protected http: HttpClient) {
+      protected httpService: HttpClientWrapperService) {
       // super();
       // Initialize the list of header as a constant. Do this in code because the isolation dependency.
       this.HEADERS = new HttpHeaders()
@@ -81,11 +84,13 @@ export class BackendService /*extends RuntimeBackendService*/ {
             return response;
          }));
    }
-   public apiGetCorporationPublicData_v1(corporationId: number): Observable<CorporationDataResponse> {
+   public apiGetCorporationPublicData_v1(corporationId: number, transformer: ResponseTransformer): Observable<Corporation> {
       let request = this.APIV1 + "/corporations/" + corporationId;
       return this.wrapHttpGETCall(request)
          .pipe(map((data: any) => {
-            const response = this.transformApiResponse(data) as CorporationDataResponse;
+            console.log(">[BackendService.apiGetCorporationPublicData_v1]> Transformation: " +
+               transformer.description);
+            const response = transformer.transform(data) as Corporation;
             return response;
          }));
    }
@@ -241,7 +246,7 @@ export class BackendService /*extends RuntimeBackendService*/ {
          .set('Access-Control-Allow-Origin', '*')
          .set('xApp-Name', environment.appName)
          .set('xApp-Version', environment.appVersion)
-         .set('xApp-Platform', 'Angular 6.1.x')
+         .set('xApp-Platform', environment.platform)
       // Add authentication token but only for authorization required requests.
       // let cred = this.accessCredential();
       // if (null != cred) {
@@ -249,11 +254,11 @@ export class BackendService /*extends RuntimeBackendService*/ {
       //     if (null != auth) headers = headers.set('xApp-Authentication', auth);
       //     console.log("><[AppStoreService.wrapHttpSecureHeaders]> xApp-Authentication: " + auth);
       // }
-      // if (null != _requestHeaders) {
-      //     for (let key of _requestHeaders.keys()) {
-      //         headers = headers.set(key, _requestHeaders.get(key));
-      //     }
-      // }
+      if (null != _requestHeaders) {
+         for (let key of _requestHeaders.keys()) {
+            headers = headers.set(key, _requestHeaders.get(key));
+         }
+      }
       return headers;
    }
 
