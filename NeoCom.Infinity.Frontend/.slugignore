@@ -1,0 +1,4 @@
+# - Ignore files that should be removed after the compilation process.
+src/app/testing
+src/styles/fonts/
+support/
