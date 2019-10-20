@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.corporation.rest.client.v1;
+package org.dimensinfin.eveonline.neocom.infinity.corporation.client.v1;
 
 import java.io.IOException;
 

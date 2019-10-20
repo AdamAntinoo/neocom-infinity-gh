@@ -1,9 +1,8 @@
-package org.dimensinfin.eveonline.neocom.infinity.authorization.rest.client.v1;
+package org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
