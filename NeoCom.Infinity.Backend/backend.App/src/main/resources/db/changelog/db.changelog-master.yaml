@@ -3,13 +3,5 @@ databaseChangeLog:
       file: db/changelog/ddl-v0.1.1-schema.yaml
   - include:
       file: db/changelog/ddl-v0.2.1-versions-table.yaml
-#  - include:
-#      file: db/changelog/ddl-v0.2.2-credentials-table.yaml
-#  - include:
-#      file: db/changelog/ddl-v0.3.1-credentials-drop-table.yaml
-#  - include:
-#      file: db/changelog/ddl-v0.3.2-credentials-table.yaml
-#  - include:
-#      file: db/changelog/ddl-v0.4.1-credentials-alter-table.yaml
   - include:
-      file: db/changelog/ddl-v0.5.1-credentials-table.yaml
+      file: db/changelog/ddl-v0.2.2-credentials-table.yaml

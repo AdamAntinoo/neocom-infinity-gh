@@ -4,7 +4,6 @@ databaseChangeLog:
       author: NeoCom development team. Adam Antinoo main developer.
       changes:
         - createTable:
-#            schemaName: neocom
             tableName: Versions
             columns:
               - column:
