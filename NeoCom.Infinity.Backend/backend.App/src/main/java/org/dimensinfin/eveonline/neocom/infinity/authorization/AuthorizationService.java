@@ -93,31 +93,20 @@ public class AuthorizationService extends NeoComService {
 		tokenVerificationStore.setTokenTranslationResponse( this.getTokenTranslationResponse( tokenVerificationStore ) );
 		// Create a security verification instance.
 		tokenVerificationStore.setVerifyCharacterResponse( this.getVerifyCharacterResponse( tokenVerificationStore ) );
-
-		// Create a new session and store the authorization token and the rest of the data.
-		// Generate token.
-//		tokenVerificationStore.setAccountIdentifier( tokenVerificationStore.getVerifyCharacterResponse().getCharacterID() );
-//		final String salt = BCrypt.gensalt( 8 );
-//		final String payload = DateTime.now().toString() + ":"
-//				+ tokenVerificationStore.getAccountIdentifier() + ":"
-//				+ tokenVerificationStore.getVerifyCharacterResponse().getCharacterName();
-//		final String authorizationToken = BCrypt.hashpw( payload, salt );
-//
-//		// Build up the session along with the credential data.
-//		this.buildSession( tokenVerificationStore );
+		final GetCharactersCharacterIdOk pilotData = this.esiDataAdapter.getCharactersCharacterId(
+				tokenVerificationStore.getAccountIdentifier() );
 
 		logger.info( "-- [AuthorizationService.validateAuthorizationToken]> Creating Credential..." );
 		final TokenTranslationResponse token = tokenVerificationStore.getTokenTranslationResponse();
 		final Credential credential = new Credential.Builder( tokenVerificationStore.getAccountIdentifier() )
 				.withAccountId( tokenVerificationStore.getAccountIdentifier() )
 				.withAccountName( tokenVerificationStore.getVerifyCharacterResponse().getCharacterName() )
+				.withCorporationId( pilotData.getCorporationId() )
 				.withTokenType( token.getTokenType() )
 				.withAccessToken( token.getAccessToken() )
 				.withRefreshToken( token.getRefreshToken() )
 				.withDataSource( tokenVerificationStore.getDataSource() )
-				// TODO - This will require the ESI for a simple configurable data. Review this set. Probably scopes can be
-				//  removed from Credentials
-				.withScope( "publicData" )
+				.withScope( this.getVerifyCharacterResponse(tokenVerificationStore).getScopes() )
 				.build();
 		try {
 			logger.info( "-- [AuthorizationService.validateAuthorizationToken]> accountName length {}-{}",
@@ -134,8 +123,6 @@ public class AuthorizationService extends NeoComService {
 					credential.getAccountId(), credential.getAccountName() );
 			// TODO - Seems the updated enters endless loop. Review later.
 //			UpdaterJobManager.submit( new CredentialUpdater( credential ) ); // Post the update request to the scheduler.
-			final GetCharactersCharacterIdOk pilotData = this.esiDataAdapter
-					.getCharactersCharacterId( credential.getAccountId() );
 			final String jwtToken = JWT.create()
 					.withIssuer( ISSUER )
 					.withSubject( SUBJECT )
