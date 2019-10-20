@@ -14,14 +14,22 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.ResponseTy
 
 import cucumber.api.java.en.Then;
 
-public class NIB04ValidateAuthorizationTokenContract extends SupportSteps {
+public class NIB04Contracts extends SupportSteps {
 	private static final String RESPONSE_TYPE = "responseType";
 	private static final String JWT_TOKEN = "jwtToken";
 	private static final String CREDENTIAL = "credential";
+	private static final String ACCOUNT_ID = "accountId";
+	private static final String ACCOUNT_NAME = "accountName";
+	private static final String DATA_SOURCE = "dataSource";
+	private static final String CORPORATION_ID = "corporationId";
+	private static final String ASSETS_COUNT = "assetsCount";
+	private static final String WALLET_BALANCE = "walletBalance";
+	private static final String MINING_RESOURCES_ESTIMATED_VALUE = "miningResourcesEstimatedValue";
+	private static final String RACE_NAME = "raceName";
 	private NeoComWorld neocomWorld;
 
 	@Autowired
-	public NIB04ValidateAuthorizationTokenContract(
+	public NIB04Contracts(
 			final ConverterContainer cucumberTableToRequestConverters,
 			final NeoComWorld neocomWorld ) {
 		super( cucumberTableToRequestConverters );
@@ -38,6 +46,19 @@ public class NIB04ValidateAuthorizationTokenContract extends SupportSteps {
 				Assert.assertEquals( row.get( RESPONSE_TYPE ), response.getResponseType() );
 				Assert.assertEquals( row.get( JWT_TOKEN ), response.getJwtToken() );
 				Assert.assertEquals( row.get( CREDENTIAL ), response.getCredential().getJsonClass() );
+				Assert.assertEquals( Integer.valueOf( row.get( ACCOUNT_ID ) ).intValue(),
+						response.getCredential().getAccountId() );
+				Assert.assertEquals( Integer.valueOf( row.get( CORPORATION_ID ) ).intValue(),
+						response.getCredential().getCorporationId() );
+				Assert.assertEquals( row.get( ACCOUNT_NAME ), response.getCredential().getAccountName() );
+				Assert.assertEquals( row.get( DATA_SOURCE ), response.getCredential().getDataSource() );
+				Assert.assertEquals( Integer.valueOf( row.get( ASSETS_COUNT ) ).intValue(),
+						response.getCredential().getAssetsCount() );
+				Assert.assertEquals( Double.valueOf( row.get( WALLET_BALANCE ) ).doubleValue(),
+						response.getCredential().getWalletBalance(), 1.0 );
+				Assert.assertEquals( Double.valueOf( row.get( MINING_RESOURCES_ESTIMATED_VALUE ) ).doubleValue(),
+						response.getCredential().getMiningResourcesEstimatedValue(), 1.0 );
+				Assert.assertNull( row.get( RACE_NAME ) );
 				break;
 		}
 	}
