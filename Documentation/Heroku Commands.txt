@@ -26,7 +26,7 @@ heroku ps:scale web=1
 heroku ps:scale web=0
 
 --- RESET ALL THE CONTENTS OF THE DATABASE
-heroku pg:reset --confirm neocominfinity
+heroku pg:reset --confirm neocom-backend
 
 --- RUN A SHELL
 heroku run bash

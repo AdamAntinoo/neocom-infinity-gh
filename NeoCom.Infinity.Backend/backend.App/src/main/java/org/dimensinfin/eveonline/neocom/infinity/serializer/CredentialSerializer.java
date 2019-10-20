@@ -22,7 +22,7 @@ public class CredentialSerializer extends JsonSerializer<Credential> {
 		jgen.writeNumberField( "accountId", value.getAccountId() );
 		jgen.writeStringField( "accountName", value.getAccountName() );
 		jgen.writeStringField( "dataSource", value.getDataSource() );
-//		jgen.writeStringField( "corporationId", value.getCorporationId() );
+		jgen.writeNumberField( "corporationId", value.getCorporationId() );
 		jgen.writeNumberField( "assetsCount", value.getAssetsCount() );
 		jgen.writeNumberField( "walletBalance", value.getWalletBalance() );
 		jgen.writeNumberField( "miningResourcesEstimatedValue", value.getMiningResourcesEstimatedValue() );

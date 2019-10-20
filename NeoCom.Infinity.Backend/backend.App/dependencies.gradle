@@ -19,7 +19,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation "org.springframework.boot:spring-boot-starter-security"
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-//    runtimeOnly 'org.postgresql:postgresql'
 }
 dependencyManagement {
     imports {
@@ -63,5 +62,5 @@ dependencies {
     // -  N E O C O M
     deploy 'org.dimensinfin:CoreBase.core:3.2.0'
     deploy 'org.dimensinfin:ESI.SwaggerApi:4.0.1'
-    deploy 'org.dimensinfin:NeoCom.DataManagement:0.16.0'
+    deploy 'org.dimensinfin:NeoCom.DataManagement:0.16.1'
 }

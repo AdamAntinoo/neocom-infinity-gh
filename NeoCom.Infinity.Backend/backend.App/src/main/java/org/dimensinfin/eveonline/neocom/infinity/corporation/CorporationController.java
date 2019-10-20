@@ -32,11 +32,11 @@ public class CorporationController extends NeoComController {
 		this.neoComAuthenticationProvider = neoComAuthenticationProvider;
 	}
 
-	@GetMapping(path = "/corporation/{corporationId}",
+	@GetMapping(path = "/corporations/{corporationId}",
 			consumes = "application/json",
 			produces = "application/json")
 	public ResponseEntity<CorporationDataResponse> getCorporationData( @PathVariable final Integer corporationId ) {
-		logger.info( ">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/neocom/corporation/{}",
+		logger.info( ">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/neocom/corporations/{}",
 				corporationId );
 		// Check corporation identifier access is authorized.
 		try {
