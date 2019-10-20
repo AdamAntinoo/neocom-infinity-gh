@@ -1,7 +1,16 @@
 {
+    "jsonClass": "Pilot",
     "pilotId": 92223647,
     "corporationId": 98384726,
     "url4Icon": "http://image.eveonline.com/character/92223647_256.jpg",
+    "birthday": "2012-07-05T21:53:15.000Z",
+    "raceId": 2,
+    "race": {
+        "alliance_id": 500002,
+        "description": "Once a thriving tribal civilization, the Minmatar were enslaved by the Amarr Empire for more than 700 years until a massive rebellion freed most, but not all, of those held in servitude. The Minmatar people today are resilient, ingenious, and hard-working. Many of them believe that democracy, though it has served them well for a long time, can never restore what was taken from them so long ago. For this reason they have formed a government truly reflective of their tribal roots. They will forever resent the Amarrians, and yearn for the days before the Empire's accursed ships ever reached their home skies.",
+        "name": "Minmatar",
+        "race_id": 2
+    },
     "ancestryId": 22,
     "ancestry": {
         "bloodline_id": 4,
@@ -11,7 +20,6 @@
         "name": "Workers",
         "short_description": "People of the fields, mines and factories."
     },
-    "birthday": "2012-07-05T21:53:15.000Z",
     "bloodlineId": 4,
     "bloodline": {
         "bloodline_id": 4,
@@ -29,12 +37,5 @@
     "description": "",
     "gender": "FEMALE",
     "name": "Beth Ripley",
-    "raceId": 2,
-    "race": {
-        "alliance_id": 500002,
-        "description": "Once a thriving tribal civilization, the Minmatar were enslaved by the Amarr Empire for more than 700 years until a massive rebellion freed most, but not all, of those held in servitude. The Minmatar people today are resilient, ingenious, and hard-working. Many of them believe that democracy, though it has served them well for a long time, can never restore what was taken from them so long ago. For this reason they have formed a government truly reflective of their tribal roots. They will forever resent the Amarrians, and yearn for the days before the Empire's accursed ships ever reached their home skies.",
-        "name": "Minmatar",
-        "race_id": 2
-    },
     "securityStatus": 0
 }

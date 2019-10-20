@@ -5,12 +5,14 @@ import java.util.Map;
 
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.NeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.SupportSteps;
 import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.ConverterContainer;
 import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.ResponseType;
+import org.dimensinfin.eveonline.neocom.infinity.pilot.client.v1.PilotDataResponse;
 
 import cucumber.api.java.en.Then;
 
@@ -39,26 +41,31 @@ public class NIB04Contracts extends SupportSteps {
 	@Then("the {string} has the next contents")
 	public void the_has_the_next_contents( final String responseTypeName, final List<Map<String, String>> dataTable ) {
 		final ResponseType responseType = ResponseType.from( responseTypeName );
+		final Map<String, String> row = dataTable.get( 0 );
 		switch (responseType) {
-			case VALIDATE_AUTHORIZATION_TOKEN_ENDPOINT_NAME:
-				final Map<String, String> row = dataTable.get( 0 );
-				final ValidateAuthorizationTokenResponse response = this.neocomWorld.getValidateAuthorizationTokenResponse();
-				Assert.assertEquals( row.get( RESPONSE_TYPE ), response.getResponseType() );
-				Assert.assertEquals( row.get( JWT_TOKEN ), response.getJwtToken() );
-				Assert.assertEquals( row.get( CREDENTIAL ), response.getCredential().getJsonClass() );
+			case VALIDATE_AUTHORIZATION_TOKEN_RESPONSE:
+				final ValidateAuthorizationTokenResponse responseValidation = this.neocomWorld.getValidateAuthorizationTokenResponse();
+				Assert.assertEquals( row.get( RESPONSE_TYPE ), responseValidation.getResponseType() );
+				Assert.assertEquals( row.get( JWT_TOKEN ), responseValidation.getJwtToken() );
+				Assert.assertEquals( row.get( CREDENTIAL ), responseValidation.getCredential().getJsonClass() );
 				Assert.assertEquals( Integer.valueOf( row.get( ACCOUNT_ID ) ).intValue(),
-						response.getCredential().getAccountId() );
+						responseValidation.getCredential().getAccountId() );
 				Assert.assertEquals( Integer.valueOf( row.get( CORPORATION_ID ) ).intValue(),
-						response.getCredential().getCorporationId() );
-				Assert.assertEquals( row.get( ACCOUNT_NAME ), response.getCredential().getAccountName() );
-				Assert.assertEquals( row.get( DATA_SOURCE ), response.getCredential().getDataSource() );
+						responseValidation.getCredential().getCorporationId() );
+				Assert.assertEquals( row.get( ACCOUNT_NAME ), responseValidation.getCredential().getAccountName() );
+				Assert.assertEquals( row.get( DATA_SOURCE ), responseValidation.getCredential().getDataSource() );
 				Assert.assertEquals( Integer.valueOf( row.get( ASSETS_COUNT ) ).intValue(),
-						response.getCredential().getAssetsCount() );
+						responseValidation.getCredential().getAssetsCount() );
 				Assert.assertEquals( Double.valueOf( row.get( WALLET_BALANCE ) ).doubleValue(),
-						response.getCredential().getWalletBalance(), 1.0 );
+						responseValidation.getCredential().getWalletBalance(), 1.0 );
 				Assert.assertEquals( Double.valueOf( row.get( MINING_RESOURCES_ESTIMATED_VALUE ) ).doubleValue(),
-						response.getCredential().getMiningResourcesEstimatedValue(), 1.0 );
+						responseValidation.getCredential().getMiningResourcesEstimatedValue(), 1.0 );
 				Assert.assertNull( row.get( RACE_NAME ) );
+				break;
+			case PILOT_PUBLIC_DATA_RESPONSE:
+				final ResponseEntity<Pilot> responsePilot = this.neocomWorld
+						.getPilotDataResponse();
+				Assert.assertEquals( row.get( RESPONSE_TYPE ), responseValidation.getResponseType() );
 				break;
 		}
 	}

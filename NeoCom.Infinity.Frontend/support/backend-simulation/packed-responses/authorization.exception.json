@@ -1,0 +1,7 @@
+{
+    "httpStatus": 403,
+    "httpStatusName": "FORBIDDEN",
+    "message": "The access to the pilot data is not authorized to the requester credential.",
+    "sourceClass": "PilotController",
+    "sourceMethod": "getPilotData"
+}

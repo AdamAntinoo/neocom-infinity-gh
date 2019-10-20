@@ -20,6 +20,7 @@ public class NeoComWorld {
 	private String jwtAuthorizationToken;
 	private ResponseEntity<CorporationDataResponse> corporationDataResponse;
 	private ResponseEntity<PilotDataResponse> pilotDataResponse;
+	private Pilot pilotResponse;
 
 	public int getHttpStatusCodeValue() {
 		return httpStatusCodeValue;
