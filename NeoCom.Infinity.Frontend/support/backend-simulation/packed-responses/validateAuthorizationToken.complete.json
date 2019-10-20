@@ -5,6 +5,7 @@
         "jsonClass": "Credential",
         "uniqueId": "tranquility/93813310",
         "accountId": 93813310,
+        "corporationId": 98384726,
         "accountName": "Testing Character Account",
         "dataSource": "tranquility",
         "assetsCount": 12,

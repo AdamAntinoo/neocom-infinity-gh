@@ -8,12 +8,12 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import org.springframework.boot.jackson.JsonComponent;
 
-import org.dimensinfin.eveonline.neocom.infinity.core.NeoComSBException;
+import org.dimensinfin.eveonline.neocom.infinity.core.NeoComAuthorizationException;
 
 @JsonComponent
-public class NeoComSBExceptionSerializer extends JsonSerializer<NeoComSBException> {
+public class NeoComAuthorizationExceptionSerializer extends JsonSerializer<NeoComAuthorizationException> {
 	@Override
-	public void serialize( final NeoComSBException value, final JsonGenerator jgen, final SerializerProvider provider )
+	public void serialize( final NeoComAuthorizationException value, final JsonGenerator jgen, final SerializerProvider provider )
 			throws IOException, JsonProcessingException {
 		jgen.writeStartObject();
 

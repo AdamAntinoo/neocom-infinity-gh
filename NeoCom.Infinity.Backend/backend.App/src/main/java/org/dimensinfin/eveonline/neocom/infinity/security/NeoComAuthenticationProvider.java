@@ -13,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import org.dimensinfin.eveonline.neocom.infinity.core.ErrorInfo;
+import org.dimensinfin.eveonline.neocom.infinity.core.NeoComAuthorizationException;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComSBException;
 
 @Component
@@ -34,7 +35,7 @@ public class NeoComAuthenticationProvider implements AuthenticationProvider {
 		final String payloadBase64 = (String) authentication.getPrincipal();
 		final String payloadString = new String( Base64.decodeBase64( payloadBase64.getBytes() ) );
 		final JwtPayload payload = jsonMapper.readValue( payloadString, JwtPayload.class );
-		if (null == payload) throw new NeoComSBException( ErrorInfo.CORPORATION_ID_NOT_AUTHORIZED );
+		if (null == payload) throw new NeoComAuthorizationException( ErrorInfo.CORPORATION_ID_NOT_AUTHORIZED );
 		return payload.getCorporationId();
 	}
 
