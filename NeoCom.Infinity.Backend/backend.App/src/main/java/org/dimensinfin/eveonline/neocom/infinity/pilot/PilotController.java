@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.dimensinfin.eveonline.neocom.domain.Pilot;
 import org.dimensinfin.eveonline.neocom.infinity.core.ErrorInfo;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComAuthorizationException;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComController;
-import org.dimensinfin.eveonline.neocom.infinity.pilot.client.v1.PilotDataResponse;
 import org.dimensinfin.eveonline.neocom.infinity.security.NeoComAuthenticationProvider;
 
 @RestController
@@ -31,7 +31,7 @@ public class PilotController extends NeoComController {
 	@GetMapping(path = "/pilots/{pilotId}",
 			consumes = "application/json",
 			produces = "application/json")
-	public ResponseEntity<PilotDataResponse> getPilotData( @PathVariable final Integer pilotId ) {
+	public ResponseEntity<Pilot> getPilotData( @PathVariable final Integer pilotId ) {
 		logger.info( ">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/neocom/pilots/{}", pilotId );
 		final Integer authorizedPilotId = this.neoComAuthenticationProvider.getAuthenticatedPilot();
 		if (authorizedPilotId.intValue() != pilotId.intValue())

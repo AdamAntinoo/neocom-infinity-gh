@@ -8,18 +8,14 @@ import org.springframework.stereotype.Service;
 import org.dimensinfin.eveonline.neocom.domain.Pilot;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataAdapterWrapper;
-import org.dimensinfin.eveonline.neocom.infinity.pilot.converter.GetCharactersCharacterId2PilotConverter;
 
 @Service
 public class PilotService {
 	private ESIDataAdapterWrapper esiDataAdapter;
-	private GetCharactersCharacterId2PilotConverter pilotDataConverter;
 
 	@Autowired
-	public PilotService( final ESIDataAdapterWrapper esiDataAdapter,
-	                     final GetCharactersCharacterId2PilotConverter pilotDataConverter ) {
+	public PilotService( final ESIDataAdapterWrapper esiDataAdapter ) {
 		this.esiDataAdapter = esiDataAdapter;
-		this.pilotDataConverter = pilotDataConverter;
 	}
 
 	public ResponseEntity<Pilot> getPilotData( final int pilotId ) {

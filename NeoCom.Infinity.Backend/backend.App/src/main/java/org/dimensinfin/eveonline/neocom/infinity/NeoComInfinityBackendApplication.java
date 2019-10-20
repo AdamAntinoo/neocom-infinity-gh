@@ -1,5 +1,6 @@
 package org.dimensinfin.eveonline.neocom.infinity;
 
+import com.fasterxml.jackson.datatype.joda.JodaModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -20,8 +21,14 @@ public class NeoComInfinityBackendApplication {
 		SpringApplication.run( NeoComInfinityBackendApplication.class, args );
 		logger.info( "<< [NeoComInfinityBackendApplication.main]" );
 	}
+
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
+	}
+
+	@Bean
+	public JodaModule jodaModule() {
+		return new JodaModule();
 	}
 }

@@ -4,13 +4,12 @@ import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 
+import org.dimensinfin.eveonline.neocom.domain.Pilot;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.corporation.client.v1.CorporationDataResponse;
-import org.dimensinfin.eveonline.neocom.infinity.pilot.client.v1.PilotDataResponse;
 
 public class NeoComWorld {
-	private ResponseEntity responseEntity;
 	private int httpStatusCodeValue;
 
 	private ValidateAuthorizationTokenRequest validateAuthorizationTokenRequest;
@@ -19,8 +18,8 @@ public class NeoComWorld {
 	private Optional<Integer> pilotIdentifier = Optional.empty();
 	private String jwtAuthorizationToken;
 	private ResponseEntity<CorporationDataResponse> corporationDataResponse;
-	private ResponseEntity<PilotDataResponse> pilotDataResponse;
-	private Pilot pilotResponse;
+	private ResponseEntity<Pilot> pilotResponse;
+	private Pilot pilot;
 
 	public int getHttpStatusCodeValue() {
 		return httpStatusCodeValue;
@@ -28,17 +27,6 @@ public class NeoComWorld {
 
 	public NeoComWorld setHttpStatusCodeValue( final int httpStatusCodeValue ) {
 		this.httpStatusCodeValue = httpStatusCodeValue;
-		return this;
-	}
-
-	@Deprecated
-	public ResponseEntity getResponseEntity() {
-		return responseEntity;
-	}
-
-	@Deprecated
-	public NeoComWorld setResponseEntity( final ResponseEntity responseEntity ) {
-		this.responseEntity = responseEntity;
 		return this;
 	}
 
@@ -52,7 +40,7 @@ public class NeoComWorld {
 	}
 
 	public ValidateAuthorizationTokenResponse getValidateAuthorizationTokenResponse() {
-		return validateAuthorizationTokenResponse;
+		return this.validateAuthorizationTokenResponse;
 	}
 
 	public NeoComWorld setValidateAuthorizationTokenResponse( final ValidateAuthorizationTokenResponse validateAuthorizationTokenResponse ) {
@@ -97,12 +85,21 @@ public class NeoComWorld {
 		return this;
 	}
 
-	public ResponseEntity<PilotDataResponse> getPilotDataResponse() {
-		return this.pilotDataResponse;
+	public ResponseEntity<Pilot> getPilotResponse() {
+		return pilotResponse;
 	}
 
-	public NeoComWorld setPilotDataResponse( final ResponseEntity<PilotDataResponse> pilotDataResponse ) {
-		this.pilotDataResponse = pilotDataResponse;
+	public NeoComWorld setPilotResponse( final ResponseEntity<Pilot> pilotResponse ) {
+		this.pilotResponse = pilotResponse;
+		return this;
+	}
+
+	public Pilot getPilot() {
+		return pilot;
+	}
+
+	public NeoComWorld setPilot( final Pilot pilot ) {
+		this.pilot = pilot;
 		return this;
 	}
 }

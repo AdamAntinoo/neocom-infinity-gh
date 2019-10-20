@@ -5,7 +5,8 @@ import java.util.Arrays;
 import org.apache.commons.lang3.NotImplementedException;
 
 public enum ResponseType {
-	VALIDATE_AUTHORIZATION_TOKEN_ENDPOINT_NAME( "Validate Authorization Token Response" );
+	VALIDATE_AUTHORIZATION_TOKEN_RESPONSE( "Validate Authorization Token Response" ),
+	PILOT_PUBLIC_DATA_RESPONSE( "Pilot Response" );
 
 	public static ResponseType from( final String code ) {
 		return Arrays.stream( ResponseType.values() )

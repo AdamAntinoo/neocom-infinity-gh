@@ -1,8 +1,8 @@
 package org.dimensinfin.eveonline.neocom.infinity.backend.support;
 
+import org.dimensinfin.eveonline.neocom.domain.Pilot;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.corporation.client.v1.CorporationDataResponse;
-import org.dimensinfin.eveonline.neocom.infinity.pilot.client.v1.PilotDataResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -18,13 +18,12 @@ public interface NeoComApiv1 {
 	                                                                     @Query("code") String code,
 	                                                                     @Query("state") String state,
 	                                                                     @Query("datasource") String datasource );
-
-	@GET("/api/v1/neocom/corporation/{corporationId}")
+	@GET("/api/v1/neocom/corporations/{corporationId}")
 	Call<CorporationDataResponse> getCorporationData( @Header("Content-Type") String contentType,
 	                                                  @Header ("Authorization")String authorization,
 	                                                  @Path("corporationId") Integer corporationId );
 	@GET("/api/v1/neocom/pilots/{pilotId}")
-	Call<PilotDataResponse> getPilotData( @Header("Content-Type") String contentType,
-	                                      @Header ("Authorization")String authorization,
-	                                      @Path("pilotId") Integer pilotId );
+	Call<Pilot> getPilotData( @Header("Content-Type") String contentType,
+	                          @Header ("Authorization")String authorization,
+	                          @Path("pilotId") Integer pilotId );
 }

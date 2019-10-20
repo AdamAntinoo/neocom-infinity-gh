@@ -1,7 +1,5 @@
 // - P R O D U C T   V E R S I O N S
 ext {
-//    springBootVersion = '2.1.8.RELEASE'
-//    springCloudVersion = '2.1.2.RELEASE'
     jodaTimeVersion = '2.3'
     loggerVersion = '1.7.26'
     retrofitVersion = '2.5.0'
@@ -39,6 +37,7 @@ dependencies {
 }
 // - CORE
 dependencies {
+    testImplementation "com.fasterxml.jackson.datatype:jackson-datatype-joda:$jacksonVersion"
     testImplementation 'org.apache.commons:commons-lang3:3.9'
     testImplementation 'com.squareup.okhttp3:okhttp:3.12.0'
     testImplementation "com.squareup.retrofit2:retrofit:$retrofitVersion" // OAuth2 authentication

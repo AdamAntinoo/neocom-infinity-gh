@@ -9,6 +9,7 @@ import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
+import org.dimensinfin.eveonline.neocom.domain.Pilot;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.NeoComWorld;
@@ -20,7 +21,6 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.ConverterC
 import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.CucumberTableConverter;
 import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.RequestType;
 import org.dimensinfin.eveonline.neocom.infinity.corporation.client.v1.CorporationDataResponse;
-import org.dimensinfin.eveonline.neocom.infinity.pilot.client.v1.PilotDataResponse;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -112,13 +112,14 @@ public class NIBCommonSteps extends SupportSteps {
 					return corporationDataResponse;
 				case GET_PILOT_ENDPOINT_NAME:
 					Assert.assertTrue( this.neocomWorld.getPilotIdentifier().isPresent() );
-					final ResponseEntity<PilotDataResponse> pilotDataResponse =
+					final ResponseEntity<Pilot> pilotResponse =
 							this.pilotFeignClient.getPilotData(
 									this.neocomWorld.getPilotIdentifier().get(),
 									this.neocomWorld.getJwtAuthorizationToken()
 							);
-					this.neocomWorld.setPilotDataResponse( pilotDataResponse );
-					return pilotDataResponse;
+					this.neocomWorld.setPilotResponse( pilotResponse );
+					this.neocomWorld.setPilot( pilotResponse.getBody() );
+					return pilotResponse;
 				default:
 					throw new NotImplementedException( "Request type not implemented." );
 			}
