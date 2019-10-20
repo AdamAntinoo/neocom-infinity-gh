@@ -4,9 +4,9 @@ import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 
-import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.client.v1.ValidateAuthorizationTokenRequest;
-import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.client.v1.ValidateAuthorizationTokenResponse;
-import org.dimensinfin.eveonline.neocom.infinity.corporation.rest.client.v1.CorporationDataResponse;
+import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
+import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.corporation.client.v1.CorporationDataResponse;
 import org.dimensinfin.eveonline.neocom.infinity.pilot.client.v1.PilotDataResponse;
 
 public class NeoComWorld {

@@ -6,7 +6,7 @@ import java.util.Map;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.client.v1.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.NeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.SupportSteps;
 import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.ConverterContainer;

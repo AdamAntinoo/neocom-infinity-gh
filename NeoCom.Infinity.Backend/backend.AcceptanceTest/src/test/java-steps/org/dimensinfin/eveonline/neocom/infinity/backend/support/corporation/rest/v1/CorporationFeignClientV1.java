@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.NeoComApiv1;
-import org.dimensinfin.eveonline.neocom.infinity.corporation.rest.client.v1.CorporationDataResponse;
+import org.dimensinfin.eveonline.neocom.infinity.corporation.client.v1.CorporationDataResponse;
 
 import retrofit2.Call;
 import retrofit2.Response;

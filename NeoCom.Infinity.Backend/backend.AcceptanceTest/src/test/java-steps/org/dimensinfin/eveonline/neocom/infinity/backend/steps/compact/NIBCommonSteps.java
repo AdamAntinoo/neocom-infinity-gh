@@ -9,8 +9,8 @@ import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
-import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.client.v1.ValidateAuthorizationTokenRequest;
-import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.client.v1.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
+import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.NeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.SupportSteps;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.authorization.rest.v1.AuthorizationFeignClientV1;
@@ -19,7 +19,7 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.support.pilot.rest.v1.P
 import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.ConverterContainer;
 import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.CucumberTableConverter;
 import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.RequestType;
-import org.dimensinfin.eveonline.neocom.infinity.corporation.rest.client.v1.CorporationDataResponse;
+import org.dimensinfin.eveonline.neocom.infinity.corporation.client.v1.CorporationDataResponse;
 import org.dimensinfin.eveonline.neocom.infinity.pilot.client.v1.PilotDataResponse;
 
 import cucumber.api.java.en.Given;
