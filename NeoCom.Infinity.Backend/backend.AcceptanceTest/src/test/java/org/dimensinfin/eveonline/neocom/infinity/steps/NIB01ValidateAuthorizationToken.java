@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.steps.compact;
+package org.dimensinfin.eveonline.neocom.infinity.steps;
 
 import java.io.IOException;
 import java.util.List;

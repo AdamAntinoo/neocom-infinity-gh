@@ -4,7 +4,7 @@ Feature: [NIB03] Get the selected Pilot public data
   Retrieve the Pilot public accessible data. This should report the first level of information for game characters.
 
   @NIB03.01 @Pilot
-  Scenario: [NIB02.03] Search for the requested Pilot and return a well formed Pilot data response.
+  Scenario: [NIB03.01] Search for the requested Pilot and return a well formed Pilot data response.
     Given a request to the "Get Pilot Data" endpoint with the next data
       | pilotId  |
       | 93813310 |

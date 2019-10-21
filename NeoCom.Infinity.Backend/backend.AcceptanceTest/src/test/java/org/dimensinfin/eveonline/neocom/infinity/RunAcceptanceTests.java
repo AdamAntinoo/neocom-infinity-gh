@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.test;
+package org.dimensinfin.eveonline.neocom.infinity;
 
 import org.junit.runner.RunWith;
 
@@ -10,5 +10,5 @@ import cucumber.api.junit.Cucumber;
 		features = { "src/test/resources/features" },
 		glue = { "org.dimensinfin.eveonline.neocom.infinity.backend.steps" },
 		plugin = { "pretty", "json:target/cucumber_report.json" },
-		tags = { "not @skip_scenario", "not @front", "not @duplication", "@NIB02.03" })
+		tags = { "not @skip_scenario", "not @front", "not @duplication", "@NIB03.01" })
 public class RunAcceptanceTests {}

@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.steps.compact;
+package org.dimensinfin.eveonline.neocom.infinity.steps;
 
 import org.springframework.beans.factory.annotation.Autowired;
 

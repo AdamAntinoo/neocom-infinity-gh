@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.steps.compact;
+package org.dimensinfin.eveonline.neocom.infinity.steps;
 
 import java.util.List;
 import java.util.Map;
