@@ -6,8 +6,9 @@ import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
-import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotResponse;
 import org.dimensinfin.eveonline.neocom.infinity.corporation.client.v1.CorporationDataResponse;
+import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.CorporationResponse;
+import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotResponse;
 
 public class NeoComWorld {
 	private int httpStatusCodeValue;
@@ -20,6 +21,7 @@ public class NeoComWorld {
 	private ResponseEntity<CorporationDataResponse> corporationDataResponse;
 	private ResponseEntity<PilotResponse> pilotResponseEntity;
 	private PilotResponse pilotResponse;
+	private CorporationResponse corporationResponse;
 
 	public int getHttpStatusCodeValue() {
 		return httpStatusCodeValue;
@@ -100,6 +102,15 @@ public class NeoComWorld {
 
 	public NeoComWorld setPilotResponse( final PilotResponse pilotResponse ) {
 		this.pilotResponse = pilotResponse;
+		return this;
+	}
+
+	public CorporationResponse getCorporationResponse() {
+		return corporationResponse;
+	}
+
+	public NeoComWorld setCorporationResponse( final CorporationResponse corporationResponse ) {
+		this.corporationResponse = corporationResponse;
 		return this;
 	}
 }

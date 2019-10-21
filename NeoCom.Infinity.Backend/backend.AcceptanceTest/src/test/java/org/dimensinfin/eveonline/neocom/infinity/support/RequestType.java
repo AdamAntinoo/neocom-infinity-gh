@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.test.support;
+package org.dimensinfin.eveonline.neocom.infinity.support;
 
 import java.util.Arrays;
 

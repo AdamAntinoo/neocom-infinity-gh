@@ -1,33 +1,33 @@
-package org.dimensinfin.eveonline.neocom.infinity.core;
+package org.dimensinfin.eveonline.neocom.infinity.core.exceptions;
 
 import org.springframework.http.HttpStatus;
 
-public class NeoComSBException extends RuntimeException {
+public class NeoComAuthorizationException extends RuntimeException {
 	protected String sourceClass;
 	protected String sourceMethod;
 	protected Exception rootException;
 	protected String rootMessage;
 	protected ErrorInfo errorInfo;
 
-	public NeoComSBException() {
+	public NeoComAuthorizationException() {
 		final StackTraceElement[] stacktrace = Thread.currentThread().getStackTrace();
 		final StackTraceElement stackElement = stacktrace[3]; // This is to check if we are using Dalvik
 		this.sourceMethod = stackElement.getMethodName();
 		this.sourceClass = stackElement.getClassName();
 	}
 
-	public NeoComSBException( final ErrorInfo errorInfo ) {
+	public NeoComAuthorizationException( final ErrorInfo errorInfo ) {
 		this();
 		this.errorInfo = errorInfo;
 	}
 
-	public NeoComSBException( final Exception rootException ) {
+	public NeoComAuthorizationException( final Exception rootException ) {
 		this();
 		this.errorInfo = ErrorInfo.NOT_INTERCEPTED_EXCEPTION;
 		this.rootException = rootException;
 	}
 
-	public NeoComSBException( final ErrorInfo errorInfo, final Exception rootException ) {
+	public NeoComAuthorizationException( final ErrorInfo errorInfo, final Exception rootException ) {
 		this(errorInfo);
 		this.rootException = rootException;
 	}

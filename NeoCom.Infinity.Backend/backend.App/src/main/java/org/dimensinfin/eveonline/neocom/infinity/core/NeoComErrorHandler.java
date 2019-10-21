@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComAuthorizationException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComSBException;
+
 @RestControllerAdvice
 public class NeoComErrorHandler {
 	protected static Logger logger = LoggerFactory.getLogger( NeoComErrorHandler.class );

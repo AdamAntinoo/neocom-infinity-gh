@@ -32,7 +32,7 @@ stop() {
   echo "Stopping api simulator..."
   SIMULATION_NAME='esioauth-simulation'
   APISIMULATOR_SIMULATION="src/test/resources/$SIMULATION_NAME"
-  $APISIMULATOR_COMMAND stop $APISIMULATOR_SIMULATION &
+  $APISIMULATOR_COMMAND stop $APISIMULATOR_SIMULATION
 }
 
 case $COMMAND in

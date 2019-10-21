@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.dimensinfin.eveonline.neocom.infinity.core.ErrorInfo;
-import org.dimensinfin.eveonline.neocom.infinity.core.NeoComAuthorizationException;
+import org.dimensinfin.eveonline.neocom.domain.Corporation;
+import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.ErrorInfo;
+import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComAuthorizationException;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComController;
-import org.dimensinfin.eveonline.neocom.infinity.corporation.client.v1.CorporationDataResponse;
 import org.dimensinfin.eveonline.neocom.infinity.security.NeoComAuthenticationProvider;
 
 @RestController
@@ -33,7 +33,7 @@ public class CorporationController extends NeoComController {
 	@GetMapping(path = "/corporations/{corporationId}",
 			consumes = "application/json",
 			produces = "application/json")
-	public ResponseEntity<CorporationDataResponse> getCorporationData( @PathVariable final Integer corporationId ) {
+	public ResponseEntity<Corporation> getCorporationData( @PathVariable final Integer corporationId ) {
 		logger.info( ">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/neocom/corporations/{}",
 				corporationId );
 		// Check corporation identifier access is authorized.

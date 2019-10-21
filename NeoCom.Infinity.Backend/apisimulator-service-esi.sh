@@ -26,7 +26,8 @@ stop() {
   cd ${WORKING_DIRECTORY}
   echo "Stopping api simulator..."
   APISIMULATOR_SIMULATION="${WORKING_DIRECTORY}/src/test/resources/$SIMULATION_NAME"
-  $APISIMULATOR_COMMAND stop "src/test/resources/$SIMULATION_NAME"&
+  $APISIMULATOR_COMMAND stop "src/test/resources/$SIMULATION_NAME"
+#  rm -rf *.log $APISIMULATOR_SIMULATION
 }
 
 case $COMMAND in
