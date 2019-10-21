@@ -2,6 +2,7 @@ package org.dimensinfin.eveonline.neocom.infinity.backend.support;
 
 import org.dimensinfin.eveonline.neocom.domain.Pilot;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.support.pilot.rest.v1.PilotResponse;
 import org.dimensinfin.eveonline.neocom.infinity.corporation.client.v1.CorporationDataResponse;
 
 import retrofit2.Call;
@@ -23,7 +24,7 @@ public interface NeoComApiv1 {
 	                                                  @Header ("Authorization")String authorization,
 	                                                  @Path("corporationId") Integer corporationId );
 	@GET("/api/v1/neocom/pilots/{pilotId}")
-	Call<Pilot> getPilotData( @Header("Content-Type") String contentType,
-	                          @Header ("Authorization")String authorization,
-	                          @Path("pilotId") Integer pilotId );
+	Call<PilotResponse> getPilotData( @Header("Content-Type") String contentType,
+	                                  @Header ("Authorization")String authorization,
+	                                  @Path("pilotId") Integer pilotId );
 }

@@ -10,6 +10,7 @@ import org.dimensinfin.eveonline.neocom.domain.Pilot;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.NeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.SupportSteps;
+import org.dimensinfin.eveonline.neocom.infinity.backend.support.pilot.rest.v1.PilotResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.ConverterContainer;
 import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.ResponseType;
 
@@ -71,10 +72,10 @@ public class NIB04Contracts extends SupportSteps {
 				Assert.assertNull( row.get( RACE_NAME ) );
 				break;
 			case PILOT_PUBLIC_DATA_RESPONSE:
-				final Pilot pilot = this.neocomWorld.getPilot();
+				final PilotResponse pilot = this.neocomWorld.getPilotResponse();
 				Assert.assertEquals( row.get( JSON_CLASS ), pilot.getJsonClass());
 				Assert.assertEquals( Integer.valueOf( row.get( PILOT_ID ) ).intValue(),
-						pilot.getPilotId() );
+						pilot.getPilotId().intValue() );
 				Assert.assertEquals( row.get( URL4ICON ), pilot.getUrl4Icon() );
 				Assert.assertEquals( row.get( ANCESTRY_NAME ), pilot.getAncestry().getName() );
 				Assert.assertEquals( row.get( BLOODLINE_NAME ), pilot.getBloodline().getName() );

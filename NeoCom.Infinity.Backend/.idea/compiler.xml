@@ -2,10 +2,6 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
-      <module name="NeoCom.Infinity.Backend.backend.AcceptanceTest.main" target="11" />
-      <module name="NeoCom.Infinity.Backend.backend.AcceptanceTest.test" target="11" />
-      <module name="NeoCom.Infinity.Backend.backend.App.main" target="1.8" />
-      <module name="NeoCom.Infinity.Backend.backend.App.test" target="1.8" />
       <module name="NeoCom.Infinity.Backend.NeoCom.DataManagement.main" target="1.8" />
       <module name="NeoCom.Infinity.Backend.NeoCom.DataManagement.test" target="1.8" />
       <module name="org.dimensinfin.NeoCom.Infinity.Backend.NeoCom.DataManagement.main" target="1.8" />

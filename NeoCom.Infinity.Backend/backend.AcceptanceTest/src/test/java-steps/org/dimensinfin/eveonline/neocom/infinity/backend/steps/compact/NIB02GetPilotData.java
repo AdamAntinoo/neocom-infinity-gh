@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.dimensinfin.eveonline.neocom.domain.Pilot;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.NeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.SupportSteps;
+import org.dimensinfin.eveonline.neocom.infinity.backend.support.pilot.rest.v1.PilotResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.ConverterContainer;
 
 import cucumber.api.java.en.Then;
@@ -29,10 +30,9 @@ public class NIB02GetPilotData extends SupportSteps {
 	@Then("the response has a pilot block with the next data")
 	public void the_response_has_a_pilot_block_with_the_next_data( final List<Map<String, String>> dataTable ) {
 		final Map<String, String> row = dataTable.get( 0 );
-		final Pilot pilot = this.neocomWorld.getPilotResponse().getBody();
-		Assert.assertEquals( Integer.valueOf( row.get( PILOT_ID ) ).intValue(), pilot.getPilotId() );
-		// TODO - Fix the api bug because the corporation is is not available.
-		Assert.assertEquals( Integer.valueOf( row.get( CORPORATION_ID ) ).intValue(), pilot.getPilotId() );
+		final PilotResponse pilot = this.neocomWorld.getPilotResponseEntity().getBody();
+		Assert.assertEquals( Integer.valueOf( row.get( PILOT_ID ) ).intValue(), pilot.getPilotId().intValue() );
+		Assert.assertEquals( Integer.valueOf( row.get( CORPORATION_ID ) ).intValue(), pilot.getPilotId().intValue() );
 		Assert.assertEquals( row.get( NAME ), pilot.getName() );
 	}
 }

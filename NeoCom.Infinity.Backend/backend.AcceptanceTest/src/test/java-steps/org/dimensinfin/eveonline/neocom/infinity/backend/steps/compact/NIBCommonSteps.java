@@ -17,6 +17,7 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.support.SupportSteps;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.authorization.rest.v1.AuthorizationFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.corporation.rest.v1.CorporationFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.backend.support.pilot.rest.v1.PilotFeignClientV1;
+import org.dimensinfin.eveonline.neocom.infinity.backend.support.pilot.rest.v1.PilotResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.ConverterContainer;
 import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.CucumberTableConverter;
 import org.dimensinfin.eveonline.neocom.infinity.backend.test.support.RequestType;
@@ -112,14 +113,14 @@ public class NIBCommonSteps extends SupportSteps {
 					return corporationDataResponse;
 				case GET_PILOT_ENDPOINT_NAME:
 					Assert.assertTrue( this.neocomWorld.getPilotIdentifier().isPresent() );
-					final ResponseEntity<Pilot> pilotResponse =
+					final ResponseEntity<PilotResponse> pilotResponseEntity =
 							this.pilotFeignClient.getPilotData(
 									this.neocomWorld.getPilotIdentifier().get(),
 									this.neocomWorld.getJwtAuthorizationToken()
 							);
-					this.neocomWorld.setPilotResponse( pilotResponse );
-					this.neocomWorld.setPilot( pilotResponse.getBody() );
-					return pilotResponse;
+					this.neocomWorld.setPilotResponseEntity( pilotResponseEntity );
+					this.neocomWorld.setPilotResponse( pilotResponseEntity.getBody() );
+					return pilotResponseEntity;
 				default:
 					throw new NotImplementedException( "Request type not implemented." );
 			}

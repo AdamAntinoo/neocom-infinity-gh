@@ -18,7 +18,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 
 @Component
 public class PilotFeignClientV1 {
-	public ResponseEntity<Pilot> getPilotData( final Integer pilotIdentifier,
+	public ResponseEntity<PilotResponse> getPilotData( final Integer pilotIdentifier,
 	                                           final String authorizationToken ) throws IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.registerModule( new JodaModule() );
@@ -27,15 +27,15 @@ public class PilotFeignClientV1 {
 				.addConverterFactory( JacksonConverterFactory.create(mapper) )
 				.build()
 				.create( NeoComApiv1.class );
-		final Call<Pilot> request = serviceGetAccessToken.getPilotData(
+		final Call<PilotResponse> request = serviceGetAccessToken.getPilotData(
 				"application/json",
 				authorizationToken,
 				pilotIdentifier
 		);
-		final Response<Pilot> response = request.execute();
+		final Response<PilotResponse> response = request.execute();
 		if (response.isSuccessful()) {
-			final Pilot pilotResponse = response.body();
-			return new ResponseEntity<Pilot>( pilotResponse, HttpStatus.OK );
+			final PilotResponse body = response.body();
+			return new ResponseEntity<PilotResponse>( body, HttpStatus.OK );
 		} else return new ResponseEntity( HttpStatus.valueOf( response.code() ) );
 	}
 }

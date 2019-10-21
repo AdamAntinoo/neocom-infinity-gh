@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.dimensinfin.eveonline.neocom.domain.Pilot;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.support.pilot.rest.v1.PilotResponse;
 import org.dimensinfin.eveonline.neocom.infinity.corporation.client.v1.CorporationDataResponse;
 
 public class NeoComWorld {
@@ -18,8 +19,8 @@ public class NeoComWorld {
 	private Optional<Integer> pilotIdentifier = Optional.empty();
 	private String jwtAuthorizationToken;
 	private ResponseEntity<CorporationDataResponse> corporationDataResponse;
-	private ResponseEntity<Pilot> pilotResponse;
-	private Pilot pilot;
+	private ResponseEntity<PilotResponse> pilotResponseEntity;
+	private PilotResponse pilotResponse;
 
 	public int getHttpStatusCodeValue() {
 		return httpStatusCodeValue;
@@ -85,21 +86,21 @@ public class NeoComWorld {
 		return this;
 	}
 
-	public ResponseEntity<Pilot> getPilotResponse() {
-		return pilotResponse;
+	public ResponseEntity<PilotResponse> getPilotResponseEntity() {
+		return pilotResponseEntity;
 	}
 
-	public NeoComWorld setPilotResponse( final ResponseEntity<Pilot> pilotResponse ) {
-		this.pilotResponse = pilotResponse;
+	public NeoComWorld setPilotResponseEntity( final ResponseEntity<PilotResponse> pilotResponseEntity ) {
+		this.pilotResponseEntity = pilotResponseEntity;
 		return this;
 	}
 
-	public Pilot getPilot() {
-		return pilot;
+	public PilotResponse getPilotResponse() {
+		return pilotResponse;
 	}
 
-	public NeoComWorld setPilot( final Pilot pilot ) {
-		this.pilot = pilot;
+	public NeoComWorld setPilotResponse( final PilotResponse pilotResponse ) {
+		this.pilotResponse = pilotResponse;
 		return this;
 	}
 }
