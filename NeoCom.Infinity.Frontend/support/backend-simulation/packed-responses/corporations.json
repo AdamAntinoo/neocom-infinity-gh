@@ -55,7 +55,7 @@
             "race_id": 2
         }
     },
-    "alliance_id": 99005338,
+    "allianceId": 99005338,
     "alliance": {
         "creator_corporation_id": 98388312,
         "creator_id": 1597785719,
