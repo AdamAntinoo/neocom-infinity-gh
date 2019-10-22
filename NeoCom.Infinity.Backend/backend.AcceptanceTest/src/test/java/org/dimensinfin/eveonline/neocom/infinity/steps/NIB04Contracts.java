@@ -11,7 +11,7 @@ import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.support.ResponseType;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.CorporationResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotResponse;
-import org.dimensinfin.eveonline.neocom.infinity.test.support.ConverterContainer;
+import org.dimensinfin.eveonline.neocom.infinity.support.ConverterContainer;
 
 import cucumber.api.java.en.Then;
 

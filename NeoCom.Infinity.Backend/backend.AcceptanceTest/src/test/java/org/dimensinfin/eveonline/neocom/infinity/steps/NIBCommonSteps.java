@@ -18,8 +18,8 @@ import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.Cor
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.CorporationResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotResponse;
-import org.dimensinfin.eveonline.neocom.infinity.test.support.ConverterContainer;
-import org.dimensinfin.eveonline.neocom.infinity.test.support.CucumberTableConverter;
+import org.dimensinfin.eveonline.neocom.infinity.support.ConverterContainer;
+import org.dimensinfin.eveonline.neocom.infinity.support.CucumberTableConverter;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;

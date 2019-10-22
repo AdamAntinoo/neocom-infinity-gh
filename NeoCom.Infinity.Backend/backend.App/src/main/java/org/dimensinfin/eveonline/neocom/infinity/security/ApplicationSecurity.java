@@ -9,33 +9,32 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.LOGIN_VERIFICATION_URL;
+import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.SERVER_STATUS_URL;
 
 @Configuration
 @EnableWebSecurity
 public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 	private NeoComAuthenticationProvider neoComAuthenticationProvider;
 	private CredentialDetailsService credentialDetailsService;
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Autowired
 	public ApplicationSecurity( final CredentialDetailsService userDetailsService,
 	                            final NeoComAuthenticationProvider neoComAuthenticationProvider/*,
 	                            final BCryptPasswordEncoder bCryptPasswordEncoder*/ ) {
 		this.neoComAuthenticationProvider = neoComAuthenticationProvider;
-		this.credentialDetailsService = userDetailsService;
-//		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+		this.credentialDetailsService = userDetailsService;//		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}
 
 	@Override
 	protected void configure( HttpSecurity http ) throws Exception {
 		http.cors().and().csrf().disable().authorizeRequests()
 				.antMatchers( HttpMethod.GET, LOGIN_VERIFICATION_URL ).permitAll()
+				.antMatchers( HttpMethod.GET, SERVER_STATUS_URL ).permitAll()
 				.anyRequest().authenticated()
 				.and()
 				.addFilter( new JWTAuthorizationFilter( authenticationManager() ) )

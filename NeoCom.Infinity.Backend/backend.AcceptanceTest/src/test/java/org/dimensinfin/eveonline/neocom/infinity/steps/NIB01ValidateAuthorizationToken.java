@@ -13,7 +13,7 @@ import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
-import org.dimensinfin.eveonline.neocom.infinity.test.support.ConverterContainer;
+import org.dimensinfin.eveonline.neocom.infinity.support.ConverterContainer;
 import org.dimensinfin.eveonline.neocom.infinity.support.RequestType;
 import org.dimensinfin.eveonline.neocom.infinity.security.JwtPayload;
 

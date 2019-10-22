@@ -3,7 +3,7 @@ package org.dimensinfin.eveonline.neocom.infinity.steps;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
-import org.dimensinfin.eveonline.neocom.infinity.test.support.ConverterContainer;
+import org.dimensinfin.eveonline.neocom.infinity.support.ConverterContainer;
 
 import cucumber.api.java.en.Given;
 

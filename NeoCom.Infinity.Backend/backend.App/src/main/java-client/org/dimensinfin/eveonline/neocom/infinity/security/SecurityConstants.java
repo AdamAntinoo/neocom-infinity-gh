@@ -11,4 +11,5 @@ public class SecurityConstants {
 	public static final String TOKEN_PREFIX = "Bearer ";
 	public static final String HEADER_STRING = "Authorization";
 	public static final String LOGIN_VERIFICATION_URL="/api/v1/neocom/validateAuthorizationToken/**";
+	public static final String SERVER_STATUS_URL="/api/v1/neocom/server/**";
 }

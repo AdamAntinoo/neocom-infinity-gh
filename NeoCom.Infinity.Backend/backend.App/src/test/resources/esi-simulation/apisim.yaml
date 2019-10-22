@@ -207,9 +207,9 @@ response:
     - "Content-Type: application/json"
   body: |+
     {
-      "players": 19086,
-      "server_version": "1577071",
-      "start_time": "2019-10-03T11:01:46Z"
+      "players": 25003,
+      "server_version": "1589237",
+      "start_time": "2019-10-22T11:04:50Z"
     }
 
 ---

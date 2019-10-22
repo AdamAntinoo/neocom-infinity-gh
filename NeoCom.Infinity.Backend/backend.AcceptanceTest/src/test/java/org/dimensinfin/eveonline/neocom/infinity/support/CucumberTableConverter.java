@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.test.support;
+package org.dimensinfin.eveonline.neocom.infinity.support;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.convert.converter.Converter;
