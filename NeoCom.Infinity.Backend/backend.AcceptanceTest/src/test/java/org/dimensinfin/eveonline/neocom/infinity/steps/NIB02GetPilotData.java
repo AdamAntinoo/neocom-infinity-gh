@@ -7,7 +7,6 @@ import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
-import org.dimensinfin.eveonline.neocom.infinity.support.SupportSteps;
 import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotResponse;
 import org.dimensinfin.eveonline.neocom.infinity.test.support.ConverterContainer;
 

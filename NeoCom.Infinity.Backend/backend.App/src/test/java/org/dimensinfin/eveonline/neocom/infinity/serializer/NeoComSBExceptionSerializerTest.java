@@ -5,8 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
 import org.junit.Test;
 
-import org.dimensinfin.eveonline.neocom.infinity.core.ErrorInfo;
-import org.dimensinfin.eveonline.neocom.infinity.core.NeoComSBException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.ErrorInfo;
+import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComSBException;
 
 import static org.junit.Assert.assertEquals;
 

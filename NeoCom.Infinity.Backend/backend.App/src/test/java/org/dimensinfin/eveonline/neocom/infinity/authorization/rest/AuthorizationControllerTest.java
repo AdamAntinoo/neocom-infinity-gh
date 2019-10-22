@@ -9,13 +9,13 @@ import org.mockito.Mockito;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import org.dimensinfin.eveonline.neocom.infinity.authorization.AuthorizationService;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.AuthorizationController;
-import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.client.v1.ValidateAuthorizationTokenRequest;
-import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.client.v1.ValidateAuthorizationTokenResponse;
-import org.dimensinfin.eveonline.neocom.infinity.core.NeoComSBException;
+import org.dimensinfin.eveonline.neocom.infinity.authorization.AuthorizationService;
+import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
+import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComSBException;
 
-import static org.dimensinfin.eveonline.neocom.infinity.core.ErrorInfo.AUTHORIZATION_TRANSLATION;
+import static org.dimensinfin.eveonline.neocom.infinity.core.exceptions.ErrorInfo.AUTHORIZATION_TRANSLATION;
 
 public class AuthorizationControllerTest {
 	private AuthorizationService authorizationService;

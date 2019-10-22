@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.eveonline.neocom.domain.Pilot;
-import org.dimensinfin.eveonline.neocom.infinity.core.ErrorInfo;
-import org.dimensinfin.eveonline.neocom.infinity.core.NeoComAuthorizationException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.ErrorInfo;
+import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComAuthorizationException;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComController;
 import org.dimensinfin.eveonline.neocom.infinity.security.NeoComAuthenticationProvider;
 

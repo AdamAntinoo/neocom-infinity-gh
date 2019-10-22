@@ -13,9 +13,8 @@ import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
-import org.dimensinfin.eveonline.neocom.infinity.support.SupportSteps;
 import org.dimensinfin.eveonline.neocom.infinity.test.support.ConverterContainer;
-import org.dimensinfin.eveonline.neocom.infinity.test.support.RequestType;
+import org.dimensinfin.eveonline.neocom.infinity.support.RequestType;
 import org.dimensinfin.eveonline.neocom.infinity.security.JwtPayload;
 
 import cucumber.api.java.en.Given;

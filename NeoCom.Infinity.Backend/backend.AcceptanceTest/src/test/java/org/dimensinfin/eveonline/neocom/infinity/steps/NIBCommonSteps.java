@@ -12,14 +12,13 @@ import org.springframework.http.ResponseEntity;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
-import org.dimensinfin.eveonline.neocom.infinity.support.SupportSteps;
 import org.dimensinfin.eveonline.neocom.infinity.support.authorization.rest.v1.AuthorizationFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.CorporationFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotResponse;
 import org.dimensinfin.eveonline.neocom.infinity.test.support.ConverterContainer;
 import org.dimensinfin.eveonline.neocom.infinity.test.support.CucumberTableConverter;
-import org.dimensinfin.eveonline.neocom.infinity.test.support.RequestType;
+import org.dimensinfin.eveonline.neocom.infinity.support.RequestType;
 import org.dimensinfin.eveonline.neocom.infinity.corporation.client.v1.CorporationDataResponse;
 
 import cucumber.api.java.en.Given;

@@ -3,7 +3,7 @@ package org.dimensinfin.eveonline.neocom.infinity.authorization.rest.dto;
 import org.junit.Assert;
 import org.junit.Test;
 
-import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.client.v1.ValidateAuthorizationTokenRequest;
+import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 
 public class ValidateAuthorizationTokenRequestTest {
 	@Test

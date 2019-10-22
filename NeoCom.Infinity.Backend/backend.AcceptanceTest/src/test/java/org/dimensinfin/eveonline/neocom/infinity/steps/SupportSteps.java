@@ -1,9 +1,10 @@
-package org.dimensinfin.eveonline.neocom.infinity.support;
+package org.dimensinfin.eveonline.neocom.infinity.steps;
 
 import org.apache.commons.lang3.NotImplementedException;
+
+import org.dimensinfin.eveonline.neocom.infinity.support.RequestType;
 import org.dimensinfin.eveonline.neocom.infinity.test.support.ConverterContainer;
 import org.dimensinfin.eveonline.neocom.infinity.test.support.CucumberTableToRequestConverter;
-import org.dimensinfin.eveonline.neocom.infinity.test.support.RequestType;
 
 public class SupportSteps {
 	protected ConverterContainer cucumberTableToRequestConverters;

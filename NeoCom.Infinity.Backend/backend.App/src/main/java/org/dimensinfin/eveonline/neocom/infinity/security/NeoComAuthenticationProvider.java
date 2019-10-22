@@ -12,9 +12,9 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-import org.dimensinfin.eveonline.neocom.infinity.core.ErrorInfo;
-import org.dimensinfin.eveonline.neocom.infinity.core.NeoComAuthorizationException;
-import org.dimensinfin.eveonline.neocom.infinity.core.NeoComSBException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.ErrorInfo;
+import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComAuthorizationException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComSBException;
 
 @Component
 public class NeoComAuthenticationProvider implements AuthenticationProvider {

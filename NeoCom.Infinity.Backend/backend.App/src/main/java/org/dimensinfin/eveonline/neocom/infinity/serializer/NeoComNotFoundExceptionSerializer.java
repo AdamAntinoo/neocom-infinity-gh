@@ -8,22 +8,18 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import org.springframework.boot.jackson.JsonComponent;
 
-import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComSBException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComNotFoundException;
 
 @JsonComponent
-public class NeoComSBExceptionSerializer extends JsonSerializer<NeoComSBException> {
+public class NeoComNotFoundExceptionSerializer extends JsonSerializer<NeoComNotFoundException> {
 	@Override
-	public void serialize( final NeoComSBException value, final JsonGenerator jgen, final SerializerProvider provider )
+	public void serialize( final NeoComNotFoundException value, final JsonGenerator jgen, final SerializerProvider provider )
 			throws IOException, JsonProcessingException {
 		jgen.writeStartObject();
 
 		jgen.writeNumberField("httpStatus", value.getHttpStatus().value());
 		jgen.writeStringField("httpStatusName", value.getHttpStatus().name());
 		jgen.writeStringField("message", value.getMessage());
-		if (null != value.getRootException()) {
-			jgen.writeStringField("exceptionType", value.getRootException().getClass().getSimpleName());
-			jgen.writeStringField("exceptionMessage", value.getRootException().getMessage());
-		}
 		final String classLongName = value.getSourceClass();
 		final String[] nameParts = classLongName.split( "\\." );
 		final String className = nameParts[nameParts.length-1];

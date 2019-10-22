@@ -24,8 +24,8 @@ import org.dimensinfin.eveonline.neocom.infinity.adapter.CredentialRepositoryWra
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataAdapterWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
-import org.dimensinfin.eveonline.neocom.infinity.core.ErrorInfo;
-import org.dimensinfin.eveonline.neocom.infinity.core.NeoComSBException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.ErrorInfo;
+import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComSBException;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComService;
 
 import okhttp3.CertificatePinner;

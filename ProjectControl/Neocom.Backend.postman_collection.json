@@ -107,7 +107,7 @@
 			]
 		},
 		{
-			"name": "BackendMock",
+			"name": "ESIServiceMock",
 			"item": [
 				{
 					"name": "Validate Authorization Token",
@@ -168,7 +168,7 @@
 					"response": []
 				},
 				{
-					"name": "Corporation Data",
+					"name": "GetCAlliancesId",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -177,20 +177,21 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{backendMock}}{{apiv1}}/corporations/123",
+							"raw": "{{esiServiceMock}}/corporations/123/",
 							"host": [
-								"{{backendMock}}{{apiv1}}"
+								"{{esiServiceMock}}"
 							],
 							"path": [
 								"corporations",
-								"123"
+								"123",
+								""
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Pilot Data",
+					"name": "GetCharactersId",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -199,13 +200,14 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{backendMock}}{{apiv1}}/pilots/123",
+							"raw": "{{esiServiceMock}}/characters/123/",
 							"host": [
-								"{{backendMock}}{{apiv1}}"
+								"{{esiServiceMock}}"
 							],
 							"path": [
-								"pilots",
-								"123"
+								"characters",
+								"123",
+								""
 							]
 						}
 					},

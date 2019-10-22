@@ -3,8 +3,8 @@ package org.dimensinfin.eveonline.neocom.infinity.authorization;
 import org.dimensinfin.eveonline.neocom.adapters.ESIDataAdapter;
 import org.dimensinfin.eveonline.neocom.auth.TokenTranslationResponse;
 import org.dimensinfin.eveonline.neocom.auth.VerifyCharacterResponse;
-import org.dimensinfin.eveonline.neocom.infinity.core.ErrorInfo;
-import org.dimensinfin.eveonline.neocom.infinity.core.NeoComSBException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.ErrorInfo;
+import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComSBException;
 
 public class TokenVerification {
 	private String authCode;
