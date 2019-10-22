@@ -6,7 +6,7 @@ export class Credential extends NeoCom {
     private accountId: number;
     private accountName: string;
     private dataSource: string;
-    // private corporationId: number;
+    private corporationId: number;
     private assetsCount: number = 0;
     private walletBalance: number = 0;
     private miningResourcesEstimatedValue: number = 0;
@@ -31,7 +31,7 @@ export class Credential extends NeoCom {
         if (null != this.raceName) return this.raceName;
         else return '-UNDETERMINED-';
     }
-    // public getCorporationId(): number {
-    //     return this.corporationId;
-    // }
+    public getCorporationId(): number {
+        return this.corporationId;
+    }
 }

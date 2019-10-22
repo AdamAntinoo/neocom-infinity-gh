@@ -3,37 +3,37 @@ const express = require('express');
 const path = require('path');
 const compression = require('compression');
 const request = require('request');
+const config = require('config');
 
+// - S E R V E R   O P T I O N S
 const app = express();
 app.use(compression());
 var options = {
-        dotfiles: 'ignore',
-        etag: true,
-        extensions: ['htm', 'html'],
-        index: false,
-        maxAge: '1d',
-        lastModified: true,
-        redirect: false,
-        setHeaders: function(res, path, stat) {
-            res.set('x-timestamp', Date.now())
-            res.set('x-app-name', 'NeoCom.Infinity.Frontend')
-            res.set('Access-Control-Allow-Origin', '*');
-            res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-            res.set('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, DELETE');
-        }
+    dotfiles: 'ignore',
+    etag: true,
+    extensions: ['htm', 'html'],
+    index: false,
+    maxAge: '1d',
+    lastModified: true,
+    redirect: false,
+    setHeaders: function(res, path, stat) {
+        res.set('x-timestamp', Date.now())
+        res.set('x-app-name', 'NeoCom.Infinity.Frontend')
+        res.set('Access-Control-Allow-Origin', '*');
+        res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+        res.set('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, DELETE');
     }
-    // var backendOptions = {
-    //     host: 'neocom.infinity.local',
-    //     port: 6099,
-    //     headers: req.headers
-    // };
-app.locals.appname = "NEOCOM"
-app.locals.version = "v0.16.0POC"
-app.locals.port = 8080
-app.locals.applicationhome = "/dist/NeoCom-Infinity"
-app.locals.backendproxy = "http://neocom.infinity.local:6099"
-app.locals.apppath = "/app"
-app.locals.apipath = "/api"
+};
+// - S E R V E R   C O N F I G U R A T I O N
+app.locals.appname = config.get('settings.appname');
+app.locals.version = config.get('settings.version');
+app.locals.port = process.env.PORT || config.get('settings.port');
+app.locals.applicationhome = config.get('settings.applicationhome');
+app.locals.backendproxy = config.get('settings.backendproxy');
+app.locals.apppath = config.get('settings.apppath');
+// app.locals.apipath = config.get('apipath');
+app.locals.homepage = config.get('pages.homepage');
+app.locals.staticpublic = config.get('pages.staticpublic');
 
 // - L O G G I N G
 app.use(function(req, res, next) {
@@ -53,7 +53,7 @@ app.use(express.static(__dirname + '/public', options))
 app.get('/', function(req, res) {
     //  console.log(req.method + ' ' + '/public' + '/home.html')
     console.log("Home: " + __dirname + req.url)
-    res.status(200).sendFile('/home.html', { root: "./public" });
+    res.status(200).sendFile(app.locals.homepage, { root: app.locals.staticpublic });
 });
 // - S T A T I C
 app.use(express.static(__dirname + app.locals.apppath, options));
@@ -75,5 +75,7 @@ app.get('/api/*', function(req, res) {
 
 // - L I S T E N
 app.listen(process.env.PORT || app.locals.port || 3000, function() {
-    console.log("Node Express server for " + app.locals.appname + " listening on http://localhost:" + app.locals.port);
+    console.log("Node Express server for " + app.locals.appname +
+        " listening on [" + app.locals.backendproxy + "] " +
+        app.locals.port);
 });
