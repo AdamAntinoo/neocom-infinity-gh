@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
-import org.dimensinfin.eveonline.neocom.infinity.support.SupportSteps;
+import org.dimensinfin.eveonline.neocom.infinity.support.ResponseType;
+import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.CorporationResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotResponse;
 import org.dimensinfin.eveonline.neocom.infinity.test.support.ConverterContainer;
-import org.dimensinfin.eveonline.neocom.infinity.test.support.ResponseType;
 
 import cucumber.api.java.en.Then;
 
@@ -35,6 +35,10 @@ public class NIB04Contracts extends SupportSteps {
 	private static final String GENDER = "gender";
 	private static final String NAME = "name";
 	private static final String SECURITY_STATUS = "securityStatus";
+	private static final String ALLIANCE_ID = "alliance id";
+	private static final String CEO_ID = "ceo id";
+	private static final String HOME_STATION_ID = "home station id";
+	private static final String MEMBER_COUNT = "member count";
 	private NeoComWorld neocomWorld;
 
 	@Autowired
@@ -72,7 +76,7 @@ public class NIB04Contracts extends SupportSteps {
 				break;
 			case PILOT_PUBLIC_DATA_RESPONSE:
 				final PilotResponse pilot = this.neocomWorld.getPilotResponse();
-				Assert.assertEquals( row.get( JSON_CLASS ), pilot.getJsonClass());
+				Assert.assertEquals( row.get( JSON_CLASS ), pilot.getJsonClass() );
 				Assert.assertEquals( Integer.valueOf( row.get( PILOT_ID ) ).intValue(),
 						pilot.getPilotId().intValue() );
 				Assert.assertEquals( row.get( URL4ICON ), pilot.getUrl4Icon() );
@@ -82,6 +86,17 @@ public class NIB04Contracts extends SupportSteps {
 				Assert.assertEquals( row.get( NAME ), pilot.getName() );
 				Assert.assertEquals( Double.valueOf( row.get( SECURITY_STATUS ) ).doubleValue(),
 						pilot.getSecurityStatus(), 0.01 );
+				break;
+			case CORPORATION_DATA_RESPONSE:
+				final CorporationResponse corporation = this.neocomWorld.getCorporationResponse();
+				Assert.assertEquals( row.get( JSON_CLASS ), corporation.getJsonClass() );
+				Assert.assertEquals( Integer.valueOf( row.get( CORPORATION_ID ) ).intValue(),
+						corporation.getCorporationId().intValue() );
+				Assert.assertEquals( row.get( URL4ICON ), corporation.getUrl4Icon() );
+				Assert.assertEquals( Integer.valueOf( row.get( ALLIANCE_ID ) ).intValue(),
+						corporation.getAllianceId().intValue() );
+				Assert.assertEquals( Integer.valueOf( row.get( CEO_ID ) ).intValue(),
+						corporation.getCorporationPublicData().getCeoId().intValue() );
 				break;
 		}
 	}

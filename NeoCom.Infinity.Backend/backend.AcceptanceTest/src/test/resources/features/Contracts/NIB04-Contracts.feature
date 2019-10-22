@@ -29,3 +29,15 @@ Feature: [NIB04] Validate the response contracts of the published API.
     And the "Pilot Response" has the next contents
       | jsonClass | pilotId  | corporationId | url4Icon                                              | ancestry name | bloodline name | gender | name        | race name | securityStatus |
       | Pilot     | 93813310 | 98384726      | http://image.eveonline.com/character/93813310_256.jpg | Workers       | Brutor         | FEMALE | Beth Ripley | Minmatar  | 0              |
+
+  @NIB04.03 @Contracts
+  Scenario: [NIB04.03] Validate the Corporation data response contract.
+    Given a request to the "Get Corporation Data" endpoint with the next data
+      | corporationId |
+      | 98384726        |
+    And "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTgzODQ3MjYsImFjY291bnROYW1lIjoiVGVzdGluZyBDaGFyYWN0ZXIgQWNjb3VudCIsImlzcyI6Ik5lb0NvbS5JbmZpbml0eS5CYWNrZW5kIiwidW5pcXVlSWQiOiJ0cmFucXVpbGl0eS85MzgxMzMxMCIsInBpbG90SWQiOjkzODEzMzEwfQ.eJvBC2144s7sKv5rxSUVEjNbP2BpQJlJhmTOu4AJ9eJj9so_WcrAthbvwgYM4BqyBSNZAjw7bVegieWqx8IX8Q" authorization token
+    When the "Get Corporation Data" request is processed
+    Then the response status code is 200
+    And the "Corporation Response" has the next contents
+      | jsonClass   | corporationId | url4Icon                                               | alliance id | ceo id   | home station id | member count |
+      | Corporation | 98384726      | http://image.eveonline.com/Corporation/98384726_64.png | 117383987   | 92223647 | 60006610        | 3            |

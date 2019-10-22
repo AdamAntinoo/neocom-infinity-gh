@@ -12,14 +12,14 @@ import org.springframework.http.ResponseEntity;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
+import org.dimensinfin.eveonline.neocom.infinity.support.RequestType;
 import org.dimensinfin.eveonline.neocom.infinity.support.authorization.rest.v1.AuthorizationFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.CorporationFeignClientV1;
+import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.CorporationResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotResponse;
 import org.dimensinfin.eveonline.neocom.infinity.test.support.ConverterContainer;
 import org.dimensinfin.eveonline.neocom.infinity.test.support.CucumberTableConverter;
-import org.dimensinfin.eveonline.neocom.infinity.support.RequestType;
-import org.dimensinfin.eveonline.neocom.infinity.corporation.client.v1.CorporationDataResponse;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -102,12 +102,13 @@ public class NIBCommonSteps extends SupportSteps {
 					return validateAuthorizationTokenResponse;
 				case GET_CORPORATION_ENDPOINT_NAME:
 					Assert.assertTrue( this.neocomWorld.getCorporationIdentifier().isPresent() );
-					final ResponseEntity<CorporationDataResponse> corporationDataResponse =
+					final ResponseEntity<CorporationResponse> corporationDataResponse =
 							this.corporationFeignClient.getCorporationData(
 									this.neocomWorld.getCorporationIdentifier().get(),
 									this.neocomWorld.getJwtAuthorizationToken()
 							);
-					this.neocomWorld.setCorporationDataResponse( corporationDataResponse );
+					this.neocomWorld.setCorporationResponseEntity( corporationDataResponse );
+					this.neocomWorld.setCorporationResponse( corporationDataResponse.getBody() );
 					return corporationDataResponse;
 				case GET_PILOT_ENDPOINT_NAME:
 					Assert.assertTrue( this.neocomWorld.getPilotIdentifier().isPresent() );

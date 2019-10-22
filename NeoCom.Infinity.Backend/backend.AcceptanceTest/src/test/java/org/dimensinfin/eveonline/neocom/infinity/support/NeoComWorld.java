@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
-import org.dimensinfin.eveonline.neocom.infinity.corporation.client.v1.CorporationDataResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.CorporationResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotResponse;
 
@@ -18,10 +17,10 @@ public class NeoComWorld {
 	private Optional<Integer> corporationIdentifier = Optional.empty();
 	private Optional<Integer> pilotIdentifier = Optional.empty();
 	private String jwtAuthorizationToken;
-	private ResponseEntity<CorporationDataResponse> corporationDataResponse;
+	private ResponseEntity<CorporationResponse> corporationResponseEntity;
 	private ResponseEntity<PilotResponse> pilotResponseEntity;
-	private PilotResponse pilotResponse;
 	private CorporationResponse corporationResponse;
+	private PilotResponse pilotResponse;
 
 	public int getHttpStatusCodeValue() {
 		return httpStatusCodeValue;
@@ -77,13 +76,13 @@ public class NeoComWorld {
 		return this;
 	}
 
-	public ResponseEntity<CorporationDataResponse> getCorporationDataResponse() {
-		return this.corporationDataResponse;
+	public ResponseEntity<CorporationResponse> getCorporationResponseEntity() {
+		return this.corporationResponseEntity;
 	}
 
-	public NeoComWorld setCorporationDataResponse( final ResponseEntity<CorporationDataResponse> corporationDataResponse ) {
-		this.corporationDataResponse = corporationDataResponse;
-		this.httpStatusCodeValue = corporationDataResponse.getStatusCodeValue();
+	public NeoComWorld setCorporationResponseEntity( final ResponseEntity<CorporationResponse> corporationResponseEntity ) {
+		this.corporationResponseEntity = corporationResponseEntity;
+		this.httpStatusCodeValue = corporationResponseEntity.getStatusCodeValue();
 		return this;
 	}
 
