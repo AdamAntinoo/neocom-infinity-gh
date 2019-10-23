@@ -1,0 +1,44 @@
+server:
+  port: 9500
+
+P:
+  runtime:
+    configuration:
+      properties:
+        path: "/build/resources/main/properties-dev"
+    filesystem:
+      application:
+        directory: ./NeoCom.Infinity.development
+    logging:
+      request: true
+      response: true
+      timing: true
+      metrics: true
+
+spring:
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/postgres"
+    username: neocom
+    password: 01.Alpha
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        temp:
+          use_jdbc_metadata_defaults: false
+
+neocom:
+  sde:
+    database:
+      schema: "jdbc:sqlite:"
+      path: "build/resources/main/"
+      name: sde.db
+
+
+
+

@@ -1,24 +1,54 @@
 plugins {
-    id 'groovy'
-    id 'java'
-    id 'org.springframework.boot' version '2.1.7.RELEASE'
+    id 'org.springframework.boot' version '2.1.8.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
 }
+apply plugin: 'project-report'
 
-group 'org.dimensinfin.poc'
-version '1.0-SNAPSHOT'
-
+group = 'org.dimensinfin.eveonline.neocom'
+version = '0.16.1'
+archivesBaseName = 'NeoCom.Infinity.Backend'
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
+    mavenLocal()
     mavenCentral()
+    google()
+    jcenter()
+    maven { url 'https://jitpack.io' }
+    maven { url "https://kotlin.bintray.com/kotlinx/" }
+}
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
 }
 
-dependencies {
-//    compile 'org.codehaus.groovy:groovy-all:2.3.11'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+sourceSets {
+    main.java {
+        srcDirs += 'src/main/java-implementers'
+        srcDirs += 'src/main/java-client'
+    }
+    test.java {
+//        srcDirs += 'src/test/springBoot'
+    }
 }
-//dependencies{
-//    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+// - Heroku mavenlocal dependencies deployment.
+configurations {
+    deploy
+}
+
+apply from: './dependencies.gradle'
+
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
+
+//task copyDeploy(type: Copy) {
+//    group = "deploy"
+//    println '> Task :backend.App:copyDeploy: copying local libraries to deployment...'
+//    from configurations.deploy
+//    into "deploy"
 //}

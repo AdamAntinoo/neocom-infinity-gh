@@ -1,0 +1,66 @@
+// - P R O D U C T   V E R S I O N S
+ext {
+    jodaTimeVersion = '2.3'
+    loggerVersion = '1.7.26'
+    retrofitVersion = '2.5.0'
+    jacksonVersion = '2.9.8'
+    ormliteVersion = '4.48'
+    micrometerVersion = '1.1.0'
+    resilience4jVersion = '0.17.0'
+}
+
+// - S P R I N G B O O T
+ext {
+    set('springCloudVersion', "Greenwich.SR2")
+}
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+//    implementation "org.springframework.boot:spring-boot-starter-security"
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+}
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+// - C O R E
+dependencies {
+    implementation 'net.logstash.logback:logstash-logback-encoder:4.11'
+    implementation "joda-time:joda-time:$jodaTimeVersion"
+    implementation 'org.apache.commons:commons-lang3:3.9'
+    implementation 'commons-codec:commons-codec:1.10' // Base64 decoding
+    implementation 'com.annimon:stream:1.1.9'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion" // OAuth2 authentication
+    implementation "com.squareup.retrofit2:converter-jackson:$retrofitVersion" // HTTP encapsulation and swagger support
+    implementation 'com.auth0:java-jwt:3.3.0'
+    // - D A T A B A S E
+//    implementation 'org.liquibase:liquibase-core:3.8.0'
+    implementation "com.j256.ormlite:ormlite-jdbc:$ormliteVersion"
+    implementation 'org.postgresql:postgresql:42.2.5'
+    implementation 'org.xerial:sqlite-jdbc:3.16.1' // Database dependency to read sde sqlite database.
+    // - R E D I S
+//    implementation 'org.redisson:redisson:3.8.2'
+    // -  N E O C O M
+    implementation 'org.dimensinfin:CoreBase.core:3.2.0'
+    implementation 'org.dimensinfin:ESI.SwaggerApi:4.0.1'
+    implementation 'org.dimensinfin:NeoCom.DataManagement:0.16.0'
+//    implementation fileTree(dir: 'deploy', include: '*.jar')
+}
+// - U N I T   T E S T I N G
+dependencies {
+//    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//    testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:2.23.4'
+}
+// - D E P L O Y M E N T
+dependencies {
+    // -  N E O C O M
+//    deploy 'org.dimensinfin:CoreBase.core:3.2.0'
+//    deploy 'org.dimensinfin:ESI.SwaggerApi:4.0.1'
+//    deploy 'org.dimensinfin:NeoCom.DataManagement:0.16.1'
+}
