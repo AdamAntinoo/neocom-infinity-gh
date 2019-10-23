@@ -39,7 +39,7 @@ public class CorporationController extends NeoComController {
 //				corporationId );
 		// Check corporation identifier access is authorized.
 		try {
-			final Integer authorizedCorporationId = this.neoComAuthenticationProvider.getAuthenticatedCorporation(corporationId);
+			final Integer authorizedCorporationId = this.neoComAuthenticationProvider.getAuthenticatedCorporation();
 			if (authorizedCorporationId.intValue() != corporationId.intValue())
 				throw new NeoComAuthorizationException( ErrorInfo.CORPORATION_ID_NOT_AUTHORIZED );
 		} catch (final IOException ioe) {
