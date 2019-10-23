@@ -4,7 +4,7 @@
         "version": "v0.16.1",
         "port": 8080,
         "applicationhome": "/dist/NeoCom-Infinity",
-        "backendproxy": "http://neocom.infinity.local:6099",
+        "backendproxy": "http://neocom.infinity.local:9500",
         "apppath": "/app",
         "apipath": "/ap1"
     },

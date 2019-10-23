@@ -4,6 +4,8 @@ const path = require('path');
 const compression = require('compression');
 const request = require('request');
 const config = require('config');
+const proxy = require('express-http-proxy');
+
 
 // - S E R V E R   O P T I O N S
 const app = express();
@@ -68,10 +70,20 @@ app.get('/app/*', function(req, res) {
     res.sendFile(path.join(__dirname + app.locals.applicationhome + '/index.html'));
 });
 // - A P I   M O U N T P O I N T
-app.get('/api/*', function(req, res) {
-    console.log("Backend: " + app.locals.backendproxy + req.url);
-    request(app.locals.backendproxy + req.url).pipe(res);
-})
+// app.use('/api/*', function(req, res) {
+//     console.log('backend: ' + app.locals.backendproxy + req.url)
+//     proxy(app.locals.backendproxy + req.url);
+// });
+app.use('/api', proxy(app.locals.backendproxy, {
+    proxyReqPathResolver: function(req) {
+        console.log('backend: ' + app.locals.backendproxy + req.url)
+        var parts = req.url.split('?');
+        var queryString = parts[1];
+        var updatedPath = parts[0].replace(/test/, 'tent');
+        // return updatedPath + (queryString ? '?' + queryString : '');
+        return req.url;
+    }
+}));
 
 // - L I S T E N
 app.listen(process.env.PORT || app.locals.port || 3000, function() {

@@ -8,8 +8,5 @@
 *.odt#
 
 # Stage directories to be excluded
-Stage/
 stage/
-Neocom.MicroServices/repository/
-NeoCom.Infinity.Backend/repository/
 
