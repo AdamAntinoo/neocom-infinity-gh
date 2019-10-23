@@ -9,7 +9,8 @@ public class SecurityConstants {
 	public static final String TOKEN_PILOT_ID_FIELD_NAME = "pilotId";
 	public static final String SECRET = "The secret phrase to be used for JWT generation.";
 	public static final String TOKEN_PREFIX = "Bearer ";
-	public static final String HEADER_STRING = "Authorization";
-	public static final String LOGIN_VERIFICATION_URL="/api/v1/neocom/validateAuthorizationToken/**";
-	public static final String SERVER_STATUS_URL="/api/v1/neocom/server/**";
+	public static final String AUTHORIZATION_HEADER_STRING = "Authorization";
+	public static final String LOGIN_VERIFICATION_URL="/api/v1/neocom/validateAuthorizationToken";
+	public static final String LOGIN_VERIFICATION_EXTENDED_URL="/api/v1/neocom/validateAuthorizationToken/**";
+	public static final String SERVER_STATUS_URL="/api/v1/neocom/server**";
 }

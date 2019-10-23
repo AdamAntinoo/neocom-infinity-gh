@@ -16,7 +16,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.HEADER_STRING;
+import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.AUTHORIZATION_HEADER_STRING;
 import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.SECRET;
 import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.SUBJECT;
 import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.TOKEN_PREFIX;
@@ -31,25 +31,32 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 	protected void doFilterInternal( HttpServletRequest req,
 	                                 HttpServletResponse res,
 	                                 FilterChain chain ) throws IOException, ServletException {
-		String header = req.getHeader( HEADER_STRING );
-		if (header == null || !header.startsWith( TOKEN_PREFIX )) {
+		String meth = req.getMethod();
+		final String header = req.getHeader( AUTHORIZATION_HEADER_STRING );
+		if (header == null || !header.startsWith( TOKEN_PREFIX )) { // The expected token is not found
+			logger.info( "[AUTHORIZATION]> Request not authorized because 'Authorization' header not found." );
 			chain.doFilter( req, res );
 			return;
 		}
-		UsernamePasswordAuthenticationToken authentication = this.getAuthentication( req );
+		final UsernamePasswordAuthenticationToken authentication = this.getAuthentication( req );
 		if (null != authentication) SecurityContextHolder.getContext().setAuthentication( authentication );
 		chain.doFilter( req, res );
 	}
 
 	private UsernamePasswordAuthenticationToken getAuthentication( final HttpServletRequest request ) {
-		final String token = request.getHeader( HEADER_STRING );
-		if (token != null) {
+		try {
+			final String token = request.getHeader( AUTHORIZATION_HEADER_STRING );
+//		if (token != null) {
 			final DecodedJWT jwtToken = JWT.require( Algorithm.HMAC512( SECRET.getBytes() ) )
 					.build()
 					.verify( token.replace( TOKEN_PREFIX, "" ) );
-			if (this.validateSubject( token )) { // Check this is the subject we expect
+			if (this.validateSubject( token ))  // Check this is the subject we expect
 				return new UsernamePasswordAuthenticationToken( jwtToken.getPayload(), null, new ArrayList<>() );
-			}
+			else
+				logger.info( "[AUTHORIZATION]> Expected JWT sub does not match with authorized message." );
+		} catch (final RuntimeException rte) {
+			logger.info( "[AUTHORIZATION]> Token validation failed. " + rte.getMessage() );
+			return null;
 		}
 		return null;
 	}
