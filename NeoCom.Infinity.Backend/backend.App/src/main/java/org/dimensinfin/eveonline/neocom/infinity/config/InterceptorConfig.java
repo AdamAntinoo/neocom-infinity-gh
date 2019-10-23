@@ -1,16 +1,16 @@
 package org.dimensinfin.eveonline.neocom.infinity.config;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import org.dimensinfin.eveonline.neocom.infinity.config.interceptor.HeaderResponseInterceptor;
 import org.dimensinfin.eveonline.neocom.infinity.config.interceptor.LogRequestHeaderInterceptor;
 import org.dimensinfin.eveonline.neocom.infinity.config.interceptor.LogRequestInterceptor;
 import org.dimensinfin.eveonline.neocom.infinity.config.interceptor.LogResponseInterceptor;
 import org.dimensinfin.eveonline.neocom.infinity.config.interceptor.LogTimingInterceptor;
 
-//@Configuration
+@Configuration
 public class InterceptorConfig implements WebMvcConfigurer {
 	@Value("${P.runtime.logging.request}")
 	private String logRequestFlag = "true";
@@ -29,9 +29,9 @@ public class InterceptorConfig implements WebMvcConfigurer {
 			registry.addInterceptor( new LogResponseInterceptor() ).addPathPatterns( "/api/**" );
 		if (logTimingFlag.equalsIgnoreCase( "true" ))
 			registry.addInterceptor( new LogTimingInterceptor() ).addPathPatterns( "/api/**" );
-//		if ( logMetricsFlag.equalsIgnoreCase( "true" ))
-//		registry.addInterceptor(new MetricsInterceptor()).addPathPatterns("/api/**");
+////		if ( logMetricsFlag.equalsIgnoreCase( "true" ))
+////		registry.addInterceptor(new MetricsInterceptor()).addPathPatterns("/api/**");
 		registry.addInterceptor( new LogRequestHeaderInterceptor() ).addPathPatterns( "/api/**" );
-		registry.addInterceptor( new HeaderResponseInterceptor() ).addPathPatterns( "/api/**" );
+//		registry.addInterceptor( new HeaderResponseInterceptor() ).addPathPatterns( "/api/**" );
 	}
 }
