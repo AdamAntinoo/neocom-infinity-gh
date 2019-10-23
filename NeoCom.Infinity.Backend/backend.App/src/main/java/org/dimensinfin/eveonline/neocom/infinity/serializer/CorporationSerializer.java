@@ -19,10 +19,12 @@ public class CorporationSerializer extends JsonSerializer<Corporation> {
 
 		jgen.writeStringField( "jsonClass", value.getJsonClass() );
 		jgen.writeNumberField( "corporationId", value.getCorporationId() );
-		jgen.writeObjectField(  "corporationPublicData", value.getCorporationPublicData() );
-		jgen.writeObjectField(  "ceoPilotData", value.getCeoPilotData() );
-		jgen.writeNumberField( "allianceId", value.getAllianceId() );
-		jgen.writeObjectField(  "alliance", value.getAlliance() );
+		jgen.writeObjectField( "corporationPublicData", value.getCorporationPublicData() );
+		jgen.writeObjectField( "ceoPilotData", value.getCeoPilotData() );
+		if (null != value.getAllianceId()) {
+			jgen.writeNumberField( "allianceId", value.getAllianceId() );
+			jgen.writeObjectField( "alliance", value.getAlliance() );
+		}
 		jgen.writeStringField( "url4Icon", value.getUrl4Icon() );
 
 		jgen.writeEndObject();
