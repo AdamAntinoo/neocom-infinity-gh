@@ -1,18 +1,10 @@
-# Generic inginable files
-*.log
-
-# Node ignored contents
+# - Ignore Angular packages
 node_modules/
 
-# Mock ignored files
-support/apisimulator-http-1.4/
-# Ignore assets not to be included on the repository
-#src/assets/fonts/
-src/styles/fonts/
-
-# Project generated ignored files
-.tmp/
-coverage/
-out-tsc/
+# - Ignore compilation results
 dist/
-app/
+src/styles/fonts
+
+# - Ignore support code and utilities
+support/apisimulator-http-1.4/
+support/backend-simulation/*.log
