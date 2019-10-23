@@ -27,6 +27,14 @@ P:
     filesystem:
       application:
         directory: ./NeoCom.Infinity
+    logging:
+      request: false
+      response: false
+      timing: true
+      metrics: true
+    security:
+      handlers:
+
 neocom:
   sde:
     database:

@@ -1,0 +1,12 @@
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{dd/MM/yyyy HH:mm:ss.SSS}|%level|%X{MDC.REQUEST-ID}|%X{MDC.ENTRY-POINT}|%X{MDC.APP-IDENTIFIER}|%X{MDC.AGENT-IDENTIFIER}|%msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

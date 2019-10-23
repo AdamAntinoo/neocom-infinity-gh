@@ -8,6 +8,12 @@ P:
     filesystem:
       application:
         directory: ./NeoCom.Infinity.development
+    logging:
+      request: true
+      response: true
+      timing: true
+      metrics: true
+
 spring:
   datasource:
     url: "jdbc:postgresql://localhost:5432/postgres"
