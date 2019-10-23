@@ -3,10 +3,10 @@ import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 // - DOMAIN
-import { ServerStatus } from '@app/domain/ServerStatus.domain';
 import { BackendService } from '@app/services/backend.service';
 import { environment } from '@env/environment';
 import { ResponseTransformer } from '@app/services/support/ResponseTransformer';
+import { ServerStatus } from '@app/domain/ServerStatus.domain';
 
 @Component({
     selector: 'server-info-panel',
