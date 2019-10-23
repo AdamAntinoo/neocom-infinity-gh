@@ -1,7 +1,6 @@
 package org.dimensinfin.eveonline.neocom.infinity.config;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -11,7 +10,7 @@ import org.dimensinfin.eveonline.neocom.infinity.config.interceptor.LogRequestIn
 import org.dimensinfin.eveonline.neocom.infinity.config.interceptor.LogResponseInterceptor;
 import org.dimensinfin.eveonline.neocom.infinity.config.interceptor.LogTimingInterceptor;
 
-@Configuration
+//@Configuration
 public class InterceptorConfig implements WebMvcConfigurer {
 	@Value("${P.runtime.logging.request}")
 	private String logRequestFlag = "true";
