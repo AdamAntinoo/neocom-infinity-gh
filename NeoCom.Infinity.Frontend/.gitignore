@@ -7,7 +7,7 @@ node_modules/
 # Mock ignored files
 support/apisimulator-http-1.4/
 # Ignore assets not to be included on the repository
-src/assets/fonts/
+#src/assets/fonts/
 src/styles/fonts/
 
 # Project generated ignored files
@@ -16,4 +16,3 @@ coverage/
 out-tsc/
 dist/
 app/
-

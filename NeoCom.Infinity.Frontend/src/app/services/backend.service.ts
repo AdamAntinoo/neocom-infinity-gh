@@ -20,6 +20,7 @@ import { CorporationDataResponse } from '@app/domain/dto/CorporationDataResponse
 import { Pilot } from '@app/domain/Pilot.domain';
 import { ResponseTransformer } from './support/ResponseTransformer';
 import { Corporation } from '@app/domain/Corporation.domain';
+import { ServerStatus } from '@app/domain/ServerStatus.domain';
 
 @Injectable({
     providedIn: 'root'
@@ -55,19 +56,17 @@ export class BackendService {
             "&datasource=" + environment.ESIDataSource.toLowerCase();
         return this.httpService.wrapHttpGETCall(request)
             .pipe(map((data: any) => {
-                const response = this.transformApiResponse(data) as ValidateAuthorizationTokenResponse;
+                const response = this.transformApiResponse(data, request) as ValidateAuthorizationTokenResponse;
                 return response;
             }));
     }
-    public apiGetServerInfo_v1(): Observable<ServerInfoResponse> {
-        // console.log(">[BackendService.aoiGetServerInfo_v1]> datasource: " + datasource);
-        // Construct the request to call the backend.
+    public apiGetServerInfo_v1(transformer: ResponseTransformer): Observable<ServerStatus> {
         const request = this.APIV1 + "/server/datasource/" + environment.ESIDataSource.toLowerCase();
-        // console.log("--[BackendService.apiValidateAuthorizationToken_v1]> request = " + request);
-        // console.log("--[BackendService.backendReserveAppointment]> body = " + JSON.stringify(patient));
         return this.httpService.wrapHttpGETCall(request)
             .pipe(map((data: any) => {
-                const response = this.transformApiResponse(data) as ServerInfoResponse;
+                console.log(">[BackendService.apiGetServerInfo_v1]> Transformation: " +
+                    transformer.description);
+                const response = transformer.transform(data) as ServerStatus;
                 return response;
             }));
     }
@@ -268,7 +267,7 @@ export class BackendService {
     //     }
     //     return results;
     // }
-    private transformApiResponse(responseData: any): NeoComResponse {
+    private transformApiResponse(responseData: any, requestUrl: string): NeoComResponse {
         let responseType = responseData["responseType"];
         switch (responseType) {
             case 'ValidateAuthorizationTokenResponse':
@@ -282,7 +281,8 @@ export class BackendService {
                     "ok": false,
                     status: 400,
                     statusText: "Unidentified response",
-                    message: "Api response type does not match any of the declared types. Invalid response"
+                    message: "Api response type does not match any of the declared types. Invalid response",
+                    requestUrl: requestUrl
                 });
         }
     }

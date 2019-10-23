@@ -12,7 +12,7 @@ import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 import { environment } from '@env/environment';
 
 import { ServerInfoPanelComponent } from './server-info-panel.component';
-import { ServerInfo } from '@app/domain/ServerInfo.domain';
+import { ServerStatus } from '@app/domain/ServerStatus.domain';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BackendService } from '@app/services/backend.service';
 import { SupportBackendService } from '@app/testing/SupportBackend.service';
@@ -26,12 +26,12 @@ describe('PANEL ServerInfoPanelComponent [Module: SHARED]', () => {
         TestBed.configureTestingModule({
             schemas: [NO_ERRORS_SCHEMA],
             declarations: [
-               ServerInfoPanelComponent,
-               // HttpClientTestingModule
+                ServerInfoPanelComponent,
+                // HttpClientTestingModule
             ],
             providers: [
-               { provide: IsolationService, useClass: SupportIsolationService },
-               { provide: BackendService, useClass: SupportBackendService },
+                { provide: IsolationService, useClass: SupportIsolationService },
+                { provide: BackendService, useClass: SupportBackendService },
             ]
         })
             .compileComponents();
@@ -72,21 +72,21 @@ describe('PANEL ServerInfoPanelComponent [Module: SHARED]', () => {
         it('getServerName: validate the name field', () => {
             const expected = isolationService.generateRandomString(12);
             let componentAsAny = component as any;
-            componentAsAny.serverInfo = new ServerInfo({ name: expected });
+            componentAsAny.serverInfo = new ServerStatus({ name: expected });
             const obtained = component.getServerName();
             expect(obtained).toBe(expected)
         });
         it('getServerCapsuleers: validate the players field', () => {
             const expected = isolationService.generateRandomNum(100, 100000);
             let componentAsAny = component as any;
-            componentAsAny.serverInfo = new ServerInfo({ players: expected });
+            componentAsAny.serverInfo = new ServerStatus({ players: expected });
             const obtained = component.getServerCapsuleers();
             expect(obtained).toBe(expected)
         });
         xit('getLastStartTime: validate the last start field', () => {
             const expected = isolationService.generateRandomString(12);
             let componentAsAny = component as any;
-            componentAsAny.serverInfo = new ServerInfo({ start_time: expected });
+            componentAsAny.serverInfo = new ServerStatus({ start_time: expected });
             const obtained = component.getLastStartTime();
             expect(obtained).toBe(expected)
         });
@@ -95,7 +95,7 @@ describe('PANEL ServerInfoPanelComponent [Module: SHARED]', () => {
         it('setServerName: validate the name field', () => {
             const expected = isolationService.generateRandomString(12);
             let componentAsAny = component as any;
-            componentAsAny.serverInfo = new ServerInfo();
+            componentAsAny.serverInfo = new ServerStatus();
             componentAsAny.serverInfo.setServerName(expected);
             const obtained = component.getServerName();
             expect(obtained).toBe(expected)
