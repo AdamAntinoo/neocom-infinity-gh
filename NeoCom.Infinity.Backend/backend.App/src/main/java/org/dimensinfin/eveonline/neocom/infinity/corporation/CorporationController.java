@@ -4,21 +4,22 @@ import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.eveonline.neocom.domain.Corporation;
+import org.dimensinfin.eveonline.neocom.infinity.core.NeoComController;
 import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.ErrorInfo;
 import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComAuthorizationException;
-import org.dimensinfin.eveonline.neocom.infinity.core.NeoComController;
 import org.dimensinfin.eveonline.neocom.infinity.security.NeoComAuthenticationProvider;
+//import org.dimensinfin.eveonline.neocom.infinity.security.NeoComAuthenticationProvider;
 
 @RestController
-@Validated
-@RequestMapping("/api/v1/neocom")
+@CrossOrigin()
+//@Validated
+//@RequestMapping("/api/v1/neocom")
 public class CorporationController extends NeoComController {
 	private final CorporationService corporationService;
 	private final NeoComAuthenticationProvider neoComAuthenticationProvider;
@@ -30,15 +31,15 @@ public class CorporationController extends NeoComController {
 		this.neoComAuthenticationProvider = neoComAuthenticationProvider;
 	}
 
-	@GetMapping(path = "/corporations/{corporationId}",
+	@GetMapping(path = "/api/v1/neocom/corporations/{corporationId}",
 			consumes = "application/json",
 			produces = "application/json")
 	public ResponseEntity<Corporation> getCorporationData( @PathVariable final Integer corporationId ) {
-		logger.info( ">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/neocom/corporations/{}",
-				corporationId );
+//		logger.info( ">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/neocom/corporations/{}",
+//				corporationId );
 		// Check corporation identifier access is authorized.
 		try {
-			final Integer authorizedCorporationId = this.neoComAuthenticationProvider.getAuthenticatedCorporation();
+			final Integer authorizedCorporationId = this.neoComAuthenticationProvider.getAuthenticatedCorporation(corporationId);
 			if (authorizedCorporationId.intValue() != corporationId.intValue())
 				throw new NeoComAuthorizationException( ErrorInfo.CORPORATION_ID_NOT_AUTHORIZED );
 		} catch (final IOException ioe) {

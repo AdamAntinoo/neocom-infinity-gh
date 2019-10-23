@@ -22,7 +22,8 @@ public class LogMDCFilter extends OncePerRequestFilter {
 	private static final String mdcAgentIdentifierKey = "MDC.AGENT-IDENTIFIER";
 
 	@Override
-	protected void doFilterInternal( final HttpServletRequest request, final HttpServletResponse response,
+	protected void doFilterInternal( final HttpServletRequest request,
+	                                 final HttpServletResponse response,
 	                                 final FilterChain filterChain ) throws ServletException, IOException {
 //		logger.info("[TRACING][LogMDCFilter.doFilterInternal]");
 		try {
