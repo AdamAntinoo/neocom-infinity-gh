@@ -1,13 +1,22 @@
-/*//  PROJECT:     NeoCom.WS (NEOC.WS)
-//  AUTHORS:     Adam Antinoo - adamantinoo.git@gmail.com
-//  COPYRIGHT:   (c) 2017-2018 by Dimensinfin Industries, all rights reserved.
-//  ENVIRONMENT: Angular 4
-//  DESCRIPTION: Angular source code to run on a web server almost the same code as on the Android platform.
-//               The project has 3 clear parts. One is the Java libraries that are common for all platforms,
-//               the second is the java microservices that compose the web application backend made with
-//               SpringBoot technology and finally the web ui code made in typescript within the Angular
-//               framework.
 /* F O N T S */
+
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: normal;
+    font-style: normal;
+    src: url('/assets/fonts/Open-Sans/Regular/OpenSans-Regular.woff2') format('woff2'), url('/assets/fonts/Open-Sans/Regular/OpenSans-Regular.woff') format('woff'), url('/assets/fonts/Open-Sans/Regular/OpenSans-Regular.ttf') format('truetype'), url('/assets/fonts/Open-Sans/Regular/OpenSans-Regular.svg#OpenSansRegular') format('svg');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: normal;
+    font-style: italic;
+    src: url('/assets/fonts/Open-Sans/Italic/OpenSans-Italic.woff2') format('woff2'), url('/assets/fonts/Open-Sans/Italic/OpenSans-Italic.woff') format('woff'), url('/assets/fonts/Open-Sans/Italic/OpenSans-Italic.ttf') format('truetype'), url('/assets/fonts/Open-Sans/Italic/OpenSans-Italic.svg#OpenSansItalic') format('svg');
+}
+
+.open-ff {
+    font-family: 'Open Sans';
+}
 
 @font-face {
     font-family: 'Proxima Nova Black';

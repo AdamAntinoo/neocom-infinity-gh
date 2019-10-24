@@ -1,0 +1,11 @@
+<div *ngIf="variant === '-DEFAULT-'" class="corporation-item">
+    <div *ngIf="node">
+        <span id="corporation-name" class="neocom-selectable-name">{{node.getName()}}</span>
+        <span id="corporation-id" class="neocom-ts14" style="margin-left: 4px;">[{{node.corporationId}}]</span>
+        <div id="corporation-ticker" class="neocom-ts14">[{{node.getTicker()}}]</div>
+        <div>
+            <img class="iconsize-24" src="/assets/res-window/drawable/corporationmembers.png">
+            <span id="corporation-members-count" class="neocom-ts14">{{node.getMemberCount()}} MEMBERS</span>
+        </div>
+    </div>
+</div>

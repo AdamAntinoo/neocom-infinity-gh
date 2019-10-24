@@ -11,16 +11,7 @@
                 <img class="neocom-icon" id="corporation-icon" src="{{getCorporationIcon()}}">
             </td>
             <td class="neocom-panel-column">
-                <!-- CORPORATION -->
-                <div *ngIf="this.corporation">
-                    <span id="corporation-name" class="neocom-selectable-name">{{corporation.name}}</span>
-                    <span id="corporation-id" class="neocom-ts14" style="margin-left: 4px;">[{{corporation.corporationId}}]</span>
-                    <div id="corporation-ticker" class="neocom-ts14">[{{corporation.ticker}}]</div>
-                    <div>
-                        <img class="iconsize-24" src="/assets/res-window/drawable/corporationmembers.png">
-                        <span id="corporation-members-count" class="neocom-ts14">{{corporation.member_count}} MEMBERS</span>
-                    </div>
-                </div>
+                <corporation-render *ngIf="corporation" [node]="corporation"></corporation-render>
             </td>
             <td>
                 <!-- CORPORATION CEO -->
@@ -30,9 +21,9 @@
             </td>
             <td>
                 <!-- ALLIANCE BLOCK -->
-                <div *ngIf="alliance else notassociated" class="alliance-box">
+                <!-- <div *ngIf="alliance else notassociated" class="alliance-box">
                     <alliance-render [node]="getAlliance()"></alliance-render>
-                </div>
+                </div> -->
             </td>
         </tr>
     </table>
