@@ -34,8 +34,4 @@ export class PilotPublicDataPanelComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         if (null != this.pilotSubscription) this.pilotSubscription.unsubscribe();
     }
-    //    public getPilotIcon(): string {
-    //       if (null != this.pilot) return this.pilot.url4Icon;
-    //       else return environment.DEFAULT_AVATAR_PLACEHOLDER;
-    //    }
 }

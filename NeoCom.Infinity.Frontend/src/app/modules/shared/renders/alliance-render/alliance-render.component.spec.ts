@@ -42,7 +42,6 @@ describe('RENDER AllianceRenderComponent [Module: SHARED]', () => {
             ],
             providers: [
                 { provide: IsolationService, useClass: SupportIsolationService },
-                // { provide: BackendService, useClass: SupportBackendService },
             ]
         })
             .compileComponents();

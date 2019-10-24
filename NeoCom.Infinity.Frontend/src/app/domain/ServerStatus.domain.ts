@@ -19,6 +19,6 @@ export class ServerStatus extends NeoCom {
         return this.players;
     }
     public getStartTime(): string {
-        return this.server;
+        return this.start_time;
     }
 }

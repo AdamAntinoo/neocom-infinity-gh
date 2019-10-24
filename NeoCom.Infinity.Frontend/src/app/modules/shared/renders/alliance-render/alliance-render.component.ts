@@ -23,7 +23,7 @@ export class AllianceRenderComponent extends RenderComponent {
         else return '-';
     }
     public getAllianceIcon(): string {
-        if (null != this.node) return this.node.getIconUrl();
+        if (null != this.node) return this.node.getAllianceIcon();
         else return environment.DEFAULT_AVATAR_PLACEHOLDER;
     }
 }

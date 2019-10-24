@@ -31,11 +31,12 @@ export class ServerInfoPanelComponent implements OnInit {
     }
 
     public getServerName(): string {
-        return this.serverInfo.getServerName();
+        if (null != this.serverInfo) return this.serverInfo.getServerName();
+        else return '-';
     }
     public getServerStatus(): string {
-        if (null != this.serverInfo) return "online".toUpperCase();
-        else return "WAITING".toUpperCase();
+        if (null != this.serverInfo) return "ONLINE".toUpperCase();
+        else return "OFFLINE".toUpperCase();
     }
     public getServerCapsuleers(): number {
         if (null != this.serverInfo) return this.serverInfo.getPlayersCount();

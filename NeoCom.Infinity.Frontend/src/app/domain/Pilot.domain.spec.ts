@@ -5,7 +5,7 @@ import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 // - DOMAIN
 import { Pilot } from './Pilot.domain';
 
-fdescribe('CLASS Pilot [Module: DOMAIN]', () => {
+describe('CLASS Pilot [Module: DOMAIN]', () => {
     let isolation: SupportIsolationService;
 
     beforeEach(() => {

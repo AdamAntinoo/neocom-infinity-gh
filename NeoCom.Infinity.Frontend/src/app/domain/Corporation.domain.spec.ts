@@ -7,7 +7,7 @@ import { Corporation } from './Corporation.domain';
 import { Alliance } from './Alliance.domain';
 import { Pilot } from './Pilot.domain';
 
-fdescribe('CLASS Corporation [Module: DOMAIN]', () => {
+describe('CLASS Corporation [Module: DOMAIN]', () => {
     let isolation: SupportIsolationService;
 
     beforeEach(() => {

@@ -27,7 +27,6 @@ describe('PANEL ServerInfoPanelComponent [Module: SHARED]', () => {
             schemas: [NO_ERRORS_SCHEMA],
             declarations: [
                 ServerInfoPanelComponent,
-                // HttpClientTestingModule
             ],
             providers: [
                 { provide: IsolationService, useClass: SupportIsolationService },
@@ -48,33 +47,28 @@ describe('PANEL ServerInfoPanelComponent [Module: SHARED]', () => {
         });
     });
 
-    // - I N I T I A L I Z A T I O N   P H A S E
-    describe('Code Coverage Phase [getters]', () => {
-        it('getServerName: validate the name field when not initialized', () => {
-            const expected = '-PENDING-UPDATE-';
-            const obtained = component.getServerName();
-            expect(obtained).toBe(expected)
-        });
-        it('getServerCapsuleers: validate the name field when not initialized', () => {
-            const expected = -1;
-            const obtained = component.getServerCapsuleers();
-            expect(obtained).toBe(expected)
-        });
-        it('getLastStartTime: validate the last start field not initialized', () => {
-            const expected = isolationService.generateRandomString(12);
-            const obtained = component.getLastStartTime();
-            expect(obtained).toBeDefined()
-        });
-    });
-
     // - C O D E   C O V E R A G E   P H A S E
     describe('Code Coverage Phase [getters]', () => {
-        it('getServerName: validate the name field', () => {
+        it('getServerName.success: validate the name field', () => {
             const expected = isolationService.generateRandomString(12);
             let componentAsAny = component as any;
-            componentAsAny.serverInfo = new ServerStatus({ name: expected });
+            componentAsAny.serverInfo = new ServerStatus({ server: expected });
             const obtained = component.getServerName();
             expect(obtained).toBe(expected)
+        });
+        it('getServerName.failure: validate the name field', () => {
+            const obtained = component.getServerName();
+            expect(obtained).toBe('-')
+        });
+        it('getServerStatus.online: validate the server status field', () => {
+            let componentAsAny = component as any;
+            componentAsAny.serverInfo = new ServerStatus();
+            const obtained = component.getServerStatus();
+            expect(obtained).toBe('ONLINE')
+        });
+        it('getServerStatus.offline: validate the server status field', () => {
+            const obtained = component.getServerStatus();
+            expect(obtained).toBe('OFFLINE')
         });
         it('getServerCapsuleers: validate the players field', () => {
             const expected = isolationService.generateRandomNum(100, 100000);
@@ -83,22 +77,16 @@ describe('PANEL ServerInfoPanelComponent [Module: SHARED]', () => {
             const obtained = component.getServerCapsuleers();
             expect(obtained).toBe(expected)
         });
-        xit('getLastStartTime: validate the last start field', () => {
+        it('getLastStartTime.success: validate the last start field', () => {
             const expected = isolationService.generateRandomString(12);
             let componentAsAny = component as any;
             componentAsAny.serverInfo = new ServerStatus({ start_time: expected });
             const obtained = component.getLastStartTime();
             expect(obtained).toBe(expected)
         });
-    });
-    describe('Code Coverage Phase [setters]', () => {
-        it('setServerName: validate the name field', () => {
-            const expected = isolationService.generateRandomString(12);
-            let componentAsAny = component as any;
-            componentAsAny.serverInfo = new ServerStatus();
-            componentAsAny.serverInfo.setServerName(expected);
-            const obtained = component.getServerName();
-            expect(obtained).toBe(expected)
+        it('getLastStartTime.failure: validate the last start field', () => {
+            const obtained = component.getLastStartTime();
+            expect(obtained).toBeDefined();
         });
     });
 });

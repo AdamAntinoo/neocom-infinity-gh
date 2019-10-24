@@ -140,7 +140,6 @@ describe('SERVICE BackendService [Module: APP]', () => {
         it('apiGetServerInfo_v1.success: get the server info from the mocked server',
             async(inject([HttpTestingController, BackendService], (backend: HttpTestingController, service: BackendService) => {
                 const responseJson = {
-                    "responseType": "ServerInfoResponse",
                     "players": 10528,
                     "server_version": "1585794",
                     "start_time": "2019-10-16T11:06:17Z"
@@ -152,7 +151,7 @@ describe('SERVICE BackendService [Module: APP]', () => {
                     .subscribe(response => {
                         console.log('--[apiGetServerInfo_v1]> response: ' + JSON.stringify(response));
                         expect(response).toBeDefined();
-                        expect(response.getJsonClass()).toContain('ServerInfo');
+                        expect(response.getJsonClass()).toContain('ServerStatus');
                     });
                 backend.match((request) => {
                     return request.url.match(/server/) &&
