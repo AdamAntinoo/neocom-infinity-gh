@@ -30,6 +30,7 @@ import { AppComponent } from './app.component';
 
 // - APPLICATION MODULES
 import { SharedModule } from './modules/shared/shared.module';
+import { HeaderModule } from './modules/header/header.module';
 // - PAGES
 import { LoginValidationPageComponent } from './pages/login-validation-page/login-validation-page.component';
 import { DashboardHomePageComponent } from './pages/dashboard-home-page/dashboard-home-page.component';
@@ -71,6 +72,7 @@ export function rollbarFactory() {
         StorageServiceModule,
         // - APPLICATION MODULES
         SharedModule,
+        HeaderModule,
         // - ROUTING
         RouterModule,
         AppRoutingModule

@@ -11,38 +11,40 @@ import { TokenAuthorizationGuard } from '@app/security/token-authorization.guard
 // - PANELS
 import { AppInfoPanelComponent } from './panels/app-info-panel/app-info-panel.component';
 import { ServerInfoPanelComponent } from './panels/server-info-panel/server-info-panel.component';
-import { CorporationPublicDataPanelComponent } from './panels/corporation-public-data-panel/corporation-public-data-panel.component';
 import { PilotPublicDataPanelComponent } from './panels/pilot-public-data-panel/pilot-public-data-panel.component';
 // - RENDERS
 import { AllianceRenderComponent } from './renders/alliance-render/alliance-render.component';
+import { CorporationRenderComponent } from './renders/corporation-render/corporation-render.component';
 
 // - MODULE ROUTES
 const routes: Routes = [
-  // { path: '', component: DashboardHomePage, canActivate: [TokenAuthorizationGuard] },
-  // { path: 'home', component: DashboardHomePage, canActivate: [TokenAuthorizationGuard] },
-  // { path: 'servicios', component: AdminServiciosPageComponent, canActivate: [AuthAdminGuard] }
+    // { path: '', component: DashboardHomePage, canActivate: [TokenAuthorizationGuard] },
+    // { path: 'home', component: DashboardHomePage, canActivate: [TokenAuthorizationGuard] },
+    // { path: 'servicios', component: AdminServiciosPageComponent, canActivate: [AuthAdminGuard] }
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-  ],
-  declarations: [
-    // - PANELS
-    AppInfoPanelComponent,
-    ServerInfoPanelComponent,
-    CorporationPublicDataPanelComponent,
-    PilotPublicDataPanelComponent,
-    AllianceRenderComponent,
-  ],
-  exports: [
-    RouterModule,
-    AppInfoPanelComponent,
-    ServerInfoPanelComponent,
-    CorporationPublicDataPanelComponent,
-    PilotPublicDataPanelComponent,
-    AllianceRenderComponent,
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+    ],
+    declarations: [
+        // - PANELS
+        AppInfoPanelComponent,
+        ServerInfoPanelComponent,
+        PilotPublicDataPanelComponent,
+        // - RENDERS
+        AllianceRenderComponent,
+        CorporationRenderComponent,
+    ],
+    exports: [
+        RouterModule,
+        AppInfoPanelComponent,
+        ServerInfoPanelComponent,
+        PilotPublicDataPanelComponent,
+        // - RENDERS
+        AllianceRenderComponent,
+        CorporationRenderComponent
+    ]
 })
 export class SharedModule { }

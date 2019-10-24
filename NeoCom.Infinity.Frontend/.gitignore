@@ -5,6 +5,7 @@ node_modules/
 .tmp/
 dist/
 src/styles/fonts
+coverage/
 
 # - Ignore support code and utilities
 support/apisimulator-http-1.4/

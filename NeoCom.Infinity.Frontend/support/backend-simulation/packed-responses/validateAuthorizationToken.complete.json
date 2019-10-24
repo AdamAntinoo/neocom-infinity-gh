@@ -1,16 +1,16 @@
 {
     "responseType": "ValidateAuthorizationTokenResponse",
-    "jwtToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTgzODQ3MjYsImFjY291bnROYW1lIjoiVGVzdGluZyBDaGFyYWN0ZXIgQWNjb3VudCIsImlzcyI6Ik5lb0NvbS5JbmZpbml0eS5CYWNrZW5kIiwidW5pcXVlSWQiOiJ0cmFucXVpbGl0eS85MzgxMzMxMCIsInBpbG90SWQiOjkzODEzMzEwfQ.eJvBC2144s7sKv5rxSUVEjNbP2BpQJlJhmTOu4AJ9eJj9so_WcrAthbvwgYM4BqyBSNZAjw7bVegieWqx8IX8Q",
+    "jwtToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6MTQyNzY2MTU3MywiYWNjb3VudE5hbWUiOiJBZGFtIEFudGlub28iLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvOTIwMDIwNjciLCJwaWxvdElkIjo5MjAwMjA2N30.6JgBvtHyhvD8aY8-I4075tb433mYMpn9sNeYCkIO28LbhqVR4CZ-x1t_sk4IOLLtzSN07bF4c7ZceWw_ta4Brw",
     "credential": {
         "jsonClass": "Credential",
-        "uniqueId": "tranquility/93813310",
-        "accountId": 93813310,
-        "corporationId": 98384726,
-        "accountName": "Testing Character Account",
+        "uniqueId": "tranquility/92002067",
+        "accountId": 92002067,
+        "accountName": "Adam Antinoo",
         "dataSource": "tranquility",
-        "assetsCount": 12,
-        "walletBalance": 43589044,
-        "miningResourcesEstimatedValue": 5675630,
+        "corporationId": 1427661573,
+        "assetsCount": 100,
+        "walletBalance": 654987.0,
+        "miningResourcesEstimatedValue": 345234.0,
         "raceName": "Minmatar"
     }
 }
