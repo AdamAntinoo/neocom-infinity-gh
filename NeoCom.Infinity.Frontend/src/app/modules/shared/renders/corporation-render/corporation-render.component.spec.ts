@@ -9,15 +9,8 @@ import { TestBed } from '@angular/core/testing';
 // - PROVIDERS
 import { IsolationService } from '@app/platform/isolation.service';
 import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
-import { environment } from '@env/environment';
-
-// import { CorporationRenderComponent } from './server-info-panel.component';
-import { ServerStatus } from '@app/domain/ServerStatus.domain';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { BackendService } from '@app/services/backend.service';
-import { SupportBackendService } from '@app/testing/SupportBackend.service';
-import { Alliance } from '@app/domain/Alliance.domain';
 import { CorporationRenderComponent } from './corporation-render.component';
+import { Corporation } from '@app/domain/Corporation.domain';
 
 fdescribe('RENDER CorporationRenderComponent [Module: SHARED]', () => {
     let component: CorporationRenderComponent;
@@ -46,6 +39,25 @@ fdescribe('RENDER CorporationRenderComponent [Module: SHARED]', () => {
         it('Should be created', () => {
             console.log('><[shared/CorporationRenderComponent]> should be created');
             expect(component).toBeDefined('component has not been created.');
+        });
+        it('Fields should be on initial state', () => {
+            console.log('><[shared/CorporationRenderComponent]> Fields should be on initial state');
+            let componentAsAny = component as any;
+            expect(componentAsAny.node).toBeUndefined();
+        });
+    });
+
+    // - I N P U T / O U T P U T   P H A S E
+    describe('Input/Output Phase', () => {
+        it('node (Input): validate node reception', () => {
+            console.log('><[shared/CorporationRenderComponent]> node (Input): validate node reception');
+            // Check the initial state to undefined.
+            expect(component.node).toBeUndefined();
+
+            // Create the test node to be used on the render.
+            console.log('><[shared/CorporationRenderComponent]> Input: node');
+            component.node = new Corporation();
+            expect(component.node).toBeDefined();
         });
     });
 });

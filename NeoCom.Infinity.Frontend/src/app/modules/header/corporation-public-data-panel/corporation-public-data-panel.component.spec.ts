@@ -22,7 +22,7 @@ import { Observable } from 'rxjs';
 import { Corporation } from '@app/domain/Corporation.domain';
 import { environment } from '@env/environment';
 
-fdescribe('PANEL CorporationPublicDataPanelComponent [Module: SHARED]', () => {
+xdescribe('PANEL CorporationPublicDataPanelComponent [Module: SHARED]', () => {
     let component: CorporationPublicDataPanelComponent;
     let fixture: ComponentFixture<CorporationPublicDataPanelComponent>;
     let isolationService: SupportIsolationService;

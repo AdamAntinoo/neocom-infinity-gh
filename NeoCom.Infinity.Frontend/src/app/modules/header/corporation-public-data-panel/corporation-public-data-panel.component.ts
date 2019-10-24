@@ -20,8 +20,6 @@ import { Pilot } from '@app/domain/Pilot.domain';
 export class CorporationPublicDataPanelComponent implements OnInit, OnDestroy {
     private corporationSubscription: Subscription;
     public corporation: Corporation; // The authorized corporation public data.
-    // public ceo: Pilot; // The Corporation CEO public pilot data.
-    // public alliance: Alliance; // A link to the Alliance record. Maybe null if the corporation is not associated.
 
     constructor(
         protected appStoreService: AppStoreService,
@@ -33,22 +31,23 @@ export class CorporationPublicDataPanelComponent implements OnInit, OnDestroy {
                 console.log('-[CorporationPublicDataPanelComponent]> processing response.');
                 console.log('-[CorporationPublicDataPanelComponent]> Corporation: ' + JSON.stringify(corporation));
                 this.corporation = corporation;
-                // this.alliance = this.corporation.alliance;
             });
     }
     ngOnDestroy() {
         if (null != this.corporationSubscription) this.corporationSubscription.unsubscribe();
     }
+
+    public getCorporationIcon(): string {
+        if (!this.isEmpty(this.corporation)) return this.corporation.getIconUrl();
+        else return environment.DEFAULT_AVATAR_PLACEHOLDER;
+    }
+
     public getCorporationId(): number {
         if (!this.isEmpty(this.corporation)) return this.corporation.corporationId;
         else return 0;
     }
     public getCorporationName(): string {
         return this.corporation.getName();
-    }
-    public getCorporationIcon(): string {
-        if (!this.isEmpty(this.corporation)) return this.corporation.getIconUrl();
-        else return environment.DEFAULT_AVATAR_PLACEHOLDER;
     }
     public getAlliance(): Alliance {
         return this.corporation.getAlliance();
