@@ -54,12 +54,15 @@ export class CorporationPublicDataPanelComponent implements OnInit, OnDestroy {
         return this.corporation.getName();
     }
     public getAlliance(): Alliance {
-        return this.corporation.getAlliance();
+        // Setup the alliance identifier not contained on the original data.
+        let alliance = this.corporation.getAlliance();
+        alliance.allianceId = this.corporation.allianceId;
+        return alliance;
     }
-    public getAllianceIcon(): string {
-        if (!this.isEmpty(this.corporation.getAlliance())) return this.corporation.getAlliance().getIconUrl();
-        else return environment.DEFAULT_AVATAR_PLACEHOLDER;
-    }
+    // public getAllianceIcon(): string {
+    //     if (!this.isEmpty(this.corporation.getAlliance())) return this.corporation.getAlliance().getIconUrl();
+    //     else return environment.DEFAULT_AVATAR_PLACEHOLDER;
+    // }
     protected isEmpty(target: any): boolean {
         if (null == target) return true;
         if (Object.keys(target).length > 0) return false;

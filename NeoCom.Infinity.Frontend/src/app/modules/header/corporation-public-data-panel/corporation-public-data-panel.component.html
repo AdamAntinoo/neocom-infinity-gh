@@ -18,10 +18,7 @@
                 </pilot-render>
             </td>
             <td>
-                <!-- ALLIANCE BLOCK -->
-                <!-- <div *ngIf="alliance else notassociated" class="alliance-box">
-                    <alliance-render [node]="getAlliance()"></alliance-render>
-                </div> -->
+                <alliance-render *ngIf="getAlliance() else loading" [node]="getAlliance()" [variant]="'-HEADER-'"></alliance-render>
             </td>
         </tr>
     </table>
