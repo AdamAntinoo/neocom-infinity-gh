@@ -11,7 +11,6 @@ import { TokenAuthorizationGuard } from '@app/security/token-authorization.guard
 // - PANELS
 import { AppInfoPanelComponent } from './panels/app-info-panel/app-info-panel.component';
 import { ServerInfoPanelComponent } from './panels/server-info-panel/server-info-panel.component';
-import { PilotPublicDataPanelComponent } from './panels/pilot-public-data-panel/pilot-public-data-panel.component';
 // - RENDERS
 import { AllianceRenderComponent } from './renders/alliance-render/alliance-render.component';
 import { CorporationRenderComponent } from './renders/corporation-render/corporation-render.component';
@@ -33,7 +32,6 @@ const routes: Routes = [
         // - PANELS
         AppInfoPanelComponent,
         ServerInfoPanelComponent,
-        PilotPublicDataPanelComponent,
         // - RENDERS
         AllianceRenderComponent,
         CorporationRenderComponent,
@@ -43,7 +41,6 @@ const routes: Routes = [
         RouterModule,
         AppInfoPanelComponent,
         ServerInfoPanelComponent,
-        PilotPublicDataPanelComponent,
         // - RENDERS
         AllianceRenderComponent,
         CorporationRenderComponent,

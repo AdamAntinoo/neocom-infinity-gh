@@ -1,8 +1,13 @@
 <div class="neocom-panel panel-white server-info-panel">
-    <span class="server-name">{{getServerName()}}</span>
-    <span class="server-status">{{getServerStatus()}}</span><br>
-    <span class="label">Capsuleers:</span>
-    <span class="server-capsuleers">{{getServerCapsuleers() | number:'3.0-0'}}</span><br>
-    <span class="label">Last Start Time:</span>
-    <span class="server-laststart">{{getLastStartTime()}}</span>
+    <div *ngIf="serverInfo else loading">
+        <span id="server-name">{{getServerName() |titlecase}}</span>
+        <span id="server-status">{{getServerStatus()}}</span><br>
+        <span class="label">Capsuleers:</span>
+        <span id="server-capsuleers">{{getServerCapsuleers() | number:'3.0-0'}}</span><br>
+        <span class="label">Last Start Time:</span>
+        <span id="server-laststart">{{serverInfo.start_time}}</span>
+    </div>
+    <ng-template #loading>
+        <div class="loading-label">Pending Data Download...</div>
+    </ng-template>
 </div>

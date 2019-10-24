@@ -3,10 +3,6 @@ simlet: authorization-success
 request:
   - method: GET
   - uriPathPattern: "/api/v1/neocom/validateAuthorizationToken"
-  - header: content-type
-    equals: "application/json"
-  - header: Authorization
-    exists: true
 
 response:
   from: template
@@ -32,9 +28,11 @@ simlet: authorization-failure
 
 request:
   - method: GET
-  - uriPathPattern: "/api/v1/neocom/validateAuthorizationToken"
+  - uriPathPattern: "/api/v1/neocom/validateAuthorizationToken/failure"
   - header: content-type
     equals: "application/json"
+  - header: Authorization
+    exists: true
     
 response:
   from: template
@@ -87,7 +85,7 @@ simlet: server-offline
 
 request:
   - method: GET
-  - uriPathPattern: "/api/v1/neocom/server/datasource/{datasource}"
+  - uriPathPattern: "/api/v1/neocom/server/datasource/"
 
 response:
   from: template

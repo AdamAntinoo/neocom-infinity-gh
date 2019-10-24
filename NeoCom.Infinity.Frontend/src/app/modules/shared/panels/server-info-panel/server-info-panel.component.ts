@@ -31,8 +31,7 @@ export class ServerInfoPanelComponent implements OnInit {
     }
 
     public getServerName(): string {
-        if (null != this.serverInfo) return this.serverInfo.getServerName();
-        else return '-PENDING-UPDATE-';
+        return this.serverInfo.getServerName();
     }
     public getServerStatus(): string {
         if (null != this.serverInfo) return "online".toUpperCase();
