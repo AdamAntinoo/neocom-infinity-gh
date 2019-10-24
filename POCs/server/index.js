@@ -1,10 +1,10 @@
 // - M A I N   S E R V E R
 const express = require('express')
 const path = require('path');
-const compression = require("compression");
+// const compression = require("compression");
 
 const app = express();
-app.use(compression());
+// app.use(compression());
 var options = {
     dotfiles: 'ignore',
     etag: true,
@@ -49,7 +49,7 @@ app.get('/', function(req, res) {
 })
 
 // - S T A T I C
-app.server.get('*.*', express.static(app.locals.appservepath, { maxAge: '1y' }));
+app.get('*.*', express.static(app.locals.appservepath, { maxAge: '1y' }));
 
 // - A P P   M O U N T P O I N T
 // app.use(express.static(__dirname + app.locals.apppath, options));
@@ -69,12 +69,12 @@ app.all('*', function(req, res) {
 // });
 
 // - A P I   M O U N T P O I N T
-const backend = express()
-backend.get('/api', function(req, res) {
-    console.log("Backend: " + backend.mountpath + res.path)
-    res.status(200).sendFile(`/`, { root: app.locals.apipath });
-})
-app.use('/api', backend)
+// const backend = express()
+// backend.get('/api', function(req, res) {
+//     console.log("Backend: " + backend.mountpath + res.path)
+//     res.status(200).sendFile(`/`, { root: app.locals.apipath });
+// })
+// app.use('/api', backend)
 
 app.listen(process.env.PORT || app.locals.port || 3000, function() {
     console.log("Node Express server for " + app.locals.appname + " listening on http://localhost:" + app.locals.port);

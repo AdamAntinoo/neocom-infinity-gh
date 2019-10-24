@@ -1,0 +1,126 @@
+<html>
+
+<head>
+    <title>Home Page - Start login</title>
+    <style>
+        @font-face {
+            font-family: 'Proxima Nova';
+            src: url('/assets/fonts/ProximaNovaRegular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+        
+        .proxima-ff {
+            font-family: 'Proxima Nova';
+        }
+        
+        @font-face {
+            font-family: "Elemental";
+            font-style: normal;
+            font-weight: normal;
+            src: url("/assets/fonts/ElementalEnd.ttf") format('truetype');
+        }
+        
+        .elemental-ff {
+            font-family: "Elemental";
+        }
+        
+        .panel-white {
+            background-color: #080808;
+            border-color: #404040;
+            border-style: solid;
+            border-width: 1px 1px 1px 1px;
+            height: auto;
+            opacity: 0.8;
+            position: relative;
+        }
+        
+        .panel-white> :first-child:after,
+        .panel-white> :first-child:before,
+        .panel-white:after,
+        .panel-white:before {
+            border: 1px #FFFFFF solid;
+            content: ' ';
+            height: 6px;
+            position: absolute;
+            width: 6px;
+        }
+        
+        .panel-white:hover {
+            opacity: 1.0;
+        }
+        
+        .panel-white-expanded {
+            background-color: #262626;
+        }
+        
+        .panel-white-selected {
+            border-left: 3px solid #FFFFFF;
+        }
+        
+        .panel-white:before {
+            border-width: 1px 0 0 1px;
+            left: -1px;
+            top: -1px;
+        }
+        
+        .panel-white:after {
+            border-width: 1px 1px 0 0;
+            right: -1px;
+            top: -1px;
+        }
+        
+        .panel-white> :first-child:before {
+            border-width: 0 1px 1px 0;
+            bottom: -1px;
+            right: -1px;
+        }
+        
+        .panel-white> :first-child:after {
+            border-width: 0 0 1px 1px;
+            bottom: -1px;
+            left: -1px;
+        }
+        
+        .app-info-panel {
+            height: 50px;
+            padding: 8px;
+        }
+        
+        .app-name {
+            font-size: 30px;
+            color: white;
+            text-shadow: 0px 0px 6px white;
+        }
+        
+        .app-version {
+            font-size: 16px;
+            color: yellow;
+        }
+        
+        .app-copyright {
+            font-size: 10px;
+            float: right;
+            color: white;
+        }
+        
+        .eve-login-request {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+            margin-top: 100px;
+        }
+        
+        body {
+            background: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div _ngcontent-det-c2="" class="neocom-panel panel-white app-info-panel"><span _ngcontent-det-c2="" class="app-name elemental-ff">NeoCom.Infinity</span><span _ngcontent-det-c2="" class="app-version elemental-ff" style="margin-left:10px;">0.16.0</span><span _ngcontent-det-c2="" class="app-copyright">© 2019,2020 Dimensinfin Industries</span></div>
+    <a href="https://login.eveonline.com/v2/oauth/authorize/?response_type=code&client_id=eacaa9cd36594189877544d851753734&state=LU5FT0NPTS5JTkZJTklUWS1ERVZFTE9QTUVOVC1WQUxJRCBTVEFURSBTVFJJTkct&redirect_uri=http%3A%2F%2Fneocom.infinity.local%2Fapp%2FloginValidation"><img class="eve-login-request" src="assets/media/eve-sso-login-black-large.png"></a>
+</body>
+
+</html>
