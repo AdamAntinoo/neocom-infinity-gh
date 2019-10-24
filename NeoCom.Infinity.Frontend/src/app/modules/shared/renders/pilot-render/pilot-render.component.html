@@ -11,3 +11,24 @@
         </div>
     </div>
 </div>
+
+<div *ngIf="variant === '-SMALL-PANEL-'" class="neocom-panel panel-blue">
+    <table *ngIf="node else loading" cellspacing="2px" cellpadding="0" width="100%">
+        <tr>
+            <div *ngIf="node" class="horizontal-container">
+                <div width="64px">
+                    <img class="neocom-icon" id="pilot-icon" style="width: 66px;" src="{{node.getPilotIcon()}}">
+                </div>
+                <div style="margin-left: 2px;">
+                    <span id="pilot-name ">{{node.name}} </span><span id="pilot-id">[{{node.pilotId}}]</span>
+                    <div *ngIf="node.race" id="pilot-ancestry">{{node.race.name}} - {{node.ancestry.name}} - {{node.bloodline.name}}</div>
+                    <div id="pilot-gender">{{node.gender}}</div>
+                    <div id="pilot-lastlocation">&gt;&gt;&gt; Last Location</div>
+                </div>
+            </div>
+        </tr>
+    </table>
+    <ng-template #loading>
+        <div class="loading-label">Pending Data Download...</div>
+    </ng-template>
+</div>

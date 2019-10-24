@@ -15,27 +15,27 @@ import { Pilot } from '@app/domain/Pilot.domain';
 import { CorporationDataResponse } from '@app/domain/dto/CorporationDataResponse.dto';
 
 @Component({
-   selector: 'pilot-public-data-panel',
-   templateUrl: './pilot-public-data-panel.component.html',
-   styleUrls: ['./pilot-public-data-panel.component.scss']
+    selector: 'pilot-public-data-panel',
+    templateUrl: './pilot-public-data-panel.component.html',
+    styleUrls: ['./pilot-public-data-panel.component.scss']
 })
 export class PilotPublicDataPanelComponent implements OnInit, OnDestroy {
-   private pilotSubscription: Subscription;
-   public pilot: Pilot;
+    private pilotSubscription: Subscription;
+    public pilot: Pilot;
 
-   constructor(protected appStoreService: AppStoreService) { }
+    constructor(protected appStoreService: AppStoreService) { }
 
-   ngOnInit() {
-      this.pilotSubscription = this.appStoreService.accessPilot()
-         .subscribe((pilot: Pilot) => {
-            this.pilot = pilot;
-         });
-   }
-   ngOnDestroy() {
-      if (null != this.pilotSubscription) this.pilotSubscription.unsubscribe();
-   }
-   public getPilotIcon(): string {
-      if (null != this.pilot) return this.pilot.url4Icon;
-      else return environment.DEFAULT_AVATAR_PLACEHOLDER;
-   }
+    ngOnInit() {
+        this.pilotSubscription = this.appStoreService.accessPilot()
+            .subscribe((pilot: Pilot) => {
+                this.pilot = pilot;
+            });
+    }
+    ngOnDestroy() {
+        if (null != this.pilotSubscription) this.pilotSubscription.unsubscribe();
+    }
+    //    public getPilotIcon(): string {
+    //       if (null != this.pilot) return this.pilot.url4Icon;
+    //       else return environment.DEFAULT_AVATAR_PLACEHOLDER;
+    //    }
 }
