@@ -12,7 +12,7 @@ import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 import { CorporationRenderComponent } from './corporation-render.component';
 import { Corporation } from '@app/domain/Corporation.domain';
 
-fdescribe('RENDER CorporationRenderComponent [Module: SHARED]', () => {
+describe('RENDER CorporationRenderComponent [Module: SHARED]', () => {
     let component: CorporationRenderComponent;
     let fixture: ComponentFixture<CorporationRenderComponent>;
     let isolationService: SupportIsolationService;

@@ -22,7 +22,7 @@ import { Observable } from 'rxjs';
 import { Corporation } from '@app/domain/Corporation.domain';
 import { environment } from '@env/environment';
 
-xdescribe('PANEL CorporationPublicDataPanelComponent [Module: SHARED]', () => {
+fdescribe('PANEL CorporationPublicDataPanelComponent [Module: SHARED]', () => {
     let component: CorporationPublicDataPanelComponent;
     let fixture: ComponentFixture<CorporationPublicDataPanelComponent>;
     let isolationService: SupportIsolationService;
@@ -60,35 +60,31 @@ xdescribe('PANEL CorporationPublicDataPanelComponent [Module: SHARED]', () => {
             let componentAsAny = component as any;
             expect(componentAsAny.corporationSubscription).toBeUndefined();
             expect(component.corporation).toBeUndefined();
-            // expect(component.ceo).toBeUndefined();
-            // expect(component.alliance).toBeUndefined();
-
         });
     });
 
     // - L I F E C Y C L E   P H A S E
     describe('Lifecycle Phase', () => {
-        xit('Lifecycle: OnInit -> get the authorized corporation data', fakeAsync(() => {
+        fit('Lifecycle: OnInit -> get the authorized corporation data', async(() => {
             console.log('><[shared/CorporationPublicDataPanelComponent]> Lifecycle: OnInit -> get the authorized corporation data');
             let componentAsAny = component as any;
-            // Check that initial state is the expected.
-            // fixture.detectChanges();
             expect(componentAsAny.corporationSubscription).toBeUndefined();
             expect(component.corporation).toBeUndefined();
-            // expect(component.ceo).toBeUndefined();
-            // expect(component.alliance).toBeUndefined();
 
-            // Prepare the response to be procesed at the ngOnInit method.
-            let corporation = new Corporation({ name: 'Corporation name' });
-            // spyOn(appStoreService, 'accessCorporation').and.returnValue(Observable.of(corporation));
-            // spyOn(appStoreService, 'accessCorporation').and.returnValue(Promise.resolve(corporation));
+            const expected = isolationService.generateRandomString(12);
+            let corporation = new Corporation({ name: expected });
             spyOn(appStoreService, 'accessCorporation').and.returnValue(Observable.create((observer) => {
+                console.log('><[shared/CorporationPublicDataPanelComponent]> accessCorporation internal observer.');
                 observer.next(corporation);
-                // observer.complete();
+                observer.complete();
             }));
+            fixture.whenStable().then(() => {
+                fixture.detectChanges();
+                expect(componentAsAny.corporationSubscription).toBeDefined('The subscription should exist after the ngOnInit');
+                expect(component.corporation).toBeDefined();
+                expect(component.corporation.getName()).toBe(expected);
+            });
             component.ngOnInit();
-            expect(componentAsAny.corporationSubscription).toBeDefined('The subscription should exist after the ngOnInit');
-            fixture.detectChanges();
         }));
         xit('Lifecycle: OnDestroy -> close the subscription if active', fakeAsync(() => {
             console.log('><[shared/CorporationPublicDataPanelComponent]> Lifecycle: OnDestroy -> close the subscription if active');
@@ -100,8 +96,8 @@ xdescribe('PANEL CorporationPublicDataPanelComponent [Module: SHARED]', () => {
             // expect(component.ceo).toBeUndefined();
             // expect(component.alliance).toBeUndefined();
 
-            // Prepare the response to be procesed at the ngOnInit method.
-            let corporation = new Corporation({ name: 'Corporation name' });
+            const expected = isolationService.generateRandomString(12);
+            let corporation = new Corporation({ name: expected });
             // spyOn(appStoreService, 'accessCorporation').and.returnValue(Observable.of(corporation));
             // spyOn(appStoreService, 'accessCorporation').and.returnValue(Promise.resolve(corporation));
             spyOn(appStoreService, 'accessCorporation').and.returnValue(Observable.create((observer) => {
@@ -111,6 +107,8 @@ xdescribe('PANEL CorporationPublicDataPanelComponent [Module: SHARED]', () => {
             component.ngOnInit();
             expect(componentAsAny.corporationSubscription).toBeDefined('The subscription should exist after the ngOnInit');
             fixture.detectChanges();
+            expect(component.corporation).toBeDefined();
+            expect(component.corporation.getName()).toBe(expected);
             // component.ngOnDestroy();
             // expect(componentAsAny.corporationSubscription).toBeUndefined('The subscription should be completed when destroyed.');
         }));
@@ -118,28 +116,6 @@ xdescribe('PANEL CorporationPublicDataPanelComponent [Module: SHARED]', () => {
 
     // - C O D E   C O V E R A G E   P H A S E
     describe('Code Coverage Phase [getters]', () => {
-        it('getCorporationId.success: validate the corporationId field', () => {
-            const expected = isolationService.generateRandomNum(100000, 1000000);
-            corporation.corporationId = expected;
-            component.corporation = corporation;
-            const obtained = component.getCorporationId();
-            expect(obtained).toBe(expected);
-        });
-        it('getCorporationId.failure: validate the corporationId field', () => {
-            const obtained = component.getCorporationId();
-            expect(obtained).toBe(0);
-        });
-        // it('getCorporationName.success: validate the corporation name field', () => {
-        //     const expected = isolationService.generateRandomString(12);
-        //     corporation.name = expected;
-        //     component.corporation = corporation;
-        //     const obtained = component.getCorporationName();
-        //     expect(obtained).toBe(expected);
-        // });
-        it('getCorporationName.failure: validate the corporation name field', () => {
-            const obtained = component.getCorporationName();
-            expect(obtained).toBe('-');
-        });
         it('getCorporationIcon.success: validate the corporation icon field', () => {
             const expected = isolationService.generateRandomString(12);
             corporation.url4Icon = expected;
@@ -148,36 +124,56 @@ xdescribe('PANEL CorporationPublicDataPanelComponent [Module: SHARED]', () => {
             expect(obtained).toBe(expected);
         });
         it('getCorporationIcon.failure: validate the corporation icon field', () => {
-            // const expected = isolationService.generateRandomString(12);
-            // corporation.url4Icon = expected;
-            // component.corporation = corporation;
             const obtained = component.getCorporationIcon();
             expect(obtained).toBe(environment.DEFAULT_AVATAR_PLACEHOLDER);
         });
-        it('getAlliance: validate the alliance field', () => {
-            // Create the data to be tested.
-            const expected = isolationService.generateRandomString(12);
-            corporation.alliance = new Alliance({ name: expected })
-            component.corporation = corporation;
-            // component.alliance = corporation.alliance;
-            const obtained = component.getAlliance();
-            console.log('-[shared/CorporationPublicDataPanelComponent]> alliance: ' + JSON.stringify(obtained));
-            expect(obtained).toBeDefined();
-            expect(obtained.getName()).toBe(expected);
-        });
-        it('getAllianceIcon.success: validate the alliance icon field', () => {
-            // Create the data to be tested.
-            const expected = isolationService.generateRandomString(12);
-            corporation.alliance = new Alliance({ url4Icon: expected })
-            component.corporation = corporation;
-            // component.alliance = corporation.alliance;
-            console.log('-[shared/CorporationPublicDataPanelComponent]> alliance corporation: ' + JSON.stringify(corporation));
-            const obtained = component.getAllianceIcon();
-            expect(obtained).toBe(expected);
-        });
-        it('getAllianceIcon.failure: validate the alliance icon field', () => {
-            const obtained = component.getAllianceIcon();
-            expect(obtained).toBe(environment.DEFAULT_AVATAR_PLACEHOLDER);
-        });
+
+        // it('getCorporationId.success: validate the corporationId field', () => {
+        //     const expected = isolationService.generateRandomNum(100000, 1000000);
+        //     corporation.corporationId = expected;
+        //     component.corporation = corporation;
+        //     const obtained = component.getCorporationId();
+        //     expect(obtained).toBe(expected);
+        // });
+        // it('getCorporationId.failure: validate the corporationId field', () => {
+        //     const obtained = component.getCorporationId();
+        //     expect(obtained).toBe(0);
+        // });
+        // it('getCorporationName.success: validate the corporation name field', () => {
+        //     const expected = isolationService.generateRandomString(12);
+        //     corporation.name = expected;
+        //     component.corporation = corporation;
+        //     const obtained = component.getCorporationName();
+        //     expect(obtained).toBe(expected);
+        // });
+        // it('getCorporationName.failure: validate the corporation name field', () => {
+        //     const obtained = component.getCorporationName();
+        //     expect(obtained).toBe('-');
+        // });
+        // it('getAlliance: validate the alliance field', () => {
+        //     // Create the data to be tested.
+        //     const expected = isolationService.generateRandomString(12);
+        //     corporation.alliance = new Alliance({ name: expected })
+        //     component.corporation = corporation;
+        //     // component.alliance = corporation.alliance;
+        //     const obtained = component.getAlliance();
+        //     console.log('-[shared/CorporationPublicDataPanelComponent]> alliance: ' + JSON.stringify(obtained));
+        //     expect(obtained).toBeDefined();
+        //     expect(obtained.getName()).toBe(expected);
+        // });
+        // it('getAllianceIcon.success: validate the alliance icon field', () => {
+        //     // Create the data to be tested.
+        //     const expected = isolationService.generateRandomString(12);
+        //     corporation.alliance = new Alliance({ url4Icon: expected })
+        //     component.corporation = corporation;
+        //     // component.alliance = corporation.alliance;
+        //     console.log('-[shared/CorporationPublicDataPanelComponent]> alliance corporation: ' + JSON.stringify(corporation));
+        //     const obtained = component.getAllianceIcon();
+        //     expect(obtained).toBe(expected);
+        // });
+        // it('getAllianceIcon.failure: validate the alliance icon field', () => {
+        //     const obtained = component.getAllianceIcon();
+        //     expect(obtained).toBe(environment.DEFAULT_AVATAR_PLACEHOLDER);
+        // });
     });
 });
