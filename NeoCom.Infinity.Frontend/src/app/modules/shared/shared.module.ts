@@ -15,6 +15,7 @@ import { PilotPublicDataPanelComponent } from './panels/pilot-public-data-panel/
 // - RENDERS
 import { AllianceRenderComponent } from './renders/alliance-render/alliance-render.component';
 import { CorporationRenderComponent } from './renders/corporation-render/corporation-render.component';
+import { PilotRenderComponent } from './renders/pilot-render/pilot-render.component';
 
 // - MODULE ROUTES
 const routes: Routes = [
@@ -36,6 +37,7 @@ const routes: Routes = [
         // - RENDERS
         AllianceRenderComponent,
         CorporationRenderComponent,
+        PilotRenderComponent,
     ],
     exports: [
         RouterModule,
@@ -44,7 +46,8 @@ const routes: Routes = [
         PilotPublicDataPanelComponent,
         // - RENDERS
         AllianceRenderComponent,
-        CorporationRenderComponent
+        CorporationRenderComponent,
+        PilotRenderComponent
     ]
 })
 export class SharedModule { }

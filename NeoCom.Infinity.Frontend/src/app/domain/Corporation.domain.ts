@@ -39,4 +39,7 @@ export class Corporation extends NeoCom {
         if (null != this.url4Icon) return this.url4Icon;
         else return '/assets/res-sde/drawable/corporation.png';
     }
+    public getCeo(): Pilot {
+        return this.ceoPilotData;
+    }
 }

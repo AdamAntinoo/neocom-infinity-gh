@@ -28,7 +28,7 @@
         "description": "<font size=\"12\" color=\"#bfffffff\"></font><font size=\"24\" color=\"#ff00ff00\"><b><u>N</font><font size=\"24\" color=\"#ffff0000\">R</font><font size=\"24\" color=\"#ff00ff00\">DS</b></u><br><br><br><br><br><br></font><font size=\"36\" color=\"#ff007fff\">Life is a beach ..........<br><br>and then we surf!<br><br><br><br>MKAY !!<br><br></font><font size=\"36\" color=\"#ffffa600\"><a href=\"http://cerlestes.de/eve/explained/index.html\">http://cerlestes.de/eve/explained/index.html</a></font><font size=\"36\" color=\"#ff007fff\"> </font>",
         "corporationId": 1427661573,
         "raceId": 1,
-        "url4Icon": "http://image.eveonline.com/character/977174846_256.jpg",
+        "url4Icon": "https://image.eveonline.com/Character/977174846_256.jpg",
         "ancestryId": 31,
         "bloodlineId": 11,
         "race": {
@@ -73,5 +73,5 @@
         "name": "Silent Infinity",
         "ticker": "AFK"
     },
-    "url4Icon": "http://image.eveonline.com/Corporation/1427661573_64.png"
+    "url4Icon": "https://image.eveonline.com/Corporation/1427661573_64.png"
 }

@@ -6,18 +6,16 @@
             <td class="elemental-ff">CORPORATION CEO</td>
             <td class="elemental-ff">ALLIANCE</td>
         </tr>
-        <tr>
+        <tr *ngIf="corporation else loading">
             <td width="64px">
                 <img class="neocom-icon" id="corporation-icon" src="{{getCorporationIcon()}}">
             </td>
-            <td class="neocom-panel-column">
+            <td>
                 <corporation-render *ngIf="corporation" [node]="corporation" [variant]="'-HEADER-'"></corporation-render>
             </td>
             <td>
-                <!-- CORPORATION CEO -->
-                <div *ngIf="ceo else loading">
-
-                </div>
+                <pilot-render *ngIf="getCorporationCeo() else loading" [node]="getCorporationCeo()" [variant]="'-HEADER-'">
+                </pilot-render>
             </td>
             <td>
                 <!-- ALLIANCE BLOCK -->
@@ -28,7 +26,7 @@
         </tr>
     </table>
     <ng-template #loading>
-        <div>Loading...</div>
+        <div class="loading-label">Pending Data Download...</div>
     </ng-template>
     <ng-template #notassociated>
         <div>NOT ASSOCIATED</div>

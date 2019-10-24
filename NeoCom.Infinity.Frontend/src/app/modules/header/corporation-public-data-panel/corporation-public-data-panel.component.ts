@@ -41,6 +41,10 @@ export class CorporationPublicDataPanelComponent implements OnInit, OnDestroy {
         if (!this.isEmpty(this.corporation)) return this.corporation.getIconUrl();
         else return environment.DEFAULT_AVATAR_PLACEHOLDER;
     }
+    public getCorporationCeo(): Pilot {
+        if (!this.isEmpty(this.corporation)) return this.corporation.getCeo();
+        else return null;
+    }
 
     public getCorporationId(): number {
         if (!this.isEmpty(this.corporation)) return this.corporation.corporationId;

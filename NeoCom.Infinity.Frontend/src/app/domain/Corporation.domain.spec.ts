@@ -5,8 +5,9 @@ import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 // - DOMAIN
 import { Corporation } from './Corporation.domain';
 import { Alliance } from './Alliance.domain';
+import { Pilot } from './Pilot.domain';
 
-describe('CLASS Corporation [Module: DOMAIN]', () => {
+fdescribe('CLASS Corporation [Module: DOMAIN]', () => {
     let isolation: SupportIsolationService;
 
     beforeEach(() => {
@@ -44,6 +45,19 @@ describe('CLASS Corporation [Module: DOMAIN]', () => {
         it('getAlliance.failure: check the alliance field', () => {
             const corporation = new Corporation()
             const obtained = corporation.getAlliance();
+            expect(obtained).toBeUndefined();
+        });
+        it('getCeo.success: check the alliance field', () => {
+            const expectedName = isolation.generateRandomString(32);
+            const expected = new Pilot({ name: expectedName });
+            const corporation = new Corporation({ ceoPilotData: expected })
+            const obtained: Pilot = corporation.getCeo();
+            expect(obtained).toBeDefined();
+            expect(obtained.getName()).toBe(expectedName);
+        });
+        it('getCeo.failure: check the alliance field', () => {
+            const corporation = new Corporation()
+            const obtained = corporation.getCeo();
             expect(obtained).toBeUndefined();
         });
         it('getTicker.success: check the ticker field', () => {
