@@ -1,5 +1,5 @@
 // - PAGES
-import { DashboardHomePage } from '@pages/DashboardHome.page';
+import { DashboardHomePage } from '../pages/DashboardHome.page';
 
 export class DashboardWorld {
     private page: DashboardHomePage;

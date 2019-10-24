@@ -10,10 +10,9 @@ export class DashboardHomePage extends SharedFunctionalityPage {
         this.setPageName('Dashboard Home Page')
     }
 
-    public navigateTo(feature: string) {
-        // const urlRequest = '/dashboard' + feature;
+    public navigateTo() {
         const urlRequest = '/dashboard';
-        console.log('>[DashboardHomePage.navigateTo]>Navigating to page: ' + urlRequest);
+        console.log('>[DashboardHomePage.navigateTo]> Navigating to page: ' + urlRequest);
         return browser.get(browser.baseUrl + urlRequest) as Promise<any>;
     }
     // - SERVER STATUS PANEL
@@ -25,6 +24,9 @@ export class DashboardHomePage extends SharedFunctionalityPage {
     }
     public getCapsuleers(): Promise<string> {
         return element(by.css('.server-capsuleers')).getText() as Promise<string>;
+    }
+    public getLastStartTime(): Promise<string> {
+        return element(by.css('.server-laststart')).getText() as Promise<string>;
     }
     // - CORPORATION PUBLIC DATA PANEL
     public getCorporationName(): Promise<string> {

@@ -1,12 +1,12 @@
 import { environment } from './environment';
-import { appconfiguration } from './appconfiguration';
+// import { appconfiguration } from './appconfiguration';
 export class IsolationService {
-    public getAppName(): string {
-        return appconfiguration.appName;
-    }
-    public getAppVersion(): string {
-        return appconfiguration.appVersion;
-    }
+    // public getAppName(): string {
+    //     return appconfiguration.appName;
+    // }
+    // public getAppVersion(): string {
+    //     return appconfiguration.appVersion;
+    // }
     public getCopyright(): string {
         return environment.copyright;
     }
@@ -50,9 +50,12 @@ export class IsolationService {
     }
     public replaceEnvironmentTemplate(templateName: string): string {
         switch (templateName) {
+            case 'app-name':
+                return environment.appName;
+            case 'app-version':
+                return environment.appVersion;
             case 'copyright':
                 return environment.copyright;
-                break;
         }
         return '-undefined-';
     }

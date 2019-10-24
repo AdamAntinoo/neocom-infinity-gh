@@ -2,6 +2,7 @@
 node_modules/
 
 # - Ignore compilation results
+.tmp/
 dist/
 src/styles/fonts
 

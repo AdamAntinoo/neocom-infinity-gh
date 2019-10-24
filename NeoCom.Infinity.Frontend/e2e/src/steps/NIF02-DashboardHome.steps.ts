@@ -19,52 +19,84 @@ import { DashboardHomePage } from '../pages/DashboardHome.page';
 import { IsolationService } from '../support/IsolationService.support';
 import { DashboardWorld } from '../support/DashboardWorld.world';
 // - DEFINITIONS
-// const INVALID_STATE: string = '-INVALID-STATE-';
-// const VALID_STATE: string = 'LU5FT0NPTS5JTkZJTklUWS1ERVZFTE9QTUVOVC1WQUxJRCBTVEFURSBTVFJJTkct';
 
-let page: DashboardHomePage;
+let dashboardPage: DashboardHomePage;
 let isolationService: IsolationService;
 let world: DashboardWorld;
 
 Before(() => {
-    page = new DashboardHomePage();
+    console.log('>THIS IS THE DashboardHomePage BEFORE');
+    dashboardPage = new DashboardHomePage();
     isolationService = new IsolationService();
     world = new DashboardWorld();
-    world.setPage(page);
+    world.setPage(dashboardPage);
 });
-//    ?Given I am on the Dashboard Home Page page
-// Undefined.Implement with the following snippet:
-
+/** This state code the preparation phase before going to the page. For example setup before failure generation. */
 Given('I am on the Dashboard Home Page page', function () {
-    assert.equal(page.getPageName(), 'Dashboard Home Page', 'Check the target page identifier.');
+    assert.equal(dashboardPage.getPageName(), 'Dashboard Home Page', 'Check the target page identifier.');
 });
-//    ?When the page is activated
-// Undefined.Implement with the following snippet:
-
-When('the page is activated', function () {
-    // Write code here that turns the phrase above into concrete actions
-    // return 'pending';
+When('the page is activated', async () => {
+    await dashboardPage.navigateTo();
 });
-Then('serverinfo panel displays the next fields', async (dataTable) => {
+Then('Dashboard Home Page appinfo-panel displays the next fields', async (dataTable) => {
+    const APP_NAME: string = 'app-name';
+    const APP_VERSION: string = 'app-version';
+    const COPYRIGHT: string = 'copyright';
+    console.log('>Then Dashboard Home Page appinfo-panel panel displays the next fields');
+    const row = dataTable.hashes()[0];
+    console.log('-[Then Dashboard Home Page appinfo-panel panel displays the next fields]> row=' + JSON.stringify(row));
+    console.log('-[Then Dashboard Home Page appinfo-panel panel displays the next fields]>' + APP_NAME + ': ' +
+        isolationService.decodeDataTableRow(row, APP_NAME));
+    expect(await dashboardPage.getAppName()).to.equal(isolationService.decodeDataTableRow(row, APP_NAME).toUpperCase());
+    console.log('-[Then Dashboard Home Page appinfo-panel panel displays the next fields]>' + APP_VERSION + ': ' +
+        isolationService.decodeDataTableRow(row, APP_VERSION));
+    expect(await dashboardPage.getAppVersion()).to.equal(isolationService.decodeDataTableRow(row, APP_VERSION));
+    console.log('-[Then Dashboard Home Page appinfo-panel panel displays the next fields]>' + COPYRIGHT + ': ' +
+        isolationService.decodeDataTableRow(row, COPYRIGHT));
+    expect(await dashboardPage.getCopyright()).to.equal(isolationService.decodeDataTableRow(row, COPYRIGHT));
+    console.log('<Then Dashboard Home Page appinfo-panel panel displays the next fields');
+});
+Then('Dashboard Home Page serverinfo-panel displays the next fields', async (dataTable) => {
     const SERVER_NAME: string = 'server-name';
     const SERVER_STATUS: string = 'server-status';
     const CAPSULEERS: string = 'capsuleers';
-    console.log('>Then serverinfo panel displays the next fields');
+    const SERVER_LAST_START = 'server-laststart';
+    console.log('>Then Dashboard Home Page serverinfo-panel displays the next fields');
     const row = dataTable.hashes()[0];
-    console.log('-[Then serverinfo panel displays the next fields]> row=' + JSON.stringify(row));
-    // dataTable.hashes().forEach((row) => {
-    console.log('-[Then serverinfo panel displays the next fields]>' + SERVER_NAME + ': ' +
+    console.log('-[Then Dashboard Home Page serverinfo-panel displays the next fields]> row=' + JSON.stringify(row));
+    console.log('-[Then Dashboard Home Page serverinfo-panel displays the next fields]>' + SERVER_NAME + ': ' +
         isolationService.decodeDataTableRow(row, SERVER_NAME));
-    // assert.equal(isolationService.decodeDataTableRow(row, APP_NAME), isolationService.getAppName());
-    expect(await page.getServerName()).to.equal(isolationService.decodeDataTableRow(row, SERVER_NAME));
-    console.log('-[Then serverinfo panel displays the next fields]>' + SERVER_STATUS + ': ' +
+    expect(await dashboardPage.getServerName()).to.equal(isolationService.decodeDataTableRow(row, SERVER_NAME));
+    console.log('-[Then Dashboard Home Page serverinfo-panel displays the next fields]>' + SERVER_STATUS + ': ' +
         isolationService.decodeDataTableRow(row, SERVER_STATUS));
-    expect(await page.getServerStatus()).to.equal(isolationService.decodeDataTableRow(row, SERVER_STATUS));
-    // assert.equal(isolationService.decodeDataTableRow(row, SERVER_STATUS), isolationService.getServerStatus());
-    console.log('-[Then serverinfo panel displays the next fields]>' + CAPSULEERS + ': ' +
+    expect(await dashboardPage.getServerStatus()).to.equal(isolationService.decodeDataTableRow(row, SERVER_STATUS));
+    console.log('-[Then Dashboard Home Page serverinfo-panel displays the next fields]>' + CAPSULEERS + ': ' +
         isolationService.decodeDataTableRow(row, CAPSULEERS));
-    expect(await page.getCapsuleers()).to.equal(isolationService.decodeDataTableRow(row, CAPSULEERS));
-    // assert.equal(isolationService.decodeDataTableRow(row, CAPSULEERS), page.getCapsuleers());
-    // });
-    console.log('<Then serverinfo panel displays the next fields');
+    expect(await dashboardPage.getCapsuleers()).to.equal(isolationService.decodeDataTableRow(row, CAPSULEERS));
+    console.log('-[Then Dashboard Home Page serverinfo-panel displays the next fields]>' + SERVER_LAST_START + ': ' +
+        isolationService.decodeDataTableRow(row, SERVER_LAST_START));
+    expect(await dashboardPage.getCapsuleers()).to.equal(isolationService.decodeDataTableRow(row, SERVER_LAST_START));
+    console.log('<Then Dashboard Home Page serverinfo-panel displays the next fields');
+});
+Then('Dashboard Home Page corporationdata-panel displays the next fields', async (dataTable) => {
+    const CORPORATION_NAME: string = 'corporation-name';
+    const CORPORATION_ID: string = 'corporation-id';
+    const CORPORATION_TICKER: string = 'corporation-ticker';
+    const CORPORATION_MEMBERS_COUNT = 'corporation-members-count';
+    console.log('>Then Dashboard Home Page corporationdata-panel displays the next fields');
+    const row = dataTable.hashes()[0];
+    console.log('-[Then Dashboard Home Page corporationdata-panel displays the next fields]> row=' + JSON.stringify(row));
+    console.log('-[Then Dashboard Home Page corporationdata-panel displays the next fields]>' + CORPORATION_NAME + ': ' +
+        isolationService.decodeDataTableRow(row, CORPORATION_NAME));
+    expect(await dashboardPage.getCorporationName()).to.equal(isolationService.decodeDataTableRow(row, CORPORATION_NAME));
+    // console.log('-[Then serverinfo panel displays the next fields]>' + SERVER_STATUS + ': ' +
+    //     isolationService.decodeDataTableRow(row, SERVER_STATUS));
+    // expect(await page.getServerStatus()).to.equal(isolationService.decodeDataTableRow(row, SERVER_STATUS));
+    // console.log('-[Then serverinfo panel displays the next fields]>' + CAPSULEERS + ': ' +
+    //     isolationService.decodeDataTableRow(row, CAPSULEERS));
+    // expect(await page.getCapsuleers()).to.equal(isolationService.decodeDataTableRow(row, CAPSULEERS));
+    // console.log('-[Then serverinfo panel displays the next fields]>' + SERVER_LAST_START + ': ' +
+    //     isolationService.decodeDataTableRow(row, SERVER_LAST_START));
+    // expect(await page.getCapsuleers()).to.equal(isolationService.decodeDataTableRow(row, SERVER_LAST_START));
+    console.log('<Then corporationdata panel displays the next fields');
 });
