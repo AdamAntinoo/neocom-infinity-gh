@@ -12,14 +12,14 @@ import { expect } from 'chai';
 import { assert } from 'chai';
 // - SUPPORT
 import { IsolationService } from '../support/IsolationService.support';
-import { SharedFunctionalityPage } from '../pages/SharedFunctionality.page';
+import { SharedPanelsElements } from '../pages/SharedPanelsElements.page';
 
-let page: SharedFunctionalityPage;
+let page: SharedPanelsElements;
 let isolationService: IsolationService;
 
 Before(() => {
     console.log('>THIS IS THE SharedFunctionalityPage BEFORE');
-    page = new SharedFunctionalityPage();
+    page = new SharedPanelsElements();
     isolationService = new IsolationService();
 });
 Then('there is a {string}', async (panelIdentifier) => {

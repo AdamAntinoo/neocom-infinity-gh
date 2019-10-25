@@ -2,38 +2,28 @@
 import { browser } from 'protractor';
 import { by } from 'protractor';
 import { element } from 'protractor';
-import { SharedFunctionalityPage } from './SharedFunctionality.page';
+import { SharedPanelsElements } from './SharedPanelsElements.page';
 
-export class DashboardHomePage extends SharedFunctionalityPage {
+export class DashboardHomePage extends SharedPanelsElements {
     constructor() {
         super();
         this.setPageName('Dashboard Home Page')
     }
 
+    private pageName: string;
+
+    public getPageName(): string {
+        return this.pageName as string;
+    }
+    public setPageName(newName: string): string {
+        this.pageName = newName;
+        return this.pageName;
+    }
+
+
     public navigateTo() {
         const urlRequest = '/dashboard';
         console.log('>[DashboardHomePage.navigateTo]> Navigating to page: ' + urlRequest);
         return browser.get(browser.baseUrl + urlRequest) as Promise<any>;
-    }
-    // - SERVER STATUS PANEL
-    public getServerName(): Promise<string> {
-        return element(by.css('.server-name')).getText() as Promise<string>;
-    }
-    public getServerStatus(): Promise<string> {
-        return element(by.css('.server-status')).getText() as Promise<string>;
-    }
-    public getCapsuleers(): Promise<string> {
-        return element(by.css('.server-capsuleers')).getText() as Promise<string>;
-    }
-    public getLastStartTime(): Promise<string> {
-        return element(by.css('.server-laststart')).getText() as Promise<string>;
-    }
-    // - CORPORATION PUBLIC DATA PANEL
-    public getCorporationName(): Promise<string> {
-        return element(by.css('.corporation-name')).getText() as Promise<string>;
-    }
-    // - PILOT PUBLIC DATA PANEL
-    public getPilotName(): Promise<string> {
-        return element(by.css('.pilot-name')).getText() as Promise<string>;
     }
 }

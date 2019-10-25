@@ -25,7 +25,7 @@ import { SupportBackendService } from '@app/testing/SupportBackend.service';
 import { LoginValidationProgressComponent } from '@app/panels/login-validation-progress/login-validation-progress.component';
 import { LoginValidationExceptionComponent } from '@app/panels/login-validation-exception/login-validation-exception.component';
 import { AppInfoPanelComponent } from '@app/modules/shared/panels/app-info-panel/app-info-panel.component';
-import { ServerInfoPanelComponent } from '@app/modules/shared/panels/server-info-panel/server-info-panel.component';
+import { ServerInfoPanelComponent } from '@app/modules/header/server-info-panel/server-info-panel.component';
 import { DashboardHomePageComponent } from './dashboard-home-page.component';
 
 describe('PAGE DashboardHomePageComponent [Module: CORE]', () => {
