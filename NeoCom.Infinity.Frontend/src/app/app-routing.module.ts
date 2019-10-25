@@ -7,13 +7,9 @@ import { Routes } from '@angular/router';
 import { TokenAuthorizationGuard } from './security/token-authorization.guard';
 
 // - PAGES
-import { LoginValidationPageComponent } from '@app/pages/login-validation-page/login-validation-page.component';
+import { LoginValidationPageComponent } from './pages/login-validation-page/login-validation-page.component';
 import { DashboardHomePageComponent } from './pages/dashboard-home-page/dashboard-home-page.component';
-// import { NotFoundPage } from '@app/pages/not-found-page/not-found-page.component';
-// import { LoginPageComponent } from '@app/modules/login/pages/login-page/login-page.component';
-// import { DashboardPageComponent } from '@app/modules/login/pages/dashboard-page/dashboard-page.component';
-// - CITACIONES - MODULE
-
+import { ExceptionInformationPageComponent } from './pages/exception-information-page/exception-information-page.component';
 
 const routes: Routes = [
     {
@@ -23,6 +19,7 @@ const routes: Routes = [
     },
     // - LOGIN PAGES
     { path: 'loginValidation', component: LoginValidationPageComponent },
+    { path: 'exceptionInfo', component: ExceptionInformationPageComponent },
     { path: 'dashboard', component: DashboardHomePageComponent, canActivate: [TokenAuthorizationGuard] },
     // - D A S H B O A R D
     // {

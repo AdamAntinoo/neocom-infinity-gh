@@ -20,7 +20,6 @@ import { ResponseTransformer } from '@app/services/support/ResponseTransformer';
 import { ValidateAuthorizationTokenResponse } from '@app/domain/dto/ValidateAuthorizationTokenResponse';
 import { ExceptionCatalog } from '@app/platform/ExceptionCatalog';
 
-
 @Component({
     selector: 'app-login-validation-page',
     templateUrl: './login-validation-page.component.html',

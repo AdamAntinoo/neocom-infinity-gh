@@ -15,6 +15,7 @@ export const environment = {
     apiVersion1: '/api/v1/neocom',
     apiVersion2: '/api/v2/neocom',
     ESIDataSource: 'Tranquility',
+    LoginRequest: 'https://login.eveonline.com/v2/oauth/authorize/?response_type=code&client_id=eacaa9cd36594189877544d851753734&state=LU5FT0NPTS5JTkZJTklUWS1ERVZFTE9QTUVOVC1WQUxJRCBTVEFURSBTVFJJTkct&redirect_uri=http%3A%2F%2Fneocom.infinity.local%2Fapp%2FloginValidation',
     // - C O N S T A N T S
     JWTTOKEN_KEY: '-JWTTOKEN_KEY-',
     JWTTOKEN_EXPIRATION_TIME_KEY: '-JWTTOKEN_EXPIRATION_TIME_KEY-',

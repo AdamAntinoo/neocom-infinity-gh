@@ -1,1 +1,18 @@
-<p>exception-information-page works!</p>
+<app-info-panel id="appinfo-panel" class="neocom-panel"></app-info-panel>
+<div *ngIf="exception else noexception" class="neocom-panel panel-red panel-margin">
+    <div class="panel-type-label">EXCEPTION</div>
+    <div class="exception-type">{{getExceptionType()}}</div>
+    <div class="exception-user-message">{{getUserMessage()}}</div>
+    <div *ngIf="retryable()" id="retry-button">
+        <button class="login-button">RETRY PAGE REQUEST</button>
+    </div>
+    <div id="login-again-button">
+        <a href="getLoginRequest()" class="eve-login-request"><img src="assets/media/eve-sso-login-black-large.png"></a>
+    </div>
+</div>
+<ng-template #noexception>
+    <div id="login-again-button">
+        <a href="https://login.eveonline.com/v2/oauth/authorize/?response_type=code&client_id=eacaa9cd36594189877544d851753734&state=LU5FT0NPTS5JTkZJTklUWS1ERVZFTE9QTUVOVC1WQUxJRCBTVEFURSBTVFJJTkct&redirect_uri=http%3A%2F%2Fneocom.infinity.local%2Fapp%2FloginValidation"
+            class="eve-login-request"><img src="assets/media/eve-sso-login-black-large.png"></a>
+    </div>
+</ng-template>

@@ -34,6 +34,7 @@ import { HeaderModule } from './modules/header/header.module';
 // - PAGES
 import { LoginValidationPageComponent } from './pages/login-validation-page/login-validation-page.component';
 import { DashboardHomePageComponent } from './pages/dashboard-home-page/dashboard-home-page.component';
+import { ExceptionInformationPageComponent } from './pages/exception-information-page/exception-information-page.component';
 // - COMPONENTS
 import { LoginValidationProgressComponent } from './panels/login-validation-progress/login-validation-progress.component';
 import { LoginValidationExceptionComponent } from './panels/login-validation-exception/login-validation-exception.component';
@@ -50,7 +51,6 @@ import { RollbarService } from '@app/rollbar-errorhandler.service';
 import { ErrorHandler } from '@angular/core';
 import { RollbarErrorHandler } from '@app/rollbar-errorhandler.service';
 import { HttpErrorInterceptor } from './security/httpErrorProcessing.interceptor';
-import { ExceptionInformationPageComponent } from './pages/exception-information-page/exception-information-page.component';
 
 export function rollbarFactory() {
     return new Rollbar(rollbarConfig);
@@ -63,7 +63,6 @@ export function rollbarFactory() {
         ReactiveFormsModule,
         BrowserModule,
         BrowserAnimationsModule,
-        // BootstrapModalModule,
         // - HTTP CLIENT
         HttpClientModule,
         // - NOTIFICATIONS
@@ -101,8 +100,6 @@ export function rollbarFactory() {
         { provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
     ],
-    // exports: [
-    // ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
