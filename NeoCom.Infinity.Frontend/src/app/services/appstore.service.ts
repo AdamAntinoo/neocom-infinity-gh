@@ -51,6 +51,11 @@ export class AppStoreService {
             });
     }
 
+    // - R O U T I N G
+    public route2Destination(page: string): void {
+        this.router.navigate([page]);
+    }
+
     // - S T O R E   D A T A   D O W N L O A D E R S
     private downloadCorporation(corporationId: number): Observable<Corporation> {
         return this.backendService.apiGetCorporationPublicData_v1(corporationId,
