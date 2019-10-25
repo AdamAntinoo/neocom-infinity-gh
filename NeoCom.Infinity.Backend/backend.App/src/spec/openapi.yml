@@ -1,0 +1,109 @@
+openapi: '3.0.2'
+info:
+  title: NeoCom.Infinity.Backend
+  version: '0.16.1'
+  description: |
+    # Summary
+    This specification describes the implemented API for the backend on the application **NeoCom.Infinity**. The end points
+    described are expected to be used from the **Angular Frontend** application. The ouputs are formatted as JSON results and will
+    be consumed by json complian application or by clients thart will transform them to Java instances.
+
+    For java transformation the JSON code should be used to generate the transformation code at the lext link. **http://www
+    .jsonschema2pojo.org/**.
+
+    ## SECTIONS
+    * **NeoCom Infinity Backend (NIB)** - This application will export a REST API service to access aggregated local data stored on repositories or the original game data from the open ESI OAuth data service from CCP.
+
+    ## TODO:
+    * [20191025] *Complete the definition for the NeoComExceptionResponse once I have the correct serialization data.*
+
+tags:
+  - name: NeoCom Infinity Backend (NIB)
+
+paths:
+  '/v1/validateAuthorizationToken':
+    get:
+      tags:
+        - NeoCom Infinity Backend (NIB)
+      summary: Validate the authorization token received from the OAuth CCP server on behalf for the pilot authentication.
+      description: |
+        Validate the authorization token received from the OAuth CCP server on behalf for the pilot authentication. This
+        token along with an application client validation information is received by the backend and then transformed and
+        validated against the ESI application authorization definition.
+
+        If the result is positive then the process completes
+        creating a Credential with a new authorization token and a jwt NeoCom authentication token to be used by the Frontend.
+      operationId: validateAuthorizationToken
+      parameters:
+        - in: query
+          name: code
+          required: true
+          description: The authorization new code obtained from the CPP OAuth factory and that should be replaced by the final authentication token.
+          schema:
+            type: string
+            example: WTeBQkkFTECb2n-sGs5xVQ
+        - in: query
+          name: state
+          required: true
+          description: The unique client identiier to validate if this specific application client is authorized to call the service.
+          schema:
+            type: string
+            example: LU5FT0NPTS5JTkZJTklUWS1ERVZFTE9QTUVOVC1WQUxJRCBTVEFURSBTVFJJTkct
+      responses:
+        '200':
+          description: Validation completed successfully and the new authetication credentialas are ready and operative.
+          content:
+            'application/json;charset=UTF-8':
+              schema:
+                $ref: '#/components/schemas/ValidateAuthorizationTokenResponse'
+        '400':
+          description: >
+            Bad formed request or other application exception error like the token was not validated or validation parameters
+            do not match.
+
+            * 'neocom.error.authorization.translation': The token authorization translation failed on some step. Validation
+            incomplete.
+
+            * 'neocom.error.authorization.verification': The final verification failed. Validation incomplete.
+          content:
+            'application/json;charset=UTF-8':
+              schema:
+                $ref: '#/components/schemas/NeoComExceptionResponse'
+        '403':
+          description: >
+            The request was not allowed to complete. Some missing data rejects the request.
+
+            * 'neocom.error.forbidden.corporation': The corporation requested is not authorized to the requester.
+
+            * 'neocom.error.forbidden.pilot': The access to the pilot data is not authorized to the requester credential.
+          content:
+            'application/json;charset=UTF-8':
+              schema:
+                $ref: '#/components/schemas/NeoComExceptionResponse'
+        '500':
+          description: >
+            * 'neocom.error.servererror': The backend system encountered an internal error.
+          content:
+            'application/json;charset=UTF-8':
+              schema:
+                $ref: '#/components/schemas/NeoComExceptionResponse'
+
+components:
+  schemas:
+    ValidateAuthorizationTokenResponse:
+      type: object
+      required:
+        - responseType
+        - jwtToken
+        - credential
+      properties:
+        responseType:
+          type: string
+          description: |
+            The classification type of the response so the client can use the right deserializer.
+          example: 'ValidateAuthorizationTokenResponse'
+    NeoComExceptionResponse:
+      type: object
+      required:
+        - errorCode
+        - message
