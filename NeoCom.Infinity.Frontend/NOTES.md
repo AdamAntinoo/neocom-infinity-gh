@@ -31,3 +31,7 @@ return Observable.create((observer) => {
     });
 
       let filterResult = filter.filterFunction(_target);
+
+[OPEN EXTERNAL URL]
+window.open(externalUrl, '_self');
+window.location()

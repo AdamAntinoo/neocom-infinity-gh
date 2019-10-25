@@ -49,6 +49,7 @@ import { rollbarConfig } from '@app/rollbar-errorhandler.service';
 import { RollbarService } from '@app/rollbar-errorhandler.service';
 import { ErrorHandler } from '@angular/core';
 import { RollbarErrorHandler } from '@app/rollbar-errorhandler.service';
+import { HttpErrorInterceptor } from './security/httpErrorProcessing.interceptor';
 
 export function rollbarFactory() {
     return new Rollbar(rollbarConfig);
@@ -96,7 +97,7 @@ export function rollbarFactory() {
         // { provide: RollbarService, useFactory: rollbarFactory },
         // - HTTP INTERCEPTION
         { provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true },
-        // { provide: HTTP_INTERCEPTORS, useClass: NeoComHeadersInterceptor, multi: true }
+        { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
     ],
     // exports: [
     // ],
