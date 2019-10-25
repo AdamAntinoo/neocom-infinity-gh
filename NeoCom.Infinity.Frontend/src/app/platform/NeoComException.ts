@@ -3,9 +3,9 @@ import { NeoCom } from '@app/domain/NeoCom.domain';
 
 export class NeoComException extends NeoCom {
     public status: number = 0;
-    public statusText: string = "Undefined Exception";
+    public statusText: string = 'Undefined Exception';
     public allowsRetry: boolean = false;
-    public message: string = "Request undefined exception:0:Undefined Exception.";
+    public message: string = 'Request undefined exception:0:Undefined Exception.';
     public userMessage: string;
 
     constructor(values: Object = {}) {

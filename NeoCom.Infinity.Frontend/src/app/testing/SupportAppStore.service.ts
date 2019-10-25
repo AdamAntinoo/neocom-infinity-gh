@@ -25,83 +25,74 @@ import { CorporationDataResponse } from '@app/domain/dto/CorporationDataResponse
     providedIn: 'root'
 })
 export class SupportAppStoreService {
-   private credential: Credential;
-   private corporationActiveCache: Subject<Corporation|Corporation[]> = new Subject();
-   private pilotActiveCache: Subject<Pilot | Pilot[] > = new Subject();
+    private credential: Credential;
+    private corporationActiveCache: Subject<Corporation | Corporation[]> = new Subject();
+    private pilotActiveCache: Subject<Pilot | Pilot[]> = new Subject();
 
-   constructor(
+    constructor(
         // protected router: Router,
         protected isolation: IsolationService,
-      // protected backendService: BackendService
-   ) {
+        // protected backendService: BackendService
+    ) {
     }
 
-   // - M O C K   D A T A   A C C E S S
-   public directAccessMockResource(dataIdentifier: string): any | any[] {
-      console.log(">>[SupportAppStoreService.directAccessMockResource]> dataIdentifier: " + dataIdentifier);
-      let rawdata = require('./mock-data/' + dataIdentifier.toLowerCase() + '.json');
-      return rawdata;
-   }
-       // - G L O B A L   S T O R E
-   public accessCredential(): Credential {
-      return this.getCredential();
-   }
-   public getCredential(): Credential {
-      return this.credential;
-   }
-   public setCredential(credential: Credential): void {
-      this.credential = credential;
-   }
-   public getCorporationIdentifier(): number {
-      return this.getCredential().getCorporationId();
-   }
-   public getPilotIdentifier(): number {
-      return this.getCredential().getAccountId();
-   }
+    // - M O C K   D A T A   A C C E S S
+    public directAccessMockResource(dataIdentifier: string): any | any[] {
+        console.log(">>[SupportAppStoreService.directAccessMockResource]> dataIdentifier: " + dataIdentifier);
+        let rawdata = require('./mock-data/' + dataIdentifier.toLowerCase() + '.json');
+        return rawdata;
+    }
+    // - G L O B A L   A C C E S S   M E T H O D S
+    public isEmpty(target?: any): boolean {
+        if (null == target) return true;
+        if (Object.keys(target).length > 0) return false;
+        if (target.length > 0) return true;
+        return true;
+    }
 
-   // - S T O R E   A C C E S S   S E C T I O N
-   /**
-    * Resets and clears the cached stored contents so on next login we should reload all data.
-    */
-   public clearStore(): void {
-      // Clear dynamic caches.
-      this.corporationActiveCache.next(null);
-   }
-   // - C O R P O R A T I O N
-   public accessCorporation(): Observable<Corporation | Corporation[]> {
-      return this.corporationActiveCache;
-   }
-   public downloadCorporation(corporation: Corporation): void {
-      this.corporationActiveCache.next(corporation);
-   }
-   // - P I L O T
-   public accessPilot(): Observable<Pilot | Pilot[]> {
-      return this.pilotActiveCache;
-   }
+    // - S T O R E   A C C E S S   S E C T I O N
+    /**
+     * Resets and clears the cached stored contents so on next login we should reload all data.
+     */
+    public clearStore(): void {
+        // Clear dynamic caches.
+        this.corporationActiveCache.next(null);
+    }
+    // - C O R P O R A T I O N
+    public accessCorporation(): Observable<Corporation | Corporation[]> {
+        return this.corporationActiveCache;
+    }
+    public downloadCorporation(corporation: Corporation): void {
+        this.corporationActiveCache.next(corporation);
+    }
+    // - P I L O T
+    public accessPilot(): Observable<Pilot | Pilot[]> {
+        return this.pilotActiveCache;
+    }
 
-   // - S T O R E   D A T A   D O W N L O A D E R S
-   // public downloadCorporation(corporationId: number): void {
-   //    return this.backendService.apiGetCorporationPublicData_v1(corporationId)
-   //       .pipe(map((corporationResponse: CorporationDataResponse) => {
-   //          let corporation = new Corporation(corporationResponse.corporation);
-   //          return corporation;
-   //       }));
-   // }
-   // private downloadPilot(pilotId: number): Observable<Pilot> {
-   //    return this.backendService.apiGetPilotPublicData_v1(pilotId)
-   //       .pipe(map((response: Pilot) => {
-   //          let pilot = response;
-   //          return pilot;
-   //       }));
-   // }
+    // - S T O R E   D A T A   D O W N L O A D E R S
+    // public downloadCorporation(corporationId: number): void {
+    //    return this.backendService.apiGetCorporationPublicData_v1(corporationId)
+    //       .pipe(map((corporationResponse: CorporationDataResponse) => {
+    //          let corporation = new Corporation(corporationResponse.corporation);
+    //          return corporation;
+    //       }));
+    // }
+    // private downloadPilot(pilotId: number): Observable<Pilot> {
+    //    return this.backendService.apiGetPilotPublicData_v1(pilotId)
+    //       .pipe(map((response: Pilot) => {
+    //          let pilot = response;
+    //          return pilot;
+    //       }));
+    // }
 
     // - E N V I R O N M E N T    C A L L S
-   //  public getApplicationName(): string {
-   //      return environment.appName;
-   //  }
-   //  public getApplicationVersion(): string {
-   //      return environment.appVersion;
-   //  }
+    //  public getApplicationName(): string {
+    //      return environment.appName;
+    //  }
+    //  public getApplicationVersion(): string {
+    //      return environment.appVersion;
+    //  }
 
     // - G L O B A L   A C C E S S   M E T H O D S
     public isNonEmptyString(str: string): boolean {

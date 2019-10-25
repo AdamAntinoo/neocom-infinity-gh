@@ -42,11 +42,11 @@ export class HttpClientWrapperService {
     protected wrapHttpSecureHeaders(_requestHeaders?: HttpHeaders): HttpHeaders {
         let headers = new HttpHeaders()
             .set('Content-Type', 'application/json; charset=utf-8')
-            //  .set('Access-Control-Allow-Origin', '*')
             .set('xApp-Name', environment.appName)
             .set('xApp-Version', environment.appVersion)
             .set('xApp-Platform', environment.platform)
-        if (null != _requestHeaders) {
+            .set('xApp-Signature', 'S0000.0016.0001');
+        if (null != _requestHeaders) { // Copy in additional headers.
             for (let key of _requestHeaders.keys()) {
                 headers = headers.set(key, _requestHeaders.get(key));
             }

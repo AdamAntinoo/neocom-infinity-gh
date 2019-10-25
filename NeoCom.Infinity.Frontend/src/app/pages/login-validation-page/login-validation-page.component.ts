@@ -86,7 +86,7 @@ export class LoginValidationPageComponent implements OnInit, OnDestroy {
      */
     private parameterValidation(): boolean {
         this.validateState(this.paramState);
-        if (this.appModelStore.isEmptyString(this.paramCode))
+        if (this.appModelStore.isEmpty(this.paramCode))
             this.validationException = new NeoComException(
                 { code: 400, message: 'The request does not have a mandatory query parameter.' }
             );

@@ -27,23 +27,12 @@ import { ServerStatus } from '@app/domain/ServerStatus.domain';
     providedIn: 'root'
 })
 export class BackendService {
-    private HEADERS;
     private APIV1: string;
 
     constructor(
         public isolation: IsolationService,
         protected httpService: HttpClientWrapperService,
         protected http: HttpClient) {
-        // super();
-        // Initialize the list of header as a constant. Do this in code because the isolation dependency.
-        this.HEADERS = new HttpHeaders()
-            .set('Content-Type', 'application/json; charset=utf-8')
-            .set('Access-Control-Allow-Origin', '*')
-            // .set('xApp-Name', this.isolation.getAppName())
-            // .set('xApp-version', this.isolation.getAppVersion())
-            .set('xApp-Platform', 'Angular 6.1.x')
-            .set('xApp-Brand', 'CitasCentro-Demo')
-            .set('xApp-Signature', 'S0000.0011.0000');
         this.APIV1 = environment.serverName + environment.apiVersion1;
     }
 
@@ -56,25 +45,15 @@ export class BackendService {
             "?code=" + code +
             "&state=" + state +
             "&datasource=" + environment.ESIDataSource.toLowerCase();
-        return this.httpService.wrapHttpGETCall(request)
+        let headers = new HttpHeaders() // Additional mockup headers to apisimulation.
+            .set('xapp-validation-code', code);
+        return this.httpService.wrapHttpGETCall(request, headers)
             .pipe(map((data: any) => {
                 console.log(">[BackendService.apiValidateAuthorizationToken_v1]> Transformation: " +
                     transformer.description);
                 const response = transformer.transform(data) as ValidateAuthorizationTokenResponse;
                 return response;
-            })/*, catchError((error: HttpErrorResponse) => {
-                console.log(">[BackendService.apiValidateAuthorizationToken_v1] Error: " + JSON.stringify(error));
-                // let errorMessage = '';
-                // if (error.error instanceof ErrorEvent) {
-                //     // client-side error
-                //     errorMessage = `backend Error: ${error.error.message}`;
-                // } else {
-                //     // server-side error
-                //     errorMessage = `backeend Error Code: ${error.status}\nMessage: ${error.message}`;
-                // }
-                window.alert(error);
-                return throwError(error);
-            })*/);
+            }));
     }
     public apiGetServerInfo_v1(transformer: ResponseTransformer): Observable<ServerStatus> {
         const request = this.APIV1 + "/server/datasource/" + environment.ESIDataSource.toLowerCase();

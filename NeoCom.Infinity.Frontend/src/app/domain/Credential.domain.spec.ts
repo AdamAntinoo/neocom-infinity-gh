@@ -32,17 +32,22 @@ describe('CLASS Credential [Module: DOMAIN]', () => {
             const obtained = credential.getAccountName();
             expect(obtained).toBe(expected);
         });
-        it('Credential.getUniqueId: check the account name field', () => {
+        it('Credential.getUniqueId: check the unique credential identifier field', () => {
             const expected = isolation.generateRandomString(32);
             const credential = new Credential({ uniqueId: expected })
             const obtained = credential.getUniqueId();
             expect(obtained).toBe(expected);
         });
-        it('Credential.getRaceName: check the account id field', () => {
+        it('Credential.getRaceName.success: check the race name field', () => {
             const expected = isolation.generateRandomString(32);
             const credential = new Credential({ raceName: expected })
             const obtained = credential.getRaceName();
             expect(obtained).toBe(expected);
+        });
+        it('Credential.getRaceName.failure: check the race name field', () => {
+            const credential = new Credential()
+            const obtained = credential.getRaceName();
+            expect(obtained).toBe('-UNDETERMINED-');
         });
     });
 });

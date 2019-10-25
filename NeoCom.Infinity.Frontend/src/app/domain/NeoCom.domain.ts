@@ -6,7 +6,7 @@ export class NeoCom {
     public getJsonClass(): string {
         return this.jsonClass;
     }
-    protected isEmpty(target: any): boolean {
+    protected isEmpty(target?: any): boolean {
         if (null == target) return true;
         if (Object.keys(target).length > 0) return false;
         return true;
