@@ -1,0 +1,169 @@
+simlet: check01
+
+rank: 10
+request:
+  - method: GET
+  - uriPathPattern: "/api/v1/neocom/validateAuthorizationToken"
+  - header: "content-type"
+    equals: "application/json; charset=utf-8"
+  - header: "xapp-name"
+    equals: "neocom.infinity"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+    - "Cookie: jwtToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTgzODQ3MjYsImFjY291bnROYW1lIjoiVGVzdGluZyBDaGFyYWN0ZXIgQWNjb3VudCIsImlzcyI6Ik5lb0NvbS5JbmZpbml0eS5CYWNrZW5kIiwidW5pcXVlSWQiOiJ0cmFucXVpbGl0eS85MzgxMzMxMCIsInBpbG90SWQiOjkzODEzMzEwfQ.eJvBC2144s7sKv5rxSUVEjNbP2BpQJlJhmTOu4AJ9eJj9so_WcrAthbvwgYM4BqyBSNZAjw7bVegieWqx8IX8Q"
+    - "Decoded-Content: {
+      sub: ESI OAuth2 Authentication,
+      corporationId: 98384726,
+      accountName: Testing Character Account,
+      iss: NeoCom.Infinity.Backend,
+      uniqueId: tranquility/93813310,
+      pilotId: 93813310
+      }"
+  body: |+
+    { "message": "Intercepted check 01. Pattern match and headers match." }
+
+---
+
+simlet: check02
+
+request:
+  - method: GET
+  - uriPathPattern: "/api/v1/neocom/validateAuthorizationToken"
+  - header: "xapp-mockaction"
+    equals: "BAD_REQUEST"
+
+response:
+  from: template
+  status: 400
+  headers:
+    - "Content-Type: application/json"
+    - "Cookie: jwtToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTgzODQ3MjYsImFjY291bnROYW1lIjoiVGVzdGluZyBDaGFyYWN0ZXIgQWNjb3VudCIsImlzcyI6Ik5lb0NvbS5JbmZpbml0eS5CYWNrZW5kIiwidW5pcXVlSWQiOiJ0cmFucXVpbGl0eS85MzgxMzMxMCIsInBpbG90SWQiOjkzODEzMzEwfQ.eJvBC2144s7sKv5rxSUVEjNbP2BpQJlJhmTOu4AJ9eJj9so_WcrAthbvwgYM4BqyBSNZAjw7bVegieWqx8IX8Q"
+    - "Decoded-Content: {
+      sub: ESI OAuth2 Authentication,
+      corporationId: 98384726,
+      accountName: Testing Character Account,
+      iss: NeoCom.Infinity.Backend,
+      uniqueId: tranquility/93813310,
+      pilotId: 93813310
+      }"
+  body: |+
+    { "message": "Intercepted check 02. BAD_REQUEST" }
+
+---
+
+simlet: check03
+
+rank: 30
+request:
+  - method: GET
+  - uriPathPattern: "/api/v1/neocom/validateAuthorizationToken"
+  - where: uriQueryParameter
+    named: "code"
+    equals: "FAILUREBADREQUEST"
+
+response:
+  from: template
+  status: 401
+  headers:
+    - "Content-Type: application/json"
+    - "Cookie: jwtToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTgzODQ3MjYsImFjY291bnROYW1lIjoiVGVzdGluZyBDaGFyYWN0ZXIgQWNjb3VudCIsImlzcyI6Ik5lb0NvbS5JbmZpbml0eS5CYWNrZW5kIiwidW5pcXVlSWQiOiJ0cmFucXVpbGl0eS85MzgxMzMxMCIsInBpbG90SWQiOjkzODEzMzEwfQ.eJvBC2144s7sKv5rxSUVEjNbP2BpQJlJhmTOu4AJ9eJj9so_WcrAthbvwgYM4BqyBSNZAjw7bVegieWqx8IX8Q"
+    - "Decoded-Content: {
+      sub: ESI OAuth2 Authentication,
+      corporationId: 98384726,
+      accountName: Testing Character Account,
+      iss: NeoCom.Infinity.Backend,
+      uniqueId: tranquility/93813310,
+      pilotId: 93813310
+      }"
+  body: |+
+    {
+      "httpStatus": 400,
+      "httpStatusName": "BAD_REQUEST",
+      "message": "TokenTranslationResponse response is not valid.",
+      "sourceClass": "AuthorizationService",
+      "sourceMethod": "getTokenTranslationResponse"
+    }
+
+---
+
+simlet: check04
+
+rank: 40
+request:
+  - method: GET
+  - uriPathPattern: "/api/v1/neocom/validateAuthorizationToken?code={code}"
+  - where: uriQueryParameter
+    named: "code"
+    equals: "-FAILURE-FORBIDDEN-"
+  - header: "xapp-name"
+    equals: "neocom.infinity"
+  - header: authorization
+    startsWith: "Bearer "
+
+response:
+  from: template
+  status: 403
+  headers:
+    - "Content-Type: application/json"
+    - "Cookie: jwtToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTgzODQ3MjYsImFjY291bnROYW1lIjoiVGVzdGluZyBDaGFyYWN0ZXIgQWNjb3VudCIsImlzcyI6Ik5lb0NvbS5JbmZpbml0eS5CYWNrZW5kIiwidW5pcXVlSWQiOiJ0cmFucXVpbGl0eS85MzgxMzMxMCIsInBpbG90SWQiOjkzODEzMzEwfQ.eJvBC2144s7sKv5rxSUVEjNbP2BpQJlJhmTOu4AJ9eJj9so_WcrAthbvwgYM4BqyBSNZAjw7bVegieWqx8IX8Q"
+    - "Decoded-Content: {
+      sub: ESI OAuth2 Authentication,
+      corporationId: 98384726,
+      accountName: Testing Character Account,
+      iss: NeoCom.Infinity.Backend,
+      uniqueId: tranquility/93813310,
+      pilotId: 93813310
+      }"
+  body: |+
+    {
+      "httpStatus": 403,
+      "httpStatusName": "FORBIDEN",
+      "message": "TokenTranslationResponse response is not valid.",
+      "sourceClass": "AuthorizationService",
+      "sourceMethod": "getTokenTranslationResponse"
+    }
+
+---
+
+simlet: check05
+
+rank: 40
+request:
+  - method: GET
+  - uriPathPattern: "/api/v1/neocom/validateAuthorizationToken?code={code}"
+  - where: uriQueryParameter
+    named: "code"
+    equals: "-FAILURE-FORBIDDEN-"
+  - header: "xapp-name"
+    equals: "neocom.infinity"
+  - header: authorization
+    startsWith: "Bearer "
+  - header: "xapp-validation-code"
+    equals: "-FAILURE-BAD-REQUEST-"
+
+response:
+  from: template
+  status: 400
+  headers:
+    - "Content-Type: application/json"
+    - "Cookie: jwtToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTgzODQ3MjYsImFjY291bnROYW1lIjoiVGVzdGluZyBDaGFyYWN0ZXIgQWNjb3VudCIsImlzcyI6Ik5lb0NvbS5JbmZpbml0eS5CYWNrZW5kIiwidW5pcXVlSWQiOiJ0cmFucXVpbGl0eS85MzgxMzMxMCIsInBpbG90SWQiOjkzODEzMzEwfQ.eJvBC2144s7sKv5rxSUVEjNbP2BpQJlJhmTOu4AJ9eJj9so_WcrAthbvwgYM4BqyBSNZAjw7bVegieWqx8IX8Q"
+    - "Decoded-Content: {
+      sub: ESI OAuth2 Authentication,
+      corporationId: 98384726,
+      accountName: Testing Character Account,
+      iss: NeoCom.Infinity.Backend,
+      uniqueId: tranquility/93813310,
+      pilotId: 93813310
+      }"
+  body: |+
+    {
+      "httpStatus": 400,
+      "httpStatusName": "BAD_REQUEST",
+      "message": "TokenTranslationResponse response is not valid.",
+      "sourceClass": "AuthorizationService",
+      "sourceMethod": "getTokenTranslationResponse"
+    }
