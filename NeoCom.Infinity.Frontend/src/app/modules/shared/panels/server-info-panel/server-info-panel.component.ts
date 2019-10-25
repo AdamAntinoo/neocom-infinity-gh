@@ -15,7 +15,7 @@ import { ServerStatus } from '@app/domain/ServerStatus.domain';
 })
 export class ServerInfoPanelComponent implements OnInit {
     private serverInfoSubscription: Subscription;
-    private serverInfo: ServerStatus;
+    public serverInfo: ServerStatus;
 
     constructor(protected backendService: BackendService) { }
 

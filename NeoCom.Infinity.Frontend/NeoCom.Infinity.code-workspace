@@ -1,24 +1,27 @@
 {
 	"folders": [
-      {
-         "path": "."
-      },
-      {
-         "path": "/home/adam/Development/NeoCom/neocom-infinity/POCs/frontend"
-      },
-      {
-         "path": "/home/adam/Development/NeoCom/neocom-infinity/POCs/server"
-      },
-      {
-         "path": "/home/adam/Development/NeoCom/neocom-infinity/POCs/attdangular"
-      },
-      {
-         "path": "/home/adam/Development/NeoCom/proofofconcept/A5POCWorkBench"
-      },
-      {
-         "path": "/home/adam/Public/Development/InnoDental/InnoDentalv0.11.0/CitasCentro.frontend"
-      }
-   ],
+        {
+            "path": "."
+        },
+        {
+            "path": "/home/adam/Development/NeoCom/neocom-infinity/POCs/frontend"
+        },
+        {
+            "path": "/home/adam/Development/NeoCom/neocom-infinity/POCs/server"
+        },
+        {
+            "path": "/home/adam/Development/NeoCom/neocom-infinity/POCs/attdangular"
+        },
+        {
+            "path": "/home/adam/Development/NeoCom/proofofconcept/A5POCWorkBench"
+        },
+        {
+            "path": "/home/adam/Public/Development/InnoDental/InnoDentalv0.11.0/CitasCentro.frontend"
+        },
+        {
+            "path": "/home/adam/Development/NeoCom/neocom-infinity/POCs/simulator"
+        }
+    ],
 	"settings": {
 		"html.format.wrapLineLength": 140,
 		"editor.wordWrap": "wordWrapColumn",
