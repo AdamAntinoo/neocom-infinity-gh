@@ -1,8 +1,9 @@
 // - CORE
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, ObservableInput } from 'rxjs';
 import { throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { environment } from '@env/environment';
 // - HTTP PACKAGE
 import { HttpClient } from '@angular/common/http';
@@ -47,7 +48,8 @@ export class BackendService {
     }
 
     // - B A C K E N D - A P I
-    public apiValidateAuthorizationToken_v1(code: string, state: string): Observable<ValidateAuthorizationTokenResponse> {
+    public apiValidateAuthorizationToken_v1(code: string, state: string,
+        transformer: ResponseTransformer): Observable<ValidateAuthorizationTokenResponse> {
         console.log(">[BackendService.apiValidateAuthorizationToken_v1]> code: " + code);
         // Construct the request to call the backend.
         const request = this.APIV1 + "/validateAuthorizationToken" +
@@ -56,9 +58,23 @@ export class BackendService {
             "&datasource=" + environment.ESIDataSource.toLowerCase();
         return this.httpService.wrapHttpGETCall(request)
             .pipe(map((data: any) => {
-                const response = this.transformApiResponse(data, request) as ValidateAuthorizationTokenResponse;
+                console.log(">[BackendService.apiValidateAuthorizationToken_v1]> Transformation: " +
+                    transformer.description);
+                const response = transformer.transform(data) as ValidateAuthorizationTokenResponse;
                 return response;
-            }));
+            })/*, catchError((error: HttpErrorResponse) => {
+                console.log(">[BackendService.apiValidateAuthorizationToken_v1] Error: " + JSON.stringify(error));
+                // let errorMessage = '';
+                // if (error.error instanceof ErrorEvent) {
+                //     // client-side error
+                //     errorMessage = `backend Error: ${error.error.message}`;
+                // } else {
+                //     // server-side error
+                //     errorMessage = `backeend Error Code: ${error.status}\nMessage: ${error.message}`;
+                // }
+                window.alert(error);
+                return throwError(error);
+            })*/);
     }
     public apiGetServerInfo_v1(transformer: ResponseTransformer): Observable<ServerStatus> {
         const request = this.APIV1 + "/server/datasource/" + environment.ESIDataSource.toLowerCase();
@@ -267,23 +283,23 @@ export class BackendService {
     //     }
     //     return results;
     // }
-    private transformApiResponse(responseData: any, requestUrl: string): NeoComResponse {
-        let responseType = responseData["responseType"];
-        switch (responseType) {
-            case 'ValidateAuthorizationTokenResponse':
-                return new ValidateAuthorizationTokenResponse(responseData);
-            case 'ServerInfoResponse':
-                return new ServerInfoResponse(responseData);
-            case 'CorporationDataResponse':
-                return new CorporationDataResponse(responseData);
-            default:
-                throw new NeoComException({
-                    "ok": false,
-                    status: 400,
-                    statusText: "Unidentified response",
-                    message: "Api response type does not match any of the declared types. Invalid response",
-                    requestUrl: requestUrl
-                });
-        }
-    }
+    // private transformApiResponse(responseData: any, requestUrl: string): NeoComResponse {
+    //     let responseType = responseData["responseType"];
+    //     switch (responseType) {
+    //         case 'ValidateAuthorizationTokenResponse':
+    //             return new ValidateAuthorizationTokenResponse(responseData);
+    //         case 'ServerInfoResponse':
+    //             return new ServerInfoResponse(responseData);
+    //         case 'CorporationDataResponse':
+    //             return new CorporationDataResponse(responseData);
+    //         default:
+    //             throw new NeoComException({
+    //                 "ok": false,
+    //                 status: 400,
+    //                 statusText: "Unidentified response",
+    //                 message: "Api response type does not match any of the declared types. Invalid response",
+    //                 requestUrl: requestUrl
+    //             });
+    //     }
+    // }
 }
