@@ -128,6 +128,11 @@ public class SBSDEDatabaseAdapter implements ISDEDatabaseAdapter {
 		return new SBRawStatement( this.getSDEDatabase(), query, parameters );
 	}
 
+	@Override
+	public Integer getDatabaseVersion() {
+		return null;
+	}
+
 	// - B U I L D E R
 	public static class Builder {
 		private SBSDEDatabaseAdapter onConstruction;
