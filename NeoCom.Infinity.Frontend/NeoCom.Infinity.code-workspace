@@ -20,6 +20,9 @@
         },
         {
             "path": "/home/adam/Development/NeoCom/neocom-infinity/POCs/simulator"
+        },
+        {
+            "path": "/home/adam/Development/NeoCom"
         }
     ],
 	"settings": {
@@ -30,6 +33,7 @@
 		"editor.rulers": [
 			120,
 			130
-		]
+        ],
+        "git.ignoreLimitWarning": true
 	}
 }
