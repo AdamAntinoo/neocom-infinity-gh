@@ -8,40 +8,42 @@ const path = require('path');
  * @type { import("protractor").Config }
  */
 exports.config = {
-  allScriptsTimeout: 11000,
-  specs: [
-    './src/features/**/*.feature'
-  ],
-  capabilities: {
-    'browserName': 'chrome'
-  },
-  directConnect: true,
-  baseUrl: 'http://localhost:4200/',
-  framework: 'custom',
-  frameworkPath: require.resolve('protractor-cucumber-framework'),
-  cucumberOpts: {
-    require: ['./src/steps/**/*.steps.ts'],
-    format: 'json:.tmp/results.json',
-    strict: true
-  },
-  plugins: [{
-    package: 'protractor-multiple-cucumber-html-reporter-plugin',
-    options: {
-      // read the options part
-      automaticallyGenerateReport: true,
-      removeExistingJsonReportFile: true
+    allScriptsTimeout: 11000,
+    specs: [
+        './src/features/**/*.feature'
+    ],
+    capabilities: {
+        'browserName': 'chrome'
+    },
+    directConnect: true,
+    baseUrl: 'http://localhost:4200/',
+    framework: 'custom',
+    frameworkPath: require.resolve('protractor-cucumber-framework'),
+    cucumberOpts: {
+        require: ['./src/steps/**/*.steps.ts'],
+        format: 'json:.tmp/results.json',
+        tags: '@NIF02',
+        strict: true
+    },
+    plugins: [{
+            package: 'protractor-multiple-cucumber-html-reporter-plugin',
+            options: {
+                // read the options part
+                automaticallyGenerateReport: true,
+                removeExistingJsonReportFile: true
+            }
+        },
+        {
+            package: 'protractor-console-plugin',
+            failOnWarning: false,
+            failOnError: true,
+            logWarnings: true,
+            exclude: []
+        }
+    ],
+    onPrepare() {
+        require('ts-node').register({
+            project: require('path').join(__dirname, './tsconfig.json')
+        });
     }
-  },
-  {
-    package: 'protractor-console-plugin',
-    failOnWarning: false,
-    failOnError: true,
-    logWarnings: true,
-    exclude: []
-  }],
-  onPrepare() {
-    require('ts-node').register({
-      project: require('path').join(__dirname, './tsconfig.json')
-    });
-  }
 };

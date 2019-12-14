@@ -3,15 +3,15 @@ import { browser } from 'protractor';
 import { by } from 'protractor';
 import { element } from 'protractor';
 import { SharedPanelsElements } from './SharedPanelsElements.page';
+import { HeaderPanelsElements } from './HeaderPanelsElements.page';
 
 export class DashboardHomePage extends SharedPanelsElements {
+    private headerPanels: HeaderPanelsElements;
+    private pageName: string;
     constructor() {
         super();
         this.setPageName('Dashboard Home Page')
     }
-
-    private pageName: string;
-
     public getPageName(): string {
         return this.pageName as string;
     }
@@ -19,7 +19,9 @@ export class DashboardHomePage extends SharedPanelsElements {
         this.pageName = newName;
         return this.pageName;
     }
-
+    public getServerName(): Promise<string> {
+        return this.headerPanels.getServerName();
+    }
 
     public navigateTo() {
         const urlRequest = '/dashboard';

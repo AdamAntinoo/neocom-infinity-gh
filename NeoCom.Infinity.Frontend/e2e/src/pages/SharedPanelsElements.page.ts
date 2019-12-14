@@ -6,9 +6,9 @@ import { AcceptanceCoreFunctionality } from '../support/AcceptanceCoreFunctional
 
 export class SharedPanelsElements extends AcceptanceCoreFunctionality {
     // - APP INFO PANEL
-    public getAppName(): Promise<string> {
-        return element(by.css('.app-name')).getText() as Promise<string>;
-    }
+    // public getAppName(): Promise<string> {
+    //     return element(by.css('.app-name')).getText() as Promise<string>;
+    // }
     public getAppVersion(): Promise<string> {
         return element(by.css('.app-version')).getText() as Promise<string>;
     }
