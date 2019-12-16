@@ -1,5 +1,10 @@
+// - CORE
 import { environment } from './environment';
-// import { appconfiguration } from './appconfiguration';
+// - PROTRACTOR
+import { browser } from 'protractor';
+import { by } from 'protractor';
+import { element } from 'protractor';
+
 export class IsolationService {
     // public getAppName(): string {
     //     return appconfiguration.appName;
@@ -7,9 +12,11 @@ export class IsolationService {
     // public getAppVersion(): string {
     //     return appconfiguration.appVersion;
     // }
-    public getCopyright(): string {
-        return environment.copyright;
-    }
+    // public getCopyright(): string {
+    //     return environment.copyright;
+    // }
+
+    // - C U C U M B E R   D E C O D I N G
     public decodeDataTableRow(row: any, columnIdentifier: string): string {
         console.log('-[decodeDataTableRow]>row=' + JSON.stringify(row));
         console.log('-[decodeDataTableRow]>columnIdentifier=' + columnIdentifier);
@@ -64,5 +71,17 @@ export class IsolationService {
     }
     public replaceSystemTemplate(templateName: string): string {
         return '-undefined-';
+    }
+
+    // - S T O R A G E   A C C E S S
+    public setToSession(key: string, content: any): any {
+        browser.executeScript('sessionStorage.setItem("' + key + '","' + content + '");');
+    }
+    // public getFromSession(_key: string): any {
+    //     return browser.executeScript('sessionStorage.setItem("' + key + '","' + content + '");');
+    //     return this.sessionStorage.get(_key);
+    // }
+    public removeFromSession(key: string): any {
+        browser.executeScript('sessionStorage.removeItem("' + key + '");');
     }
 }

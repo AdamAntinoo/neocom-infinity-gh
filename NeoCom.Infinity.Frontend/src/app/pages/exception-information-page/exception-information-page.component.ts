@@ -35,4 +35,7 @@ export class ExceptionInformationPageComponent implements OnInit {
     public getLoginRequest(): string {
         return environment.LoginRequest;
     }
+    public retryable(): boolean {
+        return true;
+    }
 }

@@ -19,32 +19,71 @@ import { DashboardHomePage } from '../pages/DashboardHome.page';
 import { IsolationService } from '../support/IsolationService.support';
 import { DashboardWorld } from '../support/DashboardWorld.world';
 import { AppInfoPanel } from '../pages/AppInfoPanel.panel';
+// - SERVICES
+import { neocom_constants } from '../support/neocom-constants.platform';
+import { Credential } from '../../../src/app/domain/Credential.domain';
 
 // - DEFINITIONS
+let isolationService: IsolationService;
 let appInfoPanel: AppInfoPanel;
 let dashboardPage: DashboardHomePage;
-let isolationService: IsolationService;
-let world: DashboardWorld;
+
+// let page: SharedPanelsElements;
 
 Before(() => {
-    console.log('>THIS IS THE DashboardHomePage BEFORE');
-    appInfoPanel = new AppInfoPanel();
-    dashboardPage = new DashboardHomePage();
+    console.log('>THIS IS NIF02-DashboardHome BEFORE');
+    // page = new SharedPanelsElements();
     isolationService = new IsolationService();
-    world = new DashboardWorld();
-    world.setPage(dashboardPage);
 });
-/** This state code the preparation phase before going to the page. For example setup before failure generation. */
-Given('I am on the Dashboard Home Page page', function () {
-    console.log('[GIVEN] I am on the Dashboard Home Page page');
-    assert.equal(dashboardPage.getPageName(), 'Dashboard Home Page', 'Check the target page identifier.');
-});
-// When('the page is activated', async () => {
-//     await dashboardPage.navigateTo();
-// });
 
-//  ?When the page is activated with the request id "DASHBOARD-HOME-SUCCESS"
-// Undefined.Implement with the following snippet:
+Given('one instance of AppInfoPanel', function () {
+    console.log('[GIVEN] one instance of AppInfoPanel');
+    appInfoPanel = new AppInfoPanel();
+});
+Given('the next authentication token', function (dataTable) {
+    console.log('[GIVEN] the next authentication token');
+    const JWT_TOKEN: string = 'jwtToken';
+    let jwtToken = isolationService.decodeDataTableRow(dataTable.hashes()[0], JWT_TOKEN);
+    isolationService.setToSession(neocom_constants.JWTTOKEN_KEY, jwtToken);
+});
+Given('a valid credential with the next data', function (dataTable) {
+    console.log('[GIVEN] a valid credential with the next data');
+    const UNIQUE_ID: string = 'uniqueId';
+    const ACCOUNT_ID: string = 'accountId';
+    const ACCOUNT_NAME: string = 'accountName';
+    const CORPORATION_ID: string = 'corporationId';
+    let row = dataTable.hashes()[0];
+    let credential = new Credential({
+        "jsonClass": "Credential",
+        "uniqueId": isolationService.decodeDataTableRow(row, UNIQUE_ID),
+        "accountId": isolationService.decodeDataTableRow(row, ACCOUNT_ID),
+        "accountName": isolationService.decodeDataTableRow(row, ACCOUNT_NAME),
+        "dataSource": "tranquility",
+        "corporationId": isolationService.decodeDataTableRow(row, CORPORATION_ID),
+        "assetsCount": 100,
+        "walletBalance": 654987.0,
+        "miningResourcesEstimatedValue": 345234.0,
+        "raceName": "Minmatar"
+    });
+    isolationService.setToSession(neocom_constants.CREDENTIAL_KEY, JSON.stringify(credential));
+});
+
+
+//    private storeJWT(jwtToken: string): boolean {
+//     this.isolationService.setToSession(neocom_constants.JWTTOKEN_EXPIRATION_TIME_KEY,
+//         addMinutes(Date.now(), 120));
+//     return true;
+
+
+Given('one Dashboard Home Page', function () {
+    console.log('[GIVEN] one Dashboard Home Page');
+    dashboardPage = new DashboardHomePage();
+    assert.equal(dashboardPage.getPageName(), 'Dashboard Home Page', 'Check the target page identifier.');
+    // browser.waitForAngularEnabled(true);
+    browser.get(browser.baseUrl + 'exceptionInfo') as Promise<any>;
+    browser.driver.sleep(10000);
+    browser.waitForAngular();
+});
 
 When('the page is activated with the request id {string}', function (string) {
     console.log('[WHEN] The page is activated with the request id { string }');

@@ -24,7 +24,8 @@ export class DashboardHomePage extends SharedPanelsElements {
     }
 
     public navigateTo() {
-        const urlRequest = '/dashboard';
+        browser.waitForAngularEnabled(false);
+        const urlRequest = 'dashboard';
         console.log('>[DashboardHomePage.navigateTo]> Navigating to page: ' + urlRequest);
         return browser.get(browser.baseUrl + urlRequest) as Promise<any>;
     }

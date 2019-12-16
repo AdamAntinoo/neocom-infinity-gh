@@ -26,14 +26,14 @@ let loginPage: LoginValidationPage;
 let isolationService: IsolationService;
 let authorizationWorld: AuthorizationWorld;
 
-Before(() => {
-    console.log('>THIS IS THE LoginValidationPage BEFORE');
-    loginPage = new LoginValidationPage();
-    // page = loginPage;
-    isolationService = new IsolationService();
-    authorizationWorld = new AuthorizationWorld();
-    authorizationWorld.setPage(loginPage);
-});
+// Before(() => {
+//     console.log('>THIS IS THE LoginValidationPage BEFORE');
+//     loginPage = new LoginValidationPage();
+//     // page = loginPage;
+//     isolationService = new IsolationService();
+//     authorizationWorld = new AuthorizationWorld();
+//     authorizationWorld.setPage(loginPage);
+// });
 
 Given('I am on the Login Validation Page page', function () {
     assert.equal(loginPage.getPageName(), 'Login Validation Page', 'Check the target page identifier.');
