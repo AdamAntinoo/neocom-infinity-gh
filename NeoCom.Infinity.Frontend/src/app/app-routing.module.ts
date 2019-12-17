@@ -20,7 +20,8 @@ const routes: Routes = [
     // - LOGIN PAGES
     { path: 'loginValidation', component: LoginValidationPageComponent },
     { path: 'exceptionInfo', component: ExceptionInformationPageComponent },
-    { path: 'dashboard', component: DashboardHomePageComponent, canActivate: [TokenAuthorizationGuard] },
+    { path: 'dashboard', component: DashboardHomePageComponent },
+    // { path: 'dashboard', component: DashboardHomePageComponent, canActivate: [TokenAuthorizationGuard] },
     // - D A S H B O A R D
     // {
     //     path: 'dashboard',

@@ -32,7 +32,6 @@ let dashboardPage: DashboardHomePage;
 
 Before(() => {
     console.log('>THIS IS NIF02-DashboardHome BEFORE');
-    // page = new SharedPanelsElements();
     isolationService = new IsolationService();
 });
 
@@ -40,18 +39,25 @@ Given('one instance of AppInfoPanel', function () {
     console.log('[GIVEN] one instance of AppInfoPanel');
     appInfoPanel = new AppInfoPanel();
 });
-Given('the next authentication token', function (dataTable) {
+Given('the next authentication token', async (dataTable) => {
     console.log('[GIVEN] the next authentication token');
+    browser.waitForAngularEnabled(false);
+    await browser.get(browser.baseUrl + 'exceptionInfo?waiting=AuthenticationToken') as Promise<any>;
+    browser.driver.sleep(4000);
+    browser.waitForAngular();
     const JWT_TOKEN: string = 'jwtToken';
     let jwtToken = isolationService.decodeDataTableRow(dataTable.hashes()[0], JWT_TOKEN);
     isolationService.setToSession(neocom_constants.JWTTOKEN_KEY, jwtToken);
 });
-Given('a valid credential with the next data', function (dataTable) {
+Given('a valid credential with the next data', async (dataTable) => {
     console.log('[GIVEN] a valid credential with the next data');
     const UNIQUE_ID: string = 'uniqueId';
     const ACCOUNT_ID: string = 'accountId';
     const ACCOUNT_NAME: string = 'accountName';
     const CORPORATION_ID: string = 'corporationId';
+    await browser.get(browser.baseUrl + 'exceptionInfo?waiting=Credential') as Promise<any>;
+    browser.driver.sleep(2000);
+    browser.waitForAngular();
     let row = dataTable.hashes()[0];
     let credential = new Credential({
         "jsonClass": "Credential",
@@ -75,20 +81,25 @@ Given('a valid credential with the next data', function (dataTable) {
 //     return true;
 
 
-Given('one Dashboard Home Page', function () {
+Given('one Dashboard Home Page', async () => {
     console.log('[GIVEN] one Dashboard Home Page');
     dashboardPage = new DashboardHomePage();
     assert.equal(dashboardPage.getPageName(), 'Dashboard Home Page', 'Check the target page identifier.');
-    // browser.waitForAngularEnabled(true);
-    browser.get(browser.baseUrl + 'exceptionInfo') as Promise<any>;
-    browser.driver.sleep(10000);
-    browser.waitForAngular();
 });
 
-When('the page is activated with the request id {string}', function (string) {
+When('the page is activated with the request id {string}', async (string) => {
     console.log('[WHEN] The page is activated with the request id { string }');
     // TODO The string parameter contains the code received on the page.
-    dashboardPage.navigateTo();
+    browser.waitForAngularEnabled(false);
+    // browser.waitForAngular();
+    // browser.driver.sleep(10000);
+    // await dashboardPage.navigateTo();
+    const urlRequest = 'dashboard';
+    console.log('>[DashboardHomePage.navigateTo]> Navigating to page: ' + urlRequest);
+    // browser.driver.sleep(3000);
+    await browser.get(browser.baseUrl + urlRequest) as Promise<any>;
+    browser.driver.sleep(5000);
+    browser.waitForAngular();
 });
 
 //    ?Then there is a "appinfo-panel" with the next fields

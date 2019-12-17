@@ -13,10 +13,13 @@ exports.config = {
         './src/features/**/*.feature'
     ],
     capabilities: {
-        'browserName': 'chrome'
+        'browserName': 'chrome',
+        chromeOptions: {
+            args: ['--disable-web-security']
+        }
     },
     directConnect: true,
-    baseUrl: 'http://localhost:4300/app/',
+    baseUrl: 'http://localhost:4300/',
     framework: 'custom',
     frameworkPath: require.resolve('protractor-cucumber-framework'),
     cucumberOpts: {

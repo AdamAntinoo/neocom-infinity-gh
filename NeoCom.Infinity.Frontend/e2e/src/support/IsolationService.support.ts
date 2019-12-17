@@ -75,7 +75,9 @@ export class IsolationService {
 
     // - S T O R A G E   A C C E S S
     public setToSession(key: string, content: any): any {
-        browser.executeScript('sessionStorage.setItem("' + key + '","' + content + '");');
+        console.log('>[IsolationService.setToSession]> ' + key + ': ' + content);
+        // console.log("sessionStorage.setItem('" + key + "','" + content + "');");
+        browser.executeScript("sessionStorage.setItem('" + key + "','" + content + "');");
     }
     // public getFromSession(_key: string): any {
     //     return browser.executeScript('sessionStorage.setItem("' + key + '","' + content + '");');
