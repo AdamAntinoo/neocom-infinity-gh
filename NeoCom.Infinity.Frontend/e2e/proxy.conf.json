@@ -1,0 +1,8 @@
+{
+    "/api/*": {
+        "target": "http://neocom.infinity.local:6099",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}

@@ -63,6 +63,28 @@ simlet: server-success
 
 request:
   - method: GET
+  - uriPathPattern: "/api/v1/neocom/server/datasource/{datasource}/"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json; Cookie: jwtToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTgzODQ3MjYsImFjY291bnROYW1lIjoiQmV0aCBSaXBsZXkiLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvOTIyMjM2NDciLCJwaWxvdElkIjo5MjIyMzY0N30.Qom8COyZB2sW3bCGm9pnGcIOqw-E2yKDsmGklQW6r9Fhu8jJpkNUv5TUhU2cJjIg5jX3082bZ6eKtRZ3z10vGw"
+  body: |+
+    {
+      "jsonClass": "ServerStatus",
+      "server": "tranquility",
+      "players": 16523,
+      "server_version": "1589237",
+      "start_time": "2019-10-23T11:02:41.000Z"
+    }
+
+---
+
+simlet: server-success-2
+
+request:
+  - method: GET
   - uriPathPattern: "/api/v1/neocom/server/datasource/{datasource}"
 
 response:

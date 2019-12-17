@@ -16,8 +16,8 @@ Feature: [NIF02]-Display the character dashboard page.
     Scenario: [NIF02.01]-Check that the Dashboard Home Page has the correct panels. Success Corporation download.
         When the page is activated with the request id "DASHBOARD-HOME-SUCCESS"
         Then there is a "appinfo-panel" with the next fields
-            | app-name | app-version | app-copyright                      |
-            | NEOCOM   | v0.16.1     | © 2019,2020 Dimensinfin Industries |
+            | app-name        | app-version | app-copyright                      |
+            | NEOCOM.INFINITY | v0.16.1     | © 2019,2020 Dimensinfin Industries |
 # And there is a "serverinfo-panel"
 # And there is a "corporationdata-panel"
 # And there is a "corporationceo-panel"
