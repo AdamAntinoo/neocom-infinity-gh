@@ -17,8 +17,10 @@ Feature: [NIF02]-Display the character dashboard page.
         When the page is activated with the request id "DASHBOARD-HOME-SUCCESS"
         Then there is a "appinfo-panel" with the next fields
             | app-name        | app-version | app-copyright                      |
-            | NEOCOM.INFINITY | v0.16.1     | © 2019,2020 Dimensinfin Industries |
-# And there is a "serverinfo-panel"
+            | NEOCOM.INFINITY | 0.16.1 dev  | © 2019,2020 Dimensinfin Industries |
+            # And there is a "serverinfo-panel" with the next fields
+            | app-name        | app-version | app-copyright                      |
+            | NEOCOM.INFINITY | 0.16.1 dev  | © 2019,2020 Dimensinfin Industries |
 # And there is a "corporationdata-panel"
 # And there is a "corporationceo-panel"
 # And there is a "alliance-panel"

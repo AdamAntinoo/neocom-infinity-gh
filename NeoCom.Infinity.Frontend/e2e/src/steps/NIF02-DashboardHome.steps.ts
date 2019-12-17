@@ -112,12 +112,12 @@ Then('there is a {string} with the next fields', async (panelType, dataTable) =>
     const row = dataTable.hashes()[0];
     switch (panelType) {
         case 'appinfo-panel':
-            debugger
-            // appInfoPanel.validateAppInfoPanel(row);
-            const APP_NAME: string = 'app-name';
-            let appName = isolationService.decodeDataTableRow(row, APP_NAME).toUpperCase();
-            console.log('[AppInfoPanel.validateAppInfoPanel]> APP_NAME=' + appName);
-            expect(await element(by.css('.app-name')).getText()).to.equal(appName);
+            // debugger
+            await appInfoPanel.validateAppInfoPanel(row);
+            // const APP_NAME: string = 'app-name';
+            // let appName = isolationService.decodeDataTableRow(row, APP_NAME).toUpperCase();
+            // console.log('[AppInfoPanel.validateAppInfoPanel]> APP_NAME=' + appName);
+            // expect(await element(by.css('.app-name')).getText()).to.equal(appName);
             break;
     }
 });
