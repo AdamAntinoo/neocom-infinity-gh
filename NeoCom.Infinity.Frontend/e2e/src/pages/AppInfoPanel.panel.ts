@@ -1,10 +1,8 @@
 // - PROTRACTOR
 import { by } from 'protractor';
 import { element } from 'protractor';
-import { browser } from 'protractor';
 // - ASSERTION
 import { expect } from 'chai';
-import { assert } from 'chai';
 import { IsolationService } from '../support/IsolationService.support';
 
 const APP_NAME: string = 'app-name';

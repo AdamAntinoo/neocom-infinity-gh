@@ -5,20 +5,13 @@ import { Then } from 'cucumber';
 import { When } from 'cucumber';
 // - PROTRACTOR
 import { browser } from 'protractor';
-import { by } from 'protractor';
-import { element } from 'protractor';
 // - ASSERTION
-import { expect } from 'chai';
 import { assert } from 'chai';
-// - WEBSTORAGE
-import { inject } from '@angular/core';
-import { InjectionToken } from '@angular/core';
-import { WebStorageService } from 'angular-webstorage-service';
 // - PAGES
 import { DashboardHomePage } from '../pages/DashboardHome.page';
 import { IsolationService } from '../support/IsolationService.support';
-import { DashboardWorld } from '../support/DashboardWorld.world';
 import { AppInfoPanel } from '../pages/AppInfoPanel.panel';
+import { ServerInfoPanel } from '../pages/ServerInfoPanel.panel';
 // - SERVICES
 import { neocom_constants } from '../support/neocom-constants.platform';
 import { Credential } from '../../../src/app/domain/Credential.domain';
@@ -26,9 +19,8 @@ import { Credential } from '../../../src/app/domain/Credential.domain';
 // - DEFINITIONS
 let isolationService: IsolationService;
 let appInfoPanel: AppInfoPanel;
+let serverInfoPanel: ServerInfoPanel;
 let dashboardPage: DashboardHomePage;
-
-// let page: SharedPanelsElements;
 
 Before(() => {
     console.log('>THIS IS NIF02-DashboardHome BEFORE');
@@ -39,11 +31,15 @@ Given('one instance of AppInfoPanel', function () {
     console.log('[GIVEN] one instance of AppInfoPanel');
     appInfoPanel = new AppInfoPanel();
 });
+Given('one instance of ServerInfoPanel', function () {
+    console.log('[GIVEN] one instance of ServerInfoPanel');
+    serverInfoPanel = new ServerInfoPanel();
+});
 Given('the next authentication token', async (dataTable) => {
     console.log('[GIVEN] the next authentication token');
     browser.waitForAngularEnabled(false);
     await browser.get(browser.baseUrl + 'exceptionInfo?waiting=AuthenticationToken') as Promise<any>;
-    browser.driver.sleep(4000);
+    browser.driver.sleep(3000);
     browser.waitForAngular();
     const JWT_TOKEN: string = 'jwtToken';
     let jwtToken = isolationService.decodeDataTableRow(dataTable.hashes()[0], JWT_TOKEN);
@@ -56,7 +52,7 @@ Given('a valid credential with the next data', async (dataTable) => {
     const ACCOUNT_NAME: string = 'accountName';
     const CORPORATION_ID: string = 'corporationId';
     await browser.get(browser.baseUrl + 'exceptionInfo?waiting=Credential') as Promise<any>;
-    browser.driver.sleep(2000);
+    browser.driver.sleep(1000);
     browser.waitForAngular();
     let row = dataTable.hashes()[0];
     let credential = new Credential({
@@ -73,51 +69,30 @@ Given('a valid credential with the next data', async (dataTable) => {
     });
     isolationService.setToSession(neocom_constants.CREDENTIAL_KEY, JSON.stringify(credential));
 });
-
-
-//    private storeJWT(jwtToken: string): boolean {
-//     this.isolationService.setToSession(neocom_constants.JWTTOKEN_EXPIRATION_TIME_KEY,
-//         addMinutes(Date.now(), 120));
-//     return true;
-
-
 Given('one Dashboard Home Page', async () => {
     console.log('[GIVEN] one Dashboard Home Page');
     dashboardPage = new DashboardHomePage();
     assert.equal(dashboardPage.getPageName(), 'Dashboard Home Page', 'Check the target page identifier.');
 });
-
 When('the page is activated with the request id {string}', async (string) => {
     console.log('[WHEN] The page is activated with the request id { string }');
-    // TODO The string parameter contains the code received on the page.
-    browser.waitForAngularEnabled(false);
-    // browser.waitForAngular();
-    // browser.driver.sleep(10000);
-    // await dashboardPage.navigateTo();
     const urlRequest = 'dashboard';
     console.log('>[DashboardHomePage.navigateTo]> Navigating to page: ' + urlRequest);
     // browser.driver.sleep(3000);
     await browser.get(browser.baseUrl + urlRequest) as Promise<any>;
-    browser.driver.sleep(5000);
+    browser.driver.sleep(2000); // Reduced after success
     browser.waitForAngular();
 });
-
-//    ?Then there is a "appinfo-panel" with the next fields
-//     | AppName | AppVersion | AppCopyright |
-//        | NEOCOM | v0.16.1 | © 2019, 2020 Dimensinfin Industries |
-//     Undefined.Implement with the following snippet:
-
 Then('there is a {string} with the next fields', async (panelType, dataTable) => {
     console.log('[THEN] There is a {string} with the next fields');
     const row = dataTable.hashes()[0];
     switch (panelType) {
         case 'appinfo-panel':
-            // debugger
             await appInfoPanel.validateAppInfoPanel(row);
-            // const APP_NAME: string = 'app-name';
-            // let appName = isolationService.decodeDataTableRow(row, APP_NAME).toUpperCase();
-            // console.log('[AppInfoPanel.validateAppInfoPanel]> APP_NAME=' + appName);
-            // expect(await element(by.css('.app-name')).getText()).to.equal(appName);
+            break;
+        case 'serverinfo-panel':
+            browser.driver.sleep(1000);
+            await serverInfoPanel.validateServerInfoPanel(row);
             break;
     }
 });

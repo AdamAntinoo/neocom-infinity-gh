@@ -26,6 +26,7 @@ export class ServerInfoPanelComponent implements OnInit {
                     return new ServerStatus(data);
                 }))
             .subscribe(info => {
+                console.log('[ServerInfoPanelComponent.ngOnInit]> info=' + JSON.stringify(info));
                 this.serverInfo = info;
             });
     }

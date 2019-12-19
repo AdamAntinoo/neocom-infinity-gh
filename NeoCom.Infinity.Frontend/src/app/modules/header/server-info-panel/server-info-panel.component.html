@@ -1,6 +1,6 @@
 <div class="neocom-panel panel-white server-info-panel">
     <div *ngIf="serverInfo else loading">
-        <span id="server-name">{{getServerName() |titlecase}}</span>
+        <span id="server-name">{{getServerName() | titlecase}}</span>
         <span id="server-status">{{getServerStatus()}}</span><br>
         <span class="label">Capsuleers:</span>
         <span id="server-capsuleers">{{getServerCapsuleers() | number:'3.0-0'}}</span><br>
