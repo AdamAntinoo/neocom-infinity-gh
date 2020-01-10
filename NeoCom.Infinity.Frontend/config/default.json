@@ -1,12 +1,12 @@
 {
     "settings": {
         "appname": "NeoCom.Infinity",
-        "version": "v0.16.1",
+        "version": "v0.16.2",
         "port": 8080,
         "applicationhome": "/dist/NeoCom-Infinity",
-        "backendproxy": "http://neocom.infinity.local:9500",
+        "backendproxy": "http://neocom.infinity.local:6099",
         "apppath": "/app",
-        "apipath": "/ap1"
+        "apipath": "/api"
     },
     "pages": {
         "staticpublic": "./public",

@@ -19,7 +19,7 @@
         "test:dev": "ng test --code-coverage --source-map --watch --progress ",
         "test:prod": "ng test --watch=false --no-progress --browsers=ChromeHeadlessCI",
         "e2e": "ng e2e --port 4300",
-        "e2e:atdd": "ng e2e --port 4200 --host neocom.infinity.local --protractor-config e2e/protractor-cucumber.conf.js",
+        "e2e:atdd": "ng e2e --port 4300 --host neocom.infinity.local --protractor-config e2e/protractor-cucumber.conf.js",
         "e2e:compile": "tsc -p e2e"
     },
     "engines": {

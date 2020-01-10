@@ -74,16 +74,17 @@ app.get('/app/*', function(req, res) {
 //     console.log('backend: ' + app.locals.backendproxy + req.url)
 //     proxy(app.locals.backendproxy + req.url);
 // });
-// app.use('/api', proxy(app.locals.backendproxy, {
-//     proxyReqPathResolver: function(req) {
-//         console.log('backend: ' + app.locals.backendproxy + req.url)
-//         var parts = req.url.split('?');
-//         var queryString = parts[1];
-//         var updatedPath = parts[0].replace(/test/, 'tent');
-//         // return updatedPath + (queryString ? '?' + queryString : '');
-//         return req.url;
-//     }
-// }));
+app.use('/api', proxy(app.locals.backendproxy, {
+    proxyReqPathResolver: function(req) {
+        console.log('backend: ' + app.locals.backendproxy + '/api' + req.url)
+            // var parts = req.url.split('?');
+            // var queryString = parts[1];
+            // var updatedPath = parts[0].replace(/test/, 'tent');
+            // return updatedPath + (queryString ? '?' + queryString : '');
+        return app.locals.backendproxy + '/api' + req.url;
+        // return req.url;
+    }
+}));
 
 // - L I S T E N
 app.listen(process.env.PORT || app.locals.port || 3000, function() {
