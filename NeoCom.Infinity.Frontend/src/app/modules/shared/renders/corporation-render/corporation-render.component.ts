@@ -17,4 +17,8 @@ import { RenderComponent } from '../render/render.component';
 })
 export class CorporationRenderComponent extends RenderComponent {
     @Input() node: Corporation;
+
+    public getCorporationIcon(): string {
+        return this.node.getIconUrl()
+    }
 }

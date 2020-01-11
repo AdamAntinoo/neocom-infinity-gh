@@ -60,7 +60,7 @@ describe('SERVICE AppStoreService [Module: CORE]', () => {
             serviceAsAny.downloadCorporation(corporationId)
                 .subscribe((corporation: Corporation) => {
                     expect(corporation).toBeDefined();
-                    expect(corporation.getName()).toBe('Planet - Express');
+                    expect(corporation.getName()).toBe('BnFqbOtzrQKR');
                 })
         });
         it('downloadPilot.success: download and transform the Corporation data', () => {

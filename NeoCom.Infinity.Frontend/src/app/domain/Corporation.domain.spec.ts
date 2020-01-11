@@ -6,6 +6,7 @@ import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 import { Corporation } from './Corporation.domain';
 import { Alliance } from './Alliance.domain';
 import { Pilot } from './Pilot.domain';
+import { neocom_constants } from '../platform/neocom-constants.platform';
 
 describe('CLASS Corporation [Module: DOMAIN]', () => {
     let isolation: SupportIsolationService;
@@ -93,7 +94,7 @@ describe('CLASS Corporation [Module: DOMAIN]', () => {
         it('getIconUrl.failure: check the icon url field', () => {
             const corporation = new Corporation()
             const obtained = corporation.getIconUrl();
-            expect(obtained).toBe('/assets/res-sde/drawable/corporation.png');
+            expect(obtained).toBe(neocom_constants.DEFAULT_CORPORATION_AVATAR_PLACEHOLDER);
         });
     });
 });

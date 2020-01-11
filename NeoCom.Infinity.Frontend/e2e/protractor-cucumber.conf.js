@@ -25,7 +25,7 @@ exports.config = {
     cucumberOpts: {
         require: ['./src/steps/**/*.steps.ts'],
         format: 'json:.tmp/results.json',
-        tags: '@NIF02',
+        tags: '@NIF02.02',
         strict: true
     },
     plugins: [{

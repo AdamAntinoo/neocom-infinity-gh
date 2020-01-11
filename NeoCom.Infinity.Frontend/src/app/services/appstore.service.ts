@@ -58,6 +58,7 @@ export class AppStoreService {
 
     // - S T O R E   D A T A   D O W N L O A D E R S
     private downloadCorporation(corporationId: number): Observable<Corporation> {
+        console.log('-[AppStoreService.downloadCorporation]> Starting to download corporation id: ' + corporationId);
         return this.backendService.apiGetCorporationPublicData_v1(corporationId,
             new ResponseTransformer().setDescription('Do response transformation to "Corporation".')
                 .setTransformation((data: any): Corporation => {

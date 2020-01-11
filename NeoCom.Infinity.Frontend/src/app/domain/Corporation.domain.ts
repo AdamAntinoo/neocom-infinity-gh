@@ -2,6 +2,7 @@
 import { Alliance } from './Alliance.domain';
 import { Pilot } from './Pilot.domain';
 import { NeoCom } from './NeoCom.domain';
+import { neocom_constants } from '../platform/neocom-constants.platform';
 
 export class Corporation extends NeoCom {
     public corporationId: number;
@@ -37,7 +38,7 @@ export class Corporation extends NeoCom {
     }
     public getIconUrl(): string {
         if (null != this.url4Icon) return this.url4Icon;
-        else return '/assets/res-sde/drawable/corporation.png';
+        else return neocom_constants.DEFAULT_CORPORATION_AVATAR_PLACEHOLDER;
     }
     public getCeo(): Pilot {
         return this.ceoPilotData;
