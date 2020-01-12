@@ -4,9 +4,12 @@ import { Given } from 'cucumber';
 import { Then } from 'cucumber';
 import { When } from 'cucumber';
 // - PROTRACTOR
+import { by } from 'protractor';
+import { element } from 'protractor';
 import { browser } from 'protractor';
 // - ASSERTION
 import { assert } from 'chai';
+import { expect } from 'chai';
 // - PAGES
 import { DashboardHomePage } from '../pages/DashboardHome.page';
 import { IsolationService } from '../support/IsolationService.support';
@@ -37,13 +40,15 @@ Given('one instance of ServerInfoPanel', function () {
 });
 Given('the next authentication token', async (dataTable) => {
     console.log('[GIVEN] the next authentication token');
-    browser.waitForAngularEnabled(false);
+    browser.waitForAngularEnabled(true);
     await browser.get(browser.baseUrl + 'exceptionInfo?waiting=AuthenticationToken') as Promise<any>;
-    browser.driver.sleep(3000);
+    browser.driver.sleep(2000);
     browser.waitForAngular();
     const JWT_TOKEN: string = 'jwtToken';
     let jwtToken = isolationService.decodeDataTableRow(dataTable.hashes()[0], JWT_TOKEN);
     isolationService.setToSession(neocom_constants.JWTTOKEN_KEY, jwtToken);
+    browser.driver.sleep(2000);
+    browser.waitForAngular();
 });
 Given('a valid credential with the next data', async (dataTable) => {
     console.log('[GIVEN] a valid credential with the next data');
@@ -75,16 +80,17 @@ Given('one Dashboard Home Page', async () => {
     assert.equal(dashboardPage.getPageName(), 'Dashboard Home Page', 'Check the target page identifier.');
 });
 When('the page is activated with the request id {string}', async (string) => {
-    console.log('[WHEN] The page is activated with the request id { string }');
+    console.log('[WHEN] the page is activated with the request id { string }');
     const urlRequest = 'dashboard';
     console.log('>[DashboardHomePage.navigateTo]> Navigating to page: ' + urlRequest);
     // browser.driver.sleep(3000);
     await browser.get(browser.baseUrl + urlRequest) as Promise<any>;
-    browser.driver.sleep(2000); // Reduced after success
+    browser.driver.sleep(3000); // Reduced after success
+    browser.waitForAngular();
     browser.waitForAngular();
 });
 Then('there is a {string} with the next fields', async (panelType, dataTable) => {
-    console.log('[THEN] There is a {string} with the next fields');
+    console.log('[THEN] there is a {string} with the next fields');
     const row = dataTable.hashes()[0];
     switch (panelType) {
         case 'appinfo-panel':
@@ -96,6 +102,29 @@ Then('there is a {string} with the next fields', async (panelType, dataTable) =>
             break;
     }
 });
+Then('there is a {string} with corporation contents', async (panelName, dataTable) => {
+    const CORPORATION_HEADER: string = 'corporation-header';
+    const CORPORATION_CEO_HEADER: string = 'corporation-ceo-header';
+    const ALLIANCE_HEADER: string = 'alliance-header';
+    console.log('[THEN] there is a {string} with corporation contents');
+    browser.driver.sleep(4000);
+    browser.waitForAngular();
+    const row = dataTable.hashes()[0];
+    let corporationHeader = isolationService.decodeDataTableRow(row, CORPORATION_HEADER).toUpperCase();
+    console.log('[THEN] there is a {string} with corporation contents> CORPORATION_HEADER=' + corporationHeader);
+    expect(await element(by.css('#corporation-header')).getText()).to.equal(corporationHeader);
+});
+
+//    ?And there is a "corporation-render" with variant "-HEADER-" with the next fields
+//     | corporation - name | corporation - id | corporation - ticker | corporation - members - count |
+//        | Planet - Express | [#1427661573] | [PLAM] | 8 MEMBERS |
+//     Undefined.Implement with the following snippet:
+
+Then('there is a {string} with variant {string} with the next fields', function (string, string2, dataTable) {
+    // Write code here that turns the phrase above into concrete actions
+    return 'pending';
+});
+
 
 // Then('Dashboard Home Page appinfo-panel displays the next fields', async (dataTable) => {
 //     const APP_NAME: string = 'app-name';

@@ -37,10 +37,6 @@ export class CorporationPublicDataPanelComponent implements OnInit, OnDestroy {
         if (null != this.corporationSubscription) this.corporationSubscription.unsubscribe();
     }
 
-    public getCorporationIcon(): string {
-        if (!this.isEmpty(this.corporation)) return this.corporation.getIconUrl();
-        else return environment.DEFAULT_AVATAR_PLACEHOLDER;
-    }
     public getCorporationCeo(): Pilot {
         if (!this.isEmpty(this.corporation)) return this.corporation.getCeo();
         else return null;
@@ -59,10 +55,6 @@ export class CorporationPublicDataPanelComponent implements OnInit, OnDestroy {
         alliance.allianceId = this.corporation.allianceId;
         return alliance;
     }
-    // public getAllianceIcon(): string {
-    //     if (!this.isEmpty(this.corporation.getAlliance())) return this.corporation.getAlliance().getIconUrl();
-    //     else return environment.DEFAULT_AVATAR_PLACEHOLDER;
-    // }
     protected isEmpty(target: any): boolean {
         if (null == target) return true;
         if (Object.keys(target).length > 0) return false;

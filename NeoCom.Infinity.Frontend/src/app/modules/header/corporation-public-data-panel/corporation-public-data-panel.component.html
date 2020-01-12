@@ -1,25 +1,27 @@
 <div class="neocom-panel panel-orange">
-    <table *ngIf="corporation else loading" cellspacing="2px" cellpadding="0" width="100%">
+    <table id="corporation-public-data-panel" *ngIf="corporation else loading" cellspacing="2px" cellpadding="0" width="100%">
         <tr>
-            <td></td>
-            <td class="elemental-ff">CORPORATION</td>
-            <td class="elemental-ff">CORPORATION CEO</td>
-            <td class="elemental-ff">ALLIANCE</td>
+            <!-- <!-- <td></td> -->
+            <td id="corporation-header" class="elemental-ff">CORPORATION</td>
+            <!-- <td id="corporation-ceo-header" class="elemental-ff">CORPORATION CEO</td>
+            <td id="alliance-header" class="elemental-ff">ALLIANCE</td> -->
         </tr>
         <tr *ngIf="corporation else loading">
-            <td width="64px">
+            <!-- <td width="64px">
                 <img class="neocom-icon" id="corporation-icon" src="{{getCorporationIcon()}}">
-            </td>
+            </td> -->
             <td>
-                <corporation-render *ngIf="corporation" [node]="corporation" [variant]="'-HEADER-'"></corporation-render>
+                <corporation-render *ngIf="corporation" [node]="corporation" [variant]="'-HEADER-'">
+                </corporation-render>
             </td>
-            <td>
+            <!-- <td>
                 <pilot-render *ngIf="getCorporationCeo() else loading" [node]="getCorporationCeo()" [variant]="'-HEADER-'">
                 </pilot-render>
             </td>
             <td>
-                <alliance-render *ngIf="getAlliance() else loading" [node]="getAlliance()" [variant]="'-HEADER-'"></alliance-render>
-            </td>
+                <alliance-render *ngIf="getAlliance() else loading" [node]="getAlliance()" [variant]="'-HEADER-'">
+                </alliance-render>
+            </td> -->
         </tr>
     </table>
     <ng-template #loading>

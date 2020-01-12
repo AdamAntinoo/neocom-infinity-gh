@@ -22,7 +22,16 @@ Feature: [NIF02]-Display the character dashboard page.
         And there is a "serverinfo-panel" with the next fields
             | server-name | server-status | server-capsuleers | server-laststart         |
             | Tranquility | ONLINE        | 16,523            | 2019-10-23T11:02:41.000Z |
-# And there is a "corporationdata-panel"
+
+    @NIF02 @NIF02.02
+    Scenario: [NIF02.02]-The corporation data for the logged character is shown below the header panel.
+        When the page is activated with the request id "DASHBOARD-HOME-SUCCESS"
+        Then there is a "corporation-public-data-panel" with corporation contents
+            | corporation-header | corporation-ceo-header | alliance-header |
+            | CORPORATION        | CORPORATION CEO        | ALLIANCE        |
+# And there is a "corporation-render" with variant "-HEADER-" with the next fields
+#     | corporation-name | corporation-id | corporation-ticker | corporation-members-count |
+#     | Planet-Express   | [#1427661573]  | [PLAM]             | 8 MEMBERS                 |
 # And there is a "corporationceo-panel"
 # And there is a "alliance-panel"
 # And there is a "pilotpublicdata-panel"
