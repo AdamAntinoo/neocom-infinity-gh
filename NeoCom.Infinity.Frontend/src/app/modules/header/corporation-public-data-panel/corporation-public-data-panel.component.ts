@@ -18,14 +18,15 @@ import { Pilot } from '@app/domain/Pilot.domain';
     styleUrls: ['./corporation-public-data-panel.component.scss']
 })
 export class CorporationPublicDataPanelComponent implements OnInit, OnDestroy {
-    private corporationSubscription: Subscription;
     public corporation: Corporation; // The authorized corporation public data.
+    private corporationSubscription: Subscription;
 
     constructor(
         protected appStoreService: AppStoreService,
         protected backendService: BackendService) { }
 
     ngOnInit() {
+        console.log('-[CorporationPublicDataPanelComponent.ngOnInit]> Starting to access corporation.');
         this.corporationSubscription = this.appStoreService.accessCorporation()
             .subscribe((corporation: Corporation) => {
                 console.log('-[CorporationPublicDataPanelComponent]> processing response.');

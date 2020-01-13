@@ -17,7 +17,7 @@ import { NeoComException } from '@app/platform/NeoComException';
     styleUrls: ['./exception-information-page.component.scss']
 })
 export class ExceptionInformationPageComponent implements OnInit {
-    private exception: NeoComException;
+    public exception: NeoComException;
 
     constructor(protected appStoreService: AppStoreService) { }
 

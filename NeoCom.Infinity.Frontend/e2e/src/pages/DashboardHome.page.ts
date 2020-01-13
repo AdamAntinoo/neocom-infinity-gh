@@ -24,14 +24,10 @@ export class DashboardHomePage extends SharedPanelsElements {
     }
 
     public navigateTo() {
-        // browser.waitForAngularEnabled(true);
-        // browser.waitForAngular();
         const urlRequest = 'dashboard';
         console.log('>[DashboardHomePage.navigateTo]> Navigating to page: ' + urlRequest);
-        // browser.driver.sleep(3000);
         browser.get(browser.baseUrl + urlRequest) as Promise<any>;
         browser.driver.sleep(5000);
         browser.waitForAngular();
-        // browser.waitForAngular();
     }
 }
