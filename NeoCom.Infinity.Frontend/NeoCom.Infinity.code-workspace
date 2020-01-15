@@ -4,25 +4,7 @@
             "path": "."
         },
         {
-            "path": "/home/adam/Development/NeoCom/neocom-infinity/POCs/frontend"
-        },
-        {
-            "path": "/home/adam/Development/NeoCom/neocom-infinity/POCs/server"
-        },
-        {
-            "path": "/home/adam/Development/NeoCom/neocom-infinity/POCs/attdangular"
-        },
-        {
-            "path": "/home/adam/Development/NeoCom/proofofconcept/A5POCWorkBench"
-        },
-        {
-            "path": "/home/adam/Public/Development/InnoDental/InnoDentalv0.11.0/CitasCentro.frontend"
-        },
-        {
-            "path": "/home/adam/Development/NeoCom/neocom-infinity/POCs/simulator"
-        },
-        {
-            "path": "/home/adam/Development/NeoCom"
+            "path": "/home/adam/Development/NeoCom-newFrontend/neocom-infinity-updated/POCs"
         }
     ],
 	"settings": {

@@ -6,7 +6,7 @@ export const environment = {
     production: false,
     mockStatus: true,
     showexceptions: true,
-    serverName: "http://localhost:4300",
+    serverName: "http://localhost:4200",
     copyright: '© 2019,2020 Dimensinfin Industries',
     appName: require('../../package.json').name,
     appVersion: require('../../package.json').version + " dev",
