@@ -12,4 +12,4 @@ support/apisimulator-http-1.4/
 support/backend-simulation/*.log
 
 # - Integration and acceptance tests
-cypress/
+# cypress/

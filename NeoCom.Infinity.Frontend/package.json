@@ -19,12 +19,16 @@
         "test:dev": "ng test --code-coverage --source-map --watch --progress ",
         "test:prod": "ng test --watch=false --no-progress --browsers=ChromeHeadlessCI",
         "e2e": "ng e2e --port 4300 --configuration=e2e",
+        "e2e:open": "cypress open",
         "e2e:atdd": "ng e2e --port 4300 --host neocom.infinity.local --protractor-config e2e/protractor-cucumber.conf.js",
         "e2e:compile": "tsc -p e2e"
     },
     "engines": {
         "node": "10.16.3",
         "npm": "6.11.3"
+    },
+    "cypress-cucumber-preprocessor": {
+        "nonGlobalStepDefinitions": true
     },
     "private": true,
     "dependencies": {
