@@ -28,7 +28,13 @@
         "npm": "6.11.3"
     },
     "cypress-cucumber-preprocessor": {
-        "nonGlobalStepDefinitions": true
+        "nonGlobalStepDefinitions": true,
+        "cucumberJson": {
+            "generate": true,
+            "outputFolder": "cypress/cucumber-json",
+            "filePrefix": "",
+            "fileSuffix": ".cucumber"
+        }
     },
     "private": true,
     "dependencies": {
@@ -62,9 +68,10 @@
     "devDependencies": {
         "@angular-devkit/build-angular": "0.803.14",
         "@angular/cli": "8.3.14",
-        "@angular/compiler-cli": "^8.2.14",
+        "@angular/compiler-cli": "8.2.14",
         "@angular/language-service": "8.2.11",
-        "@bahmutov/add-typescript-to-cypress": "^2.1.2",
+        "@bahmutov/add-typescript-to-cypress": "2.1.2",
+        "@cypress/webpack-preprocessor": "4.1.1",
         "@types/chai": "4.2.2",
         "@types/cucumber": "4.0.7",
         "@types/jasmine": "3.3.8",
@@ -74,7 +81,7 @@
         "chromedriver": "79.0.0",
         "codelyzer": "5.0.0",
         "cucumber": "5.1.0",
-        "cypress": "^3.8.2",
+        "cypress": "3.8.2",
         "cypress-cucumber-preprocessor": "^1.19.2",
         "jasmine-core": "3.4.0",
         "jasmine-spec-reporter": "4.2.1",
@@ -88,8 +95,10 @@
         "protractor-cucumber-framework": "6.1.3",
         "protractor-multiple-cucumber-html-reporter-plugin": "1.8.1",
         "selenium-webdriver": "^4.0.0-alpha.5",
+        "ts-loader": "6.2.1",
         "ts-node": "7.0.0",
         "tslint": "5.15.0",
-        "typescript": "3.5.3"
+        "typescript": "3.5.3",
+        "webpack": "4.41.5"
     }
 }
