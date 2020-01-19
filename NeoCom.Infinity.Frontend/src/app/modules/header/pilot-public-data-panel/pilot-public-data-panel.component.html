@@ -1,7 +1,12 @@
 <div class="neocom-panel panel-blue">
     <table *ngIf="pilot else loading" cellspacing="2px" cellpadding="0" width="100%">
         <tr>
-            <pilot-render [node]="pilot" variant="-HEADER-"></pilot-render>
+            <td id="pilot-header" class="elemental-ff">PILOT</td>
+        </tr>
+        <tr>
+            <td>
+                <pilot-render [node]="pilot" variant="-HEADER-"></pilot-render>
+            </td>
         </tr>
     </table>
     <ng-template #loading>
