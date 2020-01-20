@@ -5,7 +5,8 @@ describe('When I visit Google', () => {
     });
 
     it('I should be able to search', () => {
-        cy.get('input[title="Buscar"]')
-            .type('cat pictures{enter}');
+        cy.searchGoogle('gatos pictures')
+        // cy.get('input[title="Buscar"]')
+        //     .type('cat pictures{enter}');
     })
 });
