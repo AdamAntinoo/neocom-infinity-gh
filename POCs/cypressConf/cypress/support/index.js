@@ -19,3 +19,5 @@ import './commands/index'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+// - CODE COVERAGE
+import '@cypress/code-coverage/support'
