@@ -5,7 +5,7 @@ import { Then } from "cypress-cucumber-preprocessor/steps";
 // - PAGE OBJECTS
 import { AppInfoPanel } from "../../support/page-objects/AppInfoPanel.panel";
 import { ServerInfoPanel } from "../../support/page-objects/ServerInfoPanel.panel";
-import { PilotPublicDataPanel } from "../../support/page-objects/PilotPublicDataPanel.po";
+import { PilotPublicDataPanel } from "../../support/page-objects/PilotPublicDataPanel.panel";
 // import { DashboardHomePage } from '../pages/DashboardHome.page';
 // import { IsolationService } from '../support/IsolationService.support';
 // import { AppInfoPanel } from '../pages/AppInfoPanel.panel';
@@ -56,7 +56,7 @@ Then('there is a {string} with the next fields', (panelType, dataTable) => {
             //  serverInfoPanel.validateServerInfoPanel(row);
             break;
         case 'pilot-public-data-panel':
-            pilotPublicDataPanel.validateAppInfoPanel(row);
+            pilotPublicDataPanel.validatePanel(row);
             break;
     }
 });
