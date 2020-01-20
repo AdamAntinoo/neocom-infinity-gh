@@ -12,3 +12,7 @@ module.exports = (on, config) => {
         ...environmentConfig,
     };
 }
+module.exports = (on, config) => {
+    on('file:preprocessor', cucumber());
+    ...
+};

@@ -4,6 +4,7 @@ const webpackOptions = {
     resolve: {
         extensions: ['.ts', '.js']
     },
+    node: { fs: "empty", child_process: "empty", readline: "empty" },
     module: {
         rules: [{
                 test: /\.ts$/,
