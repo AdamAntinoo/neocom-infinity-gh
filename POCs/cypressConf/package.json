@@ -9,6 +9,8 @@
         "lint": "ng lint",
         "compodoc": "compodoc -p tsconfig.json --theme laravel",
         "typedoc": "typedoc --mode modules -module commonjs --exclude **/*.spec.ts --out docs/typedoc src/app",
+        "cypress:open": "./node_modules/.bin/cypress open",
+        "cypress:run": "./node_modules/.bin/cypress run",
         "start:support": "bash ./support/support-services.sh start",
         "start:dev": "ng serve --progress --proxy-config proxy.conf.json --base-href /app --public-host neocom.infinity.local",
         "start:server": "npm run build:dev && node server.js",
