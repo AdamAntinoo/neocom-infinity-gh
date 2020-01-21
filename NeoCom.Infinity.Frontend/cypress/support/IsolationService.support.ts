@@ -1,11 +1,15 @@
 // - CORE
 import { environment } from './environment';
-// - PROTRACTOR
-// import { browser } from 'protractor';
-// import { by } from 'protractor';
-// import { element } from 'protractor';
 
 export class IsolationService {
+    doLoginPage() {
+        let code = Cypress.env('code')
+        let state = Cypress.env('state')
+        let urlRequest = '/loginValidation?code=' + code +
+            '&state=' + state;
+        console.log('-[IsolationService.doLoginPage]> urlRequest=' + urlRequest);
+        cy.visit(urlRequest);
+    }
     // - C U C U M B E R   D E C O D I N G
     public decodeDataTableRow(row: any, columnIdentifier: string): string {
         console.log('-[decodeDataTableRow]>row=' + JSON.stringify(row));

@@ -17,7 +17,7 @@
         "build:prod": "ng build --aot --prod --configuration production --base-href /app",
         "cucumber": "$(npm bin)/cucumber-js ",
         "cucumber:e2e": "$(npm bin)/cucumber-js e2e/src/features",
-        "cucumber:acceptance": "$(npm bin)/cucumber-js cypress/integration/**.feature",
+        "cucumber:acceptance": "$(npm bin)/cucumber-js --profile acceptance cypress/integration/**.feature",
         "cypress:open": "$(npm bin)/cypress open",
         "test:dev": "ng test --code-coverage --source-map --watch --progress ",
         "test:prod": "ng test --watch=false --no-progress --browsers=ChromeHeadlessCI",
