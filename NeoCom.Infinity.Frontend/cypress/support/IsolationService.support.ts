@@ -1,9 +1,9 @@
 // - CORE
 import { environment } from './environment';
 // - PROTRACTOR
-import { browser } from 'protractor';
-import { by } from 'protractor';
-import { element } from 'protractor';
+// import { browser } from 'protractor';
+// import { by } from 'protractor';
+// import { element } from 'protractor';
 
 export class IsolationService {
     // - C U C U M B E R   D E C O D I N G
@@ -67,13 +67,13 @@ export class IsolationService {
     public setToSession(key: string, content: any): any {
         console.log('>[IsolationService.setToSession]> ' + key + ': ' + content);
         // console.log("sessionStorage.setItem('" + key + "','" + content + "');");
-        browser.executeScript("sessionStorage.setItem('" + key + "','" + content + "');");
+        // browser.executeScript("sessionStorage.setItem('" + key + "','" + content + "');");
     }
     // public getFromSession(_key: string): any {
     //     return browser.executeScript('sessionStorage.setItem("' + key + '","' + content + '");');
     //     return this.sessionStorage.get(_key);
     // }
     public removeFromSession(key: string): any {
-        browser.executeScript('sessionStorage.removeItem("' + key + '");');
+        // browser.executeScript('sessionStorage.removeItem("' + key + '");');
     }
 }

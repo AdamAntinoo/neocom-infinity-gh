@@ -12,4 +12,6 @@ support/apisimulator-http-1.4/
 support/backend-simulation/*.log
 
 # - Integration and acceptance tests
-# cypress/
+*.mp4
+.nyc_output/
+cypress/cucumber-json/
