@@ -6,7 +6,6 @@ const request = require('request');
 const config = require('config');
 const proxy = require('express-http-proxy');
 
-
 // - S E R V E R   O P T I O N S
 const app = express();
 app.use(compression());

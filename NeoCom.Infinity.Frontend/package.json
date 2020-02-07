@@ -19,6 +19,7 @@
         "cucumber:e2e": "$(npm bin)/cucumber-js e2e/src/features",
         "cucumber:acceptance": "$(npm bin)/cucumber-js --profile acceptance cypress/integration/**.feature",
         "cypress:open": "$(npm bin)/cypress open",
+        "cypress:run": "$(npm bin)/cypress run",
         "test:dev": "ng test --code-coverage --source-map --watch --progress ",
         "test:prod": "ng test --watch=false --no-progress --browsers=ChromeHeadlessCI",
         "e2e": "ng e2e --port 4300 --configuration=e2e",

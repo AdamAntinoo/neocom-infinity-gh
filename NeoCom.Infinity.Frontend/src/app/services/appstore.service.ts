@@ -9,6 +9,7 @@ import { environment } from '@env/environment';
 import { Router } from '@angular/router';
 // - SERVICES
 import { BackendService } from '@app/services/backend.service';
+import { HttpClientWrapperService } from '@app/services/httpclientwrapper.service';
 import { ActiveCacheWrapper } from '@app/modules/shared/support/ActiveCacheWrapper';
 // - DOMAIN
 import { Credential } from '../domain/Credential.domain';
@@ -33,7 +34,8 @@ export class AppStoreService {
     constructor(
         protected router: Router,
         protected isolationService: IsolationService,
-        protected backendService: BackendService) {
+        protected backendService: BackendService,
+        protected httpService: HttpClientWrapperService) {
         // - S T O R E   D A T A   S E C T I O N
         this.corporationActiveCache = new ActiveCacheWrapper<Corporation>()
             .setTimedCache(false) // Contents do not expire.
@@ -116,49 +118,45 @@ export class AppStoreService {
         return this.pilotActiveCache.accessData();
     }
 
-    // - E N V I R O N M E N T    C A L L S
-    // public getApplicationName(): string {
-    //    return this.backendService.getApplicationName();
-    // }
-    // public getApplicationVersion(): string {
-    //    return this.backendService.getApplicationVersion();
-    // }
-    // public inDevelopment(): boolean {
-    //    return this.backendService.inDevelopment();
-    // }
-    // public showExceptions(): boolean {
-    //    return this.backendService.showExceptions();
-    // }
-
-    // - G L O B A L   A C C E S S   M E T H O D S
+    // - G L O B A L   S U P P O R T   M E T H O D S
     public isEmpty(target?: any): boolean {
         if (null == target) return true;
-        if (Object.keys(target).length > 0) return false;
-        if (target.length > 0) return true;
-        return true;
+        if (Object.keys(target).length == 0) return true;
+        if (target.length == 0) return true;
+        return false;
     }
+    public accessProperties(propertyName: string): Observable<any> {
+        console.log("><[AppStoreServiceDefinitions.propertiesTreatments]");
+        // Construct the request to call the backend.
+        let request = '/assets/properties/' + propertyName + '.json';
+        return this.httpService.wrapHttpRESOURCECall(request)
+            .pipe(data => {
+                return data as any;
+            });
+    }
+
 
     // - J W T   D E C O D E
     public JWTDecode2AccountName(codedToken: string): string {
-        const token = this.backendService.isolation.JWTDecode(codedToken);
+        const token = this.isolationService.JWTDecode(codedToken);
         return token["accountName"];
     }
     public JWTDecode2UniqueId(codedToken: string): string {
-        const token = this.backendService.isolation.JWTDecode(codedToken);
+        const token = this.isolationService.JWTDecode(codedToken);
         return token["uniqueId"];
     }
 
     // - N O T I F I C A T I O N S
-    public successNotification(_message: string, _title?: string, _options?: any): void {
-        this.backendService.isolation.successNotification(_message, _title, _options);
-    }
-    public errorNotification(_message: string, _title?: string, _options?: any): void {
-        this.backendService.isolation.errorNotification(_message, _title, _options);
-    }
-    public warningNotification(_message: string, _title?: string, _options?: any): void {
-        this.backendService.isolation.warningNotification(_message, _title, _options);
-    }
-    public infoNotification(_message: string, _title?: string, _options?: any): void {
-        this.backendService.isolation.infoNotification(_message, _title, _options);
-    }
+    // public successNotification(_message: string, _title?: string, _options?: any): void {
+    //     this.backendService.isolation.successNotification(_message, _title, _options);
+    // }
+    // public errorNotification(_message: string, _title?: string, _options?: any): void {
+    //     this.backendService.isolation.errorNotification(_message, _title, _options);
+    // }
+    // public warningNotification(_message: string, _title?: string, _options?: any): void {
+    //     this.backendService.isolation.warningNotification(_message, _title, _options);
+    // }
+    // public infoNotification(_message: string, _title?: string, _options?: any): void {
+    //     this.backendService.isolation.infoNotification(_message, _title, _options);
+    // }
 }  
