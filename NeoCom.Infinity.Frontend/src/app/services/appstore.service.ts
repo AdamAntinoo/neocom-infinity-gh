@@ -147,16 +147,16 @@ export class AppStoreService {
     }
 
     // - N O T I F I C A T I O N S
-    // public successNotification(_message: string, _title?: string, _options?: any): void {
-    //     this.backendService.isolation.successNotification(_message, _title, _options);
-    // }
-    // public errorNotification(_message: string, _title?: string, _options?: any): void {
-    //     this.backendService.isolation.errorNotification(_message, _title, _options);
-    // }
-    // public warningNotification(_message: string, _title?: string, _options?: any): void {
-    //     this.backendService.isolation.warningNotification(_message, _title, _options);
-    // }
-    // public infoNotification(_message: string, _title?: string, _options?: any): void {
-    //     this.backendService.isolation.infoNotification(_message, _title, _options);
-    // }
+    public successNotification(_message: string, _title?: string, _options?: any): void {
+        this.backendService.isolation.successNotification(_message, _title, _options);
+    }
+    public errorNotification(_message: string, _title?: string, _options?: any): void {
+        this.backendService.isolation.errorNotification(_message, _title, _options);
+    }
+    public warningNotification(_message: string, _title?: string, _options?: any): void {
+        this.backendService.isolation.warningNotification(_message, _title, _options);
+    }
+    public infoNotification(_message: string, _title?: string, _options?: any): void {
+        this.backendService.isolation.infoNotification(_message, _title, _options);
+    }
 }  

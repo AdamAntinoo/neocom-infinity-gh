@@ -6,6 +6,7 @@ import { Then } from "cypress-cucumber-preprocessor/steps";
 // import { AppInfoPanel } from "../../support/page-objects/AppInfoPanel.panel";
 // import { ServerInfoPanel } from "../../support/page-objects/ServerInfoPanel.panel";
 import { PilotPublicDataPanel } from "../../support/page-objects/PilotPublicDataPanel.panel";
+import { PilotRenderPanel } from '../../support/page-objects/PilotRender.panel';
 // import { DashboardHomePage } from '../pages/DashboardHome.page';
 // import { IsolationService } from '../support/IsolationService.support';
 // import { AppInfoPanel } from '../pages/AppInfoPanel.panel';
@@ -15,6 +16,7 @@ import { PilotPublicDataPanel } from "../../support/page-objects/PilotPublicData
 // let appInfoPanel: AppInfoPanel;
 // let serverInfoPanel: ServerInfoPanel;
 let pilotPublicDataPanel: PilotPublicDataPanel;
+let pilotRender: PilotRenderPanel;
 
 // Given('one instance of AppInfoPanel', function () {
 //     appInfoPanel = new AppInfoPanel();
@@ -24,6 +26,9 @@ let pilotPublicDataPanel: PilotPublicDataPanel;
 // });
 Given('one instance of PilotPublicDataPanel', function () {
     pilotPublicDataPanel = new PilotPublicDataPanel();
+});
+Given('one instance of PilotRenderPanel', function () {
+    pilotRender = new PilotRenderPanel();
 });
 
 //    ?When the page is activated with the request id "DASHBOARD-HOME-SUCCESS"
@@ -57,6 +62,9 @@ Then('there is a {string} with the next fields', (panelType, dataTable) => {
             break;
         case 'pilot-public-data-panel':
             pilotPublicDataPanel.validatePanel(row);
+            break;
+        case 'pilot-render':
+            pilotRender.validatePanel(row);
             break;
     }
 });

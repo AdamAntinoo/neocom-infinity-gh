@@ -31,8 +31,7 @@ export class BackendService {
 
     constructor(
         public isolation: IsolationService,
-        protected httpService: HttpClientWrapperService,
-        protected http: HttpClient) {
+        protected httpService: HttpClientWrapperService) {
         this.APIV1 = environment.serverName + environment.apiVersion1;
     }
 

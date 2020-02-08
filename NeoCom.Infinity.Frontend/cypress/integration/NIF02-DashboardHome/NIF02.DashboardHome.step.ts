@@ -12,5 +12,5 @@ When('the DashBoardPage is activated with the request id {string}', function (st
     // WARNING. Because the page dependency to stored data I have to go first to the login page.
     // TODO - This is suitable to be converted into a command.
     new IsolationService().doLoginPage();
-    cy.visit(urlRequest);
+    // cy.visit(urlRequest);
 });

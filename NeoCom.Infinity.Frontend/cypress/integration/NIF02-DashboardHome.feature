@@ -6,6 +6,7 @@ Feature: [NIF02]-Display the character dashboard page.
         # Given one instance of AppInfoPanel
         # Given one instance of ServerInfoPanel
         Given one instance of PilotPublicDataPanel
+        Given one instance of PilotRenderPanel
     #     Given one Dashboard Home Page
     #     Given the next authentication token
     #         | jwtToken                                                                                                                                                                                                                                                                                                                                                                |
@@ -45,6 +46,6 @@ Feature: [NIF02]-Display the character dashboard page.
         Then there is a "pilot-public-data-panel" with the next fields
             | pilot-header |
             | PILOT        |
-# Then there is a "pilot-render" with the next fields
-#     | pilot-name  | pilot-id   | pilot-race                  | pilot-sex |
-#     | Beth Ripley | [92223647] | Minmatar - Workers - Brutor | FEMALE    |
+        Then there is a "pilot-render" with the next fields
+            | pilot-name  | pilot-id   | pilot-race                  | pilot-sex |
+            | Beth Ripley | [92223647] | Minmatar - Workers - Brutor | FEMALE    |
