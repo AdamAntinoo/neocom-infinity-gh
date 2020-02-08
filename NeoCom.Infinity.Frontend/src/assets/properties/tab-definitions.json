@@ -1,4 +1,11 @@
 [{
+    "jsonClass": "TabDefinition",
+    "name": "Fittings",
+    "icon": "assets/res-sde/drawable/fittingmanagement.png",
+    "pageLink": "fitting"
+}, {
+    "jsonClass": "TabDefinition",
     "name": "Assets",
-    "icon": "assets/res-sde/drawable/assets.png"
+    "icon": "assets/res-sde/drawable/assets.png",
+    "pageLink": "assets"
 }]

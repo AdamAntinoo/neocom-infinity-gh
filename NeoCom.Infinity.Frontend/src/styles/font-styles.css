@@ -1,6 +1,24 @@
 /* F O N T S */
 
 @font-face {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: normal;
+    src: url("assets/fonts/OpenSans/Regular/OpenSans-Regular.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "Open Sans Bold";
+    font-style: normal;
+    font-weight: bold;
+    src: url("assets/fonts/OpenSans/Bold/OpenSans-Bold.ttf") format('truetype');
+}
+
+.opensans-ff {
+    font-family: "Open Sans";
+}
+
+@font-face {
     font-family: "Elemental";
     font-style: normal;
     font-weight: normal;

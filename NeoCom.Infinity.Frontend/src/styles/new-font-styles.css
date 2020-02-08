@@ -1,6 +1,7 @@
 /* F O N T S */
 
-@font-face {
+
+/* @font-face {
     font-family: 'Open Sans';
     font-weight: normal;
     font-style: normal;
@@ -30,7 +31,7 @@
 
 .open-ff {
     font-family: 'Open Sans';
-}
+} */
 
 @font-face {
     font-family: 'Proxima Nova Black';
