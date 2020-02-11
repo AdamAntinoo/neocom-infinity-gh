@@ -14,3 +14,11 @@ When('the DashBoardPage is activated with the request id {string}', function (st
     new IsolationService().doLoginPage();
     // cy.visit(urlRequest);
 });
+Then('there is a tab-container-panel with {int} tabs', function (int) {
+    console.log('[THEN] there is a tab-container-panel with {int} tabs');
+    cy.get('tab-container-panel').find('li').should('have.length', 2);
+});
+Then('there is no tab selected', function () {
+    console.log('[THEN] there is no tab selected');
+    cy.get('tab-container-panel').find('.active').should('have.length', 0);
+});

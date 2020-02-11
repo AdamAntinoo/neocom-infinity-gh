@@ -27,7 +27,7 @@ Feature: [NIF02]-Display the character dashboard page.
 
     # @NIF02 @NIF02.02
     # Scenario: [NIF02.02]-The corporation data for the logged character is shown below the header panel.
-    #     When the page is activated with the request id "DASHBOARD-HOME-SUCCESS"
+    #     When the DashBoardPage is activated with the request id "DASHBOARD-HOME-SUCCESS"
     #     Then there is a "corporation-public-data-panel" with corporation contents
     #         | corporation-header | corporation-ceo-header | alliance-header |
     #         | CORPORATION        | CORPORATION CEO        | ALLIANCE        |
@@ -49,3 +49,9 @@ Feature: [NIF02]-Display the character dashboard page.
         Then there is a "pilot-render" with the next fields
             | pilot-name  | pilot-id   | pilot-race                  | pilot-sex |
             | Beth Ripley | [92223647] | Minmatar - Workers - Brutor | FEMALE    |
+
+    @NIF02 @NIF02.05
+    Scenario: [NIF02.05]-Check that there is a tab list with no tab selected.
+        When the DashBoardPage is activated with the request id "DASHBOARD-HOME-SUCCESS"
+        Then there is a tab-container-panel with 2 tabs
+        And there is no tab selected

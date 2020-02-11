@@ -5,11 +5,13 @@ import { Then } from "cypress-cucumber-preprocessor/steps";
 // - PAGE OBJECTS
 import { AppInfoPanel } from "../../support/page-objects/AppInfoPanel.panel";
 import { ServerInfoPanel } from "../../support/page-objects/ServerInfoPanel.panel";
+import { CorporationDataPanel } from "../../support/page-objects/CorporationDataPanel.panel";
 import { PilotPublicDataPanel } from "../../support/page-objects/PilotPublicDataPanel.panel";
 import { PilotRenderPanel } from '../../support/page-objects/PilotRender.panel';
 
 let appInfoPanel: AppInfoPanel;
 let serverInfoPanel: ServerInfoPanel;
+let corporationDataPanel: CorporationDataPanel;
 let pilotPublicDataPanel: PilotPublicDataPanel;
 let pilotRender: PilotRenderPanel;
 
@@ -18,6 +20,9 @@ Given('one instance of AppInfoPanel', function () {
 });
 Given('one instance of ServerInfoPanel', function () {
     serverInfoPanel = new ServerInfoPanel();
+});
+Given('one instance of CorporationDataPanel', function () {
+    corporationDataPanel = new CorporationDataPanel();
 });
 Given('one instance of PilotPublicDataPanel', function () {
     pilotPublicDataPanel = new PilotPublicDataPanel();
@@ -35,6 +40,9 @@ Then('there is a {string} with the next fields', (panelType, dataTable) => {
             break;
         case 'serverinfo-panel':
             serverInfoPanel.validatePanel(row);
+            break;
+        case 'corporation-public-data-panel':
+            corporationDataPanel.validatePanel(row);
             break;
         case 'pilot-public-data-panel':
             pilotPublicDataPanel.validatePanel(row);
