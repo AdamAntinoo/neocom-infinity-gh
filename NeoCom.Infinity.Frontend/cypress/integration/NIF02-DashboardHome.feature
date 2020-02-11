@@ -55,3 +55,9 @@ Feature: [NIF02]-Display the character dashboard page.
         When the DashBoardPage is activated with the request id "DASHBOARD-HOME-SUCCESS"
         Then there is a tab-container-panel with 2 tabs
         And there is no tab selected
+
+    @NIF02 @NIF02.06
+    Scenario: [NIF02.06]-If the Fittings tab is selected then we move to the Fittings Dashboard.
+        When the DashBoardPage is activated with the request id "DASHBOARD-HOME-SUCCESS"
+        Then there is a tab-container-panel with 2 tabs
+        And if the Fittings tab is selected we land on the FittingsDasgboard page

@@ -22,3 +22,7 @@ Then('there is no tab selected', function () {
     console.log('[THEN] there is no tab selected');
     cy.get('tab-container-panel').find('.active').should('have.length', 0);
 });
+Then('if the Fittings tab is selected we land on the FittingsDasgboard page', function () {
+    console.log('[THEN] if the Fittings tab is selected we land on the FittingsDasgboard page');
+    cy.get('tab-container-panel').contains('Fitting').click();
+});
