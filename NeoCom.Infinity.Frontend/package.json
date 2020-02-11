@@ -9,7 +9,8 @@
         "lint": "ng lint",
         "compodoc": "compodoc -p tsconfig.json --theme laravel",
         "typedoc": "typedoc --mode modules -module commonjs --exclude **/*.spec.ts --out docs/typedoc src/app",
-        "start:support": "bash ./support/support-services.sh start",
+        "start:network": "sudo iptables -t nat -I OUTPUT -p tcp -d 127.0.0.1 --dport 80 -j REDIRECT --to-ports 4200",
+        "start:support": "bash ./support/support-services.sh start | npm run start:network",
         "start:dev": "ng serve --progress --proxy-config proxy.conf.json --base-href /app --public-host neocom.infinity.local",
         "start:server": "npm run build:dev && node server.js",
         "stop:support": "bash ./support/support-services.sh stop",
@@ -23,6 +24,7 @@
         "test:dev": "ng test --code-coverage --source-map --watch --progress ",
         "test:prod": "ng test --watch=false --no-progress --browsers=ChromeHeadlessCI",
         "e2e": "ng e2e --port 4300 --configuration=e2e",
+        "e2e:network": "sudo iptables -t nat -I OUTPUT -p tcp -d 127.0.0.1 --dport 80 -j REDIRECT --to-ports 4300",
         "e2e:open": "cypress open",
         "e2e:atdd": "ng e2e --port 4300 --host neocom.infinity.local --protractor-config e2e/protractor-cucumber.conf.js",
         "e2e:compile": "tsc -p e2e"

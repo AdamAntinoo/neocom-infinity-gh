@@ -2,10 +2,10 @@
     "jsonClass": "TabDefinition",
     "name": "Fittings",
     "icon": "assets/res-sde/drawable/fittingmanagement.png",
-    "pageLink": "fitting"
+    "pageLink": "/fittings"
 }, {
     "jsonClass": "TabDefinition",
     "name": "Assets",
     "icon": "assets/res-sde/drawable/assets.png",
-    "pageLink": "assets"
+    "pageLink": "/assets"
 }]

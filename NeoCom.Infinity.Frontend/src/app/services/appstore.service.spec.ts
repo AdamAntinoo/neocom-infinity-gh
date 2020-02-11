@@ -172,40 +172,70 @@ describe('SERVICE AppStoreService [Module: CORE]', () => {
             expect(service.getLastInterceptedException()).toBeDefined();
             expect(service.getLastInterceptedException().getUserMessage()).toEqual(name);
         });
-        xdescribe('Code Coverage Phase [Store Access Section]', () => {
-            it('clearStore.success: clean any stored values', () => {
-                console.log('><[Store Access Section]> clearStore.success: clean any stored values');
-                // Force the load of some value.
-                // service.accessCorporation();
-            });
+    });
+    xdescribe('Code Coverage Phase [Store Access Section]', () => {
+        it('clearStore.success: clean any stored values', () => {
+            console.log('><[Store Access Section]> clearStore.success: clean any stored values');
+            // Force the load of some value.
+            // service.accessCorporation();
         });
-        describe('Code Coverage Phase [Global Support Methods]', () => {
-            it('isEmpty.success: check if a variable has contents', () => {
-                console.log('><[Global Support Methods]> isEmpty.success: check if a variable has contents');
-                expect(service.isEmpty()).toBeTruthy();
-                expect(service.isEmpty(null)).toBeTruthy();
-                expect(service.isEmpty('')).toBeTruthy();
-                expect(service.isEmpty("")).toBeTruthy();
-                expect(service.isEmpty([])).toBeTruthy();
-                expect(service.isEmpty(" ")).toBeFalsy();
-            });
-            it('accessProperties.success: access a properties file', () => {
-                console.log('><[Global Support Methods]> accessProperties.success: access a properties file');
-                expect(service.accessProperties('tab-definitions')).toBeDefined();
-                // expect(service.accessProperties('undefined')).toBeUndefined();
-            });
+    });
+    describe('Code Coverage Phase [Global Support Methods]', () => {
+        it('isEmpty.success: check if a variable has contents', () => {
+            console.log('><[Global Support Methods]> isEmpty.success: check if a variable has contents');
+            expect(service.isEmpty()).toBeTruthy();
+            expect(service.isEmpty(null)).toBeTruthy();
+            expect(service.isEmpty('')).toBeTruthy();
+            expect(service.isEmpty("")).toBeTruthy();
+            expect(service.isEmpty([])).toBeTruthy();
+            expect(service.isEmpty(" ")).toBeFalsy();
         });
-        describe('Code Coverage Phase [JWT Decode]', () => {
-            it('JWTDecode2AccountName.success: decode the account name from the token', () => {
-                console.log('><[JWT Decode]> JWTDecode2AccountName.success: decode the account name from the token');
-                const token: string = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6MTQyNzY2MTU3MywiYWNjb3VudE5hbWUiOiJBZGFtIEFudGlub28iLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvOTIwMDIwNjciLCJwaWxvdElkIjo5MjAwMjA2N30.6JgBvtHyhvD8aY8-I4075tb433mYMpn9sNeYCkIO28LbhqVR4CZ-x1t_sk4IOLLtzSN07bF4c7ZceWw_ta4Brw';
-                expect(service.JWTDecode2AccountName(token)).toEqual('Adam Antinoo');
-            });
-            it('JWTDecode2UniqueId.success: decode the account name from the token', () => {
-                console.log('><[JWT Decode]> JWTDecode2UniqueId.success: decode the unique id from the token');
-                const token: string = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6MTQyNzY2MTU3MywiYWNjb3VudE5hbWUiOiJBZGFtIEFudGlub28iLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvOTIwMDIwNjciLCJwaWxvdElkIjo5MjAwMjA2N30.6JgBvtHyhvD8aY8-I4075tb433mYMpn9sNeYCkIO28LbhqVR4CZ-x1t_sk4IOLLtzSN07bF4c7ZceWw_ta4Brw';
-                expect(service.JWTDecode2UniqueId(token)).toEqual('tranquility/92002067');
-            });
+        it('accessProperties.success: access a properties file', () => {
+            console.log('><[Global Support Methods]> accessProperties.success: access a properties file');
+            expect(service.accessProperties('tab-definitions')).toBeDefined();
+            // expect(service.accessProperties('undefined')).toBeUndefined();
+        });
+    });
+    describe('Code Coverage Phase [JWT Decode]', () => {
+        it('JWTDecode2AccountName.success: decode the account name from the token', () => {
+            console.log('><[JWT Decode]> JWTDecode2AccountName.success: decode the account name from the token');
+            const token: string = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6MTQyNzY2MTU3MywiYWNjb3VudE5hbWUiOiJBZGFtIEFudGlub28iLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvOTIwMDIwNjciLCJwaWxvdElkIjo5MjAwMjA2N30.6JgBvtHyhvD8aY8-I4075tb433mYMpn9sNeYCkIO28LbhqVR4CZ-x1t_sk4IOLLtzSN07bF4c7ZceWw_ta4Brw';
+            expect(service.JWTDecode2AccountName(token)).toEqual('Adam Antinoo');
+        });
+        it('JWTDecode2UniqueId.success: decode the account name from the token', () => {
+            console.log('><[JWT Decode]> JWTDecode2UniqueId.success: decode the unique id from the token');
+            const token: string = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6MTQyNzY2MTU3MywiYWNjb3VudE5hbWUiOiJBZGFtIEFudGlub28iLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvOTIwMDIwNjciLCJwaWxvdElkIjo5MjAwMjA2N30.6JgBvtHyhvD8aY8-I4075tb433mYMpn9sNeYCkIO28LbhqVR4CZ-x1t_sk4IOLLtzSN07bF4c7ZceWw_ta4Brw';
+            expect(service.JWTDecode2UniqueId(token)).toEqual('tranquility/92002067');
+        });
+    });
+    describe('Code Coverage Phase [Notifications]', () => {
+        it('successNotification.success: check notification calls', () => {
+            console.log('><[Notifications]> successNotification.success: check notification calls');
+            let spy = spyOn(isolationService, 'successNotification');
+            const message = isolationService.generateRandomString(12);
+            service.successNotification(message);
+            expect(spy).toHaveBeenCalled();
+        });
+        it('errorNotification.success: check notification calls', () => {
+            console.log('><[Notifications]> errorNotification.success: check notification calls');
+            let spy = spyOn(isolationService, 'errorNotification');
+            const message = isolationService.generateRandomString(12);
+            service.errorNotification(message);
+            expect(spy).toHaveBeenCalled();
+        });
+        it('warningNotification.success: check notification calls', () => {
+            console.log('><[Notifications]> warningNotification.success: check notification calls');
+            let spy = spyOn(isolationService, 'warningNotification');
+            const message = isolationService.generateRandomString(12);
+            service.warningNotification(message);
+            expect(spy).toHaveBeenCalled();
+        });
+        it('infoNotification.success: check notification calls', () => {
+            console.log('><[Notifications]> infoNotification.success: check notification calls');
+            let spy = spyOn(isolationService, 'infoNotification');
+            const message = isolationService.generateRandomString(12);
+            service.infoNotification(message);
+            expect(spy).toHaveBeenCalled();
         });
     });
 });

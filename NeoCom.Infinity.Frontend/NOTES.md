@@ -7,6 +7,7 @@ git checkout 315e21e99c0121e5679f58b386799d2d800531a1 NeoCom.Infinity.Frontend/e
 or the direct access pattern so all code can use the same set of asserts.
 
 [ANGULAR SNIPPETS]
+-- Return Observable
 return Observable.create((observer) => {
 		let service = new Medico(JSON.parse(serviceData));
 		observer.next(service);

@@ -37,10 +37,13 @@ export class SupportAppStoreService {
     }
 
     // - M O C K   D A T A   A C C E S S
-    public directAccessMockResource(dataIdentifier: string): any | any[] {
+    public directAccessMockResource(dataIdentifier: string): Observable<any> {
         console.log(">>[SupportAppStoreService.directAccessMockResource]> dataIdentifier: " + dataIdentifier);
         let rawdata = require('./mock-data/' + dataIdentifier.toLowerCase() + '.json');
-        return rawdata;
+        return Observable.create((observer) => {
+            observer.next(rawdata);
+            observer.complete();
+        });
     }
     // - G L O B A L   A C C E S S   M E T H O D S
     public isEmpty(target?: any): boolean {
@@ -111,6 +114,16 @@ export class SupportAppStoreService {
         if (null == data) return true;
         if (data.length < 1) return true;
         return false;
+    }
+    public accessProperties(propertyName: string): Observable<any> {
+        console.log("><[SupportAppStoreService.accessProperties]");
+        // Construct the request to call the backend.
+        let request = require('./mock-data/assets/properties/' + propertyName + '.json');
+        console.log("><[SupportAppStoreService.accessProperties]> request=" + JSON.stringify(request));
+        return Observable.create((observer) => {
+            observer.next(request);
+            observer.complete();
+        });
     }
 
     // - J W T   D E C O D E

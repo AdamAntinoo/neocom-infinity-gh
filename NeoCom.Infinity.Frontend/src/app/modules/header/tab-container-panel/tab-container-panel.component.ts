@@ -17,7 +17,7 @@ import { TabDefinition } from '@app/domain/TabDefinition.domain';
 })
 export class TabContainerPanelComponent implements OnInit {
     @Input() tabName: string = '-NONE-'; // The name of the tab to be selected.
-    public tabs: TabDefinition[];
+    public tabs: TabDefinition[] = [];
     constructor(protected appStoreService: AppStoreService) { }
 
     public ngOnInit() {
@@ -37,9 +37,15 @@ export class TabContainerPanelComponent implements OnInit {
                 let results: TabDefinition[] = [];
                 if (data instanceof Array) {
                     for (let key in data) {
-                        results.push(new TabDefinition(data[key]));
+                        const tab = new TabDefinition(data[key]);
+                        if (tab.getName() === this.tabName) tab.select();
+                        results.push(tab);
                     }
-                } else results.push(new TabDefinition(data));
+                } else {
+                    const tab = new TabDefinition(data);
+                    if (tab.getName() === this.tabName) tab.select();
+                    results.push(tab);
+                }
                 return results;
             }));
     }
